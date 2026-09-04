@@ -1,10 +1,178 @@
 body {
-    background-color: #111;
-    color: white;
+    margin: 0;
+    background: #0000;
+    color: Black;
     font-family: Arial, sans-serif;
+}
+
+header {
+    background: #000;
+    padding: 20px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+}
+
+main {
+    padding: 30px 15px;
     text-align: center;
 }
 
 h1 {
-    color: red;
+    font-size: 42px;
+}
+
+.roster {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.wrestler {
+    background: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+
+    transition: transform 0.25s ease;
+}
+
+.wrestler:hover {
+    transform: scale(1.02);
+}
+
+.wrestler h2 {
+    margin: 15px 5px 10px;
+}
+
+.wrestler img {
+    width: 100%;
+    display: block;
+}
+
+.wrestler p {
+    margin: 10px 5px 15px;
+    color: #aaa;
+}
+
+.record {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 15px;
+
+    border-top: 1px solid #333;
+}
+
+.record span {
+    color: #aaa;
+    font-size: 13px;
+}
+
+.record strong {
+    font-size: 18px;
+}
+
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+
+    z-index: 1000;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    position: relative;
+
+    width: 85%;
+    max-width: 450px;
+
+    background: #181818;
+
+    border-radius: 14px;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    transform: translateY(25px) scale(0.95);
+
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.close-button {
+    position: absolute;
+
+    top: 10px;
+    right: 15px;
+
+    background: none;
+    border: none;
+
+    color: white;
+
+    font-size: 30px;
+
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-top: 10px;
+
+    font-size: 30px;
+
+    text-transform: uppercase;
+}
+
+.modal-content h3 {
+    margin-top: 25px;
+}
+
+.modal-content ul {
+    padding-left: 20px;
+}
+
+.modal-content li {
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+
+@media (min-width: 700px) {
+
+    .roster {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
 }
