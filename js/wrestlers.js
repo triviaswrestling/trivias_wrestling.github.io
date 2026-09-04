@@ -43,8 +43,7 @@ const wrestlers = [
         careerOverall: "0 - 0",
         status: "active",
 
-      
-        ]
+        achievements: []
     }
 
 ];
