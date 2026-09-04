@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>Mi Wrestling - Inactive Roster</title>
+</head>
+
+<body>
+
+<header>
+
+    <h2>MI WRESTLING</h2>
+
+    <nav>
+        <a href="index.html">Active Roster</a>
+        <a href="inactive.html">Inactive Roster</a>
+        <a href="#">History</a>
+        <a href="#">Shop</a>
+        <a href="#">Recaps</a>
+        <a href="#">Games</a>
+        <a href="#">Guide</a>
+        <a href="#">About</a>
+        <a href="#">Watch</a>
+    </nav>
+
+</header>
+
+
+<main data-roster-status="inactive">
+
+    <h1>INACTIVE ROSTER</h1>
+
+    <div class="roster" id="roster"></div>
+
+</main>
+
+
+<!-- =========================================
+     MODAL
+     ========================================= -->
+
+<div id="modal" class="modal">
+
+    <div
+        class="modal-content"
+        onclick="event.stopPropagation()"
+    >
+
+        <button
+            class="close-button"
+            onclick="closeModal()"
+        >
+            ×
+        </button>
+
+        <h3>CAREER ACCOMPLISHMENTS</h3>
+
+        <h2 id="modal-name"></h2>
+
+        <p id="modal-division"></p>
+
+        <ul id="modal-achievements"></ul>
+
+    </div>
+
+</div>
+
+
+<script src="js/wrestlers.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/roster.js"></script>
+
+</body>
+
+                             </html>
