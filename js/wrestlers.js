@@ -1,0 +1,36 @@
+const wrestlers = [
+
+    {
+        name: "Cody Rhodes",
+        image: "images/Cody Rhodes trivias.jpg",
+        nickname: "The American Nightmare",
+        stable: "",
+        division: "Men's Division",
+        overall2026: "0 - 0",
+        careerOverall: "0 - 0",
+        status: "active",
+
+        achievements: [
+            "2x WWE Undisputed Champion",
+            "2x TNA Champion",
+            "Royal Rumble Winner 2024"
+        ]
+    },
+
+    {
+        name: "John Cena",
+        image: "images/John Cena trivias.jpg",
+        nickname: "",
+        stable: "",
+        division: "Men's Division",
+        overall2026: "0 - 0",
+        careerOverall: "0 - 0",
+        status: "inactive",
+
+        achievements: [
+            "16x World Champion",
+            "5x United States Champion"
+        ]
+    }
+
+];
