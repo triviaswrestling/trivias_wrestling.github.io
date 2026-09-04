@@ -4,8 +4,8 @@ const luchadores = [
         nombre: "Cody Rhodes",
         imagen: "Cody Rhodes trivias.jpg",
         division: "Men's Division",
-        victorias: 1000,
-        derrotas: 1000,
+        victorias: 0,
+        derrotas: 0,
         logros: [
             "2x WWE Undisputed Champion",
             "2x TNA Champion",
@@ -13,3 +13,16 @@ const luchadores = [
         ]
     }
 ];
+
+function abrirModal(indice) {
+    const luchador = luchadores[indice];
+
+    alert(
+        luchador.nombre + "\n\n" +
+        "División: " + luchador.division + "\n" +
+        "Victorias: " + luchador.victorias + "\n" +
+        "Derrotas: " + luchador.derrotas + "\n\n" +
+        "Logros:\n" +
+        luchador.logros.join("\n")
+    );
+}
