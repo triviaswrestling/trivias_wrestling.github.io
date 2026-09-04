@@ -11,37 +11,37 @@ const championships = [
     },
 
     {
-        title: "AEW World Championship",
+        title: "World Heavyweight Championship",
         champion: "VACANT",
-        image: "images/aew-title.jpg",
+        image: "images/Vacante.jpg",
         page: "championship/aew-world-championship.html"
     },
 
     {
-        title: "TNT Championship",
+        title: "World Tag Team Championship",
         champion: "VACANT",
-        image: "images/tnt-title.jpg",
+        image: "images/Vacante.jpg",
         page: "championship/tnt-championship.html"
     },
 
     {
-        title: "Women's World Championship",
+        title: "Intercontinental Championship",
         champion: "VACANT",
-        image: "images/womens-title.jpg",
+        image: "images/Vacante.jpg",
         page: "championship/womens-world-championship.html"
     },
 
     {
         title: "United States Championship",
         champion: "VACANT",
-        image: "images/us-title.jpg",
+        image: "images/Vacante.jpg",
         page: "championship/united-states-championship.html"
     },
 
     {
-        title: "Intercontinental Championship",
+        title: "NXT Championship",
         champion: "VACANT",
-        image: "images/ic-title.jpg",
+        image: "images/Vacante.jpg",
         page: "championship/intercontinental-championship.html"
     }
 
