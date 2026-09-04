@@ -90,3 +90,18 @@ if (championshipsContainer) {
     });
 
 }
+/* =========================================
+   OVERALL COLORS
+   ========================================= */
+
+.wrestler.raw .record strong {
+    color: #ff4a5f;
+}
+
+.wrestler.smackdown .record strong {
+    color: #4d8dff;
+}
+
+.wrestler.nxt .record strong {
+    color: #d0d0d0;
+}
