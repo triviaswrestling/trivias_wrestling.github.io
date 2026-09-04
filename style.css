@@ -1,7 +1,3 @@
-/* =========================================
-   GLOBAL
-   ========================================= */
-
 * {
     box-sizing: border-box;
 }
@@ -11,6 +7,10 @@ body {
     background: #0b0b0b;
     color: #ffffff;
     font-family: Arial, sans-serif;
+}
+
+body.modal-open {
+    overflow: hidden;
 }
 
 
@@ -53,17 +53,16 @@ nav a:hover {
 
 main {
     padding: 30px 15px;
-    text-align: center;
     background: #0b0b0b;
 }
 
-h1 {
-    margin-bottom: 30px;
+main > h1 {
+    margin: 0 0 30px;
     color: #eeeeee;
     font-size: 42px;
     font-weight: 900;
+    text-align: center;
     letter-spacing: 2px;
-    text-transform: uppercase;
 }
 
 
@@ -86,17 +85,16 @@ h1 {
 
 .wrestler {
     position: relative;
-
     background: #202020;
-
     border: 1px solid #3a3a3a;
     border-top: 3px solid #d90024;
     border-radius: 4px;
-
     overflow: hidden;
     cursor: pointer;
+    text-align: center;
 
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.65);
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.65);
 
     transition:
         transform 0.2s ease,
@@ -145,7 +143,7 @@ h1 {
    WRESTLER NAME
    ========================================= */
 
-.wrestler h2 {
+.wrestler > h2 {
     margin: 2px 5px;
 
     color: #ff4a5f;
@@ -165,12 +163,7 @@ h1 {
    STABLE
    ========================================= */
 
-/*
-   Only the paragraph AFTER the wrestler name
-   is treated as the stable.
-*/
-
-.wrestler h2 + p {
+.wrestler > h2 + p {
     margin: 2px 5px 10px;
 
     color: #ffffff;
@@ -187,7 +180,7 @@ h1 {
 
 
 /* =========================================
-   RECORDS
+   RECORD
    ========================================= */
 
 .record {
@@ -220,14 +213,11 @@ h1 {
     font-weight: 900;
 
     letter-spacing: 1px;
-
-    text-shadow:
-        0 0 6px rgba(255, 74, 95, 0.35);
 }
 
 
 /* =========================================
-   MODAL OVERLAY
+   MODAL BACKGROUND
    ========================================= */
 
 .modal {
@@ -254,6 +244,11 @@ h1 {
     z-index: 9999;
 }
 
+
+/* =========================================
+   MODAL ACTIVE
+   ========================================= */
+
 .modal.show {
     opacity: 1;
     visibility: visible;
@@ -262,7 +257,7 @@ h1 {
 
 
 /* =========================================
-   MODAL BOX
+   MODAL CONTENT
    ========================================= */
 
 .modal-content {
@@ -278,24 +273,33 @@ h1 {
 
     box-shadow:
         0 0 10px rgba(217, 0, 36, 0.45),
-        0 0 30px rgba(0, 0, 0, 0.9),
-        0 20px 50px rgba(0, 0, 0, 0.95);
+        0 0 30px rgba(0, 0, 0, 0.9);
 
     overflow: hidden;
 
-    transform: translateY(22px) scale(0.96);
+    transform:
+        translateY(22px)
+        scale(0.96);
 
     transition:
-        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.modal.show .modal-content {
-    transform: translateY(0) scale(1);
+        transform 0.35s
+        cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
 /* =========================================
-   MODAL RED DETAIL
+   MODAL ANIMATION
+   ========================================= */
+
+.modal.show .modal-content {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================
+   RED / WHITE TOP DETAIL
    ========================================= */
 
 .modal-content::before {
@@ -310,40 +314,12 @@ h1 {
     height: 3px;
 
     background: #ffffff;
-
-    z-index: 5;
 }
 
 
 /* =========================================
-   MODAL HEADER
+   MODAL CATEGORY
    ========================================= */
-
-.modal-content h2 {
-    margin: 0;
-
-    padding: 39px 24px 12px;
-
-    background:
-        linear-gradient(
-            110deg,
-            #3a1116 0%,
-            #242424 38%,
-            #151515 100%
-        );
-
-    color: #ffffff;
-
-    font-size: 27px;
-    font-weight: 900;
-
-    line-height: 1.1;
-
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-
-    border-bottom: 1px solid #4a4a4a;
-}
 
 .modal-content h3 {
     position: absolute;
@@ -360,8 +336,34 @@ h1 {
 
     letter-spacing: 2px;
     text-transform: uppercase;
+}
 
-    z-index: 4;
+
+/* =========================================
+   MODAL NAME
+   ========================================= */
+
+.modal-content h2 {
+    margin: 0;
+
+    padding: 39px 24px 10px;
+
+    background:
+        linear-gradient(
+            110deg,
+            #3a1116 0%,
+            #242424 38%,
+            #151515 100%
+        );
+
+    color: #ffffff;
+
+    font-size: 27px;
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid #4a4a4a;
 }
 
 
@@ -370,29 +372,48 @@ h1 {
    ========================================= */
 
 .modal-content > p {
-    display: none;
+    display: block;
+
+    margin: 0;
+
+    padding: 8px 24px 12px;
+
+    background: #151515;
+
+    color: #999999;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+    border-bottom: 1px solid #292929;
 }
 
 
 /* =========================================
-   MODAL ACHIEVEMENTS
+   ACHIEVEMENTS
    ========================================= */
 
 .modal-content ul {
     margin: 0;
 
-    padding: 20px 24px 26px 42px;
+    padding:
+        20px
+        24px
+        26px
+        42px;
 
     background: #151515;
 }
 
 .modal-content li {
-    margin: 0;
-    padding: 0;
-
     color: #d2d2d2;
 
     font-size: 12px;
+
     line-height: 1.6;
 }
 
@@ -427,22 +448,14 @@ h1 {
     color: #ffffff;
 
     font-size: 22px;
-    font-weight: 300;
-
-    line-height: 1;
 
     cursor: pointer;
 
     z-index: 10;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
 }
 
 .close-button:hover {
     background: #f0002d;
-    transform: scale(1.05);
 }
 
 
@@ -457,7 +470,7 @@ h1 {
         gap: 10px;
     }
 
-    h1 {
+    main > h1 {
         font-size: 32px;
     }
 
@@ -466,11 +479,11 @@ h1 {
         margin-top: 7px;
     }
 
-    .wrestler h2 {
+    .wrestler > h2 {
         font-size: 17px;
     }
 
-    .wrestler h2 + p {
+    .wrestler > h2 + p {
         font-size: 8px;
         margin-bottom: 8px;
     }
@@ -493,25 +506,15 @@ h1 {
     }
 
     .modal-content h2 {
-        padding: 39px 22px 11px;
         font-size: 24px;
     }
 
     .modal-content h3 {
-        left: 22px;
+        font-size: 7px;
     }
 
-    .modal-content ul {
-        padding: 19px 20px 25px 39px;
-    }
-
-    .modal-content li {
-        font-size: 11px;
-    }
-
-    .close-button {
-        top: 10px;
-        right: 11px;
+    .modal-content > p {
+        font-size: 8px;
     }
 }
 
@@ -526,7 +529,3 @@ h1 {
         grid-template-columns: repeat(4, 1fr);
     }
 }
-
-Ahora sí: este CSS corresponde al "index.html" que me acabás de pasar. No tenés que agregar "class="nickname"" ni "class="stable"".
-
-Una cosa importante: el tercer Cody tiene dos "<p>", por eso el CSS distingue automáticamente el primero como nickname y el que está después del "<h2>" como stable. Para los que no tengan uno de esos elementos, simplemente no ponés el "<p>".
