@@ -25,7 +25,7 @@ const wrestlers = [
         division: "Men's Division",
         overall2026: "0 - 0",
         careerOverall: "0 - 0",
-        status: "Active",
+        status: "active",
 
         achievements: [
             "16x World Champion",
