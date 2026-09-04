@@ -18,10 +18,10 @@ const wrestlers = [
     },
 
     {
-        name: "John Cena",
-        image: "images/John Cena trivias.jpg",
-        nickname: "",
-        stable: "",
+        image: "images/Darkman Hart.jpg",
+        nickname: "The Darkman",
+        name: "Bret Hart",
+        stable: "Hart ReFoundation",
         division: "Men's Division",
         overall2026: "0 - 0",
         careerOverall: "0 - 0",
