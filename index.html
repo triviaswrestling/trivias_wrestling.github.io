@@ -1,77 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="style.css">
+
     <title>Mi Wrestling</title>
-
-    <style>
-        body {
-            margin: 0;
-            background: #111;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-            background: #000;
-            padding: 20px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 10px;
-        }
-
-        main {
-            padding: 30px 15px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 42px;
-        }
-
-        .roster {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .wrestler {
-            background: #222;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .wrestler img {
-            width: 100%;
-            display: block;
-        }
-
-        .wrestler h2 {
-            margin: 10px 5px 3px;
-        }
-
-        .wrestler p {
-            margin: 0 5px 15px;
-            color: #aaa;
-        }
-
-        @media (min-width: 700px) {
-            .roster {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -93,45 +29,27 @@
 
 </header>
 
+
 <main>
 
     <h1>ROSTER</h1>
 
     <div class="roster">
 
+
+        <!-- CODY RHODES -->
+
         <div class="wrestler" onclick="openModal(0)">
 
-            <img src="images/Cody Rhodes trivias.jpg" alt="Cody Rhodes">
+            <img
+                src="images/Cody Rhodes trivias.jpg"
+                alt="Cody Rhodes"
+            >
 
             <p>"The American Nightmare"</p>
 
-            <h2>Cody Rhodes</h2>
-
-        </div>
-
-        <div class="wrestler" onclick="openModal(0)">
-
-    <img src="images/Cody Rhodes trivias.jpg" alt="Cody Rhodes">        
-    <p>"The American Nightmare"</p>
-    <h2>CODY RHODES</h2>
-            
- <div class="record">
-        <span>TOTAL</span>
-        <strong>0 - 0</strong>
- </div>
-            <div class="record">
-        <span>2026</span>
-        <strong>0 - 0</strong>
-    </div>
-
-</div>
-        <div class="wrestler" onclick="openModal(0)">
-
-            <img src="images/Cody Rhodes trivias.jpg" alt="Cody Rhodes">
-            <p>"The American Nightmare"</p>
             <h2>CODY RHODES</h2>
 
-            
             <div class="record">
                 <span>2026 Overall</span>
                 <strong>0 - 0</strong>
@@ -142,17 +60,83 @@
                 <strong>0 - 0</strong>
             </div>
 
+        </div>
+
+
+        <!-- CODY RHODES - TEST CARD -->
+
+        <div class="wrestler" onclick="openModal(0)">
+
+            <img
+                src="images/Cody Rhodes trivias.jpg"
+                alt="Cody Rhodes"
+            >
+
+            <p>"The American Nightmare"</p>
+
+            <h2>CODY RHODES</h2>
+
+            <div class="record">
+                <span>2026 Overall</span>
+                <strong>0 - 0</strong>
+            </div>
+
+            <div class="record">
+                <span>Career Overall</span>
+                <strong>0 - 0</strong>
+            </div>
+
+        </div>
+
+
+        <!-- CODY RHODES - TEST CARD -->
+
+        <div class="wrestler" onclick="openModal(0)">
+
+            <img
+                src="images/Cody Rhodes trivias.jpg"
+                alt="Cody Rhodes"
+            >
+
+            <p>"The American Nightmare"</p>
+
+            <h2>CODY RHODES</h2>
+
+            <div class="record">
+                <span>2026 Overall</span>
+                <strong>0 - 0</strong>
+            </div>
+
+            <div class="record">
+                <span>Career Overall</span>
+                <strong>0 - 0</strong>
+            </div>
+
+        </div>
+
+
     </div>
 
 </main>
 
-<!-- MODAL -->
+
+<!-- =========================================
+     MODAL
+     ========================================= -->
 
 <div id="modal" class="modal">
 
-    <div class="modal-content" onclick="event.stopPropagation()">
+    <div
+        class="modal-content"
+        onclick="event.stopPropagation()"
+    >
 
-        <button class="close-button" onclick="closeModal()">×</button>
+        <button
+            class="close-button"
+            onclick="closeModal()"
+        >
+            ×
+        </button>
 
         <h3>CAREER ACCOMPLISHMENTS</h3>
 
@@ -165,6 +149,7 @@
     </div>
 
 </div>
+
 
 <script src="script.js"></script>
 
