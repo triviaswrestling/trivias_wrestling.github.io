@@ -1,3 +1,4 @@
+console.log("ROSTER.JS CARGADO");
 const rosterContainer = document.getElementById("roster");
 const nxtRosterContainer = document.getElementById("nxt-roster");
 
