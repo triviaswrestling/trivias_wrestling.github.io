@@ -1,4 +1,144 @@
 /* =========================================
+   GLOBAL
+   ========================================= */
+
+body {
+    margin: 0;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+header {
+    background: #000;
+    padding: 20px;
+    text-align: center;
+}
+
+header h2 {
+    margin: 0 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+}
+
+
+/* =========================================
+   MAIN
+   ========================================= */
+
+main {
+    padding: 30px 15px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+
+/* =========================================
+   ROSTER
+   ========================================= */
+
+.roster {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+
+/* =========================================
+   WRESTLER CARD
+   ========================================= */
+
+.wrestler {
+    background: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.wrestler:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.wrestler img {
+    width: 100%;
+    display: block;
+}
+
+.wrestler h2 {
+    margin: 10px 5px 3px;
+
+    font-size: 20px;
+}
+
+.wrestler > p {
+    margin: 0 5px 15px;
+
+    color: #aaa;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   WRESTLER RECORD
+   ========================================= */
+
+.record {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0 12px;
+
+    padding: 10px 0;
+
+    border-top: 1px solid #333;
+
+    text-align: left;
+}
+
+.record span {
+    color: #999;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.record strong {
+    color: #d90024;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
    MODAL OVERLAY
    ========================================= */
 
@@ -10,10 +150,10 @@
     justify-content: center;
     align-items: center;
 
-    background: rgba(0, 0, 0, 0.78);
+    background: rgba(0, 0, 0, 0.82);
 
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 
     opacity: 0;
     visibility: hidden;
@@ -69,7 +209,7 @@
 
 
 /* =========================================
-   OPENING ANIMATION
+   MODAL OPENING ANIMATION
    ========================================= */
 
 .modal.show .modal-content {
@@ -99,7 +239,7 @@
 
 
 /* =========================================
-   HEADER AREA
+   MODAL HEADER
    ========================================= */
 
 .modal-content h2 {
@@ -131,7 +271,7 @@
 
 
 /* =========================================
-   CAREER ACCOMPLISHMENTS LABEL
+   CAREER ACCOMPLISHMENTS
    ========================================= */
 
 .modal-content h3 {
@@ -156,7 +296,7 @@
 
 
 /* =========================================
-   DIVISION / SUBTITLE
+   MODAL DIVISION
    ========================================= */
 
 .modal-content p {
@@ -165,7 +305,7 @@
 
 
 /* =========================================
-   ACHIEVEMENTS LIST
+   ACHIEVEMENTS
    ========================================= */
 
 .modal-content ul {
@@ -175,7 +315,6 @@
 
     background: #050505;
 }
-
 
 .modal-content li {
     margin: 0;
@@ -188,7 +327,6 @@
 
     line-height: 1.5;
 }
-
 
 .modal-content li::marker {
     color: #ffffff;
@@ -234,7 +372,6 @@
         transform 0.2s ease;
 }
 
-
 .close-button:hover {
     background: #f0002d;
 
@@ -247,6 +384,32 @@
    ========================================= */
 
 @media (max-width: 600px) {
+
+    .roster {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .wrestler h2 {
+        font-size: 17px;
+    }
+
+    .wrestler > p {
+        font-size: 11px;
+    }
+
+    .record {
+        margin: 0 10px;
+        padding: 8px 0;
+    }
+
+    .record span {
+        font-size: 9px;
+    }
+
+    .record strong {
+        font-size: 13px;
+    }
 
     .modal-content {
         width: 78%;
@@ -280,5 +443,17 @@
     .close-button {
         top: 10px;
         right: 11px;
+    }
+}
+
+
+/* =========================================
+   DESKTOP
+   ========================================= */
+
+@media (min-width: 700px) {
+
+    .roster {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
