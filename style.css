@@ -2,10 +2,14 @@
    GLOBAL
    ========================================= */
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    background: #111;
-    color: white;
+    background: #0b0b0b;
+    color: #ffffff;
     font-family: Arial, sans-serif;
 }
 
@@ -15,19 +19,41 @@ body {
    ========================================= */
 
 header {
-    background: #000;
+    background: #111111;
     padding: 20px;
     text-align: center;
+
+    border-bottom: 2px solid #c90022;
+
+    box-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.8);
 }
 
 header h2 {
     margin: 0 0 15px;
+
+    color: #ffffff;
+
+    font-size: 25px;
+    font-weight: 900;
+
+    text-transform: uppercase;
 }
 
 nav a {
-    color: white;
+    color: #cccccc;
+
     text-decoration: none;
+
     margin: 10px;
+
+    font-weight: 700;
+
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: #d90024;
 }
 
 
@@ -37,11 +63,23 @@ nav a {
 
 main {
     padding: 30px 15px;
+
     text-align: center;
+
+    background: #0b0b0b;
 }
 
 h1 {
+    margin-bottom: 30px;
+
+    color: #eeeeee;
+
     font-size: 42px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
 }
 
 
@@ -51,9 +89,13 @@ h1 {
 
 .roster {
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
+
     gap: 15px;
+
     max-width: 1000px;
+
     margin: auto;
 }
 
@@ -63,78 +105,131 @@ h1 {
    ========================================= */
 
 .wrestler {
-    background: #222;
-    border-radius: 8px;
+    position: relative;
+
+    background: #202020;
+
+    border: 1px solid #3a3a3a;
+
+    border-top: 3px solid #d90024;
+
+    border-radius: 4px;
+
     overflow: hidden;
+
     cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.65);
 
     transition:
         transform 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .wrestler:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+
+    border-color: #d90024;
 
     box-shadow:
-        0 5px 20px rgba(0, 0, 0, 0.5);
-}
-
-.wrestler img {
-    width: 100%;
-    display: block;
-}
-
-.wrestler h2 {
-    margin: 10px 5px 3px;
-
-    font-size: 20px;
-}
-
-.wrestler > p {
-    margin: 0 5px 15px;
-
-    color: #aaa;
-
-    font-size: 13px;
+        0 8px 25px rgba(0, 0, 0, 0.9),
+        0 0 12px rgba(217, 0, 36, 0.25);
 }
 
 
 /* =========================================
-   WRESTLER RECORD
+   WRESTLER IMAGE
+   ========================================= */
+
+.wrestler img {
+    width: 100%;
+
+    display: block;
+
+    border-bottom: 2px solid #444444;
+}
+
+
+/* =========================================
+   WRESTLER NAME
+   ========================================= */
+
+.wrestler h2 {
+    margin: 12px 8px 4px;
+
+    color: #f1f1f1;
+
+    font-size: 20px;
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   NICKNAME
+   ========================================= */
+
+.wrestler > p {
+    margin: 0 8px 15px;
+
+    color: #a8a8a8;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    font-style: italic;
+}
+
+
+/* =========================================
+   RECORD
    ========================================= */
 
 .record {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     margin: 0 12px;
 
     padding: 10px 0;
 
-    border-top: 1px solid #333;
+    border-top: 1px solid #3d3d3d;
 
     text-align: left;
 }
 
-.record span {
-    color: #999;
 
-    font-size: 11px;
-    font-weight: 700;
+/* RECORD LABEL */
+
+.record span {
+    color: #9a9a9a;
+
+    font-size: 10px;
+    font-weight: 800;
 
     text-transform: uppercase;
-    letter-spacing: 0.8px;
+
+    letter-spacing: 1px;
 }
+
+
+/* RECORD NUMBER */
 
 .record strong {
     color: #d90024;
 
-    font-size: 15px;
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 900;
 
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
 
@@ -144,19 +239,25 @@ h1 {
 
 .modal {
     position: fixed;
+
     inset: 0;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
-    background: rgba(0, 0, 0, 0.82);
+    background: rgba(0, 0, 0, 0.86);
 
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(6px);
+
+    -webkit-backdrop-filter: blur(6px);
 
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
 
     transition:
@@ -173,7 +274,9 @@ h1 {
 
 .modal.show {
     opacity: 1;
+
     visibility: visible;
+
     pointer-events: auto;
 }
 
@@ -186,39 +289,49 @@ h1 {
     position: relative;
 
     width: 80%;
+
     max-width: 540px;
 
-    background: #050505;
+    background: #111111;
 
-    border: 1px solid #4d1017;
+    border: 1px solid #3d3d3d;
 
-    border-top: 2px solid #d90024;
+    border-top: 3px solid #d90024;
 
     box-shadow:
-        0 0 8px rgba(220, 0, 35, 0.55),
-        0 0 28px rgba(180, 0, 25, 0.25),
-        0 20px 50px rgba(0, 0, 0, 0.85);
+        0 0 10px rgba(217, 0, 36, 0.45),
+        0 0 30px rgba(0, 0, 0, 0.9),
+        0 20px 50px rgba(0, 0, 0, 0.95);
 
     overflow: hidden;
 
-    transform: translateY(22px) scale(0.96);
+    transform:
+        translateY(22px)
+        scale(0.96);
 
     transition:
-        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        transform 0.35s cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
 }
 
 
 /* =========================================
-   MODAL OPENING ANIMATION
+   MODAL OPENING
    ========================================= */
 
 .modal.show .modal-content {
-    transform: translateY(0) scale(1);
+    transform:
+        translateY(0)
+        scale(1);
 }
 
 
 /* =========================================
-   WHITE LINE DETAIL
+   RED / WHITE LINE DETAIL
    ========================================= */
 
 .modal-content::before {
@@ -226,10 +339,12 @@ h1 {
 
     position: absolute;
 
-    top: -2px;
+    top: -3px;
+
     left: 0;
 
     width: 92px;
+
     height: 3px;
 
     background: #ffffff;
@@ -245,28 +360,29 @@ h1 {
 .modal-content h2 {
     margin: 0;
 
-    padding: 39px 24px 9px;
+    padding: 39px 24px 12px;
 
     background:
         linear-gradient(
             110deg,
-            #260d10 0%,
-            #17090b 38%,
-            #080808 100%
+            #3a1116 0%,
+            #242424 38%,
+            #151515 100%
         );
 
     color: #ffffff;
 
     font-size: 27px;
-    font-weight: 800;
+
+    font-weight: 900;
 
     line-height: 1.1;
 
     text-transform: uppercase;
 
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
 
-    border-bottom: 1px solid #242424;
+    border-bottom: 1px solid #4a4a4a;
 }
 
 
@@ -278,6 +394,7 @@ h1 {
     position: absolute;
 
     top: 17px;
+
     left: 24px;
 
     margin: 0;
@@ -285,7 +402,8 @@ h1 {
     color: #d90024;
 
     font-size: 8px;
-    font-weight: 800;
+
+    font-weight: 900;
 
     letter-spacing: 2px;
 
@@ -311,9 +429,9 @@ h1 {
 .modal-content ul {
     margin: 0;
 
-    padding: 19px 24px 25px 42px;
+    padding: 20px 24px 26px 42px;
 
-    background: #050505;
+    background: #151515;
 }
 
 .modal-content li {
@@ -321,15 +439,15 @@ h1 {
 
     padding: 0;
 
-    color: #d8d8d8;
+    color: #d2d2d2;
 
     font-size: 12px;
 
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .modal-content li::marker {
-    color: #ffffff;
+    color: #d90024;
 }
 
 
@@ -341,13 +459,17 @@ h1 {
     position: absolute;
 
     top: 10px;
+
     right: 12px;
 
     width: 31px;
+
     height: 31px;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     padding: 0;
@@ -359,6 +481,7 @@ h1 {
     color: #ffffff;
 
     font-size: 22px;
+
     font-weight: 300;
 
     line-height: 1;
@@ -375,7 +498,7 @@ h1 {
 .close-button:hover {
     background: #f0002d;
 
-    transform: scale(1.04);
+    transform: scale(1.05);
 }
 
 
@@ -387,7 +510,12 @@ h1 {
 
     .roster {
         grid-template-columns: repeat(2, 1fr);
+
         gap: 10px;
+    }
+
+    h1 {
+        font-size: 32px;
     }
 
     .wrestler h2 {
@@ -395,16 +523,17 @@ h1 {
     }
 
     .wrestler > p {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .record {
-        margin: 0 10px;
+        margin: 0 9px;
+
         padding: 8px 0;
     }
 
     .record span {
-        font-size: 9px;
+        font-size: 8px;
     }
 
     .record strong {
@@ -412,16 +541,16 @@ h1 {
     }
 
     .modal-content {
-        width: 78%;
+        width: 88%;
     }
 
     .modal-content h2 {
         padding:
             39px
             22px
-            10px;
+            11px;
 
-        font-size: 25px;
+        font-size: 24px;
     }
 
     .modal-content h3 {
@@ -432,7 +561,7 @@ h1 {
         padding:
             19px
             20px
-            24px
+            25px
             39px;
     }
 
@@ -442,6 +571,7 @@ h1 {
 
     .close-button {
         top: 10px;
+
         right: 11px;
     }
 }
