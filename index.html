@@ -109,15 +109,21 @@
 
         </div>
 
-        <div class="wrestler">
+        <div class="wrestler" onclick="openModal(0)">
 
-            <img src="https://via.placeholder.com/500x600">
+    <img src="images/Cody Rhodes trivias.jpg" alt="Cody Rhodes">        
+    <p>"The American Nightmare"</p>
+    <h2>CODY RHODES</h>
+ <div class="record">
+        <span>TOTAL</span>
+        <strong>0 - 0</strong>
+ </div>
+            <div class="record">
+        <span>2026</span>
+        <strong>0 - 0</strong>
+    </div>
 
-            <h2>Mike Jones</h2>
-
-            <p>"The Wolf"</p>
-
-        </div>
+</div>
         <div class="wrestler" onclick="openModal(0)">
 
             <img src="images/Cody Rhodes trivias.jpg" alt="Cody Rhodes">
@@ -142,19 +148,15 @@
 
 <div id="modal" class="modal">
 
-    <div class="modal-content">
+    <div class="modal-content" onclick="event.stopPropagation()">
 
-        <button class="close-button" onclick="closeModal()">✕</button>
-
-        <img id="modal-image" src="" alt="Wrestler">
+        <button class="close-button" onclick="closeModal()">×</button>
 
         <h2 id="modal-name"></h2>
 
         <p id="modal-division"></p>
 
-        <p id="modal-record"></p>
-
-        <h3>Achievements</h3>
+        <h3>ACHIEVEMENTS</h3>
 
         <ul id="modal-achievements"></ul>
 
