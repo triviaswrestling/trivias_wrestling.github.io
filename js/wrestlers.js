@@ -34,11 +34,11 @@ const wrestlers = [
     },
 
     {
-        name: "Shawna Spears",
-        image: "images/Shawna Spears.jpg",
+        name: "Shawn Spears",
+        image: "images/shawna spears.jpg",
         nickname: "",
         stable: "",
-        division: "Women's Division",
+        division: "Monday Night Raw",
         overall2026: "100 - 0",
         careerOverall: "0 - 0",
         status: "active",
