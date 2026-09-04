@@ -31,6 +31,20 @@ const wrestlers = [
             "16x World Champion",
             "5x United States Champion"
         ]
+    },
+
+    {
+        image: "images/Shawna Spears.jpg",
+        nickname: "",
+        name: "Bret Hart",
+        stable: "",
+        division: "Men's Division",
+        overall2026: "100 - 0",
+        careerOverall: "0 - 0",
+        status: "active",
+
+      
+        ]
     }
 
 ];
