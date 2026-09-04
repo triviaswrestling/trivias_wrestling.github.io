@@ -22,7 +22,7 @@ header {
     background: #111111;
     padding: 20px;
     text-align: center;
-    border-bottom: 2px solid #c90022;
+    border-bottom: 2px solid #d90024;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.8);
 }
 
@@ -93,8 +93,7 @@ h1 {
     overflow: hidden;
     cursor: pointer;
 
-    box-shadow:
-        0 5px 15px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.65);
 
     transition:
         transform 0.2s ease,
@@ -112,11 +111,6 @@ h1 {
         0 0 12px rgba(217, 0, 36, 0.25);
 }
 
-
-/* =========================================
-   WRESTLER IMAGE
-   ========================================= */
-
 .wrestler img {
     width: 100%;
     display: block;
@@ -125,419 +119,27 @@ h1 {
 
 
 /* =========================================
-   WRESTLER NAME
-   ========================================= */
-
-.wrestler h2 {
-    margin: 12px 0 4px;
-
-    color: #f1f1f1;
-
-    font-size: 20px;
-    font-weight: 900;
-
-    text-align: center;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.5px;
-}
-
-
-/* =========================================
    NICKNAME
    ========================================= */
 
-.wrestler > p {
-    margin: 0 8px 15px;
+.wrestler .nickname {
+    margin: 8px 5px 2px;
 
-    color: #a8a8a8;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    font-style: italic;
-
-    text-align: center;
-}
-
-
-/* =========================================
-   RECORD
-   ========================================= */
-
-.record {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin: 0 12px;
-
-    padding: 10px 0;
-
-    border-top: 1px solid #3d3d3d;
-
-    text-align: left;
-}
-
-
-/* RECORD LABEL */
-
-.record span {
-    color: #9a9a9a;
+    color: #ffffff;
 
     font-size: 10px;
     font-weight: 800;
 
+    text-align: center;
     text-transform: uppercase;
 
     letter-spacing: 1px;
-}
-
-
-/* RECORD NUMBER */
-
-.record strong {
-    color: #d90024;
-
-    font-size: 16px;
-    font-weight: 900;
-
-    letter-spacing: 1px;
-
-    text-shadow:
-        0 0 6px rgba(217, 0, 36, 0.35);
+    line-height: 1.2;
 }
 
 
 /* =========================================
-   MODAL OVERLAY
+   WRESTLER NAME
    ========================================= */
 
-.modal {
-    position: fixed;
-    inset: 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: rgba(0, 0, 0, 0.86);
-
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transition:
-        opacity 0.35s ease,
-        visibility 0.35s ease;
-
-    z-index: 9999;
-}
-
-
-/* =========================================
-   MODAL OPEN
-   ========================================= */
-
-.modal.show {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-
-/* =========================================
-   MODAL BOX
-   ========================================= */
-
-.modal-content {
-    position: relative;
-
-    width: 80%;
-    max-width: 540px;
-
-    background: #111111;
-
-    border: 1px solid #3d3d3d;
-
-    border-top: 3px solid #d90024;
-
-    box-shadow:
-        0 0 10px rgba(217, 0, 36, 0.45),
-        0 0 30px rgba(0, 0, 0, 0.9),
-        0 20px 50px rgba(0, 0, 0, 0.95);
-
-    overflow: hidden;
-
-    transform:
-        translateY(22px)
-        scale(0.96);
-
-    transition:
-        transform 0.35s cubic-bezier(
-            0.22,
-            1,
-            0.36,
-            1
-        );
-}
-
-
-/* =========================================
-   MODAL OPENING
-   ========================================= */
-
-.modal.show .modal-content {
-    transform:
-        translateY(0)
-        scale(1);
-}
-
-
-/* =========================================
-   MODAL TOP DETAIL
-   ========================================= */
-
-.modal-content::before {
-    content: "";
-
-    position: absolute;
-
-    top: -3px;
-    left: 0;
-
-    width: 92px;
-    height: 3px;
-
-    background: #ffffff;
-
-    z-index: 5;
-}
-
-
-/* =========================================
-   MODAL HEADER
-   ========================================= */
-
-.modal-content h2 {
-    margin: 0;
-
-    padding: 39px 24px 12px;
-
-    background:
-        linear-gradient(
-            110deg,
-            #3a1116 0%,
-            #242424 38%,
-            #151515 100%
-        );
-
-    color: #ffffff;
-
-    font-size: 27px;
-    font-weight: 900;
-
-    line-height: 1.1;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.5px;
-
-    border-bottom: 1px solid #4a4a4a;
-}
-
-
-/* =========================================
-   CAREER ACCOMPLISHMENTS
-   ========================================= */
-
-.modal-content h3 {
-    position: absolute;
-
-    top: 17px;
-    left: 24px;
-
-    margin: 0;
-
-    color: #d90024;
-
-    font-size: 8px;
-    font-weight: 900;
-
-    letter-spacing: 2px;
-
-    text-transform: uppercase;
-
-    z-index: 4;
-}
-
-
-/* =========================================
-   MODAL DIVISION
-   ========================================= */
-
-.modal-content p {
-    display: none;
-}
-
-
-/* =========================================
-   ACHIEVEMENTS
-   ========================================= */
-
-.modal-content ul {
-    margin: 0;
-
-    padding: 20px 24px 26px 42px;
-
-    background: #151515;
-}
-
-.modal-content li {
-    margin: 0;
-    padding: 0;
-
-    color: #d2d2d2;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-}
-
-.modal-content li::marker {
-    color: #d90024;
-}
-
-
-/* =========================================
-   CLOSE BUTTON
-   ========================================= */
-
-.close-button {
-    position: absolute;
-
-    top: 10px;
-    right: 12px;
-
-    width: 31px;
-    height: 31px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 0;
-
-    background: #d90024;
-
-    border: none;
-
-    color: #ffffff;
-
-    font-size: 22px;
-    font-weight: 300;
-
-    line-height: 1;
-
-    cursor: pointer;
-
-    z-index: 10;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-.close-button:hover {
-    background: #f0002d;
-
-    transform: scale(1.05);
-}
-
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 600px) {
-
-    .roster {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    h1 {
-        font-size: 32px;
-    }
-
-    .wrestler h2 {
-        font-size: 17px;
-    }
-
-    .wrestler > p {
-        font-size: 10px;
-    }
-
-    .record {
-        margin: 0 9px;
-        padding: 8px 0;
-    }
-
-    .record span {
-        font-size: 8px;
-    }
-
-    .record strong {
-        font-size: 13px;
-    }
-
-    .modal-content {
-        width: 88%;
-    }
-
-    .modal-content h2 {
-        padding:
-            39px
-            22px
-            11px;
-
-        font-size: 24px;
-    }
-
-    .modal-content h3 {
-        left: 22px;
-    }
-
-    .modal-content ul {
-        padding:
-            19px
-            20px
-            25px
-            39px;
-    }
-
-    .modal-content li {
-        font-size: 11px;
-    }
-
-    .close-button {
-        top: 10px;
-        right: 11px;
-    }
-}
-
-
-/* =========================================
-   DESKTOP
-   ========================================= */
-
-@media (min-width: 700px) {
-
-    .roster {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
+.wrest
