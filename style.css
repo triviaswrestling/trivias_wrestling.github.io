@@ -1,21 +1,38 @@
 body {
     margin: 0;
-    background: #0000;
-    color: Black;
+    background: #0b0b0b;
+    color: white;
     font-family: Arial, sans-serif;
 }
 
+
+/* HEADER */
+
 header {
-    background: #000;
+    background: #050505;
     padding: 20px;
     text-align: center;
+    border-bottom: 2px solid #b00000;
+}
+
+header h2 {
+    margin: 0 0 15px;
+    color: white;
 }
 
 nav a {
-    color: white;
+    color: #ddd;
     text-decoration: none;
     margin: 10px;
+    transition: color 0.2s ease;
 }
+
+nav a:hover {
+    color: #e00000;
+}
+
+
+/* MAIN */
 
 main {
     padding: 30px 15px;
@@ -24,7 +41,11 @@ main {
 
 h1 {
     font-size: 42px;
+    margin-bottom: 30px;
 }
+
+
+/* ROSTER */
 
 .roster {
     display: grid;
@@ -34,21 +55,32 @@ h1 {
     margin: auto;
 }
 
+
+/* WRESTLER CARD */
+
 .wrestler {
-    background: #222;
+    background: #151515;
+    border: 1px solid #292929;
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
 
-    transition: transform 0.25s ease;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .wrestler:hover {
     transform: scale(1.02);
+    border-color: #b00000;
+    box-shadow: 0 0 18px rgba(180, 0, 0, 0.25);
 }
 
 .wrestler h2 {
     margin: 15px 5px 10px;
+    font-size: 22px;
+    letter-spacing: 1px;
 }
 
 .wrestler img {
@@ -59,7 +91,11 @@ h1 {
 .wrestler p {
     margin: 10px 5px 15px;
     color: #aaa;
+    font-style: italic;
 }
+
+
+/* RECORD */
 
 .record {
     display: flex;
@@ -68,15 +104,18 @@ h1 {
 
     padding: 10px 15px;
 
-    border-top: 1px solid #333;
+    background: #101010;
+    border-top: 1px solid #292929;
 }
 
 .record span {
-    color: #aaa;
+    color: #999;
     font-size: 13px;
+    font-weight: bold;
 }
 
 .record strong {
+    color: #e00000;
     font-size: 18px;
 }
 
@@ -91,7 +130,7 @@ h1 {
     justify-content: center;
     align-items: center;
 
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.82);
 
     opacity: 0;
     visibility: hidden;
@@ -103,10 +142,16 @@ h1 {
     z-index: 1000;
 }
 
+
+/* MODAL OPEN */
+
 .modal.show {
     opacity: 1;
     visibility: visible;
 }
+
+
+/* MODAL CONTENT */
 
 .modal-content {
     position: relative;
@@ -114,9 +159,12 @@ h1 {
     width: 85%;
     max-width: 450px;
 
-    background: #181818;
+    background: #151515;
 
-    border-radius: 14px;
+    border: 1px solid #b00000;
+    border-top: 4px solid #d00000;
+
+    border-radius: 12px;
 
     padding: 30px;
 
@@ -125,38 +173,71 @@ h1 {
     transform: translateY(25px) scale(0.95);
 
     transition: transform 0.3s ease;
+
+    box-shadow: 0 0 35px rgba(180, 0, 0, 0.25);
 }
+
+
+/* MODAL ANIMATION */
 
 .modal.show .modal-content {
     transform: translateY(0) scale(1);
 }
 
+
+/* CLOSE BUTTON */
+
 .close-button {
     position: absolute;
 
-    top: 10px;
-    right: 15px;
+    top: 8px;
+    right: 12px;
 
     background: none;
     border: none;
+
+    color: #aaa;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+}
+
+.close-button:hover {
+    color: #e00000;
+}
+
+
+/* MODAL TEXT */
+
+.modal-content h2 {
+    margin-top: 10px;
 
     color: white;
 
     font-size: 30px;
 
-    cursor: pointer;
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
 }
 
-.modal-content h2 {
-    margin-top: 10px;
-
-    font-size: 30px;
-
-    text-transform: uppercase;
+.modal-content p {
+    color: #aaa;
 }
 
 .modal-content h3 {
     margin-top: 25px;
+
+    color: #e00000;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid #333;
+
+    padding-bottom: 8px;
 }
 
 .modal-content ul {
@@ -165,9 +246,12 @@ h1 {
 
 .modal-content li {
     margin-bottom: 10px;
-    color: #ccc;
+
+    color: #ddd;
 }
 
+
+/* MOBILE / DESKTOP */
 
 @media (min-width: 700px) {
 
