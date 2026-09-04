@@ -9,6 +9,12 @@ function createWrestlerCard(wrestler, index) {
 
     card.className = "wrestler";
 
+if (wrestler.brand) {
+    card.classList.add(
+        wrestler.brand.toLowerCase().replace(" ", "-")
+    );
+}
+
     card.onclick = function () {
         openModal(index);
     };
