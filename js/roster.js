@@ -1,4 +1,5 @@
 const rosterContainer = document.getElementById("roster");
+const nxtRosterContainer = document.getElementById("nxt-roster");
 
 
 function createWrestlerCard(wrestler, index) {
@@ -63,7 +64,11 @@ function createWrestlerCard(wrestler, index) {
 }
 
 
-function loadRoster(status) {
+/* =========================================
+   LOAD MAIN ROSTER
+   ========================================= */
+
+function loadMainRoster(status) {
 
     if (!rosterContainer) {
         return;
@@ -75,7 +80,10 @@ function loadRoster(status) {
 
     wrestlers.forEach(function (wrestler, index) {
 
-        if (wrestler.status === status) {
+        if (
+            wrestler.status === status &&
+            wrestler.division !== "NXT"
+        ) {
 
             const card = createWrestlerCard(wrestler, index);
 
@@ -86,6 +94,40 @@ function loadRoster(status) {
 }
 
 
+/* =========================================
+   LOAD NXT ROSTER
+   ========================================= */
+
+function loadNXTRoster(status) {
+
+    if (!nxtRosterContainer) {
+        return;
+    }
+
+
+    nxtRosterContainer.innerHTML = "";
+
+
+    wrestlers.forEach(function (wrestler, index) {
+
+        if (
+            wrestler.status === status &&
+            wrestler.division === "NXT"
+        ) {
+
+            const card = createWrestlerCard(wrestler, index);
+
+            nxtRosterContainer.appendChild(card);
+        }
+
+    });
+}
+
+
+/* =========================================
+   LOAD ROSTERS
+   ========================================= */
+
 const main = document.querySelector("main");
 
 
@@ -93,6 +135,8 @@ if (main) {
 
     const status = main.dataset.rosterStatus;
 
-    loadRoster(status);
+    loadMainRoster(status);
+
+    loadNXTRoster(status);
 
 }
