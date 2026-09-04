@@ -1,5 +1,5 @@
 /* =========================================
-   MODAL
+   MODAL OVERLAY
    ========================================= */
 
 .modal {
@@ -10,11 +10,10 @@
     justify-content: center;
     align-items: center;
 
-    background: rgba(0, 0, 0, 0.82);
+    background: rgba(0, 0, 0, 0.78);
 
-    /* Efecto de desenfoque del fondo */
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 
     opacity: 0;
     visibility: hidden;
@@ -24,12 +23,12 @@
         opacity 0.35s ease,
         visibility 0.35s ease;
 
-    z-index: 1000;
+    z-index: 9999;
 }
 
 
 /* =========================================
-   MODAL ABIERTO
+   MODAL OPEN
    ========================================= */
 
 .modal.show {
@@ -40,39 +39,46 @@
 
 
 /* =========================================
-   CAJA CENTRAL
+   MODAL BOX
    ========================================= */
 
 .modal-content {
     position: relative;
 
-    width: 82%;
+    width: 80%;
     max-width: 540px;
 
-    background: #080808;
+    background: #050505;
 
-    border: 1px solid #5e1118;
+    border: 1px solid #4d1017;
 
-    /* Línea roja superior */
-    border-top: 2px solid #e00020;
+    border-top: 2px solid #d90024;
 
     box-shadow:
-        0 0 8px rgba(230, 0, 30, 0.45),
-        0 0 25px rgba(180, 0, 20, 0.20),
-        0 15px 45px rgba(0, 0, 0, 0.8);
+        0 0 8px rgba(220, 0, 35, 0.55),
+        0 0 28px rgba(180, 0, 25, 0.25),
+        0 20px 50px rgba(0, 0, 0, 0.85);
 
     overflow: hidden;
 
-    transform: translateY(25px) scale(0.96);
+    transform: translateY(22px) scale(0.96);
 
     transition:
-        transform 0.35s ease,
-        box-shadow 0.35s ease;
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
 /* =========================================
-   EFECTO ROJO SUPERIOR
+   OPENING ANIMATION
+   ========================================= */
+
+.modal.show .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+
+/* =========================================
+   WHITE LINE DETAIL
    ========================================= */
 
 .modal-content::before {
@@ -83,46 +89,29 @@
     top: -2px;
     left: 0;
 
-    width: 90px;
+    width: 92px;
     height: 3px;
 
     background: #ffffff;
 
-    box-shadow:
-        0 0 8px rgba(255, 255, 255, 0.5);
-
-    z-index: 3;
+    z-index: 5;
 }
 
 
 /* =========================================
-   MODAL ABIERTO - ANIMACIÓN
-   ========================================= */
-
-.modal.show .modal-content {
-    transform: translateY(0) scale(1);
-
-    box-shadow:
-        0 0 12px rgba(230, 0, 30, 0.55),
-        0 0 35px rgba(180, 0, 20, 0.25),
-        0 20px 50px rgba(0, 0, 0, 0.85);
-}
-
-
-/* =========================================
-   CABECERA DEL MODAL
+   HEADER AREA
    ========================================= */
 
 .modal-content h2 {
     margin: 0;
 
-    padding: 40px 24px 8px;
+    padding: 39px 24px 9px;
 
     background:
         linear-gradient(
-            135deg,
-            #241012 0%,
-            #130b0c 45%,
+            110deg,
+            #260d10 0%,
+            #17090b 38%,
             #080808 100%
         );
 
@@ -131,105 +120,105 @@
     font-size: 27px;
     font-weight: 800;
 
+    line-height: 1.1;
+
     text-transform: uppercase;
 
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
 
-    border-bottom: 1px solid #272727;
+    border-bottom: 1px solid #242424;
 }
 
 
 /* =========================================
-   DIVISIÓN
-   ========================================= */
-
-.modal-content p {
-    margin: 0;
-
-    padding: 0 24px 18px;
-
-    background: #080808;
-
-    color: #999;
-
-    font-size: 12px;
-}
-
-
-/* =========================================
-   ACHIEVEMENTS
+   CAREER ACCOMPLISHMENTS LABEL
    ========================================= */
 
 .modal-content h3 {
+    position: absolute;
+
+    top: 17px;
+    left: 24px;
+
     margin: 0;
 
-    padding: 18px 24px 10px;
+    color: #d90024;
 
-    color: #e00020;
-
-    background: #080808;
-
-    font-size: 10px;
-
+    font-size: 8px;
     font-weight: 800;
 
     letter-spacing: 2px;
 
     text-transform: uppercase;
 
-    border-top: 1px solid #252525;
+    z-index: 4;
 }
 
 
 /* =========================================
-   LISTA DE LOGROS
+   DIVISION / SUBTITLE
+   ========================================= */
+
+.modal-content p {
+    display: none;
+}
+
+
+/* =========================================
+   ACHIEVEMENTS LIST
    ========================================= */
 
 .modal-content ul {
     margin: 0;
 
-    padding: 14px 30px 25px 42px;
+    padding: 19px 24px 25px 42px;
 
     background: #050505;
 }
 
+
 .modal-content li {
-    margin-bottom: 10px;
+    margin: 0;
 
-    color: #ddd;
+    padding: 0;
 
-    font-size: 13px;
+    color: #d8d8d8;
+
+    font-size: 12px;
 
     line-height: 1.5;
 }
 
+
 .modal-content li::marker {
-    color: #e00020;
+    color: #ffffff;
 }
 
 
 /* =========================================
-   BOTÓN X
+   CLOSE BUTTON
    ========================================= */
 
 .close-button {
     position: absolute;
 
-    top: 12px;
+    top: 10px;
     right: 12px;
 
-    width: 32px;
-    height: 32px;
+    width: 31px;
+    height: 31px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background: #e00020;
+    padding: 0;
+
+    background: #d90024;
 
     border: none;
 
-    color: white;
+    color: #ffffff;
 
     font-size: 22px;
     font-weight: 300;
@@ -238,48 +227,58 @@
 
     cursor: pointer;
 
-    z-index: 5;
+    z-index: 10;
 
     transition:
         background 0.2s ease,
         transform 0.2s ease;
 }
 
-.close-button:hover {
-    background: #ff1738;
 
-    transform: scale(1.05);
+.close-button:hover {
+    background: #f0002d;
+
+    transform: scale(1.04);
 }
 
 
 /* =========================================
-   MÓVIL
+   MOBILE
    ========================================= */
 
 @media (max-width: 600px) {
 
     .modal-content {
-        width: 88%;
-        max-width: none;
+        width: 78%;
     }
 
     .modal-content h2 {
-        font-size: 25px;
-        padding: 40px 20px 8px;
-    }
+        padding:
+            39px
+            22px
+            10px;
 
-    .modal-content p {
-        padding-left: 20px;
-        padding-right: 20px;
+        font-size: 25px;
     }
 
     .modal-content h3 {
-        padding-left: 20px;
+        left: 22px;
     }
 
     .modal-content ul {
-        padding-left: 38px;
-        padding-right: 20px;
+        padding:
+            19px
+            20px
+            24px
+            39px;
     }
 
+    .modal-content li {
+        font-size: 11px;
+    }
+
+    .close-button {
+        top: 10px;
+        right: 11px;
+    }
 }
