@@ -23,7 +23,7 @@ const wrestlers = [
         name: "Bret Hart",
         stable: "Hart ReFoundation",
         division: "Men's Division",
-        overall2026: "0 - 0",
+        overall2026: "100 - 0",
         careerOverall: "0 - 0",
         status: "active",
 
