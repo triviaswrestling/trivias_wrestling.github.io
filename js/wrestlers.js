@@ -45,7 +45,8 @@ const wrestlers = [
 
         achievements: [
             "16x World Champion",
-            "5x United States Champion"]
+            "5x United States Champion"
+        ]
     }
 
-]
+];
