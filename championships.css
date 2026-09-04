@@ -64,13 +64,13 @@
    ========================================= */
 
 .wrestler.raw .record strong {
-    color: #ff4a5f;
+    color: #ff4a5f !important;
 }
 
 .wrestler.smackdown .record strong {
-    color: #4d8dff;
+    color: #4d8dff !important;
 }
 
 .wrestler.nxt .record strong {
-    color: #d0d0d0;
+    color: #d0d0d0 !important;
 }
