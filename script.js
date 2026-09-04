@@ -1,11 +1,16 @@
 console.log("Trivias Wrestling funcionando");
+
 const wrestlers = [
     {
         name: "Cody Rhodes",
         image: "images/Cody Rhodes trivias.jpg",
         division: "Men's Division",
-        wins: 0,
-        losses: 0,
+
+        totalWins: 0,
+        totalLosses: 0,
+
+        yearWins: 0,
+        yearLosses: 0,
 
         achievements: [
             "2x WWE Undisputed Champion",
@@ -15,20 +20,16 @@ const wrestlers = [
     }
 ];
 
+
 function openModal(index) {
 
     const wrestler = wrestlers[index];
 
-    document.getElementById("modal-image").src = wrestler.image;
-
-    document.getElementById("modal-name").textContent = wrestler.name;
+    document.getElementById("modal-name").textContent =
+        wrestler.name;
 
     document.getElementById("modal-division").textContent =
         "Division: " + wrestler.division;
-
-    document.getElementById("modal-record").textContent =
-        "Wins: " + wrestler.wins +
-        " | Losses: " + wrestler.losses;
 
     const achievementsList =
         document.getElementById("modal-achievements");
@@ -45,11 +46,12 @@ function openModal(index) {
 
     });
 
-    document.getElementById("modal").style.display = "flex";
+    document.getElementById("modal").classList.add("show");
 }
+
 
 function closeModal() {
 
-    document.getElementById("modal").style.display = "none";
+    document.getElementById("modal").classList.remove("show");
 
 }
