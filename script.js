@@ -1,12 +1,13 @@
 console.log("Trivias Wrestling funcionando");
-const luchadores = [
+const wrestlers = [
     {
-        nombre: "Cody Rhodes",
-        imagen: "Cody Rhodes trivias.jpg",
+        name: "Cody Rhodes",
+        image: "images/Cody Rhodes trivias.jpg",
         division: "Men's Division",
-        victorias: 0,
-        derrotas: 0,
-        logros: [
+        wins: 0,
+        losses: 0,
+
+        achievements: [
             "2x WWE Undisputed Champion",
             "2x TNA Champion",
             "Royal Rumble Winner 2024"
@@ -14,15 +15,41 @@ const luchadores = [
     }
 ];
 
-function abrirModal(indice) {
-    const luchador = luchadores[indice];
+function openModal(index) {
 
-    alert(
-        luchador.nombre + "\n\n" +
-        "División: " + luchador.division + "\n" +
-        "Victorias: " + luchador.victorias + "\n" +
-        "Derrotas: " + luchador.derrotas + "\n\n" +
-        "Logros:\n" +
-        luchador.logros.join("\n")
-    );
+    const wrestler = wrestlers[index];
+
+    document.getElementById("modal-image").src = wrestler.image;
+
+    document.getElementById("modal-name").textContent = wrestler.name;
+
+    document.getElementById("modal-division").textContent =
+        "Division: " + wrestler.division;
+
+    document.getElementById("modal-record").textContent =
+        "Wins: " + wrestler.wins +
+        " | Losses: " + wrestler.losses;
+
+    const achievementsList =
+        document.getElementById("modal-achievements");
+
+    achievementsList.innerHTML = "";
+
+    wrestler.achievements.forEach(function(achievement) {
+
+        const listItem = document.createElement("li");
+
+        listItem.textContent = achievement;
+
+        achievementsList.appendChild(listItem);
+
+    });
+
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+
+    document.getElementById("modal").style.display = "none";
+
 }
