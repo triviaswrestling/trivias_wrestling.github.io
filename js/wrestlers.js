@@ -18,9 +18,9 @@ const wrestlers = [
     },
 
     {
+        name: "Bret Hart",
         image: "images/Darkman Hart.jpg",
         nickname: "The Darkman",
-        name: "Bret Hart",
         stable: "Hart ReFoundation",
         division: "Men's Division",
         overall2026: "100 - 0",
@@ -34,11 +34,11 @@ const wrestlers = [
     },
 
     {
+        name: "Shawna Spears",
         image: "images/Shawna Spears.jpg",
         nickname: "",
-        name: "Bret Hart",
         stable: "",
-        division: "Men's Division",
+        division: "Women's Division",
         overall2026: "100 - 0",
         careerOverall: "0 - 0",
         status: "active",
