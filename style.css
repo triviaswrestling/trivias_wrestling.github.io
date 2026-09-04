@@ -1,126 +1,6 @@
-body {
-    margin: 0;
-    background: #0b0b0b;
-    color: white;
-    font-family: Arial, sans-serif;
-}
-
-
-/* HEADER */
-
-header {
-    background: #050505;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 2px solid #b00000;
-}
-
-header h2 {
-    margin: 0 0 15px;
-    color: white;
-}
-
-nav a {
-    color: #ddd;
-    text-decoration: none;
-    margin: 10px;
-    transition: color 0.2s ease;
-}
-
-nav a:hover {
-    color: #e00000;
-}
-
-
-/* MAIN */
-
-main {
-    padding: 30px 15px;
-    text-align: center;
-}
-
-h1 {
-    font-size: 42px;
-    margin-bottom: 30px;
-}
-
-
-/* ROSTER */
-
-.roster {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    max-width: 1000px;
-    margin: auto;
-}
-
-
-/* WRESTLER CARD */
-
-.wrestler {
-    background: #151515;
-    border: 1px solid #292929;
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-.wrestler:hover {
-    transform: scale(1.02);
-    border-color: #b00000;
-    box-shadow: 0 0 18px rgba(180, 0, 0, 0.25);
-}
-
-.wrestler h2 {
-    margin: 15px 5px 10px;
-    font-size: 22px;
-    letter-spacing: 1px;
-}
-
-.wrestler img {
-    width: 100%;
-    display: block;
-}
-
-.wrestler p {
-    margin: 10px 5px 15px;
-    color: #aaa;
-    font-style: italic;
-}
-
-
-/* RECORD */
-
-.record {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 10px 15px;
-
-    background: #101010;
-    border-top: 1px solid #292929;
-}
-
-.record span {
-    color: #999;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.record strong {
-    color: #e00000;
-    font-size: 18px;
-}
-
-
-/* MODAL */
+/* =========================================
+   MODAL
+   ========================================= */
 
 .modal {
     position: fixed;
@@ -132,131 +12,274 @@ h1 {
 
     background: rgba(0, 0, 0, 0.82);
 
+    /* Efecto de desenfoque del fondo */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
 
     transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease;
+        opacity 0.35s ease,
+        visibility 0.35s ease;
 
     z-index: 1000;
 }
 
 
-/* MODAL OPEN */
+/* =========================================
+   MODAL ABIERTO
+   ========================================= */
 
 .modal.show {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 
-/* MODAL CONTENT */
+/* =========================================
+   CAJA CENTRAL
+   ========================================= */
 
 .modal-content {
     position: relative;
 
-    width: 85%;
-    max-width: 450px;
+    width: 82%;
+    max-width: 540px;
 
-    background: #151515;
+    background: #080808;
 
-    border: 1px solid #b00000;
-    border-top: 4px solid #d00000;
+    border: 1px solid #5e1118;
 
-    border-radius: 12px;
+    /* Línea roja superior */
+    border-top: 2px solid #e00020;
 
-    padding: 30px;
+    box-shadow:
+        0 0 8px rgba(230, 0, 30, 0.45),
+        0 0 25px rgba(180, 0, 20, 0.20),
+        0 15px 45px rgba(0, 0, 0, 0.8);
 
-    box-sizing: border-box;
+    overflow: hidden;
 
-    transform: translateY(25px) scale(0.95);
+    transform: translateY(25px) scale(0.96);
 
-    transition: transform 0.3s ease;
-
-    box-shadow: 0 0 35px rgba(180, 0, 0, 0.25);
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
 }
 
 
-/* MODAL ANIMATION */
+/* =========================================
+   EFECTO ROJO SUPERIOR
+   ========================================= */
+
+.modal-content::before {
+    content: "";
+
+    position: absolute;
+
+    top: -2px;
+    left: 0;
+
+    width: 90px;
+    height: 3px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 0.5);
+
+    z-index: 3;
+}
+
+
+/* =========================================
+   MODAL ABIERTO - ANIMACIÓN
+   ========================================= */
 
 .modal.show .modal-content {
     transform: translateY(0) scale(1);
+
+    box-shadow:
+        0 0 12px rgba(230, 0, 30, 0.55),
+        0 0 35px rgba(180, 0, 20, 0.25),
+        0 20px 50px rgba(0, 0, 0, 0.85);
 }
 
 
-/* CLOSE BUTTON */
-
-.close-button {
-    position: absolute;
-
-    top: 8px;
-    right: 12px;
-
-    background: none;
-    border: none;
-
-    color: #aaa;
-
-    font-size: 30px;
-
-    cursor: pointer;
-
-    transition: color 0.2s ease;
-}
-
-.close-button:hover {
-    color: #e00000;
-}
-
-
-/* MODAL TEXT */
+/* =========================================
+   CABECERA DEL MODAL
+   ========================================= */
 
 .modal-content h2 {
-    margin-top: 10px;
+    margin: 0;
 
-    color: white;
+    padding: 40px 24px 8px;
 
-    font-size: 30px;
+    background:
+        linear-gradient(
+            135deg,
+            #241012 0%,
+            #130b0c 45%,
+            #080808 100%
+        );
+
+    color: #ffffff;
+
+    font-size: 27px;
+    font-weight: 800;
 
     text-transform: uppercase;
 
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+
+    border-bottom: 1px solid #272727;
 }
+
+
+/* =========================================
+   DIVISIÓN
+   ========================================= */
 
 .modal-content p {
-    color: #aaa;
+    margin: 0;
+
+    padding: 0 24px 18px;
+
+    background: #080808;
+
+    color: #999;
+
+    font-size: 12px;
 }
 
-.modal-content h3 {
-    margin-top: 25px;
 
-    color: #e00000;
+/* =========================================
+   ACHIEVEMENTS
+   ========================================= */
+
+.modal-content h3 {
+    margin: 0;
+
+    padding: 18px 24px 10px;
+
+    color: #e00020;
+
+    background: #080808;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
 
     text-transform: uppercase;
 
-    border-bottom: 1px solid #333;
-
-    padding-bottom: 8px;
+    border-top: 1px solid #252525;
 }
 
+
+/* =========================================
+   LISTA DE LOGROS
+   ========================================= */
+
 .modal-content ul {
-    padding-left: 20px;
+    margin: 0;
+
+    padding: 14px 30px 25px 42px;
+
+    background: #050505;
 }
 
 .modal-content li {
     margin-bottom: 10px;
 
     color: #ddd;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.modal-content li::marker {
+    color: #e00020;
 }
 
 
-/* MOBILE / DESKTOP */
+/* =========================================
+   BOTÓN X
+   ========================================= */
 
-@media (min-width: 700px) {
+.close-button {
+    position: absolute;
 
-    .roster {
-        grid-template-columns: repeat(4, 1fr);
+    top: 12px;
+    right: 12px;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #e00020;
+
+    border: none;
+
+    color: white;
+
+    font-size: 22px;
+    font-weight: 300;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.close-button:hover {
+    background: #ff1738;
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================
+   MÓVIL
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .modal-content {
+        width: 88%;
+        max-width: none;
+    }
+
+    .modal-content h2 {
+        font-size: 25px;
+        padding: 40px 20px 8px;
+    }
+
+    .modal-content p {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .modal-content h3 {
+        padding-left: 20px;
+    }
+
+    .modal-content ul {
+        padding-left: 38px;
+        padding-right: 20px;
     }
 
 }
