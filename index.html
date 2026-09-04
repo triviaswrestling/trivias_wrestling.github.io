@@ -1,142 +1,80 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mi Wrestling</title>
+    <title>Trivias Wrestling</title>
 
-    <style>
-        body {
-            margin: 0;
-            background: #111;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-            background: #000;
-            padding: 20px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 10px;
-        }
-
-        main {
-            padding: 30px 15px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 42px;
-        }
-
-        .roster {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .wrestler {
-            background: #222;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .wrestler img {
-            width: 100%;
-            display: block;
-        }
-
-        .wrestler h2 {
-            margin: 10px 5px 3px;
-        }
-
-        .wrestler p {
-            margin: 0 5px 15px;
-            color: #aaa;
-        }
-
-        @media (min-width: 700px) {
-            .roster {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
 
-    <h2>MI WRESTLING</h2>
+    <h2>TRIVIAS WRESTLING</h2>
 
     <nav>
-        <a href="#">Inicio</a>
+        <a href="#">Home</a>
         <a href="#">Roster</a>
-        <a href="#">Eventos</a>
-        <a href="#">Campeonatos</a>
+        <a href="#">Events</a>
+        <a href="#">Championships</a>
     </nav>
 
 </header>
 
 <main>
 
-    <h1>ROSTER</h1>
+    <h1>ACTIVE ROSTER</h1>
 
     <div class="roster">
 
-        <div class="wrestler" onclick="abrirModal(0)">
+        <!-- Cody Rhodes -->
 
-    <img src="images/Cody Rhodes trivias.jpg" alt="Cody Rhodes">
+        <div class="wrestler" onclick="openModal(0)">
 
-    <p>"The American Nightmare"</p>
+            <img src="images/Cody Rhodes trivias.jpg" alt="Cody Rhodes">
 
-    <h2>Cody Rhodes</h2>
+            <p>"The American Nightmare"</p>
 
-</div>
-
-        <div class="wrestler">
-
-            <img src="https://via.placeholder.com/500x600">
-
-            <h2>Mike Jones</h2>
-
-            <p>"The Wolf"</p>
+            <h2>Cody Rhodes</h2>
 
         </div>
 
     </div>
 
 </main>
-    <div id="modal" class="modal">
 
-    <div class="modal-contenido">
 
-        <button onclick="cerrarModal()">✕</button>
+<!-- WRESTLER MODAL -->
 
-        <img id="modal-imagen">
+<div id="modal" class="modal">
 
-        <h2 id="modal-nombre"></h2>
+    <div class="modal-content">
+
+        <button class="close-button" onclick="closeModal()">✕</button>
+
+        <img id="modal-image" src="" alt="Wrestler">
+
+        <h2 id="modal-name"></h2>
 
         <p id="modal-division"></p>
 
         <p id="modal-record"></p>
 
-        <h3>Logros</h3>
+        <h3>Achievements</h3>
 
-        <ul id="modal-logros"></ul>
-
-    </div>
+        <ul id="modal-achievements"></ul>
 
     </div>
+
+</div>
+
+
 <script src="script.js"></script>
+
 </body>
+
 </html>
