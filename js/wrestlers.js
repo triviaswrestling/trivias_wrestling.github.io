@@ -5,7 +5,7 @@ const wrestlers = [
         image: "images/Cody Rhodes trivias.jpg",
         nickname: "The American Nightmare",
         stable: "",
-        division: "Men's Division",
+        division: "Main Roster",
         overall2026: "0 - 0",
         careerOverall: "0 - 0",
         status: "active",
@@ -17,12 +17,13 @@ const wrestlers = [
         ]
     },
 
+
     {
         name: "Bret Hart",
         image: "images/Darkman Hart.jpg",
         nickname: "The Darkman",
         stable: "Hart ReFoundation",
-        division: "Men's Division",
+        division: "Main Roster",
         overall2026: "100 - 0",
         careerOverall: "0 - 0",
         status: "active",
@@ -33,12 +34,13 @@ const wrestlers = [
         ]
     },
 
+
     {
         name: "Shawn Spears",
         image: "images/shawna spears.jpg",
         nickname: "",
         stable: "",
-        division: "Monday Night Raw",
+        division: "NXT",
         overall2026: "100 - 0",
         careerOverall: "0 - 0",
         status: "active",
