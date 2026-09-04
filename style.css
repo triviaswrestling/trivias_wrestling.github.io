@@ -541,3 +541,164 @@ main > h1 {
         grid-template-columns: repeat(4, 1fr);
     }
 }
+/* =========================================
+   CHAMPIONS SECTION
+   ========================================= */
+
+.championships {
+    margin: 20px 0 35px;
+}
+
+.championships > h2 {
+    display: inline-block;
+
+    margin: 0 0 12px;
+    padding: 8px 14px;
+
+    background: #202020;
+    color: #ffffff;
+
+    border-left: 4px solid #d90024;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   CHAMPIONS GRID
+   ========================================= */
+
+.champions-container {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+
+/* =========================================
+   CHAMPION CARD
+   ========================================= */
+
+.champion-card {
+    position: relative;
+
+    background: #202020;
+
+    border: 1px solid #3a3a3a;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.55);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.champion-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #d90024;
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.8),
+        0 0 10px rgba(217, 0, 36, 0.25);
+}
+
+
+/* =========================================
+   CHAMPION IMAGE
+   ========================================= */
+
+.champion-card img {
+    width: 100%;
+
+    display: block;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+
+    border-bottom: 2px solid #444444;
+}
+
+
+/* =========================================
+   CHAMPIONSHIP NAME
+   ========================================= */
+
+.champion-card h3 {
+    margin: 8px 5px 3px;
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================
+   CHAMPION NAME
+   ========================================= */
+
+.champion-card p {
+    margin: 0 5px 10px;
+
+    color: #ff4a5f;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .champions-container {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 8px;
+    }
+
+    .championships > h2 {
+        font-size: 16px;
+    }
+
+    .champion-card h3 {
+        font-size: 9px;
+    }
+
+    .champion-card p {
+        font-size: 11px;
+    }
+}
