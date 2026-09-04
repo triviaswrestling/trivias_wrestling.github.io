@@ -1,5 +1,4 @@
 console.log("CHAMPIONSHIPS.JS CARGADO");
-console.log("CHAMPIONSHIPS.JS CARGADO");
 
 const championships = [
 
