@@ -1,3 +1,4 @@
+console.log("CHAMPIONSHIPS.JS CARGADO");
 const championships = [
 
     {
