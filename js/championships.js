@@ -1,5 +1,6 @@
 console.log("CHAMPIONSHIPS.JS CARGADO");
 
+
 const championships = [
 
     {
@@ -65,7 +66,8 @@ if (championshipsContainer) {
         const image = document.createElement("img");
 
         image.src = championship.image;
-        image.alt = championship.title;
+
+        image.alt = championship.champion;
 
 
         const title = document.createElement("h2");
