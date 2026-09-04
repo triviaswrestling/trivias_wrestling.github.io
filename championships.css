@@ -1,0 +1,61 @@
+/* =========================================
+   RAW
+   ========================================= */
+
+.wrestler.raw {
+    border-top-color: #d90024;
+}
+
+.wrestler.raw > h2 {
+    color: #ff4a5f;
+}
+
+.wrestler.raw:hover {
+    border-color: #d90024;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.9),
+        0 0 12px rgba(217, 0, 36, 0.25);
+}
+
+
+/* =========================================
+   SMACKDOWN
+   ========================================= */
+
+.wrestler.smackdown {
+    border-top-color: #0066ff;
+}
+
+.wrestler.smackdown > h2 {
+    color: #4d8dff;
+}
+
+.wrestler.smackdown:hover {
+    border-color: #0066ff;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.9),
+        0 0 12px rgba(0, 102, 255, 0.30);
+}
+
+
+/* =========================================
+   NXT
+   ========================================= */
+
+.wrestler.nxt {
+    border-top-color: #b8b8b8;
+}
+
+.wrestler.nxt > h2 {
+    color: #d0d0d0;
+}
+
+.wrestler.nxt:hover {
+    border-color: #b8b8b8;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.9),
+        0 0 12px rgba(190, 190, 190, 0.28);
+}
