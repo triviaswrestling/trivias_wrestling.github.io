@@ -29,6 +29,8 @@
     </nav>
 
 </header>
+
+
 <!-- =========================================
      CHAMPIONSHIPS
      ========================================= -->
@@ -41,11 +43,41 @@
 
 </section>
 
-<main data-roster-status="active">
 
-    <h1>ROSTER</h1>
+<!-- =========================================
+     ROSTERS
+     ========================================= -->
 
-    <div class="roster" id="roster"></div>
+<main>
+
+    <!-- =========================================
+         MAIN ROSTER
+         ========================================= -->
+
+    <section class="roster-section">
+
+        <div class="roster-divider">
+            <h1>MAIN ROSTER</h1>
+        </div>
+
+        <div class="roster" id="roster"></div>
+
+    </section>
+
+
+    <!-- =========================================
+         NXT ROSTER
+         ========================================= -->
+
+    <section class="roster-section nxt-section">
+
+        <div class="roster-divider">
+            <h1>NXT ROSTER</h1>
+        </div>
+
+        <div class="roster" id="nxt-roster"></div>
+
+    </section>
 
 </main>
 
@@ -81,10 +113,17 @@
 </div>
 
 
+<!-- =========================================
+     JAVASCRIPT
+     ========================================= -->
+
 <script src="js/wrestlers.js"></script>
 <script src="js/modal.js"></script>
 <script src="js/roster.js"></script>
+<script src="js/championships.js"></script>
 
 </body>
 
 </html>
+
+Importante: todavía falta adaptar "roster.js" para que realmente coloque unos luchadores en "#roster" y los de NXT en "#nxt-roster". Con este "index.html" ya dejamos preparados los dos espacios.
