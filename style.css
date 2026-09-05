@@ -106,8 +106,7 @@ main > h1 {
 }
 
 .wrestler:hover {
-    transform: translateY(-4px);
-
+    transform: translateY(-4px) scale(1.09);
     border-color: #d90024;
 
     box-shadow:
