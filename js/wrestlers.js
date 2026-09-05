@@ -52,6 +52,23 @@ const wrestlers = [
             "16x World Champion",
             "5x United States Champion"
         ]
-    }
+    },
+{
+        name: "Jeff Jarrett",
+        image: "images/Jeff Jarrett trivias.jpg",
+        nickname: "The Chosen One",
+        stable: "",
+        division: "",
+        brand: "",
+        overall2026: "100 - 0",
+        careerOverall: "0 - 0",
+        status: "inactive",
 
+        achievements: [
+            "x5 WWE Undisputed Champion"
+        ]
+    },
 ];
+
+
+
