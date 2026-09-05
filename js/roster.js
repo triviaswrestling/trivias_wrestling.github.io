@@ -24,6 +24,7 @@ if (wrestler.brand) {
 
     image.src = wrestler.image;
     image.alt = wrestler.name;
+    image.loading = "lazy";
 
 
     const nickname = document.createElement("p");
