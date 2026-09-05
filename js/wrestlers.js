@@ -69,12 +69,12 @@ const wrestlers = [
         nickname: "",
         stable: "",
         division: "NXT",
-        brand: "SmackDown",
-        overall2026: "100 - 0",
+        brand: "NXT",
+        overall2026: "0 - 0 - 100",
         careerOverall: "0 - 0",
         status: "active",
 
-        achievements:[ "16x World Champion","5x United States Champion" ]
+        achievements:[ ]
         
     },
 ];
