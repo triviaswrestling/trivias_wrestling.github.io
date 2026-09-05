@@ -82,6 +82,9 @@ main > h1 {
 /* =========================================
    WRESTLER CARD
    ========================================= */
+.wrestler:active {
+    transform: scale(1.09);
+}
 
 .wrestler {
     position: relative;
