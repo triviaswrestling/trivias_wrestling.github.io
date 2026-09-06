@@ -27,7 +27,6 @@ body {
 
 .navbar {
     position: relative;
-
     width: 100%;
     height: 80px;
 
@@ -37,7 +36,6 @@ body {
     padding: 0 30px;
 
     background: #090909;
-
     border-bottom: 2px solid #d90024;
 
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.9);
@@ -51,7 +49,6 @@ body {
 .navbar .logo {
     display: flex;
     align-items: center;
-
     text-decoration: none;
 }
 
@@ -70,7 +67,6 @@ body {
     align-items: center;
 
     margin-left: auto;
-
     gap: 25px;
 }
 
@@ -342,10 +338,12 @@ body {
 
 /* =========================================
    CURRENT BADGE
-   SOLO APARECE EN CHRISTIAN
+   SOLO CHRISTIAN
    ========================================= */
 
 .current-badge {
+    display: none;
+
     position: absolute;
 
     top: 18px;
@@ -368,6 +366,14 @@ body {
 
     box-shadow:
         0 5px 15px rgba(0, 0, 0, 0.55);
+}
+
+
+/* EL CURRENT SOLO SE MUESTRA
+   DENTRO DEL REINADO ACTUAL */
+
+.current-reign .current-badge {
+    display: block;
 }
 
 
@@ -496,10 +502,12 @@ body {
 .former-days span {
     color: #d90024;
 
-    font-size: 11px;
+    font-size: 45px;
     font-weight: 900;
 
-    letter-spacing: 3px;
+    line-height: 1;
+
+    letter-spacing: 0;
 
     text-transform: uppercase;
 }
@@ -538,16 +546,20 @@ body {
 .days-count span {
     color: #d90024;
 
-    font-size: 11px;
+    font-size: 45px;
     font-weight: 900;
 
-    letter-spacing: 3px;
+    line-height: 1;
+
+    letter-spacing: 0;
 
     text-transform: uppercase;
 }
 
 
-/* CURRENT GRIS */
+/* =========================================
+   CURRENT GRIS
+   ========================================= */
 
 .current-status {
     height: 100%;
@@ -576,8 +588,6 @@ body {
    ========================================= */
 
 @media (max-width: 900px) {
-
-    /* NAVBAR */
 
     .navbar {
         height: 70px;
@@ -647,8 +657,6 @@ body {
     }
 
 
-    /* HEADER */
-
     .campeonato-header {
         padding: 55px 25px 45px;
     }
@@ -658,14 +666,10 @@ body {
     }
 
 
-    /* BANNER */
-
     .campeonato-banner img {
         height: 380px;
     }
 
-
-    /* CONTENEDOR */
 
     .campeonato-container {
         width: 92%;
@@ -673,8 +677,6 @@ body {
         padding: 60px 0 80px;
     }
 
-
-    /* REINADO */
 
     .reign {
         grid-template-columns: 1fr;
@@ -698,8 +700,6 @@ body {
 
 @media (max-width: 550px) {
 
-    /* NAVBAR */
-
     .navbar {
         height: 65px;
 
@@ -718,8 +718,6 @@ body {
         top: 65px;
     }
 
-
-    /* HEADER */
 
     .campeonato-header {
         padding: 42px 20px 35px;
@@ -746,14 +744,10 @@ body {
     }
 
 
-    /* BANNER */
-
     .campeonato-banner img {
         height: 260px;
     }
 
-
-    /* CONTENEDOR */
 
     .campeonato-container {
         width: 92%;
@@ -761,8 +755,6 @@ body {
         padding: 50px 0 65px;
     }
 
-
-    /* TITLE HISTORY */
 
     .history-heading {
         margin-bottom: 35px;
@@ -779,14 +771,10 @@ body {
     }
 
 
-    /* REINADO */
-
     .reign {
         margin-bottom: 40px;
     }
 
-
-    /* FOTO */
 
     .reign-image {
         width: 100%;
@@ -794,8 +782,6 @@ body {
         aspect-ratio: 1 / 1;
     }
 
-
-    /* CURRENT BADGE */
 
     .current-badge {
         top: 15px;
@@ -809,14 +795,10 @@ body {
     }
 
 
-    /* CONTENIDO */
-
     .reign-content {
         padding: 20px;
     }
 
-
-    /* CURRENT CHAMPION */
 
     .reign-number {
         margin-bottom: 10px;
@@ -826,8 +808,6 @@ body {
         letter-spacing: 2px;
     }
 
-
-    /* NOMBRE */
 
     .reign-content h3 {
         margin: 0 0 15px;
@@ -840,8 +820,6 @@ body {
     }
 
 
-    /* DESCRIPCIÓN */
-
     .reign-description {
         margin: 0 0 20px;
 
@@ -852,8 +830,6 @@ body {
         line-height: 1.7;
     }
 
-
-    /* DAYS */
 
     .reign-days {
         min-height: 65px;
@@ -872,9 +848,9 @@ body {
     }
 
     .days-count span {
-        font-size: 9px;
+        font-size: 38px;
 
-        letter-spacing: 2px;
+        letter-spacing: 0;
     }
 
     .current-status {
@@ -886,8 +862,6 @@ body {
     }
 
 
-    /* FORMER DAYS */
-
     .former-days {
         gap: 9px;
     }
@@ -897,9 +871,9 @@ body {
     }
 
     .former-days span {
-        font-size: 9px;
+        font-size: 38px;
 
-        letter-spacing: 2px;
+        letter-spacing: 0;
     }
 }
 
@@ -934,7 +908,15 @@ body {
         font-size: 34px;
     }
 
+    .days-count span {
+        font-size: 34px;
+    }
+
     .former-days strong {
+        font-size: 34px;
+    }
+
+    .former-days span {
         font-size: 34px;
     }
 
