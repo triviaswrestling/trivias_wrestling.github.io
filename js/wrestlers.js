@@ -155,16 +155,7 @@ const wrestlers = [
             "5x United States Champion"
         ]
     },
-    {name: "Vacante",
-        image: "images/Vacante.jpg",
-        nickname: "",
-        stable: "Club de amigos",
-        division: "Friday Night Smackdown",
-        brand: "SmackDown",
-        overall2026: "100 - 0",
-        careerOverall: "0 - 0",
-        status: "active",
-        achievements: ["16x World Champion of panchos","5x United States Champion" ]},
+    
    
     {
         name: "Shawn Spears",
@@ -180,13 +171,27 @@ const wrestlers = [
         achievements:[ ]
         
     },
-     {name: "Swerve Strickland",image: "images/Vacante.jpg", nickname: "", stable: "", division: "Friday Night Smackdown",  brand: "SmackDown",overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
+     {name: "Swerve Strickland",image: "images/Vacante.jpg", nickname: "", stable: "", 
+      division: "Friday Night Smackdown",  brand: "SmackDown",overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+      status: "active",achievements: []},
 
 {name: "Trick Williams",image: "images/Vacante.jpg", nickname: "", stable: "",
       division: "Monday Night RAW",  brand: "RAW",
-      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
     
 
+{name: "Vacante",
+        image: "images/Vacante.jpg",
+        nickname: "",
+        stable: "Club de amigos",
+        division: "Friday Night Smackdown",
+        brand: "SmackDown",
+        overall2026: "100 - 0",
+        careerOverall: "0 - 0",
+        status: "active",
+        achievements: ["16x World Champion of panchos","5x United States Champion" ]},
+    
 ];
 
 
