@@ -67,7 +67,7 @@ const wrestlers = [
         image: "images/Vacante.jpg",
         nickname: "",
         stable: "Club de amigos",
-        division: "Main Roster",
+        division: "Friday Night Smackdown",
         brand: "SmackDown",
         overall2026: "100 - 0",
         careerOverall: "0 - 0",
