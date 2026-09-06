@@ -1,8 +1,3 @@
-/* =========================================
-   MI WRESTLING
-   CAMPEONATO CSS
-   ========================================= */
-
 * {
     box-sizing: border-box;
 }
@@ -17,7 +12,9 @@ body {
     background: #0b0b0b;
     color: #ffffff;
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
 }
+
 
 /* =========================================
    NAVBAR
@@ -44,13 +41,11 @@ body {
 .navbar .logo {
     display: flex;
     align-items: center;
-
     text-decoration: none;
 }
 
 .navbar .logo img {
     display: block;
-
     width: auto;
     height: 48px;
 }
@@ -58,7 +53,6 @@ body {
 .navbar nav {
     display: flex;
     align-items: center;
-
     margin-left: auto;
     gap: 25px;
 }
@@ -83,7 +77,6 @@ body {
     content: "";
 
     position: absolute;
-
     left: 0;
     bottom: -8px;
 
@@ -123,14 +116,15 @@ body {
     cursor: pointer;
 }
 
+
 /* =========================================
-   CAMPEONATO HERO
+   HERO
    ========================================= */
 
 .campeonato-hero {
     position: relative;
 
-    min-height: 360px;
+    min-height: 390px;
 
     display: flex;
     align-items: flex-end;
@@ -141,45 +135,22 @@ body {
         linear-gradient(
             to top,
             #0b0b0b 0%,
-            rgba(11, 11, 11, 0.85) 35%,
-            rgba(11, 11, 11, 0.25) 100%
+            rgba(11, 11, 11, 0.85) 45%,
+            rgba(11, 11, 11, 0.2) 100%
         );
 
     border-bottom: 1px solid #242424;
 }
 
-.campeonato-hero::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.9),
-            rgba(0, 0, 0, 0.35),
-            rgba(0, 0, 0, 0.9)
-        );
-
-    pointer-events: none;
-}
-
 .campeonato-hero-content {
     position: relative;
+    z-index: 2;
 
     max-width: 1000px;
-
-    z-index: 2;
 }
 
 .campeonato-hero-content p {
-    margin: 0 0 12px;
+    margin: 0 0 14px;
 
     color: #d90024;
 
@@ -195,12 +166,10 @@ body {
 
     color: #ffffff;
 
-    font-size: clamp(38px, 6vw, 76px);
-
+    font-size: clamp(42px, 6vw, 78px);
     font-weight: 900;
 
-    line-height: 0.95;
-
+    line-height: 0.94;
     letter-spacing: -2px;
 
     text-transform: uppercase;
@@ -215,6 +184,7 @@ body {
     background: #d90024;
 }
 
+
 /* =========================================
    CONTENEDOR
    ========================================= */
@@ -225,19 +195,20 @@ body {
 
     margin: 0 auto;
 
-    padding: 55px 0 80px;
+    padding: 60px 0 90px;
 }
 
+
 /* =========================================
-   INFORMACIÓN PRINCIPAL
+   CAMPEONATO ACTUAL
    ========================================= */
 
 .campeonato-intro {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 
-    gap: 55px;
+    gap: 60px;
 
     align-items: center;
 
@@ -255,82 +226,4 @@ body {
 
     border: 1px solid #292929;
 
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
-}
-
-.campeonato-image::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(217, 0, 36, 0.12),
-            transparent 45%
-        );
-
-    pointer-events: none;
-}
-
-.campeonato-image img {
-    display: block;
-
-    width: 100%;
-    height: auto;
-
-    object-fit: contain;
-}
-
-.campeonato-info {
-    padding: 10px 0;
-}
-
-.info-label {
-    display: block;
-
-    margin-bottom: 12px;
-
-    color: #d90024;
-
-    font-size: 11px;
-    font-weight: 900;
-
-    letter-spacing: 2.5px;
-
-    text-transform: uppercase;
-}
-
-.campeonato-info h2 {
-    margin: 0 0 12px;
-
-    color: #ffffff;
-
-    font-size: 42px;
-    font-weight: 900;
-
-    line-height: 1;
-
-    text-transform: uppercase;
-}
-
-.campeonato-info p {
-    margin: 0;
-
-    color: #8d8d8d;
-
-    font-size: 13px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
-}
-
-/* =========================================
-   TITLE HISTORY
-   ========================================= */
-
-.campeones-history {
-    padding-top: 70px
+    box-shadow: 0 12px 35px rgba(0,
