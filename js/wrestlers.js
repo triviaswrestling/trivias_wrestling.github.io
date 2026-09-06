@@ -22,6 +22,11 @@ const wrestlers = [
         achievements: []
     },
 
+    {name: "Austin Theory",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
+
 {name: "Batista",image: "images/Vacante.jpg", nickname: "", stable: "",
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
@@ -82,6 +87,11 @@ const wrestlers = [
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "active",achievements: []},
+
+    {name: "CM Punk",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
     
     {
         name: "Cody Rhodes",
@@ -104,6 +114,16 @@ const wrestlers = [
       division: "Friday Night Smackdown",  brand: "SmackDown",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
 
+{name: "Dezmond Xavier",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
+    
+{name: "Damian Priest",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
+    
     {name: "El Grande Americano",image: "images/Vacante.jpg", nickname: "", stable: "",
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
