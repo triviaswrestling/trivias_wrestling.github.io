@@ -63,7 +63,17 @@ const wrestlers = [
             "2x TNA Champion",
             "Royal Rumble Winner 2024"
         ]
-    },   
+    },  
+    {name: "Finn Balor",
+        image: "images/Vacante.jpg",
+        nickname: "",
+        stable: "",
+        division: "Friday Night Smackdown",
+        brand: "SmackDown",
+        overall2026: "10 - 0 - 10",
+        careerOverall: "0 - 10 - 0",
+        status: "active",
+        achievements: []},
 {
         name: "Jeff Jarrett",
         image: "images/Jeff Jarrett trivias.jpg",
@@ -78,6 +88,16 @@ const wrestlers = [
         achievements: [
             "x5 WWE Undisputed Champion"
         ]
+    {name: "Kyle O'Reilly",
+        image: "images/Vacante.jpg",
+        nickname: "",
+        stable: "",
+        division: "Friday Night Smackdown",
+        brand: "SmackDown",
+        overall2026: "10 - 0 - 10",
+        careerOverall: "0 - 10 - 0",
+        status: "active",
+        achievements: []},
     },
     {name: "LA Knight",
         image: "images/Vacante.jpg",
@@ -89,6 +109,16 @@ const wrestlers = [
         careerOverall: "0 - 10 - 0",
         status: "active",
         achievements: []},
+     {name: "Randy Orton",
+        image: "images/Vacante.jpg",
+        nickname: "",
+        stable: "",
+        division: "Friday Night Smackdown",
+        brand: "SmackDown",
+        overall2026: "10 - 0 - 10",
+        careerOverall: "0 - 10 - 0",
+        status: "active",
+        achievements: ["Intercontinental championship (current)"]},
     {
         name: "Seth Rollins",
         image: "images/Seth Rollins trivias.jpg",
@@ -121,7 +151,7 @@ const wrestlers = [
         image: "images/shawna spears.jpg",
         nickname: "",
         stable: "",
-        division: "NXT",
+        division: "SmackDown",
         brand: "NXT",
         overall2026: "0 - 0 - 100",
         careerOverall: "0 - 0",
@@ -130,6 +160,7 @@ const wrestlers = [
         achievements:[ ]
         
     },
+     {name: "Swerve Strickland",image: "images/Vacante.jpg", nickname: "", stable: "", division: "Friday Night Smackdown",  brand: "SmackDown",overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
 ];
 
 
