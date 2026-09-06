@@ -1,0 +1,330 @@
+/* =========================================
+HISTORY - NAVBAR
+========================================= */
+
+.navbar {
+display: flex;
+align-items: center;
+
+height: 80px;
+
+padding: 0 25px;
+
+background: #111111;
+
+border-bottom: 2px solid #d90024;
+
+box-shadow:
+    0 3px 15px rgba(0, 0, 0, 0.8);
+
+text-align: left;
+
+}
+
+.navbar .logo {
+display: flex;
+align-items: center;
+
+text-decoration: none;
+
+}
+
+.navbar .logo img {
+height: 48px;
+width: auto;
+
+display: block;
+
+}
+
+.navbar nav {
+display: flex;
+align-items: center;
+
+margin-left: auto;
+
+gap: 22px;
+
+}
+
+.navbar nav a {
+margin: 0;
+
+color: #cccccc;
+
+font-size: 13px;
+font-weight: 700;
+
+text-decoration: none;
+text-transform: uppercase;
+
+transition: color 0.2s ease;
+
+}
+
+.navbar nav a {
+color: #d90024;
+}
+
+.navbar .menu {
+display: none;
+
+margin-left: 15px;
+
+padding: 0;
+
+background: none;
+
+border: none;
+
+color: #ffffff;
+
+font-size: 28px;
+
+cursor: pointer;
+
+}
+
+/* =========================================
+HISTORY HERO
+========================================= */
+
+.history-hero {
+min-height: 420px;
+
+display: flex;
+
+align-items: center;
+justify-content: center;
+
+text-align: center;
+
+background:
+    linear-gradient(
+        rgba(0, 0, 0, 0.40),
+        rgba(0, 0, 0, 0.88)
+    ),
+    url("../images/history.jpg");
+
+background-size: cover;
+background-position: center;
+
+}
+
+.hero-overlay {
+padding: 40px 20px;
+}
+
+.hero-overlay p {
+margin: 0 0 12px;
+
+color: #d90024;
+
+font-size: 13px;
+font-weight: 900;
+
+letter-spacing: 4px;
+
+}
+
+.hero-overlay h1 {
+margin: 0;
+
+color: #ffffff;
+
+font-size: clamp(42px, 7vw, 80px);
+
+font-weight: 900;
+
+letter-spacing: 2px;
+
+}
+
+.hero-overlay span {
+display: block;
+
+margin-top: 15px;
+
+color: #cccccc;
+
+font-size: 16px;
+
+}
+
+/* =========================================
+HISTORY CONTAINER
+========================================= */
+
+.history-container {
+max-width: 1100px;
+
+margin: 0 auto;
+
+padding: 50px 20px 80px;
+
+background: #0b0b0b;
+
+display: grid;
+
+grid-template-columns: repeat(3, 1fr);
+
+gap: 20px;
+
+}
+
+/* =========================================
+HISTORY CHAMPIONSHIP CARD
+========================================= */
+
+.history-container .championship-card {
+position: relative;
+
+display: block;
+
+background: #202020;
+
+border: 1px solid #3a3a3a;
+
+border-top: 3px solid #d90024;
+
+border-radius: 4px;
+
+overflow: hidden;
+
+text-decoration: none;
+
+box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.65);
+
+transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+}
+
+.history-container .championship-card {
+transform: translateY(-5px);
+
+border-color: #d90024;
+
+box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(217, 0, 36, 0.25);
+
+}
+
+.history-container .championship-card img {
+width: 100%;
+
+height: 230px;
+
+object-fit: cover;
+
+display: block;
+
+border-bottom: 2px solid #444444;
+
+}
+
+.history-container .card-content {
+padding: 20px;
+}
+
+.history-container .card-content h2 {
+margin: 0 0 8px;
+
+color: #ff4a5f;
+
+font-size: 19px;
+font-weight: 900;
+
+text-transform: uppercase;
+
+letter-spacing: 0.5px;
+
+}
+
+.history-container .card-content p {
+margin: 0;
+
+color: #999999;
+
+font-size: 11px;
+font-weight: 800;
+
+text-transform: uppercase;
+
+letter-spacing: 1px;
+
+}
+
+/* =========================================
+HISTORY MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+.navbar {
+    height: 70px;
+
+    padding: 0 18px;
+}
+
+.navbar .logo img {
+    height: 42px;
+}
+
+.navbar nav {
+    display: none;
+}
+
+.navbar .menu {
+    display: block;
+
+    margin-left: auto;
+}
+
+.history-hero {
+    min-height: 350px;
+}
+
+.history-container {
+    grid-template-columns: 1fr;
+
+    padding: 35px 15px 60px;
+
+    gap: 15px;
+}
+
+.history-container .championship-card img {
+    height: 210px;
+}
+
+}
+
+/* =========================================
+HISTORY SMALL MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+.history-hero {
+    min-height: 300px;
+}
+
+.hero-overlay h1 {
+    font-size: 42px;
+}
+
+.hero-overlay p {
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+.hero-overlay span {
+    font-size: 13px;
+}
+
+}
