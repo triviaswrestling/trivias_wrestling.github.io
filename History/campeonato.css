@@ -1,938 +1,1033 @@
 /* =========================================
-MI WRESTLING
-CHAMPIONSHIP HISTORY
-========================================= */
+   MI WRESTLING
+   CHAMPIONSHIP HISTORY
+   ========================================= */
 
-{
-box-sizing: border-box;
+* {
+    box-sizing: border-box;
 }
-
 
 html,
 body {
-margin: 0;
-padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-background: #0b0b0b;
-color: #ffffff;
-font-family: Arial, sans-serif;
-overflow-x: hidden;
+    margin: 0;
+
+    background: #080808;
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    overflow-x: hidden;
 }
+
 
 /* =========================================
-NAVBAR
-========================================= */
+   NAVBAR
+   ========================================= */
 
 .navbar {
-position: relative;
-width: 100%;
-height: 80px;
+    position: relative;
 
-display: flex;  
-align-items: center;  
+    width: 100%;
+    height: 80px;
 
-padding: 0 30px;  
+    display: flex;
+    align-items: center;
 
-background: #090909;  
-border-bottom: 2px solid #d90024;  
+    padding: 0 30px;
 
-box-shadow: 0 4px 18px rgba(0, 0, 0, 0.9);  
+    background: #050505;
 
-z-index: 1000;
+    border-bottom: 2px solid #d90024;
 
+    box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.9);
+
+    z-index: 1000;
 }
+
 
 /* LOGO */
 
 .navbar .logo {
-display: flex;
-align-items: center;
-text-decoration: none;
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
 }
 
 .navbar .logo img {
-display: block;
+    display: block;
 
-width: auto;  
-height: 48px;
-
+    width: auto;
+    height: 48px;
 }
+
 
 /* LINKS */
 
 .navbar nav {
-display: flex;
-align-items: center;
+    display: flex;
+    align-items: center;
 
-margin-left: auto;  
-gap: 25px;
+    margin-left: auto;
 
+    gap: 25px;
 }
 
 .navbar nav a {
-position: relative;
+    position: relative;
 
-color: #d0d0d0;  
+    color: #d0d0d0;
 
-font-size: 12px;  
-font-weight: 900;  
+    font-size: 12px;
+    font-weight: 900;
 
-text-decoration: none;  
-text-transform: uppercase;  
+    text-decoration: none;
+    text-transform: uppercase;
 
-letter-spacing: 0.8px;  
+    letter-spacing: 0.8px;
 
-transition: color 0.2s ease;
-
+    transition:
+        color 0.2s ease;
 }
 
 .navbar nav a::after {
-content: "";
+    content: "";
 
-position: absolute;  
+    position: absolute;
 
-left: 0;  
-bottom: -8px;  
+    left: 0;
+    bottom: -8px;
 
-width: 0;  
-height: 2px;  
+    width: 0;
+    height: 2px;
 
-background: #d90024;  
+    background: #d90024;
 
-transition: width 0.2s ease;
-
+    transition:
+        width 0.2s ease;
 }
 
 .navbar nav a:hover {
-color: #ffffff;
+    color: #ffffff;
 }
 
 .navbar nav a:hover::after {
-width: 100%;
+    width: 100%;
 }
 
-/* BOTÓN MOBILE */
+
+/* =========================================
+   BOTÓN MOBILE
+   ========================================= */
 
 .navbar .menu {
-display: none;
+    display: none;
 
-margin-left: auto;  
+    margin-left: auto;
 
-padding: 0;  
+    padding: 0;
 
-background: transparent;  
+    background: transparent;
 
-border: none;  
+    border: none;
 
-color: #ffffff;  
+    color: #ffffff;
 
-font-size: 29px;  
-font-weight: 900;  
+    font-size: 29px;
+    font-weight: 900;
 
-line-height: 1;  
+    line-height: 1;
 
-cursor: pointer;
-
+    cursor: pointer;
 }
 
+
 /* =========================================
-HEADER
-========================================= */
+   HEADER DEL CAMPEONATO
+   ========================================= */
 
 .campeonato-header {
-width: 100%;
+    position: relative;
 
-padding: 70px 7% 55px;  
+    width: 100%;
 
-background: #0b0b0b;  
+    min-height: 390px;
 
-border-bottom: 1px solid #242424;
+    display: flex;
+    align-items: center;
 
+    padding: 65px 7% 55px;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.50),
+            rgba(0, 0, 0, 0.82)
+        ),
+        url("wwwi.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    border-bottom: 1px solid #242424;
+
+    overflow: hidden;
 }
+
+
+/* CONTENIDO */
 
 .campeonato-header-content {
-width: 100%;
-max-width: 1150px;
+    position: relative;
 
-margin: 0 auto;
+    width: 100%;
 
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    z-index: 10;
 }
 
-/* LABEL */
+
+/* =========================================
+   LABEL
+   ========================================= */
 
 .campeonato-label {
-display: block;
+    display: block;
 
-margin-bottom: 12px;  
+    margin-bottom: 14px;
 
-color: #d90024;  
+    color: #d90024;
 
-font-size: 11px;  
-font-weight: 900;  
+    font-size: 11px;
+    font-weight: 900;
 
-letter-spacing: 3px;  
+    letter-spacing: 4px;
 
-text-transform: uppercase;
-
+    text-transform: uppercase;
 }
 
-/* TÍTULO */
+
+/* =========================================
+   TÍTULO
+   ========================================= */
 
 .campeonato-header h1 {
-margin: 0;
+    display: block;
 
-color: #ffffff;  
+    max-width: 800px;
 
-font-size: clamp(42px, 6vw, 78px);  
+    margin: 0;
 
-font-weight: 900;  
+    color: #ffffff;
 
-line-height: 0.94;  
+    font-size: clamp(46px, 6vw, 78px);
 
-letter-spacing: -2px;  
+    font-weight: 900;
 
-text-transform: uppercase;
+    line-height: 0.95;
 
+    letter-spacing: -2px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 4px 18px rgba(0, 0, 0, 1);
 }
 
-/* LÍNEA ROJA */
+
+/* =========================================
+   LÍNEA ROJA
+   ========================================= */
 
 .header-line {
-width: 90px;
-height: 4px;
+    width: 90px;
 
-margin-top: 25px;  
+    height: 4px;
 
-background: #d90024;
+    margin-top: 28px;
 
+    background: #d90024;
 }
+
 
 /* =========================================
-IMAGEN DEL CAMPEONATO
-========================================= */
-
-.campeonato-banner {
-width: 100%;
-
-background: #080808;  
-
-border-bottom: 1px solid #242424;
-
-}
-
-.campeonato-banner img {
-display: block;
-
-width: 100%;  
-max-width: 1400px;  
-
-height: 460px;  
-
-margin: 0 auto;  
-
-object-fit: cover;
-
-}
-
-/* =========================================
-CONTENEDOR
-========================================= */
+   CONTENEDOR
+   ========================================= */
 
 .campeonato-container {
-width: 90%;
-max-width: 1100px;
+    width: 90%;
 
-margin: 0 auto;  
+    max-width: 1100px;
 
-padding: 80px 0 100px;
+    margin: 0 auto;
 
+    padding: 70px 0 100px;
 }
 
+
 /* =========================================
-TITLE HISTORY
-========================================= */
+   TITLE HISTORY
+   ========================================= */
 
 .history-heading {
-margin-bottom: 50px;
+    margin-bottom: 45px;
 }
 
 .history-heading span {
-display: block;
+    display: block;
 
-margin-bottom: 10px;  
+    margin-bottom: 10px;
 
-color: #d90024;  
+    color: #d90024;
 
-font-size: 10px;  
-font-weight: 900;  
+    font-size: 11px;
 
-letter-spacing: 3px;  
+    font-weight: 900;
 
-text-transform: uppercase;
+    letter-spacing: 3px;
 
+    text-transform: uppercase;
 }
 
 .history-heading h2 {
-margin: 0;
+    margin: 0;
 
-color: #ffffff;  
+    color: #ffffff;
 
-font-size: clamp(38px, 5vw, 58px);  
+    font-size: clamp(40px, 5vw, 58px);
 
-font-weight: 900;  
+    font-weight: 900;
 
-line-height: 1;  
+    line-height: 1;
 
-letter-spacing: -1px;  
+    letter-spacing: -1px;
 
-text-transform: uppercase;
-
+    text-transform: uppercase;
 }
 
+
 /* =========================================
-FICHA DEL REINADO
-========================================= */
+   FICHA DEL REINADO
+   ========================================= */
 
 .reign {
-width: 100%;
+    width: 100%;
 
-display: grid;  
+    display: grid;
 
-grid-template-columns: 1fr 1fr;  
+    grid-template-columns: 1fr 1fr;
 
-margin-bottom: 55px;  
+    margin-bottom: 55px;
 
-background: #111111;  
+    background: #202020;
 
-border: 1px solid #292929;  
+    border: 1px solid #202020;
 
-overflow: hidden;  
+    overflow: hidden;
 
-box-shadow:  
-    0 15px 45px rgba(0, 0, 0, 0.45);
-
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.55);
 }
 
+
 /* =========================================
-FOTO DEL CAMPEÓN
-========================================= */
+   FOTO DEL CAMPEÓN
+   ========================================= */
 
 .reign-image {
-position: relative;
+    position: relative;
 
-width: 100%;  
+    width: 100%;
 
-aspect-ratio: 1 / 1;  
+    aspect-ratio: 1 / 1;
 
-overflow: hidden;  
+    overflow: hidden;
 
-background: #050505;
-
+    background: #202020;
 }
 
 .reign-image img {
-display: block;
+    display: block;
 
-width: 100%;  
-height: 100%;  
+    width: 100%;
+    height: 100%;
 
-object-fit: cover;
-
+    object-fit: cover;
 }
 
+
 /* =========================================
-CURRENT BADGE
-SOLO CHRISTIAN
-========================================= */
+   CURRENT BADGE
+   ========================================= */
 
 .current-badge {
-display: none;
+    display: none;
 
-position: absolute;  
+    position: absolute;
 
-top: 18px;  
-left: 18px;  
+    top: 25px;
+    left: 25px;
 
-z-index: 5;  
+    z-index: 5;
 
-padding: 7px 12px;  
+    padding: 12px 17px;
 
-background: #d90024;  
+    background: #d90024;
 
-color: #ffffff;  
+    color: #ffffff;
 
-font-size: 9px;  
-font-weight: 900;  
+    font-size: 10px;
 
-letter-spacing: 2px;  
+    font-weight: 900;
 
-text-transform: uppercase;  
+    letter-spacing: 3px;
 
-box-shadow:  
-    0 5px 15px rgba(0, 0, 0, 0.55);
+    text-transform: uppercase;
 
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.45);
 }
-
-/* EL CURRENT SOLO SE MUESTRA
-DENTRO DEL REINADO ACTUAL */
 
 .current-reign .current-badge {
-display: block;
+    display: block;
 }
 
+
 /* =========================================
-CONTENIDO DEL REINADO
-========================================= */
+   CONTENIDO DEL REINADO
+   ========================================= */
 
 .reign-content {
-min-width: 0;
+    min-width: 0;
 
-display: flex;  
-flex-direction: column;  
+    display: flex;
 
-padding: 38px;
+    flex-direction: column;
 
+    padding: 38px;
 }
 
+
 /* =========================================
-NÚMERO / CURRENT CHAMPION
-========================================= */
+   CURRENT CHAMPION / REIGN NUMBER
+   ========================================= */
 
 .reign-number {
-display: block;
+    display: block;
 
-margin-bottom: 14px;  
+    margin-bottom: 16px;
 
-color: #d90024;  
+    color: #d90024;
 
-font-size: 10px;  
-font-weight: 900;  
+    font-size: 11px;
 
-letter-spacing: 3px;  
+    font-weight: 900;
 
-text-transform: uppercase;
+    letter-spacing: 3px;
 
+    text-transform: uppercase;
 }
 
+
 /* =========================================
-NOMBRE DEL CAMPEÓN
-========================================= */
+   NOMBRE
+   ========================================= */
 
 .reign-content h3 {
-margin: 0 0 25px;
+    margin: 0 0 25px;
 
-padding: 16px 18px;  
+    padding: 15px 18px;
 
-background: #181818;  
+    background: #181818;
 
-border-left: 4px solid #d90024;  
+    border-left: 4px solid #d90024;
 
-color: #ffffff;  
+    color: #ffffff;
 
-font-size: clamp(32px, 4vw, 55px);  
+    font-size: clamp(32px, 4vw, 55px);
 
-font-weight: 900;  
+    font-weight: 900;
 
-line-height: 0.95;  
+    line-height: 0.95;
 
-letter-spacing: -1px;  
+    letter-spacing: -1px;
 
-text-transform: uppercase;
-
+    text-transform: uppercase;
 }
 
+
 /* =========================================
-DESCRIPCIÓN
-========================================= */
+   DESCRIPCIÓN
+   ========================================= */
 
 .reign-description {
-margin: 0 0 25px;
+    margin: 0 0 25px;
 
-padding: 25px;  
+    padding: 25px;
 
-background: #ffffff;  
+    background: #ffffff;
 
-color: #111111;  
+    color: #222222;
 
-font-size: 14px;  
+    font-size: 16px;
 
-line-height: 1.7;
-
+    line-height: 1.75;
 }
 
+
 /* =========================================
-DÍAS DE REINADO
-========================================= */
+   DÍAS
+   ========================================= */
 
 .reign-days {
-width: 100%;
+    width: 100%;
 
-min-height: 75px;  
+    min-height: 82px;
 
-display: flex;  
+    display: flex;
 
-align-items: center;  
+    align-items: center;
 
-margin-top: auto;  
+    margin-top: auto;
 
-background: #151515;  
+    background: #202020;
 
-border: 1px solid #292929;
+    border-top: 3px solid #d90024;
 
+    border-left: none;
+
+    border-right: none;
+
+    border-bottom: none;
 }
 
+
 /* =========================================
-REINADOS ANTERIORES
-========================================= */
+   REINADOS ANTERIORES
+   ========================================= */
 
 .former-days {
-justify-content: center;
+    justify-content: center;
 
-gap: 12px;  
+    gap: 15px;
 
-text-align: center;
-
+    text-align: center;
 }
 
 .former-days strong {
-color: #d90024;
+    color: #d90024;
 
-font-size: 45px;  
-font-weight: 900;  
+    font-size: 48px;
 
-line-height: 1;
+    font-weight: 900;
 
+    line-height: 1;
+
+    letter-spacing: 2px;
 }
 
 .former-days span {
-color: #d90024;
+    color: #ffffff;
 
-font-size: 45px;  
-font-weight: 900;  
+    font-size: 16px;
 
-line-height: 1;  
+    font-weight: 900;
 
-letter-spacing: 0;  
+    line-height: 1;
 
-text-transform: uppercase;
+    letter-spacing: 5px;
 
+    text-transform: uppercase;
 }
+
 
 /* =========================================
-CURRENT DAYS
-========================================= */
+   CURRENT DAYS
+   ========================================= */
 
 .current-days {
-justify-content: space-between;
+    justify-content: space-between;
 
-padding-left: 22px;
-
+    padding-left: 28px;
 }
+
 
 /* CONTADOR */
 
 .days-count {
-display: flex;
+    display: flex;
 
-align-items: baseline;  
+    align-items: baseline;
 
-gap: 10px;
-
+    gap: 13px;
 }
 
 .days-count strong {
-color: #d90024;
+    color: #d90024;
 
-font-size: 45px;  
-font-weight: 900;  
+    font-size: 48px;
 
-line-height: 1;
+    font-weight: 900;
 
+    line-height: 1;
+
+    letter-spacing: 2px;
 }
 
 .days-count span {
-color: #d90024;
+    color: #ffffff;
 
-font-size: 45px;  
-font-weight: 900;  
+    font-size: 16px;
 
-line-height: 1;  
+    font-weight: 900;
 
-letter-spacing: 0;  
+    line-height: 1;
 
-text-transform: uppercase;
+    letter-spacing: 5px;
 
+    text-transform: uppercase;
 }
 
+
 /* =========================================
-CURRENT GRIS
-========================================= */
+   CURRENT GRIS
+   ========================================= */
 
 .current-status {
-height: 100%;
+    height: 100%;
 
-display: flex;  
+    display: flex;
 
-align-items: center;  
+    align-items: center;
 
-padding: 0 18px;  
+    padding: 0 20px;
 
-background: #777777;  
+    background: #292929;
 
-color: #ffffff;  
+    color: #d0d0d0;
 
-font-size: 10px;  
-font-weight: 900;  
+    font-size: 9px;
 
-letter-spacing: 2px;  
+    font-weight: 900;
 
-text-transform: uppercase;
+    letter-spacing: 3px;
 
+    text-transform: uppercase;
 }
 
+
 /* =========================================
-TABLET
-========================================= */
+   TABLET
+   ========================================= */
 
 @media (max-width: 900px) {
 
-.navbar {  
-    height: 70px;  
+    .navbar {
+        height: 70px;
 
-    padding: 0 18px;  
-}  
+        padding: 0 18px;
+    }
 
-.navbar .logo img {  
-    height: 42px;  
-}  
+    .navbar .logo img {
+        height: 42px;
+    }
 
-.navbar .menu {  
-    display: block;  
-}  
+    .navbar .menu {
+        display: block;
+    }
 
-.navbar nav {  
-    position: absolute;  
+    .navbar nav {
+        position: absolute;
 
-    top: 70px;  
-    left: 0;  
-    right: 0;  
+        top: 70px;
 
-    display: none;  
+        left: 0;
+        right: 0;
 
-    flex-direction: column;  
+        display: none;
 
-    gap: 0;  
+        flex-direction: column;
 
-    margin: 0;  
+        gap: 0;
 
-    padding: 8px 0;  
+        margin: 0;
 
-    background: #090909;  
+        padding: 8px 0;
 
-    border-bottom: 2px solid #d90024;  
+        background: #090909;
 
-    box-shadow:  
-        0 10px 25px rgba(0, 0, 0, 0.95);  
-}  
+        border-bottom: 2px solid #d90024;
 
-.navbar nav.active {  
-    display: flex;  
-}  
+        box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.95);
+    }
 
-.navbar nav a {  
-    width: 100%;  
+    .navbar nav.active {
+        display: flex;
+    }
 
-    padding: 16px 20px;  
+    .navbar nav a {
+        width: 100%;
 
-    text-align: center;  
+        padding: 16px 20px;
 
-    border-bottom: 1px solid #202020;  
-}  
+        text-align: center;
 
-.navbar nav a:last-child {  
-    border-bottom: none;  
-}  
+        border-bottom: 1px solid #202020;
+    }
 
-.navbar nav a::after {  
-    display: none;  
-}  
+    .navbar nav a:last-child {
+        border-bottom: none;
+    }
 
-.navbar nav a:hover {  
-    background: #151515;  
+    .navbar nav a::after {
+        display: none;
+    }
 
-    color: #d90024;  
-}  
+    .navbar nav a:hover {
+        background: #151515;
 
-
-.campeonato-header {  
-    padding: 55px 25px 45px;  
-}  
-
-.campeonato-header h1 {  
-    font-size: clamp(38px, 9vw, 58px);  
-}  
+        color: #d90024;
+    }
 
 
-.campeonato-banner img {  
-    height: 380px;  
-}  
+    /* HEADER */
+
+    .campeonato-header {
+        min-height: 430px;
+
+        padding: 60px 25px 50px;
+
+        background-position: center;
+    }
+
+    .campeonato-header h1 {
+        font-size: clamp(40px, 9vw, 62px);
+    }
 
 
-.campeonato-container {  
-    width: 92%;  
+    /* CONTENEDOR */
 
-    padding: 60px 0 80px;  
-}  
+    .campeonato-container {
+        width: 92%;
+
+        padding: 55px 0 80px;
+    }
 
 
-.reign {  
-    grid-template-columns: 1fr;  
-}  
+    /* REINADOS */
 
-.reign-image {  
-    width: 100%;  
+    .reign {
+        grid-template-columns: 1fr;
+    }
 
-    aspect-ratio: 1 / 1;  
-}  
+    .reign-image {
+        width: 100%;
 
-.reign-content {  
-    padding: 32px;  
+        aspect-ratio: 1 / 1;
+    }
+
+    .reign-content {
+        padding: 32px;
+    }
 }
 
-}
 
 /* =========================================
-MOBILE
-========================================= */
+   MOBILE
+   ========================================= */
 
 @media (max-width: 550px) {
 
-.navbar {  
-    height: 65px;  
+    .navbar {
+        height: 65px;
 
-    padding: 0 15px;  
-}  
+        padding: 0 15px;
+    }
 
-.navbar .logo img {  
-    height: 38px;  
-}  
+    .navbar .logo img {
+        height: 38px;
+    }
 
-.navbar .menu {  
-    font-size: 27px;  
-}  
+    .navbar .menu {
+        font-size: 27px;
+    }
 
-.navbar nav {  
-    top: 65px;  
-}  
+    .navbar nav {
+        top: 65px;
+    }
 
 
-.campeonato-header {  
-    padding: 42px 20px 35px;  
-}  
+    /* HEADER */
 
-.campeonato-label {  
-    font-size: 9px;  
+    .campeonato-header {
+        min-height: 390px;
 
-    letter-spacing: 2px;  
-}  
+        padding: 50px 22px 42px;
 
-.campeonato-header h1 {  
-    font-size: 32px;  
+        background-position: center;
+    }
 
-    line-height: 0.98;  
+    .campeonato-label {
+        margin-bottom: 14px;
 
-    letter-spacing: -0.5px;  
-}  
+        font-size: 9px;
 
-.header-line {  
-    width: 65px;  
+        letter-spacing: 3px;
+    }
 
-    height: 3px;  
-}  
+    .campeonato-header h1 {
+        font-size: 39px;
 
+        line-height: 0.96;
 
-.campeonato-banner img {  
-    height: 260px;  
-}  
+        letter-spacing: -1px;
+    }
 
+    .header-line {
+        width: 90px;
 
-.campeonato-container {  
-    width: 92%;  
+        height: 4px;
 
-    padding: 50px 0 65px;  
-}  
+        margin-top: 28px;
+    }
 
 
-.history-heading {  
-    margin-bottom: 35px;  
-}  
+    /* CONTENEDOR */
 
-.history-heading span {  
-    font-size: 9px;  
+    .campeonato-container {
+        width: 92%;
 
-    letter-spacing: 2px;  
-}  
+        padding: 55px 0 70px;
+    }
 
-.history-heading h2 {  
-    font-size: 34px;  
-}  
 
+    .history-heading {
+        margin-bottom: 35px;
+    }
 
-.reign {  
-    margin-bottom: 40px;  
-}  
+    .history-heading span {
+        font-size: 9px;
 
+        letter-spacing: 2px;
+    }
 
-.reign-image {  
-    width: 100%;  
+    .history-heading h2 {
+        font-size: 34px;
+    }
 
-    aspect-ratio: 1 / 1;  
-}  
 
+    /* CARD */
 
-.current-badge {  
-    top: 15px;  
-    left: 15px;  
+    .reign {
+        margin-bottom: 42px;
 
-    padding: 7px 11px;  
+        border: 1px solid #252525;
+    }
 
-    font-size: 8px;  
 
-    letter-spacing: 1.5px;  
-}  
+    /* FOTO */
 
+    .reign-image {
+        width: 100%;
 
-.reign-content {  
-    padding: 20px;  
-}  
+        aspect-ratio: 1 / 1;
+    }
 
 
-.reign-number {  
-    margin-bottom: 10px;  
+    /* CURRENT */
 
-    font-size: 9px;  
+    .current-badge {
+        top: 25px;
 
-    letter-spacing: 2px;  
-}  
+        left: 25px;
 
+        padding: 11px 16px;
 
-.reign-content h3 {  
-    margin: 0 0 15px;  
+        font-size: 9px;
 
-    padding: 13px 14px;  
+        letter-spacing: 2.5px;
+    }
 
-    border-left-width: 3px;  
 
-    font-size: 34px;  
-}  
+    /* CONTENIDO */
 
+    .reign-content {
+        padding: 0;
+    }
 
-.reign-description {  
-    margin: 0 0 20px;  
 
-    padding: 23px 20px;  
+    /* LABEL */
 
-    font-size: 13px;  
+    .reign-number {
+        margin: 0;
 
-    line-height: 1.7;  
-}  
+        padding: 38px 34px 0;
 
+        color: #d90024;
 
-.reign-days {  
-    min-height: 65px;  
-}  
+        font-size: 10px;
 
-.current-days {  
-    padding-left: 16px;  
-}  
+        letter-spacing: 3px;
+    }
 
-.days-count {  
-    gap: 8px;  
-}  
 
-.days-count strong {  
-    font-size: 38px;  
-}  
+    /* NOMBRE */
 
-.days-count span {  
-    font-size: 38px;  
+    .reign-content h3 {
+        margin: 12px 25px 25px;
 
-    letter-spacing: 0;  
-}  
+        padding: 0;
 
-.current-status {  
-    padding: 0 13px;  
+        background: transparent;
 
-    font-size: 8px;  
+        border-left: none;
 
-    letter-spacing: 1.5px;  
-}  
+        color: #111111;
 
+        font-size: 32px;
 
-.former-days {  
-    gap: 9px;  
-}  
+        line-height: 1;
 
-.former-days strong {  
-    font-size: 38px;  
-}  
+        letter-spacing: -0.5px;
+    }
 
-.former-days span {  
-    font-size: 38px;  
 
-    letter-spacing: 0;  
+    /* DESCRIPCIÓN */
+
+    .reign-description {
+        margin: 0;
+
+        padding: 0 34px 30px;
+
+        background: #ffffff;
+
+        color: #333333;
+
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    /* DÍAS */
+
+    .reign-days {
+        min-height: 82px;
+
+        border-top: 3px solid #d90024;
+    }
+
+
+    .current-days {
+        padding-left: 25px;
+    }
+
+
+    .days-count {
+        gap: 10px;
+    }
+
+    .days-count strong {
+        font-size: 44px;
+    }
+
+    .days-count span {
+        font-size: 13px;
+
+        letter-spacing: 4px;
+    }
+
+
+    .current-status {
+        padding: 0 15px;
+
+        font-size: 8px;
+
+        letter-spacing: 2px;
+    }
+
+
+    /* FORMER */
+
+    .former-days {
+        gap: 12px;
+    }
+
+    .former-days strong {
+        font-size: 44px;
+    }
+
+    .former-days span {
+        font-size: 13px;
+
+        letter-spacing: 4px;
+    }
 }
 
-}
 
 /* =========================================
-MOBILE MUY PEQUEÑO
-========================================= */
+   MOBILE MUY PEQUEÑO
+   ========================================= */
 
 @media (max-width: 380px) {
 
-.campeonato-header h1 {  
-    font-size: 29px;  
-}  
+    .campeonato-header {
+        min-height: 350px;
 
-.campeonato-banner img {  
-    height: 230px;  
-}  
+        padding: 45px 20px 38px;
+    }
 
-.reign-content {  
-    padding: 17px;  
-}  
+    .campeonato-header h1 {
+        font-size: 33px;
+    }
 
-.reign-content h3 {  
-    font-size: 30px;  
-}  
+    .reign-content h3 {
+        font-size: 29px;
+    }
 
-.reign-description {  
-    font-size: 12px;  
-}  
+    .reign-number {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
 
-.days-count strong {  
-    font-size: 34px;  
-}  
+    .reign-description {
+        padding-left: 25px;
+        padding-right: 25px;
 
-.days-count span {  
-    font-size: 34px;  
-}  
+        font-size: 14px;
+    }
 
-.former-days strong {  
-    font-size: 34px;  
-}  
+    .days-count strong {
+        font-size: 38px;
+    }
 
-.former-days span {  
-    font-size: 34px;  
-}  
+    .days-count span {
+        font-size: 11px;
+    }
 
-.current-status {  
-    padding: 0 10px;  
+    .former-days strong {
+        font-size: 38px;
+    }
 
-    font-size: 7px;  
-}
+    .former-days span {
+        font-size: 11px;
+    }
 
+    .current-status {
+        padding: 0 11px;
+
+        font-size: 7px;
+    }
 }
