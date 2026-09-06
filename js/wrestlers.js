@@ -36,8 +36,14 @@ const wrestlers = [
         achievements: [
             "16x World Champion",
             "5x United States Champion"
-        ]
-    }, {name: "Charlie Dempsey",
+        ]},
+           
+{name: "Bryan Danielson",image: "images/Vacante.jpg", nickname: "", stable: "Blackpool Combat Club",
+      division: "Monday Night RAW",  brand: "RAW",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
+    
+        
+{name: "Charlie Dempsey",
         image: "images/Vacante.jpg",
         nickname: "",
         stable: "",
@@ -62,8 +68,13 @@ const wrestlers = [
             "2x WWE Undisputed Champion",
             "2x TNA Champion",
             "Royal Rumble Winner 2024"
-        ]
-    },  
+        ]},
+      
+{name: "Christian Cage",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "Friday Night Smackdown",  brand: "SmackDown",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
+    
+    
     {name: "Finn Balor",
         image: "images/Vacante.jpg",
         nickname: "",
@@ -74,8 +85,13 @@ const wrestlers = [
         careerOverall: "0 - 10 - 0",
         status: "active",
         achievements: []},
-{
-        name: "Jeff Jarrett",
+
+    {name: "Jacob Fatu",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "Monday Night RAW",  brand: "RAW",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
+    
+
+    { name: "Jeff Jarrett",
         image: "images/Jeff Jarrett trivias.jpg",
         nickname: "The Chosen One",
         stable: "",
@@ -84,12 +100,11 @@ const wrestlers = [
         overall2026: "100 - 0",
         careerOverall: "0 - 0",
         status: "inactive",
-
         achievements: [
             "x5 WWE Undisputed Champion"
         ]},
     
-     {name: "Jon Moxley",image: "images/Vacante.jpg", nickname: "", stable: "Blackpoll Combat Club",
+     {name: "Jon Moxley",image: "images/Vacante.jpg", nickname: "", stable: "Blackpool Combat Club",
       division: "Monday Night RAW",  brand: "RAW",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
     
@@ -166,6 +181,12 @@ const wrestlers = [
         
     },
      {name: "Swerve Strickland",image: "images/Vacante.jpg", nickname: "", stable: "", division: "Friday Night Smackdown",  brand: "SmackDown",overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
+
+{name: "Trick Williams",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "Monday Night RAW",  brand: "RAW",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
+    
+
 ];
 
 
