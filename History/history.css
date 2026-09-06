@@ -731,32 +731,67 @@ SMALL MOBILE
     position: relative;
 }
 
+/* Oscurecer imagen */
+
+.history-container .championship-card::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 250px;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    opacity: 0;
+
+    transition: opacity 0.3s ease;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+/* VIEW */
+
 .history-container .championship-card::after {
     content: "VIEW";
 
     position: absolute;
-    top: 50%;
+
+    top: 125px;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.9);
 
-    padding: 12px 24px;
+    padding: 13px 28px;
 
     background: #d90024;
+
     color: #ffffff;
 
     font-size: 12px;
     font-weight: 900;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
     opacity: 0;
 
     transition:
-        opacity 0.25s ease,
-        transform 0.25s ease;
+        opacity 0.3s ease,
+        transform 0.3s ease;
 
-    z-index: 5;
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+/* HOVER */
+
+.history-container .championship-card:hover::before {
+    opacity: 1;
 }
 
 .history-container .championship-card:hover::after {
@@ -764,5 +799,5 @@ SMALL MOBILE
 
     transform:
         translate(-50%, -50%)
-        scale(1.05);
+        scale(1);
 }
