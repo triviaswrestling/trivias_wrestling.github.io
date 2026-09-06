@@ -21,7 +21,22 @@ const wrestlers = [
         status: "active",
         achievements: []
     },
-     
+
+{name: "Batista",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
+
+    {name: "Bo Dallas",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
+
+    {name: "Bravo Americano",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
+    
     {
         name: "Bret Hart",
         image: "images/Darkman Hart.jpg",
@@ -37,11 +52,20 @@ const wrestlers = [
             "16x World Champion",
             "5x United States Champion"
         ]},
+
+    {name: "Bron Breakker",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
            
 {name: "Bryan Danielson",image: "images/Vacante.jpg", nickname: "", stable: "Blackpool Combat Club",
       division: "Monday Night RAW",  brand: "RAW",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
-    
+
+    {name: "Buddy Matthews",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
         
 {name: "Charlie Dempsey",
         image: "images/Vacante.jpg",
@@ -53,6 +77,12 @@ const wrestlers = [
         careerOverall: "0 - 10 - 0",
         status: "active",
         achievements: []},
+    
+    {name: "Chris Benoit",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
+    
     {
         name: "Cody Rhodes",
         image: "images/Cody Rhodes trivias.jpg",
@@ -73,7 +103,11 @@ const wrestlers = [
 {name: "Christian Cage",image: "images/Vacante.jpg", nickname: "", stable: "",
       division: "Friday Night Smackdown",  brand: "SmackDown",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
-    
+
+    {name: "El Grande Americano",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
     
     {name: "Finn Balor",
         image: "images/Vacante.jpg",
@@ -103,10 +137,20 @@ const wrestlers = [
         achievements: [
             "x5 WWE Undisputed Champion"
         ]},
+
+    {name: "Jimmy Uso",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
     
      {name: "Jon Moxley",image: "images/Vacante.jpg", nickname: "", stable: "Blackpool Combat Club",
       division: "Monday Night RAW",  brand: "RAW",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
+
+{name: "Karrion Kross",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
     
     {name: "Kyle O'Reilly",
         image: "images/Vacante.jpg",
@@ -139,8 +183,13 @@ const wrestlers = [
         careerOverall: "0 - 10 - 0",
         status: "active",
         achievements: ["Intercontinental championship (current)"]},
-    {
-        name: "Seth Rollins",
+
+    {name: "Rey Mysterio",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
+    
+    {        name: "Seth Rollins",
         image: "images/Seth Rollins trivias.jpg",
         nickname: "",
         stable: "The Vision",
@@ -153,8 +202,7 @@ const wrestlers = [
         achievements: [
             "16x World Champion",
             "5x United States Champion"
-        ]
-    },
+        ]},
     
    
     {
@@ -171,6 +219,12 @@ const wrestlers = [
         achievements:[ ]
         
     },
+
+    {name: "Sheamus",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
+    
      {name: "Swerve Strickland",image: "images/Vacante.jpg", nickname: "", stable: "", 
       division: "Friday Night Smackdown",  brand: "SmackDown",overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
       status: "active",achievements: []},
@@ -185,8 +239,8 @@ const wrestlers = [
         image: "images/Vacante.jpg",
         nickname: "",
         stable: "Club de amigos",
-        division: "Friday Night Smackdown",
-        brand: "SmackDown",
+        division: "NXT",
+        brand: "NXT",
         overall2026: "100 - 0",
         careerOverall: "0 - 0",
         status: "active",
