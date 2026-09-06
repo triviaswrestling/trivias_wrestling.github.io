@@ -88,6 +88,11 @@ const wrestlers = [
         achievements: [
             "x5 WWE Undisputed Champion"
         ]},
+    
+     {name: "Jon Moxley",image: "images/Vacante.jpg", nickname: "", stable: "Blackpoll Combat Club",
+      division: "Monday Night RAW",  brand: "RAW",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
+    
     {name: "Kyle O'Reilly",
         image: "images/Vacante.jpg",
         nickname: "",
@@ -152,7 +157,7 @@ const wrestlers = [
         nickname: "",
         stable: "",
         division: "SmackDown",
-        brand: "NXT",
+        brand: "SmackDown",
         overall2026: "0 - 0 - 100",
         careerOverall: "0 - 0",
         status: "active",
