@@ -37,7 +37,16 @@ const wrestlers = [
             "16x World Champion",
             "5x United States Champion"
         ]
-    }, 
+    }, {name: "Charlie Dempsey",
+        image: "images/Vacante.jpg",
+        nickname: "",
+        stable: "",
+        division: "Friday Night Smackdown",
+        brand: "SmackDown",
+        overall2026: "10 - 0 - 10",
+        careerOverall: "0 - 10 - 0",
+        status: "active",
+        achievements: []},
     {
         name: "Cody Rhodes",
         image: "images/Cody Rhodes trivias.jpg",
@@ -70,6 +79,16 @@ const wrestlers = [
             "x5 WWE Undisputed Champion"
         ]
     },
+    {name: "LA Knight",
+        image: "images/Vacante.jpg",
+        nickname: "",
+        stable: "",
+        division: "Friday Night Smackdown",
+        brand: "SmackDown",
+        overall2026: "10 - 0 - 10",
+        careerOverall: "0 - 10 - 0",
+        status: "active",
+        achievements: []},
     {
         name: "Seth Rollins",
         image: "images/Seth Rollins trivias.jpg",
