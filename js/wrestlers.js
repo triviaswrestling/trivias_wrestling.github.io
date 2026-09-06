@@ -1,4 +1,10 @@
 const wrestlers = [
+
+    {name: "Adam Cole",image: "images/Vacante.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+    
     {name: "Alberto del Rio",
         image: "images/Vacante.jpg",
         nickname: "El Patron",
@@ -230,8 +236,8 @@ const wrestlers = [
         image: "images/shawna spears.jpg",
         nickname: "",
         stable: "",
-        division: "SmackDown",
-        brand: "SmackDown",
+        division: "RAW",
+        brand: "RAW",
         overall2026: "0 - 0 - 100",
         careerOverall: "0 - 0",
         status: "active",
