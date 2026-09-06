@@ -87,7 +87,7 @@ const wrestlers = [
 
         achievements: [
             "x5 WWE Undisputed Champion"
-        ]
+        ]},
     {name: "Kyle O'Reilly",
         image: "images/Vacante.jpg",
         nickname: "",
@@ -98,7 +98,7 @@ const wrestlers = [
         careerOverall: "0 - 10 - 0",
         status: "active",
         achievements: []},
-    },
+
     {name: "LA Knight",
         image: "images/Vacante.jpg",
         nickname: "",
