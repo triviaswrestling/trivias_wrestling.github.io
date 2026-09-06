@@ -1,6 +1,6 @@
 /* =========================================
    MI WRESTLING
-   CAMPEONATO.CSS
+   CHAMPIONSHIP HISTORY
    ========================================= */
 
 * {
@@ -14,7 +14,6 @@ body {
 }
 
 body {
-    margin: 0;
     background: #0b0b0b;
     color: #ffffff;
     font-family: Arial, sans-serif;
@@ -126,7 +125,7 @@ body {
 
 
 /* =========================================
-   HEADER DEL CAMPEONATO
+   HEADER
    ========================================= */
 
 .campeonato-header {
@@ -140,7 +139,9 @@ body {
 }
 
 .campeonato-header-content {
-    max-width: 1100px;
+    width: 100%;
+    max-width: 1150px;
+
     margin: 0 auto;
 }
 
@@ -164,11 +165,11 @@ body {
 
     color: #ffffff;
 
-    font-size: clamp(40px, 6vw, 76px);
+    font-size: clamp(42px, 6vw, 78px);
 
     font-weight: 900;
 
-    line-height: 0.95;
+    line-height: 0.94;
 
     letter-spacing: -2px;
 
@@ -201,42 +202,46 @@ body {
     display: block;
 
     width: 100%;
-    max-height: 500px;
+    max-width: 1400px;
+
+    height: 460px;
+
+    margin: 0 auto;
 
     object-fit: cover;
 }
 
 
 /* =========================================
-   CONTENEDOR GENERAL
+   CONTENEDOR
    ========================================= */
 
 .campeonato-container {
     width: 90%;
-    max-width: 1150px;
+    max-width: 1100px;
 
     margin: 0 auto;
 
-    padding: 70px 0 100px;
+    padding: 80px 0 100px;
 }
 
 
 /* =========================================
-   TÍTULO DE HISTORIA
+   TITLE HISTORY
    ========================================= */
 
 .history-heading {
-    margin-bottom: 55px;
+    margin-bottom: 50px;
 }
 
 .history-heading span {
     display: block;
 
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 
     color: #d90024;
 
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 900;
 
     letter-spacing: 3px;
@@ -249,43 +254,35 @@ body {
 
     color: #ffffff;
 
-    font-size: 46px;
+    font-size: clamp(38px, 5vw, 58px);
+
     font-weight: 900;
 
     line-height: 1;
+
+    letter-spacing: -1px;
 
     text-transform: uppercase;
 }
 
 
 /* =========================================
-   REINADO
+   FICHA DEL REINADO
    ========================================= */
 
 .reign {
-    display: grid;
+    width: 100%;
 
-    grid-template-columns: 42% 58%;
+    margin-bottom: 70px;
 
-    min-height: 430px;
+    background: #111111;
 
-    margin-bottom: 60px;
-
-    background: #101010;
-
-    border: 1px solid #252525;
+    border: 1px solid #292929;
 
     overflow: hidden;
 
-    transition:
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-.reign:hover {
-    border-color: #d90024;
-
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.45);
 }
 
 
@@ -296,28 +293,12 @@ body {
 .reign-image {
     position: relative;
 
-    min-height: 430px;
+    width: 100%;
+    height: 560px;
 
     overflow: hidden;
 
     background: #080808;
-}
-
-.reign-image::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent 50%,
-            rgba(0, 0, 0, 0.8) 100%
-        );
-
-    pointer-events: none;
 }
 
 .reign-image img {
@@ -327,35 +308,59 @@ body {
     height: 100%;
 
     object-fit: cover;
-
-    transition: transform 0.4s ease;
-}
-
-.reign:hover .reign-image img {
-    transform: scale(1.03);
 }
 
 
 /* =========================================
-   INFORMACIÓN DEL REINADO
+   CURRENT
+   ========================================= */
+
+.reign-image::before {
+    content: "CURRENT";
+
+    position: absolute;
+
+    top: 20px;
+    left: 20px;
+
+    z-index: 5;
+
+    padding: 8px 14px;
+
+    background: #d90024;
+
+    border: 1px solid #ff3150;
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================================
+   CURRENT CHAMPION
    ========================================= */
 
 .reign-content {
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    padding: 55px;
+    padding: 0;
 }
 
 .reign-number {
-    margin-bottom: 12px;
+    display: block;
+
+    padding: 24px 30px 10px;
 
     color: #d90024;
 
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 900;
 
     letter-spacing: 3px;
@@ -363,12 +368,25 @@ body {
     text-transform: uppercase;
 }
 
+
+/* =========================================
+   NOMBRE
+   ========================================= */
+
 .reign-content h3 {
-    margin: 0 0 15px;
+    display: block;
+
+    margin: 0 30px 18px;
+
+    padding: 15px 18px;
+
+    background: #181818;
+
+    border-left: 4px solid #d90024;
 
     color: #ffffff;
 
-    font-size: clamp(36px, 4vw, 58px);
+    font-size: clamp(35px, 5vw, 58px);
 
     font-weight: 900;
 
@@ -379,26 +397,41 @@ body {
     text-transform: uppercase;
 }
 
+
+/* =========================================
+   FECHA
+   ========================================= */
+
 .reign-date {
-    margin-bottom: 30px;
+    margin: 0 30px 25px;
 
-    color: #9a9a9a;
+    color: #999999;
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
 
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 
     text-transform: uppercase;
 }
 
-.reign-divider {
-    width: 100%;
-    height: 1px;
 
-    margin-bottom: 28px;
+/* =========================================
+   DESCRIPCIÓN BLANCA
+   ========================================= */
 
-    background: #292929;
+.reign-description {
+    margin: 0 30px 25px;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    color: #111111;
+
+    font-size: 14px;
+
+    line-height: 1.75;
 }
 
 
@@ -409,56 +442,45 @@ body {
 .reign-days {
     display: flex;
 
-    align-items: flex-end;
+    align-items: center;
 
-    gap: 12px;
+    gap: 18px;
 
-    margin-bottom: 30px;
+    margin: 0 30px 30px;
+
+    padding: 22px 25px;
+
+    background: #151515;
+
+    border: 1px solid #292929;
 }
 
 .reign-days strong {
-    color: #ffffff;
+    color: #d90024;
 
-    font-size: 52px;
+    font-size: 50px;
     font-weight: 900;
 
-    line-height: 0.85;
+    line-height: 0.8;
 }
 
 .reign-days span {
-    color: #777777;
+    color: #d90024;
 
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 900;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
     text-transform: uppercase;
 }
 
 
 /* =========================================
-   DESCRIPCIÓN
-   ========================================= */
-
-.reign-description {
-    max-width: 650px;
-
-    color: #a5a5a5;
-
-    font-size: 14px;
-
-    line-height: 1.7;
-}
-
-
-/* =========================================
-   MOBILE
+   TABLET
    ========================================= */
 
 @media (max-width: 900px) {
-
-    /* NAVBAR */
 
     .navbar {
         height: 70px;
@@ -486,4 +508,260 @@ body {
 
         gap: 0;
 
-        margin: 
+        margin: 0;
+        padding: 8px 0;
+
+        background: #090909;
+
+        border-bottom: 2px solid #d90024;
+
+        box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.95);
+    }
+
+    .navbar nav.active {
+        display: flex;
+    }
+
+    .navbar nav a {
+        width: 100%;
+
+        padding: 16px 20px;
+
+        text-align: center;
+
+        border-bottom: 1px solid #202020;
+    }
+
+    .navbar nav a:last-child {
+        border-bottom: none;
+    }
+
+    .navbar nav a::after {
+        display: none;
+    }
+
+    .navbar nav a:hover {
+        background: #151515;
+        color: #d90024;
+    }
+
+
+    .campeonato-header {
+        padding: 55px 25px 45px;
+    }
+
+    .campeonato-header h1 {
+        font-size: clamp(38px, 9vw, 58px);
+    }
+
+
+    .campeonato-banner img {
+        height: 380px;
+    }
+
+
+    .campeonato-container {
+        width: 92%;
+
+        padding: 60px 0 80px;
+    }
+
+
+    .reign-image {
+        height: 470px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 550px) {
+
+    .navbar {
+        height: 65px;
+        padding: 0 15px;
+    }
+
+    .navbar .logo img {
+        height: 38px;
+    }
+
+    .navbar .menu {
+        font-size: 27px;
+    }
+
+    .navbar nav {
+        top: 65px;
+    }
+
+
+    .campeonato-header {
+        padding: 42px 20px 35px;
+    }
+
+    .campeonato-label {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .campeonato-header h1 {
+        font-size: 32px;
+
+        line-height: 0.98;
+
+        letter-spacing: -0.5px;
+    }
+
+    .header-line {
+        width: 65px;
+        height: 3px;
+    }
+
+
+    .campeonato-banner img {
+        height: 260px;
+    }
+
+
+    .campeonato-container {
+        width: 92%;
+
+        padding: 50px 0 65px;
+    }
+
+
+    .history-heading {
+        margin-bottom: 35px;
+    }
+
+    .history-heading span {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .history-heading h2 {
+        font-size: 34px;
+    }
+
+
+    /* FOTO */
+
+    .reign-image {
+        height: 350px;
+    }
+
+    .reign-image::before {
+        top: 15px;
+        left: 15px;
+
+        padding: 7px 11px;
+
+        font-size: 8px;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    /* CURRENT CHAMPION */
+
+    .reign-number {
+        padding: 20px 20px 8px;
+
+        font-size: 9px;
+
+        letter-spacing: 2px;
+    }
+
+
+    /* NOMBRE */
+
+    .reign-content h3 {
+        margin: 0 20px 15px;
+
+        padding: 13px 14px;
+
+        border-left-width: 3px;
+
+        font-size: 34px;
+    }
+
+
+    /* FECHA */
+
+    .reign-date {
+        margin: 0 20px 20px;
+
+        font-size: 9px;
+
+        line-height: 1.6;
+    }
+
+
+    /* DESCRIPCIÓN */
+
+    .reign-description {
+        margin: 0 20px 20px;
+
+        padding: 23px 20px;
+
+        font-size: 13px;
+
+        line-height: 1.7;
+    }
+
+
+    /* DAYS */
+
+    .reign-days {
+        gap: 12px;
+
+        margin: 0 20px 20px;
+
+        padding: 19px 20px;
+    }
+
+    .reign-days strong {
+        font-size: 42px;
+    }
+
+    .reign-days span {
+        font-size: 9px;
+
+        letter-spacing: 2px;
+    }
+}
+
+
+/* =========================================
+   MOBILE MUY PEQUEÑO
+   ========================================= */
+
+@media (max-width: 380px) {
+
+    .campeonato-header h1 {
+        font-size: 29px;
+    }
+
+    .campeonato-banner img {
+        height: 230px;
+    }
+
+    .reign-image {
+        height: 300px;
+    }
+
+    .reign-content h3 {
+        font-size: 30px;
+    }
+
+    .reign-description {
+        font-size: 12px;
+    }
+
+    .reign-days strong {
+        font-size: 38px;
+    }
+}
