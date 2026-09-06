@@ -1,4 +1,14 @@
 const wrestlers = [
+    {name: "Axiom",
+        image: "images/Vacante.jpg",
+        nickname: "",
+        stable: "Club de amigos",
+        division: "Monday Night RAW",
+        brand: "RAW",
+        overall2026: "100 - 0",
+        careerOverall: "0 - 0",
+        status: "active",
+     
     {
         name: "Bret Hart",
         image: "images/Darkman Hart.jpg",
