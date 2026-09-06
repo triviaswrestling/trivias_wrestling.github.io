@@ -3,6 +3,8 @@ HISTORY - NAVBAR
 ========================================= */
 
 .navbar {
+position: relative;
+
 display: flex;
 align-items: center;
 
@@ -21,6 +23,10 @@ text-align: left;
 
 }
 
+/* =========================================
+LOGO
+========================================= */
+
 .navbar .logo {
 display: flex;
 align-items: center;
@@ -36,6 +42,10 @@ width: auto;
 display: block;
 
 }
+
+/* =========================================
+NAVIGATION
+========================================= */
 
 .navbar nav {
 display: flex;
@@ -62,9 +72,13 @@ transition: color 0.2s ease;
 
 }
 
-.navbar nav a {
+.navbar nav a:hover {
 color: #d90024;
 }
+
+/* =========================================
+MENU BUTTON
+========================================= */
 
 .navbar .menu {
 display: none;
@@ -203,7 +217,11 @@ transition:
 
 }
 
-.history-container .championship-card {
+/* =========================================
+CARD HOVER
+========================================= */
+
+.history-container .championship-card:hover {
 transform: translateY(-5px);
 
 border-color: #d90024;
@@ -213,6 +231,10 @@ box-shadow:
     0 0 20px rgba(217, 0, 36, 0.25);
 
 }
+
+/* =========================================
+CARD IMAGE
+========================================= */
 
 .history-container .championship-card img {
 width: 100%;
@@ -226,6 +248,10 @@ display: block;
 border-bottom: 2px solid #444444;
 
 }
+
+/* =========================================
+CARD CONTENT
+========================================= */
 
 .history-container .card-content {
 padding: 20px;
@@ -260,7 +286,7 @@ letter-spacing: 1px;
 }
 
 /* =========================================
-HISTORY MOBILE
+MOBILE MENU
 ========================================= */
 
 @media (max-width: 900px) {
@@ -275,9 +301,8 @@ HISTORY MOBILE
     height: 42px;
 }
 
-.navbar nav {
-    display: none;
-}
+
+/* MENU BUTTON */
 
 .navbar .menu {
     display: block;
@@ -285,9 +310,67 @@ HISTORY MOBILE
     margin-left: auto;
 }
 
+
+/* NAVIGATION CLOSED */
+
+.navbar nav {
+    position: absolute;
+
+    top: 70px;
+    left: 0;
+    right: 0;
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 0;
+
+    margin: 0;
+
+    padding: 10px 0;
+
+    background: #111111;
+
+    border-bottom: 2px solid #d90024;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.8);
+}
+
+
+/* NAVIGATION OPEN */
+
+.navbar nav.active {
+    display: flex;
+}
+
+
+/* MOBILE LINKS */
+
+.navbar nav a {
+    width: 100%;
+
+    padding: 15px 20px;
+
+    text-align: center;
+}
+
+.navbar nav a:hover {
+    background: #1d1d1d;
+
+    color: #d90024;
+}
+
+
+/* HERO */
+
 .history-hero {
     min-height: 350px;
 }
+
+
+/* CARDS */
 
 .history-container {
     grid-template-columns: 1fr;
@@ -304,7 +387,7 @@ HISTORY MOBILE
 }
 
 /* =========================================
-HISTORY SMALL MOBILE
+SMALL MOBILE
 ========================================= */
 
 @media (max-width: 600px) {
@@ -327,55 +410,4 @@ HISTORY SMALL MOBILE
     font-size: 13px;
 }
 
-}
-/* =========================================
-   MOBILE MENU
-   ========================================= */
-
-@media (max-width: 900px) {
-
-    .navbar {
-        position: relative;
-    }
-
-    .navbar nav {
-        position: absolute;
-
-        top: 70px;
-        left: 0;
-        right: 0;
-
-        display: none;
-
-        flex-direction: column;
-
-        gap: 0;
-
-        margin: 0;
-
-        padding: 15px 0;
-
-        background: #111111;
-
-        border-bottom: 2px solid #d90024;
-
-        box-shadow:
-            0 8px 20px rgba(0, 0, 0, 0.8);
-    }
-
-    .navbar nav.active {
-        display: flex;
-    }
-
-    .navbar nav a {
-        width: 100%;
-
-        padding: 15px 20px;
-
-        text-align: center;
-    }
-
-    .navbar nav a:hover {
-        background: #1d1d1d;
-    }
 }
