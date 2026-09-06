@@ -328,3 +328,54 @@ HISTORY SMALL MOBILE
 }
 
 }
+/* =========================================
+   MOBILE MENU
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        position: relative;
+    }
+
+    .navbar nav {
+        position: absolute;
+
+        top: 70px;
+        left: 0;
+        right: 0;
+
+        display: none;
+
+        flex-direction: column;
+
+        gap: 0;
+
+        margin: 0;
+
+        padding: 15px 0;
+
+        background: #111111;
+
+        border-bottom: 2px solid #d90024;
+
+        box-shadow:
+            0 8px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .navbar nav.active {
+        display: flex;
+    }
+
+    .navbar nav a {
+        width: 100%;
+
+        padding: 15px 20px;
+
+        text-align: center;
+    }
+
+    .navbar nav a:hover {
+        background: #1d1d1d;
+    }
+}
