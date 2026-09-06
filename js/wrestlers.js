@@ -255,7 +255,7 @@ const wrestlers = [
       division: "Friday Night Smackdown",  brand: "SmackDown",overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
       status: "active",achievements: []},
 
-{name: "Trick Williams",image: "images/Vacante.jpg", nickname: "", stable: "",
+{name: "Trick Williams",image: "images/Trick Williams trivias.jpg", nickname: "", stable: "",
       division: "Monday Night RAW",  brand: "RAW",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "active",achievements: []},
