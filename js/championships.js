@@ -3,43 +3,43 @@ console.log("CHAMPIONSHIPS.JS CARGADO");
 const championships = [
 
     {
-        title: "WWE Championship",
-        champion: "Cody Rhodes",
+        title: "Undisputed WWE Champion",
+        champion: "Christian Cage",
         image: "images/Cody Rhodes trivias.jpg",
         page: "championship/wwe-championship.html"
     },
 
     {
-        title: "World Heavyweight Championship",
-        champion: "VACANT",
+        title: "World Heavyweight Champion",
+        champion: "Bret Hart",
         image: "images/Vacante.jpg",
         page: "championship/world-heavyweight-championship.html"
     },
 
     {
-        title: "World Tag Team Championship",
-        champion: "VACANT",
+        title: "World Tag Team Champions",
+        champion: "Blackpool Combat Club",
         image: "images/Vacante.jpg",
         page: "championship/world-tag-team-championship.html"
     },
 
     {
-        title: "Intercontinental Championship",
-        champion: "VACANT",
+        title: "Intercontinental Champion",
+        champion: "Randy Orton",
         image: "images/Vacante.jpg",
         page: "championship/intercontinental-championship.html"
     },
 
     {
-        title: "United States Championship",
-        champion: "VACANT",
+        title: "United States Champion",
+        champion: "Cody Rhodes",
         image: "images/Vacante.jpg",
         page: "championship/united-states-championship.html"
     },
 
     {
-        title: "NXT Championship",
-        champion: "VACANT",
+        title: "NXT Champion",
+        champion: "Bo Dallas",
         image: "images/Vacante.jpg",
         page: "championship/nxt-championship.html"
     }
