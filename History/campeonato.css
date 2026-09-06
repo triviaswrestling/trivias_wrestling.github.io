@@ -27,6 +27,7 @@ body {
 
 .navbar {
     position: relative;
+
     width: 100%;
     height: 80px;
 
@@ -36,6 +37,7 @@ body {
     padding: 0 30px;
 
     background: #090909;
+
     border-bottom: 2px solid #d90024;
 
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.9);
@@ -43,23 +45,32 @@ body {
     z-index: 1000;
 }
 
+
+/* LOGO */
+
 .navbar .logo {
     display: flex;
     align-items: center;
+
     text-decoration: none;
 }
 
 .navbar .logo img {
     display: block;
+
     width: auto;
     height: 48px;
 }
+
+
+/* LINKS */
 
 .navbar nav {
     display: flex;
     align-items: center;
 
     margin-left: auto;
+
     gap: 25px;
 }
 
@@ -103,6 +114,9 @@ body {
     width: 100%;
 }
 
+
+/* BOTÓN MOBILE */
+
 .navbar .menu {
     display: none;
 
@@ -111,6 +125,7 @@ body {
     padding: 0;
 
     background: transparent;
+
     border: none;
 
     color: #ffffff;
@@ -145,6 +160,9 @@ body {
     margin: 0 auto;
 }
 
+
+/* LABEL */
+
 .campeonato-label {
     display: block;
 
@@ -159,6 +177,9 @@ body {
 
     text-transform: uppercase;
 }
+
+
+/* TÍTULO */
 
 .campeonato-header h1 {
     margin: 0;
@@ -175,6 +196,9 @@ body {
 
     text-transform: uppercase;
 }
+
+
+/* LÍNEA ROJA */
 
 .header-line {
     width: 90px;
@@ -273,7 +297,11 @@ body {
 .reign {
     width: 100%;
 
-    margin-bottom: 70px;
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    margin-bottom: 55px;
 
     background: #111111;
 
@@ -294,11 +322,12 @@ body {
     position: relative;
 
     width: 100%;
-    height: 560px;
+
+    aspect-ratio: 1 / 1;
 
     overflow: hidden;
 
-    background: #080808;
+    background: #050505;
 }
 
 .reign-image img {
@@ -312,28 +341,25 @@ body {
 
 
 /* =========================================
-   CURRENT
+   CURRENT BADGE
+   SOLO APARECE EN CHRISTIAN
    ========================================= */
 
-.reign-image::before {
-    content: "CURRENT";
-
+.current-badge {
     position: absolute;
 
-    top: 20px;
-    left: 20px;
+    top: 18px;
+    left: 18px;
 
     z-index: 5;
 
-    padding: 8px 14px;
+    padding: 7px 12px;
 
     background: #d90024;
 
-    border: 1px solid #ff3150;
-
     color: #ffffff;
 
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 900;
 
     letter-spacing: 2px;
@@ -346,17 +372,27 @@ body {
 
 
 /* =========================================
-   CURRENT CHAMPION
+   CONTENIDO DEL REINADO
    ========================================= */
 
 .reign-content {
-    padding: 0;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 38px;
 }
+
+
+/* =========================================
+   NÚMERO / CURRENT CHAMPION
+   ========================================= */
 
 .reign-number {
     display: block;
 
-    padding: 24px 30px 10px;
+    margin-bottom: 14px;
 
     color: #d90024;
 
@@ -370,15 +406,13 @@ body {
 
 
 /* =========================================
-   NOMBRE
+   NOMBRE DEL CAMPEÓN
    ========================================= */
 
 .reign-content h3 {
-    display: block;
+    margin: 0 0 25px;
 
-    margin: 0 30px 18px;
-
-    padding: 15px 18px;
+    padding: 16px 18px;
 
     background: #181818;
 
@@ -386,7 +420,7 @@ body {
 
     color: #ffffff;
 
-    font-size: clamp(35px, 5vw, 58px);
+    font-size: clamp(32px, 4vw, 55px);
 
     font-weight: 900;
 
@@ -399,31 +433,13 @@ body {
 
 
 /* =========================================
-   FECHA
-   ========================================= */
-
-.reign-date {
-    margin: 0 30px 25px;
-
-    color: #999999;
-
-    font-size: 11px;
-    font-weight: 700;
-
-    letter-spacing: 1.5px;
-
-    text-transform: uppercase;
-}
-
-
-/* =========================================
-   DESCRIPCIÓN BLANCA
+   DESCRIPCIÓN
    ========================================= */
 
 .reign-description {
-    margin: 0 30px 25px;
+    margin: 0 0 25px;
 
-    padding: 30px;
+    padding: 25px;
 
     background: #ffffff;
 
@@ -431,7 +447,7 @@ body {
 
     font-size: 14px;
 
-    line-height: 1.75;
+    line-height: 1.7;
 }
 
 
@@ -440,31 +456,44 @@ body {
    ========================================= */
 
 .reign-days {
+    width: 100%;
+
+    min-height: 75px;
+
     display: flex;
 
     align-items: center;
 
-    gap: 18px;
-
-    margin: 0 30px 30px;
-
-    padding: 22px 25px;
+    margin-top: auto;
 
     background: #151515;
 
     border: 1px solid #292929;
 }
 
-.reign-days strong {
-    color: #d90024;
 
-    font-size: 50px;
-    font-weight: 900;
+/* =========================================
+   REINADOS ANTERIORES
+   ========================================= */
 
-    line-height: 0.8;
+.former-days {
+    justify-content: center;
+
+    gap: 12px;
+
+    text-align: center;
 }
 
-.reign-days span {
+.former-days strong {
+    color: #d90024;
+
+    font-size: 45px;
+    font-weight: 900;
+
+    line-height: 1;
+}
+
+.former-days span {
     color: #d90024;
 
     font-size: 11px;
@@ -477,13 +506,82 @@ body {
 
 
 /* =========================================
+   CURRENT DAYS
+   ========================================= */
+
+.current-days {
+    justify-content: space-between;
+
+    padding-left: 22px;
+}
+
+
+/* CONTADOR */
+
+.days-count {
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 10px;
+}
+
+.days-count strong {
+    color: #d90024;
+
+    font-size: 45px;
+    font-weight: 900;
+
+    line-height: 1;
+}
+
+.days-count span {
+    color: #d90024;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+/* CURRENT GRIS */
+
+.current-status {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 18px;
+
+    background: #777777;
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================
    TABLET
    ========================================= */
 
 @media (max-width: 900px) {
 
+    /* NAVBAR */
+
     .navbar {
         height: 70px;
+
         padding: 0 18px;
     }
 
@@ -509,6 +607,7 @@ body {
         gap: 0;
 
         margin: 0;
+
         padding: 8px 0;
 
         background: #090909;
@@ -543,9 +642,12 @@ body {
 
     .navbar nav a:hover {
         background: #151515;
+
         color: #d90024;
     }
 
+
+    /* HEADER */
 
     .campeonato-header {
         padding: 55px 25px 45px;
@@ -556,10 +658,14 @@ body {
     }
 
 
+    /* BANNER */
+
     .campeonato-banner img {
         height: 380px;
     }
 
+
+    /* CONTENEDOR */
 
     .campeonato-container {
         width: 92%;
@@ -568,8 +674,20 @@ body {
     }
 
 
+    /* REINADO */
+
+    .reign {
+        grid-template-columns: 1fr;
+    }
+
     .reign-image {
-        height: 470px;
+        width: 100%;
+
+        aspect-ratio: 1 / 1;
+    }
+
+    .reign-content {
+        padding: 32px;
     }
 }
 
@@ -580,8 +698,11 @@ body {
 
 @media (max-width: 550px) {
 
+    /* NAVBAR */
+
     .navbar {
         height: 65px;
+
         padding: 0 15px;
     }
 
@@ -598,12 +719,15 @@ body {
     }
 
 
+    /* HEADER */
+
     .campeonato-header {
         padding: 42px 20px 35px;
     }
 
     .campeonato-label {
         font-size: 9px;
+
         letter-spacing: 2px;
     }
 
@@ -617,14 +741,19 @@ body {
 
     .header-line {
         width: 65px;
+
         height: 3px;
     }
 
+
+    /* BANNER */
 
     .campeonato-banner img {
         height: 260px;
     }
 
+
+    /* CONTENEDOR */
 
     .campeonato-container {
         width: 92%;
@@ -633,12 +762,15 @@ body {
     }
 
 
+    /* TITLE HISTORY */
+
     .history-heading {
         margin-bottom: 35px;
     }
 
     .history-heading span {
         font-size: 9px;
+
         letter-spacing: 2px;
     }
 
@@ -647,13 +779,25 @@ body {
     }
 
 
+    /* REINADO */
+
+    .reign {
+        margin-bottom: 40px;
+    }
+
+
     /* FOTO */
 
     .reign-image {
-        height: 350px;
+        width: 100%;
+
+        aspect-ratio: 1 / 1;
     }
 
-    .reign-image::before {
+
+    /* CURRENT BADGE */
+
+    .current-badge {
         top: 15px;
         left: 15px;
 
@@ -665,10 +809,17 @@ body {
     }
 
 
+    /* CONTENIDO */
+
+    .reign-content {
+        padding: 20px;
+    }
+
+
     /* CURRENT CHAMPION */
 
     .reign-number {
-        padding: 20px 20px 8px;
+        margin-bottom: 10px;
 
         font-size: 9px;
 
@@ -679,7 +830,7 @@ body {
     /* NOMBRE */
 
     .reign-content h3 {
-        margin: 0 20px 15px;
+        margin: 0 0 15px;
 
         padding: 13px 14px;
 
@@ -689,21 +840,10 @@ body {
     }
 
 
-    /* FECHA */
-
-    .reign-date {
-        margin: 0 20px 20px;
-
-        font-size: 9px;
-
-        line-height: 1.6;
-    }
-
-
     /* DESCRIPCIÓN */
 
     .reign-description {
-        margin: 0 20px 20px;
+        margin: 0 0 20px;
 
         padding: 23px 20px;
 
@@ -716,18 +856,47 @@ body {
     /* DAYS */
 
     .reign-days {
-        gap: 12px;
-
-        margin: 0 20px 20px;
-
-        padding: 19px 20px;
+        min-height: 65px;
     }
 
-    .reign-days strong {
-        font-size: 42px;
+    .current-days {
+        padding-left: 16px;
     }
 
-    .reign-days span {
+    .days-count {
+        gap: 8px;
+    }
+
+    .days-count strong {
+        font-size: 38px;
+    }
+
+    .days-count span {
+        font-size: 9px;
+
+        letter-spacing: 2px;
+    }
+
+    .current-status {
+        padding: 0 13px;
+
+        font-size: 8px;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    /* FORMER DAYS */
+
+    .former-days {
+        gap: 9px;
+    }
+
+    .former-days strong {
+        font-size: 38px;
+    }
+
+    .former-days span {
         font-size: 9px;
 
         letter-spacing: 2px;
@@ -749,8 +918,8 @@ body {
         height: 230px;
     }
 
-    .reign-image {
-        height: 300px;
+    .reign-content {
+        padding: 17px;
     }
 
     .reign-content h3 {
@@ -761,7 +930,17 @@ body {
         font-size: 12px;
     }
 
-    .reign-days strong {
-        font-size: 38px;
+    .days-count strong {
+        font-size: 34px;
+    }
+
+    .former-days strong {
+        font-size: 34px;
+    }
+
+    .current-status {
+        padding: 0 10px;
+
+        font-size: 7px;
     }
 }
