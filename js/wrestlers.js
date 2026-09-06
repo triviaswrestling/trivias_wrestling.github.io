@@ -1,7 +1,7 @@
 const wrestlers = [
 
     {name: "Adam Cole",image: "images/Vacante.jpg", nickname: "", stable: "",
-      division: "NXT",  brand: "NXT",
+      division: "",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "inactive",achievements: []},
     
