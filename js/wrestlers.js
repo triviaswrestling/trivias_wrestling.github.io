@@ -3,7 +3,7 @@ const wrestlers = [
         image: "images/Vacante.jpg",
         nickname: "El Patron",
         stable: "",
-        division: "NXT - Mexicano 🇲🇽",
+        division: "NXT",
         brand: "NXT",
         overall2026: "100 - 0",
         careerOverall: "0 - 0",
