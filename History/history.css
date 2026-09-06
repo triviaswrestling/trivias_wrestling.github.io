@@ -1,25 +1,46 @@
 /* =========================================
-HISTORY - NAVBAR
+RESET
+========================================= */
+
+* {
+  box-sizing: border-box;
+  }
+
+html,
+body {
+margin: 0;
+padding: 0;
+}
+
+body {
+background: #080808;
+color: #ffffff;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================
+NAVBAR
 ========================================= */
 
 .navbar {
 position: relative;
 
+width: 100%;
+height: 80px;
+
 display: flex;
 align-items: center;
 
-height: 80px;
+padding: 0 30px;
 
-padding: 0 25px;
-
-background: #111111;
+background: #090909;
 
 border-bottom: 2px solid #d90024;
 
 box-shadow:
-    0 3px 15px rgba(0, 0, 0, 0.8);
+    0 4px 18px rgba(0, 0, 0, 0.9);
 
-text-align: left;
+z-index: 1000;
 
 }
 
@@ -36,10 +57,10 @@ text-decoration: none;
 }
 
 .navbar .logo img {
-height: 48px;
-width: auto;
-
 display: block;
+
+width: auto;
+height: 48px;
 
 }
 
@@ -53,27 +74,56 @@ align-items: center;
 
 margin-left: auto;
 
-gap: 22px;
+gap: 25px;
 
 }
 
 .navbar nav a {
-margin: 0;
+position: relative;
 
-color: #cccccc;
+color: #d0d0d0;
 
-font-size: 13px;
-font-weight: 700;
+font-family: Arial, Helvetica, sans-serif;
+
+font-size: 12px;
+font-weight: 900;
 
 text-decoration: none;
 text-transform: uppercase;
 
-transition: color 0.2s ease;
+letter-spacing: 0.8px;
+
+transition:
+    color 0.2s ease;
+
+}
+
+/* RED LINE UNDER LINK */
+
+.navbar nav a::after {
+content: "";
+
+position: absolute;
+
+left: 0;
+bottom: -8px;
+
+width: 0;
+height: 2px;
+
+background: #d90024;
+
+transition:
+    width 0.2s ease;
 
 }
 
 .navbar nav a:hover {
-color: #d90024;
+color: #ffffff;
+}
+
+.navbar nav a:hover::after {
+width: 100%;
 }
 
 /* =========================================
@@ -83,40 +133,54 @@ MENU BUTTON
 .navbar .menu {
 display: none;
 
-margin-left: 15px;
+margin-left: auto;
 
 padding: 0;
 
-background: none;
+background: transparent;
 
 border: none;
 
 color: #ffffff;
 
-font-size: 28px;
+font-size: 29px;
+font-weight: 900;
+
+line-height: 1;
 
 cursor: pointer;
 
 }
 
 /* =========================================
-HISTORY HERO
+HERO
 ========================================= */
 
 .history-hero {
-min-height: 420px;
+position: relative;
+
+min-height: 470px;
 
 display: flex;
-
 align-items: center;
 justify-content: center;
+
+overflow: hidden;
 
 text-align: center;
 
 background:
     linear-gradient(
-        rgba(0, 0, 0, 0.40),
-        rgba(0, 0, 0, 0.88)
+        90deg,
+        rgba(0, 0, 0, 0.90) 0%,
+        rgba(0, 0, 0, 0.45) 50%,
+        rgba(0, 0, 0, 0.90) 100%
+    ),
+    linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.15) 60%,
+        rgba(0, 0, 0, 0.65) 100%
     ),
     url("../images/history.jpg");
 
@@ -125,43 +189,138 @@ background-position: center;
 
 }
 
-.hero-overlay {
-padding: 40px 20px;
+/* RED GRAPHIC LINE */
+
+.history-hero::before {
+content: "";
+
+position: absolute;
+
+left: 0;
+bottom: 0;
+
+width: 100%;
+height: 4px;
+
+background: #d90024;
+
+box-shadow:
+    0 0 18px rgba(217, 0, 36, 0.45);
+
 }
 
+/* DARK TOP LINE */
+
+.history-hero::after {
+content: "";
+
+position: absolute;
+
+top: 0;
+left: 0;
+
+width: 100%;
+height: 80px;
+
+background:
+    linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.75),
+        transparent
+    );
+
+pointer-events: none;
+
+}
+
+/* =========================================
+HERO CONTENT
+========================================= */
+
+.hero-overlay {
+position: relative;
+
+z-index: 2;
+
+width: 100%;
+max-width: 1100px;
+
+padding: 60px 25px;
+
+}
+
+/* SMALL RED TITLE */
+
 .hero-overlay p {
-margin: 0 0 12px;
+margin: 0 0 18px;
 
 color: #d90024;
 
 font-size: 13px;
 font-weight: 900;
 
-letter-spacing: 4px;
+text-transform: uppercase;
+
+letter-spacing: 5px;
 
 }
+
+/* MAIN TITLE */
 
 .hero-overlay h1 {
 margin: 0;
 
 color: #ffffff;
 
-font-size: clamp(42px, 7vw, 80px);
+font-size: clamp(52px, 9vw, 105px);
 
 font-weight: 900;
 
-letter-spacing: 2px;
+line-height: 0.88;
+
+text-transform: uppercase;
+
+letter-spacing: -3px;
+
+text-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.9);
 
 }
+
+/* RED ACCENT UNDER TITLE */
+
+.hero-overlay h1::after {
+content: "";
+
+display: block;
+
+width: 100px;
+height: 5px;
+
+margin: 24px auto 18px;
+
+background: #d90024;
+
+box-shadow:
+    0 0 12px rgba(217, 0, 36, 0.4);
+
+}
+
+/* SUBTITLE */
 
 .hero-overlay span {
 display: block;
 
-margin-top: 15px;
+margin: 0;
 
-color: #cccccc;
+color: #c4c4c4;
 
-font-size: 16px;
+font-size: 13px;
+font-weight: 800;
+
+text-transform: uppercase;
+
+letter-spacing: 3px;
 
 }
 
@@ -170,24 +329,55 @@ HISTORY CONTAINER
 ========================================= */
 
 .history-container {
-max-width: 1100px;
+position: relative;
+
+width: 100%;
+max-width: 1150px;
 
 margin: 0 auto;
 
-padding: 50px 20px 80px;
+padding: 55px 25px 90px;
 
-background: #0b0b0b;
+background: #080808;
 
 display: grid;
 
 grid-template-columns: repeat(3, 1fr);
 
-gap: 20px;
+gap: 24px;
 
 }
 
 /* =========================================
-HISTORY CHAMPIONSHIP CARD
+TOP SECTION DETAIL
+========================================= */
+
+.history-container::before {
+content: "CHAMPIONSHIP ARCHIVE";
+
+grid-column: 1 / -1;
+
+display: block;
+
+margin-bottom: 5px;
+
+padding-bottom: 12px;
+
+color: #777777;
+
+font-size: 10px;
+font-weight: 900;
+
+text-transform: uppercase;
+
+letter-spacing: 3px;
+
+border-bottom: 1px solid #292929;
+
+}
+
+/* =========================================
+CHAMPIONSHIP CARD
 ========================================= */
 
 .history-container .championship-card {
@@ -195,25 +385,25 @@ position: relative;
 
 display: block;
 
-background: #202020;
-
-border: 1px solid #3a3a3a;
-
-border-top: 3px solid #d90024;
-
-border-radius: 4px;
-
 overflow: hidden;
+
+background: #111111;
+
+border: 1px solid #2d2d2d;
+
+border-top: 4px solid #d90024;
+
+border-radius: 0;
 
 text-decoration: none;
 
 box-shadow:
-    0 5px 15px rgba(0, 0, 0, 0.65);
+    0 8px 25px rgba(0, 0, 0, 0.75);
 
 transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 
 }
 
@@ -222,13 +412,13 @@ CARD HOVER
 ========================================= */
 
 .history-container .championship-card:hover {
-transform: translateY(-5px);
+transform: translateY(-7px);
 
 border-color: #d90024;
 
 box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.9),
-    0 0 20px rgba(217, 0, 36, 0.25);
+    0 15px 35px rgba(0, 0, 0, 0.95),
+    0 0 22px rgba(217, 0, 36, 0.20);
 
 }
 
@@ -238,14 +428,32 @@ CARD IMAGE
 
 .history-container .championship-card img {
 width: 100%;
-
-height: 230px;
-
-object-fit: cover;
+height: 250px;
 
 display: block;
 
-border-bottom: 2px solid #444444;
+object-fit: cover;
+
+border: none;
+
+filter:
+    brightness(0.82)
+    contrast(1.08);
+
+transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+
+}
+
+/* IMAGE ZOOM */
+
+.history-container .championship-card:hover img {
+transform: scale(1.04);
+
+filter:
+    brightness(0.95)
+    contrast(1.08);
 
 }
 
@@ -254,16 +462,51 @@ CARD CONTENT
 ========================================= */
 
 .history-container .card-content {
-padding: 20px;
+position: relative;
+
+padding: 20px 20px 22px;
+
+background:
+    linear-gradient(
+        135deg,
+        #171717 0%,
+        #0d0d0d 100%
+    );
+
 }
 
+/* RED SIDE DETAIL */
+
+.history-container .card-content::before {
+content: "";
+
+position: absolute;
+
+left: 0;
+top: 0;
+
+width: 4px;
+height: 100%;
+
+background: #d90024;
+
+}
+
+/* =========================================
+CARD TITLE
+========================================= */
+
 .history-container .card-content h2 {
-margin: 0 0 8px;
+margin: 0 0 9px;
 
-color: #ff4a5f;
+padding-left: 5px;
 
-font-size: 19px;
+color: #ffffff;
+
+font-size: 20px;
 font-weight: 900;
+
+line-height: 1.05;
 
 text-transform: uppercase;
 
@@ -271,17 +514,23 @@ letter-spacing: 0.5px;
 
 }
 
+/* =========================================
+CARD SUBTITLE
+========================================= */
+
 .history-container .card-content p {
 margin: 0;
 
-color: #999999;
+padding-left: 5px;
 
-font-size: 11px;
-font-weight: 800;
+color: #858585;
+
+font-size: 10px;
+font-weight: 900;
 
 text-transform: uppercase;
 
-letter-spacing: 1px;
+letter-spacing: 2px;
 
 }
 
@@ -302,16 +551,14 @@ MOBILE MENU
 }
 
 
-/* MENU BUTTON */
+/* HAMBURGER */
 
 .navbar .menu {
     display: block;
-
-    margin-left: auto;
 }
 
 
-/* NAVIGATION CLOSED */
+/* CLOSED NAV */
 
 .navbar nav {
     position: absolute;
@@ -328,36 +575,51 @@ MOBILE MENU
 
     margin: 0;
 
-    padding: 10px 0;
+    padding: 8px 0;
 
-    background: #111111;
+    background: #090909;
 
     border-bottom: 2px solid #d90024;
 
     box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.8);
+        0 10px 25px rgba(0, 0, 0, 0.95);
 }
 
 
-/* NAVIGATION OPEN */
+/* OPEN NAV */
 
 .navbar nav.active {
     display: flex;
 }
 
 
-/* MOBILE LINKS */
+/* LINKS */
 
 .navbar nav a {
     width: 100%;
 
-    padding: 15px 20px;
+    padding: 16px 20px;
 
     text-align: center;
+
+    font-size: 12px;
+
+    border-bottom: 1px solid #202020;
+}
+
+.navbar nav a:last-child {
+    border-bottom: none;
+}
+
+
+/* REMOVE DESKTOP UNDERLINE */
+
+.navbar nav a::after {
+    display: none;
 }
 
 .navbar nav a:hover {
-    background: #1d1d1d;
+    background: #151515;
 
     color: #d90024;
 }
@@ -366,7 +628,11 @@ MOBILE MENU
 /* HERO */
 
 .history-hero {
-    min-height: 350px;
+    min-height: 380px;
+}
+
+.hero-overlay {
+    padding: 50px 20px;
 }
 
 
@@ -375,13 +641,18 @@ MOBILE MENU
 .history-container {
     grid-template-columns: 1fr;
 
-    padding: 35px 15px 60px;
+    padding:
+        40px 15px 65px;
 
-    gap: 15px;
+    gap: 18px;
+}
+
+.history-container::before {
+    margin-bottom: 0;
 }
 
 .history-container .championship-card img {
-    height: 210px;
+    height: 220px;
 }
 
 }
@@ -393,21 +664,62 @@ SMALL MOBILE
 @media (max-width: 600px) {
 
 .history-hero {
-    min-height: 300px;
-}
-
-.hero-overlay h1 {
-    font-size: 42px;
+    min-height: 330px;
 }
 
 .hero-overlay p {
-    font-size: 10px;
+    margin-bottom: 15px;
+
+    font-size: 9px;
 
     letter-spacing: 3px;
 }
 
+.hero-overlay h1 {
+    font-size: 48px;
+
+    letter-spacing: -1.5px;
+}
+
+.hero-overlay h1::after {
+    width: 70px;
+    height: 4px;
+
+    margin: 18px auto 15px;
+}
+
 .hero-overlay span {
-    font-size: 13px;
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+
+/* CARDS */
+
+.history-container {
+    padding:
+        35px 12px 55px;
+
+    gap: 14px;
+}
+
+.history-container .championship-card img {
+    height: 200px;
+}
+
+.history-container .card-content {
+    padding: 17px 17px 19px;
+}
+
+.history-container .card-content h2 {
+    font-size: 17px;
+}
+
+.history-container .card-content p {
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
 }
 
 }
