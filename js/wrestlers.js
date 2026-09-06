@@ -8,6 +8,7 @@ const wrestlers = [
         overall2026: "100 - 0",
         careerOverall: "0 - 0",
         status: "active",
+        achievements: []
     },
      
     {
