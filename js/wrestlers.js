@@ -63,6 +63,17 @@ const wrestlers = [
             "5x United States Champion"
         ]
     },
+    {name: "Vacante",
+        image: "images/Vacante.jpg",
+        nickname: "",
+        stable: "Club de amigos",
+        division: "Main Roster",
+        brand: "SmackDown",
+        overall2026: "100 - 0",
+        careerOverall: "0 - 0",
+        status: "active",
+        achievements: ["16x World Champion of panchos","5x United States Champion" ]},
+   
     {
         name: "Shawn Spears",
         image: "images/shawna spears.jpg",
