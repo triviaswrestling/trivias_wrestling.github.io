@@ -246,18 +246,132 @@ if (currentData) {
    STANDINGS
    ========================================= */
 
+/* =========================================
+   STANDINGS
+   ========================================= */
+
 const standingsBody =
     document.getElementById("standings-body");
 
-standingsBody.innerHTML = `
+if (currentData) {
 
-    <tr>
-        <td colspan="7">
-            STANDINGS COMING SOON
-        </td>
-    </tr>
+    const standings = {};
 
-`;
+    currentData.participants.forEach(wrestler => {
+
+        standings[wrestler] = {
+            played: 0,
+            wins: 0,
+            draws: 0,
+            losses: 0,
+            points: 0
+        };
+
+    });
+
+
+    currentData.matches.forEach(match => {
+
+        const wrestler1 =
+            standings[match.wrestler1];
+
+        const wrestler2 =
+            standings[match.wrestler2];
+
+
+        wrestler1.played++;
+        wrestler2.played++;
+
+
+        if (match.score1 > match.score2) {
+
+            wrestler1.wins++;
+            wrestler1.points += 3;
+
+            wrestler2.losses++;
+
+        }
+
+        else if (match.score1 < match.score2) {
+
+            wrestler2.wins++;
+            wrestler2.points += 3;
+
+            wrestler1.losses++;
+
+        }
+
+        else {
+
+            wrestler1.draws++;
+            wrestler2.draws++;
+
+            wrestler1.points++;
+            wrestler2.points++;
+
+        }
+
+    });
+
+
+    const sortedStandings =
+        Object.entries(standings)
+        .sort((a, b) => {
+
+            if (b[1].points !== a[1].points) {
+                return b[1].points - a[1].points;
+            }
+
+            return b[1].wins - a[1].wins;
+
+        });
+
+
+    standingsBody.innerHTML = "";
+
+
+    sortedStandings.forEach(
+        ([wrestler, stats], index) => {
+
+            const row =
+                document.createElement("tr");
+
+            row.innerHTML = `
+
+                <td>${index + 1}</td>
+
+                <td>${wrestler}</td>
+
+                <td>${stats.played}</td>
+
+                <td>${stats.wins}</td>
+
+                <td>${stats.draws}</td>
+
+                <td>${stats.losses}</td>
+
+                <td>${stats.points}</td>
+
+            `;
+
+            standingsBody.appendChild(row);
+
+        }
+    );
+
+} else {
+
+    standingsBody.innerHTML = `
+
+        <tr>
+            <td colspan="7">
+                STANDINGS COMING SOON
+            </td>
+        </tr>
+
+    `;
+
+}
 
 
 /* =========================================
@@ -267,20 +381,139 @@ standingsBody.innerHTML = `
 const matrixTable =
     document.getElementById("matrix-table");
 
-matrixTable.innerHTML = `
+if (currentData) {
 
-    <tr>
-        <th>WRESTLER</th>
-        <th>STATUS</th>
-    </tr>
+    const participants =
+        currentData.participants;
 
-    <tr>
-        <td>—</td>
-        <td>COMING SOON</td>
-    </tr>
+    matrixTable.innerHTML = "";
 
-`;
 
+    /* HEADER */
+
+    const headerRow =
+        document.createElement("tr");
+
+    headerRow.innerHTML =
+        `<th>WRESTLER</th>` +
+        participants
+            .map(wrestler => `<th>${wrestler}</th>`)
+            .join("");
+
+    matrixTable.appendChild(headerRow);
+
+
+    /* ROWS */
+
+    participants.forEach(wrestler => {
+
+        const row =
+            document.createElement("tr");
+
+        let html =
+            `<td>${wrestler}</td>`;
+
+
+        participants.forEach(opponent => {
+
+            if (wrestler === opponent) {
+
+                html += `<td class="matrix-empty">—</td>`;
+
+                return;
+
+            }
+
+
+            const match =
+                currentData.matches.find(match =>
+
+                    (
+                        match.wrestler1 === wrestler &&
+                        match.wrestler2 === opponent
+                    )
+
+                    ||
+
+                    (
+                        match.wrestler1 === opponent &&
+                        match.wrestler2 === wrestler
+                    )
+
+                );
+
+
+            if (!match) {
+
+                html += `
+                    <td class="matrix-empty">
+                        —
+                    </td>
+                `;
+
+                return;
+
+            }
+
+
+            let result;
+
+            if (match.wrestler1 === wrestler) {
+
+                if (match.score1 > match.score2) {
+                    result = "W";
+                }
+                else if (match.score1 < match.score2) {
+                    result = "L";
+                }
+                else {
+                    result = "D";
+                }
+
+            } else {
+
+                if (match.score2 > match.score1) {
+                    result = "W";
+                }
+                else if (match.score2 < match.score1) {
+                    result = "L";
+                }
+                else {
+                    result = "D";
+                }
+
+            }
+
+
+            const className =
+                result === "W"
+                    ? "matrix-win"
+                    : result === "L"
+                        ? "matrix-loss"
+                        : "matrix-draw";
+
+
+            html += `
+                <td class="${className}">
+                    ${result}
+                </td>
+            `;
+
+        });
+
+
+        row.innerHTML = html;
+
+        matrixTable.appendChild(row);
+
+    });
+
+}
+
+
+/* =========================================
+   RESULTS
+   ========================================= */
 
 /* =========================================
    RESULTS
@@ -289,14 +522,49 @@ matrixTable.innerHTML = `
 const resultsContainer =
     document.getElementById("results-container");
 
-resultsContainer.innerHTML = `
+if (currentData) {
 
-    <div class="result-card">
+    resultsContainer.innerHTML = "";
 
-        <div class="result-wrestler">
-            RESULTS COMING SOON
+    currentData.matches.forEach((match, index) => {
+
+        const resultCard =
+            document.createElement("div");
+
+        resultCard.className = "result-card";
+
+        resultCard.innerHTML = `
+
+            <div class="result-wrestler">
+                ${match.wrestler1}
+            </div>
+
+            <div class="result-score">
+                ${match.score1} - ${match.score2}
+            </div>
+
+            <div class="result-wrestler">
+                ${match.wrestler2}
+            </div>
+
+        `;
+
+        resultsContainer.appendChild(resultCard);
+
+    });
+
+} else {
+
+    resultsContainer.innerHTML = `
+
+        <div class="result-card">
+
+            <div class="result-wrestler">
+                RESULTS COMING SOON
+            </div>
+
         </div>
 
-    </div>
+    `;
 
-`;
+}
