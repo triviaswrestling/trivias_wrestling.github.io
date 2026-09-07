@@ -804,28 +804,21 @@ body {
     }
 
 
-    /* CONTENEDOR */
-
-    .campeonato-container {
-        width: 92%;
-
-        padding: 55px 0 70px;
-    }
-
-
     .history-heading {
-        margin-bottom: 35px;
-    }
+    margin-bottom: 35px;
+    padding: 14px 18px;
 
-    .history-heading span {
-        font-size: 9px;
+    background: #181818;
 
-        letter-spacing: 2px;
-    }
+    border-left: 4px solid #d90024;
+}
 
-    .history-heading h2 {
-        font-size: 34px;
-    }
+.history-heading h2 {
+    margin: 0;
+
+    font-size: 34px;
+    color: #ffffff;
+}
 
 
     /* CARD */
