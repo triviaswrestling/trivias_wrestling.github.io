@@ -892,9 +892,9 @@ body {
 
         background: transparent;
 
-        border-left: none;
+       border-left: 4px solid #d90024;
 
-        color: #111111;
+    color: #d90024;
 
         font-size: 32px;
 
