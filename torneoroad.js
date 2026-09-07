@@ -14,6 +14,56 @@ const tournamentId = urlParams.get("id");
    ========================================= */
 
 const tournaments = {};
+const tournamentData = {
+
+    "raw-1": {
+
+        participants: [
+            "Axiom",
+            "Bret Hart",
+            "Jacob Fatu",
+            "Kyle O'Reilly",
+            "Cody Rhodes",
+            "Trick Williams",
+            "Bron Breakker",
+            "Jon Moxley"
+        ],
+
+        matches: [
+
+            {
+                wrestler1: "Axiom",
+                wrestler2: "Bret Hart",
+                score1: 2,
+                score2: 1
+            },
+
+            {
+                wrestler1: "Jacob Fatu",
+                wrestler2: "Kyle O'Reilly",
+                score1: 2,
+                score2: 3
+            },
+
+            {
+                wrestler1: "Cody Rhodes",
+                wrestler2: "Trick Williams",
+                score1: 3,
+                score2: 2
+            },
+
+            {
+                wrestler1: "Bron Breakker",
+                wrestler2: "Jon Moxley",
+                score1: 1,
+                score2: 3
+            }
+
+        ]
+
+    }
+
+};
 
 
 /* =========================================
@@ -141,7 +191,6 @@ if (tournament) {
 
 }
 
-
 /* =========================================
    DRAFT
    ========================================= */
@@ -149,15 +198,48 @@ if (tournament) {
 const draftContainer =
     document.getElementById("draft-container");
 
-draftContainer.innerHTML = `
+const currentData =
+    tournamentData[tournamentId];
 
-    <div class="draft-card">
-        <span class="draft-card-name">
-            PARTICIPANTS COMING SOON
-        </span>
-    </div>
+if (currentData) {
 
-`;
+    draftContainer.innerHTML = "";
+
+    currentData.participants.forEach((wrestler, index) => {
+
+        const card = document.createElement("div");
+
+        card.className = "draft-card";
+
+        card.innerHTML = `
+
+            <span class="draft-card-number">
+                ${index + 1}
+            </span>
+
+            <span class="draft-card-name">
+                ${wrestler}
+            </span>
+
+        `;
+
+        draftContainer.appendChild(card);
+
+    });
+
+} else {
+
+    draftContainer.innerHTML = `
+
+        <div class="draft-card">
+            <span class="draft-card-name">
+                PARTICIPANTS COMING SOON
+            </span>
+        </div>
+
+    `;
+
+}
 
 
 /* =========================================
