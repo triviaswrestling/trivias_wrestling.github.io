@@ -13,7 +13,7 @@ const championships = [
         title: "World Heavyweight Champion",
         champion: "Bret Hart",
         image: "images/Vacante.jpg",
-        page: "championship/world-heavyweight-championship.html"
+        page: "History/world-heavyweight-championship-trivias.html"
     },
 
     {
