@@ -280,16 +280,18 @@ body {
    TITLE HISTORY
    ========================================= */
 
-.history-heading {
-    margin-bottom: 45px;
-}
-
 .history-heading span {
-    display: block;
+    display: inline-block;
 
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 
-    color: #d90024;
+    padding: 7px 12px;
+
+    background: #181818;
+
+    border-left: 3px solid #d90024;
+
+    color: #ffffff;
 
     font-size: 11px;
 
