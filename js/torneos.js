@@ -56,7 +56,7 @@ for (let number = 25; number >= 1; number--) {
    15 → 1
    ========================================= */
 
-for (let number = 15; number >= 1; number--) {
+for (let number = 18; number >= 1; number--) {
 
     tournaments.push({
 
