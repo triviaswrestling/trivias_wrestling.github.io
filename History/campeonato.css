@@ -868,14 +868,19 @@ body {
     .reign-number {
         .reign-number {
     margin: 0;
-    padding: 1px 1px 0;
 
-        color: #d90024;
+    padding: 25px 4px 10px;
 
-        font-size: 40px;
+    color: #d90024;
 
-        letter-spacing: 3px;
-    }
+    font-size: 40px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    text-align: left;
+}
 
    /* =========================================
    NOMBRE — MOBILE
