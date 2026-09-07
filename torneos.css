@@ -123,6 +123,32 @@
     border-color: #ffffff;
 }
 
+.tournament-card:hover {
+    transform: translateY(-5px);
+    background: #171717;
+    border-color: #ffffff;
+}
+
+
+/* =========================================
+   IMAGE DARK OVERLAY
+   ========================================= */
+
+.tournament-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    z-index: 0;
+}
+
+.tournament-card > * {
+    position: relative;
+    z-index: 1;
+}
+
 
 /* =========================================
    CARD NUMBER
