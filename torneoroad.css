@@ -520,3 +520,99 @@
 .standings-table tbody tr.relegation td:first-child {
     font-weight: 900;
 }
+
+/* =========================================
+   MATCH MATRIX - IMPROVED
+   ========================================= */
+
+.matrix-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.matrix-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #111111;
+    min-width: 850px;
+}
+
+.matrix-table th,
+.matrix-table td {
+    width: 65px;
+    min-width: 65px;
+    height: 60px;
+    padding: 8px;
+    text-align: center;
+
+    border-right: 1px solid #292929;
+    border-bottom: 1px solid #292929;
+
+    font-size: 12px;
+}
+
+.matrix-table th {
+    font-weight: 900;
+    background: #151515;
+}
+
+.matrix-table th:first-child {
+    width: 170px;
+    min-width: 170px;
+    text-align: left;
+    padding-left: 15px;
+
+    position: sticky;
+    left: 0;
+    z-index: 3;
+}
+
+.matrix-table td:first-child {
+    width: 170px;
+    min-width: 170px;
+
+    text-align: left;
+    padding-left: 15px;
+
+    font-weight: bold;
+
+    background: #111111;
+
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}
+
+
+/* =========================================
+   MATRIX RESULTS
+   ========================================= */
+
+.matrix-win {
+    font-weight: 900;
+    background: rgba(0, 150, 70, 0.25);
+}
+
+.matrix-loss {
+    font-weight: 700;
+    opacity: 0.45;
+}
+
+.matrix-draw {
+    font-weight: 900;
+    background: rgba(180, 180, 180, 0.12);
+}
+
+.matrix-empty {
+    opacity: 0.2;
+}
+
+
+/* =========================================
+   MATRIX HOVER
+   ========================================= */
+
+.matrix-table td:not(:first-child):hover {
+    background: #222222;
+}
