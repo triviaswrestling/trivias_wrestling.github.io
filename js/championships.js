@@ -6,7 +6,7 @@ const championships = [
         title: "Undisputed WWE Champion",
         champion: "Christian Cage",
         image: "images/Cody Rhodes trivias.jpg",
-        page: "championship/wwe-championship.html"
+        page: "History/Undisputed-wwe-championship-trivias.html"
     },
 
     {
