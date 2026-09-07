@@ -489,3 +489,34 @@
     }
 
 }
+/* =========================================
+   STANDINGS - POSITIONS
+   ========================================= */
+
+.standings-table tbody tr.champion {
+    background: #b8860b;
+    color: #ffffff;
+}
+
+.standings-table tbody tr.champion:hover {
+    background: #c99719;
+}
+
+.standings-table tbody tr.relegation {
+    background: #b00000;
+    color: #ffffff;
+}
+
+.standings-table tbody tr.relegation:hover {
+    background: #c00000;
+}
+
+.standings-table tbody tr.champion td,
+.standings-table tbody tr.relegation td {
+    border-bottom-color: rgba(255,255,255,0.25);
+}
+
+.standings-table tbody tr.champion td:first-child,
+.standings-table tbody tr.relegation td:first-child {
+    font-weight: 900;
+}
