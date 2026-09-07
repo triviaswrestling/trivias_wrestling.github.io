@@ -1,79 +1,255 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="torneos.css">
+/* =========================================
+   MI WRESTLING
+   GAMES / TOURNAMENTS
+   ========================================= */
 
-<title>Games | MI WRESTLING</title>
+.games-page {
+    width: 100%;
+    padding: 40px 5% 80px;
+}
 
-</head><body><header class="navbar"><a href="index.html" class="logo">
-    <img src="images/logo.png" alt="MI WRESTLING">
-</a>
-
-<nav id="mainNav">
-
-    <a href="index.html">Roster</a>
-    <a href="inactive.html">Alumni</a>
-    <a href="History/index.html">History</a>
-    <a href="inactive.html">Shop</a>
-    <a href="inactive.html">Recaps</a>
-    <a href="torneos.html">Games</a>
-    <a href="inactive.html">Guide</a>
-    <a href="inactive.html">About</a>
-    <a href="https://www.instagram.com/triviaswwe?stkn=eWhqNWV0a2xsNnh4">Watch</a>
-
-</nav>
-
-<button class="menu" id="menuButton">☰</button>
-
-</header><!-- =========================================
-     GAMES
-     ========================================= --><main class="games-page"><section class="games-section">
-
-    <div class="games-header">
-        <h1>GAMES</h1>
-        <p>TOURNAMENTS</p>
-    </div>
+.games-section {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
 
 
-    <!-- =========================================
-         FIRST DIVISION
-         ========================================= -->
+/* =========================================
+   GAMES HEADER
+   ========================================= */
 
-    <section class="division-section">
+.games-header {
+    text-align: center;
+    margin-bottom: 55px;
+}
 
-        <div class="division-divider">
-            <h2>FIRST DIVISION</h2>
-            <span>RAW & SMACKDOWN</span>
-        </div>
+.games-header h1 {
+    margin: 0;
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
 
-        <div
-            class="tournaments-grid"
-            id="first-division-tournaments"
-        ></div>
+.games-header p {
+    margin: 8px 0 0;
+    font-size: 14px;
+    letter-spacing: 4px;
+    font-weight: bold;
+    opacity: 0.6;
+}
 
-    </section>
+
+/* =========================================
+   DIVISIONS
+   ========================================= */
+
+.division-section {
+    margin-bottom: 70px;
+}
+
+.division-divider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 12px;
+    margin-bottom: 28px;
+}
+
+.division-divider h2 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.division-divider span {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    opacity: 0.55;
+}
 
 
-    <!-- =========================================
-         SECOND DIVISION
-         ========================================= -->
+/* =========================================
+   TOURNAMENT GRID
+   ========================================= */
 
-    <section class="division-section second-division">
+.tournaments-grid {
+    display: grid;
 
-        <div class="division-divider">
-            <h2>SECOND DIVISION</h2>
-            <span>NXT</span>
-        </div>
+    grid-template-columns: repeat(4, 1fr);
 
-        <div
-            class="tournaments-grid"
-            id="second-division-tournaments"
-        ></div>
+    gap: 20px;
+}
 
-    </section>
 
-</section>
+/* =========================================
+   TOURNAMENT CARD
+   ========================================= */
 
-</main><!-- =========================================
-     JAVASCRIPT
-     ========================================= --><script src="History/menu.js"></script><script src="js/torneos.js"></script></body></html>
+.tournament-card {
+    position: relative;
+
+    min-height: 180px;
+
+    padding: 24px;
+
+    background: #111111;
+    border: 1px solid #292929;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.tournament-card:hover {
+    transform: translateY(-5px);
+
+    background: #171717;
+
+    border-color: #ffffff;
+}
+
+
+/* =========================================
+   CARD NUMBER
+   ========================================= */
+
+.tournament-number {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    opacity: 0.5;
+}
+
+
+/* =========================================
+   CARD TITLE
+   ========================================= */
+
+.tournament-card h3 {
+    margin: 15px 0 8px;
+
+    font-size: 22px;
+    line-height: 1.1;
+
+    font-weight: 900;
+}
+
+
+/* =========================================
+   CARD BRAND
+   ========================================= */
+
+.tournament-brand {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    opacity: 0.6;
+}
+
+
+/* =========================================
+   VIEW
+   ========================================= */
+
+.tournament-view {
+    margin-top: 20px;
+
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    opacity: 0.7;
+}
+
+
+/* =========================================
+   SECOND DIVISION
+   ========================================= */
+
+.second-division {
+    margin-top: 20px;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+    .tournaments-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .games-page {
+        padding: 30px 15px 60px;
+    }
+
+    .games-header {
+        margin-bottom: 40px;
+    }
+
+    .games-header h1 {
+        font-size: 32px;
+    }
+
+    .games-header p {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .division-section {
+        margin-bottom: 55px;
+    }
+
+    .division-divider {
+        align-items: flex-end;
+    }
+
+    .division-divider h2 {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .division-divider span {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .tournaments-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .tournament-card {
+        min-height: 150px;
+        padding: 16px;
+    }
+
+    .tournament-card h3 {
+        font-size: 17px;
+    }
+
+}
