@@ -241,11 +241,6 @@ if (currentData) {
 
 }
 
-
-/* =========================================
-   STANDINGS
-   ========================================= */
-
 /* =========================================
    STANDINGS
    ========================================= */
@@ -331,12 +326,47 @@ if (currentData) {
 
 
     sortedStandings.forEach(
-        ([wrestler, stats], index) => {
+    ([wrestler, stats], index) => {
 
-            const row =
-                document.createElement("tr");
+        const row =
+            document.createElement("tr");
 
-            row.innerHTML = `
+
+        /* =========================================
+           SPECIAL POSITIONS
+           ========================================= */
+
+        if (index === 0) {
+            row.classList.add("champion");
+        }
+
+        if (index === sortedStandings.length - 1) {
+            row.classList.add("relegation");
+        }
+
+
+        row.innerHTML = `
+
+            <td>${index + 1}</td>
+
+            <td>${wrestler}</td>
+
+            <td>${stats.played}</td>
+
+            <td>${stats.wins}</td>
+
+            <td>${stats.draws}</td>
+
+            <td>${stats.losses}</td>
+
+            <td>${stats.points}</td>
+
+        `;
+
+        standingsBody.appendChild(row);
+
+    }
+);
 
                 <td>${index + 1}</td>
 
