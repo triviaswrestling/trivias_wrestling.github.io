@@ -870,7 +870,7 @@ body {
 
     padding: 0 4px;
 
-    height: 45px;
+    height: 20px;
 
     display: flex;
     align-items: center;
@@ -880,7 +880,7 @@ body {
 
     color: #d90024;
 
-    font-size: 30px;
+    font-size: 15px;
     font-weight: 900;
     letter-spacing: 3px;
 }
