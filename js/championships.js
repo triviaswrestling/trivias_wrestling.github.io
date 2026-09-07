@@ -20,28 +20,28 @@ const championships = [
         title: "World Tag Team Champions",
         champion: "Blackpool Combat Club",
         image: "images/Vacante.jpg",
-        page: "championship/world-tag-team-championship.html"
+        page: "History/world-tag-team-championship-trivias.html"
     },
 
     {
         title: "Intercontinental Champion",
         champion: "Randy Orton",
         image: "images/Vacante.jpg",
-        page: "championship/intercontinental-championship.html"
+        page: "History/intercontinental-championship-trivias.html"
     },
 
     {
         title: "United States Champion",
         champion: "Cody Rhodes",
         image: "images/Vacante.jpg",
-        page: "championship/united-states-championship.html"
+        page: "History/united-states-championship-trivias.html"
     },
 
     {
         title: "NXT Champion",
         champion: "Bo Dallas",
         image: "images/Vacante.jpg",
-        page: "championship/nxt-championship.html"
+        page: "History/nxt-championship.html"
     }
 
 ];
