@@ -882,26 +882,18 @@ body {
         letter-spacing: 3px;
     }
 
+   /* NOMBRE */
 
-    /* NOMBRE */
-
-    .reign-content h3 {
-        margin: 12px 25px 25px;
-
-        padding: 0;
-
-        background: transparent;
-
-       border-left: 4px solid #d90024;
-
-    color: #d90024;
-
-        font-size: 32px;
-
-        line-height: 1;
-
-        letter-spacing: -0.5px;
-    }
+.reign-content h3 {
+    margin: 12px 25px 25px;
+    padding: 0;
+    background: transparent;
+    border-left: 4px solid #d90024;
+    color: #d90024 !important;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.5px;
+}
 
 
     /* DESCRIPCIÓN */
