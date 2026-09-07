@@ -866,20 +866,23 @@ body {
     /* LABEL */
 
     .reign-number {
-        .reign-number {
     margin: 0;
 
-    padding: 25px 4px 10px;
+    padding: 0 34px;
 
-    color: #d90024;
+    height: 70px;
 
-    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 
+    background: orange;
+
+    color: #000000;
+
+    font-size: 70px;
     font-weight: 900;
-
     letter-spacing: 3px;
-
-    text-align: left;
 }
 
    /* =========================================
