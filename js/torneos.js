@@ -25,13 +25,9 @@ for (let number = 25; number >= 1; number--) {
     tournaments.push({
 
         id: `raw-${number}`,
-
         number: number,
-
         brand: "RAW",
-
         division: "First Division",
-
         title: `Tournament ${number}`
 
     });
@@ -40,13 +36,9 @@ for (let number = 25; number >= 1; number--) {
     tournaments.push({
 
         id: `smackdown-${number}`,
-
         number: number,
-
         brand: "SMACKDOWN",
-
         division: "First Division",
-
         title: `Tournament ${number}`
 
     });
@@ -65,13 +57,9 @@ for (let number = 15; number >= 1; number--) {
     tournaments.push({
 
         id: `nxt-${number}`,
-
         number: number,
-
         brand: "NXT",
-
         division: "Second Division",
-
         title: `Tournament ${number}`
 
     });
@@ -103,18 +91,14 @@ function createTournamentCard(tournament) {
     card.dataset.id = tournament.id;
 
 
-    /* =========================================
-       BRAND CLASS
-       ========================================= */
+    /* BRAND */
 
     card.classList.add(
         tournament.brand.toLowerCase()
     );
 
 
-    /* =========================================
-       CARD CONTENT
-       ========================================= */
+    /* CONTENT */
 
     card.innerHTML = `
 
@@ -141,16 +125,22 @@ function createTournamentCard(tournament) {
     `;
 
 
-    /* =========================================
-       CLICK
-       ========================================= */
+    /* CLICK */
 
     card.addEventListener("click", () => {
 
-    window.location.href =
-        `torneoroad.html?id=${tournament.id}`;
+        window.location.href =
+            `torneoroad.html?id=${tournament.id}`;
 
-});
+    });
+
+
+    /* RETURN CARD */
+
+    return card;
+
+}
+
 
 /* =========================================
    RENDER TOURNAMENTS
@@ -168,6 +158,7 @@ function renderTournaments() {
         );
 
         return;
+
     }
 
 
