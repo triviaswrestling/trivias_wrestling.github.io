@@ -882,17 +882,30 @@ body {
         letter-spacing: 3px;
     }
 
-   /* NOMBRE */
+   /* =========================================
+   NOMBRE — MOBILE
+   ========================================= */
 
 .reign-content h3 {
-    margin: 12px 25px 25px;
-    padding: 0;
-    background: transparent;
+    margin: 0 0 20px;
+
+    padding: 12px 14px;
+
+    background: #181818;
+
     border-left: 4px solid #d90024;
-    color: #d90024 !important;
+
+    color: #ffffff;
+
     font-size: 32px;
-    line-height: 1;
-    letter-spacing: -0.5px;
+
+    font-weight: 900;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.8px;
+
+    text-transform: uppercase;
 }
 
 
