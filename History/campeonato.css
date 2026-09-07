@@ -412,12 +412,9 @@ body {
 
 .reign-content {
     min-width: 0;
-
     display: flex;
-
     flex-direction: column;
-
-    padding: 38px;
+    padding: 30px;
 }
 
 
@@ -447,24 +444,15 @@ body {
    ========================================= */
 
 .reign-content h3 {
-    margin: 0 0 25px;
-
+    margin: 0 0 12px;
     padding: 15px 18px;
-
     background: #181818;
-
     border-left: 4px solid #d90024;
-
     color: #ffffff;
-
     font-size: clamp(32px, 4vw, 55px);
-
     font-weight: 900;
-
     line-height: 0.95;
-
     letter-spacing: -1px;
-
     text-transform: uppercase;
 }
 
@@ -474,17 +462,12 @@ body {
    ========================================= */
 
 .reign-description {
-    margin: 0 0 25px;
-
-    padding: 25px;
-
+    margin: 0 0 20px;
+    padding: 20px;
     background: #ffffff;
-
     color: #222222;
-
     font-size: 16px;
-
-    line-height: 1.75;
+    line-height: 1.5;
 }
 
 
