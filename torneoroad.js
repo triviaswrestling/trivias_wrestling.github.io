@@ -1,116 +1,220 @@
 console.log("TORNEOROAD.JS CARGADO");
 
 
-// =========================================
-// TORNEO SELECCIONADO
-// =========================================
+/* =========================================
+   GET TOURNAMENT ID FROM URL
+   ========================================= */
 
-const params = new URLSearchParams(window.location.search);
+const urlParams = new URLSearchParams(window.location.search);
+const tournamentId = urlParams.get("id");
 
-const tournamentId = params.get("id");
+
+/* =========================================
+   TOURNAMENT DATABASE
+   ========================================= */
+
+const tournaments = {};
 
 
-// =========================================
-// ELEMENTOS DE LA PÁGINA
-// =========================================
+/* =========================================
+   GENERATE TOURNAMENTS
+   ========================================= */
 
-const tournamentBrand =
+/* RAW */
+
+for (let number = 25; number >= 1; number--) {
+
+    tournaments[`raw-${number}`] = {
+
+        id: `raw-${number}`,
+        number: number,
+        brand: "RAW",
+        division: "FIRST DIVISION",
+        title: `TOURNAMENT ${number}`
+
+    };
+
+}
+
+
+/* SMACKDOWN */
+
+for (let number = 25; number >= 1; number--) {
+
+    tournaments[`smackdown-${number}`] = {
+
+        id: `smackdown-${number}`,
+        number: number,
+        brand: "SMACKDOWN",
+        division: "FIRST DIVISION",
+        title: `TOURNAMENT ${number}`
+
+    };
+
+}
+
+
+/* NXT */
+
+for (let number = 18; number >= 1; number--) {
+
+    tournaments[`nxt-${number}`] = {
+
+        id: `nxt-${number}`,
+        number: number,
+        brand: "NXT",
+        division: "SECOND DIVISION",
+        title: `TOURNAMENT ${number}`
+
+    };
+
+}
+
+
+/* =========================================
+   FIND CURRENT TOURNAMENT
+   ========================================= */
+
+const tournament = tournaments[tournamentId];
+
+
+/* =========================================
+   ELEMENTS
+   ========================================= */
+
+const brandElement =
     document.getElementById("tournament-brand");
 
-const tournamentTitle =
+const titleElement =
     document.getElementById("tournament-title");
 
-const tournamentDivision =
+const divisionElement =
     document.getElementById("tournament-division");
 
 
-// =========================================
-// DATOS DEL TORNEO
-// =========================================
+/* =========================================
+   DISPLAY TOURNAMENT
+   ========================================= */
 
-const tournamentData = {
+if (tournament) {
 
-    // FIRST DIVISION
-    "raw-25": {
-        brand: "RAW",
-        number: 25,
-        division: "FIRST DIVISION"
-    },
-
-    "smackdown-25": {
-        brand: "SMACKDOWN",
-        number: 25,
-        division: "FIRST DIVISION"
-    },
-
-    "raw-24": {
-        brand: "RAW",
-        number: 24,
-        division: "FIRST DIVISION"
-    },
-
-    "smackdown-24": {
-        brand: "SMACKDOWN",
-        number: 24,
-        division: "FIRST DIVISION"
-    },
-
-    // SECOND DIVISION
-    "nxt-15": {
-        brand: "NXT",
-        number: 15,
-        division: "SECOND DIVISION"
-    },
-
-    "nxt-14": {
-        brand: "NXT",
-        number: 14,
-        division: "SECOND DIVISION"
-    }
-
-};
-
-
-// =========================================
-// MOSTRAR TORNEO
-// =========================================
-
-function loadTournament() {
-
-    if (!tournamentId) {
-
-        tournamentTitle.textContent =
-            "TOURNAMENT";
-
-        return;
-    }
-
-
-    const tournament =
-        tournamentData[tournamentId];
-
-
-    if (!tournament) {
-
-        tournamentTitle.textContent =
-            "TOURNAMENT NOT FOUND";
-
-        return;
-    }
-
-
-    tournamentBrand.textContent =
+    brandElement.textContent =
         tournament.brand;
 
+    titleElement.textContent =
+        tournament.title;
 
-    tournamentTitle.textContent =
-        `TOURNAMENT ${tournament.number}`;
-
-
-    tournamentDivision.textContent =
+    divisionElement.textContent =
         tournament.division;
 
 
-    // Color de la página
+    /* =========================================
+       BRAND CLASS
+       ========================================= */
 
     const page =
+        document.querySelector(".torneoroad-page");
+
+    page.classList.remove(
+        "raw",
+        "smackdown",
+        "nxt"
+    );
+
+    page.classList.add(
+        tournament.brand.toLowerCase()
+    );
+
+
+} else {
+
+    /* =========================================
+       INVALID TOURNAMENT
+       ========================================= */
+
+    brandElement.textContent = "MI WRESTLING";
+
+    titleElement.textContent =
+        "TOURNAMENT NOT FOUND";
+
+    divisionElement.textContent = "";
+
+}
+
+
+/* =========================================
+   DRAFT
+   ========================================= */
+
+const draftContainer =
+    document.getElementById("draft-container");
+
+draftContainer.innerHTML = `
+
+    <div class="draft-card">
+        <span class="draft-card-name">
+            PARTICIPANTS COMING SOON
+        </span>
+    </div>
+
+`;
+
+
+/* =========================================
+   STANDINGS
+   ========================================= */
+
+const standingsBody =
+    document.getElementById("standings-body");
+
+standingsBody.innerHTML = `
+
+    <tr>
+        <td colspan="7">
+            STANDINGS COMING SOON
+        </td>
+    </tr>
+
+`;
+
+
+/* =========================================
+   MATCH MATRIX
+   ========================================= */
+
+const matrixTable =
+    document.getElementById("matrix-table");
+
+matrixTable.innerHTML = `
+
+    <tr>
+        <th>WRESTLER</th>
+        <th>STATUS</th>
+    </tr>
+
+    <tr>
+        <td>—</td>
+        <td>COMING SOON</td>
+    </tr>
+
+`;
+
+
+/* =========================================
+   RESULTS
+   ========================================= */
+
+const resultsContainer =
+    document.getElementById("results-container");
+
+resultsContainer.innerHTML = `
+
+    <div class="result-card">
+
+        <div class="result-wrestler">
+            RESULTS COMING SOON
+        </div>
+
+    </div>
+
+`;
