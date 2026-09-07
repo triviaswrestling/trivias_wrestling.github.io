@@ -64,8 +64,8 @@ for (let number = 18; number >= 1; number--) {
         division: "Second Division",
         title: `Tournament ${number}`,
         image: number >= 9
-    ? "images/nxt-a.jpg"
-    : "images/nxt-b.jpg"
+    ? "images/nxt-a.png"
+    : "images/nxt-b.png"
 
     });
 
