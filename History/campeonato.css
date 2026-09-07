@@ -866,13 +866,13 @@ body {
     /* LABEL */
 
     .reign-number {
-        margin: 0;
-
-        padding: 15px 34px 0;
+        .reign-number {
+    margin: 0;
+    padding: 1px 1px 0;
 
         color: #d90024;
 
-        font-size: 20px;
+        font-size: 40px;
 
         letter-spacing: 3px;
     }
