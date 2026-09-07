@@ -253,3 +253,158 @@
     }
 
 }
+
+/* =========================================
+   TOURNAMENT CARD ANIMATION
+   ========================================= */
+
+.tournament-card {
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* =========================================
+   LIGHT EFFECT
+   ========================================= */
+
+.tournament-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 80%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.08),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+
+    transition: left 0.5s ease;
+}
+
+
+.tournament-card:hover::before {
+    left: 140%;
+}
+
+
+/* =========================================
+   HOVER
+   ========================================= */
+
+.tournament-card:hover {
+    transform: translateY(-7px) scale(1.015);
+
+    background: #171717;
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+
+/* =========================================
+   NUMBER
+   ========================================= */
+
+.tournament-number {
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+
+.tournament-card:hover .tournament-number {
+    transform: translateX(5px);
+
+    opacity: 0.8;
+}
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.tournament-card h3 {
+    transition:
+        transform 0.25s ease;
+}
+
+
+.tournament-card:hover h3 {
+    transform: translateX(5px);
+}
+
+
+/* =========================================
+   VIEW
+   ========================================= */
+
+.tournament-view {
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+
+.tournament-card:hover .tournament-view {
+    transform: translateX(7px);
+
+    opacity: 1;
+}
+
+
+/* =========================================
+   RAW
+   ========================================= */
+
+.tournament-card.raw:hover {
+    border-color: #d00000;
+}
+
+
+/* =========================================
+   SMACKDOWN
+   ========================================= */
+
+.tournament-card.smackdown:hover {
+    border-color: #0066ff;
+}
+
+
+/* =========================================
+   NXT
+   ========================================= */
+
+.tournament-card.nxt:hover {
+    border-color: #8a8a8a;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .tournament-card:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+
+}
