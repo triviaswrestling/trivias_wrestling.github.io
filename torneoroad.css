@@ -1,0 +1,491 @@
+/* =========================================
+   MI WRESTLING
+   TORNEOROAD
+   ========================================= */
+
+.torneoroad-page {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 5% 80px;
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.torneoroad-header {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+
+.back-button {
+    display: inline-block;
+
+    margin-bottom: 35px;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    opacity: 0.6;
+
+    transition: opacity 0.2s ease;
+}
+
+
+.back-button:hover {
+    opacity: 1;
+}
+
+
+.torneoroad-heading {
+    text-align: center;
+}
+
+
+.torneoroad-brand {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    opacity: 0.6;
+}
+
+
+.torneoroad-heading h1 {
+    margin: 0;
+
+    font-size: 46px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+
+.torneoroad-heading p {
+    margin: 10px 0 0;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    opacity: 0.5;
+}
+
+
+/* =========================================
+   SECTIONS
+   ========================================= */
+
+.torneoroad-section {
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+
+.torneoroad-divider {
+    display: flex;
+    align-items: center;
+
+    border-bottom: 2px solid #ffffff;
+
+    padding-bottom: 12px;
+
+    margin-bottom: 25px;
+}
+
+
+.torneoroad-divider h2 {
+    margin: 0;
+
+    font-size: 23px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   DRAFT
+   ========================================= */
+
+.draft-container {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 15px;
+}
+
+
+.draft-card {
+    min-height: 80px;
+
+    padding: 18px;
+
+    background: #111111;
+
+    border: 1px solid #292929;
+
+    display: flex;
+    align-items: center;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.draft-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #ffffff;
+}
+
+
+.draft-card-name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   STANDINGS
+   ========================================= */
+
+.standings-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+.standings-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #111111;
+}
+
+
+.standings-table th {
+    padding: 16px 12px;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    border-bottom: 2px solid #ffffff;
+}
+
+
+.standings-table th:nth-child(2) {
+    text-align: left;
+}
+
+
+.standings-table td {
+    padding: 15px 12px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid #292929;
+}
+
+
+.standings-table td:nth-child(2) {
+    text-align: left;
+
+    font-weight: bold;
+}
+
+
+.standings-table tr {
+    transition: background 0.2s ease;
+}
+
+
+.standings-table tbody tr:hover {
+    background: #181818;
+}
+
+
+/* =========================================
+   MATRIX
+   ========================================= */
+
+.matrix-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+.matrix-table {
+    border-collapse: collapse;
+
+    background: #111111;
+
+    min-width: 700px;
+}
+
+
+.matrix-table th,
+.matrix-table td {
+    width: 65px;
+    height: 55px;
+
+    padding: 8px;
+
+    text-align: center;
+
+    border: 1px solid #292929;
+
+    font-size: 12px;
+}
+
+
+.matrix-table th {
+    font-weight: bold;
+
+    background: #151515;
+}
+
+
+.matrix-table th:first-child {
+    width: 150px;
+}
+
+
+.matrix-table td:first-child {
+    width: 150px;
+
+    text-align: left;
+
+    padding-left: 15px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   MATRIX RESULTS
+   ========================================= */
+
+.matrix-win {
+    font-weight: 900;
+}
+
+
+.matrix-loss {
+    opacity: 0.45;
+}
+
+
+.matrix-draw {
+    font-weight: bold;
+}
+
+
+.matrix-empty {
+    opacity: 0.25;
+}
+
+
+/* =========================================
+   RESULTS
+   ========================================= */
+
+.results-container {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.result-card {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 18px 22px;
+
+    background: #111111;
+
+    border: 1px solid #292929;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.result-card:hover {
+    background: #171717;
+
+    border-color: #ffffff;
+}
+
+
+.result-wrestler {
+    flex: 1;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+.result-score {
+    min-width: 80px;
+
+    text-align: center;
+
+    font-size: 17px;
+
+    font-weight: 900;
+}
+
+
+/* =========================================
+   RAW
+   ========================================= */
+
+.torneoroad-page.raw .torneoroad-brand {
+    color: #d00000;
+}
+
+
+/* =========================================
+   SMACKDOWN
+   ========================================= */
+
+.torneoroad-page.smackdown .torneoroad-brand {
+    color: #0066ff;
+}
+
+
+/* =========================================
+   NXT
+   ========================================= */
+
+.torneoroad-page.nxt .torneoroad-brand {
+    color: #8a8a8a;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .draft-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .torneoroad-page {
+        padding: 30px 15px 60px;
+    }
+
+
+    .torneoroad-heading h1 {
+        font-size: 32px;
+    }
+
+
+    .torneoroad-brand {
+        font-size: 11px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .torneoroad-heading p {
+        font-size: 9px;
+    }
+
+
+    .torneoroad-divider h2 {
+        font-size: 18px;
+    }
+
+
+    .draft-container {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+
+    .draft-card {
+        min-height: 65px;
+
+        padding: 14px;
+    }
+
+
+    .draft-card-name {
+        font-size: 12px;
+    }
+
+
+    .standings-table {
+        min-width: 600px;
+    }
+
+
+    .standings-table th,
+    .standings-table td {
+        padding: 12px 8px;
+    }
+
+
+    .result-card {
+        padding: 15px;
+
+        gap: 10px;
+    }
+
+
+    .result-wrestler {
+        font-size: 12px;
+    }
+
+
+    .result-score {
+        min-width: 60px;
+
+        font-size: 15px;
+    }
+
+}
