@@ -1,1 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="torneos.css">
+    <link rel="stylesheet" href="torneoroad.css">
+
+    <title>Tournament | MI WRESTLING</title>
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="MI WRESTLING">
+    </a>
+
+    <nav id="mainNav">
+
+        <a href="index.html">Roster</a>
+        <a href="inactive.html">Alumni</a>
+        <a href="History/index.html">History</a>
+        <a href="inactive.html">Shop</a>
+        <a href="inactive.html">Recaps</a>
+        <a href="torneos.html">Games</a>
+        <a href="inactive.html">Guide</a>
+        <a href="inactive.html">About</a>
+        <a href="https://www.instagram.com/triviaswwe?stkn=eWhqNWV0a2xsNnh4">Watch</a>
+
+    </nav>
+
+    <button class="menu" id="menuButton">☰</button>
+
+</header>
+
+
+<!-- =========================================
+     TOURNAMENT
+     ========================================= -->
+
+<main class="torneoroad-page">
+
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <section class="torneoroad-header">
+
+        <a href="torneos.html" class="back-button">
+            ← GAMES
+        </a>
+
+        <div class="torneoroad-heading">
+
+            <span
+                id="tournament-brand"
+                class="torneoroad-brand"
+            >
+                RAW
+            </span>
+
+            <h1 id="tournament-title">
+                TOURNAMENT
+            </h1>
+
+            <p id="tournament-division">
+                FIRST DIVISION
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         DRAFT
+         ========================================= -->
+
+    <section class="torneoroad-section">
+
+        <div class="torneoroad-divider">
+            <h2>DRAFT</h2>
+        </div>
+
+        <div
+            id="draft-container"
+            class="draft-container"
+        ></div>
+
+    </section>
+
+
+    <!-- =========================================
+         STANDINGS
+         ========================================= -->
+
+    <section class="torneoroad-section">
+
+        <div class="torneoroad-divider">
+            <h2>STANDINGS</h2>
+        </div>
+
+        <div class="standings-wrapper">
+
+            <table class="standings-table">
+
+                <thead>
+
+                    <tr>
+                        <th>#</th>
+                        <th>WRESTLER</th>
+                        <th>PJ</th>
+                        <th>G</th>
+                        <th>E</th>
+                        <th>P</th>
+                        <th>PTS</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="standings-body"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         MATCH MATRIX
+         ========================================= -->
+
+    <section class="torneoroad-section">
+
+        <div class="torneoroad-divider">
+            <h2>MATCH MATRIX</h2>
+        </div>
+
+        <div class="matrix-wrapper">
+
+            <table
+                id="matrix-table"
+                class="matrix-table"
+            ></table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         RESULTS
+         ========================================= -->
+
+    <section class="torneoroad-section">
+
+        <div class="torneoroad-divider">
+            <h2>RESULTS</h2>
+        </div>
+
+        <div
+            id="results-container"
+            class="results-container"
+        ></div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================
+     JAVASCRIPT
+     ========================================= -->
+
+<script src="History/menu.js"></script>
+<script src="js/torneoroad.js"></script>
+
+</body>
+
+</html>
