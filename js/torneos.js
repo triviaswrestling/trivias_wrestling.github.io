@@ -24,28 +24,26 @@ for (let number = 25; number >= 1; number--) {
 
     tournaments.push({
 
-        tournaments.push({
+        id: `raw-${number}`,
+        number: number,
+        brand: "RAW",
+        division: "First Division",
+        title: `Tournament ${number}`,
+        image: `images/raw${number}.jpg`
 
-    id: `raw-${number}`,
-    number: number,
-    brand: "RAW",
-    division: "First Division",
-    title: `Tournament ${number}`,
-    image: `images/raw${number}.jpg`
-
-});
+    });
 
 
     tournaments.push({
 
-    id: `smackdown-${number}`,
-    number: number,
-    brand: "SMACKDOWN",
-    division: "First Division",
-    title: `Tournament ${number}`,
-    image: `images/smackdown${number}.jpg`
+        id: `smackdown-${number}`,
+        number: number,
+        brand: "SMACKDOWN",
+        division: "First Division",
+        title: `Tournament ${number}`,
+        image: `images/smackdown${number}.jpg`
 
-});
+    });
 
 }
 
@@ -53,23 +51,21 @@ for (let number = 25; number >= 1; number--) {
 /* =========================================
    SECOND DIVISION
    NXT
-   15 → 1
+   18 → 1
    ========================================= */
 
 for (let number = 18; number >= 1; number--) {
 
     tournaments.push({
 
-        tournaments.push({
+        id: `nxt-${number}`,
+        number: number,
+        brand: "NXT",
+        division: "Second Division",
+        title: `Tournament ${number}`,
+        image: `images/nxt${number}.jpg`
 
-    id: `nxt-${number}`,
-    number: number,
-    brand: "NXT",
-    division: "Second Division",
-    title: `Tournament ${number}`,
-    image: `images/nxt${number}.jpg`
-
-});
+    });
 
 }
 
@@ -94,20 +90,25 @@ function createTournamentCard(tournament) {
     const card = document.createElement("div");
 
     card.className = "tournament-card";
-   card.style.backgroundImage =
-    `url("${tournament.image}")`;
+
+    card.style.backgroundImage =
+        `url("${tournament.image}")`;
 
     card.dataset.id = tournament.id;
 
 
-    /* BRAND */
+    /* =========================================
+       BRAND
+       ========================================= */
 
     card.classList.add(
         tournament.brand.toLowerCase()
     );
 
 
-    /* CONTENT */
+    /* =========================================
+       CARD CONTENT
+       ========================================= */
 
     card.innerHTML = `
 
@@ -134,7 +135,9 @@ function createTournamentCard(tournament) {
     `;
 
 
-    /* CLICK */
+    /* =========================================
+       CLICK
+       ========================================= */
 
     card.addEventListener("click", () => {
 
@@ -144,7 +147,9 @@ function createTournamentCard(tournament) {
     });
 
 
-    /* RETURN CARD */
+    /* =========================================
+       RETURN CARD
+       ========================================= */
 
     return card;
 
