@@ -147,17 +147,10 @@ function createTournamentCard(tournament) {
 
     card.addEventListener("click", () => {
 
-        console.log(
-            "Tournament selected:",
-            tournament.id
-        );
+    window.location.href =
+        `torneoroad.html?id=${tournament.id}`;
 
-    });
-
-
-    return card;
-}
-
+});
 
 /* =========================================
    RENDER TOURNAMENTS
