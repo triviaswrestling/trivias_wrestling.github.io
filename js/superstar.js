@@ -3,9 +3,16 @@
    SUPERSTAR
    ========================================= */
 
-/* GET SUPERSTAR ID */
-const urlParams = new URLSearchParams(window.location.search);
-const superstarId = urlParams.get("id");
+
+/* =========================================
+   GET SUPERSTAR ID
+   ========================================= */
+
+const urlParams =
+    new URLSearchParams(window.location.search);
+
+const superstarId =
+    urlParams.get("id");
 
 
 /* =========================================
@@ -15,6 +22,7 @@ const superstarId = urlParams.get("id");
 const superstarData = {
 
     "axiom": {
+
         name: "Axiom",
         image: "images/Vacante.jpg",
         nickname: "",
@@ -31,10 +39,12 @@ const superstarData = {
         championships: [],
 
         history: []
+
     },
 
 
     "adam-cole": {
+
         name: "Adam Cole",
         image: "images/Vacante.jpg",
         nickname: "",
@@ -51,10 +61,12 @@ const superstarData = {
         championships: [],
 
         history: []
+
     },
 
 
     "jeff-jarrett": {
+
         name: "Jeff Jarrett",
         image: "images/Vacante.jpg",
         nickname: "",
@@ -71,10 +83,12 @@ const superstarData = {
         championships: [],
 
         history: []
+
     },
 
 
     "alberto-del-rio": {
+
         name: "Alberto Del Rio",
         image: "images/Vacante.jpg",
         nickname: "El Patron",
@@ -91,6 +105,7 @@ const superstarData = {
         championships: [],
 
         history: []
+
     }
 
 };
@@ -143,20 +158,35 @@ const matchHistoryContainer =
 
 if (!superstarId || !superstarData[superstarId]) {
 
-    superstarName.textContent = "SUPERSTAR NOT FOUND";
+    superstarName.textContent =
+        "SUPERSTAR NOT FOUND";
 
-    superstarNickname.textContent = "";
-    superstarBrand.textContent = "";
+    superstarNickname.textContent =
+        "";
 
-    superstarImage.src = "images/Vacante.jpg";
+    superstarBrand.textContent =
+        "";
 
-    wins.textContent = "0";
-    losses.textContent = "0";
-    draws.textContent = "0";
+    superstarImage.src =
+        "images/Vacante.jpg";
 
-    singlesRecord.textContent = "0 - 0 - 0";
-    tagRecord.textContent = "0 - 0 - 0";
-    sixManRecord.textContent = "0 - 0 - 0";
+    wins.textContent =
+        "0";
+
+    losses.textContent =
+        "0";
+
+    draws.textContent =
+        "0";
+
+    singlesRecord.textContent =
+        "0 - 0 - 0";
+
+    tagRecord.textContent =
+        "0 - 0 - 0";
+
+    sixManRecord.textContent =
+        "0 - 0 - 0";
 
     championshipsContainer.innerHTML = `
         <p>SUPERSTAR DOES NOT EXIST</p>
@@ -165,6 +195,7 @@ if (!superstarId || !superstarData[superstarId]) {
     matchHistoryContainer.innerHTML = `
         <p>NO MATCHES</p>
     `;
+
 }
 
 
@@ -174,10 +205,13 @@ if (!superstarId || !superstarData[superstarId]) {
 
 else {
 
-    const superstar = superstarData[superstarId];
+    const superstar =
+        superstarData[superstarId];
 
 
-    /* BASIC INFORMATION */
+    /* =====================================
+       BASIC INFORMATION
+       ===================================== */
 
     superstarName.textContent =
         superstar.name;
@@ -189,7 +223,9 @@ else {
         superstar.name;
 
 
-    /* NICKNAME */
+    /* =====================================
+       NICKNAME
+       ===================================== */
 
     if (superstar.nickname) {
 
@@ -198,20 +234,23 @@ else {
 
     } else {
 
-        superstarNickname.textContent = "";
+        superstarNickname.textContent =
+            "";
 
     }
 
 
-    /* BRAND */
+    /* =====================================
+       BRAND
+       ===================================== */
 
     superstarBrand.textContent =
         superstar.brand;
 
 
-    /* =========================================
+    /* =====================================
        OVERALL RECORD
-       ========================================= */
+       ===================================== */
 
     wins.textContent =
         superstar.wins;
@@ -223,9 +262,9 @@ else {
         superstar.draws;
 
 
-    /* =========================================
+    /* =====================================
        MATCH RECORD
-       ========================================= */
+       ===================================== */
 
     singlesRecord.textContent =
         superstar.singles;
@@ -237,11 +276,13 @@ else {
         superstar.sixMan;
 
 
-    /* =========================================
+    /* =====================================
        CHAMPIONSHIPS
-       ========================================= */
+       ===================================== */
 
-    championshipsContainer.innerHTML = "";
+    championshipsContainer.innerHTML =
+        "";
+
 
     if (superstar.championships.length === 0) {
 
@@ -251,31 +292,35 @@ else {
 
     } else {
 
-        superstar.championships.forEach(championship => {
+        superstar.championships.forEach(
+            championship => {
 
-            const championshipElement =
-                document.createElement("div");
+                const championshipElement =
+                    document.createElement("div");
 
-            championshipElement.className =
-                "championship-item";
+                championshipElement.className =
+                    "championship-item";
 
-            championshipElement.textContent =
-                championship;
+                championshipElement.textContent =
+                    championship;
 
-            championshipsContainer.appendChild(
-                championshipElement
-            );
+                championshipsContainer.appendChild(
+                    championshipElement
+                );
 
-        });
+            }
+        );
 
     }
 
 
-    /* =========================================
+    /* =====================================
        MATCH HISTORY
-       ========================================= */
+       ===================================== */
 
-    matchHistoryContainer.innerHTML = "";
+    matchHistoryContainer.innerHTML =
+        "";
+
 
     if (superstar.history.length === 0) {
 
@@ -285,25 +330,27 @@ else {
 
     } else {
 
-        superstar.history.forEach(match => {
+        superstar.history.forEach(
+            match => {
 
-            const matchElement =
-                document.createElement("div");
+                const matchElement =
+                    document.createElement("div");
 
-            matchElement.className =
-                "history-match";
+                matchElement.className =
+                    "history-match";
 
-            matchElement.innerHTML = `
-                <strong>${match.event}</strong>
-                <span>${match.match}</span>
-                <span>${match.result}</span>
-            `;
+                matchElement.innerHTML = `
+                    <strong>${match.event}</strong>
+                    <span>${match.match}</span>
+                    <span>${match.result}</span>
+                `;
 
-            matchHistoryContainer.appendChild(
-                matchElement
-            );
+                matchHistoryContainer.appendChild(
+                    matchElement
+                );
 
-        });
+            }
+        );
 
     }
 
