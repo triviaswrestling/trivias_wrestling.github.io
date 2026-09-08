@@ -469,6 +469,14 @@
         padding: 12px 8px;
     }
 
+   .matrix-table th:first-child,
+.matrix-table td:first-child {
+    width: 110px;
+    min-width: 110px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
 
     .result-card {
         padding: 15px;
