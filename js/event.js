@@ -30,199 +30,159 @@ const eventData = {
 
         results: [
 
+            /* SINGLES */
+
             {
                 match: "MATCH 1",
+                type: "SINGLES",
+                championship: "",
 
-                wrestler1: {
-                    name: "Axiom",
-                    image: "images/Vacante.jpg"
-                },
+                wrestler1: [
+                    {
+                        name: "Axiom",
+                        image: "images/Vacante.jpg"
+                    }
+                ],
 
-                wrestler2: {
-                    name: "Adam Cole",
-                    image: "images/Vacante.jpg"
-                },
+                wrestler2: [
+                    {
+                        name: "Adam Cole",
+                        image: "images/Vacante.jpg"
+                    }
+                ],
 
                 winner: "Axiom"
             },
 
 
+            /* CHAMPIONSHIP */
+
             {
                 match: "MATCH 2",
+                type: "SINGLES",
+                championship: "WWE CHAMPIONSHIP",
 
-                wrestler1: {
-                    name: "Jeff Jarrett",
-                    image: "images/Vacante.jpg"
-                },
+                wrestler1: [
+                    {
+                        name: "Champion",
+                        image: "images/Vacante.jpg"
+                    }
+                ],
 
-                wrestler2: {
-                    name: "Alberto Del Rio",
-                    image: "images/Vacante.jpg"
-                },
+                wrestler2: [
+                    {
+                        name: "Challenger",
+                        image: "images/Vacante.jpg"
+                    }
+                ],
 
-                winner: "Jeff Jarrett"
+                winner: "Champion"
             },
 
 
+            /* TAG TEAM */
+
+            {
+                match: "MATCH 3",
+                type: "TAG TEAM",
+                championship: "",
+
+                wrestler1: [
+                    {
+                        name: "Jeff Jarrett",
+                        image: "images/Vacante.jpg"
+                    },
+                    {
+                        name: "Wrestler A",
+                        image: "images/Vacante.jpg"
+                    }
+                ],
+
+                wrestler2: [
+                    {
+                        name: "Alberto Del Rio",
+                        image: "images/Vacante.jpg"
+                    },
+                    {
+                        name: "Wrestler B",
+                        image: "images/Vacante.jpg"
+                    }
+                ],
+
+                winner: "Team 1"
+            },
+
+
+            /* 6-MAN TAG TEAM */
+
             {
                 match: "MAIN EVENT",
+                type: "6-MAN TAG TEAM",
+                championship: "",
 
-                wrestler1: {
-                    name: "Wrestler A",
-                    image: "images/Vacante.jpg"
-                },
+                wrestler1: [
+                    {
+                        name: "Axiom",
+                        image: "images/Vacante.jpg"
+                    },
+                    {
+                        name: "Adam Cole",
+                        image: "images/Vacante.jpg"
+                    },
+                    {
+                        name: "Jeff Jarrett",
+                        image: "images/Vacante.jpg"
+                    }
+                ],
 
-                wrestler2: {
-                    name: "Wrestler B",
-                    image: "images/Vacante.jpg"
-                },
+                wrestler2: [
+                    {
+                        name: "Alberto Del Rio",
+                        image: "images/Vacante.jpg"
+                    },
+                    {
+                        name: "Wrestler E",
+                        image: "images/Vacante.jpg"
+                    },
+                    {
+                        name: "Wrestler F",
+                        image: "images/Vacante.jpg"
+                    }
+                ],
 
-                winner: "Wrestler A"
+                winner: "Team 1"
             }
 
         ]
 
-    }
-
-};
+    },
 
 
-/* =========================================
-   ELEMENTS
-   ========================================= */
+    /* =========================================
+       WEEKLY 2
+       ========================================= */
 
-const eventTitle =
-    document.getElementById("event-title");
+    "weekly-2": {
 
-const eventDate =
-    document.getElementById("event-date");
+        type: "WEEKLY",
+        title: "WEEKLY #2",
+        date: "13/09/2026",
+        brand: "RAW & SMACKDOWN",
 
-const eventBrand =
-    document.getElementById("event-brand");
+        results: [
 
-const eventResults =
-    document.getElementById("event-results");
+            {
+                match: "MATCH 1",
+                type: "SINGLES",
+                championship: "",
 
+                wrestler1: [
+                    {
+                        name: "Wrestler A",
+                        image: "images/Vacante.jpg"
+                    }
+                ],
 
-/* =========================================
-   EVENT NOT FOUND
-   ========================================= */
-
-if (!eventId || !eventData[eventId]) {
-
-    eventTitle.textContent =
-        "EVENT NOT FOUND";
-
-    eventDate.textContent = "";
-
-    eventBrand.textContent = "";
-
-    eventResults.innerHTML = `
-        <p>
-            This event does not exist.
-        </p>
-    `;
-
-}
-
-
-/* =========================================
-   LOAD EVENT
-   ========================================= */
-
-else {
-
-    const event =
-        eventData[eventId];
-
-
-    eventTitle.textContent =
-        event.title;
-
-    eventDate.textContent =
-        event.date;
-
-    eventBrand.textContent =
-        event.brand;
-
-
-    /* =====================================
-       RESULTS
-       ===================================== */
-
-    eventResults.innerHTML = "";
-
-
-    event.results.forEach(result => {
-
-        const resultCard =
-            document.createElement("div");
-
-        resultCard.className =
-            "result-card";
-
-
-        resultCard.innerHTML = `
-
-            <div class="match-name">
-                ${result.match}
-            </div>
-
-
-            <div class="match">
-
-                <div class="wrestler">
-
-                    <img
-                        src="${result.wrestler1.image}"
-                        alt="${result.wrestler1.name}"
-                    >
-
-                    <span>
-                        ${result.wrestler1.name}
-                    </span>
-
-                </div>
-
-
-                <div class="vs">
-                    VS
-                </div>
-
-
-                <div class="wrestler">
-
-                    <img
-                        src="${result.wrestler2.image}"
-                        alt="${result.wrestler2.name}"
-                    >
-
-                    <span>
-                        ${result.wrestler2.name}
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="match-winner">
-
-                WINNER:
-
-                <strong>
-                    ${result.winner}
-                </strong>
-
-            </div>
-
-        `;
-
-
-        eventResults.appendChild(
-            resultCard
-        );
-
-    });
-
-}
+                wrestler2: [
+                    {
+                        name: "W
