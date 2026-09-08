@@ -1,9 +1,18 @@
 /* =========================================
+   MI WRESTLING
+   TOURNAMENT ROAD
+   ========================================= */
+
+
+/* =========================================
    GET TOURNAMENT ID FROM URL
    ========================================= */
 
-const urlParams = new URLSearchParams(window.location.search);
-const tournamentId = urlParams.get("id");
+const urlParams =
+    new URLSearchParams(window.location.search);
+
+const tournamentId =
+    urlParams.get("id");
 
 
 /* =========================================
@@ -12,68 +21,15 @@ const tournamentId = urlParams.get("id");
 
 const tournaments = {};
 
-const tournamentData = {
-
-    "raw-1": {
-
-        participants: [
-            "Axiom",
-            "Bret Hart",
-            "Jacob Fatu",
-            "Kyle O'Reilly",
-            "Cody Rhodes",
-            "Trick Williams",
-            "Bron Breakker",
-            "Jon Moxley"
-        ],
-
-        matches: [
-
-    {
-        date: 1,
-        wrestler1: "Axiom",
-        wrestler2: "Bret Hart",
-        score1: 2,
-        score2: 1
-    },
-
-    {
-        date: 1,
-        wrestler1: "Jacob Fatu",
-        wrestler2: "Kyle O'Reilly",
-        score1: 2,
-        score2: 3
-    },
-
-    {
-        date: 1,
-        wrestler1: "Cody Rhodes",
-        wrestler2: "Trick Williams",
-        score1: 3,
-        score2: 2
-    },
-
-    {
-        date: 1,
-        wrestler1: "Bron Breakker",
-        wrestler2: "Jon Moxley",
-        score1: 1,
-        score2: 1
-    }
-
-]
-
-    }
-
-};
-
-
 
 /* =========================================
    GENERATE TOURNAMENTS
    ========================================= */
 
-/* RAW */
+
+/* =========================================
+   RAW
+   ========================================= */
 
 for (let number = 25; number >= 1; number--) {
 
@@ -90,7 +46,9 @@ for (let number = 25; number >= 1; number--) {
 }
 
 
-/* SMACKDOWN */
+/* =========================================
+   SMACKDOWN
+   ========================================= */
 
 for (let number = 25; number >= 1; number--) {
 
@@ -107,7 +65,9 @@ for (let number = 25; number >= 1; number--) {
 }
 
 
-/* NXT */
+/* =========================================
+   NXT
+   ========================================= */
 
 for (let number = 18; number >= 1; number--) {
 
@@ -128,9 +88,11 @@ for (let number = 18; number >= 1; number--) {
    FIND CURRENT TOURNAMENT
    ========================================= */
 
-const tournament = tournaments[tournamentId];
+const tournament =
+    tournaments[tournamentId];
 
-const currentData = tournamentData[tournamentId];
+const currentData =
+    tournamentData[tournamentId];
 
 
 /* =========================================
@@ -178,11 +140,13 @@ if (tournament) {
     const page =
         document.querySelector(".torneoroad-page");
 
+
     page.classList.remove(
         "raw",
         "smackdown",
         "nxt"
     );
+
 
     page.classList.add(
         tournament.brand.toLowerCase()
@@ -212,26 +176,31 @@ if (currentData) {
 
 
     currentData.participants.forEach(
-    (wrestler) => {
+        wrestler => {
 
-        const card =
-            document.createElement("div");
+            const card =
+                document.createElement("div");
 
-        card.className =
-            "draft-card";
 
-        card.innerHTML = `
+            card.className =
+                "draft-card";
 
-    <span class="draft-card-name">
-        ${wrestler}
-    </span>
 
-`;
+            card.innerHTML = `
 
-        draftContainer.appendChild(card);
+                <span class="draft-card-name">
+                    ${wrestler}
+                </span>
 
-    }
-);
+            `;
+
+
+            draftContainer.appendChild(
+                card
+            );
+
+        }
+    );
 
 } else {
 
@@ -259,7 +228,9 @@ if (currentData) {
     const standings = {};
 
 
-    /* CREATE WRESTLERS */
+    /* =====================================
+       CREATE WRESTLERS
+       ===================================== */
 
     currentData.participants.forEach(
         wrestler => {
@@ -278,7 +249,9 @@ if (currentData) {
     );
 
 
-    /* CALCULATE MATCHES */
+    /* =====================================
+       CALCULATE MATCHES
+       ===================================== */
 
     currentData.matches.forEach(
         match => {
@@ -291,7 +264,9 @@ if (currentData) {
 
 
             if (!wrestler1 || !wrestler2) {
+
                 return;
+
             }
 
 
@@ -299,11 +274,17 @@ if (currentData) {
             wrestler2.played++;
 
 
-            /* WIN */
+            /* =================================
+               WIN
+               ================================= */
 
-            if (match.score1 > match.score2) {
+            if (
+                match.score1 >
+                match.score2
+            ) {
 
                 wrestler1.wins++;
+
                 wrestler1.points += 3;
 
                 wrestler2.losses++;
@@ -311,11 +292,17 @@ if (currentData) {
             }
 
 
-            /* LOSS */
+            /* =================================
+               LOSS
+               ================================= */
 
-            else if (match.score1 < match.score2) {
+            else if (
+                match.score1 <
+                match.score2
+            ) {
 
                 wrestler2.wins++;
+
                 wrestler2.points += 3;
 
                 wrestler1.losses++;
@@ -323,7 +310,9 @@ if (currentData) {
             }
 
 
-            /* DRAW */
+            /* =================================
+               DRAW
+               ================================= */
 
             else {
 
@@ -352,7 +341,8 @@ if (currentData) {
             match => {
 
                 if (
-                    match.wrestler1 === wrestler
+                    match.wrestler1 ===
+                    wrestler
                 ) {
 
                     difference +=
@@ -363,7 +353,8 @@ if (currentData) {
 
 
                 if (
-                    match.wrestler2 === wrestler
+                    match.wrestler2 ===
+                    wrestler
                 ) {
 
                     difference +=
@@ -501,7 +492,9 @@ if (currentData) {
             `;
 
 
-            standingsBody.appendChild(row);
+            standingsBody.appendChild(
+                row
+            );
 
         }
     );
@@ -599,7 +592,8 @@ if (currentData) {
                     /* SAME WRESTLER */
 
                     if (
-                        wrestler === opponent
+                        wrestler ===
+                        opponent
                     ) {
 
                         html += `
@@ -661,7 +655,8 @@ if (currentData) {
 
 
                     if (
-                        match.wrestler1 === wrestler
+                        match.wrestler1 ===
+                        wrestler
                     ) {
 
                         if (
