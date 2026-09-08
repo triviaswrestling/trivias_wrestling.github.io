@@ -1,4 +1,7 @@
-console.log("TORNEOROAD.JS CARGADO");
+alert("TORNEOROAD.JS CARGADO");
+
+const urlParams = new URLSearchParams(window.location.search);
+const tournamentId = urlParams.get("id");
 
 
 /* =========================================
