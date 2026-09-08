@@ -1,135 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 
-<head>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta charset="UTF-8">
+<title>MI WRESTLING - Records</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>MI WRESTLING - Records</title>
-
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="records.css">
 
-</head>
+</head><body><!-- =========================================
+     HEADER
+     ========================================= -->
 
-
-<body>
-
-
-    <!-- =========================================
-         HEADER
-         ========================================= -->
-
-    <header class="navbar">
+<header class="navbar">
 
     <a href="index.html" class="logo">
-        <img src="images/logo.png" alt="MI WRESTLING">
+
+        <img
+            src="images/logo.png"
+            alt="MI WRESTLING"
+        >
+
     </a>
+
 
     <nav id="mainNav">
 
         <a href="index.html">Roster</a>
+
         <a href="inactive.html">Alumni</a>
+
         <a href="History/index.html">History</a>
+
         <a href="records.html">Records</a>
+
         <a href="recaps.html">Recaps</a>
+
         <a href="torneos.html">Games</a>
+
         <a href="guide.html">Guide</a>
+
         <a href="about.html">About</a>
-        <a href="https://www.instagram.com/triviaswwe?stkn=eWhqNWV0a2xsNnh4">Watch</a>
+
+        <a href="https://www.instagram.com/triviaswwe?stkn=eWhqNWV0a2xsNnh4">
+            Watch
+        </a>
 
     </nav>
 
-    <button class="menu" id="menuButton">☰</button>
+
+    <button
+        class="menu"
+        id="menuButton"
+    >
+        ☰
+    </button>
 
 </header>
 
 
-    <!-- =========================================
-         MAIN
-         ========================================= -->
+<!-- =========================================
+     MAIN
+     ========================================= -->
 
-    <main>
-
-
-        <!-- =====================================
-             TITLE
-             ===================================== -->
-
-        <section class="records-header">
-
-            <div class="section-label">
-                MI WRESTLING
-            </div>
-
-            <h1>
-                WRESTLER RECORDS
-            </h1>
-
-            <p>
-                COMPLETE RECORDS & STATISTICS
-            </p>
-
-        </section>
+<main>
 
 
-        <!-- =====================================
-             SEARCH
-             ===================================== -->
+    <!-- =====================================
+         TITLE
+         ===================================== -->
 
-        <section class="records-search">
+    <section class="records-header">
 
-    <input
-        type="text"
-        id="record-search"
-        placeholder="SEARCH WRESTLER..."
-    >
+        <div class="section-label">
+            MI WRESTLING
+        </div>
 
-    <div class="record-filters">
+        <h1>
+            WRESTLER RECORDS
+        </h1>
 
-        <button class="record-filter active" data-brand="ALL">
-            ALL
-        </button>
+        <p>
+            COMPLETE RECORDS & STATISTICS
+        </p>
 
-        <button class="record-filter" data-brand="RAW">
-            RAW
-        </button>
-
-        <button class="record-filter" data-brand="SMACKDOWN">
-            SMACKDOWN
-        </button>
-
-        <button class="record-filter" data-brand="NXT">
-            NXT
-        </button>
-
-    </div>
-
-    <div id="record-pages" class="record-pages"></div>
-
-</section>
+    </section>
 
 
-        <!-- =====================================
-             RECORDS
-             ===================================== -->
+    <!-- =====================================
+         SEARCH
+         ===================================== -->
 
-        <section id="records-container">
+    <section class="records-search">
 
-        </section>
+        <input
+            type="text"
+            id="record-search"
+            placeholder="SEARCH WRESTLER..."
+        >
 
 
-    </main>
+        <div class="record-filters">
+
+            <button
+                class="record-filter active"
+                data-brand="ALL"
+            >
+                ALL
+            </button>
+
+            <button
+                class="record-filter"
+                data-brand="RAW"
+            >
+                RAW
+            </button>
+
+            <button
+                class="record-filter"
+                data-brand="SMACKDOWN"
+            >
+                SMACKDOWN
+            </button>
+
+            <button
+                class="record-filter"
+                data-brand="NXT"
+            >
+                NXT
+            </button>
+
+        </div>
 
 
-    <script src="js/wrestlers.js"></script>
+        <div
+            id="record-pages"
+            class="record-pages"
+        ></div>
+
+    </section>
+
+
+    <!-- =====================================
+         RECORDS
+         ===================================== -->
+
+    <section id="records-container">
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================
+     JAVASCRIPT
+     ========================================= -->
+
+<script src="js/wrestlers.js"></script>
+
 <script src="js/records.js"></script>
 
-</body>
+<!-- MOBILE MENU -->
 
-</html>
+<script src="History/menu.js"></script>
+
+</body></html>
