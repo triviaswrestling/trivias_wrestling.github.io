@@ -16,33 +16,6 @@ const eventId = urlParams.get("id");
 
 
 /* =========================================
-   WRESTLER DATABASE
-   ========================================= */
-
-const wrestlerDatabase =
-    window.wrestlerDatabase || {};
-
-
-/* =========================================
-   GET WRESTLER
-   ========================================= */
-
-function getWrestler(name) {
-
-    if (wrestlerDatabase[name]) {
-
-        return wrestlerDatabase[name];
-
-    }
-
-    return {
-        image: "images/Vacante.jpg"
-    };
-
-}
-
-
-/* =========================================
    ELEMENTS
    ========================================= */
 
@@ -60,10 +33,27 @@ const eventResults =
 
 
 /* =========================================
+   CREATE WRESTLER ID
+   ========================================= */
+
+function createWrestlerId(name) {
+
+    return name
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, "-");
+
+}
+
+
+/* =========================================
    EVENT NOT FOUND
    ========================================= */
 
-if (!eventId || !eventData[eventId]) {
+if (
+    !eventId ||
+    !eventData[eventId]
+) {
 
     eventTitle.textContent =
         "EVENT NOT FOUND";
@@ -91,6 +81,10 @@ else {
         eventData[eventId];
 
 
+    /* =====================================
+       EVENT INFORMATION
+       ===================================== */
+
     eventTitle.textContent =
         event.title;
 
@@ -102,11 +96,15 @@ else {
 
 
     /* =====================================
-       RESULTS
+       CLEAR RESULTS
        ===================================== */
 
     eventResults.innerHTML = "";
 
+
+    /* =====================================
+       RENDER RESULTS
+       ===================================== */
 
     event.results.forEach(result => {
 
@@ -122,6 +120,7 @@ else {
            ================================= */
 
         let championshipHTML = "";
+
 
         if (result.championship) {
 
@@ -140,23 +139,32 @@ else {
 
         let team1HTML = "";
 
+
         result.wrestler1.forEach(name => {
 
-            const wrestler =
-                getWrestler(name);
+            const wrestlerId =
+                createWrestlerId(name);
+
 
             team1HTML += `
 
                 <div class="wrestler">
 
-                    <img
-                        src="${wrestler.image}"
-                        alt="${name}"
+                    <a
+                        href="superstar.html?id=${wrestlerId}"
+                        class="wrestler-link"
                     >
 
-                    <span>
-                        ${name}
-                    </span>
+                        <img
+                            src="images/Vacante.jpg"
+                            alt="${name}"
+                        >
+
+                        <span>
+                            ${name}
+                        </span>
+
+                    </a>
 
                 </div>
 
@@ -171,23 +179,32 @@ else {
 
         let team2HTML = "";
 
+
         result.wrestler2.forEach(name => {
 
-            const wrestler =
-                getWrestler(name);
+            const wrestlerId =
+                createWrestlerId(name);
+
 
             team2HTML += `
 
                 <div class="wrestler">
 
-                    <img
-                        src="${wrestler.image}"
-                        alt="${name}"
+                    <a
+                        href="superstar.html?id=${wrestlerId}"
+                        class="wrestler-link"
                     >
 
-                    <span>
-                        ${name}
-                    </span>
+                        <img
+                            src="images/Vacante.jpg"
+                            alt="${name}"
+                        >
+
+                        <span>
+                            ${name}
+                        </span>
+
+                    </a>
 
                 </div>
 
@@ -197,7 +214,7 @@ else {
 
 
         /* =================================
-           CARD
+           RESULT CARD
            ================================= */
 
         resultCard.innerHTML = `
