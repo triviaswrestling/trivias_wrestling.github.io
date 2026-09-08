@@ -1,8 +1,5 @@
 alert("TORNEOROAD.JS CARGADO");
 
-const urlParams = new URLSearchParams(window.location.search);
-const tournamentId = urlParams.get("id");
-
 
 /* =========================================
    GET TOURNAMENT ID FROM URL
@@ -69,23 +66,6 @@ const tournamentData = {
 
 };
 
-
-/* =========================================
-   WRESTLER IMAGES
-   ========================================= */
-
-const wrestlerImages = {
-
-    "Axiom": "images/Vacante.jpg",
-    "Bret Hart": "images/Vacante.jpg",
-    "Jacob Fatu": "images/Vacante.jpg",
-    "Kyle O'Reilly": "images/Vacante.jpg",
-    "Cody Rhodes": "images/Vacante.jpg",
-    "Trick Williams": "images/Vacante.jpg",
-    "Bron Breakker": "images/Vacante.jpg",
-    "Jon Moxley": "images/Vacante.jpg"
-
-};
 
 
 /* =========================================
@@ -241,17 +221,11 @@ if (currentData) {
 
         card.innerHTML = `
 
-            <img
-                class="draft-card-image"
-                src="${wrestlerImages[wrestler]}"
-                alt="${wrestler}"
-            >
+    <span class="draft-card-name">
+        ${wrestler}
+    </span>
 
-            <span class="draft-card-name">
-                ${wrestler}
-            </span>
-
-        `;
+`;
 
         draftContainer.appendChild(card);
 
