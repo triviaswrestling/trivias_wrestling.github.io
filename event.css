@@ -408,3 +408,32 @@ main {
     }
 
 }
+
+/* =========================================
+   NOMBRES DE LUCHADORES
+   ========================================= */
+
+.event-match a,
+.match a,
+.match-card a,
+.wrestler-name a,
+.result a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.event-match a:visited,
+.match a:visited,
+.match-card a:visited,
+.wrestler-name a:visited,
+.result a:visited {
+    color: #ffffff;
+}
+
+.event-match a:hover,
+.match a:hover,
+.match-card a:hover,
+.wrestler-name a:hover,
+.result a:hover {
+    color: #d90024;
+}
