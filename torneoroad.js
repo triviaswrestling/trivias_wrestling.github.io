@@ -31,42 +31,19 @@ const tournaments = [];
 for (let number = 25; number >= 1; number--) {
 
     tournaments.push({
-
-        id:
-            `raw-${number}`,
-
-        number:
-            number,
-
-        brand:
-            "RAW",
-
-        division:
-            "FIRST DIVISION",
-
-        title:
-            `TOURNAMENT ${number}`
-
+        id: `raw-${number}`,
+        number: number,
+        brand: "RAW",
+        division: "FIRST DIVISION",
+        title: `TOURNAMENT ${number}`
     });
 
-
     tournaments.push({
-
-        id:
-            `smackdown-${number}`,
-
-        number:
-            number,
-
-        brand:
-            "SMACKDOWN",
-
-        division:
-            "FIRST DIVISION",
-
-        title:
-            `TOURNAMENT ${number}`
-
+        id: `smackdown-${number}`,
+        number: number,
+        brand: "SMACKDOWN",
+        division: "FIRST DIVISION",
+        title: `TOURNAMENT ${number}`
     });
 
 }
@@ -80,22 +57,11 @@ for (let number = 25; number >= 1; number--) {
 for (let number = 18; number >= 1; number--) {
 
     tournaments.push({
-
-        id:
-            `nxt-${number}`,
-
-        number:
-            number,
-
-        brand:
-            "NXT",
-
-        division:
-            "SECOND DIVISION",
-
-        title:
-            `TOURNAMENT ${number}`
-
+        id: `nxt-${number}`,
+        number: number,
+        brand: "NXT",
+        division: "SECOND DIVISION",
+        title: `TOURNAMENT ${number}`
     });
 
 }
@@ -118,39 +84,25 @@ const tournament =
    ========================================= */
 
 const tournamentBrand =
-    document.getElementById(
-        "tournament-brand"
-    );
+    document.getElementById("tournament-brand");
 
 const tournamentTitle =
-    document.getElementById(
-        "tournament-title"
-    );
+    document.getElementById("tournament-title");
 
 const tournamentDivision =
-    document.getElementById(
-        "tournament-division"
-    );
+    document.getElementById("tournament-division");
 
 const draftContainer =
-    document.getElementById(
-        "draft-container"
-    );
+    document.getElementById("draft-container");
 
 const standingsBody =
-    document.getElementById(
-        "standings-body"
-    );
+    document.getElementById("standings-body");
 
 const matrixTable =
-    document.getElementById(
-        "matrix-table"
-    );
+    document.getElementById("matrix-table");
 
 const resultsContainer =
-    document.getElementById(
-        "results-container"
-    );
+    document.getElementById("results-container");
 
 
 /* =========================================
@@ -168,19 +120,95 @@ function createWrestlerId(name) {
 
 
 /* =========================================
+   NORMALIZE NAME
+   ========================================= */
+
+function normalizeName(name) {
+
+    return name
+        .toLowerCase()
+        .trim();
+
+}
+
+
+/* =========================================
+   FIND WRESTLER
+   ========================================= */
+
+function getWrestler(name) {
+
+    if (
+        typeof wrestlers === "undefined"
+    ) {
+
+        return null;
+
+    }
+
+    return wrestlers.find(wrestler => {
+
+        return normalizeName(wrestler.name) ===
+               normalizeName(name);
+
+    }) || null;
+
+}
+
+
+/* =========================================
+   GET IMAGE
+   ========================================= */
+
+function getWrestlerImage(name) {
+
+    const wrestler =
+        getWrestler(name);
+
+    if (
+        wrestler &&
+        wrestler.image
+    ) {
+
+        return wrestler.image;
+
+    }
+
+    return "images/Vacante.jpg";
+
+}
+
+
+/* =========================================
+   WRESTLER LINK
+   ========================================= */
+
+function createWrestlerLink(name) {
+
+    return `
+        <a
+            href="superstar.html?id=${createWrestlerId(name)}"
+            class="table-wrestler-link"
+        >
+            ${name}
+        </a>
+    `;
+
+}
+
+
+/* =========================================
    TOURNAMENT NOT FOUND
    ========================================= */
 
 if (!tournament) {
 
-    tournamentBrand.textContent =
-        "";
+    tournamentBrand.textContent = "";
 
     tournamentTitle.textContent =
         "TOURNAMENT NOT FOUND";
 
-    tournamentDivision.textContent =
-        "";
+    tournamentDivision.textContent = "";
 
 }
 
@@ -190,10 +218,6 @@ if (!tournament) {
    ========================================= */
 
 else {
-
-    /* =====================================
-       BASIC INFORMATION
-       ===================================== */
 
     tournamentBrand.textContent =
         tournament.brand;
@@ -206,7 +230,25 @@ else {
 
 
     /* =====================================
-       GET TOURNAMENT DATA
+       BRAND CLASS
+       ===================================== */
+
+    const page =
+        document.querySelector(
+            ".torneoroad-page"
+        );
+
+    if (page) {
+
+        page.classList.add(
+            tournament.brand.toLowerCase()
+        );
+
+    }
+
+
+    /* =====================================
+       GET DATA
        ===================================== */
 
     const currentData =
@@ -259,7 +301,6 @@ else {
         const participants =
             currentData.participants || [];
 
-
         const matches =
             currentData.matches || [];
 
@@ -287,27 +328,37 @@ else {
 
             participants.forEach(name => {
 
-                const wrestler =
+                const card =
                     document.createElement("div");
 
-                wrestler.className =
-                    "draft-wrestler";
+                card.className =
+                    "draft-card";
 
 
-                wrestler.innerHTML = `
+                card.innerHTML = `
 
                     <a
                         href="superstar.html?id=${createWrestlerId(name)}"
-                        class="wrestler-link"
+                        style="text-decoration:none;color:inherit;"
                     >
-                        ${name}
+
+                        <img
+                            src="${getWrestlerImage(name)}"
+                            alt="${name}"
+                            class="draft-card-image"
+                        >
+
+                        <span class="draft-card-name">
+                            ${name}
+                        </span>
+
                     </a>
 
                 `;
 
 
                 draftContainer.appendChild(
-                    wrestler
+                    card
                 );
 
             });
@@ -326,29 +377,21 @@ else {
 
             standings[name] = {
 
-                name:
-                    name,
+                name: name,
 
-                played:
-                    0,
+                played: 0,
 
-                wins:
-                    0,
+                wins: 0,
 
-                draws:
-                    0,
+                draws: 0,
 
-                losses:
-                    0,
+                losses: 0,
 
-                points:
-                    0,
+                points: 0,
 
-                scoreFor:
-                    0,
+                scoreFor: 0,
 
-                scoreAgainst:
-                    0
+                scoreAgainst: 0
 
             };
 
@@ -396,10 +439,6 @@ else {
                 match.score1;
 
 
-            /* =============================
-               WRESTLER 1 WINS
-               ============================= */
-
             if (
                 match.score1 >
                 match.score2
@@ -413,11 +452,6 @@ else {
 
             }
 
-
-            /* =============================
-               WRESTLER 2 WINS
-               ============================= */
-
             else if (
                 match.score1 <
                 match.score2
@@ -430,11 +464,6 @@ else {
                 wrestler1.losses++;
 
             }
-
-
-            /* =============================
-               DRAW
-               ============================= */
 
             else {
 
@@ -520,14 +549,9 @@ else {
                     </td>
 
                     <td>
-
-                        <a
-                            href="superstar.html?id=${createWrestlerId(wrestler.name)}"
-                            class="table-wrestler-link"
-                        >
-                            ${wrestler.name}
-                        </a>
-
+                        ${createWrestlerLink(
+                            wrestler.name
+                        )}
                     </td>
 
                     <td>
@@ -551,6 +575,32 @@ else {
                     </td>
 
                 `;
+
+
+                /*
+                   GOLD = FIRST PLACE
+                   RED = RELEGATION
+                */
+
+                if (index === 0) {
+
+                    row.classList.add(
+                        "champion"
+                    );
+
+                }
+
+
+                if (
+                    index ===
+                    standingsList.length - 1
+                ) {
+
+                    row.classList.add(
+                        "relegation"
+                    );
+
+                }
 
 
                 standingsBody.appendChild(
@@ -606,16 +656,10 @@ else {
                     document.createElement("td");
 
 
-                nameCell.innerHTML = `
-
-                    <a
-                        href="superstar.html?id=${createWrestlerId(wrestlerName)}"
-                        class="table-wrestler-link"
-                    >
-                        ${wrestlerName}
-                    </a>
-
-                `;
+                nameCell.innerHTML =
+                    createWrestlerLink(
+                        wrestlerName
+                    );
 
 
                 row.appendChild(
@@ -777,7 +821,7 @@ else {
                     document.createElement("div");
 
                 result.className =
-                    "tournament-result";
+                    "result-card";
 
 
                 let resultClass =
@@ -805,42 +849,40 @@ else {
                 }
 
 
+                result.classList.add(
+                    resultClass
+                );
+
+
                 result.innerHTML = `
 
-                    <div class="tournament-result-round">
-                        ROUND ${match.date}
+                    <div class="result-wrestler">
+
+                        ${createWrestlerLink(
+                            match.wrestler1
+                        )}
+
                     </div>
 
-                    <div class="tournament-result-match">
 
-                        <a
-                            href="superstar.html?id=${createWrestlerId(match.wrestler1)}"
-                            class="table-wrestler-link"
-                        >
-                            ${match.wrestler1}
-                        </a>
+                    <div class="result-score">
 
-                        <strong>
-                            ${match.score1}
-                            -
-                            ${match.score2}
-                        </strong>
+                        ${match.score1}
+                        -
+                        ${match.score2}
 
-                        <a
-                            href="superstar.html?id=${createWrestlerId(match.wrestler2)}"
-                            class="table-wrestler-link"
-                        >
-                            ${match.wrestler2}
-                        </a>
+                    </div>
+
+
+                    <div class="result-wrestler">
+
+                        ${createWrestlerLink(
+                            match.wrestler2
+                        )}
 
                     </div>
 
                 `;
-
-
-                result.classList.add(
-                    resultClass
-                );
 
 
                 resultsContainer.appendChild(
