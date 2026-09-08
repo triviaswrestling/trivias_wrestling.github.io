@@ -166,7 +166,7 @@ function renderEvents(eventList) {
             () => {
 
                 window.location.href =
-                    `recap.html?id=${event.id}`;
+    `event.html?id=${event.id}`;
 
             }
         );
