@@ -666,3 +666,25 @@
 .results-date:first-child {
     margin-top: 0;
 }
+
+@media (max-width: 600px) {
+
+    .matrix-table {
+        min-width: 0 !important;
+        width: auto !important;
+        table-layout: auto;
+    }
+
+    .matrix-table th:first-child,
+    .matrix-table td:first-child {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+
+        padding-left: 3px !important;
+        padding-right: 3px !important;
+
+        white-space: normal;
+    }
+
+}
