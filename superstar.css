@@ -392,3 +392,125 @@ main {
     }
 
   }
+
+/* =========================================
+   MATCH HISTORY
+   ========================================= */
+
+.match-history {
+    background: #111111;
+    border: 1px solid #292929;
+}
+
+.match-history-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding: 20px 22px;
+    border-bottom: 1px solid #292929;
+}
+
+.match-history-row:last-child {
+    border-bottom: none;
+}
+
+.match-history-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.match-history-source {
+    color: #666666;
+    font-size: 9px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.match-history-title {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.match-history-match {
+    color: #888888;
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.match-history-opponent {
+    color: #bbbbbb;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-bottom: 7px;
+}
+
+.match-history-date {
+    color: #555555;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.match-history-result {
+    min-width: 70px;
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    border: 1px solid #292929;
+}
+
+/* =========================================
+   RESULT COLORS
+   ========================================= */
+
+.match-history-result.win {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.match-history-result.loss {
+    color: #777777;
+    border-color: #444444;
+}
+
+.match-history-result.draw {
+    color: #aaaaaa;
+    border-color: #666666;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .match-history-row {
+        align-items: flex-start;
+        gap: 15px;
+        padding: 17px 15px;
+    }
+
+    .match-history-title {
+        font-size: 12px;
+    }
+
+    .match-history-opponent {
+        font-size: 11px;
+    }
+
+    .match-history-result {
+        min-width: 60px;
+        padding: 9px 7px;
+        font-size: 9px;
+    }
+
+   }
