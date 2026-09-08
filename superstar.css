@@ -514,3 +514,12 @@ main {
     }
 
    }
+
+.match-history-row {
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.match-history-row:hover {
+    background: #181818;
+}
