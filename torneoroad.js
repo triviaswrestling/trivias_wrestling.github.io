@@ -14,6 +14,7 @@ const tournamentId = urlParams.get("id");
    ========================================= */
 
 const tournaments = {};
+
 const tournamentData = {
 
     "raw-1": {
@@ -127,6 +128,8 @@ for (let number = 18; number >= 1; number--) {
 
 const tournament = tournaments[tournamentId];
 
+const currentData = tournamentData[tournamentId];
+
 
 /* =========================================
    ELEMENTS
@@ -140,6 +143,18 @@ const titleElement =
 
 const divisionElement =
     document.getElementById("tournament-division");
+
+const draftContainer =
+    document.getElementById("draft-container");
+
+const standingsBody =
+    document.getElementById("standings-body");
+
+const matrixTable =
+    document.getElementById("matrix-table");
+
+const resultsContainer =
+    document.getElementById("results-container");
 
 
 /* =========================================
@@ -158,10 +173,6 @@ if (tournament) {
         tournament.division;
 
 
-    /* =========================================
-       BRAND CLASS
-       ========================================= */
-
     const page =
         document.querySelector(".torneoroad-page");
 
@@ -175,214 +186,324 @@ if (tournament) {
         tournament.brand.toLowerCase()
     );
 
-
 } else {
 
-    /* =========================================
-       INVALID TOURNAMENT
-       ========================================= */
-
-    brandElement.textContent = "MI WRESTLING";
+    brandElement.textContent =
+        "MI WRESTLING";
 
     titleElement.textContent =
         "TOURNAMENT NOT FOUND";
 
-    divisionElement.textContent = "";
+    divisionElement.textContent =
+        "";
 
 }
+
 
 /* =========================================
    DRAFT
    ========================================= */
 
-const draftContainer =
-    document.getElementById("draft-container");
-
-const currentData =
-    tournamentData[tournamentId];
-
 if (currentData) {
 
     draftContainer.innerHTML = "";
 
-    currentData.participants.forEach((wrestler, index) => {
 
-        const card = document.createElement("div");
+    currentData.participants.forEach(
+        (wrestler, index) => {
 
-        card.className = "draft-card";
+            const card =
+                document.createElement("div");
 
-        card.innerHTML = `
+            card.className =
+                "draft-card";
 
-            <span class="draft-card-number">
-                ${index + 1}
-            </span>
 
-            <span class="draft-card-name">
-                ${wrestler}
-            </span>
+            card.innerHTML = `
 
-        `;
+                <span class="draft-card-number">
+                    ${index + 1}
+                </span>
 
-        draftContainer.appendChild(card);
+                <span class="draft-card-name">
+                    ${wrestler}
+                </span>
 
-    });
+            `;
+
+
+            draftContainer.appendChild(card);
+
+        }
+    );
 
 } else {
 
     draftContainer.innerHTML = `
 
         <div class="draft-card">
+
             <span class="draft-card-name">
                 PARTICIPANTS COMING SOON
             </span>
+
         </div>
 
     `;
 
 }
 
+
 /* =========================================
    STANDINGS
    ========================================= */
-
-const standingsBody =
-    document.getElementById("standings-body");
 
 if (currentData) {
 
     const standings = {};
 
-    currentData.participants.forEach(wrestler => {
 
-        standings[wrestler] = {
-            played: 0,
-            wins: 0,
-            draws: 0,
-            losses: 0,
-            points: 0
-        };
+    /* CREATE WRESTLERS */
 
-    });
+    currentData.participants.forEach(
+        wrestler => {
 
+            standings[wrestler] = {
 
-    currentData.matches.forEach(match => {
+                played: 0,
+                wins: 0,
+                draws: 0,
+                losses: 0,
+                points: 0
 
-        const wrestler1 =
-            standings[match.wrestler1];
-
-        const wrestler2 =
-            standings[match.wrestler2];
-
-
-        wrestler1.played++;
-        wrestler2.played++;
-
-
-        if (match.score1 > match.score2) {
-
-            wrestler1.wins++;
-            wrestler1.points += 3;
-
-            wrestler2.losses++;
+            };
 
         }
+    );
 
-        else if (match.score1 < match.score2) {
 
-            wrestler2.wins++;
-            wrestler2.points += 3;
+    /* CALCULATE MATCHES */
 
-            wrestler1.losses++;
+    currentData.matches.forEach(
+        match => {
+
+            const wrestler1 =
+                standings[match.wrestler1];
+
+            const wrestler2 =
+                standings[match.wrestler2];
+
+
+            if (!wrestler1 || !wrestler2) {
+                return;
+            }
+
+
+            wrestler1.played++;
+            wrestler2.played++;
+
+
+            /* WIN */
+
+            if (match.score1 > match.score2) {
+
+                wrestler1.wins++;
+                wrestler1.points += 3;
+
+                wrestler2.losses++;
+
+            }
+
+
+            /* LOSS */
+
+            else if (match.score1 < match.score2) {
+
+                wrestler2.wins++;
+                wrestler2.points += 3;
+
+                wrestler1.losses++;
+
+            }
+
+
+            /* DRAW */
+
+            else {
+
+                wrestler1.draws++;
+                wrestler2.draws++;
+
+                wrestler1.points++;
+                wrestler2.points++;
+
+            }
 
         }
+    );
 
-        else {
 
-            wrestler1.draws++;
-            wrestler2.draws++;
+    /* =========================================
+       SCORE DIFFERENCE
+       ========================================= */
 
-            wrestler1.points++;
-            wrestler2.points++;
+    function getScoreDifference(wrestler) {
 
-        }
+        let difference = 0;
 
-    });
 
+        currentData.matches.forEach(
+            match => {
+
+                if (
+                    match.wrestler1 === wrestler
+                ) {
+
+                    difference +=
+                        match.score1 -
+                        match.score2;
+
+                }
+
+
+                if (
+                    match.wrestler2 === wrestler
+                ) {
+
+                    difference +=
+                        match.score2 -
+                        match.score1;
+
+                }
+
+            }
+        );
+
+
+        return difference;
+
+    }
+
+
+    /* =========================================
+       SORT STANDINGS
+       ========================================= */
 
     const sortedStandings =
         Object.entries(standings)
         .sort((a, b) => {
 
-            if (b[1].points !== a[1].points) {
-                return b[1].points - a[1].points;
+            /* POINTS */
+
+            if (
+                b[1].points !==
+                a[1].points
+            ) {
+
+                return (
+                    b[1].points -
+                    a[1].points
+                );
+
             }
 
-            return b[1].wins - a[1].wins;
+
+            /* WINS */
+
+            if (
+                b[1].wins !==
+                a[1].wins
+            ) {
+
+                return (
+                    b[1].wins -
+                    a[1].wins
+                );
+
+            }
+
+
+            /* SCORE DIFFERENCE */
+
+            return (
+                getScoreDifference(b[0]) -
+                getScoreDifference(a[0])
+            );
 
         });
 
+
+    /* =========================================
+       RENDER STANDINGS
+       ========================================= */
 
     standingsBody.innerHTML = "";
 
 
     sortedStandings.forEach(
-    ([wrestler, stats], index) => {
+        ([wrestler, stats], index) => {
 
-        const row =
-            document.createElement("tr");
-
-
-        /* =========================================
-           SPECIAL POSITIONS
-           ========================================= */
-
-        if (index === 0) {
-            row.classList.add("champion");
-        }
-
-        if (index === sortedStandings.length - 1) {
-            row.classList.add("relegation");
-        }
+            const row =
+                document.createElement("tr");
 
 
-        row.innerHTML = `
+            /* CHAMPION */
 
-            <td>${index + 1}</td>
+            if (index === 0) {
 
-            <td>${wrestler}</td>
+                row.classList.add(
+                    "champion"
+                );
 
-            <td>${stats.played}</td>
+            }
 
-            <td>${stats.wins}</td>
 
-            <td>${stats.draws}</td>
+            /* RELEGATION */
 
-            <td>${stats.losses}</td>
+            if (
+                index ===
+                sortedStandings.length - 1
+            ) {
 
-            <td>${stats.points}</td>
+                row.classList.add(
+                    "relegation"
+                );
 
-        `;
+            }
 
-        standingsBody.appendChild(row);
 
-    }
-);
+            row.innerHTML = `
 
-                <td>${index + 1}</td>
+                <td>
+                    ${index + 1}
+                </td>
 
-                <td>${wrestler}</td>
+                <td>
+                    ${wrestler}
+                </td>
 
-                <td>${stats.played}</td>
+                <td>
+                    ${stats.played}
+                </td>
 
-                <td>${stats.wins}</td>
+                <td>
+                    ${stats.wins}
+                </td>
 
-                <td>${stats.draws}</td>
+                <td>
+                    ${stats.draws}
+                </td>
 
-                <td>${stats.losses}</td>
+                <td>
+                    ${stats.losses}
+                </td>
 
-                <td>${stats.points}</td>
+                <td>
+                    ${stats.points}
+                </td>
 
             `;
+
 
             standingsBody.appendChild(row);
 
@@ -394,9 +515,11 @@ if (currentData) {
     standingsBody.innerHTML = `
 
         <tr>
+
             <td colspan="7">
                 STANDINGS COMING SOON
             </td>
+
         </tr>
 
     `;
@@ -408,135 +531,263 @@ if (currentData) {
    MATCH MATRIX
    ========================================= */
 
-const matrixTable =
-    document.getElementById("matrix-table");
-
 if (currentData) {
 
     const participants =
         currentData.participants;
 
+
     matrixTable.innerHTML = "";
 
 
-    /* HEADER */
+    /* =========================================
+       HEADER
+       ========================================= */
 
     const headerRow =
         document.createElement("tr");
 
-    headerRow.innerHTML =
-        `<th>WRESTLER</th>` +
-        participants
-            .map(wrestler => `<th>${wrestler}</th>`)
-            .join("");
 
-    matrixTable.appendChild(headerRow);
+    let headerHTML =
+        "<th>WRESTLER</th>";
 
 
-    /* ROWS */
+    participants.forEach(
+        wrestler => {
 
-    participants.forEach(wrestler => {
+            headerHTML += `
 
-        const row =
-            document.createElement("tr");
+                <th>
+                    ${wrestler}
+                </th>
 
-        let html =
-            `<td>${wrestler}</td>`;
-
-
-        participants.forEach(opponent => {
-
-            if (wrestler === opponent) {
-
-                html += `<td class="matrix-empty">—</td>`;
-
-                return;
-
-            }
-
-
-            const match =
-                currentData.matches.find(match =>
-
-                    (
-                        match.wrestler1 === wrestler &&
-                        match.wrestler2 === opponent
-                    )
-
-                    ||
-
-                    (
-                        match.wrestler1 === opponent &&
-                        match.wrestler2 === wrestler
-                    )
-
-                );
-
-
-            if (!match) {
-
-                html += `
-                    <td class="matrix-empty">
-                        —
-                    </td>
-                `;
-
-                return;
-
-            }
-
-
-            let result;
-
-            if (match.wrestler1 === wrestler) {
-
-                if (match.score1 > match.score2) {
-                    result = "W";
-                }
-                else if (match.score1 < match.score2) {
-                    result = "L";
-                }
-                else {
-                    result = "D";
-                }
-
-            } else {
-
-                if (match.score2 > match.score1) {
-                    result = "W";
-                }
-                else if (match.score2 < match.score1) {
-                    result = "L";
-                }
-                else {
-                    result = "D";
-                }
-
-            }
-
-
-            const className =
-                result === "W"
-                    ? "matrix-win"
-                    : result === "L"
-                        ? "matrix-loss"
-                        : "matrix-draw";
-
-
-            html += `
-                <td class="${className}">
-                    ${result}
-                </td>
             `;
 
-        });
+        }
+    );
 
 
-        row.innerHTML = html;
+    headerRow.innerHTML =
+        headerHTML;
 
-        matrixTable.appendChild(row);
 
-    });
+    matrixTable.appendChild(
+        headerRow
+    );
+
+
+    /* =========================================
+       MATRIX ROWS
+       ========================================= */
+
+    participants.forEach(
+        wrestler => {
+
+            const row =
+                document.createElement("tr");
+
+
+            let html = `
+
+                <td>
+                    ${wrestler}
+                </td>
+
+            `;
+
+
+            participants.forEach(
+                opponent => {
+
+
+                    /* SAME WRESTLER */
+
+                    if (
+                        wrestler === opponent
+                    ) {
+
+                        html += `
+
+                            <td class="matrix-empty">
+                                —
+                            </td>
+
+                        `;
+
+                        return;
+
+                    }
+
+
+                    /* FIND MATCH */
+
+                    const match =
+                        currentData.matches.find(
+                            match =>
+
+                                (
+                                    match.wrestler1 === wrestler &&
+                                    match.wrestler2 === opponent
+                                )
+
+                                ||
+
+                                (
+                                    match.wrestler1 === opponent &&
+                                    match.wrestler2 === wrestler
+                                )
+
+                        );
+
+
+                    /* NO MATCH */
+
+                    if (!match) {
+
+                        html += `
+
+                            <td class="matrix-empty">
+                                —
+                            </td>
+
+                        `;
+
+                        return;
+
+                    }
+
+
+                    /* =================================
+                       DETERMINE RESULT
+                       ================================= */
+
+                    let result;
+
+
+                    if (
+                        match.wrestler1 === wrestler
+                    ) {
+
+                        if (
+                            match.score1 >
+                            match.score2
+                        ) {
+
+                            result = "W";
+
+                        }
+
+                        else if (
+                            match.score1 <
+                            match.score2
+                        ) {
+
+                            result = "L";
+
+                        }
+
+                        else {
+
+                            result = "D";
+
+                        }
+
+                    }
+
+                    else {
+
+                        if (
+                            match.score2 >
+                            match.score1
+                        ) {
+
+                            result = "W";
+
+                        }
+
+                        else if (
+                            match.score2 <
+                            match.score1
+                        ) {
+
+                            result = "L";
+
+                        }
+
+                        else {
+
+                            result = "D";
+
+                        }
+
+                    }
+
+
+                    /* =================================
+                       RESULT CLASS
+                       ================================= */
+
+                    let className;
+
+
+                    if (result === "W") {
+
+                        className =
+                            "matrix-win";
+
+                    }
+
+                    else if (result === "L") {
+
+                        className =
+                            "matrix-loss";
+
+                    }
+
+                    else {
+
+                        className =
+                            "matrix-draw";
+
+                    }
+
+
+                    html += `
+
+                        <td class="${className}">
+                            ${result}
+                        </td>
+
+                    `;
+
+                }
+            );
+
+
+            row.innerHTML =
+                html;
+
+
+            matrixTable.appendChild(
+                row
+            );
+
+        }
+    );
+
+} else {
+
+    matrixTable.innerHTML = `
+
+        <tr>
+
+            <td>
+                MATRIX COMING SOON
+            </td>
+
+        </tr>
+
+    `;
 
 }
 
@@ -545,43 +796,47 @@ if (currentData) {
    RESULTS
    ========================================= */
 
-/* =========================================
-   RESULTS
-   ========================================= */
-
-const resultsContainer =
-    document.getElementById("results-container");
-
 if (currentData) {
 
     resultsContainer.innerHTML = "";
 
-    currentData.matches.forEach((match, index) => {
 
-        const resultCard =
-            document.createElement("div");
+    currentData.matches.forEach(
+        match => {
 
-        resultCard.className = "result-card";
+            const resultCard =
+                document.createElement("div");
 
-        resultCard.innerHTML = `
 
-            <div class="result-wrestler">
-                ${match.wrestler1}
-            </div>
+            resultCard.className =
+                "result-card";
 
-            <div class="result-score">
-                ${match.score1} - ${match.score2}
-            </div>
 
-            <div class="result-wrestler">
-                ${match.wrestler2}
-            </div>
+            resultCard.innerHTML = `
 
-        `;
+                <div class="result-wrestler">
+                    ${match.wrestler1}
+                </div>
 
-        resultsContainer.appendChild(resultCard);
+                <div class="result-score">
+                    ${match.score1}
+                    -
+                    ${match.score2}
+                </div>
 
-    });
+                <div class="result-wrestler">
+                    ${match.wrestler2}
+                </div>
+
+            `;
+
+
+            resultsContainer.appendChild(
+                resultCard
+            );
+
+        }
+    );
 
 } else {
 
