@@ -210,6 +210,44 @@ function getFilteredRecords() {
 
 }
 
+/* =========================================
+   CREATE PAGE BUTTONS
+   ========================================= */
+
+function createPageButtons(totalPages) {
+
+    pagesContainer.innerHTML = "";
+
+    for (let i = 1; i <= totalPages; i++) {
+
+        const button =
+            document.createElement("button");
+
+        button.className =
+            "record-page";
+
+        if (i === currentPage) {
+            button.classList.add("active");
+        }
+
+        button.dataset.page = i;
+
+        button.textContent =
+            `PART ${i}`;
+
+        button.addEventListener("click", () => {
+
+            currentPage = i;
+
+            updateRecords();
+
+        });
+
+        pagesContainer.appendChild(button);
+
+    }
+
+}
 
 /* =========================================
    UPDATE RECORDS
