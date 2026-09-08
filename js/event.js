@@ -32,81 +32,197 @@ const eventData = {
 
             {
                 match: "MATCH 1",
-                wrestlers: "Wrestler A vs Wrestler B",
-                winner: "Wrestler A"
+
+                wrestler1: {
+                    name: "Axiom",
+                    image: "images/Vacante.jpg"
+                },
+
+                wrestler2: {
+                    name: "Adam Cole",
+                    image: "images/Vacante.jpg"
+                },
+
+                winner: "Axiom"
             },
+
 
             {
                 match: "MATCH 2",
-                wrestlers: "Wrestler C vs Wrestler D",
-                winner: "Wrestler D"
+
+                wrestler1: {
+                    name: "Jeff Jarrett",
+                    image: "images/Vacante.jpg"
+                },
+
+                wrestler2: {
+                    name: "Alberto Del Rio",
+                    image: "images/Vacante.jpg"
+                },
+
+                winner: "Jeff Jarrett"
             },
+
 
             {
                 match: "MAIN EVENT",
-                wrestlers: "Wrestler E vs Wrestler F",
-                winner: "Wrestler F"
-            }
 
-        ]
+                wrestler1: {
+                    name: "Wrestler A",
+                    image: "images/Vacante.jpg"
+                },
 
-    },
+                wrestler2: {
+                    name: "Wrestler B",
+                    image: "images/Vacante.jpg"
+                },
 
-
-    "weekly-2": {
-
-        type: "WEEKLY",
-        title: "WEEKLY #2",
-        date: "13/09/2026",
-        brand: "RAW & SMACKDOWN",
-
-        results: [
-
-            {
-                match: "MATCH 1",
-                wrestlers: "Wrestler A vs Wrestler C",
-                winner: "Wrestler C"
-            },
-
-            {
-                match: "MATCH 2",
-                wrestlers: "Wrestler B vs Wrestler D",
-                winner: "Wrestler B"
-            }
-
-        ]
-
-    },
-
-
-    "nxt-1": {
-
-        type: "NXT",
-        title: "NXT #1",
-        date: "08/09/2026",
-        brand: "NXT",
-
-        results: [
-
-            {
-                match: "MATCH 1",
-                wrestlers: "Wrestler A vs Wrestler B",
                 winner: "Wrestler A"
-            },
-
-            {
-                match: "MAIN EVENT",
-                wrestlers: "Wrestler C vs Wrestler D",
-                winner: "Wrestler D"
             }
 
         ]
 
-    },
+    }
+
+};
 
 
-    "nxt-2": {
+/* =========================================
+   ELEMENTS
+   ========================================= */
 
-        type: "NXT",
-        title: "NXT #2",
-        date: "
+const eventTitle =
+    document.getElementById("event-title");
+
+const eventDate =
+    document.getElementById("event-date");
+
+const eventBrand =
+    document.getElementById("event-brand");
+
+const eventResults =
+    document.getElementById("event-results");
+
+
+/* =========================================
+   EVENT NOT FOUND
+   ========================================= */
+
+if (!eventId || !eventData[eventId]) {
+
+    eventTitle.textContent =
+        "EVENT NOT FOUND";
+
+    eventDate.textContent = "";
+
+    eventBrand.textContent = "";
+
+    eventResults.innerHTML = `
+        <p>
+            This event does not exist.
+        </p>
+    `;
+
+}
+
+
+/* =========================================
+   LOAD EVENT
+   ========================================= */
+
+else {
+
+    const event =
+        eventData[eventId];
+
+
+    eventTitle.textContent =
+        event.title;
+
+    eventDate.textContent =
+        event.date;
+
+    eventBrand.textContent =
+        event.brand;
+
+
+    /* =====================================
+       RESULTS
+       ===================================== */
+
+    eventResults.innerHTML = "";
+
+
+    event.results.forEach(result => {
+
+        const resultCard =
+            document.createElement("div");
+
+        resultCard.className =
+            "result-card";
+
+
+        resultCard.innerHTML = `
+
+            <div class="match-name">
+                ${result.match}
+            </div>
+
+
+            <div class="match">
+
+                <div class="wrestler">
+
+                    <img
+                        src="${result.wrestler1.image}"
+                        alt="${result.wrestler1.name}"
+                    >
+
+                    <span>
+                        ${result.wrestler1.name}
+                    </span>
+
+                </div>
+
+
+                <div class="vs">
+                    VS
+                </div>
+
+
+                <div class="wrestler">
+
+                    <img
+                        src="${result.wrestler2.image}"
+                        alt="${result.wrestler2.name}"
+                    >
+
+                    <span>
+                        ${result.wrestler2.name}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="match-winner">
+
+                WINNER:
+
+                <strong>
+                    ${result.winner}
+                </strong>
+
+            </div>
+
+        `;
+
+
+        eventResults.appendChild(
+            resultCard
+        );
+
+    });
+
+}
