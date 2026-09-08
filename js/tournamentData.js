@@ -11,29 +11,84 @@ const tournamentData = {
 
     "raw-1": {
 
-        participants: [
-            "Axiom",
-            "Bret Hart",
-            "Jacob Fatu",
-            "Kyle O'Reilly",
-            "Cody Rhodes",
-            "Trick Williams",
-            "Bron Breakker",
-            "Jon Moxley"
-        ],
+    startDate: "08/09/2026",
 
-        images: {
-            "Cody Rhodes": "images/Cody WWE Champion.jpg"
-        },
+    participants: [
+        "Axiom",
+        "Bret Hart",
+        "Jacob Fatu",
+        "Kyle O'Reilly",
+        "Cody Rhodes",
+        "Trick Williams",
+        "Bron Breakker",
+        "Jon Moxley"
+    ],
 
-        matches: [
-            {date:1,wrestler1:"Axiom",wrestler2:"Bret Hart",score1:2,score2:1},
-            {date:1,wrestler1:"Jacob Fatu",wrestler2:"Kyle O'Reilly",score1:2,score2:3},
-            {date:1,wrestler1:"Cody Rhodes",wrestler2:"Trick Williams",score1:3,score2:2},
-            {date:1,wrestler1:"Bron Breakker",wrestler2:"Jon Moxley",score1:1,score2:1}
-        ]
-
+    images: {
+        "Axiom": "images/Vacante.jpg",
+        "Bret Hart": "images/Vacante.jpg",
+        "Jacob Fatu": "images/Vacante.jpg",
+        "Kyle O'Reilly": "images/Vacante.jpg",
+        "Cody Rhodes": "images/Cody WWE Champion.jpg",
+        "Trick Williams": "images/Vacante.jpg",
+        "Bron Breakker": "images/Vacante.jpg",
+        "Jon Moxley": "images/Vacante.jpg"
     },
+
+    matches: [
+
+        /* DATE 1 */
+
+        {date:1,wrestler1:"Axiom",wrestler2:"Bret Hart",score1:2,score2:1},
+        {date:1,wrestler1:"Jacob Fatu",wrestler2:"Kyle O'Reilly",score1:2,score2:3},
+        {date:1,wrestler1:"Cody Rhodes",wrestler2:"Trick Williams",score1:3,score2:2},
+        {date:1,wrestler1:"Bron Breakker",wrestler2:"Jon Moxley",score1:1,score2:1},
+
+        /* DATE 2 */
+
+        {date:2,wrestler1:"Axiom",wrestler2:"Jacob Fatu",score1:1,score2:2},
+        {date:2,wrestler1:"Bret Hart",wrestler2:"Kyle O'Reilly",score1:3,score2:1},
+        {date:2,wrestler1:"Cody Rhodes",wrestler2:"Bron Breakker",score1:2,score2:2},
+        {date:2,wrestler1:"Trick Williams",wrestler2:"Jon Moxley",score1:1,score2:3},
+
+        /* DATE 3 */
+
+        {date:3,wrestler1:"Axiom",wrestler2:"Cody Rhodes",score1:1,score2:3},
+        {date:3,wrestler1:"Bret Hart",wrestler2:"Trick Williams",score1:2,score2:1},
+        {date:3,wrestler1:"Jacob Fatu",wrestler2:"Bron Breakker",score1:3,score2:2},
+        {date:3,wrestler1:"Kyle O'Reilly",wrestler2:"Jon Moxley",score1:1,score2:2},
+
+        /* DATE 4 */
+
+        {date:4,wrestler1:"Axiom",wrestler2:"Trick Williams",score1:2,score2:0},
+        {date:4,wrestler1:"Bret Hart",wrestler2:"Jacob Fatu",score1:1,score2:2},
+        {date:4,wrestler1:"Kyle O'Reilly",wrestler2:"Cody Rhodes",score1:2,score2:3},
+        {date:4,wrestler1:"Bron Breakker",wrestler2:"Jon Moxley",score1:3,score2:1},
+
+        /* DATE 5 */
+
+        {date:5,wrestler1:"Axiom",wrestler2:"Kyle O'Reilly",score1:1,score2:2},
+        {date:5,wrestler1:"Bret Hart",wrestler2:"Cody Rhodes",score1:2,score2:1},
+        {date:5,wrestler1:"Jacob Fatu",wrestler2:"Jon Moxley",score1:3,score2:2},
+        {date:5,wrestler1:"Trick Williams",wrestler2:"Bron Breakker",score1:2,score2:3},
+
+        /* DATE 6 */
+
+        {date:6,wrestler1:"Axiom",wrestler2:"Bron Breakker",score1:2,score2:1},
+        {date:6,wrestler1:"Bret Hart",wrestler2:"Jon Moxley",score1:1,score2:2},
+        {date:6,wrestler1:"Jacob Fatu",wrestler2:"Cody Rhodes",score1:2,score2:3},
+        {date:6,wrestler1:"Kyle O'Reilly",wrestler2:"Trick Williams",score1:3,score2:1},
+
+        /* DATE 7 */
+
+        {date:7,wrestler1:"Axiom",wrestler2:"Jon Moxley",score1:2,score2:3},
+        {date:7,wrestler1:"Bret Hart",wrestler2:"Bron Breakker",score1:2,score2:1},
+        {date:7,wrestler1:"Jacob Fatu",wrestler2:"Trick Williams",score1:3,score2:1},
+        {date:7,wrestler1:"Kyle O'Reilly",wrestler2:"Cody Rhodes",score1:1,score2:2}
+
+    ]
+
+},
 
 
     /* =========================================
