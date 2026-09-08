@@ -510,7 +510,10 @@ else {
                                 "TOURNAMENT",
 
                             title:
-                                tournamentId,
+    tournamentId
+        .replace("raw-", "RAW ")
+        .replace("smackdown-", "SMACKDOWN ")
+        .replace("nxt-", "NXT "),
 
                             date:
                                 `ROUND ${match.date}`,
