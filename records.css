@@ -313,3 +313,50 @@ main {
     letter-spacing: 1.5px;
     padding-top: 3px;
 }
+
+/* =========================================
+   RECORD PAGES
+   ========================================= */
+
+.record-pages {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.record-page {
+    background: #111111;
+    border: 1px solid #292929;
+    color: #777777;
+    padding: 11px 18px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.record-page:hover {
+    color: #ffffff;
+    border-color: #555555;
+}
+
+.record-page.active {
+    background: #ffffff;
+    color: #0b0b0b;
+    border-color: #ffffff;
+}
+
+@media (max-width: 600px) {
+
+    .record-pages {
+        gap: 6px;
+    }
+
+    .record-page {
+        padding: 10px 13px;
+        font-size: 9px;
+    }
+
+}
