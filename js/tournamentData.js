@@ -171,10 +171,10 @@ const tournamentData = {
 
 
     /* =========================================
-       SMACKDOWN #4
+       SMACKDOWN #1
        ========================================= */
 
-    "smackdown-4": {
+    "smackdown-1": {
 
         startDate: "08/09/2026",
 
