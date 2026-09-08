@@ -173,6 +173,53 @@ searchInput.addEventListener(
     }
 );
 
+/* =========================================
+   BRAND FILTER
+   ========================================= */
+
+const filterButtons =
+    document.querySelectorAll(".record-filter");
+
+let currentBrand = "ALL";
+
+filterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        currentBrand =
+            button.dataset.brand;
+
+        filterButtons.forEach(filter => {
+            filter.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        const search =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+
+        const filteredRecords =
+            wrestlerRecords.filter(wrestler => {
+
+                const matchesSearch =
+                    wrestler.name
+                        .toLowerCase()
+                        .includes(search);
+
+                const matchesBrand =
+                    currentBrand === "ALL" ||
+                    wrestler.brand === currentBrand;
+
+                return matchesSearch && matchesBrand;
+            });
+
+        renderRecords(filteredRecords);
+
+    });
+
+});
 
 /* =========================================
    INITIAL RENDER
