@@ -17,19 +17,59 @@ const tournaments = {};
 
 const tournamentData = {
 
-    "raw-1":
-    {participants:[
-    "Axiom",
-    "Bret Hart",
-    "Jacob Fatu",
-    "Kyle O'Reilly",
-    "Cody Rhodes",
-    "Trick Williams",
-    "Bron Breakker",
-    "Jon Moxley"
-],
+    "raw-1": {
 
-     const wrestlerImages = {
+    participants: [
+        "Axiom",
+        "Bret Hart",
+        "Jacob Fatu",
+        "Kyle O'Reilly",
+        "Cody Rhodes",
+        "Trick Williams",
+        "Bron Breakker",
+        "Jon Moxley"
+    ],
+
+    matches: [
+
+        {
+            wrestler1: "Axiom",
+            wrestler2: "Bret Hart",
+            score1: 2,
+            score2: 1
+        },
+
+        {
+            wrestler1: "Jacob Fatu",
+            wrestler2: "Kyle O'Reilly",
+            score1: 2,
+            score2: 3
+        },
+
+        {
+            wrestler1: "Cody Rhodes",
+            wrestler2: "Trick Williams",
+            score1: 3,
+            score2: 2
+        },
+
+        {
+            wrestler1: "Bron Breakker",
+            wrestler2: "Jon Moxley",
+            score1: 1,
+            score2: 3
+        }
+
+    ]
+
+}
+
+
+/* =========================================
+   WRESTLER IMAGES
+   ========================================= */
+
+const wrestlerImages = {
 
     "Axiom": "images/Vacante.jpg",
     "Bret Hart": "images/Vacante.jpg",
@@ -39,40 +79,6 @@ const tournamentData = {
     "Trick Williams": "images/Vacante.jpg",
     "Bron Breakker": "images/Vacante.jpg",
     "Jon Moxley": "images/Vacante.jpg"
-
-        matches: [
-
-            {
-                wrestler1: "Axiom",
-                wrestler2: "Bret Hart",
-                score1: 2,
-                score2: 1
-            },
-
-            {
-                wrestler1: "Jacob Fatu",
-                wrestler2: "Kyle O'Reilly",
-                score1: 2,
-                score2: 3
-            },
-
-            {
-                wrestler1: "Cody Rhodes",
-                wrestler2: "Trick Williams",
-                score1: 3,
-                score2: 2
-            },
-
-            {
-                wrestler1: "Bron Breakker",
-                wrestler2: "Jon Moxley",
-                score1: 1,
-                score2: 3
-            }
-
-        ]
-
-    }
 
 };
 
