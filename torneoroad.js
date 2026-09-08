@@ -58,7 +58,7 @@ const tournamentData = {
         wrestler1: "Bron Breakker",
         wrestler2: "Jon Moxley",
         score1: 1,
-        score2: 3
+        score2: 1
     }
 
 ]
