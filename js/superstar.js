@@ -6,7 +6,6 @@
 
 const urlParams=new URLSearchParams(window.location.search);
 const wrestlerId=urlParams.get("id");
-
 const imageElement=document.getElementById("superstar-image");
 const nameElement=document.getElementById("superstar-name");
 const nicknameElement=document.getElementById("superstar-nickname");
@@ -28,6 +27,23 @@ function normalizeName(name){
     return name.toLowerCase().trim();
 }
 
+function parseDate(date){
+    if(!date)return 0;
+    const parts=date.split("/");
+    if(parts.length!==3)return 0;
+    return new Date(`${parts[2]}-${parts[1]}-${parts[0]}T00:00:00`).getTime();
+}
+
+function addDays(date,days){
+    const result=new Date(date);
+    result.setDate(result.getDate()+days);
+    return result;
+}
+
+function formatDate(date){
+    return `${String(date.getDate()).padStart(2,"0")}/${String(date.getMonth()+1).padStart(2,"0")}/${date.getFullYear()}`;
+}
+
 const superstar=wrestlers.find(wrestler=>createWrestlerId(wrestler.name)===wrestlerId);
 
 if(!superstar){
@@ -36,13 +52,11 @@ if(!superstar){
     brandElement.textContent="";
     matchHistoryElement.innerHTML=`<p>This superstar does not exist.</p>`;
 }else{
-
     imageElement.src=superstar.image||"images/Vacante.jpg";
     imageElement.alt=superstar.name;
     nameElement.textContent=superstar.name;
     nicknameElement.textContent=superstar.nickname||"";
     brandElement.textContent=superstar.brand||"NO BRAND";
-
     championshipsElement.innerHTML="";
 
     if(superstar.achievements&&superstar.achievements.length>0){
@@ -56,11 +70,7 @@ if(!superstar){
     }
 
     const matchHistory=[];
-
-    function addMatch(match){
-        matchHistory.push(match);
-    }
-
+    function addMatch(match){matchHistory.push(match);}
     const wrestlerName=normalizeName(superstar.name);
 
     function getEventCategory(eventId,event){
@@ -118,13 +128,13 @@ if(!superstar){
 
                 addMatch({
                     source:"EVENT",
-                    category:category,
+                    category,
                     title:event.title,
                     date:event.date,
-                    sortDate:new Date(event.date.split("/").reverse().join("-")).getTime(),
+                    sortDate:parseDate(event.date),
                     type:result.type,
                     match:result.match,
-                    opponents:opponents,
+                    opponents,
                     status:resultStatus,
                     url:`event.html?id=${eventId}`
                 });
@@ -144,6 +154,8 @@ if(!superstar){
             }else if(tournamentIdLower.startsWith("nxt-")||tournamentIdLower.startsWith("speed-")){
                 category="NXT";
             }
+
+            const tournamentStart=parseDate(tournament.startDate);
 
             tournament.matches.forEach(match=>{
                 const isWrestler1=normalizeName(match.wrestler1)===wrestlerName;
@@ -173,12 +185,14 @@ if(!superstar){
                     tournamentTitle=tournamentId.replace("speed-","SPEED ");
                 }
 
+                const matchDate=tournamentStart?addDays(new Date(tournamentStart),match.date-1):null;
+
                 addMatch({
                     source:"TOURNAMENT",
-                    category:category,
+                    category,
                     title:tournamentTitle,
-                    date:`ROUND ${match.date}`,
-                    sortDate:match.date,
+                    date:matchDate?formatDate(matchDate):`ROUND ${match.date}`,
+                    sortDate:matchDate?matchDate.getTime():match.date,
                     type:"SINGLES",
                     match:"TOURNAMENT MATCH",
                     opponents:[opponent],
@@ -236,7 +250,6 @@ if(!superstar){
         matchHistoryElement.innerHTML=`<p>NO MATCHES</p>`;
     }else{
         matchHistoryElement.innerHTML="";
-
         const categories=["WEEKLY","NXT","PLE","SPECIAL"];
 
         categories.forEach(category=>{
