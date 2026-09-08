@@ -316,3 +316,95 @@ main {
     }
 
    }
+
+/* =========================================
+   TEAMS
+   ========================================= */
+
+.team {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-width: 430px;
+}
+
+
+/* =========================================
+   CHAMPIONSHIP
+   ========================================= */
+
+.championship-name {
+    text-align: center;
+
+    margin: 5px 0 20px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   TEAM WRESTLERS
+   ========================================= */
+
+.team .wrestler {
+    width: 125px;
+}
+
+.team .wrestler img {
+    width: 100px;
+    height: 100px;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin: 0 auto 10px;
+
+    border: 1px solid #333333;
+}
+
+.team .wrestler span {
+    font-size: 11px;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .match {
+        gap: 8px;
+    }
+
+    .team {
+        max-width: 145px;
+        gap: 8px;
+    }
+
+    .team .wrestler {
+        width: 65px;
+    }
+
+    .team .wrestler img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .team .wrestler span {
+        font-size: 9px;
+    }
+
+    .vs {
+        font-size: 9px;
+    }
+
+}
