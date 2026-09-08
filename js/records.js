@@ -8,45 +8,33 @@
    WRESTLER RECORDS DATABASE
    ========================================= */
 
-const wrestlerRecords = [
+const wrestlerRecords = wrestlers.map(wrestler => {
 
-    {
-        id: "axiom",
-        name: "Axiom",
-        brand: "NXT",
-        wins: 0,
-        losses: 0,
-        draws: 0
-    },
+    const recordParts =
+        wrestler.overall2026
+            .split("-")
+            .map(part => part.trim());
 
-    {
-        id: "adam-cole",
-        name: "Adam Cole",
-        brand: "RAW",
-        wins: 0,
-        losses: 0,
-        draws: 0
-    },
 
-    {
-        id: "jeff-jarrett",
-        name: "Jeff Jarrett",
-        brand: "SMACKDOWN",
-        wins: 0,
-        losses: 0,
-        draws: 0
-    },
+    return {
 
-    {
-        id: "alberto-del-rio",
-        name: "Alberto Del Rio",
-        brand: "RAW",
-        wins: 0,
-        losses: 0,
-        draws: 0
-    }
+        id: wrestler.name
+            .toLowerCase()
+            .replace(/\s+/g, "-"),
 
-];
+        name: wrestler.name,
+
+        brand: wrestler.brand || "NO BRAND",
+
+        wins: recordParts[0] || "0",
+
+        losses: recordParts[1] || "0",
+
+        draws: recordParts[2] || "0"
+
+    };
+
+});
 
 
 /* =========================================
@@ -85,6 +73,10 @@ function renderRecords(recordList) {
 
     recordsContainer.innerHTML = "";
 
+
+    /* =====================================
+       NO RESULTS
+       ===================================== */
 
     if (recordList.length === 0) {
 
@@ -201,7 +193,8 @@ function getFilteredRecords() {
 
         const matchesBrand =
             currentBrand === "ALL" ||
-            wrestler.brand === currentBrand;
+            wrestler.brand.toUpperCase() ===
+            currentBrand;
 
 
         return matchesSearch && matchesBrand;
@@ -301,7 +294,7 @@ function updateRecords() {
 
 
     /* =====================================
-       RENDER
+       RENDER RECORDS
        ===================================== */
 
     renderRecords(filteredRecords);
