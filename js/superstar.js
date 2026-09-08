@@ -58,7 +58,7 @@ const matchHistoryElement =
 
 
 /* =========================================
-   CREATE ID FROM NAME
+   CREATE WRESTLER ID
    ========================================= */
 
 function createWrestlerId(name) {
@@ -85,7 +85,7 @@ function normalizeName(name) {
 
 
 /* =========================================
-   FIND WRESTLER
+   FIND SUPERSTAR
    ========================================= */
 
 const superstar =
@@ -141,43 +141,10 @@ else {
         superstar.name;
 
     nicknameElement.textContent =
-        superstar.nickname
-            ? superstar.nickname
-            : "";
+        superstar.nickname || "";
 
     brandElement.textContent =
-        superstar.brand
-            ? superstar.brand
-            : "NO BRAND";
-
-
-    /* =====================================
-       OVERALL RECORD
-       ===================================== */
-
-    const recordParts =
-        (superstar.overall2026 || "0 - 0 - 0")
-            .split("-")
-            .map(part => part.trim());
-
-    const overallWins =
-        recordParts[0] || "0";
-
-    const overallLosses =
-        recordParts[1] || "0";
-
-    const overallDraws =
-        recordParts[2] || "0";
-
-
-    winsElement.textContent =
-        overallWins;
-
-    lossesElement.textContent =
-        overallLosses;
-
-    drawsElement.textContent =
-        overallDraws;
+        superstar.brand || "NO BRAND";
 
 
     /* =====================================
@@ -220,21 +187,21 @@ else {
 
 
     /* =====================================
-       MATCH HISTORY
+       MATCH HISTORY DATABASE
        ===================================== */
 
     const matchHistory = [];
 
-
-    /* =====================================
-       ADD MATCH
-       ===================================== */
 
     function addMatch(match) {
 
         matchHistory.push(match);
 
     }
+
+
+    const wrestlerName =
+        normalizeName(superstar.name);
 
 
     /* =====================================
@@ -258,12 +225,6 @@ else {
 
                     const wrestler2 =
                         result.wrestler2 || [];
-
-
-                    const wrestlerName =
-                        normalizeName(
-                            superstar.name
-                        );
 
 
                     const inTeam1 =
@@ -291,15 +252,21 @@ else {
 
 
                     /* =========================
-                       RESULT
+                       DETERMINE RESULT
                        ========================= */
 
                     let resultStatus =
                         "DRAW";
 
 
+                    const winner =
+                        normalizeName(
+                            result.winner || ""
+                        );
+
+
                     if (
-                        result.winner === "DRAW"
+                        winner === "draw"
                     ) {
 
                         resultStatus =
@@ -307,43 +274,54 @@ else {
 
                     }
 
+                    /* SINGLES */
+
                     else if (
-                        inTeam1
+                        result.type === "SINGLES"
                     ) {
 
-                        resultStatus =
-                            result.winner === "Team 1"
-                                ? "WIN"
-                                : "LOSS";
+                        if (
+                            winner === wrestlerName
+                        ) {
+
+                            resultStatus =
+                                "WIN";
+
+                        }
+
+                        else {
+
+                            resultStatus =
+                                "LOSS";
+
+                        }
 
                     }
 
-                    else if (
-                        inTeam2
-                    ) {
-
-                        resultStatus =
-                            result.winner === "Team 2"
-                                ? "WIN"
-                                : "LOSS";
-
-                    }
+                    /* TAG / 6-MAN */
 
                     else if (
-                        normalizeName(
-                            result.winner || ""
-                        ) === wrestlerName
+                        result.type === "TAG TEAM" ||
+                        result.type === "6-MAN TAG TEAM"
                     ) {
 
-                        resultStatus =
-                            "WIN";
+                        if (inTeam1) {
 
-                    }
+                            resultStatus =
+                                winner === "team 1"
+                                    ? "WIN"
+                                    : "LOSS";
 
-                    else {
+                        }
 
-                        resultStatus =
-                            "LOSS";
+                        else if (inTeam2) {
+
+                            resultStatus =
+                                winner === "team 2"
+                                    ? "WIN"
+                                    : "LOSS";
+
+                        }
 
                     }
 
@@ -424,12 +402,6 @@ else {
                 tournament.matches.forEach(
                     match => {
 
-                        const wrestlerName =
-                            normalizeName(
-                                superstar.name
-                            );
-
-
                         const isWrestler1 =
                             normalizeName(
                                 match.wrestler1
@@ -486,13 +458,6 @@ else {
 
                         }
 
-                        else {
-
-                            resultStatus =
-                                "DRAW";
-
-                        }
-
 
                         /* =====================
                            OPPONENT
@@ -504,16 +469,29 @@ else {
                                 : match.wrestler1;
 
 
+                        const tournamentTitle =
+                            tournamentId
+                                .replace(
+                                    "raw-",
+                                    "RAW "
+                                )
+                                .replace(
+                                    "smackdown-",
+                                    "SMACKDOWN "
+                                )
+                                .replace(
+                                    "nxt-",
+                                    "NXT "
+                                );
+
+
                         addMatch({
 
                             source:
                                 "TOURNAMENT",
 
                             title:
-    tournamentId
-        .replace("raw-", "RAW ")
-        .replace("smackdown-", "SMACKDOWN ")
-        .replace("nxt-", "NXT "),
+                                tournamentTitle,
 
                             date:
                                 `ROUND ${match.date}`,
@@ -539,6 +517,52 @@ else {
         );
 
     }
+
+
+    /* =====================================
+       CALCULATE OVERALL RECORD
+       ===================================== */
+
+    let totalWins = 0;
+    let totalLosses = 0;
+    let totalDraws = 0;
+
+
+    matchHistory.forEach(match => {
+
+        if (match.status === "WIN") {
+
+            totalWins++;
+
+        }
+
+        else if (match.status === "LOSS") {
+
+            totalLosses++;
+
+        }
+
+        else if (match.status === "DRAW") {
+
+            totalDraws++;
+
+        }
+
+    });
+
+
+    /* =====================================
+       DISPLAY OVERALL RECORD
+       ===================================== */
+
+    winsElement.textContent =
+        totalWins;
+
+    lossesElement.textContent =
+        totalLosses;
+
+    drawsElement.textContent =
+        totalDraws;
 
 
     /* =====================================
