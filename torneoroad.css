@@ -474,21 +474,27 @@
 
 
     .standings-table {
-        min-width: 600px;
-    }
+    min-width: 0;
+    width: 100%;
+}
 
+.standings-table th,
+.standings-table td {
+    padding: 10px 5px;
+}
 
-    .standings-table th,
-    .standings-table td {
-        padding: 12px 8px;
-    }
-
-.matrix-table th:first-child,
-.matrix-table td:first-child {
+.standings-table th:nth-child(2),
+.standings-table td:nth-child(2) {
     width: 90px;
     min-width: 90px;
-    padding-left: 6px;
-    padding-right: 6px;
+}
+   
+.matrix-table th:first-child,
+.matrix-table td:first-child {
+    width: 65px;
+    min-width: 65px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 
