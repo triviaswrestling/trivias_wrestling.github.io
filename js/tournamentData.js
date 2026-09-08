@@ -134,6 +134,87 @@ const tournamentData = {
        "nxt-1":{
     startDate:"08/09/2026",
     participants:[
+        "Adam Cole","Alberto Del Rio","Austin Theory","Batista","Bo Dallas",
+        "Bravo Americano","Chris Benoit","CM Punk","Damian Priest","Jeff Jarrett"
+    ],
+    images:{
+        "Adam Cole":"images/zacarias.jpg",
+        "Alberto Del Rio":"images/Vacante.jpg",
+        "Austin Theory":"images/Vacante.jpg",
+        "Batista":"images/Vacante.jpg",
+        "Bo Dallas":"images/Vacante.jpg",
+        "Bravo Americano":"images/Vacante.jpg",
+        "Chris Benoit":"images/Vacante.jpg",
+        "CM Punk":"images/Vacante.jpg",
+        "Damian Priest":"images/Vacante.jpg",
+        "Jeff Jarrett":"images/Jeff Jarrett trivias.jpg"
+    },
+    matches:[
+        {date:1,wrestler1:"Adam Cole",wrestler2:"Jeff Jarrett",score1:3,score2:1},
+        {date:1,wrestler1:"Alberto Del Rio",wrestler2:"Damian Priest",score1:1,score2:2},
+        {date:1,wrestler1:"Austin Theory",wrestler2:"CM Punk",score1:2,score2:2},
+        {date:1,wrestler1:"Batista",wrestler2:"Chris Benoit",score1:2,score2:1},
+        {date:1,wrestler1:"Bo Dallas",wrestler2:"Bravo Americano",score1:1,score2:3},
+
+        {date:2,wrestler1:"Adam Cole",wrestler2:"Damian Priest",score1:2,score2:1},
+        {date:2,wrestler1:"Jeff Jarrett",wrestler2:"CM Punk",score1:0,score2:3},
+        {date:2,wrestler1:"Alberto Del Rio",wrestler2:"Chris Benoit",score1:2,score2:2},
+        {date:2,wrestler1:"Austin Theory",wrestler2:"Bravo Americano",score1:3,score2:1},
+        {date:2,wrestler1:"Batista",wrestler2:"Bo Dallas",score1:2,score2:0},
+
+        {date:3,wrestler1:"Adam Cole",wrestler2:"CM Punk",score1:1,score2:2},
+        {date:3,wrestler1:"Damian Priest",wrestler2:"Chris Benoit",score1:3,score2:1},
+        {date:3,wrestler1:"Jeff Jarrett",wrestler2:"Bravo Americano",score1:1,score2:2},
+        {date:3,wrestler1:"Alberto Del Rio",wrestler2:"Bo Dallas",score1:3,score2:0},
+        {date:3,wrestler1:"Austin Theory",wrestler2:"Batista",score1:1,score2:2},
+
+        {date:4,wrestler1:"Adam Cole",wrestler2:"Chris Benoit",score1:3,score2:1},
+        {date:4,wrestler1:"CM Punk",wrestler2:"Bravo Americano",score1:2,score2:1},
+        {date:4,wrestler1:"Damian Priest",wrestler2:"Bo Dallas",score1:3,score2:0},
+        {date:4,wrestler1:"Jeff Jarrett",wrestler2:"Batista",score1:1,score2:2},
+        {date:4,wrestler1:"Alberto Del Rio",wrestler2:"Austin Theory",score1:2,score2:1},
+
+        {date:5,wrestler1:"Adam Cole",wrestler2:"Bravo Americano",score1:2,score2:0},
+        {date:5,wrestler1:"Chris Benoit",wrestler2:"Bo Dallas",score1:2,score2:1},
+        {date:5,wrestler1:"CM Punk",wrestler2:"Batista",score1:3,score2:2},
+        {date:5,wrestler1:"Damian Priest",wrestler2:"Austin Theory",score1:1,score2:2},
+        {date:5,wrestler1:"Jeff Jarrett",wrestler2:"Alberto Del Rio",score1:0,score2:3},
+
+        {date:6,wrestler1:"Adam Cole",wrestler2:"Bo Dallas",score1:3,score2:1},
+        {date:6,wrestler1:"Bravo Americano",wrestler2:"Batista",score1:2,score2:2},
+        {date:6,wrestler1:"Chris Benoit",wrestler2:"Austin Theory",score1:1,score2:2},
+        {date:6,wrestler1:"CM Punk",wrestler2:"Alberto Del Rio",score1:3,score2:1},
+        {date:6,wrestler1:"Damian Priest",wrestler2:"Jeff Jarrett",score1:2,score2:0},
+
+        {date:7,wrestler1:"Adam Cole",wrestler2:"Batista",score1:2,score2:3},
+        {date:7,wrestler1:"Bo Dallas",wrestler2:"Austin Theory",score1:0,score2:2},
+        {date:7,wrestler1:"Bravo Americano",wrestler2:"Alberto Del Rio",score1:1,score2:3},
+        {date:7,wrestler1:"Chris Benoit",wrestler2:"Jeff Jarrett",score1:2,score2:1},
+        {date:7,wrestler1:"CM Punk",wrestler2:"Damian Priest",score1:2,score2:1},
+
+        {date:8,wrestler1:"Adam Cole",wrestler2:"Austin Theory",score1:2,score2:1},
+        {date:8,wrestler1:"Batista",wrestler2:"Alberto Del Rio",score1:3,score2:1},
+        {date:8,wrestler1:"Bo Dallas",wrestler2:"Jeff Jarrett",score1:1,score2:2},
+        {date:8,wrestler1:"Bravo Americano",wrestler2:"Damian Priest",score1:2,score2:3},
+        {date:8,wrestler1:"Chris Benoit",wrestler2:"CM Punk",score1:1,score2:3},
+
+        {date:9,wrestler1:"Adam Cole",wrestler2:"Alberto Del Rio",score1:3,score2:2},
+        {date:9,wrestler1:"Austin Theory",wrestler2:"Jeff Jarrett",score1:2,score2:0},
+        {date:9,wrestler1:"Batista",wrestler2:"Damian Priest",score1:1,score2:2},
+        {date:9,wrestler1:"Bo Dallas",wrestler2:"CM Punk",score1:0,score2:3},
+        {date:9,wrestler1:"Bravo Americano",wrestler2:"Chris Benoit",score1:1,score2:2}
+    ]
+},
+           };
+        {date:7,wrestler1:"Randy Orton",wrestler2:"Kyle O'Reilly",score1:2,score2:2},
+        {date:7,wrestler1:"Seth Rollins",wrestler2:"Christian Cage",score1:3,score2:1},
+        {date:7,wrestler1:"LA Knight",wrestler2:"Finn Balor",score1:1,score2:2}
+    ]
+},
+
+       "nxt-1":{
+    startDate:"08/09/2026",
+    participants:[
         "Adam Cole",
         "Alberto Del Rio",
         "Austin Theory",
