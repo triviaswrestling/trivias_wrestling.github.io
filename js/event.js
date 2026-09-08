@@ -12,8 +12,7 @@ const urlParams = new URLSearchParams(
     window.location.search
 );
 
-const eventId =
-    urlParams.get("id");
+const eventId = urlParams.get("id");
 
 
 /* =========================================
@@ -39,7 +38,7 @@ const eventResults =
 
 function createWrestlerId(name) {
 
-    return name
+    return String(name)
         .toLowerCase()
         .trim()
         .replace(/\s+/g, "-");
@@ -53,7 +52,7 @@ function createWrestlerId(name) {
 
 function normalizeName(name) {
 
-    return name
+    return String(name)
         .toLowerCase()
         .trim();
 
@@ -66,14 +65,11 @@ function normalizeName(name) {
 
 function getWrestler(name) {
 
-    if (
-        typeof wrestlers === "undefined"
-    ) {
+    if (typeof wrestlers === "undefined") {
 
         return null;
 
     }
-
 
     return wrestlers.find(wrestler => {
 
@@ -95,7 +91,6 @@ function getWrestlerImage(name) {
     const wrestler =
         getWrestler(name);
 
-
     if (
         wrestler &&
         wrestler.image
@@ -104,7 +99,6 @@ function getWrestlerImage(name) {
         return wrestler.image;
 
     }
-
 
     return "images/Vacante.jpg";
 
@@ -117,6 +111,7 @@ function getWrestlerImage(name) {
 
 if (
     !eventId ||
+    typeof eventData === "undefined" ||
     !eventData[eventId]
 ) {
 
@@ -166,170 +161,296 @@ else {
        CLEAR RESULTS
        ===================================== */
 
-    eventResults.innerHTML =
-        "";
+    eventResults.innerHTML = "";
+
+
+    /* =====================================
+       NO RESULTS
+       ===================================== */
+
+    if (
+        !event.results ||
+        event.results.length === 0
+    ) {
+
+        eventResults.innerHTML = `
+            <p>
+                No results available.
+            </p>
+        `;
+
+    }
 
 
     /* =====================================
        RENDER RESULTS
        ===================================== */
 
-    event.results.forEach(result => {
+    else {
 
-        const resultCard =
-            document.createElement("div");
+        event.results.forEach(result => {
 
-        resultCard.className =
-            "result-card";
+            const resultCard =
+                document.createElement("div");
 
-
-        /* =================================
-           CHAMPIONSHIP
-           ================================= */
-
-        let championshipHTML =
-            "";
+            resultCard.className =
+                "result-card";
 
 
-        if (
-            result.championship
-        ) {
+            /* =================================
+               WRESTLERS
+               ================================= */
 
-            championshipHTML = `
+            const team1 = Array.isArray(
+                result.wrestler1
+            )
+                ? result.wrestler1
+                : [result.wrestler1];
 
-                <div class="championship-name">
-                    ${result.championship}
-                </div>
-
-            `;
-
-        }
-
-
-        /* =================================
-           CREATE WRESTLER HTML
-           ================================= */
-
-        function createWrestlerHTML(name) {
-
-            const wrestlerId =
-                createWrestlerId(name);
-
-            const image =
-                getWrestlerImage(name);
+            const team2 = Array.isArray(
+                result.wrestler2
+            )
+                ? result.wrestler2
+                : [result.wrestler2];
 
 
-            return `
+            /* =================================
+               CREATE WRESTLER HTML
+               ================================= */
 
-                <div class="wrestler">
+            function createWrestlerHTML(name) {
 
-                    <a
-                        href="superstar.html?id=${wrestlerId}"
-                        class="wrestler-link"
-                    >
+                const wrestlerId =
+                    createWrestlerId(name);
 
-                        <img
-                            src="${image}"
-                            alt="${name}"
+                const image =
+                    getWrestlerImage(name);
+
+                return `
+
+                    <div class="wrestler">
+
+                        <a
+                            href="superstar.html?id=${wrestlerId}"
+                            class="wrestler-link"
                         >
 
-                        <span>
-                            ${name}
-                        </span>
+                            <img
+                                src="${image}"
+                                alt="${name}"
+                            >
 
-                    </a>
+                            <span>
+                                ${name}
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            /* =================================
+               TEAM 1
+               ================================= */
+
+            let team1HTML = "";
+
+            team1.forEach(name => {
+
+                team1HTML +=
+                    createWrestlerHTML(name);
+
+            });
+
+
+            /* =================================
+               TEAM 2
+               ================================= */
+
+            let team2HTML = "";
+
+            team2.forEach(name => {
+
+                team2HTML +=
+                    createWrestlerHTML(name);
+
+            });
+
+
+            /* =================================
+               MATCH NAME
+               ================================= */
+
+            const matchName =
+                result.match ||
+                `${team1.join(" & ")} vs ${team2.join(" & ")}`;
+
+
+            /* =================================
+               WINNER
+               ================================= */
+
+            let winner =
+                result.winner || "";
+
+
+            if (!winner) {
+
+                if (
+                    typeof result.score1 === "number" &&
+                    typeof result.score2 === "number"
+                ) {
+
+                    if (
+                        result.score1 >
+                        result.score2
+                    ) {
+
+                        winner =
+                            team1.join(" & ");
+
+                    }
+
+                    else if (
+                        result.score2 >
+                        result.score1
+                    ) {
+
+                        winner =
+                            team2.join(" & ");
+
+                    }
+
+                    else {
+
+                        winner =
+                            "DRAW";
+
+                    }
+
+                }
+
+            }
+
+
+            /* =================================
+               SCORE
+               ================================= */
+
+            let scoreHTML = "";
+
+            if (
+                result.score1 !== undefined &&
+                result.score2 !== undefined
+            ) {
+
+                scoreHTML = `
+
+                    <div class="match-score">
+
+                        ${result.score1}
+                        -
+                        ${result.score2}
+
+                    </div>
+
+                `;
+
+            }
+
+
+            /* =================================
+               CHAMPIONSHIP
+               ================================= */
+
+            let championshipHTML = "";
+
+            if (
+                result.championship
+            ) {
+
+                championshipHTML = `
+
+                    <div class="championship-name">
+
+                        ${result.championship}
+
+                    </div>
+
+                `;
+
+            }
+
+
+            /* =================================
+               RESULT CARD
+               ================================= */
+
+            resultCard.innerHTML = `
+
+                <div class="match-name">
+
+                    ${matchName}
+
+                </div>
+
+                ${championshipHTML}
+
+
+                <div class="match">
+
+
+                    <div class="team">
+
+                        ${team1HTML}
+
+                    </div>
+
+
+                    <div class="vs">
+
+                        VS
+
+                        ${scoreHTML}
+
+                    </div>
+
+
+                    <div class="team">
+
+                        ${team2HTML}
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="match-winner">
+
+                    WINNER:
+
+                    <strong>
+
+                        ${winner || "TBD"}
+
+                    </strong>
 
                 </div>
 
             `;
 
-        }
 
-
-        /* =================================
-           TEAM 1
-           ================================= */
-
-        let team1HTML =
-            "";
-
-
-        result.wrestler1.forEach(name => {
-
-            team1HTML +=
-                createWrestlerHTML(name);
+            eventResults.appendChild(
+                resultCard
+            );
 
         });
 
-
-        /* =================================
-           TEAM 2
-           ================================= */
-
-        let team2HTML =
-            "";
-
-
-        result.wrestler2.forEach(name => {
-
-            team2HTML +=
-                createWrestlerHTML(name);
-
-        });
-
-
-        /* =================================
-           RESULT CARD
-           ================================= */
-
-        resultCard.innerHTML = `
-
-            <div class="match-name">
-                ${result.match}
-            </div>
-
-            ${championshipHTML}
-
-            <div class="match">
-
-                <div class="team">
-
-                    ${team1HTML}
-
-                </div>
-
-
-                <div class="vs">
-                    VS
-                </div>
-
-
-                <div class="team">
-
-                    ${team2HTML}
-
-                </div>
-
-            </div>
-
-
-            <div class="match-winner">
-
-                WINNER:
-
-                <strong>
-                    ${result.winner}
-                </strong>
-
-            </div>
-
-        `;
-
-
-        eventResults.appendChild(
-            resultCard
-        );
-
-    });
+    }
 
 }
