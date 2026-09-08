@@ -77,3 +77,17 @@ document.addEventListener("keydown", function (event) {
     }
 
 });
+
+
+/* =========================================
+   MI WRESTLING
+   GLOBAL WRESTLER DATABASE
+   ========================================= */
+
+window.wrestlerDatabase = {};
+
+wrestlers.forEach(wrestler => {
+
+    window.wrestlerDatabase[wrestler.name] = wrestler;
+
+});
