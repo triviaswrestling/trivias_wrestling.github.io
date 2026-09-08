@@ -1,0 +1,246 @@
+/* =========================================
+   MI WRESTLING
+   RECORDS
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #0b0b0b;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+header {
+    width: 100%;
+    height: 70px;
+
+    background: #111111;
+
+    border-bottom: 1px solid #292929;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 35px;
+}
+
+.back-button {
+    color: #ffffff;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    transition: 0.2s;
+}
+
+.back-button:hover {
+    opacity: 0.6;
+}
+
+
+/* =========================================
+   MAIN
+   ========================================= */
+
+main {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 40px auto;
+
+    padding: 0 25px;
+}
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.records-header {
+    margin-bottom: 30px;
+}
+
+.records-header h1 {
+    margin: 0;
+
+    font-size: 32px;
+
+    letter-spacing: 2px;
+}
+
+.records-header p {
+    margin: 8px 0 0;
+
+    color: #777777;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   SEARCH
+   ========================================= */
+
+.records-search {
+    margin-bottom: 25px;
+}
+
+#record-search {
+    width: 100%;
+    height: 48px;
+
+    background: #111111;
+
+    border: 1px solid #292929;
+
+    color: #ffffff;
+
+    padding: 0 16px;
+
+    font-size: 13px;
+
+    outline: none;
+}
+
+#record-search:focus {
+    border-color: #555555;
+}
+
+#record-search::placeholder {
+    color: #666666;
+}
+
+
+/* =========================================
+   RECORDS GRID
+   ========================================= */
+
+#records-container {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+
+/* =========================================
+   RECORD CARD
+   ========================================= */
+
+.record-card {
+    background: #111111;
+
+    border: 1px solid #292929;
+
+    padding: 22px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.record-card:hover {
+    border-color: #555555;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   NAME
+   ========================================= */
+
+.record-name {
+    margin: 0 0 15px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   RECORD
+   ========================================= */
+
+.record-result {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #292929;
+}
+
+.record-label {
+    color: #777777;
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+}
+
+.record-value {
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    header {
+        height: 60px;
+
+        padding: 0 18px;
+    }
+
+    main {
+        margin: 25px auto;
+
+        padding: 0 14px;
+    }
+
+    .records-header h1 {
+        font-size: 24px;
+    }
+
+    #records-container {
+        grid-template-columns: 1fr;
+    }
+
+    .record-card {
+        padding: 18px;
+    }
+
+}
