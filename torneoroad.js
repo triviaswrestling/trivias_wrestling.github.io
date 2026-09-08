@@ -17,16 +17,28 @@ const tournaments = {};
 
 const tournamentData = {
 
-    "raw-1": {participants: [
-    { name: "Axiom", image: "images/Vacante.jpg"},
-    { name: "Bret Hart",image: "images/Darkman Hart.jpg" },
-    { name: "Jacob Fatu", image: "images/Vacante.jpg"},
-    { name: "Kyle O'Reilly", image: "images/Vacante.jpg" },
-    { name: "Cody Rhodes", image: "images/Vacante.jpg" },
-    { name: "Trick Williams", image: "images/Vacante.jpg" },
-    { name: "Bron Breakker", image: "images/Vacante.jpg" },
-    { name: "Jon Moxley", image: "images/Vacante.jpg"}
-    ],
+    "raw-1":
+    {participants:[
+    "Axiom",
+    "Bret Hart",
+    "Jacob Fatu",
+    "Kyle O'Reilly",
+    "Cody Rhodes",
+    "Trick Williams",
+    "Bron Breakker",
+    "Jon Moxley"
+],
+
+     const wrestlerImages = {
+
+    "Axiom": "images/Vacante.jpg",
+    "Bret Hart": "images/Vacante.jpg",
+    "Jacob Fatu": "images/Vacante.jpg",
+    "Kyle O'Reilly": "images/Vacante.jpg",
+    "Cody Rhodes": "images/Vacante.jpg",
+    "Trick Williams": "images/Vacante.jpg",
+    "Bron Breakker": "images/Vacante.jpg",
+    "Jon Moxley": "images/Vacante.jpg"
 
         matches: [
 
@@ -208,26 +220,32 @@ if (currentData) {
 
 
     currentData.participants.forEach(
-        (wrestler, index) => {
+    (wrestler) => {
 
-            const card =
-                document.createElement("div");
+        const card =
+            document.createElement("div");
 
-            card.className =
-                "draft-card";
+        card.className =
+            "draft-card";
 
+        card.innerHTML = `
 
-            card.innerHTML =`<span class="draft-card-name">
-                    ${wrestler}
-                </span>
+            <img
+                class="draft-card-image"
+                src="${wrestlerImages[wrestler]}"
+                alt="${wrestler}"
+            >
 
-            `;
+            <span class="draft-card-name">
+                ${wrestler}
+            </span>
 
+        `;
 
-            draftContainer.appendChild(card);
+        draftContainer.appendChild(card);
 
-        }
-    );
+    }
+);
 
 } else {
 
