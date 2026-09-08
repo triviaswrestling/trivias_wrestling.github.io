@@ -16,10 +16,91 @@ const eventId = urlParams.get("id");
 
 
 /* =========================================
+   WRESTLER DATABASE
+   ========================================= */
+
+const wrestlerDatabase = {
+
+    "Axiom": {
+        image: "images/Vacante.jpg"
+    },
+
+    "Adam Cole": {
+        image: "images/Vacante.jpg"
+    },
+
+    "Jeff Jarrett": {
+        image: "images/Vacante.jpg"
+    },
+
+    "Alberto Del Rio": {
+        image: "images/Vacante.jpg"
+    },
+
+    "Wrestler A": {
+        image: "images/Vacante.jpg"
+    },
+
+    "Wrestler B": {
+        image: "images/Vacante.jpg"
+    },
+
+    "Wrestler C": {
+        image: "images/Vacante.jpg"
+    },
+
+    "Wrestler D": {
+        image: "images/Vacante.jpg"
+    },
+
+    "Wrestler E": {
+        image: "images/Vacante.jpg"
+    },
+
+    "Wrestler F": {
+        image: "images/Vacante.jpg"
+    },
+
+    "Champion": {
+        image: "images/Vacante.jpg"
+    },
+
+    "Challenger": {
+        image: "images/Vacante.jpg"
+    }
+
+};
+
+
+/* =========================================
+   GET WRESTLER
+   ========================================= */
+
+function getWrestler(name) {
+
+    if (wrestlerDatabase[name]) {
+
+        return wrestlerDatabase[name];
+
+    }
+
+    return {
+        image: "images/Vacante.jpg"
+    };
+
+}
+
+
+/* =========================================
    EVENTS DATABASE
    ========================================= */
 
 const eventData = {
+
+
+    /* =========================================
+       WEEKLY 1
+       ========================================= */
 
     "weekly-1": {
 
@@ -30,32 +111,22 @@ const eventData = {
 
         results: [
 
-            /* SINGLES */
-
             {
                 match: "MATCH 1",
                 type: "SINGLES",
                 championship: "",
 
                 wrestler1: [
-                    {
-                        name: "Axiom",
-                        image: "images/Vacante.jpg"
-                    }
+                    "Axiom"
                 ],
 
                 wrestler2: [
-                    {
-                        name: "Adam Cole",
-                        image: "images/Vacante.jpg"
-                    }
+                    "Adam Cole"
                 ],
 
                 winner: "Axiom"
             },
 
-
-            /* CHAMPIONSHIP */
 
             {
                 match: "MATCH 2",
@@ -63,24 +134,16 @@ const eventData = {
                 championship: "WWE CHAMPIONSHIP",
 
                 wrestler1: [
-                    {
-                        name: "Champion",
-                        image: "images/Vacante.jpg"
-                    }
+                    "Champion"
                 ],
 
                 wrestler2: [
-                    {
-                        name: "Challenger",
-                        image: "images/Vacante.jpg"
-                    }
+                    "Challenger"
                 ],
 
                 winner: "Champion"
             },
 
-
-            /* TAG TEAM */
 
             {
                 match: "MATCH 3",
@@ -88,32 +151,18 @@ const eventData = {
                 championship: "",
 
                 wrestler1: [
-                    {
-                        name: "Jeff Jarrett",
-                        image: "images/Vacante.jpg"
-                    },
-                    {
-                        name: "Wrestler A",
-                        image: "images/Vacante.jpg"
-                    }
+                    "Jeff Jarrett",
+                    "Axiom"
                 ],
 
                 wrestler2: [
-                    {
-                        name: "Alberto Del Rio",
-                        image: "images/Vacante.jpg"
-                    },
-                    {
-                        name: "Wrestler B",
-                        image: "images/Vacante.jpg"
-                    }
+                    "Alberto Del Rio",
+                    "Wrestler A"
                 ],
 
                 winner: "Team 1"
             },
 
-
-            /* 6-MAN TAG TEAM */
 
             {
                 match: "MAIN EVENT",
@@ -121,33 +170,15 @@ const eventData = {
                 championship: "",
 
                 wrestler1: [
-                    {
-                        name: "Axiom",
-                        image: "images/Vacante.jpg"
-                    },
-                    {
-                        name: "Adam Cole",
-                        image: "images/Vacante.jpg"
-                    },
-                    {
-                        name: "Jeff Jarrett",
-                        image: "images/Vacante.jpg"
-                    }
+                    "Axiom",
+                    "Adam Cole",
+                    "Jeff Jarrett"
                 ],
 
                 wrestler2: [
-                    {
-                        name: "Alberto Del Rio",
-                        image: "images/Vacante.jpg"
-                    },
-                    {
-                        name: "Wrestler E",
-                        image: "images/Vacante.jpg"
-                    },
-                    {
-                        name: "Wrestler F",
-                        image: "images/Vacante.jpg"
-                    }
+                    "Alberto Del Rio",
+                    "Wrestler E",
+                    "Wrestler F"
                 ],
 
                 winner: "Team 1"
@@ -177,12 +208,42 @@ const eventData = {
                 championship: "",
 
                 wrestler1: [
-                    {
-                        name: "Wrestler A",
-                        image: "images/Vacante.jpg"
-                    }
+                    "Wrestler A"
                 ],
 
                 wrestler2: [
-                    {
-                        name: "W
+                    "Wrestler B"
+                ],
+
+                winner: "Wrestler A"
+            }
+
+        ]
+
+    },
+
+
+    /* =========================================
+       NXT 1
+       ========================================= */
+
+    "nxt-1": {
+
+        type: "NXT",
+        title: "NXT #1",
+        date: "08/09/2026",
+        brand: "NXT",
+
+        results: [
+
+            {
+                match: "MATCH 1",
+                type: "SINGLES",
+                championship: "",
+
+                wrestler1: [
+                    "Wrestler A"
+                ],
+
+                wrestler2: [
+                    "Wrestler B"
