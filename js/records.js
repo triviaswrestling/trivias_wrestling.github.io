@@ -94,25 +94,30 @@ function renderRecords(recordList) {
 
 
         card.innerHTML = `
+    <div class="record-top">
 
-            <div class="record-name">
-                ${wrestler.name}
-            </div>
+        <div class="record-name">
+            ${wrestler.name}
+        </div>
 
+        <div class="record-brand">
+            ${wrestler.brand}
+        </div>
 
-            <div class="record-result">
+    </div>
 
-                <span class="record-label">
-                    RECORD
-                </span>
+    <div class="record-result">
 
-                <span class="record-value">
-                    ${wrestler.wins} - ${wrestler.losses} - ${wrestler.draws}
-                </span>
+        <span class="record-label">
+            RECORD
+        </span>
 
-            </div>
+        <span class="record-value">
+            ${wrestler.wins} - ${wrestler.losses} - ${wrestler.draws}
+        </span>
 
-        `;
+    </div>
+`;
 
 
         /* =================================
