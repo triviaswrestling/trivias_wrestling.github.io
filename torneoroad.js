@@ -17,18 +17,16 @@ const tournaments = {};
 
 const tournamentData = {
 
-    "raw-1": {
-
-        participants: [
-            "Axiom",
-            "Bret Hart",
-            "Jacob Fatu",
-            "Kyle O'Reilly",
-            "Cody Rhodes",
-            "Trick Williams",
-            "Bron Breakker",
-            "Jon Moxley"
-        ],
+    "raw-1": {participants: [
+    { name: "Axiom", image: "images/Vacante.jpg"},
+    { name: "Bret Hart",image: "images/Darkman Hart.jpg" },
+    { name: "Jacob Fatu", image: "images/Vacante.jpg"},
+    { name: "Kyle O'Reilly", image: "images/Vacante.jpg" },
+    { name: "Cody Rhodes", image: "images/Vacante.jpg" },
+    { name: "Trick Williams", image: "images/Vacante.jpg" },
+    { name: "Bron Breakker", image: "images/Vacante.jpg" },
+    { name: "Jon Moxley", image: "images/Vacante.jpg"}
+    ],
 
         matches: [
 
@@ -219,13 +217,7 @@ if (currentData) {
                 "draft-card";
 
 
-            card.innerHTML = `
-
-                <span class="draft-card-number">
-                    ${index + 1}
-                </span>
-
-                <span class="draft-card-name">
+            card.innerHTML =`<span class="draft-card-name">
                     ${wrestler}
                 </span>
 
