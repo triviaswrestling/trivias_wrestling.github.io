@@ -1,107 +1,37 @@
 /* =========================================
-   MI WRESTLING
-   EVENT
+   MI WRESTLING - EVENT
    ========================================= */
 
+const urlParams=new URLSearchParams(location.search),eventId=urlParams.get("id");
 
-/* =========================================
-   GET EVENT ID
-   ========================================= */
+const eventTitle=document.getElementById("event-title"),
+eventDate=document.getElementById("event-date"),
+eventBrand=document.getElementById("event-brand"),
+eventResults=document.getElementById("event-results");
 
-const urlParams = new URLSearchParams(
-    window.location.search
-);
-
-const eventId = urlParams.get("id");
-
-
-/* =========================================
-   ELEMENTS
-   ========================================= */
-
-const eventTitle =
-    document.getElementById("event-title");
-
-const eventDate =
-    document.getElementById("event-date");
-
-const eventBrand =
-    document.getElementById("event-brand");
-
-const eventResults =
-    document.getElementById("event-results");
-
-
-/* =========================================
-   CREATE WRESTLER ID
-   ========================================= */
-
-function createWrestlerId(name) {
-
-    return String(name)
-        .toLowerCase()
-        .trim()
-        .replace(/\s+/g, "-");
-
+function normalizeName(name){
+    return String(name).toLowerCase().trim();
 }
 
-
-/* =========================================
-   NORMALIZE NAME
-   ========================================= */
-
-function normalizeName(name) {
-
-    return String(name)
-        .toLowerCase()
-        .trim();
-
+function createWrestlerId(name){
+    return normalizeName(name).replace(/\s+/g,"-");
 }
 
-
-/* =========================================
-   GET WRESTLER
-   ========================================= */
-
-function getWrestler(name) {
-
-    if (typeof wrestlers === "undefined") {
-
-        return null;
-
-    }
-
-    return wrestlers.find(wrestler => {
-
-        return normalizeName(
-            wrestler.name
-        ) === normalizeName(name);
-
-    }) || null;
-
+function getWrestler(name){
+    if(typeof wrestlers==="undefined")return null;
+    return wrestlers.find(w=>normalizeName(w.name)===normalizeName(name))||null;
 }
 
+function getWrestlerImage(name){
+    const wrestler=getWrestler(name);
+    return wrestler&&wrestler.image?wrestler.image:"images/Vacante.jpg";
+}
 
-/* =========================================
-   GET WRESTLER IMAGE
-   ========================================= */
-
-function getWrestlerImage(name) {
-
-    const wrestler =
-        getWrestler(name);
-
-    if (
-        wrestler &&
-        wrestler.image
-    ) {
-
-        return wrestler.image;
-
-    }
-
-    return "images/Vacante.jpg";
-
+function getBrandClass(brand){
+    const b=normalizeName(brand);
+    if(b==="smackdown"||b==="smack down")return"brand-smackdown";
+    if(b==="nxt")return"brand-nxt";
+    return"brand-raw";
 }
 
 
@@ -109,26 +39,12 @@ function getWrestlerImage(name) {
    EVENT NOT FOUND
    ========================================= */
 
-if (
-    !eventId ||
-    typeof eventData === "undefined" ||
-    !eventData[eventId]
-) {
+if(!eventId||typeof eventData==="undefined"||!eventData[eventId]){
 
-    eventTitle.textContent =
-        "EVENT NOT FOUND";
-
-    eventDate.textContent =
-        "";
-
-    eventBrand.textContent =
-        "";
-
-    eventResults.innerHTML = `
-        <p>
-            This event does not exist.
-        </p>
-    `;
+    eventTitle.textContent="EVENT NOT FOUND";
+    eventDate.textContent="";
+    eventBrand.textContent="";
+    eventResults.innerHTML="<p>This event does not exist.</p>";
 
 }
 
@@ -137,317 +53,140 @@ if (
    LOAD EVENT
    ========================================= */
 
-else {
+else{
 
-    const event =
-        eventData[eventId];
+    const event=eventData[eventId],
+    brandClass=getBrandClass(event.brand);
 
+    eventTitle.textContent=event.title;
+    eventDate.textContent=event.date;
+    eventBrand.textContent=event.brand;
 
-    /* =====================================
-       EVENT INFORMATION
-       ===================================== */
-
-    eventTitle.textContent =
-        event.title;
-
-    eventDate.textContent =
-        event.date;
-
-    eventBrand.textContent =
-        event.brand;
+    eventResults.innerHTML="";
 
 
-    /* =====================================
-       CLEAR RESULTS
-       ===================================== */
+    if(!event.results||!event.results.length){
 
-    eventResults.innerHTML = "";
-
-
-    /* =====================================
-       NO RESULTS
-       ===================================== */
-
-    if (
-        !event.results ||
-        event.results.length === 0
-    ) {
-
-        eventResults.innerHTML = `
-            <p>
-                No results available.
-            </p>
-        `;
+        eventResults.innerHTML="<p>No results available.</p>";
 
     }
 
+    else{
 
-    /* =====================================
-       RENDER RESULTS
-       ===================================== */
+        event.results.forEach(result=>{
 
-    else {
+            const resultCard=document.createElement("div");
 
-        event.results.forEach(result => {
-
-            const resultCard =
-                document.createElement("div");
-
-            resultCard.className =
-                "result-card";
+            resultCard.className=`result-card ${brandClass}`;
 
 
-            /* =================================
-               WRESTLERS
-               ================================= */
+            /* TEAMS */
 
-            const team1 = Array.isArray(
-                result.wrestler1
-            )
-                ? result.wrestler1
-                : [result.wrestler1];
+            const team1=Array.isArray(result.wrestler1)
+                ?result.wrestler1
+                :[result.wrestler1];
 
-            const team2 = Array.isArray(
-                result.wrestler2
-            )
-                ? result.wrestler2
-                : [result.wrestler2];
+            const team2=Array.isArray(result.wrestler2)
+                ?result.wrestler2
+                :[result.wrestler2];
 
 
-            /* =================================
-               CREATE WRESTLER HTML
-               ================================= */
+            /* WRESTLER HTML */
 
-            function createWrestlerHTML(name) {
+            function createWrestlerHTML(name){
 
-                const wrestlerId =
-                    createWrestlerId(name);
-
-                const image =
-                    getWrestlerImage(name);
-
-                return `
-
+                return`
                     <div class="wrestler">
-
-                        <a
-                            href="superstar.html?id=${wrestlerId}"
-                            class="wrestler-link"
-                        >
-
-                            <img
-                                src="${image}"
-                                alt="${name}"
-                            >
-
-                            <span>
-                                ${name}
-                            </span>
-
+                        <a href="superstar.html?id=${createWrestlerId(name)}" class="wrestler-link">
+                            <img src="${getWrestlerImage(name)}" alt="${name}">
+                            <span>${name}</span>
                         </a>
-
                     </div>
-
                 `;
 
             }
 
 
-            /* =================================
-               TEAM 1
-               ================================= */
-
-            let team1HTML = "";
-
-            team1.forEach(name => {
-
-                team1HTML +=
-                    createWrestlerHTML(name);
-
-            });
+            const team1HTML=team1.map(createWrestlerHTML).join(""),
+            team2HTML=team2.map(createWrestlerHTML).join("");
 
 
-            /* =================================
-               TEAM 2
-               ================================= */
+            /* MATCH NAME */
 
-            let team2HTML = "";
-
-            team2.forEach(name => {
-
-                team2HTML +=
-                    createWrestlerHTML(name);
-
-            });
-
-
-            /* =================================
-               MATCH NAME
-               ================================= */
-
-            const matchName =
-                result.match ||
+            const matchName=result.match||
                 `${team1.join(" & ")} vs ${team2.join(" & ")}`;
 
 
-            /* =================================
-               WINNER
-               ================================= */
+            /* WINNER */
 
-            let winner =
-                result.winner || "";
+            let winner=result.winner||"";
 
+            if(!winner&&typeof result.score1==="number"&&typeof result.score2==="number"){
 
-            if (!winner) {
+                if(result.score1>result.score2)
+                    winner=team1.join(" & ");
 
-                if (
-                    typeof result.score1 === "number" &&
-                    typeof result.score2 === "number"
-                ) {
+                else if(result.score2>result.score1)
+                    winner=team2.join(" & ");
 
-                    if (
-                        result.score1 >
-                        result.score2
-                    ) {
-
-                        winner =
-                            team1.join(" & ");
-
-                    }
-
-                    else if (
-                        result.score2 >
-                        result.score1
-                    ) {
-
-                        winner =
-                            team2.join(" & ");
-
-                    }
-
-                    else {
-
-                        winner =
-                            "DRAW";
-
-                    }
-
-                }
+                else
+                    winner="DRAW";
 
             }
 
 
-            /* =================================
-               SCORE
-               ================================= */
+            /* SCORE */
 
-            let scoreHTML = "";
+            let scoreHTML="";
 
-            if (
-                result.score1 !== undefined &&
-                result.score2 !== undefined
-            ) {
+            if(result.score1!==undefined&&result.score2!==undefined){
 
-                scoreHTML = `
-
+                scoreHTML=`
                     <div class="match-score">
-
-                        ${result.score1}
-                        -
-                        ${result.score2}
-
+                        ${result.score1} - ${result.score2}
                     </div>
-
                 `;
 
             }
 
 
-            /* =================================
-               CHAMPIONSHIP
-               ================================= */
+            /* CHAMPIONSHIP */
 
-            let championshipHTML = "";
-
-            if (
-                result.championship
-            ) {
-
-                championshipHTML = `
-
-                    <div class="championship-name">
-
-                        ${result.championship}
-
-                    </div>
-
-                `;
-
-            }
+            const championshipHTML=result.championship
+                ?`<div class="championship-name">${result.championship}</div>`
+                :"";
 
 
-            /* =================================
-               RESULT CARD
-               ================================= */
+            /* RESULT */
 
-            resultCard.innerHTML = `
-
-                <div class="match-name">
-
-                    ${matchName}
-
-                </div>
-
+            resultCard.innerHTML=`
+                <div class="match-name">${matchName}</div>
                 ${championshipHTML}
-
 
                 <div class="match">
 
-
                     <div class="team">
-
                         ${team1HTML}
-
                     </div>
-
 
                     <div class="vs">
-
-                        VS
-
+                        <span>VS</span>
                         ${scoreHTML}
-
                     </div>
-
 
                     <div class="team">
-
                         ${team2HTML}
-
                     </div>
 
-
                 </div>
-
 
                 <div class="match-winner">
-
                     WINNER:
-
-                    <strong>
-
-                        ${winner || "TBD"}
-
-                    </strong>
-
+                    <strong>${winner||"TBD"}</strong>
                 </div>
-
             `;
 
-
-            eventResults.appendChild(
-                resultCard
-            );
+            eventResults.appendChild(resultCard);
 
         });
 
