@@ -677,12 +677,12 @@
 
     .matrix-table th:first-child,
     .matrix-table td:first-child {
-        width: 60px !important;
-        min-width: 60px !important;
-        max-width: 60px !important;
+        width: 80px !important;
+        min-width: 80px !important;
+        max-width: 80px !important;
 
-        padding-left: 3px !important;
-        padding-right: 3px !important;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
 
         white-space: normal;
     }
