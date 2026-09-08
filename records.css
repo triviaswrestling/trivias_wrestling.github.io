@@ -244,3 +244,50 @@ main {
     }
 
 }
+/* =========================================
+   RECORD FILTERS
+   ========================================= */
+
+.record-filters {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.record-filter {
+    background: #111111;
+    border: 1px solid #292929;
+    color: #777777;
+    padding: 11px 18px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.record-filter:hover {
+    color: #ffffff;
+    border-color: #555555;
+}
+
+.record-filter.active {
+    background: #ffffff;
+    color: #0b0b0b;
+    border-color: #ffffff;
+}
+
+@media (max-width: 600px) {
+
+    .record-filters {
+        gap: 6px;
+    }
+
+    .record-filter {
+        padding: 10px 13px;
+        font-size: 9px;
+    }
+
+}
+
