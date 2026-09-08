@@ -103,6 +103,8 @@ if(!superstar){
             if(!event.results)return;
 
             const category=getEventCategory(eventId,event);
+            const weeklyMatch=eventId.toLowerCase().match(/^weekly-(\d+)$/);
+            const weeklyNumber=weeklyMatch?Number(weeklyMatch[1]):null;
 
             event.results.forEach(result=>{
                 const wrestler1=result.wrestler1||[];
@@ -129,9 +131,11 @@ if(!superstar){
                 addMatch({
                     source:"EVENT",
                     category,
+                    weeklyNumber,
                     title:event.title,
                     date:event.date,
                     sortDate:parseDate(event.date),
+                    round:null,
                     type:result.type,
                     match:result.match,
                     opponents,
@@ -149,7 +153,10 @@ if(!superstar){
             let category="SPECIAL";
             const tournamentIdLower=tournamentId.toLowerCase();
 
-            if(tournamentIdLower.startsWith("raw-")||tournamentIdLower.startsWith("smackdown-")){
+            const tournamentMatch=tournamentIdLower.match(/^(raw|smackdown)-(\d+)$/);
+            const tournamentNumber=tournamentMatch?Number(tournamentMatch[2]):null;
+
+            if(tournamentMatch){
                 category="WEEKLY";
             }else if(tournamentIdLower.startsWith("nxt-")||tournamentIdLower.startsWith("speed-")){
                 category="NXT";
@@ -190,9 +197,12 @@ if(!superstar){
                 addMatch({
                     source:"TOURNAMENT",
                     category,
+                    weeklyNumber:category==="WEEKLY"?match.date:null,
+                    tournamentNumber,
                     title:tournamentTitle,
                     date:matchDate?formatDate(matchDate):`ROUND ${match.date}`,
                     sortDate:matchDate?matchDate.getTime():match.date,
+                    round:match.date,
                     type:"SINGLES",
                     match:"TOURNAMENT MATCH",
                     opponents:[opponent],
@@ -206,7 +216,18 @@ if(!superstar){
     const categoryOrder={WEEKLY:1,NXT:2,PLE:3,SPECIAL:4};
 
     matchHistory.sort((a,b)=>{
-        if(a.category!==b.category)return categoryOrder[a.category]-categoryOrder[b.category];
+        if(a.category!==b.category){
+            return categoryOrder[a.category]-categoryOrder[b.category];
+        }
+
+        if(a.category==="WEEKLY"){
+            if(a.weeklyNumber!==b.weeklyNumber){
+                return b.weeklyNumber-a.weeklyNumber;
+            }
+
+            return b.sortDate-a.sortDate;
+        }
+
         return b.sortDate-a.sortDate;
     });
 
@@ -250,6 +271,7 @@ if(!superstar){
         matchHistoryElement.innerHTML=`<p>NO MATCHES</p>`;
     }else{
         matchHistoryElement.innerHTML="";
+
         const categories=["WEEKLY","NXT","PLE","SPECIAL"];
 
         categories.forEach(category=>{
@@ -260,6 +282,63 @@ if(!superstar){
             categoryTitle.className="match-history-category";
             categoryTitle.textContent=category;
             matchHistoryElement.appendChild(categoryTitle);
+
+            if(category==="WEEKLY"){
+                const weeklyGroups={};
+
+                categoryMatches.forEach(match=>{
+                    const number=match.weeklyNumber||1;
+
+                    if(!weeklyGroups[number]){
+                        weeklyGroups[number]=[];
+                    }
+
+                    weeklyGroups[number].push(match);
+                });
+
+                Object.keys(weeklyGroups)
+                    .map(Number)
+                    .sort((a,b)=>b-a)
+                    .forEach(weeklyNumber=>{
+                        const weeklyTitle=document.createElement("div");
+                        weeklyTitle.className="match-history-category";
+                        weeklyTitle.textContent=`WEEKLY #${weeklyNumber}`;
+                        matchHistoryElement.appendChild(weeklyTitle);
+
+                        weeklyGroups[weeklyNumber]
+                            .sort((a,b)=>{
+                                if(a.round!==null&&b.round!==null){
+                                    return b.round-a.round;
+                                }
+                                return b.sortDate-a.sortDate;
+                            })
+                            .forEach(match=>{
+                                const row=document.createElement("div");
+                                row.className="match-history-row";
+
+                                row.addEventListener("click",()=>{
+                                    if(match.url)window.location.href=match.url;
+                                });
+
+                                const opponentsText=match.opponents.join(" & ");
+
+                                row.innerHTML=`
+                                    <div class="match-history-info">
+                                        <div class="match-history-source">${match.source}</div>
+                                        <div class="match-history-title">${match.title}</div>
+                                        <div class="match-history-match">${match.match}</div>
+                                        <div class="match-history-opponent">VS ${opponentsText}</div>
+                                        <div class="match-history-date">${match.date} · ${match.type}</div>
+                                    </div>
+                                    <div class="match-history-result ${match.status.toLowerCase()}">${match.status}</div>
+                                `;
+
+                                matchHistoryElement.appendChild(row);
+                            });
+                    });
+
+                return;
+            }
 
             categoryMatches.forEach(match=>{
                 const row=document.createElement("div");
@@ -287,3 +366,4 @@ if(!superstar){
         });
     }
 }
+
