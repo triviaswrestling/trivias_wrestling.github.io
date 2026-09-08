@@ -491,8 +491,8 @@
    
 .matrix-table th:first-child,
 .matrix-table td:first-child {
-    width: 40px;
-    min-width: 40px;
+    width: 20px;
+    min-width: 20px;
     padding-left: 5px;
     padding-right: 5px;
 }
