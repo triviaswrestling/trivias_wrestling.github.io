@@ -237,3 +237,82 @@ main {
     }
 
 }
+/* =========================================
+   MATCH
+   ========================================= */
+
+.match {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 45px;
+
+    margin-top: 20px;
+}
+
+.wrestler {
+    width: 180px;
+
+    text-align: center;
+}
+
+.wrestler img {
+    width: 130px;
+    height: 130px;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin: 0 auto 12px;
+
+    border: 1px solid #333333;
+}
+
+.wrestler span {
+    display: block;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.vs {
+    color: #777777;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .match {
+        gap: 12px;
+    }
+
+    .wrestler {
+        width: 120px;
+    }
+
+    .wrestler img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .wrestler span {
+        font-size: 11px;
+    }
+
+    .vs {
+        font-size: 10px;
+    }
+
+   }
