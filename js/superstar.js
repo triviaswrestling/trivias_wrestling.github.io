@@ -350,27 +350,30 @@ else {
 
                     addMatch({
 
-                        source: "EVENT",
+    source: "EVENT",
 
-                        title:
-                            event.title,
+    title:
+        event.title,
 
-                        date:
-                            event.date,
+    date:
+        event.date,
 
-                        type:
-                            result.type,
+    type:
+        result.type,
 
-                        match:
-                            result.match,
+    match:
+        result.match,
 
-                        opponents:
-                            opponents,
+    opponents:
+        opponents,
 
-                        status:
-                            resultStatus
+    status:
+        resultStatus,
 
-                    });
+    url:
+        `event.html?id=${eventId}`
+
+});
 
                 });
 
@@ -503,10 +506,13 @@ else {
                                 "TOURNAMENT MATCH",
 
                             opponents:
-                                [opponent],
+    [opponent],
 
-                            status:
-                                resultStatus
+status:
+    resultStatus,
+
+url:
+    `torneoroad.html?id=${tournamentId}`
 
                         });
 
@@ -680,10 +686,21 @@ else {
         matchHistory.forEach(match => {
 
             const row =
-                document.createElement("div");
+    document.createElement("div");
 
-            row.className =
-                "match-history-row";
+row.className =
+    "match-history-row";
+
+row.addEventListener("click", () => {
+
+    if (match.url) {
+
+        window.location.href =
+            match.url;
+
+    }
+
+});
 
 
             const opponentsText =
