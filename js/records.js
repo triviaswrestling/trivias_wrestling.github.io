@@ -62,8 +62,8 @@ const searchInput =
 const filterButtons =
     document.querySelectorAll(".record-filter");
 
-const pageButtons =
-    document.querySelectorAll(".record-page");
+const pagesContainer =
+    document.getElementById("record-pages");
 
 
 /* =========================================
