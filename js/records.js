@@ -13,7 +13,7 @@ const wrestlerRecords = [
     {
         id: "axiom",
         name: "Axiom",
-        wins: 0,
+        wins: 70,
         losses: 0,
         draws: 0
     },
