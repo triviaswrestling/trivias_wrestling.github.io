@@ -16,99 +16,20 @@ const superstarId =
 
 
 /* =========================================
-   SUPERSTAR DATABASE
+   FIND SUPERSTAR
    ========================================= */
 
-const superstarData = {
+const superstar =
+    wrestlers.find(wrestler => {
 
-    "axiom": {
+        const wrestlerId =
+            wrestler.name
+                .toLowerCase()
+                .replace(/\s+/g, "-");
 
-        name: "Axiom",
-        image: "images/Vacante.jpg",
-        nickname: "",
-        brand: "NXT",
+        return wrestlerId === superstarId;
 
-        wins: 0,
-        losses: 0,
-        draws: 0,
-
-        singles: "0 - 0 - 0",
-        tag: "0 - 0 - 0",
-        sixMan: "0 - 0 - 0",
-
-        championships: [],
-
-        history: []
-
-    },
-
-
-    "adam-cole": {
-
-        name: "Adam Cole",
-        image: "images/Vacante.jpg",
-        nickname: "",
-        brand: "RAW",
-
-        wins: 0,
-        losses: 0,
-        draws: 0,
-
-        singles: "0 - 0 - 0",
-        tag: "0 - 0 - 0",
-        sixMan: "0 - 0 - 0",
-
-        championships: [],
-
-        history: []
-
-    },
-
-
-    "jeff-jarrett": {
-
-        name: "Jeff Jarrett",
-        image: "images/Vacante.jpg",
-        nickname: "",
-        brand: "SMACKDOWN",
-
-        wins: 0,
-        losses: 0,
-        draws: 0,
-
-        singles: "0 - 0 - 0",
-        tag: "0 - 0 - 0",
-        sixMan: "0 - 0 - 0",
-
-        championships: [],
-
-        history: []
-
-    },
-
-
-    "alberto-del-rio": {
-
-        name: "Alberto Del Rio",
-        image: "images/Vacante.jpg",
-        nickname: "El Patron",
-        brand: "RAW",
-
-        wins: 0,
-        losses: 0,
-        draws: 0,
-
-        singles: "0 - 0 - 0",
-        tag: "0 - 0 - 0",
-        sixMan: "0 - 0 - 0",
-
-        championships: [],
-
-        history: []
-
-    }
-
-};
+    });
 
 
 /* =========================================
@@ -156,7 +77,7 @@ const matchHistoryContainer =
    SUPERSTAR NOT FOUND
    ========================================= */
 
-if (!superstarId || !superstarData[superstarId]) {
+if (!superstar) {
 
     superstarName.textContent =
         "SUPERSTAR NOT FOUND";
@@ -169,6 +90,9 @@ if (!superstarId || !superstarData[superstarId]) {
 
     superstarImage.src =
         "images/Vacante.jpg";
+
+    superstarImage.alt =
+        "Superstar Not Found";
 
     wins.textContent =
         "0";
@@ -205,9 +129,6 @@ if (!superstarId || !superstarData[superstarId]) {
 
 else {
 
-    const superstar =
-        superstarData[superstarId];
-
 
     /* =====================================
        BASIC INFORMATION
@@ -216,8 +137,10 @@ else {
     superstarName.textContent =
         superstar.name;
 
+
     superstarImage.src =
-        superstar.image;
+        superstar.image || "images/Vacante.jpg";
+
 
     superstarImage.alt =
         superstar.name;
@@ -245,21 +168,29 @@ else {
        ===================================== */
 
     superstarBrand.textContent =
-        superstar.brand;
+        superstar.brand || "NO BRAND";
 
 
     /* =====================================
        OVERALL RECORD
        ===================================== */
 
+    const overallParts =
+        (superstar.overall2026 || "0 - 0 - 0")
+            .split("-")
+            .map(part => part.trim());
+
+
     wins.textContent =
-        superstar.wins;
+        overallParts[0] || "0";
+
 
     losses.textContent =
-        superstar.losses;
+        overallParts[1] || "0";
+
 
     draws.textContent =
-        superstar.draws;
+        overallParts[2] || "0";
 
 
     /* =====================================
@@ -267,33 +198,32 @@ else {
        ===================================== */
 
     singlesRecord.textContent =
-        superstar.singles;
+        superstar.singles || "0 - 0 - 0";
+
 
     tagRecord.textContent =
-        superstar.tag;
+        superstar.tag || "0 - 0 - 0";
+
 
     sixManRecord.textContent =
-        superstar.sixMan;
+        superstar.sixMan || "0 - 0 - 0";
 
 
     /* =====================================
-       CHAMPIONSHIPS
+       CHAMPIONSHIPS / ACHIEVEMENTS
        ===================================== */
 
     championshipsContainer.innerHTML =
         "";
 
 
-    if (superstar.championships.length === 0) {
+    if (
+        superstar.achievements &&
+        superstar.achievements.length > 0
+    ) {
 
-        championshipsContainer.innerHTML = `
-            <p>NO CHAMPIONSHIPS</p>
-        `;
-
-    } else {
-
-        superstar.championships.forEach(
-            championship => {
+        superstar.achievements.forEach(
+            achievement => {
 
                 const championshipElement =
                     document.createElement("div");
@@ -302,7 +232,7 @@ else {
                     "championship-item";
 
                 championshipElement.textContent =
-                    championship;
+                    achievement;
 
                 championshipsContainer.appendChild(
                     championshipElement
@@ -310,6 +240,12 @@ else {
 
             }
         );
+
+    } else {
+
+        championshipsContainer.innerHTML = `
+            <p>NO CHAMPIONSHIPS</p>
+        `;
 
     }
 
@@ -319,39 +255,8 @@ else {
        ===================================== */
 
     matchHistoryContainer.innerHTML =
-        "";
-
-
-    if (superstar.history.length === 0) {
-
-        matchHistoryContainer.innerHTML = `
+        `
             <p>NO MATCHES</p>
         `;
-
-    } else {
-
-        superstar.history.forEach(
-            match => {
-
-                const matchElement =
-                    document.createElement("div");
-
-                matchElement.className =
-                    "history-match";
-
-                matchElement.innerHTML = `
-                    <strong>${match.event}</strong>
-                    <span>${match.match}</span>
-                    <span>${match.result}</span>
-                `;
-
-                matchHistoryContainer.appendChild(
-                    matchElement
-                );
-
-            }
-        );
-
-    }
 
 }
