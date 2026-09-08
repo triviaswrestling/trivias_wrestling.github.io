@@ -12,7 +12,8 @@ const urlParams = new URLSearchParams(
     window.location.search
 );
 
-const eventId = urlParams.get("id");
+const eventId =
+    urlParams.get("id");
 
 
 /* =========================================
@@ -47,6 +48,70 @@ function createWrestlerId(name) {
 
 
 /* =========================================
+   NORMALIZE NAME
+   ========================================= */
+
+function normalizeName(name) {
+
+    return name
+        .toLowerCase()
+        .trim();
+
+}
+
+
+/* =========================================
+   GET WRESTLER
+   ========================================= */
+
+function getWrestler(name) {
+
+    if (
+        typeof wrestlers === "undefined"
+    ) {
+
+        return null;
+
+    }
+
+
+    return wrestlers.find(wrestler => {
+
+        return normalizeName(
+            wrestler.name
+        ) === normalizeName(name);
+
+    }) || null;
+
+}
+
+
+/* =========================================
+   GET WRESTLER IMAGE
+   ========================================= */
+
+function getWrestlerImage(name) {
+
+    const wrestler =
+        getWrestler(name);
+
+
+    if (
+        wrestler &&
+        wrestler.image
+    ) {
+
+        return wrestler.image;
+
+    }
+
+
+    return "images/Vacante.jpg";
+
+}
+
+
+/* =========================================
    EVENT NOT FOUND
    ========================================= */
 
@@ -58,9 +123,11 @@ if (
     eventTitle.textContent =
         "EVENT NOT FOUND";
 
-    eventDate.textContent = "";
+    eventDate.textContent =
+        "";
 
-    eventBrand.textContent = "";
+    eventBrand.textContent =
+        "";
 
     eventResults.innerHTML = `
         <p>
@@ -99,7 +166,8 @@ else {
        CLEAR RESULTS
        ===================================== */
 
-    eventResults.innerHTML = "";
+    eventResults.innerHTML =
+        "";
 
 
     /* =====================================
@@ -119,15 +187,60 @@ else {
            CHAMPIONSHIP
            ================================= */
 
-        let championshipHTML = "";
+        let championshipHTML =
+            "";
 
 
-        if (result.championship) {
+        if (
+            result.championship
+        ) {
 
             championshipHTML = `
+
                 <div class="championship-name">
                     ${result.championship}
                 </div>
+
+            `;
+
+        }
+
+
+        /* =================================
+           CREATE WRESTLER HTML
+           ================================= */
+
+        function createWrestlerHTML(name) {
+
+            const wrestlerId =
+                createWrestlerId(name);
+
+            const image =
+                getWrestlerImage(name);
+
+
+            return `
+
+                <div class="wrestler">
+
+                    <a
+                        href="superstar.html?id=${wrestlerId}"
+                        class="wrestler-link"
+                    >
+
+                        <img
+                            src="${image}"
+                            alt="${name}"
+                        >
+
+                        <span>
+                            ${name}
+                        </span>
+
+                    </a>
+
+                </div>
+
             `;
 
         }
@@ -137,38 +250,14 @@ else {
            TEAM 1
            ================================= */
 
-        let team1HTML = "";
+        let team1HTML =
+            "";
 
 
         result.wrestler1.forEach(name => {
 
-            const wrestlerId =
-                createWrestlerId(name);
-
-
-            team1HTML += `
-
-                <div class="wrestler">
-
-                    <a
-                        href="superstar.html?id=${wrestlerId}"
-                        class="wrestler-link"
-                    >
-
-                        <img
-                            src="images/Vacante.jpg"
-                            alt="${name}"
-                        >
-
-                        <span>
-                            ${name}
-                        </span>
-
-                    </a>
-
-                </div>
-
-            `;
+            team1HTML +=
+                createWrestlerHTML(name);
 
         });
 
@@ -177,38 +266,14 @@ else {
            TEAM 2
            ================================= */
 
-        let team2HTML = "";
+        let team2HTML =
+            "";
 
 
         result.wrestler2.forEach(name => {
 
-            const wrestlerId =
-                createWrestlerId(name);
-
-
-            team2HTML += `
-
-                <div class="wrestler">
-
-                    <a
-                        href="superstar.html?id=${wrestlerId}"
-                        class="wrestler-link"
-                    >
-
-                        <img
-                            src="images/Vacante.jpg"
-                            alt="${name}"
-                        >
-
-                        <span>
-                            ${name}
-                        </span>
-
-                    </a>
-
-                </div>
-
-            `;
+            team2HTML +=
+                createWrestlerHTML(name);
 
         });
 
