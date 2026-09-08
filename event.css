@@ -572,13 +572,14 @@ main {
     /* WRESTLER */
 
     .wrestler {
-        width: 65px;
-    }
+    width: 100px;
+    min-height: 135px;
+}
 
     .wrestler img {
-        width: 60px;
-        height: 60px;
-    }
+    width: 90px;
+    height: 90px;
+}
 
     .wrestler span {
         font-size: 9px;
