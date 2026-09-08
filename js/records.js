@@ -13,7 +13,8 @@ const wrestlerRecords = [
     {
         id: "axiom",
         name: "Axiom",
-        wins: 70,
+        brand: "NXT",
+        wins: 0,
         losses: 0,
         draws: 0
     },
@@ -21,6 +22,7 @@ const wrestlerRecords = [
     {
         id: "adam-cole",
         name: "Adam Cole",
+        brand: "RAW",
         wins: 0,
         losses: 0,
         draws: 0
@@ -29,6 +31,7 @@ const wrestlerRecords = [
     {
         id: "jeff-jarrett",
         name: "Jeff Jarrett",
+        brand: "SMACKDOWN",
         wins: 0,
         losses: 0,
         draws: 0
@@ -37,6 +40,7 @@ const wrestlerRecords = [
     {
         id: "alberto-del-rio",
         name: "Alberto Del Rio",
+        brand: "RAW",
         wins: 0,
         losses: 0,
         draws: 0
@@ -46,13 +50,31 @@ const wrestlerRecords = [
 
 
 /* =========================================
-   ELEMENT
+   ELEMENTS
    ========================================= */
 
 const recordsContainer =
-    document.getElementById(
-        "records-container"
-    );
+    document.getElementById("records-container");
+
+const searchInput =
+    document.getElementById("record-search");
+
+const filterButtons =
+    document.querySelectorAll(".record-filter");
+
+const pageButtons =
+    document.querySelectorAll(".record-page");
+
+
+/* =========================================
+   SETTINGS
+   ========================================= */
+
+const wrestlersPerPage = 20;
+
+let currentPage = 1;
+
+let currentBrand = "ALL";
 
 
 /* =========================================
@@ -67,7 +89,6 @@ function renderRecords(recordList) {
     if (recordList.length === 0) {
 
         recordsContainer.innerHTML = `
-
             <div class="record-card">
 
                 <div class="record-name">
@@ -75,64 +96,80 @@ function renderRecords(recordList) {
                 </div>
 
             </div>
-
         `;
 
         return;
-
     }
 
 
-    recordList.forEach(wrestler => {
+    /* =====================================
+       PAGINATION
+       ===================================== */
+
+    const start =
+        (currentPage - 1) * wrestlersPerPage;
+
+    const end =
+        start + wrestlersPerPage;
+
+    const pageRecords =
+        recordList.slice(start, end);
+
+
+    /* =====================================
+       CREATE CARDS
+       ===================================== */
+
+    pageRecords.forEach(wrestler => {
 
         const card =
             document.createElement("div");
-
 
         card.className =
             "record-card";
 
 
         card.innerHTML = `
-    <div class="record-top">
 
-        <div class="record-name">
-            ${wrestler.name}
-        </div>
+            <div class="record-top">
 
-        <div class="record-brand">
-            ${wrestler.brand}
-        </div>
+                <div class="record-name">
+                    ${wrestler.name}
+                </div>
 
-    </div>
+                <div class="record-brand">
+                    ${wrestler.brand}
+                </div>
 
-    <div class="record-result">
+            </div>
 
-        <span class="record-label">
-            RECORD
-        </span>
+            <div class="record-result">
 
-        <span class="record-value">
-            ${wrestler.wins} - ${wrestler.losses} - ${wrestler.draws}
-        </span>
+                <span class="record-label">
+                    RECORD
+                </span>
 
-    </div>
-`;
+                <span class="record-value">
+                    ${wrestler.wins} -
+                    ${wrestler.losses} -
+                    ${wrestler.draws}
+                </span>
+
+            </div>
+
+        `;
 
 
         /* =================================
-           OPEN WRESTLER RECORD
+           OPEN SUPERSTAR
            ================================= */
 
-        card.addEventListener(
-            "click",
-            () => {
+        card.addEventListener("click", () => {
 
-                window.location.href =
-                    `record.html?id=${wrestler.id}`;
+            window.location.href =
+                `superstar.html?id=${wrestler.id}`;
 
-            }
-        );
+        });
 
 
         recordsContainer.appendChild(card);
@@ -143,93 +180,213 @@ function renderRecords(recordList) {
 
 
 /* =========================================
-   SEARCH
+   FILTER RECORDS
    ========================================= */
 
-const searchInput =
-    document.getElementById(
-        "record-search"
-    );
+function getFilteredRecords() {
 
+    const search =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    return wrestlerRecords.filter(wrestler => {
+
+        const matchesSearch =
+            wrestler.name
+                .toLowerCase()
+                .includes(search);
+
+
+        const matchesBrand =
+            currentBrand === "ALL" ||
+            wrestler.brand === currentBrand;
+
+
+        return matchesSearch && matchesBrand;
+
+    });
+
+}
+
+
+/* =========================================
+   UPDATE RECORDS
+   ========================================= */
+
+function updateRecords() {
+
+    const filteredRecords =
+        getFilteredRecords();
+
+
+    /* =====================================
+       RESET PAGE IF NECESSARY
+       ===================================== */
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                filteredRecords.length /
+                wrestlersPerPage
+            )
+        );
+
+
+    if (currentPage > totalPages) {
+
+        currentPage =
+            totalPages;
+
+    }
+
+
+    renderRecords(filteredRecords);
+
+
+    updatePageButtons(totalPages);
+
+}
+
+
+/* =========================================
+   PAGE BUTTONS
+   ========================================= */
+
+function updatePageButtons(totalPages) {
+
+    pageButtons.forEach(button => {
+
+        const page =
+            Number(button.dataset.page);
+
+
+        button.classList.remove("active");
+
+
+        if (page === currentPage) {
+
+            button.classList.add("active");
+
+        }
+
+
+        /* Hide pages that don't exist */
+
+        if (page > totalPages) {
+
+            button.style.display =
+                "none";
+
+        } else {
+
+            button.style.display =
+                "";
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   SEARCH
+   ========================================= */
 
 searchInput.addEventListener(
     "input",
     () => {
 
-        const search =
-            searchInput.value
-                .trim()
-                .toLowerCase();
+        currentPage = 1;
 
-
-        const filteredRecords =
-            wrestlerRecords.filter(
-                wrestler =>
-                    wrestler.name
-                        .toLowerCase()
-                        .includes(search)
-            );
-
-
-        renderRecords(
-            filteredRecords
-        );
+        updateRecords();
 
     }
 );
+
 
 /* =========================================
    BRAND FILTER
    ========================================= */
 
-const filterButtons =
-    document.querySelectorAll(".record-filter");
-
-let currentBrand = "ALL";
-
 filterButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+        "click",
+        () => {
 
-        currentBrand =
-            button.dataset.brand;
+            currentBrand =
+                button.dataset.brand;
 
-        filterButtons.forEach(filter => {
-            filter.classList.remove("active");
-        });
 
-        button.classList.add("active");
+            currentPage = 1;
 
-        const search =
-            searchInput.value
-                .trim()
-                .toLowerCase();
 
-        const filteredRecords =
-            wrestlerRecords.filter(wrestler => {
+            filterButtons.forEach(filter => {
 
-                const matchesSearch =
-                    wrestler.name
-                        .toLowerCase()
-                        .includes(search);
+                filter.classList.remove(
+                    "active"
+                );
 
-                const matchesBrand =
-                    currentBrand === "ALL" ||
-                    wrestler.brand === currentBrand;
-
-                return matchesSearch && matchesBrand;
             });
 
-        renderRecords(filteredRecords);
 
-    });
+            button.classList.add(
+                "active"
+            );
+
+
+            updateRecords();
+
+        }
+    );
 
 });
+
+
+/* =========================================
+   PART BUTTONS
+   ========================================= */
+
+pageButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            currentPage =
+                Number(
+                    button.dataset.page
+                );
+
+
+            pageButtons.forEach(page => {
+
+                page.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+            button.classList.add(
+                "active"
+            );
+
+
+            updateRecords();
+
+        }
+    );
+
+});
+
 
 /* =========================================
    INITIAL RENDER
    ========================================= */
 
-renderRecords(
-    wrestlerRecords
-);
+updateRecords();
