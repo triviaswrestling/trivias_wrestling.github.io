@@ -210,6 +210,7 @@ function getFilteredRecords() {
 
 }
 
+
 /* =========================================
    CREATE PAGE BUTTONS
    ========================================= */
@@ -218,36 +219,50 @@ function createPageButtons(totalPages) {
 
     pagesContainer.innerHTML = "";
 
+
     for (let i = 1; i <= totalPages; i++) {
 
         const button =
             document.createElement("button");
 
+
         button.className =
             "record-page";
 
+
         if (i === currentPage) {
+
             button.classList.add("active");
+
         }
 
-        button.dataset.page = i;
+
+        button.dataset.page =
+            i;
+
 
         button.textContent =
             `PART ${i}`;
 
-        button.addEventListener("click", () => {
 
-            currentPage = i;
+        button.addEventListener(
+            "click",
+            () => {
 
-            updateRecords();
+                currentPage = i;
 
-        });
+                updateRecords();
+
+            }
+        );
+
 
         pagesContainer.appendChild(button);
 
     }
 
 }
+
 
 /* =========================================
    UPDATE RECORDS
@@ -260,7 +275,7 @@ function updateRecords() {
 
 
     /* =====================================
-       RESET PAGE IF NECESSARY
+       CALCULATE TOTAL PAGES
        ===================================== */
 
     const totalPages =
@@ -273,6 +288,10 @@ function updateRecords() {
         );
 
 
+    /* =====================================
+       RESET PAGE IF NECESSARY
+       ===================================== */
+
     if (currentPage > totalPages) {
 
         currentPage =
@@ -281,51 +300,18 @@ function updateRecords() {
     }
 
 
+    /* =====================================
+       RENDER
+       ===================================== */
+
     renderRecords(filteredRecords);
 
 
-    updatePageButtons(totalPages);
+    /* =====================================
+       CREATE PAGE BUTTONS
+       ===================================== */
 
-}
-
-
-/* =========================================
-   PAGE BUTTONS
-   ========================================= */
-
-function updatePageButtons(totalPages) {
-
-    pageButtons.forEach(button => {
-
-        const page =
-            Number(button.dataset.page);
-
-
-        button.classList.remove("active");
-
-
-        if (page === currentPage) {
-
-            button.classList.add("active");
-
-        }
-
-
-        /* Hide pages that don't exist */
-
-        if (page > totalPages) {
-
-            button.style.display =
-                "none";
-
-        } else {
-
-            button.style.display =
-                "";
-
-        }
-
-    });
+    createPageButtons(totalPages);
 
 }
 
@@ -366,44 +352,6 @@ filterButtons.forEach(button => {
             filterButtons.forEach(filter => {
 
                 filter.classList.remove(
-                    "active"
-                );
-
-            });
-
-
-            button.classList.add(
-                "active"
-            );
-
-
-            updateRecords();
-
-        }
-    );
-
-});
-
-
-/* =========================================
-   PART BUTTONS
-   ========================================= */
-
-pageButtons.forEach(button => {
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            currentPage =
-                Number(
-                    button.dataset.page
-                );
-
-
-            pageButtons.forEach(page => {
-
-                page.classList.remove(
                     "active"
                 );
 
