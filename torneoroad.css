@@ -483,12 +483,12 @@
         padding: 12px 8px;
     }
 
-   .matrix-table th:first-child,
+.matrix-table th:first-child,
 .matrix-table td:first-child {
-    width: 110px;
-    min-width: 110px;
-    padding-left: 8px;
-    padding-right: 8px;
+    width: 90px;
+    min-width: 90px;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 
 
