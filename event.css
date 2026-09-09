@@ -6,11 +6,11 @@ main{width:100%;max-width:1100px;margin:40px auto;padding:0 25px}.event-header{b
 
 .results-section{width:100%}.results-section>h2{margin:0 0 18px;font-size:16px;letter-spacing:2px}
 
-.result-card{--brand:#d90024;--glow:rgba(217,0,36,.2);position:relative;background:#111;border:1px solid #292929;padding:22px;margin-bottom:14px;transition:.2s}.result-card:before{content:"";display:block;height:3px;margin:-22px -22px 20px;background:var(--brand);box-shadow:0 0 10px var(--glow)}.result-card.brand-raw{--brand:#d90024;--glow:rgba(217,0,36,.2)}.result-card.brand-smackdown{--brand:#2588ff;--glow:rgba(37,136,255,.2)}.result-card.brand-nxt{--brand:#bfc3c7;--glow:rgba(191,195,199,.18)}.result-card.brand-speed{--brand:#20c878;--glow:rgba(32,200,120,.2)}.result-card.brand-ple{--brand:#d4a72c;--glow:rgba(212,167,44,.2)}.result-card:hover{border-color:#444;transform:translateY(-2px)}
+.result-card{position:relative;background:#111;border:1px solid #292929;padding:22px;margin-bottom:14px;transition:.2s;--brand:#d90024}.result-card.brand-raw{--brand:#d90024}.result-card.brand-smackdown{--brand:#2588ff}.result-card.brand-nxt{--brand:#bfc3c7}.result-card.brand-speed{--brand:#20c878}.result-card.brand-ple{--brand:#d4a72c}.result-card:before{content:"";display:block;height:3px;margin:-22px -22px 20px;background:var(--brand);box-shadow:0 0 10px var(--brand)}.result-card:hover{border-color:#444;transform:translateY(-2px)}
 
 .match-name{text-align:center;color:#888;font-size:11px;font-weight:bold;letter-spacing:2px;margin-bottom:12px}.match{display:flex;align-items:center;justify-content:center;gap:45px;margin-top:20px}
 
-.team{display:flex;justify-content:center;align-items:flex-start;gap:15px;flex-wrap:wrap;max-width:430px}.wrestler{width:125px;text-align:center;position:relative;padding-top:5px}.wrestler:before{content:"";position:absolute;top:0;left:12.5px;right:12.5px;height:3px;background:var(--brand);box-shadow:0 0 8px var(--glow)}.wrestler img{width:100px;height:100px;object-fit:cover;display:block;margin:0 auto 10px;border:none;box-shadow:none;transition:.25s}.wrestler:hover img{transform:scale(1.04);box-shadow:none}
+.team{display:flex;justify-content:center;align-items:flex-start;gap:15px;flex-wrap:wrap;max-width:430px}.wrestler{width:125px;text-align:center;position:relative;padding-top:5px}.wrestler:before{content:"";position:absolute;top:0;left:12.5px;right:12.5px;height:3px;background:var(--brand);box-shadow:0 0 8px var(--brand)}.wrestler img{width:100px;height:100px;object-fit:cover;display:block;margin:0 auto 10px;border:none;box-shadow:none;transition:.25s}.wrestler:hover img{transform:scale(1.04);box-shadow:none}
 
 .wrestler span{display:flex;align-items:center;justify-content:center;min-height:34px;padding:5px 6px;color:#fff;font-size:11px;font-weight:bold;letter-spacing:.5px;line-height:15px;background:#0c0c0c;border:1px solid #292929}
 
@@ -18,7 +18,7 @@ main{width:100%;max-width:1100px;margin:40px auto;padding:0 25px}.event-header{b
 
 .vs{min-width:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#777;font-size:12px;font-weight:900;letter-spacing:2px}
 
-.match-score{min-width:92px;height:46px;padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;background:#090909;border:1px solid var(--brand);border-top:2px solid var(--brand);color:var(--brand);font-size:25px;font-weight:900;line-height:1;letter-spacing:1px;text-shadow:0 0 7px var(--glow);box-shadow:0 0 0 1px var(--glow),0 0 12px var(--glow);animation:score .55s ease-out both}.match-score span{display:inline-block;white-space:nowrap}
+.match-score{min-width:92px;height:46px;padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;background:#090909;border:1px solid var(--brand);border-top:2px solid var(--brand);color:var(--brand);font-size:25px;font-weight:900;line-height:1;letter-spacing:1px;text-shadow:0 0 7px var(--brand);box-shadow:0 0 0 1px var(--brand),0 0 12px var(--brand);animation:score .55s ease-out both}.match-score span{display:inline-block;white-space:nowrap}
 
 .championship-name{text-align:center;margin:5px 0 20px;font-size:13px;font-weight:bold;letter-spacing:1.5px;color:#fff}.match-winner{margin-top:22px;padding-top:13px;border-top:1px solid #292929;color:#777;font-size:11px;letter-spacing:1px;text-align:center}.match-winner strong{color:#fff;margin-left:5px}
 
