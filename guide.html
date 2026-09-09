@@ -745,5 +745,31 @@
     </div>
 </div>
 <script src="History/menu.js"></script>
+<script>
+const stipulationsModal=document.getElementById("stipulationsModal");
+const openStipulations=document.getElementById("openStipulations");
+const closeStipulations=document.getElementById("closeStipulations");
+const stipulationsOverlay=document.getElementById("stipulationsOverlay");
+
+openStipulations.addEventListener("click",()=>{
+    stipulationsModal.classList.add("active");
+    document.body.style.overflow="hidden";
+});
+
+function closeStipulationsModal(){
+    stipulationsModal.classList.remove("active");
+    document.body.style.overflow="";
+}
+
+closeStipulations.addEventListener("click",closeStipulationsModal);
+stipulationsOverlay.addEventListener("click",closeStipulationsModal);
+
+document.addEventListener("keydown",(e)=>{
+    if(e.key==="Escape"){
+        closeStipulationsModal();
+    }
+});
+</script>
+    
 </body>
 </html>
