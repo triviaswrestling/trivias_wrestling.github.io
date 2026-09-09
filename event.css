@@ -1,39 +1,561 @@
-*{box-sizing:border-box}html,body{margin:0;padding:0}body{margin:0;background:#0b0b0b;color:#fff;font-family:Arial,sans-serif;overflow-x:hidden}
+/* =========================================
+   MI WRESTLING
+   EVENT
+   ========================================= */
 
-header{width:100%;height:70px;background:#111;border-bottom:1px solid #292929;display:flex;align-items:center;padding:0 35px}.back-button{color:#fff;text-decoration:none;font-size:13px;font-weight:bold;letter-spacing:1px}.back-button:hover{opacity:.6}
+* {
+    box-sizing: border-box;
+}
 
-main{width:100%;max-width:1100px;margin:40px auto;padding:0 25px}.event-header{background:#111;border:1px solid #292929;padding:35px;text-align:center;margin-bottom:30px}.event-type{display:inline-block;font-size:11px;font-weight:bold;letter-spacing:2px;color:#999;margin-bottom:12px}.event-header h1{margin:0;font-size:32px;letter-spacing:2px}.event-date{margin-top:12px;color:#888;font-size:14px}.event-brand{margin-top:6px;color:#666;font-size:11px;letter-spacing:1px}
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
 
-.results-section{width:100%}.results-section>h2{margin:0 0 18px;font-size:16px;letter-spacing:2px}
+body {
+    background: #0b0b0b;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
 
-.result-card{--brand:#d90024;--glow:rgba(217,0,36,.22);background:#111;border:1px solid #292929;padding:22px;margin-bottom:14px;transition:.2s}.result-card.brand-raw{--brand:#d90024;--glow:rgba(217,0,36,.22)}.result-card.brand-smackdown{--brand:#2f8cff;--glow:rgba(47,140,255,.22)}.result-card.brand-nxt{--brand:#c8c8c8;--glow:rgba(200,200,200,.2)}.result-card:hover{border-color:#444;transform:translateY(-2px)}
 
-.match-name{text-align:center;color:#888;font-size:11px;font-weight:bold;letter-spacing:2px;margin-bottom:12px}.match-wrestlers{font-size:18px;font-weight:bold;letter-spacing:.5px}
+/* =========================================
+   HEADER
+   ========================================= */
 
-.match-winner{margin-top:22px;padding-top:13px;border-top:1px solid #292929;color:#777;font-size:11px;letter-spacing:1px;text-align:center}.match-winner strong{color:#fff;margin-left:5px}
+header {
+    width: 100%;
+    height: 70px;
+    background: #111;
+    border-bottom: 1px solid #292929;
 
-.match{display:flex;align-items:center;justify-content:center;gap:45px;margin-top:20px}
+    display: flex;
+    align-items: center;
 
-.wrestler{width:180px;text-align:center}.wrestler img{width:130px;height:130px;object-fit:cover;display:block;margin:0 auto 12px;border:2px solid var(--brand);box-shadow:0 0 12px var(--glow);transition:.25s}.wrestler:hover img{transform:scale(1.04);box-shadow:0 0 18px var(--glow)}.wrestler span{display:flex;align-items:center;justify-content:center;min-height:38px;padding:5px 6px;color:#fff;font-size:14px;font-weight:bold;letter-spacing:1px;line-height:17px;border:1px solid var(--brand);background:#0c0c0c;box-shadow:0 0 8px var(--glow)}
+    padding: 0 35px;
+}
 
-.match a,.wrestler-link{color:#fff;text-decoration:none}.match a:visited,.wrestler-link:visited{color:#fff}.match a:hover,.wrestler-link:hover{color:var(--brand)}
+.back-button {
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
 
-.vs{min-width:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;color:#777;font-size:12px;font-weight:900;letter-spacing:2px;animation:appear .45s ease-out both}
+.back-button:hover {
+    opacity: .6;
+}
 
-.match-score{position:relative;min-width:110px;min-height:54px;padding:11px 18px;display:flex;align-items:center;justify-content:center;background:#090909;border:1px solid var(--brand);border-top:3px solid var(--brand);color:var(--brand);font-size:30px;font-weight:900;line-height:1;letter-spacing:4px;text-shadow:0 0 8px var(--glow);box-shadow:0 0 0 1px var(--glow),0 0 20px var(--glow);animation:score .55s ease-out both}.match-score:after{content:"";position:absolute;left:50%;bottom:-5px;width:32px;height:2px;background:var(--brand);transform:translateX(-50%);box-shadow:0 0 9px var(--brand)}
 
-.team{display:flex;justify-content:center;align-items:flex-start;gap:15px;flex-wrap:wrap;max-width:430px}.team .wrestler{width:125px}.team .wrestler img{width:100px;height:100px;margin:0 auto 10px}.team .wrestler span{font-size:11px;min-height:34px;line-height:15px}
+/* =========================================
+   MAIN
+   ========================================= */
 
-.championship-name{text-align:center;margin:5px 0 20px;font-size:13px;font-weight:bold;letter-spacing:1.5px;color:#fff}
+main {
+    width: 100%;
+    max-width: 1100px;
 
-@keyframes appear{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}@keyframes score{0%{opacity:0;transform:scale(.75);filter:blur(4px)}60%{opacity:1;transform:scale(1.08);filter:blur(0)}100%{opacity:1;transform:scale(1)}}
+    margin: 40px auto;
 
-@media(max-width:600px){
-header{height:60px;padding:0 18px}main{margin:25px auto;padding:0 14px}.event-header{padding:25px 18px}.event-header h1{font-size:23px}.result-card{padding:18px}.match-wrestlers{font-size:15px}
+    padding: 0 25px;
+}
 
-.match{width:90%;margin:20px auto 0;gap:8px}.team{flex:1 1 0;width:0;max-width:none;gap:8px}.team .wrestler{width:100%;max-width:100px}.team .wrestler img{width:90px;height:90px}.team .wrestler span{font-size:9px;min-height:36px;line-height:13px}
 
-.wrestler{width:100px;min-height:135px}.wrestler img{width:90px;height:90px}.wrestler span{min-height:36px;padding:4px;font-size:9px;line-height:13px}
+/* =========================================
+   EVENT HEADER
+   ========================================= */
 
-.vs{flex:0 0 68px;min-width:68px;gap:9px;font-size:9px;letter-spacing:1px}.match-score{min-width:82px;min-height:46px;padding:8px 10px;font-size:23px;letter-spacing:3px}.match-score:after{width:25px}
+.event-header {
+    background: #111;
+    border: 1px solid #292929;
+
+    padding: 35px;
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.event-type {
+    display: inline-block;
+
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    color: #999;
+
+    margin-bottom: 12px;
+}
+
+.event-header h1 {
+    margin: 0;
+
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+.event-date {
+    margin-top: 12px;
+
+    color: #888;
+
+    font-size: 14px;
+}
+
+.event-brand {
+    margin-top: 6px;
+
+    color: #666;
+
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   RESULTS
+   ========================================= */
+
+.results-section {
+    width: 100%;
+}
+
+.results-section > h2 {
+    margin: 0 0 18px;
+
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   RESULT CARD
+   ========================================= */
+
+.result-card {
+    --brand: #d90024;
+    --glow: rgba(217, 0, 36, .20);
+
+    background: #111;
+
+    border: 1px solid #292929;
+
+    padding: 22px;
+
+    margin-bottom: 14px;
+
+    transition: .2s;
+}
+
+
+/* =========================================
+   BRAND COLORS
+   ========================================= */
+
+.result-card.brand-raw {
+    --brand: #d90024;
+    --glow: rgba(217, 0, 36, .20);
+}
+
+.result-card.brand-smackdown {
+    --brand: #2588ff;
+    --glow: rgba(37, 136, 255, .20);
+}
+
+.result-card.brand-nxt {
+    --brand: #bfc3c7;
+    --glow: rgba(191, 195, 199, .18);
+}
+
+.result-card.brand-speed {
+    --brand: #20c878;
+    --glow: rgba(32, 200, 120, .20);
+}
+
+.result-card.brand-ple {
+    --brand: #d4a72c;
+    --glow: rgba(212, 167, 44, .20);
+}
+
+.result-card:hover {
+    border-color: #444;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   MATCH NAME
+   ========================================= */
+
+.match-name {
+    text-align: center;
+
+    color: #888;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================================
+   MATCH
+   ========================================= */
+
+.match {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 45px;
+
+    margin-top: 20px;
+}
+
+
+/* =========================================
+   WRESTLERS
+   ========================================= */
+
+.team {
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    max-width: 430px;
+}
+
+.wrestler {
+    width: 125px;
+
+    text-align: center;
+}
+
+.wrestler img {
+    width: 100px;
+    height: 100px;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin: 0 auto 10px;
+
+    border: 2px solid #d90024;
+
+    box-shadow:
+        0 0 10px rgba(217, 0, 36, .15);
+
+    transition: .25s;
+}
+
+.wrestler:hover img {
+    transform: scale(1.04);
+
+    box-shadow:
+        0 0 16px rgba(217, 0, 36, .20);
+}
+
+.wrestler span {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 34px;
+
+    padding: 5px 6px;
+
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: .5px;
+
+    line-height: 15px;
+
+    background: #0c0c0c;
+
+    border: 1px solid #292929;
+}
+
+
+/* =========================================
+   LINKS
+   ========================================= */
+
+.match a,
+.wrestler-link {
+    color: #fff;
+
+    text-decoration: none;
+}
+
+.match a:visited,
+.wrestler-link:visited {
+    color: #fff;
+}
+
+.match a:hover,
+.wrestler-link:hover {
+    color: #fff;
+}
+
+
+/* =========================================
+   VS
+   ========================================= */
+
+.vs {
+    min-width: 92px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    color: #777;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   SCORE
+   ========================================= */
+
+.match-score {
+    min-width: 92px;
+    height: 46px;
+
+    padding: 8px 12px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    white-space: nowrap;
+
+    background: #090909;
+
+    border: 1px solid var(--brand);
+
+    border-top: 2px solid var(--brand);
+
+    color: var(--brand);
+
+    font-size: 25px;
+    font-weight: 900;
+
+    line-height: 1;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 7px var(--glow);
+
+    box-shadow:
+        0 0 0 1px var(--glow),
+        0 0 12px var(--glow);
+
+    animation: score .55s ease-out both;
+}
+
+.match-score span {
+    display: inline-block;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   SCORE ANIMATION
+   ========================================= */
+
+@keyframes score {
+
+    0% {
+        opacity: 0;
+        transform: scale(.75);
+        filter: blur(4px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.08);
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================
+   CHAMPIONSHIP
+   ========================================= */
+
+.championship-name {
+    text-align: center;
+
+    margin: 5px 0 20px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    color: #fff;
+}
+
+
+/* =========================================
+   WINNER
+   ========================================= */
+
+.match-winner {
+    margin-top: 22px;
+
+    padding-top: 13px;
+
+    border-top: 1px solid #292929;
+
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+.match-winner strong {
+    color: #fff;
+
+    margin-left: 5px;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    header {
+        height: 60px;
+
+        padding: 0 18px;
+    }
+
+    main {
+        margin: 25px auto;
+
+        padding: 0 14px;
+    }
+
+    .event-header {
+        padding: 25px 18px;
+    }
+
+    .event-header h1 {
+        font-size: 23px;
+    }
+
+    .result-card {
+        padding: 18px;
+    }
+
+    .match {
+        width: 90%;
+
+        margin: 20px auto 0;
+
+        gap: 8px;
+    }
+
+    .team {
+        flex: 1 1 0;
+
+        width: 0;
+
+        max-width: none;
+
+        gap: 8px;
+    }
+
+    .team .wrestler {
+        width: 100%;
+
+        max-width: 100px;
+    }
+
+    .team .wrestler img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .team .wrestler span {
+        font-size: 9px;
+
+        min-height: 36px;
+
+        line-height: 13px;
+    }
+
+    .vs {
+        flex: 0 0 64px;
+
+        min-width: 64px;
+
+        gap: 9px;
+
+        font-size: 9px;
+
+        letter-spacing: 1px;
+    }
+
+    .match-score {
+        min-width: 76px;
+
+        width: 76px;
+
+        height: 42px;
+
+        padding: 7px 5px;
+
+        gap: 5px;
+
+        font-size: 21px;
+
+        letter-spacing: 0;
+
+        white-space: nowrap;
+    }
 }
