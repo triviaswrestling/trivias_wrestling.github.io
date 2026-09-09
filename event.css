@@ -10,7 +10,64 @@ main{width:100%;max-width:1100px;margin:40px auto;padding:0 25px}.event-header{b
 
 .match-name{text-align:center;color:#888;font-size:11px;font-weight:bold;letter-spacing:2px;margin-bottom:12px}.match{display:flex;align-items:center;justify-content:center;gap:45px;margin-top:20px}
 
-.team{display:flex;justify-content:center;align-items:flex-start;gap:15px;flex-wrap:wrap;max-width:430px}.wrestler{width:125px;text-align:center;position:relative;padding-top:5px}.wrestler:before{content:"";position:absolute;top:0;left:12.5px;right:12.5px;height:3px;background:var(--brand);box-shadow:0 0 8px var(--brand)}.wrestler img{width:100px;height:100px;object-fit:cover;display:block;margin:0 auto 10px;border:none;box-shadow:none;transition:.25s}.wrestler:hover img{transform:scale(1.04);box-shadow:none}
+.team{display:flex;justify-content:center;align-items:flex-start;gap:15px;flex-wrap:wrap;max-width:430px}
+
+/* ================================
+   CARD DEL LUCHADOR
+   ================================ */
+
+.wrestler{
+    width:125px;
+    text-align:center;
+    position:relative;
+    padding-top:5px;
+    border:1px solid transparent!important;
+    box-shadow:none!important;
+    transition:.25s;
+}
+
+.wrestler:before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:12.5px;
+    right:12.5px;
+    height:3px;
+    background:var(--brand)!important;
+    box-shadow:0 0 8px var(--brand)!important;
+}
+
+.wrestler img{
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    display:block;
+    margin:0 auto 10px;
+    border:none!important;
+    box-shadow:none!important;
+    transition:.25s;
+}
+
+.wrestler:hover img{
+    transform:scale(1.04);
+    box-shadow:none!important;
+}
+
+/* BORDE Y GLOW DEL CARD AL ACTIVAR/SELECCIONAR */
+.wrestler:focus,
+.wrestler:focus-within,
+.wrestler:active{
+    border-color:var(--brand)!important;
+    box-shadow:0 0 12px var(--brand)!important;
+}
+
+/* LA ANIMACIÓN NO AGREGA ROJO A LA FOTO */
+.wrestler:focus img,
+.wrestler:focus-within img,
+.wrestler:active img{
+    border:none!important;
+    box-shadow:none!important;
+}
 
 .wrestler span{display:flex;align-items:center;justify-content:center;min-height:34px;padding:5px 6px;color:#fff;font-size:11px;font-weight:bold;letter-spacing:.5px;line-height:15px;background:#0c0c0c;border:1px solid #292929}
 
