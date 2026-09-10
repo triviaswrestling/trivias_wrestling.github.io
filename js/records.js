@@ -3,37 +3,153 @@
    RECORDS
    ========================================= */
 
-
-/* =========================================
-   WRESTLER RECORDS DATABASE
-   ========================================= */
-
 const wrestlerRecords = wrestlers.map(wrestler => {
 
-    const recordParts =
-        wrestler.overall2026
-            .split("-")
-            .map(part => part.trim());
+    let wins = 0;
+    let losses = 0;
+    let draws = 0;
 
+    const slug = name =>
+        String(name)
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-|-$/g, "");
+
+    const wrestlerId = slug(wrestler.name);
+
+    function participants(result) {
+        let list = [];
+
+        if (result.wrestler1) list.push(result.wrestler1);
+        if (result.wrestler2) list.push(result.wrestler2);
+
+        if (Array.isArray(result.team1))
+            list.push(...result.team1.flat());
+
+        if (Array.isArray(result.team2))
+            list.push(...result.team2.flat());
+
+        if (Array.isArray(result.participants))
+            list.push(...result.participants);
+
+        return [...new Set(list.filter(Boolean))];
+    }
+
+    function isThisWrestler(name) {
+        return name && slug(name) === wrestlerId;
+    }
+
+    function outcome(result) {
+
+        const people = participants(result);
+
+        if (!people.some(isThisWrestler))
+            return null;
+
+        if (result.winner) {
+            return isThisWrestler(result.winner)
+                ? "WIN"
+                : "LOSS";
+        }
+
+        if (
+            Array.isArray(result.participants) &&
+            Array.isArray(result.scores) &&
+            result.participants.length === result.scores.length
+        ) {
+
+            const scores = result.scores.map(Number);
+
+            if (scores.some(isNaN))
+                return null;
+
+            const highest = Math.max(...scores);
+
+            const winnerIndexes = [];
+
+            scores.forEach((score, index) => {
+                if (score === highest)
+                    winnerIndexes.push(index);
+            });
+
+            const thisIndex =
+                result.participants.findIndex(isThisWrestler);
+
+            if (winnerIndexes.length !== 1) {
+                return winnerIndexes.includes(thisIndex)
+                    ? "WIN"
+                    : "DRAW";
+            }
+
+            return isThisWrestler(
+                result.participants[winnerIndexes[0]]
+            )
+                ? "WIN"
+                : "LOSS";
+        }
+
+        if (
+            result.score1 === undefined ||
+            result.score2 === undefined
+        )
+            return null;
+
+        const a = Number(result.score1);
+        const b = Number(result.score2);
+
+        if (result.wrestler1 && isThisWrestler(result.wrestler1)) {
+            if (a > b) return "WIN";
+            if (a < b) return "LOSS";
+            return "DRAW";
+        }
+
+        if (result.wrestler2 && isThisWrestler(result.wrestler2)) {
+            if (b > a) return "WIN";
+            if (b < a) return "LOSS";
+            return "DRAW";
+        }
+
+        if (
+            Array.isArray(result.team1) &&
+            result.team1.flat().some(isThisWrestler)
+        ) {
+            if (a > b) return "WIN";
+            if (a < b) return "LOSS";
+            return "DRAW";
+        }
+
+        if (
+            Array.isArray(result.team2) &&
+            result.team2.flat().some(isThisWrestler)
+        ) {
+            if (b > a) return "WIN";
+            if (b < a) return "LOSS";
+            return "DRAW";
+        }
+
+        return null;
+    }
+
+    Object.values(eventData || {}).forEach(event => {
+        (event.results || []).forEach(result => {
+
+            const resultOutcome = outcome(result);
+
+            if (resultOutcome === "WIN") wins++;
+            if (resultOutcome === "LOSS") losses++;
+            if (resultOutcome === "DRAW") draws++;
+
+        });
+    });
 
     return {
-
-        id: wrestler.name
-            .toLowerCase()
-            .replace(/\s+/g, "-"),
-
+        id: wrestlerId,
         name: wrestler.name,
-
         brand: wrestler.brand || "NO BRAND",
-
-        wins: recordParts[0] || "0",
-
-        losses: recordParts[1] || "0",
-
-        draws: recordParts[2] || "0"
-
+        wins,
+        losses,
+        draws
     };
-
 });
 
 
@@ -73,30 +189,18 @@ function renderRecords(recordList) {
 
     recordsContainer.innerHTML = "";
 
-
-    /* =====================================
-       NO RESULTS
-       ===================================== */
-
     if (recordList.length === 0) {
 
         recordsContainer.innerHTML = `
             <div class="record-card">
-
                 <div class="record-name">
                     NO WRESTLERS FOUND
                 </div>
-
             </div>
         `;
 
         return;
     }
-
-
-    /* =====================================
-       PAGINATION
-       ===================================== */
 
     const start =
         (currentPage - 1) * wrestlersPerPage;
@@ -107,11 +211,6 @@ function renderRecords(recordList) {
     const pageRecords =
         recordList.slice(start, end);
 
-
-    /* =====================================
-       CREATE CARDS
-       ===================================== */
-
     pageRecords.forEach(wrestler => {
 
         const card =
@@ -119,7 +218,6 @@ function renderRecords(recordList) {
 
         card.className =
             "record-card";
-
 
         card.innerHTML = `
 
@@ -143,18 +241,13 @@ function renderRecords(recordList) {
 
                 <span class="record-value">
                     ${wrestler.wins} -
-                    ${wrestler.losses} -
-                    ${wrestler.draws}
+                    ${wrestler.draws} -
+                    ${wrestler.losses}
                 </span>
 
             </div>
 
         `;
-
-
-        /* =================================
-           OPEN SUPERSTAR
-           ================================= */
 
         card.addEventListener("click", () => {
 
@@ -162,7 +255,6 @@ function renderRecords(recordList) {
                 `superstar.html?id=${wrestler.id}`;
 
         });
-
 
         recordsContainer.appendChild(card);
 
@@ -182,7 +274,6 @@ function getFilteredRecords() {
             .trim()
             .toLowerCase();
 
-
     return wrestlerRecords.filter(wrestler => {
 
         const matchesSearch =
@@ -190,12 +281,10 @@ function getFilteredRecords() {
                 .toLowerCase()
                 .includes(search);
 
-
         const matchesBrand =
             currentBrand === "ALL" ||
             wrestler.brand.toUpperCase() ===
             currentBrand;
-
 
         return matchesSearch && matchesBrand;
 
@@ -212,31 +301,21 @@ function createPageButtons(totalPages) {
 
     pagesContainer.innerHTML = "";
 
-
     for (let i = 1; i <= totalPages; i++) {
 
         const button =
             document.createElement("button");
 
-
         button.className =
             "record-page";
 
-
-        if (i === currentPage) {
-
+        if (i === currentPage)
             button.classList.add("active");
 
-        }
-
-
-        button.dataset.page =
-            i;
-
+        button.dataset.page = i;
 
         button.textContent =
             `PART ${i}`;
-
 
         button.addEventListener(
             "click",
@@ -248,7 +327,6 @@ function createPageButtons(totalPages) {
 
             }
         );
-
 
         pagesContainer.appendChild(button);
 
@@ -266,11 +344,6 @@ function updateRecords() {
     const filteredRecords =
         getFilteredRecords();
 
-
-    /* =====================================
-       CALCULATE TOTAL PAGES
-       ===================================== */
-
     const totalPages =
         Math.max(
             1,
@@ -280,29 +353,10 @@ function updateRecords() {
             )
         );
 
-
-    /* =====================================
-       RESET PAGE IF NECESSARY
-       ===================================== */
-
-    if (currentPage > totalPages) {
-
-        currentPage =
-            totalPages;
-
-    }
-
-
-    /* =====================================
-       RENDER RECORDS
-       ===================================== */
+    if (currentPage > totalPages)
+        currentPage = totalPages;
 
     renderRecords(filteredRecords);
-
-
-    /* =====================================
-       CREATE PAGE BUTTONS
-       ===================================== */
 
     createPageButtons(totalPages);
 
@@ -338,9 +392,7 @@ filterButtons.forEach(button => {
             currentBrand =
                 button.dataset.brand;
 
-
             currentPage = 1;
-
 
             filterButtons.forEach(filter => {
 
@@ -350,11 +402,9 @@ filterButtons.forEach(button => {
 
             });
 
-
             button.classList.add(
                 "active"
             );
-
 
             updateRecords();
 
