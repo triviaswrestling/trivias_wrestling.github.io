@@ -23,10 +23,8 @@ return String(name).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""
 }
 
 function findWrestler(){
-if(typeof wrestlerData==="undefined")return null;
-return Object.values(wrestlerData).find(w=>
-w.id===wrestlerId||slug(w.name)===wrestlerId
-);
+if(typeof wrestlers==="undefined")return null;
+return wrestlers.find(w=>slug(w.name)===wrestlerId);
 }
 
 const wrestler=findWrestler();
@@ -49,51 +47,52 @@ if(result.wrestler2)list.push(result.wrestler2);
 if(Array.isArray(result.team1))list.push(...result.team1.flat());
 if(Array.isArray(result.team2))list.push(...result.team2.flat());
 if(Array.isArray(result.participants))list.push(...result.participants);
-return [...new Set(list.filter(Boolean))];
+return[...new Set(list.filter(Boolean))];
+}
+
+function isThisWrestler(name){
+return name&&slug(name)===wrestlerId;
 }
 
 function rivals(result){
-return participants(result).filter(n=>slug(n)!==wrestlerId&&n!==wrestler?.name);
+return participants(result).filter(n=>!isThisWrestler(n));
 }
 
 function outcome(result){
+const people=participants(result);
+if(!people.some(isThisWrestler))return null;
+
 if(result.winner){
-return result.winner===wrestler?.name||slug(result.winner)===wrestlerId?"WIN":"LOSS";
+if(isThisWrestler(result.winner))return"WIN";
+return"LOSS";
 }
 
-const p=participants(result);
-if(!p.includes(wrestler?.name))return null;
+if(result.score1===undefined||result.score2===undefined)return null;
 
-if(result.score1!==undefined&&result.score2!==undefined){
-let a=Number(result.score1),b=Number(result.score2);
+const a=Number(result.score1),b=Number(result.score2);
 
-if(result.wrestler1===wrestler.name){
+if(result.wrestler1&&isThisWrestler(result.wrestler1)){
 if(a>b)return"WIN";
 if(a<b)return"LOSS";
 return"DRAW";
 }
 
-if(result.wrestler2===wrestler.name){
+if(result.wrestler2&&isThisWrestler(result.wrestler2)){
 if(b>a)return"WIN";
 if(b<a)return"LOSS";
 return"DRAW";
 }
 
-if(Array.isArray(result.team1)&&result.team1.flat().includes(wrestler.name)){
+if(Array.isArray(result.team1)&&result.team1.flat().some(isThisWrestler)){
 if(a>b)return"WIN";
 if(a<b)return"LOSS";
 return"DRAW";
 }
 
-if(Array.isArray(result.team2)&&result.team2.flat().includes(wrestler.name)){
+if(Array.isArray(result.team2)&&result.team2.flat().some(isThisWrestler)){
 if(b>a)return"WIN";
 if(b<a)return"LOSS";
 return"DRAW";
-}
-}
-
-if(result.score!==undefined&&Array.isArray(result.participants)){
-if(result.winner)return result.winner===wrestler.name?"WIN":"LOSS";
 }
 
 return null;
@@ -120,19 +119,14 @@ return"SINGLES";
 }
 
 function tournamentId(event,result){
-if(result.tournament){
-const n=(result.tournament.match(/\d+/)||["1"])[0];
+if(!result.tournament)return null;
+
+const n=(String(result.tournament).match(/\d+/)||["1"])[0];
 const brand=(result.brand||event.brand||"").toUpperCase();
 
 if(brand==="RAW")return`raw-${n}`;
 if(brand==="SMACKDOWN")return`smackdown-${n}`;
 if(brand==="NXT")return`nxt-${n}`;
-}
-
-if(event.type==="NXT"){
-const n=(result.tournament?.match(/\d+/)||["1"])[0];
-return`nxt-${n}`;
-}
 
 return null;
 }
@@ -140,15 +134,15 @@ return null;
 function matchLink(event,result,index){
 const tournament=tournamentId(event,result);
 
-if(tournament)
+if(tournament){
 return`torneoroad.html?id=${encodeURIComponent(tournament)}`;
+}
 
 return`event.html?id=${encodeURIComponent(event.id)}&match=${index}`;
 }
 
 function matchLabel(result){
-if(result.match)return result.match;
-return result.type||"SINGLES";
+return result.match||result.type||"SINGLES";
 }
 
 function renderRecords(){
@@ -160,8 +154,7 @@ let history=[];
 
 Object.entries(eventData||{}).forEach(([eventId,event])=>{
 (event.results||[]).forEach((result,index)=>{
-const people=participants(result);
-if(!people.some(n=>n===wrestler.name||slug(n)===wrestlerId))return;
+if(!participants(result).some(isThisWrestler))return;
 
 const resultOutcome=outcome(result);
 if(!resultOutcome)return;
@@ -217,9 +210,7 @@ return;
 }
 
 history.forEach(item=>{
-const rivalText=item.rivals.length
-?item.rivals.join(" / ")
-:"NO RIVAL";
+const rivalText=item.rivals.length?item.rivals.join(" / "):"NO RIVAL";
 
 const div=document.createElement("div");
 div.className="history-item";
