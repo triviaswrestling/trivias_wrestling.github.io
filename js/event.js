@@ -99,11 +99,11 @@ addPLE("worlds-collide-las-vegas-2026","WORLDS COLLIDE: LAS VEGAS 2026","27/09/2
 
 addPLE("summerslam-2026","SUMMERSLAM 2026","23/08/2026","ROAD","images/events/summerslam-2026.jpg",[
     {type:"FATAL 4-WAY",position:"OPENER",match:"Fatal 4-Way Match",participants:["Bo Dallas","Charlie Dempsey","Je'Von Evans","Karrion Kross"],scores:[0,0,8,0]},
-    {type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Daniel Bryan",wrestler2:"Randy Orton",score1:0,score2:10},
+    {type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Bryan Danielson",wrestler2:"Randy Orton",score1:0,score2:10},
     {type:"SINGLES",championship:"United States Championship",wrestler1:"Cody Rhodes",wrestler2:"Kyle O'Reilly",score1:6,score2:4},
-    {type:"TAG TEAM",championship:"WWE World Tag Team Championship",wrestler1:"Daniel Bryan & Jon Moxley",wrestler2:"Bravo Americano & El Grande Americano",score1:5,score2:0},
+    {type:"TAG TEAM",championship:"WWE World Tag Team Championship",wrestler1:"Bryan Danielson & Jon Moxley",wrestler2:"Bravo Americano & El Grande Americano",score1:5,score2:0},
     {type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Bret Hart",wrestler2:"Axiom",score1:6,score2:2},
-    {type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Christian",wrestler2:"Seth Rollins",score1:5,score2:5}
+    {type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Christian Cage",wrestler2:"Seth Rollins",score1:5,score2:5}
 ]);
 
 addPLE("night-of-champions-2026","NIGHT OF CHAMPIONS 2026","26/07/2026","BOOK","images/events/night-of-champions-2026.jpg");
@@ -165,13 +165,13 @@ addPLE("backlash-2023","BACKLASH 2023","05/05/2023","ROAD","images/events/backla
 addPLE("wrestlemania-i","WRESTLEMANIA I","10/04/2023","ROAD","images/events/wrestlemania-i.jpg");
 
 addPLE("elimination-chamber-2023","ELIMINATION CHAMBER 2023","19/03/2023","ROAD","images/events/elimination-chamber-2023.jpg",[
-    {type:"SINGLES",position:"OPENER",wrestler1:"Daniel Bryan",wrestler2:"Rob Van Dam",score1:5,score2:0},
+    {type:"SINGLES",position:"OPENER",wrestler1:"Bryan Danielson",wrestler2:"Rob Van Dam",score1:5,score2:0},
     {type:"SINGLES",wrestler1:"Roman Reigns",wrestler2:"John Cena",score1:5,score2:0},
     {type:"SINGLES",wrestler1:"AJ Styles",wrestler2:"Adam Cole",score1:0,score2:3},
     {type:"SINGLES",wrestler1:"Cody Rhodes",wrestler2:"Ricochet",score1:4,score2:1},
-    {type:"SINGLES",wrestler1:"Daniel Bryan",wrestler2:"Roman Reigns",score1:4,score2:1},
+    {type:"SINGLES",wrestler1:"Bryan Danielson",wrestler2:"Roman Reigns",score1:4,score2:1},
     {type:"SINGLES",wrestler1:"Adam Cole",wrestler2:"Cody Rhodes",score1:1,score2:4},
-    {type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Daniel Bryan",wrestler2:"Cody Rhodes",score1:3,score2:2}
+    {type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Cody Rhodes",score1:3,score2:2}
 ]);
 
 /* =========================================
