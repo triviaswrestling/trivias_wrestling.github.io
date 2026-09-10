@@ -8,21 +8,12 @@ const eventDate=document.getElementById("event-date");
 const eventBrand=document.getElementById("event-brand");
 const eventResults=document.getElementById("event-results");
 
-/* =========================================
-   GET EVENT ID
-   ========================================= */
-
 const params=new URLSearchParams(window.location.search);
 const eventId=params.get("id");
-
-/* =========================================
-   FIND EVENT
-   ========================================= */
-
 const event=eventData[eventId];
 
 /* =========================================
-   EVENT NOT FOUND
+   EVENT
    ========================================= */
 
 if(!event){
@@ -30,44 +21,21 @@ if(!event){
     eventTitle.textContent="EVENT NOT FOUND";
     eventDate.textContent="";
     eventBrand.textContent="";
-    eventResults.innerHTML=`
-        <p>THE REQUESTED EVENT COULD NOT BE FOUND.</p>
-    `;
+    eventResults.innerHTML="<p>THE REQUESTED EVENT COULD NOT BE FOUND.</p>";
 
 }else{
-
-    /* =========================================
-       EVENT HEADER
-       ========================================= */
 
     eventTitle.textContent=event.title||"EVENT";
     eventDate.textContent=event.date||"";
     eventBrand.textContent=event.brand||"";
 
-    /* =========================================
-       EVENT TYPE
-       ========================================= */
-
     const eventType=document.querySelector(".event-header .event-type");
 
     if(eventType){
-
-        if(event.type==="WEEKLY")
-            eventType.textContent="WEEKLY";
-
-        else if(event.type==="NXT")
-            eventType.textContent="NXT";
-
-        else if(event.type==="PLE")
-            eventType.textContent="SPECIAL EVENT";
-
-        else
-            eventType.textContent=event.type||"EVENT";
+        eventType.textContent=
+            event.type==="PLE"?"SPECIAL EVENT":
+            event.type||"EVENT";
     }
-
-    /* =========================================
-       RESULTS
-       ========================================= */
 
     renderResults(event.results||[]);
 }
@@ -81,49 +49,40 @@ function renderResults(results){
     eventResults.innerHTML="";
 
     if(!results.length){
-
         eventResults.innerHTML=`
             <div class="result-card">
-                <p>NO RESULTS AVAILABLE.</p>
+                <div class="match-winner">NO RESULTS AVAILABLE.</div>
             </div>
         `;
-
         return;
     }
 
-    results.forEach((result,index)=>{
+    results.forEach(result=>{
 
         const card=document.createElement("div");
-        card.className="result-card";
+        card.className=`result-card brand-${(result.brand||event.brand||"PLE").toLowerCase()}`;
+
+        let html="";
 
         /* =====================================
-           TAGS
+           POSITION
            ===================================== */
 
-        let tags="";
-
         if(result.position){
-
-            tags+=`
-                <div class="result-position">
+            html+=`
+                <div class="match-name">
                     ${result.position}
                 </div>
             `;
         }
 
-        if(result.brand){
-
-            tags+=`
-                <div class="result-brand ${result.brand.toLowerCase()}">
-                    ${result.brand}
-                </div>
-            `;
-        }
+        /* =====================================
+           CHAMPIONSHIP
+           ===================================== */
 
         if(result.championship){
-
-            tags+=`
-                <div class="result-championship">
+            html+=`
+                <div class="championship-name">
                     ${result.championship}
                 </div>
             `;
@@ -135,105 +94,159 @@ function renderResults(results){
 
         if(result.type==="FATAL 4-WAY"){
 
-            let participants="";
-
-            if(result.participants){
-
-                result.participants.forEach((name,i)=>{
-
-                    const score=result.scores?.[i]??"";
-
-                    participants+=`
-                        <div class="result-superstar">
-                            <span>${name}</span>
-                            <strong>${score}</strong>
-                        </div>
-                    `;
-                });
-            }
-
-            card.innerHTML=`
-                ${tags}
-
-                <div class="result-type">
+            html+=`
+                <div class="match-name">
                     ${result.match||"FATAL 4-WAY MATCH"}
                 </div>
 
-                <div class="result-participants">
-                    ${participants}
+                <div class="match">
+                    <div class="team">
+            `;
+
+            (result.participants||[]).forEach((name,i)=>{
+
+                const score=result.scores?.[i]??"";
+
+                html+=`
+                    <div class="wrestler">
+                        <span>${name}</span>
+                    </div>
+                `;
+
+            });
+
+            html+=`
+                    </div>
+
+                    <div class="vs">
+                        <div>FINAL</div>
+                        <div class="match-score">
+                            ${result.scores?.join(" - ")||""}
+                        </div>
+                    </div>
                 </div>
             `;
 
-            eventResults.appendChild(card);
-            return;
         }
 
         /* =====================================
            TAG TEAM
            ===================================== */
 
-        if(result.type==="TAG TEAM"){
+        else if(result.type==="TAG TEAM"){
 
-            card.innerHTML=`
-                ${tags}
-
-                <div class="result-type">
+            html+=`
+                <div class="match-name">
                     TAG TEAM
                 </div>
 
-                <div class="result-match">
+                <div class="match">
 
-                    <div class="result-superstar">
-                        <span>${result.wrestler1||""}</span>
-                        <strong>${result.score1??""}</strong>
+                    <div class="team">
+                        ${createWrestler(result.wrestler1)}
                     </div>
 
-                    <div class="result-vs">
-                        VS
+                    <div class="vs">
+                        <div>VS</div>
+                        ${createScore(result.score1,result.score2)}
                     </div>
 
-                    <div class="result-superstar">
-                        <span>${result.wrestler2||""}</span>
-                        <strong>${result.score2??""}</strong>
+                    <div class="team">
+                        ${createWrestler(result.wrestler2)}
                     </div>
 
                 </div>
             `;
 
-            eventResults.appendChild(card);
-            return;
         }
 
         /* =====================================
            NORMAL MATCH
            ===================================== */
 
-        card.innerHTML=`
-            ${tags}
+        else{
 
-            <div class="result-type">
-                ${result.type||"SINGLES"}
-            </div>
-
-            <div class="result-match">
-
-                <div class="result-superstar">
-                    <span>${result.wrestler1||""}</span>
-                    <strong>${result.score1??""}</strong>
+            html+=`
+                <div class="match-name">
+                    ${result.type||"SINGLES"}
                 </div>
 
-                <div class="result-vs">
-                    VS
+                <div class="match">
+
+                    <div class="team">
+                        ${createWrestler(result.wrestler1)}
+                    </div>
+
+                    <div class="vs">
+                        <div>VS</div>
+                        ${createScore(result.score1,result.score2)}
+                    </div>
+
+                    <div class="team">
+                        ${createWrestler(result.wrestler2)}
+                    </div>
+
                 </div>
+            `;
 
-                <div class="result-superstar">
-                    <span>${result.wrestler2||""}</span>
-                    <strong>${result.score2??""}</strong>
+        }
+
+        /* =====================================
+           WINNER
+           ===================================== */
+
+        const score1=Number(result.score1);
+        const score2=Number(result.score2);
+
+        if(!isNaN(score1)&&!isNaN(score2)){
+
+            let winner="DRAW";
+
+            if(score1>score2)
+                winner=result.wrestler1;
+
+            else if(score2>score1)
+                winner=result.wrestler2;
+
+            html+=`
+                <div class="match-winner">
+                    WINNER:
+                    <strong>${winner}</strong>
                 </div>
+            `;
+        }
 
-            </div>
-        `;
-
+        card.innerHTML=html;
         eventResults.appendChild(card);
     });
+}
+
+/* =========================================
+   WRESTLER
+   ========================================= */
+
+function createWrestler(name){
+
+    if(!name)return"";
+
+    return`
+        <div class="wrestler" tabindex="0">
+            <span>${name}</span>
+        </div>
+    `;
+}
+
+/* =========================================
+   SCORE
+   ========================================= */
+
+function createScore(score1,score2){
+
+    return`
+        <div class="match-score">
+            <span>${score1??""}</span>
+            <span>-</span>
+            <span>${score2??""}</span>
+        </div>
+    `;
 }
