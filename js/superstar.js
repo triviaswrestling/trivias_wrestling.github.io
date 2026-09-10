@@ -185,10 +185,10 @@ winsEl.textContent=wins;
 lossesEl.textContent=losses;
 drawsEl.textContent=draws;
 
-singlesEl.textContent=`${singles.w} - ${singles.l} - ${singles.d}`;
-tagEl.textContent=`${tag.w} - ${tag.l} - ${tag.d}`;
-sixManEl.textContent=`${six.w} - ${six.l} - ${six.d}`;
-
+singlesEl.textContent=`${singles.w} - ${singles.d} - ${singles.l}`;
+tagEl.textContent=`${tag.w} - ${tag.d} - ${tag.l}`;
+sixManEl.textContent=`${six.w} - ${six.d} - ${six.l}`;
+   
 history.sort((a,b)=>{
 const parse=d=>{
 const [day,month,year]=String(d||"").split("/");
