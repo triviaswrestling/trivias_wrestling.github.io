@@ -5,6 +5,11 @@ const wrestlers = [
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "inactive",achievements: []},
     
+    {name: "AJ Styles",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+    
     {name: "Alberto del Rio",
         image: "images/Vacante.jpg",
         nickname: "El Patron",
@@ -16,6 +21,16 @@ const wrestlers = [
         status: "active",
         achievements: []
     },
+{name: "Aleister Black",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
+    {name: "Andrade",image: "images/zacarias.jpg", nickname: "El Idolo", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+    
     {name: "Axiom",
         image: "images/Vacante.jpg",
         nickname: "",
@@ -38,6 +53,11 @@ const wrestlers = [
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "active",achievements: []},
 
+{name: "Bobby Lashley",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+    
     {name: "Bo Dallas",image: "images/Vacante.jpg", nickname: "", stable: "",
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
@@ -47,6 +67,11 @@ const wrestlers = [
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "active",achievements: []},
+
+    {name:"Bray Wyatt",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
     
     {
         name: "Bret Hart",
@@ -64,6 +89,11 @@ const wrestlers = [
             "5x United States Champion"
         ]},
 
+    {name: "Brock Lesnar",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
     {name: "Bron Breakker",image: "images/Vacante.jpg", nickname: "", stable: "",
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
@@ -77,6 +107,11 @@ const wrestlers = [
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "active",achievements: []},
+
+    {name: "Chad Gable",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
         
 {name: "Charlie Dempsey",
         image: "images/Vacante.jpg",
@@ -93,6 +128,16 @@ const wrestlers = [
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "active",achievements: []},
+
+    {name: "Chris Jericho",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
+    {name: "Claudio Castagnoli",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
 
     {name: "CM Punk",image: "images/Vacante.jpg", nickname: "", stable: "",
       division: "NXT",  brand: "NXT",
@@ -129,11 +174,44 @@ const wrestlers = [
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "active",achievements: []},
-    
-    {name: "El Grande Americano",image: "images/Vacante.jpg", nickname: "", stable: "",
+
+    {name: "Dominik Mysterio",image: "images/zacarias.jpg", nickname: "El Sucio", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
+    {name: "Dragon Lee",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
+    {name: "Drew McIntyre",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
+    {name: "Eddie Guerrero",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+{name: "Edge",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+ {name: "El Grande Americano",image: "images/Vacante.jpg", nickname: "", stable: "",
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "active",achievements: []},
+
+    {name: "Enzo Amore",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
+    {name: "Ethan Page",image: "images/zacarias.jpg", nickname: "All Ego", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
     
     {name: "Finn Balor",
         image: "images/Vacante.jpg",
@@ -146,10 +224,24 @@ const wrestlers = [
         status: "active",
         achievements: []},
 
+    {name: "GUNTHER",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
+    {name: "Ilja Dragunov",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
     {name: "Jacob Fatu",image: "images/Vacante.jpg", nickname: "", stable: "",
       division: "Monday Night RAW",  brand: "RAW",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
-    
+
+    {name: "JD Mcdonagh",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
 
     { name: "Jeff Jarrett",
         image: "images/Jeff Jarrett trivias.jpg",
@@ -164,19 +256,58 @@ const wrestlers = [
             "x5 WWE Undisputed Champion"
         ]},
 
+    {name: "Jeff Hardy",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
+    {name: "Je'Von Evans",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
+    {name: "Jey Uso",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
+    
+
     {name: "Jimmy Uso",image: "images/Vacante.jpg", nickname: "", stable: "",
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "active",achievements: []},
+
     
+    {name: "Joe Hendry",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+    {name: "John Cena",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+    {name: "Johnny Gargano",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
      {name: "Jon Moxley",image: "images/Vacante.jpg", nickname: "", stable: "Blackpool Combat Club",
       division: "Monday Night RAW",  brand: "RAW",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0",  status: "active",achievements: []},
 
+
+    {name: "Kane",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
 {name: "Karrion Kross",image: "images/Vacante.jpg", nickname: "", stable: "",
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "active",achievements: []},
+    {name: "Keith Lee",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
     
     {name: "Kyle O'Reilly",
         image: "images/Vacante.jpg",
@@ -199,6 +330,10 @@ const wrestlers = [
         careerOverall: "0 - 10 - 0",
         status: "active",
         achievements: []},
+    {name: "Nic Nemeth",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
      {name: "Randy Orton",
         image: "images/Vacante.jpg",
         nickname: "",
