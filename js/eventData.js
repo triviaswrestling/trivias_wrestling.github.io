@@ -10,10 +10,10 @@ const eventData={};
    ========================================= */
 
 function addDays(date,days){
-    const [d,m,y]=date.split("/").map(Number);
-    const result=new Date(y,m-1,d);
-    result.setDate(result.getDate()+days);
-    return String(result.getDate()).padStart(2,"0")+"/"+String(result.getMonth()+1).padStart(2,"0")+"/"+result.getFullYear();
+const [d,m,y]=date.split("/").map(Number);
+const result=new Date(y,m-1,d);
+result.setDate(result.getDate()+days);
+return String(result.getDate()).padStart(2,"0")+"/"+String(result.getMonth()+1).padStart(2,"0")+"/"+result.getFullYear();
 }
 
 /* =========================================
@@ -21,49 +21,46 @@ function addDays(date,days){
    ========================================= */
 
 function createWeeklyData(){
+if(typeof tournamentData==="undefined")return;
+const startDate="06/09/2026";
 
-    if(typeof tournamentData==="undefined")return;
+for(let weekly=1;weekly<=28;weekly++){
+const tournamentNumber=Math.floor((weekly-1)/7)+1;
+const round=((weekly-1)%7)+1;
+const raw=tournamentData[`raw-${tournamentNumber}`];
+const smackdown=tournamentData[`smackdown-${tournamentNumber}`];
 
-    const startDate="06/09/2026";
+if(!raw&&!smackdown)continue;
 
-    for(let weekly=1;weekly<=28;weekly++){
+const results=[];
 
-        const tournamentNumber=Math.floor((weekly-1)/7)+1;
-        const round=((weekly-1)%7)+1;
-        const raw=tournamentData[`raw-${tournamentNumber}`];
-        const smackdown=tournamentData[`smackdown-${tournamentNumber}`];
+[raw,smackdown].forEach((tournament,index)=>{
+if(!tournament?.matches)return;
 
-        if(!raw&&!smackdown)continue;
+tournament.matches
+.filter(m=>Number(m.date)===round)
+.forEach(m=>{
+results.push({
+type:"SINGLES",
+brand:index===0?"RAW":"SMACKDOWN",
+tournament:`TOURNAMENT #${tournamentNumber}`,
+round:`ROUND ${round}`,
+wrestler1:m.wrestler1,
+wrestler2:m.wrestler2,
+score1:m.score1,
+score2:m.score2
+});
+});
+});
 
-        const results=[];
-
-        [raw,smackdown].forEach((tournament,index)=>{
-
-            if(!tournament?.matches)return;
-
-            tournament.matches
-                .filter(m=>Number(m.date)===round)
-                .forEach(m=>results.push({
-                    type:"SINGLES",
-                    brand:index===0?"RAW":"SMACKDOWN",
-                    tournament:`TOURNAMENT #${tournamentNumber}`,
-                    round:`ROUND ${round}`,
-                    wrestler1:m.wrestler1,
-                    wrestler2:m.wrestler2,
-                    score1:m.score1,
-                    score2:m.score2
-                }));
-
-        });
-
-        eventData[`weekly-${weekly}`]={
-            type:"WEEKLY",
-            title:`WEEKLY #${weekly}`,
-            date:addDays(startDate,(weekly-1)*7),
-            brand:"RAW & SMACKDOWN",
-            results
-        };
-    }
+eventData[`weekly-${weekly}`]={
+type:"WEEKLY",
+title:`WEEKLY #${weekly}`,
+date:addDays(startDate,(weekly-1)*7),
+brand:"RAW & SMACKDOWN",
+results
+};
+}
 }
 
 /* =========================================
@@ -71,50 +68,55 @@ function createWeeklyData(){
    ========================================= */
 
 function createNXTData(){
+if(typeof tournamentData==="undefined")return;
 
-    if(typeof tournamentData==="undefined")return;
+let eventNumber=1;
 
-    let eventNumber=1;
+Object.keys(tournamentData)
+.filter(id=>id.startsWith("nxt-"))
+.sort((a,b)=>Number(a.split("-")[1])-Number(b.split("-")[1]))
+.forEach(id=>{
+const tournament=tournamentData[id];
+if(!tournament?.matches)return;
 
-    Object.keys(tournamentData)
-        .filter(id=>id.startsWith("nxt-"))
-        .sort((a,b)=>Number(a.split("-")[1])-Number(b.split("-")[1]))
-        .forEach(id=>{
+const tournamentNumber=id.split("-")[1];
+const startDate=tournament.startDate||"06/09/2026";
 
-            const tournament=tournamentData[id];
+const rounds=[...new Set(
+tournament.matches
+.map(m=>Number(m.date))
+.filter(n=>!isNaN(n))
+)].sort((a,b)=>a-b);
 
-            if(!tournament?.matches)return;
+rounds.forEach(round=>{
+const results=tournament.matches
+.filter(m=>Number(m.date)===round)
+.map(m=>({
+type:"SINGLES",
+brand:"NXT",
+tournament:`TOURNAMENT #${tournamentNumber}`,
+round:`ROUND ${round}`,
+wrestler1:m.wrestler1,
+wrestler2:m.wrestler2,
+score1:m.score1,
+score2:m.score2
+}));
 
-            const tournamentNumber=id.split("-")[1];
+if(!results.length)return;
 
-            [...new Set(tournament.matches.map(m=>Number(m.date)))]
-                .sort((a,b)=>a-b)
-                .forEach(round=>{
+eventData[`nxt-${eventNumber}`]={
+type:"NXT",
+title:`NXT #${eventNumber}`,
+date:addDays(startDate,round-1),
+brand:"NXT",
+tournament:`TOURNAMENT #${tournamentNumber}`,
+round:`ROUND ${round}`,
+results
+};
 
-                    const results=tournament.matches
-                        .filter(m=>Number(m.date)===round)
-                        .map(m=>({
-                            type:"SINGLES",
-                            brand:"NXT",
-                            tournament:`TOURNAMENT #${tournamentNumber}`,
-                            round:`ROUND ${round}`,
-                            wrestler1:m.wrestler1,
-                            wrestler2:m.wrestler2,
-                            score1:m.score1,
-                            score2:m.score2
-                        }));
-
-                    eventData[`nxt-${eventNumber}`]={
-                        type:"NXT",
-                        title:`NXT #${eventNumber}`,
-                        date:addDays(tournament.startDate,round-1),
-                        brand:"NXT",
-                        results
-                    };
-
-                    eventNumber++;
-                });
-        });
+eventNumber++;
+});
+});
 }
 
 /* =========================================
@@ -122,7 +124,7 @@ function createNXTData(){
    ========================================= */
 
 function addPLE(id,title,date,mode,image,results=[]){
-    eventData[id]={type:"PLE",title,date,mode,brand:"PLE",image,results};
+eventData[id]={type:"PLE",title,date,mode,brand:"PLE",image,results};
 }
 
 /* =========================================
@@ -135,12 +137,12 @@ addPLE("money-in-the-bank-2026","MONEY IN THE BANK 2026","25/10/2026","ROAD","im
 addPLE("worlds-collide-las-vegas-2026","WORLDS COLLIDE: LAS VEGAS 2026","27/09/2026","BOOK","images/events/worlds-collide-las-vegas-2026.jpg");
 
 addPLE("summerslam-2026","SUMMERSLAM 2026","23/08/2026","ROAD","images/events/summerslam-2026.jpg",[
-    {type:"FATAL 4-WAY",position:"OPENER",match:"Fatal 4-Way Match",participants:["Bo Dallas","Charlie Dempsey","Je'Von Evans","Karrion Kross"],scores:[0,0,8,0]},
-    {type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Bryan Danielson",wrestler2:"Randy Orton",score1:0,score2:10},
-    {type:"SINGLES",championship:"United States Championship",wrestler1:"Cody Rhodes",wrestler2:"Kyle O'Reilly",score1:6,score2:4},
-    {type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Bravo Americano","El Grande Americano"],score1:5,score2:0},
-    {type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Bret Hart",wrestler2:"Axiom",score1:6,score2:2},
-    {type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Christian Cage",wrestler2:"Seth Rollins",score1:5,score2:5}
+{type:"FATAL 4-WAY",position:"OPENER",match:"Fatal 4-Way Match",participants:["Bo Dallas","Charlie Dempsey","Je'Von Evans","Karrion Kross"],scores:[0,0,8,0]},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Bryan Danielson",wrestler2:"Randy Orton",score1:0,score2:10},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Cody Rhodes",wrestler2:"Kyle O'Reilly",score1:6,score2:4},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Bravo Americano","El Grande Americano"],score1:5,score2:0},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Bret Hart",wrestler2:"Axiom",score1:6,score2:2},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Christian Cage",wrestler2:"Seth Rollins",score1:5,score2:5}
 ]);
 
 addPLE("night-of-champions-2026","NIGHT OF CHAMPIONS 2026","26/07/2026","BOOK","images/events/night-of-champions-2026.jpg");
@@ -148,12 +150,14 @@ addPLE("clash-in-italy-2026","CLASH IN ITALY 2026","21/06/2026","ROAD","images/e
 addPLE("backlash-tampa-2026","BACKLASH: TAMPA 2026","24/05/2026","BOOK","images/events/backlash-tampa-2026.jpg");
 addPLE("wrestlemania-4-life","WRESTLEMANIA 4 LIFE","26/04/2026","ROAD","images/events/wrestlemania-4-life.jpg");
 addPLE("elimination-chamber-2026","ELIMINATION CHAMBER 2026","29/03/2026","BOOK","images/events/elimination-chamber-2026.jpg");
+
 addPLE("royal-rumble-2026","ROYAL RUMBLE 2026","23/02/2026","ROAD","images/events/royal-rumble-2026.jpg",[
 {type:"SINGLES",position:"OPENER",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Seth Rollins",score1:3,score2:4},
 {type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bron Breakker","Seth Rollins"],team2:["Cody Rhodes","Randy Orton"],score1:0,score2:3},
 {type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Christian Cage",wrestler2:"Randy Orton",score1:6,score2:4},
 {type:"ROYAL RUMBLE",position:"MAIN EVENT",participants:["Swerve Strickland","Trick Williams","R-Truth","Austin Theory","Ilja Dragunov","Kyle O'Reilly","Bo Dallas","CM Punk","JD Mcdonagh","Bret Hart","Alberto del Rio","Finn Balor","Rey Fenix","LA Knight","Karrion Kross","Rob Van Dam","Axiom","Wade Barrett","Randy Orton","Batista","Jon Moxley","Dezmond Xavier","Sheamus","Joe Hendry","Shawn Spears","Bron Breakker","Bryan Danielson","Jacob Fatu","Rey Mysterio","Chris Benoit"],winner:"Swerve Strickland"}
 ]);
+
 addPLE("saturday-nights-main-event-2026","SATURDAY NIGHT'S MAIN EVENT 2026","24/01/2026","BOOK","images/events/saturday-nights-main-event-2026.jpg");
 
 /* =========================================
@@ -207,13 +211,13 @@ addPLE("backlash-2023","BACKLASH 2023","05/05/2023","ROAD","images/events/backla
 addPLE("wrestlemania-i","WRESTLEMANIA I","10/04/2023","ROAD","images/events/wrestlemania-i.jpg");
 
 addPLE("elimination-chamber-2023","ELIMINATION CHAMBER 2023","19/03/2023","ROAD","images/events/elimination-chamber-2023.jpg",[
-    {type:"SINGLES",position:"OPENER",wrestler1:"Bryan Danielson",wrestler2:"Rob Van Dam",score1:5,score2:0},
-    {type:"SINGLES",wrestler1:"Roman Reigns",wrestler2:"John Cena",score1:5,score2:0},
-    {type:"SINGLES",wrestler1:"AJ Styles",wrestler2:"Adam Cole",score1:0,score2:3},
-    {type:"SINGLES",wrestler1:"Cody Rhodes",wrestler2:"RICOCHET",score1:4,score2:1},
-    {type:"SINGLES",wrestler1:"Bryan Danielson",wrestler2:"Roman Reigns",score1:4,score2:1},
-    {type:"SINGLES",wrestler1:"Adam Cole",wrestler2:"Cody Rhodes",score1:1,score2:4},
-    {type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Cody Rhodes",score1:3,score2:2}
+{type:"SINGLES",position:"OPENER",wrestler1:"Bryan Danielson",wrestler2:"Rob Van Dam",score1:5,score2:0},
+{type:"SINGLES",wrestler1:"Roman Reigns",wrestler2:"John Cena",score1:5,score2:0},
+{type:"SINGLES",wrestler1:"AJ Styles",wrestler2:"Adam Cole",score1:0,score2:3},
+{type:"SINGLES",wrestler1:"Cody Rhodes",wrestler2:"RICOCHET",score1:4,score2:1},
+{type:"SINGLES",wrestler1:"Bryan Danielson",wrestler2:"Roman Reigns",score1:4,score2:1},
+{type:"SINGLES",wrestler1:"Adam Cole",wrestler2:"Cody Rhodes",score1:1,score2:4},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Cody Rhodes",score1:3,score2:2}
 ]);
 
 /* =========================================
