@@ -376,8 +376,13 @@ const wrestlers = [
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "inactive",achievements: []},
 
+    {name: "Original Grande Americano",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
     {name: "PAC",image: "images/zacarias.jpg", nickname: "", stable: "",
-      division: "",  brand: "",
+      division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "inactive",achievements: []},
     
