@@ -610,9 +610,13 @@ border-color:#d90024;
 box-shadow:0 0 20px rgba(217,0,36,.22);
 }
 
+.history-item.result-draw{
+--result:#ff8c00;
+}
+
 .history-item.result-draw:hover{
-border-color:#d4a72c;
-box-shadow:0 0 20px rgba(212,167,44,.22);
+border-color:#ff8c00;
+box-shadow:0 0 20px rgba(255,140,0,.22);
 }
 
 .history-top{
