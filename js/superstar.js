@@ -3,214 +3,236 @@
    SUPERSTAR PAGE
    ========================================= */
 
-const params=new URLSearchParams(window.location.search);
-const superstarId=params.get("id");
+const params=new URLSearchParams(location.search);
+const wrestlerId=params.get("id");
 
-const superstarName=document.getElementById("superstar-name");
-const superstarImage=document.getElementById("superstar-image");
-const superstarNickname=document.getElementById("superstar-nickname");
-const superstarBrand=document.getElementById("superstar-brand");
-const superstarChampionships=document.getElementById("superstar-championships");
-const recordElement=document.getElementById("superstar-record");
-const historyElement=document.getElementById("match-history");
+const nameEl=document.getElementById("superstar-name");
+const nicknameEl=document.getElementById("superstar-nickname");
+const brandEl=document.getElementById("superstar-brand");
+const imageEl=document.getElementById("superstar-image");
+const winsEl=document.getElementById("wins");
+const lossesEl=document.getElementById("losses");
+const drawsEl=document.getElementById("draws");
+const singlesEl=document.getElementById("singles-record");
+const tagEl=document.getElementById("tag-record");
+const sixManEl=document.getElementById("six-man-record");
+const historyEl=document.getElementById("match-history");
 
-/* =========================================
-   FIND SUPERSTAR
-   ========================================= */
-
-function createWrestlerId(name){
-return name.toLowerCase()
-.replace(/[^a-z0-9]+/g,"-")
-.replace(/^-|-$/g,"");
+function slug(name){
+return String(name).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 }
 
-const superstar=typeof wrestlers!=="undefined"
-?wrestlers.find(w=>createWrestlerId(w.name)===superstarId)
-:null;
+function findWrestler(){
+if(typeof wrestlerData==="undefined")return null;
+return Object.values(wrestlerData).find(w=>
+w.id===wrestlerId||slug(w.name)===wrestlerId
+);
+}
 
-/* =========================================
-   PAGE
-   ========================================= */
+const wrestler=findWrestler();
 
-if(!superstar){
-if(superstarName)superstarName.textContent="SUPERSTAR NOT FOUND";
+if(!wrestler){
+nameEl.textContent="SUPERSTAR NOT FOUND";
 }else{
-renderSuperstar();
+nameEl.textContent=wrestler.name||"";
+nicknameEl.textContent=wrestler.nickname||"";
+brandEl.textContent=wrestler.brand||"";
+imageEl.src=wrestler.image||"images/Vacante.jpg";
+imageEl.alt=wrestler.name||"";
 renderRecords();
 }
 
-/* =========================================
-   SUPERSTAR
-   ========================================= */
-
-function renderSuperstar(){
-if(superstarName)superstarName.textContent=superstar.name||"";
-if(superstarImage)superstarImage.src=superstar.image||"images/Vacante.jpg";
-if(superstarImage)superstarImage.alt=superstar.name||"";
-if(superstarNickname)superstarNickname.textContent=superstar.nickname||"";
-if(superstarBrand)superstarBrand.textContent=superstar.brand||"";
-if(superstarChampionships)superstarChampionships.textContent=(superstar.championships||[]).join(" • ");
+function participants(result){
+let list=[];
+if(result.wrestler1)list.push(result.wrestler1);
+if(result.wrestler2)list.push(result.wrestler2);
+if(Array.isArray(result.team1))list.push(...result.team1.flat());
+if(Array.isArray(result.team2))list.push(...result.team2.flat());
+if(Array.isArray(result.participants))list.push(...result.participants);
+return [...new Set(list.filter(Boolean))];
 }
 
-/* =========================================
-   RECORDS
-   ========================================= */
-
-function renderRecords(){
-let wins=0;
-let losses=0;
-let draws=0;
-let history=[];
-
-if(typeof eventData==="undefined"){
-showRecord(0,0,0);
-return;
+function rivals(result){
+return participants(result).filter(n=>slug(n)!==wrestlerId&&n!==wrestler?.name);
 }
 
-Object.values(eventData).forEach(event=>{
-(event.results||[]).forEach(result=>{
-const matches=getMatchParticipants(result);
-if(!matches.some(name=>isSameSuperstar(name,superstar.name)))return;
-
-const outcome=getOutcome(result,superstar.name);
-if(!outcome)return;
-
-if(outcome==="WIN")wins++;
-if(outcome==="LOSS")losses++;
-if(outcome==="DRAW")draws++;
-
-history.push({
-event:event.title||"EVENT",
-date:event.date||"",
-type:event.type||"",
-result:outcome,
-match:getMatchLabel(result)
-});
-});
-});
-
-history.sort((a,b)=>dateValue(b.date)-dateValue(a.date));
-showRecord(wins,losses,draws);
-renderHistory(history);
-}
-
-/* =========================================
-   PARTICIPANTS
-   ========================================= */
-
-function getMatchParticipants(result){
-let names=[];
-
-if(result.wrestler1)names.push(result.wrestler1);
-if(result.wrestler2)names.push(result.wrestler2);
-
-if(Array.isArray(result.team1))names.push(...result.team1.flat(Infinity));
-if(Array.isArray(result.team2))names.push(...result.team2.flat(Infinity));
-
-if(Array.isArray(result.participants))names.push(...result.participants.flat(Infinity));
-
-return names.filter(Boolean);
-}
-
-/* =========================================
-   OUTCOME
-   ========================================= */
-
-function getOutcome(result,name){
-const participants=getMatchParticipants(result);
-if(!participants.some(x=>isSameSuperstar(x,name)))return null;
-
+function outcome(result){
 if(result.winner){
-return isSameSuperstar(result.winner,name)?"WIN":"LOSS";
+return result.winner===wrestler?.name||slug(result.winner)===wrestlerId?"WIN":"LOSS";
 }
 
-if(result.score1===undefined||result.score2===undefined)return null;
+const p=participants(result);
+if(!p.includes(wrestler?.name))return null;
 
-const s1=Number(result.score1);
-const s2=Number(result.score2);
+if(result.score1!==undefined&&result.score2!==undefined){
+let a=Number(result.score1),b=Number(result.score2);
 
-if(isNaN(s1)||isNaN(s2))return null;
-
-const team1=result.team1||[];
-const team2=result.team2||[];
-
-if(team1.length||team2.length){
-const inTeam1=team1.some(x=>isSameSuperstar(x,name));
-const inTeam2=team2.some(x=>isSameSuperstar(x,name));
-
-if(s1>s2)return inTeam1?"WIN":inTeam2?"LOSS":null;
-if(s2>s1)return inTeam2?"WIN":inTeam1?"LOSS":null;
-return inTeam1||inTeam2?"DRAW":null;
+if(result.wrestler1===wrestler.name){
+if(a>b)return"WIN";
+if(a<b)return"LOSS";
+return"DRAW";
 }
 
-if(s1>s2)return isSameSuperstar(result.wrestler1,name)?"WIN":"LOSS";
-if(s2>s1)return isSameSuperstar(result.wrestler2,name)?"WIN":"LOSS";
-return" DRAW ".trim();
+if(result.wrestler2===wrestler.name){
+if(b>a)return"WIN";
+if(b<a)return"LOSS";
+return"DRAW";
 }
 
-/* =========================================
-   SAME SUPERSTAR
-   ========================================= */
-
-function isSameSuperstar(a,b){
-return createWrestlerId(a||"")===createWrestlerId(b||"");
+if(Array.isArray(result.team1)&&result.team1.flat().includes(wrestler.name)){
+if(a>b)return"WIN";
+if(a<b)return"LOSS";
+return"DRAW";
 }
 
-/* =========================================
-   MATCH LABEL
-   ========================================= */
+if(Array.isArray(result.team2)&&result.team2.flat().includes(wrestler.name)){
+if(b>a)return"WIN";
+if(b<a)return"LOSS";
+return"DRAW";
+}
+}
 
-function getMatchLabel(result){
-if(result.championship)return result.championship;
-if(result.match)return result.match;
-if(result.type)return result.type;
+if(result.score!==undefined&&Array.isArray(result.participants)){
+if(result.winner)return result.winner===wrestler.name?"WIN":"LOSS";
+}
+
+return null;
+}
+
+function category(result){
+const type=(result.type||"").toUpperCase();
+
+if(
+type==="TAG TEAM"||
+type==="LADDER TAG"||
+type==="ELIMINATION CHAMBER TAG TEAM"||
+type==="TRIPLE THREAT TAG"||
+type==="4-WAY TAG"
+)return"TAG";
+
+if(
+type==="6 VS 6"||
+type==="6-MAN TAG TEAM"||
+type==="WARGAMES"
+)return"SIX";
+
 return"SINGLES";
 }
 
-/* =========================================
-   RECORD DISPLAY
-   ========================================= */
+function tournamentId(event,result){
+if(result.tournament){
+const n=(result.tournament.match(/\d+/)||["1"])[0];
+const brand=(result.brand||event.brand||"").toUpperCase();
 
-function showRecord(wins,losses,draws){
-const text=`${wins}-${losses}-${draws}`;
-if(recordElement)recordElement.textContent=text;
+if(brand==="RAW")return`raw-${n}`;
+if(brand==="SMACKDOWN")return`smackdown-${n}`;
+if(brand==="NXT")return`nxt-${n}`;
 }
 
-/* =========================================
-   HISTORY
-   ========================================= */
+if(event.type==="NXT"){
+const n=(result.tournament?.match(/\d+/)||["1"])[0];
+return`nxt-${n}`;
+}
+
+return null;
+}
+
+function matchLink(event,result,index){
+const tournament=tournamentId(event,result);
+
+if(tournament)
+return`torneoroad.html?id=${encodeURIComponent(tournament)}`;
+
+return`event.html?id=${encodeURIComponent(event.id)}&match=${index}`;
+}
+
+function matchLabel(result){
+if(result.match)return result.match;
+return result.type||"SINGLES";
+}
+
+function renderRecords(){
+let wins=0,losses=0,draws=0;
+let singles={w:0,l:0,d:0};
+let tag={w:0,l:0,d:0};
+let six={w:0,l:0,d:0};
+let history=[];
+
+Object.entries(eventData||{}).forEach(([eventId,event])=>{
+(event.results||[]).forEach((result,index)=>{
+const people=participants(result);
+if(!people.some(n=>n===wrestler.name||slug(n)===wrestlerId))return;
+
+const resultOutcome=outcome(result);
+if(!resultOutcome)return;
+
+if(resultOutcome==="WIN")wins++;
+if(resultOutcome==="LOSS")losses++;
+if(resultOutcome==="DRAW")draws++;
+
+const cat=category(result);
+const target=cat==="TAG"?tag:cat==="SIX"?six:singles;
+
+if(resultOutcome==="WIN")target.w++;
+if(resultOutcome==="LOSS")target.l++;
+if(resultOutcome==="DRAW")target.d++;
+
+history.push({
+eventId,
+event,
+result,
+index,
+outcome:resultOutcome,
+rivals:rivals(result),
+link:matchLink({id:eventId,...event},result,index)
+});
+});
+});
+
+winsEl.textContent=wins;
+lossesEl.textContent=losses;
+drawsEl.textContent=draws;
+
+singlesEl.textContent=`${singles.w} - ${singles.l} - ${singles.d}`;
+tagEl.textContent=`${tag.w} - ${tag.l} - ${tag.d}`;
+sixManEl.textContent=`${six.w} - ${six.l} - ${six.d}`;
+
+history.sort((a,b)=>{
+const parse=d=>{
+const [day,month,year]=String(d||"").split("/");
+return new Date(year,month-1,day).getTime()||0;
+};
+return parse(b.event.date)-parse(a.event.date);
+});
+
+renderHistory(history);
+}
 
 function renderHistory(history){
-if(!historyElement)return;
-
-historyElement.innerHTML="";
+historyEl.innerHTML="";
 
 if(!history.length){
-historyElement.innerHTML="<p>NO MATCHES FOUND.</p>";
+historyEl.innerHTML="<p>NO MATCHES FOUND.</p>";
 return;
 }
 
-history.forEach(match=>{
-const item=document.createElement("div");
-item.className=`match-history-item ${match.result.toLowerCase()}`;
+history.forEach(item=>{
+const rivalText=item.rivals.length
+?item.rivals.join(" / ")
+:"NO RIVAL";
 
-item.innerHTML=`
-<div class="match-history-event">${match.event}</div>
-<div class="match-history-date">${match.date}</div>
-<div class="match-history-type">${match.type}</div>
-<div class="match-history-match">${match.match}</div>
-<div class="match-history-result">${match.result}</div>`;
+const div=document.createElement("div");
+div.className="history-item";
 
-historyElement.appendChild(item);
+div.innerHTML=`
+<div class="history-event">${item.event.title||"EVENT"}</div>
+<div class="history-date">${item.event.date||""}</div>
+<div class="history-type">${item.event.type==="PLE"?"SPECIAL EVENT":item.event.type||"EVENT"} · ${matchLabel(item.result)}</div>
+<div class="history-rivals"><strong>RIVAL:</strong> ${rivalText}</div>
+<div class="history-result ${item.outcome.toLowerCase()}">${item.outcome}</div>
+<a class="history-view" href="${item.link}">VIEW MATCH →</a>
+`;
+
+historyEl.appendChild(div);
 });
-}
-
-/* =========================================
-   DATE
-   ========================================= */
-
-function dateValue(date){
-if(!date)return 0;
-const [d,m,y]=date.split("/").map(Number);
-return new Date(y,m-1,d).getTime();
 }
