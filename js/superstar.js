@@ -63,8 +63,7 @@ const people=participants(result);
 if(!people.some(isThisWrestler))return null;
 
 if(result.winner){
-if(isThisWrestler(result.winner))return"WIN";
-return"LOSS";
+return isThisWrestler(result.winner)?"WIN":"LOSS";
 }
 
 if(result.score1===undefined||result.score2===undefined)return null;
@@ -212,16 +211,18 @@ return;
 history.forEach(item=>{
 const rivalText=item.rivals.length?item.rivals.join(" / "):"NO RIVAL";
 
-const div=document.createElement("div");
-div.className="history-item";
+const div=document.createElement("a");
+div.className=`history-item result-${item.outcome.toLowerCase()}`;
+div.href=item.link;
 
 div.innerHTML=`
+<div class="history-top">
 <div class="history-event">${item.event.title||"EVENT"}</div>
 <div class="history-date">${item.event.date||""}</div>
+</div>
 <div class="history-type">${item.event.type==="PLE"?"SPECIAL EVENT":item.event.type||"EVENT"} · ${matchLabel(item.result)}</div>
-<div class="history-rivals"><strong>RIVAL:</strong> ${rivalText}</div>
-<div class="history-result ${item.outcome.toLowerCase()}">${item.outcome}</div>
-<a class="history-view" href="${item.link}">VIEW MATCH →</a>
+<div class="history-rivals"><span>RIVAL</span>${rivalText}</div>
+<div class="history-result">${item.outcome}</div>
 `;
 
 historyEl.appendChild(div);
