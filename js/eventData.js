@@ -138,7 +138,7 @@ addPLE("summerslam-2026","SUMMERSLAM 2026","23/08/2026","ROAD","images/events/su
     {type:"FATAL 4-WAY",position:"OPENER",match:"Fatal 4-Way Match",participants:["Bo Dallas","Charlie Dempsey","Je'Von Evans","Karrion Kross"],scores:[0,0,8,0]},
     {type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Bryan Danielson",wrestler2:"Randy Orton",score1:0,score2:10},
     {type:"SINGLES",championship:"United States Championship",wrestler1:"Cody Rhodes",wrestler2:"Kyle O'Reilly",score1:6,score2:4},
-    {type:"TAG TEAM",championship:"WWE World Tag Team Championship",wrestler1:"Bryan Danielson & Jon Moxley",wrestler2:"Bravo Americano & El Grande Americano",score1:5,score2:0},
+    {type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Bravo Americano","El Grande Americano"],score1:5,score2:0},
     {type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Bret Hart",wrestler2:"Axiom",score1:6,score2:2},
     {type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Christian Cage",wrestler2:"Seth Rollins",score1:5,score2:5}
 ]);
