@@ -49,18 +49,26 @@ function renderResults(results){
     eventResults.innerHTML="";
 
     if(!results.length){
+
         eventResults.innerHTML=`
             <div class="result-card">
-                <div class="match-winner">NO RESULTS AVAILABLE.</div>
+                <div class="match-winner">
+                    NO RESULTS AVAILABLE.
+                </div>
             </div>
         `;
+
         return;
     }
 
     results.forEach(result=>{
 
         const card=document.createElement("div");
-        card.className=`result-card brand-${(result.brand||event.brand||"PLE").toLowerCase()}`;
+
+        const brand=result.brand||event.brand||"PLE";
+
+        card.className=
+            `result-card brand-${brand.toLowerCase().replace(/\s+/g,"-")}`;
 
         let html="";
 
@@ -69,6 +77,7 @@ function renderResults(results){
            ===================================== */
 
         if(result.position){
+
             html+=`
                 <div class="match-name">
                     ${result.position}
@@ -81,6 +90,7 @@ function renderResults(results){
            ===================================== */
 
         if(result.championship){
+
             html+=`
                 <div class="championship-name">
                     ${result.championship}
@@ -100,18 +110,13 @@ function renderResults(results){
                 </div>
 
                 <div class="match">
+
                     <div class="team">
             `;
 
-            (result.participants||[]).forEach((name,i)=>{
+            (result.participants||[]).forEach(name=>{
 
-                const score=result.scores?.[i]??"";
-
-                html+=`
-                    <div class="wrestler">
-                        <span>${name}</span>
-                    </div>
-                `;
+                html+=createWrestler(name);
 
             });
 
@@ -119,14 +124,15 @@ function renderResults(results){
                     </div>
 
                     <div class="vs">
-                        <div>FINAL</div>
+                        <span>FINAL</span>
+
                         <div class="match-score">
-                            ${result.scores?.join(" - ")||""}
+                            ${(result.scores||[]).join(" - ")}
                         </div>
                     </div>
+
                 </div>
             `;
-
         }
 
         /* =====================================
@@ -147,7 +153,7 @@ function renderResults(results){
                     </div>
 
                     <div class="vs">
-                        <div>VS</div>
+                        <span>VS</span>
                         ${createScore(result.score1,result.score2)}
                     </div>
 
@@ -157,7 +163,6 @@ function renderResults(results){
 
                 </div>
             `;
-
         }
 
         /* =====================================
@@ -167,10 +172,6 @@ function renderResults(results){
         else{
 
             html+=`
-                <div class="match-name">
-                    ${result.type||"SINGLES"}
-                </div>
-
                 <div class="match">
 
                     <div class="team">
@@ -178,7 +179,7 @@ function renderResults(results){
                     </div>
 
                     <div class="vs">
-                        <div>VS</div>
+                        <span>VS</span>
                         ${createScore(result.score1,result.score2)}
                     </div>
 
@@ -188,7 +189,6 @@ function renderResults(results){
 
                 </div>
             `;
-
         }
 
         /* =====================================
@@ -205,7 +205,7 @@ function renderResults(results){
             if(score1>score2)
                 winner=result.wrestler1;
 
-            else if(score2>score1)
+            if(score2>score1)
                 winner=result.wrestler2;
 
             html+=`
@@ -222,22 +222,40 @@ function renderResults(results){
 }
 
 /* =========================================
-   WRESTLER
+   CREATE WRESTLER
    ========================================= */
 
 function createWrestler(name){
 
     if(!name)return"";
 
+    const encoded=encodeURIComponent(name);
+
+    const image=
+        typeof wrestlerData!=="undefined"&&
+        wrestlerData[name]?.image
+        ?wrestlerData[name].image
+        :"images/Vacante.jpg";
+
     return`
-        <div class="wrestler" tabindex="0">
-            <span>${name}</span>
-        </div>
+        <a href="records.html?id=${encoded}" class="wrestler-link">
+            <div class="wrestler" tabindex="0">
+
+                <img
+                    src="${image}"
+                    alt="${name}"
+                    loading="lazy"
+                >
+
+                <span>${name}</span>
+
+            </div>
+        </a>
     `;
 }
 
 /* =========================================
-   SCORE
+   CREATE SCORE
    ========================================= */
 
 function createScore(score1,score2){
