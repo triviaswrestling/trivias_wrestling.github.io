@@ -148,7 +148,12 @@ addPLE("clash-in-italy-2026","CLASH IN ITALY 2026","21/06/2026","ROAD","images/e
 addPLE("backlash-tampa-2026","BACKLASH: TAMPA 2026","24/05/2026","BOOK","images/events/backlash-tampa-2026.jpg");
 addPLE("wrestlemania-4-life","WRESTLEMANIA 4 LIFE","26/04/2026","ROAD","images/events/wrestlemania-4-life.jpg");
 addPLE("elimination-chamber-2026","ELIMINATION CHAMBER 2026","29/03/2026","BOOK","images/events/elimination-chamber-2026.jpg");
-addPLE("royal-rumble-2026","ROYAL RUMBLE 2026","23/02/2026","ROAD","images/events/royal-rumble-2026.jpg");
+addPLE("royal-rumble-2026","ROYAL RUMBLE 2026","23/02/2026","ROAD","images/events/royal-rumble-2026.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Seth Rollins",score1:3,score2:4},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bron Breakker","Seth Rollins"],team2:["Cody Rhodes","Randy Orton"],score1:0,score2:3},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Christian Cage",wrestler2:"Randy Orton",score1:6,score2:4},
+{type:"ROYAL RUMBLE",position:"MAIN EVENT",participants:["Swerve Strickland","Trick Williams","R-Truth","Austin Theory","Ilja Dragunov","Kyle O'Reilly","Bo Dallas","CM Punk","JD Mcdonagh","Bret Hart","Alberto del Rio","Finn Balor","Rey Fenix","LA Knight","Karrion Kross","Rob Van Dam","Axiom","Wade Barrett","Randy Orton","Batista","Jon Moxley","Dezmond Xavier","Sheamus","Joe Hendry","Shawn Spears","Bron Breakker","Bryan Danielson","Jacob Fatu","Rey Mysterio","Chris Benoit"],winner:"Swerve Strickland"}
+]);
 addPLE("saturday-nights-main-event-2026","SATURDAY NIGHT'S MAIN EVENT 2026","24/01/2026","BOOK","images/events/saturday-nights-main-event-2026.jpg");
 
 /* =========================================
