@@ -407,8 +407,35 @@ const tournamentData = {
             {date:9,wrestler1:"Batista",wrestler2:"Damian Priest",score1:2,score2:1},
             {date:9,wrestler1:"Bo Dallas",wrestler2:"Bravo Americano",score1:1,score2:3}
 
-        ]
+                ]
+    },
 
+    "campeonato-1":{
+        participants:[],
+        phases:["LIVE 1","LIVE 2","LIVE 3","LIVE 4","LIVE 5","LIVE 6","ELIMINATION CHAMBER"],
+        format:"LEAGUE_PLAYIN_ELIMINATION",
+        matches:[]
+    },
+
+    "campeonato-2":{
+        zones:{RAW:[],SMACKDOWN:[]},
+        phases:["RAW 1","RAW 2","RAW 3","RAW 4","RAW 5","SMACKDOWN 1","SMACKDOWN 2","SMACKDOWN 3","SMACKDOWN 4","SMACKDOWN 5","WRESTLEMANIA"],
+        format:"TWO_ZONES_ELIMINATION",
+        matches:[]
+    },
+
+    "campeonato-3":{
+        participants:[],
+        phases:["FECHA 1","FECHA 2","FECHA 3","FECHA 4","FECHA 5","BACKLASH"],
+        format:"LEAGUE_ELIMINATION",
+        matches:[]
+    },
+
+    "campeonato-4":{
+        zones:{RAW:[],SMACKDOWN:[],"NXT A":[],"NXT B":[]},
+        phases:["RAW","SMACKDOWN","NXT A","NXT B","TAKEOVER","NIGHT OF CHAMPIONS"],
+        format:"FOUR_ZONES_ELIMINATION",
+        matches:[]
     }
 
 };
