@@ -433,11 +433,39 @@ const tournamentData = {
 },
 
     "campeonato-2":{
-        zones:{RAW:[],SMACKDOWN:[]},
-        phases:["RAW 1","RAW 2","RAW 3","RAW 4","RAW 5","SMACKDOWN 1","SMACKDOWN 2","SMACKDOWN 3","SMACKDOWN 4","SMACKDOWN 5","WRESTLEMANIA"],
-        format:"TWO_ZONES_ELIMINATION",
-        matches:[]
+    zones:{
+        RAW:[
+            "Roman Reigns",
+            "AJ Styles",
+            "Kofi Kingston",
+            "Damian Priest",
+            "Rob Van Dam"
+        ],
+        SMACKDOWN:[
+            "Cody Rhodes",
+            "John Cena",
+            "RICOCHET",
+            "Adam Cole",
+            "The Rock"
+        ]
     },
+    champion:"Bryan Danielson",
+    phases:[
+        "RAW 1",
+        "RAW 2",
+        "RAW 3",
+        "RAW 4",
+        "RAW 5",
+        "SMACKDOWN 1",
+        "SMACKDOWN 2",
+        "SMACKDOWN 3",
+        "SMACKDOWN 4",
+        "SMACKDOWN 5",
+        "WRESTLEMANIA"
+    ],
+    format:"TWO_ZONES_ELIMINATION",
+    matches:[]
+},
 
     "campeonato-3":{
         participants:[],
