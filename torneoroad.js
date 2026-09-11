@@ -329,6 +329,80 @@ function getEventMatches(data){
     );
 }
 
+function renderChamberBracket(matches){
+    const chamberMatches=matches.filter(m=>
+        m.wrestler1&&
+        m.wrestler2&&
+        m.score1!==undefined&&
+        m.score2!==undefined
+    );
+
+    resultsContainer.innerHTML="";
+
+    if(!chamberMatches.length){
+        resultsContainer.innerHTML="<p>BRACKET COMING SOON</p>";
+        return;
+    }
+
+    const heading=document.createElement("div");
+    heading.className="results-date";
+    heading.textContent="ELIMINATION CHAMBER";
+    resultsContainer.appendChild(heading);
+
+    const bracket=document.createElement("div");
+    bracket.className="chamber-bracket";
+
+    const rounds=[
+        {
+            title:"QUARTERFINALS",
+            matches:chamberMatches.slice(0,4)
+        },
+        {
+            title:"SEMIFINALS",
+            matches:chamberMatches.slice(4,6)
+        },
+        {
+            title:"FINAL",
+            matches:chamberMatches.slice(6,7)
+        }
+    ];
+
+    rounds.forEach(round=>{
+        const column=document.createElement("div");
+        column.className="bracket-round";
+
+        const title=document.createElement("h3");
+        title.textContent=round.title;
+        column.appendChild(title);
+
+        round.matches.forEach(match=>{
+            const card=document.createElement("div");
+            card.className="bracket-match";
+
+            const winner1=match.score1>match.score2;
+            const winner2=match.score2>match.score1;
+
+            card.innerHTML=`
+                <div class="${winner1?"winner":""}">
+                    ${createWrestlerLink(match.wrestler1)}
+                    <span>${match.score1}</span>
+                </div>
+
+                <div class="${winner2?"winner":""}">
+                    ${createWrestlerLink(match.wrestler2)}
+                    <span>${match.score2}</span>
+                </div>
+            `;
+
+            column.appendChild(card);
+        });
+
+        bracket.appendChild(column);
+    });
+
+    resultsContainer.appendChild(bracket);
+}
+
 function renderNormalTournament(data){
     const participants=data.participants||[];
     const matches=data.matches||[];
@@ -341,29 +415,22 @@ function renderNormalTournament(data){
 
 function renderChampionship1(data){
     const participants=data.participants||[];
-
-    const matches=[
-        ...(data.matches||[]),
-        ...getEventMatches(data)
-    ];
+    const eventMatches=getEventMatches(data);
 
     renderDraft(participants);
 
-    if(matches.length){
-        renderResults(matches,data.phases);
+    standingsBody.innerHTML=
+        `<tr><td colspan="7">LEAGUE STANDINGS COMING SOON</td></tr>`;
 
-        standingsBody.innerHTML=
-            `<tr><td colspan="7">LEAGUE STANDINGS COMING SOON</td></tr>`;
+    matrixTable.innerHTML=
+        `<tr><td>MATCH MATRIX COMING SOON</td></tr>`;
 
-        matrixTable.innerHTML=
-            `<tr><td>MATCH MATRIX COMING SOON</td></tr>`;
-    }else{
-        showComingSoon();
-    }
+    renderChamberBracket(eventMatches);
 }
 
 function renderChampionship2(data){
     const zones=data.zones||{};
+
     const participants=[
         ...(zones.RAW||[]),
         ...(zones.SMACKDOWN||[])
@@ -376,9 +443,14 @@ function renderChampionship2(data){
         renderMatrix(participants,data.matches);
         renderResults(data.matches,data.phases);
     }else{
-        standingsBody.innerHTML=`<tr><td colspan="7">STANDINGS COMING SOON</td></tr>`;
-        matrixTable.innerHTML="<tr><td>MATRIX COMING SOON</td></tr>";
-        resultsContainer.innerHTML="<p>RESULTS COMING SOON</p>";
+        standingsBody.innerHTML=
+            `<tr><td colspan="7">STANDINGS COMING SOON</td></tr>`;
+
+        matrixTable.innerHTML=
+            "<tr><td>MATRIX COMING SOON</td></tr>";
+
+        resultsContainer.innerHTML=
+            "<p>RESULTS COMING SOON</p>";
     }
 }
 
@@ -393,9 +465,14 @@ function renderChampionship3(data){
         renderMatrix(participants,matches);
         renderResults(matches,data.phases);
     }else{
-        standingsBody.innerHTML=`<tr><td colspan="7">STANDINGS COMING SOON</td></tr>`;
-        matrixTable.innerHTML="<tr><td>MATRIX COMING SOON</td></tr>";
-        resultsContainer.innerHTML="<p>RESULTS COMING SOON</p>";
+        standingsBody.innerHTML=
+            `<tr><td colspan="7">STANDINGS COMING SOON</td></tr>`;
+
+        matrixTable.innerHTML=
+            "<tr><td>MATRIX COMING SOON</td></tr>";
+
+        resultsContainer.innerHTML=
+            "<p>RESULTS COMING SOON</p>";
     }
 }
 
@@ -416,9 +493,14 @@ function renderChampionship4(data){
         renderMatrix(participants,data.matches);
         renderResults(data.matches,data.phases);
     }else{
-        standingsBody.innerHTML=`<tr><td colspan="7">STANDINGS COMING SOON</td></tr>`;
-        matrixTable.innerHTML="<tr><td>MATRIX COMING SOON</td></tr>";
-        resultsContainer.innerHTML="<p>RESULTS COMING SOON</p>";
+        standingsBody.innerHTML=
+            `<tr><td colspan="7">STANDINGS COMING SOON</td></tr>`;
+
+        matrixTable.innerHTML=
+            "<tr><td>MATRIX COMING SOON</td></tr>";
+
+        resultsContainer.innerHTML=
+            "<p>RESULTS COMING SOON</p>";
     }
 }
 
@@ -439,12 +521,16 @@ if(special){
 
         if(currentData.format==="LEAGUE_PLAYIN_ELIMINATION"){
             renderChampionship1(currentData);
+
         }else if(currentData.format==="TWO_ZONES_ELIMINATION"){
             renderChampionship2(currentData);
+
         }else if(currentData.format==="LEAGUE_ELIMINATION"){
             renderChampionship3(currentData);
+
         }else if(currentData.format==="FOUR_ZONES_ELIMINATION"){
             renderChampionship4(currentData);
+
         }else{
             showComingSoon();
         }
