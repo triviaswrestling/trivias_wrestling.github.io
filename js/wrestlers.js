@@ -413,7 +413,7 @@ const wrestlers = [
     {name: "Rey Fenix",image: "images/Vacante.jpg", nickname: "", stable: "",
       division: "",  brand: "",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
- status: "active",achievements: []},
+ status: "inactive",achievements: []},
     {name: "Rey Mysterio",image: "images/zacarias.jpg", nickname: "", stable: "",
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
