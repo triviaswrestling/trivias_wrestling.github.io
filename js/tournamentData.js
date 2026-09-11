@@ -468,17 +468,73 @@ const tournamentData = {
 },
 
     "campeonato-3":{
-        participants:[],
-        phases:["FECHA 1","FECHA 2","FECHA 3","FECHA 4","FECHA 5","BACKLASH"],
-        format:"LEAGUE_ELIMINATION",
-        matches:[]
-    },
+    participants:[
+        "Bryan Danielson",
+        "Cody Rhodes",
+        "RICOCHET",
+        "Rob Van Dam",
+        "Adam Cole",
+        "AJ Styles",
+        "John Cena",
+        "Roman Reigns",
+        "Kofi Kingston",
+        "Damian Priest"
+    ],
+    phases:[
+        "FECHA 1",
+        "FECHA 2",
+        "FECHA 3",
+        "FECHA 4",
+        "FECHA 5",
+        "BACKLASH"
+    ],
+    format:"LEAGUE_ELIMINATION",
+    matches:[]
+},
 
     "campeonato-4":{
-        zones:{RAW:[],SMACKDOWN:[],"NXT A":[],"NXT B":[]},
-        phases:["RAW","SMACKDOWN","NXT A","NXT B","TAKEOVER","NIGHT OF CHAMPIONS"],
-        format:"FOUR_ZONES_ELIMINATION",
-        matches:[]
-    }
+    zones:{
+        RAW:[
+            "Cody Rhodes",
+            "Johnny Gargano",
+            "Roman Reigns",
+            "Rob Van Dam",
+            "AJ Styles",
+            "Damian Priest"
+        ],
+        SMACKDOWN:[
+            "Adam Cole",
+            "RICOCHET",
+            "Bryan Danielson",
+            "John Cena",
+            "Shawn Michaels",
+            "Kofi Kingston"
+        ],
+        "NXT A":[
+            "Karrion Kross",
+            "Kevin Owens",
+            "Jeff Hardy",
+            "Seth Rollins",
+            "Bobby Lashley"
+        ],
+        "NXT B":[
+            "Drew McIntyre",
+            "Finn Balor",
+            "Eddie Guerrero",
+            "Randy Orton",
+            "Sin Cara"
+        ]
+    },
+    phases:[
+        "RAW",
+        "SMACKDOWN",
+        "NXT A",
+        "NXT B",
+        "TAKEOVER",
+        "NIGHT OF CHAMPIONS"
+    ],
+    format:"FOUR_ZONES_ELIMINATION",
+    matches:[]
+},
 
 };
