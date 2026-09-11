@@ -357,11 +357,8 @@ function renderResults(matches,phases){
 // EVENT DATA
 // =========================================
 
-function getEventMatches(data){
-    const events=data.events||{};
-    const ids=Array.isArray(events)
-        ?events
-        :Object.values(events);
+function getEventMatches(ids){
+    if(!Array.isArray(ids))return [];
 
     return ids.flatMap(id=>
         eventData?.[id]?.results||[]
@@ -513,28 +510,34 @@ function renderChampionship1(data){
 
     renderDraft(participants);
 
-    standingsBody.innerHTML=
-        `<tr><td colspan="7">EDITING</td></tr>`;
+    // LIVE 1-5 = LIGA
+    const leagueEvents=events.league||{};
+    const leagueIds=Object.values(leagueEvents);
+    const leagueMatches=getEventMatches(leagueIds);
 
-    matrixTable.innerHTML=
-        "<tr><td>EDITING</td></tr>";
+    // SOLO LIVE 1-5 ENTRAN EN TABLA Y MATRIX
+    renderStandings(participants,leagueMatches);
+    renderMatrix(participants,leagueMatches);
 
     resultsContainer.innerHTML="";
 
+    // ELIMINATION CHAMBER = BRACKET
     renderChamberBracket(
-        eventData?.[events.BRACKET]?.results||[],
+        eventData?.[events.bracket]?.results||[],
         resultsContainer
     );
 
+    // LIVE 6 = PLAY-IN
     renderPhase(
         "PLAY-IN",
-        eventData?.[events["PLAY-IN"]]?.results||[]
+        eventData?.[events.playIn]?.results||[]
     );
 
-    ["LIVE 1","LIVE 2","LIVE 3","LIVE 4","LIVE 5"].forEach(key=>{
+    // LIVE 1-5 = RESULTADOS DE LA LIGA
+    Object.entries(leagueEvents).forEach(([title,id])=>{
         renderPhase(
-            key,
-            eventData?.[events[key]]?.results||[]
+            title,
+            eventData?.[id]?.results||[]
         );
     });
 }
