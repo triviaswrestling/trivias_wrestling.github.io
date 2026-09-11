@@ -223,6 +223,6 @@ addPLE("elimination-chamber-2023","ELIMINATION CHAMBER 2023","19/03/2023","ROAD"
 /* =========================================
    START
    ========================================= */
-
+eventData["live-1"]={type:"SPECIAL",title:"WWE LIVE #1",date:"27/02/2023",mode:"ROAD",brand:"LIVE",results:[{type:"SINGLES",position:"OPENER",wrestler1:"Cody Rhodes",wrestler2:"Seth Rollins",score1:3,score2:2},{type:"SINGLES",wrestler1:"Roman Reigns",wrestler2:"The Rock",score1:5,score2:0},{type:"SINGLES",wrestler1:"John Cena",wrestler2:"Kevin Owens",score1:0,score2:4},{type:"SINGLES",wrestler1:"Damian Priest",wrestler2:"AJ Styles",score1:0,score2:3},{type:"SINGLES",wrestler1:"Bryan Danielson",wrestler2:"Kofi Kingston",score1:5,score2:0},{type:"SINGLES",wrestler1:"Chris Jericho",wrestler2:"Randy Orton",score1:0,score2:0},{type:"SINGLES",position:"MAIN EVENT",wrestler1:"Adam Cole",wrestler2:"Rob Van Dam",score1:3,score2:2}]};
 createWeeklyData();
 createNXTData();
