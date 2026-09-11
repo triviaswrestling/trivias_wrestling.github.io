@@ -1,123 +1,129 @@
 console.log("TORNEOS.JS CARGADO");
 
+const tournaments=[];
 
-/* =========================================
-   MI WRESTLING
-   TOURNAMENT SYSTEM
-   ========================================= */
-
-
-/* =========================================
-   TOURNAMENT DATA
-   ========================================= */
-
-const tournaments = [];
-
-
-/* =========================================
-   FIRST DIVISION
-   RAW + SMACKDOWN
-   25 → 1
-   ========================================= */
-
-for (let number = 25; number >= 1; number--) {
+for(let number=25;number>=1;number--){
 
     tournaments.push({
-
-        id: `raw-${number}`,
-        number: number,
-        brand: "RAW",
-        division: "First Division",
-        title: `Tournament ${number}`,
-        image: `images/raw${number}.jpg`
-
+        id:`raw-${number}`,
+        number,
+        brand:"RAW",
+        division:"First Division",
+        title:`Tournament ${number}`,
+        image:`images/raw${number}.jpg`
     });
 
+    tournaments.push({
+        id:`smackdown-${number}`,
+        number,
+        brand:"SMACKDOWN",
+        division:"First Division",
+        title:`Tournament ${number}`,
+        image:`images/smackdown${number}.jpg`
+    });
+
+}
+
+for(let number=18;number>=1;number--){
 
     tournaments.push({
-
-        id: `smackdown-${number}`,
-        number: number,
-        brand: "SMACKDOWN",
-        division: "First Division",
-        title: `Tournament ${number}`,
-        image: `images/smackdown${number}.jpg`
-
+        id:`nxt-${number}`,
+        number,
+        brand:"NXT",
+        division:"Second Division",
+        title:`Tournament ${number}`,
+        image:number>=9
+            ?"images/nxt-b.png"
+            :"images/nxt-a.png"
     });
 
 }
 
 
 /* =========================================
-   SECOND DIVISION
-   NXT
-   18 → 1
+   CHAMPIONSHIPS
    ========================================= */
 
-for (let number = 18; number >= 1; number--) {
+const championships=[
 
-    tournaments.push({
+    {
+        id:"campeonato-4",
+        number:4,
+        title:"CHAMPIONSHIP 4",
+        division:"CHAMPIONSHIP",
+        image:"images/Vacante.jpg"
+    },
 
-        id: `nxt-${number}`,
-        number: number,
-        brand: "NXT",
-        division: "Second Division",
-        title: `Tournament ${number}`,
-        image: number >= 9
-    ? "images/nxt-a.png"
-    : "images/nxt-b.png"
+    {
+        id:"campeonato-3",
+        number:3,
+        title:"CHAMPIONSHIP 3",
+        division:"CHAMPIONSHIP",
+        image:"images/Vacante.jpg"
+    },
 
-    });
+    {
+        id:"campeonato-2",
+        number:2,
+        title:"CHAMPIONSHIP 2",
+        division:"CHAMPIONSHIP",
+        image:"images/Vacante.jpg"
+    },
 
-}
+    {
+        id:"campeonato-1",
+        number:1,
+        title:"CHAMPIONSHIP 1",
+        division:"CHAMPIONSHIP",
+        image:"images/Vacante.jpg"
+    }
+
+];
 
 
 /* =========================================
    CONTAINERS
    ========================================= */
 
-const firstDivisionContainer =
+const firstDivisionContainer=
     document.getElementById("first-division-tournaments");
 
-const secondDivisionContainer =
+const secondDivisionContainer=
     document.getElementById("second-division-tournaments");
+
+const championshipContainer=
+    document.getElementById("championship-tournaments");
 
 
 /* =========================================
-   CREATE TOURNAMENT CARD
+   CREATE CARD
    ========================================= */
 
-function createTournamentCard(tournament) {
+function createTournamentCard(tournament){
 
-    const card = document.createElement("div");
+    const card=document.createElement("div");
 
-    card.className = "tournament-card";
+    card.className="tournament-card";
 
-    card.style.backgroundImage =
+    card.style.backgroundImage=
         `url("${tournament.image}")`;
 
-    card.dataset.id = tournament.id;
+    card.dataset.id=tournament.id;
 
+    if(tournament.brand){
+        card.classList.add(
+            tournament.brand.toLowerCase()
+        );
+    }
 
-    /* =========================================
-       BRAND
-       ========================================= */
-
-    card.classList.add(
-        tournament.brand.toLowerCase()
-    );
-
-
-    /* =========================================
-       CARD CONTENT
-       ========================================= */
-
-    card.innerHTML = `
+    card.innerHTML=`
 
         <div>
 
             <div class="tournament-number">
-                ${tournament.brand} ${tournament.number}
+                ${tournament.brand
+                    ?tournament.brand+" "+tournament.number
+                    :"CHAMPIONSHIP "+tournament.number}
             </div>
 
             <h3>
@@ -136,22 +142,12 @@ function createTournamentCard(tournament) {
 
     `;
 
+    card.addEventListener("click",()=>{
 
-    /* =========================================
-       CLICK
-       ========================================= */
-
-    card.addEventListener("click", () => {
-
-        window.location.href =
+        window.location.href=
             `torneoroad.html?id=${tournament.id}`;
 
     });
-
-
-    /* =========================================
-       RETURN CARD
-       ========================================= */
 
     return card;
 
@@ -159,47 +155,49 @@ function createTournamentCard(tournament) {
 
 
 /* =========================================
-   RENDER TOURNAMENTS
+   RENDER
    ========================================= */
 
-function renderTournaments() {
+function renderTournaments(){
 
-    if (
-        !firstDivisionContainer ||
-        !secondDivisionContainer
-    ) {
+    if(
+        !firstDivisionContainer||
+        !secondDivisionContainer||
+        !championshipContainer
+    ){
 
-        console.error(
-            "Tournament containers not found."
-        );
-
+        console.error("Tournament containers not found.");
         return;
 
     }
 
+    firstDivisionContainer.innerHTML="";
+    secondDivisionContainer.innerHTML="";
+    championshipContainer.innerHTML="";
 
-    firstDivisionContainer.innerHTML = "";
+    tournaments.forEach(tournament=>{
 
-    secondDivisionContainer.innerHTML = "";
+        const card=createTournamentCard(tournament);
 
-
-    tournaments.forEach(tournament => {
-
-        const card =
-            createTournamentCard(tournament);
-
-
-        if (
-            tournament.division === "First Division"
-        ) {
+        if(tournament.division==="First Division"){
 
             firstDivisionContainer.appendChild(card);
 
-        } else {
+        }else{
 
             secondDivisionContainer.appendChild(card);
 
         }
+
+    });
+
+    championships.forEach(championship=>{
+
+        const card=createTournamentCard(championship);
+
+        card.classList.add("championship");
+
+        championshipContainer.appendChild(card);
 
     });
 
