@@ -55,18 +55,18 @@ function normalizeName(name){
 
 function getWrestler(name){
     if(typeof wrestlers==="undefined")return null;
-    return wrestlers.find(wrestler=>normalizeName(wrestler.name)===normalizeName(name))||null;
+    return wrestlers.find(w=>normalizeName(w.name)===normalizeName(name))||null;
 }
 
 function getWrestlerImage(name){
-    const currentData=tournamentData[tournamentId];
-    const tournamentImage=currentData?.images?.[name];
+    const data=tournamentData[tournamentId];
+    const image=data?.images?.[name];
 
-    if(tournamentImage)return tournamentImage;
+    if(image)return image;
 
     const wrestler=getWrestler(name);
 
-    if(wrestler&&wrestler.image)return wrestler.image;
+    if(wrestler?.image)return wrestler.image;
 
     return "images/Vacante.jpg";
 }
@@ -75,7 +75,7 @@ function createWrestlerLink(name){
     return `<a href="superstar.html?id=${createWrestlerId(name)}" class="table-wrestler-link">${name}</a>`;
 }
 
-function clearSpecialSections(){
+function clearSections(){
     draftContainer.innerHTML="";
     standingsBody.innerHTML="";
     matrixTable.innerHTML="";
@@ -92,7 +92,7 @@ function showComingSoon(){
 function renderDraft(participants){
     draftContainer.innerHTML="";
 
-    if(!participants||participants.length===0){
+    if(!participants.length){
         draftContainer.innerHTML="<p>NO PARTICIPANTS</p>";
         return;
     }
@@ -129,33 +129,32 @@ function buildStandings(participants,matches){
     });
 
     matches.forEach(match=>{
-        const wrestler1=standings[match.wrestler1];
-        const wrestler2=standings[match.wrestler2];
+        const a=standings[match.wrestler1];
+        const b=standings[match.wrestler2];
 
-        if(!wrestler1||!wrestler2)return;
+        if(!a||!b)return;
 
-        wrestler1.played++;
-        wrestler2.played++;
+        a.played++;
+        b.played++;
 
-        wrestler1.scoreFor+=match.score1;
-        wrestler1.scoreAgainst+=match.score2;
-
-        wrestler2.scoreFor+=match.score2;
-        wrestler2.scoreAgainst+=match.score1;
+        a.scoreFor+=Number(match.score1);
+        a.scoreAgainst+=Number(match.score2);
+        b.scoreFor+=Number(match.score2);
+        b.scoreAgainst+=Number(match.score1);
 
         if(match.score1>match.score2){
-            wrestler1.wins++;
-            wrestler1.points+=3;
-            wrestler2.losses++;
+            a.wins++;
+            a.points+=3;
+            b.losses++;
         }else if(match.score1<match.score2){
-            wrestler2.wins++;
-            wrestler2.points+=3;
-            wrestler1.losses++;
+            b.wins++;
+            b.points+=3;
+            a.losses++;
         }else{
-            wrestler1.draws++;
-            wrestler2.draws++;
-            wrestler1.points++;
-            wrestler2.points++;
+            a.draws++;
+            b.draws++;
+            a.points++;
+            b.points++;
         }
     });
 
@@ -167,30 +166,30 @@ function buildStandings(participants,matches){
 }
 
 function renderStandings(participants,matches){
-    const standingsList=buildStandings(participants,matches);
+    const list=buildStandings(participants,matches);
 
     standingsBody.innerHTML="";
 
-    if(standingsList.length===0){
+    if(!list.length){
         standingsBody.innerHTML=`<tr><td colspan="7">NO STANDINGS</td></tr>`;
         return;
     }
 
-    standingsList.forEach((wrestler,index)=>{
+    list.forEach((w,index)=>{
         const row=document.createElement("tr");
 
         row.innerHTML=`
             <td>${index+1}</td>
-            <td>${createWrestlerLink(wrestler.name)}</td>
-            <td>${wrestler.played}</td>
-            <td>${wrestler.wins}</td>
-            <td>${wrestler.draws}</td>
-            <td>${wrestler.losses}</td>
-            <td>${wrestler.points}</td>
+            <td>${createWrestlerLink(w.name)}</td>
+            <td>${w.played}</td>
+            <td>${w.wins}</td>
+            <td>${w.draws}</td>
+            <td>${w.losses}</td>
+            <td>${w.points}</td>
         `;
 
         if(index===0)row.classList.add("champion");
-        if(index===standingsList.length-1)row.classList.add("relegation");
+        if(index===list.length-1)row.classList.add("relegation");
 
         standingsBody.appendChild(row);
     });
@@ -204,36 +203,36 @@ function renderMatrix(participants,matches){
         return;
     }
 
-    const headerRow=document.createElement("tr");
-    headerRow.innerHTML="<th>WRESTLER</th>";
+    const header=document.createElement("tr");
+    header.innerHTML="<th>WRESTLER</th>";
 
     participants.forEach(name=>{
         const th=document.createElement("th");
         th.textContent=name;
-        headerRow.appendChild(th);
+        header.appendChild(th);
     });
 
-    matrixTable.appendChild(headerRow);
+    matrixTable.appendChild(header);
 
-    participants.forEach(wrestlerName=>{
+    participants.forEach(name=>{
         const row=document.createElement("tr");
         const nameCell=document.createElement("td");
 
-        nameCell.innerHTML=createWrestlerLink(wrestlerName);
+        nameCell.innerHTML=createWrestlerLink(name);
         row.appendChild(nameCell);
 
-        participants.forEach(opponentName=>{
+        participants.forEach(opponent=>{
             const cell=document.createElement("td");
 
-            if(wrestlerName===opponentName){
+            if(name===opponent){
                 cell.textContent="—";
                 row.appendChild(cell);
                 return;
             }
 
-            const match=matches.find(item=>
-                (item.wrestler1===wrestlerName&&item.wrestler2===opponentName)||
-                (item.wrestler1===opponentName&&item.wrestler2===wrestlerName)
+            const match=matches.find(m=>
+                (m.wrestler1===name&&m.wrestler2===opponent)||
+                (m.wrestler1===opponent&&m.wrestler2===name)
             );
 
             if(!match){
@@ -243,18 +242,13 @@ function renderMatrix(participants,matches){
                 cell.textContent="D";
                 cell.classList.add("matrix-draw");
             }else{
-                const wrestlerIsFirst=match.wrestler1===wrestlerName;
-                const wrestlerWon=wrestlerIsFirst
+                const first=match.wrestler1===name;
+                const won=first
                     ?match.score1>match.score2
                     :match.score2>match.score1;
 
-                if(wrestlerWon){
-                    cell.textContent="W";
-                    cell.classList.add("matrix-win");
-                }else{
-                    cell.textContent="L";
-                    cell.classList.add("matrix-loss");
-                }
+                cell.textContent=won?"W":"L";
+                cell.classList.add(won?"matrix-win":"matrix-loss");
             }
 
             row.appendChild(cell);
@@ -267,7 +261,7 @@ function renderMatrix(participants,matches){
 function renderResults(matches,phases){
     resultsContainer.innerHTML="";
 
-    if(!matches||matches.length===0){
+    if(!matches.length){
         resultsContainer.innerHTML="<p>NO RESULTS</p>";
         return;
     }
@@ -286,18 +280,20 @@ function renderResults(matches,phases){
         const nb=parseInt(b);
 
         if(!isNaN(na)&&!isNaN(nb))return na-nb;
+
         return String(a).localeCompare(String(b));
     }).forEach(date=>{
-        const dateTitle=document.createElement("div");
-        dateTitle.className="results-date";
+        const title=document.createElement("div");
+        title.className="results-date";
 
-        if(phases&&phases[date-1]){
-            dateTitle.textContent=phases[date-1];
-        }else{
-            dateTitle.textContent=`DATE ${date}`;
-        }
+        title.textContent=
+            phases&&phases[date-1]
+            ?phases[date-1]
+            :date==="OTHER"
+                ?"OTHER"
+                :`DATE ${date}`;
 
-        resultsContainer.appendChild(dateTitle);
+        resultsContainer.appendChild(title);
 
         grouped[date].forEach(match=>{
             const result=document.createElement("div");
@@ -321,9 +317,21 @@ function renderResults(matches,phases){
     });
 }
 
-function renderNormalTournament(currentData){
-    const participants=currentData.participants||[];
-    const matches=currentData.matches||[];
+function getEventMatches(data){
+    return (data.events||[]).flatMap(id=>
+        (typeof eventData!=="undefined"?eventData[id]?.results||[]:[])
+        .filter(m=>
+            m.wrestler1&&
+            m.wrestler2&&
+            m.score1!==undefined&&
+            m.score2!==undefined
+        )
+    );
+}
+
+function renderNormalTournament(data){
+    const participants=data.participants||[];
+    const matches=data.matches||[];
 
     renderDraft(participants);
     renderStandings(participants,matches);
@@ -331,44 +339,24 @@ function renderNormalTournament(currentData){
     renderResults(matches);
 }
 
-function renderSpecialChampionship(currentData){
-    clearSpecialSections();
-
-    const format=currentData.format;
-
-    if(format==="LEAGUE_PLAYIN_ELIMINATION"){
-        renderChampionship1(currentData);
-        return;
-    }
-
-    if(format==="TWO_ZONES_ELIMINATION"){
-        renderChampionship2(currentData);
-        return;
-    }
-
-    if(format==="LEAGUE_ELIMINATION"){
-        renderChampionship3(currentData);
-        return;
-    }
-
-    if(format==="FOUR_ZONES_ELIMINATION"){
-        renderChampionship4(currentData);
-        return;
-    }
-
-    showComingSoon();
-}
-
 function renderChampionship1(data){
     const participants=data.participants||[];
-    const matches=data.matches||[];
+
+    const matches=[
+        ...(data.matches||[]),
+        ...getEventMatches(data)
+    ];
 
     renderDraft(participants);
 
-    if(participants.length&&matches.length){
-        renderStandings(participants,matches);
-        renderMatrix(participants,matches);
+    if(matches.length){
         renderResults(matches,data.phases);
+
+        standingsBody.innerHTML=
+            `<tr><td colspan="7">LEAGUE STANDINGS COMING SOON</td></tr>`;
+
+        matrixTable.innerHTML=
+            `<tr><td>MATCH MATRIX COMING SOON</td></tr>`;
     }else{
         showComingSoon();
     }
@@ -376,18 +364,21 @@ function renderChampionship1(data){
 
 function renderChampionship2(data){
     const zones=data.zones||{};
-    const raw=zones.RAW||[];
-    const smackdown=zones.SMACKDOWN||[];
-    const participants=[...raw,...smackdown];
+    const participants=[
+        ...(zones.RAW||[]),
+        ...(zones.SMACKDOWN||[])
+    ];
 
     renderDraft(participants);
 
-    if(participants.length&&data.matches?.length){
+    if(data.matches?.length){
         renderStandings(participants,data.matches);
         renderMatrix(participants,data.matches);
         renderResults(data.matches,data.phases);
     }else{
-        showComingSoon();
+        standingsBody.innerHTML=`<tr><td colspan="7">STANDINGS COMING SOON</td></tr>`;
+        matrixTable.innerHTML="<tr><td>MATRIX COMING SOON</td></tr>";
+        resultsContainer.innerHTML="<p>RESULTS COMING SOON</p>";
     }
 }
 
@@ -397,42 +388,42 @@ function renderChampionship3(data){
 
     renderDraft(participants);
 
-    if(participants.length&&matches.length){
+    if(matches.length){
         renderStandings(participants,matches);
         renderMatrix(participants,matches);
         renderResults(matches,data.phases);
     }else{
-        showComingSoon();
+        standingsBody.innerHTML=`<tr><td colspan="7">STANDINGS COMING SOON</td></tr>`;
+        matrixTable.innerHTML="<tr><td>MATRIX COMING SOON</td></tr>";
+        resultsContainer.innerHTML="<p>RESULTS COMING SOON</p>";
     }
 }
 
 function renderChampionship4(data){
     const zones=data.zones||{};
 
-    const raw=zones.RAW||[];
-    const smackdown=zones.SMACKDOWN||[];
-    const nxtA=zones["NXT A"]||[];
-    const nxtB=zones["NXT B"]||[];
-
     const participants=[
-        ...raw,
-        ...smackdown,
-        ...nxtA,
-        ...nxtB
+        ...(zones.RAW||[]),
+        ...(zones.SMACKDOWN||[]),
+        ...(zones["NXT A"]||[]),
+        ...(zones["NXT B"]||[])
     ];
 
     renderDraft(participants);
 
-    if(participants.length&&data.matches?.length){
+    if(data.matches?.length){
         renderStandings(participants,data.matches);
         renderMatrix(participants,data.matches);
         renderResults(data.matches,data.phases);
     }else{
-        showComingSoon();
+        standingsBody.innerHTML=`<tr><td colspan="7">STANDINGS COMING SOON</td></tr>`;
+        matrixTable.innerHTML="<tr><td>MATRIX COMING SOON</td></tr>";
+        resultsContainer.innerHTML="<p>RESULTS COMING SOON</p>";
     }
 }
 
 if(special){
+
     tournamentBrand.textContent=special.brand;
     tournamentTitle.textContent=special.title;
     tournamentDivision.textContent=special.division;
@@ -442,19 +433,35 @@ if(special){
 
     const currentData=tournamentData[tournamentId];
 
+    clearSections();
+
     if(currentData){
-        renderSpecialChampionship(currentData);
+
+        if(currentData.format==="LEAGUE_PLAYIN_ELIMINATION"){
+            renderChampionship1(currentData);
+        }else if(currentData.format==="TWO_ZONES_ELIMINATION"){
+            renderChampionship2(currentData);
+        }else if(currentData.format==="LEAGUE_ELIMINATION"){
+            renderChampionship3(currentData);
+        }else if(currentData.format==="FOUR_ZONES_ELIMINATION"){
+            renderChampionship4(currentData);
+        }else{
+            showComingSoon();
+        }
+
     }else{
         showComingSoon();
     }
 
 }else if(!tournament){
+
     tournamentBrand.textContent="";
     tournamentTitle.textContent="TOURNAMENT NOT FOUND";
     tournamentDivision.textContent="";
     showComingSoon();
 
 }else{
+
     tournamentBrand.textContent=tournament.brand;
     tournamentTitle.textContent=tournament.title;
     tournamentDivision.textContent=tournament.division;
@@ -469,4 +476,4 @@ if(special){
     }else{
         renderNormalTournament(currentData);
     }
-                      }
+}
