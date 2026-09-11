@@ -705,3 +705,154 @@
     }
 
 }
+/* =========================================
+   CHAMPIONSHIP BRACKET
+   ========================================= */
+
+.chamber-bracket{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    width:100%;
+    margin:20px auto;
+    padding:10px 0;
+}
+
+.bracket-round{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:20px;
+    min-width:0;
+}
+
+.bracket-round h3{
+    margin:0 0 5px;
+    padding:10px;
+    text-align:center;
+    color:#d90024;
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:1px;
+    border-bottom:2px solid #d90024;
+}
+
+.bracket-match{
+    position:relative;
+    background:#111;
+    border:1px solid #333;
+    border-left:3px solid #d90024;
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 0 10px rgba(217,0,36,.08);
+    animation:bracketAppear .45s ease both;
+    transition:.25s;
+}
+
+.bracket-match:hover{
+    transform:translateY(-3px);
+    border-color:#d90024;
+    box-shadow:0 0 15px rgba(217,0,36,.25);
+}
+
+.bracket-match div{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    min-height:38px;
+    padding:7px 10px;
+    border-bottom:1px solid #292929;
+}
+
+.bracket-match div:last-child{
+    border-bottom:none;
+}
+
+.bracket-match a{
+    flex:1;
+    color:#ccc;
+    text-decoration:none;
+    font-size:11px;
+    font-weight:800;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.bracket-match span{
+    min-width:20px;
+    color:#fff;
+    font-size:12px;
+    font-weight:900;
+    text-align:center;
+}
+
+.bracket-match .winner{
+    background:rgba(217,0,36,.12);
+}
+
+.bracket-match .winner a,
+.bracket-match .winner span{
+    color:#fff;
+}
+
+.bracket-match .winner a{
+    font-weight:900;
+}
+
+/* Animación */
+
+@keyframes bracketAppear{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Entrada escalonada */
+
+.bracket-round:nth-child(1) .bracket-match{
+    animation-delay:.1s;
+}
+
+.bracket-round:nth-child(2) .bracket-match{
+    animation-delay:.25s;
+}
+
+.bracket-round:nth-child(3) .bracket-match{
+    animation-delay:.4s;
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media(max-width:700px){
+
+    .chamber-bracket{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+
+    .bracket-round{
+        gap:12px;
+    }
+
+    .bracket-round h3{
+        font-size:12px;
+    }
+
+    .bracket-match{
+        width:100%;
+    }
+
+    .bracket-match div{
+        min-height:36px;
+    }
+   }
