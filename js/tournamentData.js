@@ -427,8 +427,17 @@ const tournamentData = {
         "Damian Priest",
         "Kofi Kingston"
     ],
-    phases:["LIVE 1","LIVE 2","LIVE 3","LIVE 4","LIVE 5","LIVE 6","ELIMINATION CHAMBER"],
+    phases:[
+        "LIVE 1",
+        "LIVE 2",
+        "LIVE 3",
+        "LIVE 4",
+        "LIVE 5",
+        "LIVE 6",
+        "ELIMINATION CHAMBER"
+    ],
     format:"LEAGUE_PLAYIN_ELIMINATION",
+    events:["elimination-chamber-2023"],
     matches:[]
 },
 
