@@ -411,11 +411,26 @@ const tournamentData = {
     },
 
     "campeonato-1":{
-        participants:[],
-        phases:["LIVE 1","LIVE 2","LIVE 3","LIVE 4","LIVE 5","LIVE 6","ELIMINATION CHAMBER"],
-        format:"LEAGUE_PLAYIN_ELIMINATION",
-        matches:[]
-    },
+    participants:[
+        "Cody Rhodes",
+        "Bryan Danielson",
+        "AJ Styles",
+        "Roman Reigns",
+        "John Cena",
+        "Adam Cole",
+        "Kevin Owens",
+        "Randy Orton",
+        "Rob Van Dam",
+        "The Rock",
+        "Chris Jericho",
+        "RICOCHET",
+        "Damian Priest",
+        "Kofi Kingston"
+    ],
+    phases:["LIVE 1","LIVE 2","LIVE 3","LIVE 4","LIVE 5","LIVE 6","ELIMINATION CHAMBER"],
+    format:"LEAGUE_PLAYIN_ELIMINATION",
+    matches:[]
+},
 
     "campeonato-2":{
         zones:{RAW:[],SMACKDOWN:[]},
