@@ -437,7 +437,7 @@ const tournamentData = {
         "ELIMINATION CHAMBER"
     ],
     format:"LEAGUE_PLAYIN_ELIMINATION",
-    events:["elimination-chamber-2023"],
+    events:{"LIVE 1":"live-1","LIVE 2":"live-2","LIVE 3":"live-3","LIVE 4":"live-4","LIVE 5":"live-5","PLAY-IN":"live-6","BRACKET":"elimination-chamber-2023"},
     matches:[]
 },
 
