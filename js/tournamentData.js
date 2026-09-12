@@ -503,7 +503,7 @@ const tournamentData = {
         final:"wrestlemania-i"
     },
 
-    matches:["raw-1":{date:"22/03/2023",results:[
+    matches:{"raw-1":{date:"22/03/2023",results:[
     {type:"SINGLES",position:"OPENER",wrestler1:"AJ Styles",wrestler2:"Kofi Kingston",score1:3,score2:1},
     {type:"SINGLES",wrestler1:"Damian Priest",wrestler2:"Rob Van Dam",score1:5,score2:0},
     {type:"SINGLES",position:"MAIN EVENT",wrestler1:"Roman Reigns",wrestler2:"Cody Rhodes",score1:2,score2:1}
@@ -529,7 +529,7 @@ const tournamentData = {
     {type:"SINGLES",position:"OPENER",wrestler1:"Roman Reigns",wrestler2:"Kofi Kingston",score1:4,score2:0},
     {type:"SINGLES",wrestler1:"Damian Priest",wrestler2:"AJ Styles",score1:0,score2:2},
     {type:"SINGLES",position:"MAIN EVENT",wrestler1:"The Rock",wrestler2:"Rob Van Dam",score1:0,score2:5}
-]},]
+]}
 },
 
     
