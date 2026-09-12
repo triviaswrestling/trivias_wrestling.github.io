@@ -596,12 +596,20 @@ function renderChampionship2(data){
 
     resultsContainer.innerHTML="";
 
+    /* =====================================
+       RAW
+       ===================================== */
+
     Object.entries(events.raw||{}).forEach(([title,id])=>{
         renderPhase(
             title,
             eventData?.[id]?.results||[]
         );
     });
+
+    /* =====================================
+       SMACKDOWN
+       ===================================== */
 
     Object.entries(events.smackdown||{}).forEach(([title,id])=>{
         renderPhase(
@@ -611,141 +619,155 @@ function renderChampionship2(data){
     });
 
     /* =====================================
-       WRESTLEMANIA I - ELIMINATION
+       WRESTLEMANIA I
        ===================================== */
 
     const finalResults=
-    eventData?.[events.final]?.results||[];
+        eventData?.[events.final]?.results||[];
 
-if(finalResults.length){
+    if(finalResults.length){
 
-    const heading=document.createElement("div");
-    heading.className="results-date";
-    heading.textContent="WRESTLEMANIA I";
-    resultsContainer.appendChild(heading);
+        const heading=document.createElement("div");
+        heading.className="results-date";
+        heading.textContent="WRESTLEMANIA I";
+        resultsContainer.appendChild(heading);
 
-    const bracket=document.createElement("div");
-    bracket.className="chamber-bracket";
+        const bracket=document.createElement("div");
+        bracket.className="chamber-bracket";
 
-    /* =========================
-       SEMIFINALES
-       ========================= */
+        /* =========================
+           SEMIFINALES
+           ========================= */
 
-    const semifinales=document.createElement("div");
-    semifinales.className="bracket-round";
+        const semifinales=document.createElement("div");
+        semifinales.className="bracket-round";
 
-    const semifinalTitle=document.createElement("h3");
-    semifinalTitle.textContent="SEMIFINALES";
-    semifinales.appendChild(semifinalTitle);
+        const semifinalTitle=document.createElement("h3");
+        semifinalTitle.textContent="SEMIFINALES";
+        semifinales.appendChild(semifinalTitle);
 
-    finalResults.slice(0,2).forEach(match=>{
-        const card=document.createElement("div");
-        card.className="bracket-match";
+        finalResults.slice(0,2).forEach(match=>{
 
-        const winner1=Number(match.score1)>Number(match.score2);
-        const winner2=Number(match.score2)>Number(match.score1);
+            const card=document.createElement("div");
+            card.className="bracket-match";
 
-        card.innerHTML=`
-            <div class="${winner1?"winner":""}">
-                ${createWrestlerLink(match.wrestler1)}
-                <span>${match.score1}</span>
-            </div>
-            <div class="${winner2?"winner":""}">
-                ${createWrestlerLink(match.wrestler2)}
-                <span>${match.score2}</span>
-            </div>
-        `;
+            const winner1=
+                Number(match.score1)>Number(match.score2);
 
-        semifinales.appendChild(card);
-    });
+            const winner2=
+                Number(match.score2)>Number(match.score1);
 
-    bracket.appendChild(semifinales);
+            card.innerHTML=`
+                <div class="${winner1?"winner":""}">
+                    ${createWrestlerLink(match.wrestler1)}
+                    <span>${match.score1}</span>
+                </div>
 
-    /* =========================
-       FINAL
-       ========================= */
+                <div class="${winner2?"winner":""}">
+                    ${createWrestlerLink(match.wrestler2)}
+                    <span>${match.score2}</span>
+                </div>
+            `;
 
-    const final=document.createElement("div");
-    final.className="bracket-round";
+            semifinales.appendChild(card);
+        });
 
-    const finalTitle=document.createElement("h3");
-    finalTitle.textContent="FINAL";
-    final.appendChild(finalTitle);
+        bracket.appendChild(semifinales);
 
-    const finalMatch=finalResults[2];
+        /* =========================
+           FINAL
+           ========================= */
 
-    if(finalMatch){
+        const final=document.createElement("div");
+        final.className="bracket-round";
 
-        const card=document.createElement("div");
-        card.className="bracket-match";
+        const finalTitle=document.createElement("h3");
+        finalTitle.textContent="FINAL";
+        final.appendChild(finalTitle);
 
-        const winner1=Number(finalMatch.score1)>Number(finalMatch.score2);
-        const winner2=Number(finalMatch.score2)>Number(finalMatch.score1);
+        const finalMatch=finalResults[2];
 
-        card.innerHTML=`
-            <div class="${winner1?"winner":""}">
-                ${createWrestlerLink(finalMatch.wrestler1)}
-                <span>${finalMatch.score1}</span>
-            </div>
-            <div class="${winner2?"winner":""}">
-                ${createWrestlerLink(finalMatch.wrestler2)}
-                <span>${finalMatch.score2}</span>
-            </div>
-        `;
+        if(finalMatch){
 
-        final.appendChild(card);
+            const card=document.createElement("div");
+            card.className="bracket-match";
+
+            const winner1=
+                Number(finalMatch.score1)>Number(finalMatch.score2);
+
+            const winner2=
+                Number(finalMatch.score2)>Number(finalMatch.score1);
+
+            card.innerHTML=`
+                <div class="${winner1?"winner":""}">
+                    ${createWrestlerLink(finalMatch.wrestler1)}
+                    <span>${finalMatch.score1}</span>
+                </div>
+
+                <div class="${winner2?"winner":""}">
+                    ${createWrestlerLink(finalMatch.wrestler2)}
+                    <span>${finalMatch.score2}</span>
+                </div>
+            `;
+
+            final.appendChild(card);
+        }
+
+        bracket.appendChild(final);
+
+        /* =========================
+           UNDISPUTED WWE CHAMPIONSHIP
+           ========================= */
+
+        const undisputed=document.createElement("div");
+        undisputed.className="bracket-round";
+
+        const undisputedTitle=document.createElement("h3");
+        undisputedTitle.textContent="UNDISPUTED WWE CHAMPIONSHIP";
+        undisputed.appendChild(undisputedTitle);
+
+        const titleMatch=finalResults[3];
+
+        if(titleMatch && titleMatch.type==="TRIPLE THREAT"){
+
+            const card=document.createElement("div");
+            card.className="bracket-match";
+
+            const scores=[
+                Number(titleMatch.score1),
+                Number(titleMatch.score2),
+                Number(titleMatch.score3)
+            ];
+
+            const highest=Math.max(...scores);
+
+            card.innerHTML=`
+                <div class="${scores[0]===highest?"winner":""}">
+                    ${createWrestlerLink(titleMatch.wrestler1)}
+                    <span>${titleMatch.score1}</span>
+                </div>
+
+                <div class="${scores[1]===highest?"winner":""}">
+                    ${createWrestlerLink(titleMatch.wrestler2)}
+                    <span>${titleMatch.score2}</span>
+                </div>
+
+                <div class="${scores[2]===highest?"winner":""}">
+                    ${createWrestlerLink(titleMatch.wrestler3)}
+                    <span>${titleMatch.score3}</span>
+                </div>
+            `;
+
+            undisputed.appendChild(card);
+        }
+
+        bracket.appendChild(undisputed);
+        resultsContainer.appendChild(bracket);
     }
 
-    bracket.appendChild(final);
-
-    /* =========================
-       UNDISPUTED WWE CHAMPIONSHIP
-       ========================= */
-
-    const undisputed=document.createElement("div");
-    undisputed.className="bracket-round";
-
-    const undisputedTitle=document.createElement("h3");
-    undisputedTitle.textContent="UNDISPUTED WWE CHAMPIONSHIP";
-    undisputed.appendChild(undisputedTitle);
-
-    const titleMatch=finalResults[3];
-
-    if(titleMatch && titleMatch.type==="TRIPLE THREAT"){
-
-        const card=document.createElement("div");
-        card.className="bracket-match";
-
-        const scores=[
-            Number(titleMatch.score1),
-            Number(titleMatch.score2),
-            Number(titleMatch.score3)
-        ];
-
-        const highest=Math.max(...scores);
-
-        card.innerHTML=`
-            <div class="${scores[0]===highest?"winner":""}">
-                ${createWrestlerLink(titleMatch.wrestler1)}
-                <span>${titleMatch.score1}</span>
-            </div>
-
-            <div class="${scores[1]===highest?"winner":""}">
-                ${createWrestlerLink(titleMatch.wrestler2)}
-                <span>${titleMatch.score2}</span>
-            </div>
-
-            <div class="${scores[2]===highest?"winner":""}">
-                ${createWrestlerLink(titleMatch.wrestler3)}
-                <span>${titleMatch.score3}</span>
-            </div>
-        `;
-
-        undisputed.appendChild(card);
+    if(!resultsContainer.children.length){
+        resultsContainer.innerHTML="<p>EDITING</p>";
     }
-
-    bracket.appendChild(undisputed);
-    resultsContainer.appendChild(bracket);
 }
 
 
@@ -755,24 +777,30 @@ if(finalResults.length){
 
 function renderChampionship3(data){
     const participants=data.participants||[];
-    const matches=data.matches||[];
+    const events=data.events||{};
 
     renderDraft(participants);
 
-    if(matches.length){
-        renderStandings(participants,matches);
-        renderMatrix(participants,matches);
-        renderResults(matches,data.phases);
-    }else{
-        standingsBody.innerHTML=
-            `<tr><td colspan="7">EDITING</td></tr>`;
+    const leagueEvents=events.league||{};
+    const leagueIds=Object.values(leagueEvents);
+    const leagueMatches=getEventMatches(leagueIds);
 
-        matrixTable.innerHTML=
-            "<tr><td>EDITING</td></tr>";
+    renderStandings(participants,leagueMatches);
+    renderMatrix(participants,leagueMatches);
 
-        resultsContainer.innerHTML=
-            "<p>EDITING</p>";
-    }
+    resultsContainer.innerHTML="";
+
+    renderPhase(
+        "BACKLASH 2023",
+        eventData?.[events.bracket]?.results||[]
+    );
+
+    Object.entries(leagueEvents).forEach(([title,id])=>{
+        renderPhase(
+            title,
+            eventData?.[id]?.results||[]
+        );
+    });
 }
 
 
@@ -781,36 +809,22 @@ function renderChampionship3(data){
    ========================================= */
 
 function renderChampionship4(data){
-    const zones=data.zones||{};
-
-    const participants=[
-        ...(zones.RAW||[]),
-        ...(zones.SMACKDOWN||[]),
-        ...(zones["NXT A"]||[]),
-        ...(zones["NXT B"]||[])
-    ];
+    const participants=data.participants||[];
 
     renderDraft(participants);
 
-    if(data.matches?.length){
-        renderStandings(participants,data.matches);
-        renderMatrix(participants,data.matches);
-        renderResults(data.matches,data.phases);
-    }else{
-        standingsBody.innerHTML=
-            `<tr><td colspan="7">EDITING</td></tr>`;
+    standingsBody.innerHTML=
+        `<tr><td colspan="7">EDITING</td></tr>`;
 
-        matrixTable.innerHTML=
-            "<tr><td>EDITING</td></tr>";
+    matrixTable.innerHTML=
+        "<tr><td>EDITING</td></tr>";
 
-        resultsContainer.innerHTML=
-            "<p>EDITING</p>";
-    }
+    resultsContainer.innerHTML="<p>EDITING</p>";
 }
 
 
 /* =========================================
-   PAGE RENDER
+   PAGE
    ========================================= */
 
 if(special){
@@ -819,58 +833,53 @@ if(special){
     tournamentTitle.textContent=special.title;
     tournamentDivision.textContent=special.division;
 
-    const page=document.querySelector(".torneoroad-page");
+    const data=tournamentData[tournamentId];
 
-    if(page)page.classList.add("championship");
+    if(!data){
 
-    const currentData=tournamentData[tournamentId];
-
-    clearSections();
-
-    if(currentData){
-
-        if(currentData.format==="LEAGUE_PLAYIN_ELIMINATION"){
-            renderChampionship1(currentData);
-
-        }else if(currentData.format==="TWO_ZONES_ELIMINATION"){
-            renderChampionship2(currentData);
-
-        }else if(currentData.format==="LEAGUE_ELIMINATION"){
-            renderChampionship3(currentData);
-
-        }else if(currentData.format==="FOUR_ZONES_ELIMINATION"){
-            renderChampionship4(currentData);
-
-        }else{
-            showEditing();
-        }
-
-    }else{
         showEditing();
+
+    }else if(tournamentId==="campeonato-1"){
+
+        renderChampionship1(data);
+
+    }else if(tournamentId==="campeonato-2"){
+
+        renderChampionship2(data);
+
+    }else if(tournamentId==="campeonato-3"){
+
+        renderChampionship3(data);
+
+    }else if(tournamentId==="campeonato-4"){
+
+        renderChampionship4(data);
+
     }
 
-}else if(!tournament){
-
-    tournamentBrand.textContent="";
-    tournamentTitle.textContent="TOURNAMENT NOT FOUND";
-    tournamentDivision.textContent="";
-    showComingSoon();
-
-}else{
+}else if(tournament){
 
     tournamentBrand.textContent=tournament.brand;
     tournamentTitle.textContent=tournament.title;
     tournamentDivision.textContent=tournament.division;
 
-    const page=document.querySelector(".torneoroad-page");
+    const data=tournamentData[tournamentId];
 
-    if(page)page.classList.add(tournament.brand.toLowerCase());
+    if(!data){
 
-    const currentData=tournamentData[tournamentId];
-
-    if(!currentData){
         showComingSoon();
+
     }else{
-        renderNormalTournament(currentData);
+
+        renderNormalTournament(data);
+
     }
+
+}else{
+
+    tournamentBrand.textContent="MI WRESTLING";
+    tournamentTitle.textContent="TOURNAMENT";
+    tournamentDivision.textContent="";
+
+    showEditing();
 }
