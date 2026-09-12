@@ -521,14 +521,15 @@ const tournamentData = {
     ],
 
     phases:[
-        "RAW 1",
-        "RAW 2",
-        "RAW 3",
-        "RAW 4",
-        "SMACKDOWN 1",
-        "SMACKDOWN 2",
-        "SMACKDOWN 3",
-        "SMACKDOWN 4",
+        "RAW 6",
+        "RAW 7",
+        "RAW 8",
+        "SMACKDOWN 6",
+        "SMACKDOWN 7",
+        "SMACKDOWN 8",
+        "NXT 1",
+        "NXT 2",
+        "NXT 3",
         "BACKLASH"
     ],
 
@@ -536,17 +537,18 @@ const tournamentData = {
 
     events:{
         league:{
-            "RAW 1":"raw-1",
-            "RAW 2":"raw-2",
-            "RAW 3":"raw-3",
-            "RAW 4":"raw-4",
-            "SMACKDOWN 1":"smackdown-1",
-            "SMACKDOWN 2":"smackdown-2",
-            "SMACKDOWN 3":"smackdown-3",
-            "SMACKDOWN 4":"smackdown-4"
+            "RAW 6":"raw-6",
+            "RAW 7":"raw-7",
+            "RAW 8":"raw-8",
+            "SMACKDOWN 6":"smackdown-6",
+            "SMACKDOWN 7":"smackdown-7",
+            "SMACKDOWN 8":"smackdown-8",
+            "NXT 1":"nxt-1",
+            "NXT 2":"nxt-2",
+            "NXT 3":"nxt-3"
         },
 
-        final:"backlash-2023"
+        bracket:"backlash-2023"
     },
 
     matches:[]
