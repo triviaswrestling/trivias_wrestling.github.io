@@ -25,14 +25,9 @@ const tournamentData = {
     ],
 
     images: {
-        "Axiom": "images/Vacante.jpg",
-        "Bret Hart": "images/Vacante.jpg",
-        "Jacob Fatu": "images/Vacante.jpg",
-        "Kyle O'Reilly": "images/Vacante.jpg",
+        
         "Cody Rhodes": "images/Cody WWE Champion.jpg",
-        "Trick Williams": "images/Vacante.jpg",
-        "Bron Breakker": "images/Vacante.jpg",
-        "Jon Moxley": "images/Vacante.jpg"
+        
     },
 
     matches: [
