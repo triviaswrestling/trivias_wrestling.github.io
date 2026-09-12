@@ -11,6 +11,7 @@ const params=new URLSearchParams(window.location.search);
 const eventId=params.get("id");
 const event=eventData[eventId];
 
+
 /* =========================================
    EVENT
    ========================================= */
@@ -52,7 +53,6 @@ eventResults.innerHTML=`
 
 return;
 }
-
 
 results.forEach(result=>{
 
@@ -120,7 +120,8 @@ ${result.match||result.type}
 ${(result.participants||[])
 .map((name,index)=>createWrestlerWithScore(
 name,
-result.scores?.[index]
+result.scores?.[index],
+result.images?.[name]
 ))
 .join("")}
 
@@ -159,7 +160,10 @@ TAG TEAM
 <div class="team">
 
 ${(result.team1||[])
-.map(createWrestler)
+.map(name=>createWrestler(
+name,
+result.images?.[name]
+))
 .join("")}
 
 </div>
@@ -175,7 +179,10 @@ ${createScore(result.score1,result.score2)}
 <div class="team">
 
 ${(result.team2||[])
-.map(createWrestler)
+.map(name=>createWrestler(
+name,
+result.images?.[name]
+))
 .join("")}
 
 </div>
@@ -211,7 +218,10 @@ ${result.match||result.type}
 
 ${(result.team1||[])
 .flat()
-.map(createWrestler)
+.map(name=>createWrestler(
+name,
+result.images?.[name]
+))
 .join("")}
 
 </div>
@@ -232,7 +242,10 @@ result.score1!==undefined
 
 ${(result.team2||[])
 .flat()
-.map(createWrestler)
+.map(name=>createWrestler(
+name,
+result.images?.[name]
+))
 .join("")}
 
 </div>
@@ -259,7 +272,10 @@ ELIMINATION CHAMBER TAG TEAM
 
 ${(result.team1||[])
 .flat()
-.map(createWrestler)
+.map(name=>createWrestler(
+name,
+result.images?.[name]
+))
 .join("")}
 
 </div>
@@ -280,7 +296,10 @@ result.score!==undefined
 
 ${(result.team2||[])
 .flat()
-.map(createWrestler)
+.map(name=>createWrestler(
+name,
+result.images?.[name]
+))
 .join("")}
 
 </div>
@@ -307,7 +326,10 @@ LADDER TAG
 
 ${(result.team1||[])
 .flat()
-.map(createWrestler)
+.map(name=>createWrestler(
+name,
+result.images?.[name]
+))
 .join("")}
 
 </div>
@@ -328,7 +350,10 @@ result.score!==undefined
 
 ${(result.team2||[])
 .flat()
-.map(createWrestler)
+.map(name=>createWrestler(
+name,
+result.images?.[name]
+))
 .join("")}
 
 </div>
@@ -354,7 +379,10 @@ BATTLE ROYALE
 <div class="team">
 
 ${(result.participants||[])
-.map(createWrestler)
+.map(name=>createWrestler(
+name,
+result.images?.[name]
+))
 .join("")}
 
 </div>
@@ -380,7 +408,10 @@ ROYAL RUMBLE
 <div class="team">
 
 ${(result.participants||[])
-.map(createWrestler)
+.map(name=>createWrestler(
+name,
+result.images?.[name]
+))
 .join("")}
 
 </div>
@@ -401,7 +432,10 @@ html+=`
 
 <div class="team">
 
-${createWrestler(result.wrestler1)}
+${createWrestler(
+result.wrestler1,
+result.image1
+)}
 
 </div>
 
@@ -415,7 +449,10 @@ ${createScore(result.score1,result.score2)}
 
 <div class="team">
 
-${createWrestler(result.wrestler2)}
+${createWrestler(
+result.wrestler2,
+result.image2
+)}
 
 </div>
 
@@ -450,9 +487,7 @@ result.participants.length===result.scores.length
 ){
 
 const scores=result.scores.map(Number);
-
 const highest=Math.max(...scores);
-
 const winnerIndexes=[];
 
 scores.forEach((score,index)=>{
@@ -462,7 +497,6 @@ winnerIndexes.push(index);
 }
 
 });
-
 
 if(winnerIndexes.length===1){
 
@@ -530,9 +564,7 @@ WINNER:
 
 }
 
-
 card.innerHTML=html;
-
 eventResults.appendChild(card);
 
 });
@@ -541,17 +573,47 @@ eventResults.appendChild(card);
 
 
 /* =========================================
+   WRESTLER HELPERS
+   ========================================= */
+
+function normalizeName(name){
+return String(name||"").toLowerCase().trim();
+}
+
+
+function getWrestler(name){
+
+if(typeof wrestlers==="undefined")return null;
+
+return wrestlers.find(w=>
+normalizeName(w.name)===normalizeName(name)
+)||null;
+
+}
+
+
+function getEventWrestlerImage(name,customImage){
+
+if(customImage)return customImage;
+
+const wrestler=getWrestler(name);
+
+if(wrestler?.image)return wrestler.image;
+
+return"images/Vacante.jpg";
+
+}
+
+
+/* =========================================
    CREATE WRESTLER
    ========================================= */
 
-function createWrestler(name){
+function createWrestler(name,customImage){
 
 if(!name)return"";
 
-const wrestler=
-typeof wrestlerData!=="undefined"
-?wrestlerData[name]
-:null;
+const wrestler=getWrestler(name);
 
 const id=
 wrestler?.id||
@@ -560,9 +622,7 @@ name
 .replace(/[^a-z0-9]+/g,"-")
 .replace(/^-|-$/g,"");
 
-const image=
-wrestler?.image||
-"images/Vacante.jpg";
+const image=getEventWrestlerImage(name,customImage);
 
 return`
 <a
@@ -596,14 +656,11 @@ ${name}
    CREATE WRESTLER WITH SCORE
    ========================================= */
 
-function createWrestlerWithScore(name,score){
+function createWrestlerWithScore(name,score,customImage){
 
 if(!name)return"";
 
-const wrestler=
-typeof wrestlerData!=="undefined"
-?wrestlerData[name]
-:null;
+const wrestler=getWrestler(name);
 
 const id=
 wrestler?.id||
@@ -612,9 +669,7 @@ name
 .replace(/[^a-z0-9]+/g,"-")
 .replace(/^-|-$/g,"");
 
-const image=
-wrestler?.image||
-"images/Vacante.jpg";
+const image=getEventWrestlerImage(name,customImage);
 
 return`
 <a
