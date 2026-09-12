@@ -49,28 +49,36 @@ const standingsBody=document.getElementById("standings-body");
 const matrixTable=document.getElementById("matrix-table");
 const resultsContainer=document.getElementById("results-container");
 
-// =========================================
-// SUPERSTAR FUNCTIONS
-// =========================================
+
+/* =========================================
+   SUPERSTAR FUNCTIONS
+   ========================================= */
 
 function createWrestlerId(name){
     return name.toLowerCase().trim().replace(/\s+/g,"-");
 }
 
 function normalizeName(name){
-    return name.toLowerCase().trim();
+    return String(name||"").toLowerCase().trim();
 }
 
 function getWrestler(name){
+
     if(typeof wrestlers==="undefined")return null;
-    return wrestlers.find(w=>normalizeName(w.name)===normalizeName(name))||null;
+
+    return wrestlers.find(w=>
+        normalizeName(w.name)===normalizeName(name)
+    )||null;
 }
 
 function getWrestlerImage(name){
-    const data=tournamentData[tournamentId];
-    const image=data?.images?.[name];
 
-    if(image)return image;
+    const data=tournamentData[tournamentId];
+
+    const specialImage=
+        data?.images?.[name];
+
+    if(specialImage)return specialImage;
 
     const wrestler=getWrestler(name);
 
@@ -83,9 +91,10 @@ function createWrestlerLink(name){
     return `<a href="superstar.html?id=${createWrestlerId(name)}" class="table-wrestler-link">${name}</a>`;
 }
 
-// =========================================
-// GENERAL
-// =========================================
+
+/* =========================================
+   GENERAL
+   ========================================= */
 
 function clearSections(){
     draftContainer.innerHTML="";
@@ -108,9 +117,10 @@ function showComingSoon(){
     resultsContainer.innerHTML="<p>RESULTS COMING SOON</p>";
 }
 
-// =========================================
-// DRAFT
-// =========================================
+
+/* =========================================
+   DRAFT
+   ========================================= */
 
 function renderDraft(participants){
     draftContainer.innerHTML="";
@@ -135,9 +145,10 @@ function renderDraft(participants){
     });
 }
 
-// =========================================
-// STANDINGS
-// =========================================
+
+/* =========================================
+   STANDINGS
+   ========================================= */
 
 function buildStandings(participants,matches){
     const standings={};
@@ -222,9 +233,10 @@ function renderStandings(participants,matches){
     });
 }
 
-// =========================================
-// MATCH MATRIX
-// =========================================
+
+/* =========================================
+   MATCH MATRIX
+   ========================================= */
 
 function renderMatrix(participants,matches){
     matrixTable.innerHTML="";
@@ -289,9 +301,10 @@ function renderMatrix(participants,matches){
     });
 }
 
-// =========================================
-// NORMAL RESULTS
-// =========================================
+
+/* =========================================
+   NORMAL RESULTS
+   ========================================= */
 
 function renderResults(matches,phases){
     resultsContainer.innerHTML="";
@@ -353,9 +366,10 @@ function renderResults(matches,phases){
     });
 }
 
-// =========================================
-// EVENT DATA
-// =========================================
+
+/* =========================================
+   EVENT DATA
+   ========================================= */
 
 function getEventMatches(ids){
     if(!Array.isArray(ids))return [];
@@ -370,9 +384,10 @@ function getEventMatches(ids){
     );
 }
 
-// =========================================
-// ELIMINATION CHAMBER
-// =========================================
+
+/* =========================================
+   ELIMINATION CHAMBER
+   ========================================= */
 
 function renderChamberBracket(matches,container){
     const chamberMatches=matches.filter(m=>
@@ -447,9 +462,10 @@ function renderChamberBracket(matches,container){
     container.appendChild(bracket);
 }
 
-// =========================================
-// CHAMPIONSHIP PHASE RESULTS
-// =========================================
+
+/* =========================================
+   CHAMPIONSHIP PHASE RESULTS
+   ========================================= */
 
 function renderPhase(title,matches){
     if(!matches.length)return;
@@ -486,9 +502,10 @@ function renderPhase(title,matches){
     resultsContainer.appendChild(section);
 }
 
-// =========================================
-// NORMAL TOURNAMENT
-// =========================================
+
+/* =========================================
+   NORMAL TOURNAMENT
+   ========================================= */
 
 function renderNormalTournament(data){
     const participants=data.participants||[];
@@ -500,9 +517,10 @@ function renderNormalTournament(data){
     renderResults(matches);
 }
 
-// =========================================
-// CHAMPIONSHIP 1
-// =========================================
+
+/* =========================================
+   CHAMPIONSHIP 1
+   ========================================= */
 
 function renderChampionship1(data){
     const participants=data.participants||[];
@@ -510,30 +528,25 @@ function renderChampionship1(data){
 
     renderDraft(participants);
 
-    // LIVE 1-5 = LIGA
     const leagueEvents=events.league||{};
     const leagueIds=Object.values(leagueEvents);
     const leagueMatches=getEventMatches(leagueIds);
 
-    // SOLO LIVE 1-5 ENTRAN EN TABLA Y MATRIX
     renderStandings(participants,leagueMatches);
     renderMatrix(participants,leagueMatches);
 
     resultsContainer.innerHTML="";
 
-    // ELIMINATION CHAMBER = BRACKET
     renderChamberBracket(
         eventData?.[events.bracket]?.results||[],
         resultsContainer
     );
 
-    // LIVE 6 = PLAY-IN
     renderPhase(
         "PLAY-IN",
         eventData?.[events.playIn]?.results||[]
     );
 
-    // LIVE 1-5 = RESULTADOS DE LA LIGA
     Object.entries(leagueEvents).forEach(([title,id])=>{
         renderPhase(
             title,
@@ -542,9 +555,10 @@ function renderChampionship1(data){
     });
 }
 
-// =========================================
-// CHAMPIONSHIP 2
-// =========================================
+
+/* =========================================
+   CHAMPIONSHIP 2
+   ========================================= */
 
 function renderChampionship2(data){
     const zones=data.zones||{};
@@ -572,9 +586,10 @@ function renderChampionship2(data){
     }
 }
 
-// =========================================
-// CHAMPIONSHIP 3
-// =========================================
+
+/* =========================================
+   CHAMPIONSHIP 3
+   ========================================= */
 
 function renderChampionship3(data){
     const participants=data.participants||[];
@@ -598,9 +613,10 @@ function renderChampionship3(data){
     }
 }
 
-// =========================================
-// CHAMPIONSHIP 4
-// =========================================
+
+/* =========================================
+   CHAMPIONSHIP 4
+   ========================================= */
 
 function renderChampionship4(data){
     const zones=data.zones||{};
@@ -630,11 +646,13 @@ function renderChampionship4(data){
     }
 }
 
-// =========================================
-// PAGE RENDER
-// =========================================
+
+/* =========================================
+   PAGE RENDER
+   ========================================= */
 
 if(special){
+
     tournamentBrand.textContent=special.brand;
     tournamentTitle.textContent=special.title;
     tournamentDivision.textContent=special.division;
@@ -648,28 +666,36 @@ if(special){
     clearSections();
 
     if(currentData){
+
         if(currentData.format==="LEAGUE_PLAYIN_ELIMINATION"){
             renderChampionship1(currentData);
+
         }else if(currentData.format==="TWO_ZONES_ELIMINATION"){
             renderChampionship2(currentData);
+
         }else if(currentData.format==="LEAGUE_ELIMINATION"){
             renderChampionship3(currentData);
+
         }else if(currentData.format==="FOUR_ZONES_ELIMINATION"){
             renderChampionship4(currentData);
+
         }else{
             showEditing();
         }
+
     }else{
         showEditing();
     }
 
 }else if(!tournament){
+
     tournamentBrand.textContent="";
     tournamentTitle.textContent="TOURNAMENT NOT FOUND";
     tournamentDivision.textContent="";
     showComingSoon();
 
 }else{
+
     tournamentBrand.textContent=tournament.brand;
     tournamentTitle.textContent=tournament.title;
     tournamentDivision.textContent=tournament.division;
