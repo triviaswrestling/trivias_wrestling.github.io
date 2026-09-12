@@ -87,13 +87,6 @@ ${result.position}
 if(result.championship){
 
 html+=`
-<div class="championship-name">
-${result.championship}
-</div>`;
-
-}
-
-
 /* =====================================
    MULTI PARTICIPANT
    ===================================== */
@@ -108,6 +101,28 @@ if([
 "ELIMINATION CHAMBER"
 ].includes(result.type)){
 
+const participants=result.participants||[
+result.wrestler1,
+result.wrestler2,
+result.wrestler3,
+result.wrestler4,
+result.wrestler5,
+result.wrestler6,
+result.wrestler7,
+result.wrestler8
+].filter(Boolean);
+
+const scores=result.scores||[
+result.score1,
+result.score2,
+result.score3,
+result.score4,
+result.score5,
+result.score6,
+result.score7,
+result.score8
+].filter(score=>score!==undefined);
+
 html+=`
 <div class="match-name">
 ${result.match||result.type}
@@ -117,10 +132,10 @@ ${result.match||result.type}
 
 <div class="team">
 
-${(result.participants||[])
+${participants
 .map((name,index)=>createWrestlerWithScore(
 name,
-result.scores?.[index],
+scores[index],
 result.images?.[name]
 ))
 .join("")}
@@ -131,11 +146,7 @@ result.images?.[name]
 
 <span>FINAL</span>
 
-${
-Array.isArray(result.scores)
-?createMultiScore(result.scores)
-:""
-}
+${createMultiScore(scores)}
 
 </div>
 
