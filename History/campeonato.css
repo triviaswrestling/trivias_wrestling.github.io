@@ -1021,3 +1021,42 @@ body {
         font-size: 7px;
     }
 }
+/* =========================================
+   GOLD CHAMPIONSHIPS
+   ========================================= */
+
+.gold-championship .campeonato-label {
+    color: #d4af37;
+}
+
+.gold-championship .header-line {
+    background: #d4af37;
+}
+
+.gold-championship .history-heading {
+    border-left-color: #d4af37;
+}
+
+.gold-championship .current-badge {
+    background: #d4af37;
+}
+
+.gold-championship .reign-number {
+    color: #d4af37;
+}
+
+.gold-championship .reign-content h3 {
+    border-left-color: #d4af37;
+}
+
+.gold-championship .reign-days {
+    border-top-color: #d4af37;
+}
+
+.gold-championship .former-days strong {
+    color: #d4af37;
+}
+
+.gold-championship .days-count strong {
+    color: #d4af37;
+}
