@@ -207,7 +207,14 @@ addPLE("payback-2023","PAYBACK 2023","02/10/2023","ROAD","images/events/payback-
 addPLE("summerslam-2023","SUMMERSLAM 2023","03/09/2023","BOOK","images/events/summerslam-2023.jpg");
 addPLE("money-in-the-bank-2023","MONEY IN THE BANK 2023","07/08/2023","ROAD","images/events/money-in-the-bank-2023.jpg");
 addPLE("night-of-champions-2023","NIGHT OF CHAMPIONS 2023","12/06/2023","ROAD","images/events/night-of-champions-2023.jpg");
-addPLE("backlash-2023","BACKLASH 2023","05/05/2023","ROAD","images/events/backlash-2023.jpg");
+addPLE("backlash-2023","BACKLASH 2023","05/05/2023","ROAD","images/events/backlash-2023.jpg",[
+{type:"SINGLES",position:"OPENER",wrestler1:"RICOCHET",wrestler2:"AJ Styles",score1:2,score2:3},
+{type:"SINGLES",wrestler1:"Rob Van Dam",wrestler2:"Adam Cole",score1:2,score2:3},
+{type:"SINGLES",wrestler1:"Bryan Danielson",wrestler2:"AJ Styles",score1:3,score2:2},
+{type:"SINGLES",wrestler1:"Cody Rhodes",wrestler2:"Adam Cole",score1:5,score2:0},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Cody Rhodes",score1:6,score2:3}
+]);
+
 addPLE("wrestlemania-i","WRESTLEMANIA I","10/04/2023","ROAD","images/events/wrestlemania-i.jpg",[
 {type:"SINGLES",position:"OPENER",wrestler1:"Roman Reigns",wrestler2:"John Cena",score1:2,score2:3},
 {type:"SINGLES",wrestler1:"Cody Rhodes",wrestler2:"AJ Styles",score1:4,score2:1},
