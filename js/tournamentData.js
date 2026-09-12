@@ -519,15 +519,36 @@ const tournamentData = {
         "Kofi Kingston",
         "Damian Priest"
     ],
+
     phases:[
-        "FECHA 1",
-        "FECHA 2",
-        "FECHA 3",
-        "FECHA 4",
-        "FECHA 5",
+        "RAW 1",
+        "RAW 2",
+        "RAW 3",
+        "RAW 4",
+        "SMACKDOWN 1",
+        "SMACKDOWN 2",
+        "SMACKDOWN 3",
+        "SMACKDOWN 4",
         "BACKLASH"
     ],
+
     format:"LEAGUE_ELIMINATION",
+
+    events:{
+        league:{
+            "RAW 1":"raw-1",
+            "RAW 2":"raw-2",
+            "RAW 3":"raw-3",
+            "RAW 4":"raw-4",
+            "SMACKDOWN 1":"smackdown-1",
+            "SMACKDOWN 2":"smackdown-2",
+            "SMACKDOWN 3":"smackdown-3",
+            "SMACKDOWN 4":"smackdown-4"
+        },
+
+        final:"backlash-2023"
+    },
+
     matches:[]
 },
 
