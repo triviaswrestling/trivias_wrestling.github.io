@@ -570,19 +570,60 @@ function renderChampionship2(data){
 
     renderDraft(participants);
 
-    if(data.matches?.length){
-        renderStandings(participants,data.matches);
-        renderMatrix(participants,data.matches);
-        renderResults(data.matches,data.phases);
+    const events=data.events||{};
+
+    const rawIds=Object.values(events.raw||{});
+    const smackdownIds=Object.values(events.smackdown||{});
+
+    const rawMatches=getEventMatches(rawIds);
+    const smackdownMatches=getEventMatches(smackdownIds);
+
+    const allMatches=[
+        ...rawMatches,
+        ...smackdownMatches
+    ];
+
+    if(allMatches.length){
+        renderStandings(participants,allMatches);
+        renderMatrix(participants,allMatches);
     }else{
         standingsBody.innerHTML=
             `<tr><td colspan="7">EDITING</td></tr>`;
 
         matrixTable.innerHTML=
             "<tr><td>EDITING</td></tr>";
+    }
 
-        resultsContainer.innerHTML=
-            "<p>EDITING</p>";
+    resultsContainer.innerHTML="";
+
+    Object.entries(events.raw||{}).forEach(([title,id])=>{
+        renderPhase(
+            title,
+            eventData?.[id]?.results||[]
+        );
+    });
+
+    Object.entries(events.smackdown||{}).forEach(([title,id])=>{
+        renderPhase(
+            title,
+            eventData?.[id]?.results||[]
+        );
+    });
+
+    if(events.final){
+
+        const finalResults=
+            eventData?.[events.final]?.results||[];
+
+        renderPhase(
+            "WRESTLEMANIA I",
+            finalResults
+        );
+
+    }
+
+    if(!resultsContainer.children.length){
+        resultsContainer.innerHTML="<p>EDITING</p>";
     }
 }
 
