@@ -208,7 +208,12 @@ addPLE("summerslam-2023","SUMMERSLAM 2023","03/09/2023","BOOK","images/events/su
 addPLE("money-in-the-bank-2023","MONEY IN THE BANK 2023","07/08/2023","ROAD","images/events/money-in-the-bank-2023.jpg");
 addPLE("night-of-champions-2023","NIGHT OF CHAMPIONS 2023","12/06/2023","ROAD","images/events/night-of-champions-2023.jpg");
 addPLE("backlash-2023","BACKLASH 2023","05/05/2023","ROAD","images/events/backlash-2023.jpg");
-addPLE("wrestlemania-i","WRESTLEMANIA I","10/04/2023","ROAD","images/events/wrestlemania-i.jpg");
+addPLE("wrestlemania-i","WRESTLEMANIA I","10/04/2023","ROAD","images/events/wrestlemania-i.jpg",[
+{type:"SINGLES",position:"OPENER",wrestler1:"Roman Reigns",wrestler2:"John Cena",score1:2,score2:3},
+{type:"SINGLES",wrestler1:"Cody Rhodes",wrestler2:"AJ Styles",score1:4,score2:1},
+{type:"SINGLES",wrestler1:"John Cena",wrestler2:"Cody Rhodes",score1:3,score2:2},
+{type:"TRIPLE THREAT",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"John Cena",wrestler3:"Roman Reigns",score1:7,score2:0,score3:1}
+]);
 
 addPLE("elimination-chamber-2023","ELIMINATION CHAMBER 2023","19/03/2023","ROAD","images/events/elimination-chamber-2023.jpg",[
 {type:"SINGLES",position:"OPENER",wrestler1:"Bryan Danielson",wrestler2:"Rob Van Dam",score1:5,score2:0},
