@@ -610,15 +610,87 @@ function renderChampionship2(data){
         );
     });
 
-    if(events.final){
+    /* =====================================
+       WRESTLEMANIA I - ELIMINATION
+       ===================================== */
 
-        const finalResults=
-            eventData?.[events.final]?.results||[];
+    const finalResults=
+        eventData?.[events.final]?.results||[];
 
-        renderPhase(
-            "WRESTLEMANIA I",
-            finalResults
-        );
+    if(finalResults.length){
+
+        const heading=document.createElement("div");
+        heading.className="results-date";
+        heading.textContent="WRESTLEMANIA I";
+        resultsContainer.appendChild(heading);
+
+        const bracket=document.createElement("div");
+        bracket.className="chamber-bracket";
+
+        const column=document.createElement("div");
+        column.className="bracket-round";
+
+        const title=document.createElement("h3");
+        title.textContent="FINAL";
+        column.appendChild(title);
+
+        finalResults.forEach(match=>{
+
+            const card=document.createElement("div");
+            card.className="bracket-match";
+
+            if(match.type==="TRIPLE THREAT"){
+
+                const scores=[
+                    Number(match.score1),
+                    Number(match.score2),
+                    Number(match.score3)
+                ];
+
+                const highest=Math.max(...scores);
+
+                card.innerHTML=`
+                    <div class="${scores[0]===highest?"winner":""}">
+                        ${createWrestlerLink(match.wrestler1)}
+                        <span>${match.score1}</span>
+                    </div>
+
+                    <div class="${scores[1]===highest?"winner":""}">
+                        ${createWrestlerLink(match.wrestler2)}
+                        <span>${match.score2}</span>
+                    </div>
+
+                    <div class="${scores[2]===highest?"winner":""}">
+                        ${createWrestlerLink(match.wrestler3)}
+                        <span>${match.score3}</span>
+                    </div>
+                `;
+
+            }else{
+
+                const winner1=match.score1>match.score2;
+                const winner2=match.score2>match.score1;
+
+                card.innerHTML=`
+                    <div class="${winner1?"winner":""}">
+                        ${createWrestlerLink(match.wrestler1)}
+                        <span>${match.score1}</span>
+                    </div>
+
+                    <div class="${winner2?"winner":""}">
+                        ${createWrestlerLink(match.wrestler2)}
+                        <span>${match.score2}</span>
+                    </div>
+                `;
+
+            }
+
+            column.appendChild(card);
+
+        });
+
+        bracket.appendChild(column);
+        resultsContainer.appendChild(bracket);
 
     }
 
