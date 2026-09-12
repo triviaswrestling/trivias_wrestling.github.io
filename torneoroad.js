@@ -776,13 +776,13 @@ function renderChampionship2(data){
    ========================================= */
 function renderChampionship3(data){
     const participants=data.participants||[];
-    const events=data.events||{};
+    const weekly=data.weekly||{};
 
     renderDraft(participants);
 
-    const leagueEvents=events.league||{};
-    const leagueIds=Object.values(leagueEvents);
-    const leagueMatches=getEventMatches(leagueIds);
+    const leagueMatches=Object.values(weekly).flatMap(event=>
+        event?.results||[]
+    );
 
     if(leagueMatches.length){
         renderStandings(participants,leagueMatches);
@@ -801,10 +801,15 @@ function renderChampionship3(data){
        LEAGUE
        ===================================== */
 
-    Object.entries(leagueEvents).forEach(([title,id])=>{
+    Object.entries(weekly).forEach(([id,event])=>{
+        const number=id.split("-")[1];
+        const brand=
+            id.startsWith("raw-")?"RAW":
+            id.startsWith("smackdown-")?"SMACKDOWN":"NXT";
+
         renderPhase(
-            title,
-            eventData?.[id]?.results||[]
+            `${brand} ${number}`,
+            event?.results||[]
         );
     });
 
@@ -814,7 +819,7 @@ function renderChampionship3(data){
        ===================================== */
 
     const bracketResults=
-        eventData?.[events.bracket]?.results||[];
+        eventData?.[data.bracket]?.results||[];
 
     if(bracketResults.length){
 
@@ -951,7 +956,6 @@ function renderChampionship3(data){
         resultsContainer.innerHTML="<p>EDITING</p>";
     }
 }
-
 
 /* =========================================
    CHAMPIONSHIP 4
