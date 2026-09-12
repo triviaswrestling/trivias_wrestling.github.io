@@ -776,31 +776,116 @@ function renderChampionship2(data){
    ========================================= */
 
 function renderChampionship3(data){
-    const participants=data.participants||[];
+
     const events=data.events||{};
-
-    renderDraft(participants);
-
-    const leagueEvents=events.league||{};
-    const leagueIds=Object.values(leagueEvents);
-    const leagueMatches=getEventMatches(leagueIds);
-
-    renderStandings(participants,leagueMatches);
-    renderMatrix(participants,leagueMatches);
+    const results=
+        eventData?.[events.final]?.results||[];
 
     resultsContainer.innerHTML="";
 
-    renderPhase(
-        "BACKLASH 2023",
-        eventData?.[events.bracket]?.results||[]
-    );
+    if(!results.length){
+        resultsContainer.innerHTML="<p>EDITING</p>";
+        return;
+    }
 
-    Object.entries(leagueEvents).forEach(([title,id])=>{
-        renderPhase(
-            title,
-            eventData?.[id]?.results||[]
-        );
+    const bracket=document.createElement("div");
+    bracket.className="chamber-bracket";
+
+    /* PLAY-IN */
+    const playIn=document.createElement("div");
+    playIn.className="bracket-round";
+
+    const playInTitle=document.createElement("h3");
+    playInTitle.textContent="PLAY-IN";
+    playIn.appendChild(playInTitle);
+
+    results.slice(0,2).forEach(match=>{
+        const card=document.createElement("div");
+        card.className="bracket-match";
+
+        const winner1=Number(match.score1)>Number(match.score2);
+        const winner2=Number(match.score2)>Number(match.score1);
+
+        card.innerHTML=`
+            <div class="${winner1?"winner":""}">
+                ${createWrestlerLink(match.wrestler1)}
+                <span>${match.score1}</span>
+            </div>
+            <div class="${winner2?"winner":""}">
+                ${createWrestlerLink(match.wrestler2)}
+                <span>${match.score2}</span>
+            </div>
+        `;
+
+        playIn.appendChild(card);
     });
+
+    bracket.appendChild(playIn);
+
+    /* SEMIFINALES */
+    const semifinals=document.createElement("div");
+    semifinals.className="bracket-round";
+
+    const semifinalTitle=document.createElement("h3");
+    semifinalTitle.textContent="SEMIFINALES";
+    semifinals.appendChild(semifinalTitle);
+
+    results.slice(2,4).forEach(match=>{
+        const card=document.createElement("div");
+        card.className="bracket-match";
+
+        const winner1=Number(match.score1)>Number(match.score2);
+        const winner2=Number(match.score2)>Number(match.score1);
+
+        card.innerHTML=`
+            <div class="${winner1?"winner":""}">
+                ${createWrestlerLink(match.wrestler1)}
+                <span>${match.score1}</span>
+            </div>
+            <div class="${winner2?"winner":""}">
+                ${createWrestlerLink(match.wrestler2)}
+                <span>${match.score2}</span>
+            </div>
+        `;
+
+        semifinals.appendChild(card);
+    });
+
+    bracket.appendChild(semifinals);
+
+    /* FINAL */
+    const final=document.createElement("div");
+    final.className="bracket-round";
+
+    const finalTitle=document.createElement("h3");
+    finalTitle.textContent="FINAL";
+    final.appendChild(finalTitle);
+
+    const finalMatch=results[4];
+
+    if(finalMatch){
+        const card=document.createElement("div");
+        card.className="bracket-match";
+
+        const winner1=Number(finalMatch.score1)>Number(finalMatch.score2);
+        const winner2=Number(finalMatch.score2)>Number(finalMatch.score1);
+
+        card.innerHTML=`
+            <div class="${winner1?"winner":""}">
+                ${createWrestlerLink(finalMatch.wrestler1)}
+                <span>${finalMatch.score1}</span>
+            </div>
+            <div class="${winner2?"winner":""}">
+                ${createWrestlerLink(finalMatch.wrestler2)}
+                <span>${finalMatch.score2}</span>
+            </div>
+        `;
+
+        final.appendChild(card);
+    }
+
+    bracket.appendChild(final);
+    resultsContainer.appendChild(bracket);
 }
 
 
