@@ -910,7 +910,7 @@ function renderChampionship3(data){
         bracket.appendChild(semifinals);
 
         /* =========================
-           FINAL
+           FINAL n
            ========================= */
 
         const final=document.createElement("div");
