@@ -87,6 +87,13 @@ ${result.position}
 if(result.championship){
 
 html+=`
+<div class="match-championship">
+${result.championship}
+</div>`;
+
+}
+
+
 /* =====================================
    MULTI PARTICIPANT
    ===================================== */
