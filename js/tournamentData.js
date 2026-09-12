@@ -464,7 +464,9 @@ const tournamentData = {
             "The Rock"
         ]
     },
+
     champion:"Bryan Danielson",
+
     phases:[
         "RAW 1",
         "RAW 2",
@@ -478,7 +480,29 @@ const tournamentData = {
         "SMACKDOWN 5",
         "WRESTLEMANIA"
     ],
+
     format:"TWO_ZONES_ELIMINATION",
+
+    events:{
+        raw:{
+            "RAW 1":"raw-1",
+            "RAW 2":"raw-2",
+            "RAW 3":"raw-3",
+            "RAW 4":"raw-4",
+            "RAW 5":"raw-5"
+        },
+
+        smackdown:{
+            "SMACKDOWN 1":"smackdown-1",
+            "SMACKDOWN 2":"smackdown-2",
+            "SMACKDOWN 3":"smackdown-3",
+            "SMACKDOWN 4":"smackdown-4",
+            "SMACKDOWN 5":"smackdown-5"
+        },
+
+        final:"wrestlemania-i"
+    },
+
     matches:[]
 },
 
