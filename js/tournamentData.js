@@ -417,6 +417,7 @@ const tournamentData = {
         "Randy Orton",
         "Rob Van Dam",
         "The Rock",
+        "Seth Rollins",
         "Chris Jericho",
         "RICOCHET",
         "Damian Priest",
