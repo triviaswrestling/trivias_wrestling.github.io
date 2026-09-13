@@ -282,5 +282,7 @@ const tournamentData = {
     },
 
     matches:[]
-        };
+    }
+};
+
 alert("TOURNAMENT DATA CARGADO");
