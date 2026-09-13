@@ -1,97 +1,79 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/png" href="images/triviaswwe.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/triviaswwe.png">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="torneos.css">
+    <title>Games | MI WRESTLING</title>
+</head>
+<body>
 
-<title>Games | MI WRESTLING</title>
+<header class="navbar">
+    <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="MI WRESTLING">
+    </a>
 
-</head><body><header class="navbar"><a href="index.html" class="logo">
-    <img src="images/logo.png" alt="MI WRESTLING">
-</a>
+    <nav id="mainNav">
+        <a href="index.html">Roster</a>
+        <a href="inactive.html">Alumni</a>
+        <a href="History/index.html">History</a>
+        <a href="records.html">Records</a>
+        <a href="recaps.html">Recaps</a>
+        <a href="torneos.html">Games</a>
+        <a href="guide.html">Guide</a>
+        <a href="about.html">About</a>
+        <a href="https://www.instagram.com/triviaswwe?stkn=eWhqNWV0a2xsNnh4">Watch</a>
+    </nav>
 
-<nav id="mainNav">
+    <button class="menu" id="menuButton">☰</button>
+</header>
 
-    <a href="index.html">Roster</a>
-    <a href="inactive.html">Alumni</a>
-    <a href="History/index.html">History</a>
-    <a href="records.html">Records</a>
-    <a href="recaps.html">Recaps</a>
-    <a href="torneos.html">Games</a>
-    <a href="guide.html">Guide</a>
-    <a href="about.html">About</a>
-    <a href="https://www.instagram.com/triviaswwe?stkn=eWhqNWV0a2xsNnh4">Watch</a>
+<main class="tournaments-page">
 
-</nav>
+    <div id="games-home">
 
-<button class="menu" id="menuButton">☰</button>
+        <section>
+            <div class="torneos-divider"><h2>TOURNAMENTS</h2></div>
+            <div id="tournament-directories" class="tournaments-container"></div>
+        </section>
 
-</header><!-- =========================================
-     GAMES
-     ========================================= --><main class="games-page"><section class="games-section">
+        <section>
+            <div class="torneos-divider"><h2>CHAMPIONSHIPS</h2></div>
+            <div id="championship-tournaments" class="tournaments-container"></div>
+        </section>
 
-    <div class="games-header">
-        <h1>GAMES</h1>
-        <p>TOURNAMENTS</p>
     </div>
 
+    <div id="games-directory" style="display:none">
 
-    <!-- =========================================
-         FIRST DIVISION
-         ========================================= -->
+        <button id="back-button" class="back-button">
+            ← BACK
+        </button>
 
-    <section class="division-section">
-
-        <div class="division-divider">
-            <h2>FIRST DIVISION</h2>
-            <span>RAW & SMACKDOWN</span>
+        <div class="torneos-divider">
+            <h2 id="directory-title"></h2>
         </div>
 
-        <div
-            class="tournaments-grid"
-            id="first-division-tournaments"
-        ></div>
+        <input
+            type="search"
+            id="tournament-search"
+            placeholder="SEARCH TOURNAMENT..."
+        >
 
-    </section>
+        <div id="directory-tournaments" class="tournaments-container"></div>
 
-
-    <!-- =========================================
-         SECOND DIVISION
-         ========================================= -->
-
-    <section class="division-section second-division">
-
-        <div class="division-divider">
-            <h2>SECOND DIVISION</h2>
-            <span>NXT</span>
-        </div>
-
-        <div
-            class="tournaments-grid"
-            id="second-division-tournaments"
-        ></div>
-
-    </section>
-
-</section>
-         <!-- =========================================
-     CHAMPIONSHIPS
-     ========================================= -->
-
-<section class="division-section championships-section">
-
-    <div class="division-divider">
-        <h2>CHAMPIONSHIPS</h2>
-        <span>CHAMPIONSHIP COMPETITIONS</span>
     </div>
 
-    <div
-        class="tournaments-grid"
-        id="championship-tournaments"
-    ></div>
+</main>
 
-</section>
+<script src="History/menu.js"></script>
+<script src="js/wrestlers.js"></script>
+<script src="js/tournamentData.js"></script>
+<script src="js/outsiderData.js"></script>
+<script src="js/eventData.js"></script>
+<script src="torneos.js"></script>
 
-</main><!-- =========================================
-     JAVASCRIPT
-     ========================================= --><script src="History/menu.js"></script><script src="js/torneos.js"></script></body></html>
+</body>
+</html>
