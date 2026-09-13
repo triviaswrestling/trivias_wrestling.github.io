@@ -136,5 +136,50 @@ const tournamentData = {
     }
 
 };
+"campeonato-1":{
+    participants:[
+        "Cody Rhodes",
+        "Bryan Danielson",
+        "AJ Styles",
+        "Roman Reigns",
+        "John Cena",
+        "Adam Cole",
+        "Kevin Owens",
+        "Randy Orton",
+        "Rob Van Dam",
+        "The Rock",
+        "Seth Rollins",
+        "Chris Jericho",
+        "RICOCHET",
+        "Damian Priest",
+        "Kofi Kingston"
+    ],
 
+    phases:[
+        "LIVE 1",
+        "LIVE 2",
+        "LIVE 3",
+        "LIVE 4",
+        "LIVE 5",
+        "LIVE 6",
+        "ELIMINATION CHAMBER"
+    ],
+
+    format:"LEAGUE_PLAYIN_ELIMINATION",
+
+    events:{
+        league:{
+            "LIVE 1":"live-1",
+            "LIVE 2":"live-2",
+            "LIVE 3":"live-3",
+            "LIVE 4":"live-4",
+            "LIVE 5":"live-5"
+        },
+
+        playIn:"live-6",
+        bracket:"elimination-chamber-2023"
+    },
+
+    matches:[]
+},
 alert("TOURNAMENT DATA CARGADO");
