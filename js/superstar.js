@@ -18,43 +18,30 @@ const tagEl=document.getElementById("tag-record");
 const sixManEl=document.getElementById("six-man-record");
 const historyEl=document.getElementById("match-history");
 
-
 function slug(name){
-return String(name)
-.toLowerCase()
-.replace(/[^a-z0-9]+/g,"-")
-.replace(/^-|-$/g,"");
+    return String(name)
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g,"-")
+        .replace(/^-|-$/g,"");
 }
-
 
 function findWrestler(){
-if(typeof wrestlers==="undefined")return null;
-
-return wrestlers.find(
-w=>slug(w.name)===wrestlerId
-);
+    if(typeof wrestlers==="undefined")return null;
+    return wrestlers.find(w=>slug(w.name)===wrestlerId);
 }
-
 
 const wrestler=findWrestler();
 
-
 if(!wrestler){
-
-nameEl.textContent="SUPERSTAR NOT FOUND";
-
+    nameEl.textContent="SUPERSTAR NOT FOUND";
 }else{
-
-nameEl.textContent=wrestler.name||"";
-nicknameEl.textContent=wrestler.nickname||"";
-brandEl.textContent=wrestler.brand||"";
-imageEl.src=wrestler.image||"images/Vacante.jpg";
-imageEl.alt=wrestler.name||"";
-
-renderRecords();
-
+    nameEl.textContent=wrestler.name||"";
+    nicknameEl.textContent=wrestler.nickname||"";
+    brandEl.textContent=wrestler.brand||"";
+    imageEl.src=wrestler.image||"images/Vacante.jpg";
+    imageEl.alt=wrestler.name||"";
+    renderRecords();
 }
-
 
 /* =========================================
    PARTICIPANTS
@@ -62,42 +49,32 @@ renderRecords();
 
 function participants(result){
 
-let list=[];
+    let list=[];
 
-if(result.wrestler1)
-list.push(result.wrestler1);
+    if(result.wrestler1)list.push(result.wrestler1);
+    if(result.wrestler2)list.push(result.wrestler2);
 
-if(result.wrestler2)
-list.push(result.wrestler2);
+    if(Array.isArray(result.team1))
+        list.push(...result.team1.flat());
 
-if(Array.isArray(result.team1))
-list.push(...result.team1.flat());
+    if(Array.isArray(result.team2))
+        list.push(...result.team2.flat());
 
-if(Array.isArray(result.team2))
-list.push(...result.team2.flat());
+    if(Array.isArray(result.participants))
+        list.push(...result.participants);
 
-if(Array.isArray(result.participants))
-list.push(...result.participants);
-
-return[
-...new Set(list.filter(Boolean))
-];
+    return[...new Set(list.filter(Boolean))];
 
 }
-
 
 function isThisWrestler(name){
-return name&&slug(name)===wrestlerId;
+    return name&&slug(name)===wrestlerId;
 }
-
 
 function rivals(result){
-
-return participants(result)
-.filter(n=>!isThisWrestler(n));
-
+    return participants(result)
+        .filter(n=>!isThisWrestler(n));
 }
-
 
 /* =========================================
    OUTCOME
@@ -105,134 +82,102 @@ return participants(result)
 
 function outcome(result){
 
-const people=participants(result);
+    const people=participants(result);
 
-if(!people.some(isThisWrestler))
-return null;
+    if(!people.some(isThisWrestler))
+        return null;
 
+    if(result.winner){
+        return isThisWrestler(result.winner)
+            ?"WIN"
+            :"LOSS";
+    }
 
-if(result.winner){
+    if(
+        Array.isArray(result.participants)&&
+        Array.isArray(result.scores)&&
+        result.participants.length===result.scores.length
+    ){
 
-return isThisWrestler(result.winner)
-?"WIN"
-:"LOSS";
+        const scores=result.scores.map(Number);
 
+        if(scores.some(isNaN))
+            return null;
+
+        const highest=Math.max(...scores);
+        const winnerIndexes=[];
+
+        scores.forEach((score,index)=>{
+            if(score===highest)
+                winnerIndexes.push(index);
+        });
+
+        const thisIndex=
+            result.participants.findIndex(isThisWrestler);
+
+        if(winnerIndexes.length!==1){
+            return winnerIndexes.includes(thisIndex)
+                ?"WIN"
+                :"DRAW";
+        }
+
+        return isThisWrestler(
+            result.participants[winnerIndexes[0]]
+        )
+            ?"WIN"
+            :"LOSS";
+    }
+
+    if(
+        result.score1===undefined||
+        result.score2===undefined
+    )
+        return null;
+
+    const a=Number(result.score1);
+    const b=Number(result.score2);
+
+    if(isNaN(a)||isNaN(b))
+        return null;
+
+    if(
+        result.wrestler1&&
+        isThisWrestler(result.wrestler1)
+    ){
+        if(a>b)return"WIN";
+        if(a<b)return"LOSS";
+        return"DRAW";
+    }
+
+    if(
+        result.wrestler2&&
+        isThisWrestler(result.wrestler2)
+    ){
+        if(b>a)return"WIN";
+        if(b<a)return"LOSS";
+        return"DRAW";
+    }
+
+    if(
+        Array.isArray(result.team1)&&
+        result.team1.flat().some(isThisWrestler)
+    ){
+        if(a>b)return"WIN";
+        if(a<b)return"LOSS";
+        return"DRAW";
+    }
+
+    if(
+        Array.isArray(result.team2)&&
+        result.team2.flat().some(isThisWrestler)
+    ){
+        if(b>a)return"WIN";
+        if(b<a)return"LOSS";
+        return"DRAW";
+    }
+
+    return null;
 }
-
-
-if(
-Array.isArray(result.participants)&&
-Array.isArray(result.scores)&&
-result.participants.length===
-result.scores.length
-){
-
-const scores=result.scores.map(Number);
-
-if(scores.some(isNaN))
-return null;
-
-const highest=Math.max(...scores);
-const winnerIndexes=[];
-
-scores.forEach((score,index)=>{
-
-if(score===highest)
-winnerIndexes.push(index);
-
-});
-
-const thisIndex=
-result.participants.findIndex(
-isThisWrestler
-);
-
-if(winnerIndexes.length!==1){
-
-return winnerIndexes.includes(thisIndex)
-?"WIN"
-:"DRAW";
-
-}
-
-return isThisWrestler(
-result.participants[winnerIndexes[0]]
-)
-?"WIN"
-:"LOSS";
-
-}
-
-
-if(
-result.score1===undefined||
-result.score2===undefined
-)
-return null;
-
-
-const a=Number(result.score1);
-const b=Number(result.score2);
-
-if(isNaN(a)||isNaN(b))
-return null;
-
-
-if(
-result.wrestler1&&
-isThisWrestler(result.wrestler1)
-){
-
-if(a>b)return"WIN";
-if(a<b)return"LOSS";
-
-return"DRAW";
-
-}
-
-
-if(
-result.wrestler2&&
-isThisWrestler(result.wrestler2)
-){
-
-if(b>a)return"WIN";
-if(b<a)return"LOSS";
-
-return"DRAW";
-
-}
-
-
-if(
-Array.isArray(result.team1)&&
-result.team1.flat().some(isThisWrestler)
-){
-
-if(a>b)return"WIN";
-if(a<b)return"LOSS";
-
-return"DRAW";
-
-}
-
-
-if(
-Array.isArray(result.team2)&&
-result.team2.flat().some(isThisWrestler)
-){
-
-if(b>a)return"WIN";
-if(b<a)return"LOSS";
-
-return"DRAW";
-
-}
-
-return null;
-
-}
-
 
 /* =========================================
    CATEGORY
@@ -240,29 +185,26 @@ return null;
 
 function category(result){
 
-const type=
-(result.type||"").toUpperCase();
+    const type=(result.type||"").toUpperCase();
 
-if(
-type==="TAG TEAM"||
-type==="LADDER TAG"||
-type==="ELIMINATION CHAMBER TAG TEAM"||
-type==="TRIPLE THREAT TAG"||
-type==="4-WAY TAG"
-)
-return"TAG";
+    if(
+        type==="TAG TEAM"||
+        type==="LADDER TAG"||
+        type==="ELIMINATION CHAMBER TAG TEAM"||
+        type==="TRIPLE THREAT TAG"||
+        type==="4-WAY TAG"
+    )
+        return"TAG";
 
-if(
-type==="6 VS 6"||
-type==="6-MAN TAG TEAM"||
-type==="WARGAMES"
-)
-return"SIX";
+    if(
+        type==="6 VS 6"||
+        type==="6-MAN TAG TEAM"||
+        type==="WARGAMES"
+    )
+        return"SIX";
 
-return"SINGLES";
-
+    return"SINGLES";
 }
-
 
 /* =========================================
    TOURNAMENT LINK
@@ -270,51 +212,56 @@ return"SINGLES";
 
 function tournamentId(event,result){
 
-if(!result.tournament)
-return null;
+    if(!result.tournament)
+        return null;
 
-const n=
-(String(result.tournament).match(/\d+/)||["1"])[0];
+    const n=
+        (String(result.tournament).match(/\d+/)||["1"])[0];
 
-const brand=
-(result.brand||event.brand||"").toUpperCase();
+    const brand=
+        (result.brand||event.brand||"").toUpperCase();
 
-if(brand==="RAW")
-return`raw-${n}`;
+    if(brand==="RAW")
+        return`raw-${n}`;
 
-if(brand==="SMACKDOWN")
-return`smackdown-${n}`;
+    if(brand==="SMACKDOWN")
+        return`smackdown-${n}`;
 
-if(brand==="NXT")
-return`nxt-${n}`;
+    if(brand==="NXT")
+        return`nxt-${n}`;
 
-return null;
-
+    return null;
 }
-
 
 function matchLink(event,result,index){
 
-const tournament=
-tournamentId(event,result);
+    if(event.outsiderKey){
 
-if(tournament){
+        return`outsiderRoad.html?id=${
+            encodeURIComponent(event.outsiderKey)
+        }`;
 
-return`torneoroad.html?id=${encodeURIComponent(tournament)}`;
+    }
 
+    const tournament=
+        tournamentId(event,result);
+
+    if(tournament){
+
+        return`torneoroad.html?id=${
+            encodeURIComponent(tournament)
+        }`;
+
+    }
+
+    return`event.html?id=${
+        encodeURIComponent(event.id)
+    }&match=${index}`;
 }
-
-return`event.html?id=${encodeURIComponent(event.id)}&match=${index}`;
-
-}
-
 
 function matchLabel(result){
-
-return result.match||result.type||"SINGLES";
-
+    return result.match||result.type||"SINGLES";
 }
-
 
 /* =========================================
    DATE
@@ -322,22 +269,20 @@ return result.match||result.type||"SINGLES";
 
 function parseDate(date){
 
-if(!date)return 0;
+    if(!date)return 0;
 
-const[
-day,
-month,
-year
-]=String(date).split("/");
+    const[
+        day,
+        month,
+        year
+    ]=String(date).split("/");
 
-return new Date(
-Number(year),
-Number(month)-1,
-Number(day)
-).getTime()||0;
-
+    return new Date(
+        Number(year),
+        Number(month)-1,
+        Number(day)
+    ).getTime()||0;
 }
-
 
 /* =========================================
    ADAPT TOURNAMENT RESULT
@@ -345,102 +290,96 @@ Number(day)
 
 function adaptTournamentResult(result){
 
-if(!result)
-return null;
+    if(!result)
+        return null;
 
+    if(Array.isArray(result)){
 
-if(Array.isArray(result)){
+        const wrestler1=result[0]||"";
+        const wrestler2=result[1]||"";
+        const score1=result[2]??"";
+        const score2=result[3]??"";
 
-const wrestler1=result[0]||"";
-const wrestler2=result[1]||"";
-const score1=result[2]??"";
-const score2=result[3]??"";
+        let winner=null;
 
-let winner=null;
+        const s1=Number(score1);
+        const s2=Number(score2);
 
-const s1=Number(score1);
-const s2=Number(score2);
+        if(!isNaN(s1)&&!isNaN(s2)){
 
-if(!isNaN(s1)&&!isNaN(s2)){
+            if(s1>s2)
+                winner=wrestler1;
 
-if(s1>s2)
-winner=wrestler1;
+            else if(s2>s1)
+                winner=wrestler2;
 
-else if(s2>s1)
-winner=wrestler2;
+        }
 
+        return{
+            type:"SINGLES",
+            wrestler1,
+            wrestler2,
+            score1,
+            score2,
+            winner
+        };
+    }
+
+    const wrestler1=
+        result.wrestler1||
+        result.a||
+        result.player1||
+        result.p1||
+        "";
+
+    const wrestler2=
+        result.wrestler2||
+        result.b||
+        result.player2||
+        result.p2||
+        "";
+
+    const score1=
+        result.score1!==undefined
+            ?result.score1
+            :result.scoreA!==undefined
+                ?result.scoreA
+                :"";
+
+    const score2=
+        result.score2!==undefined
+            ?result.score2
+            :result.scoreB!==undefined
+                ?result.scoreB
+                :"";
+
+    let winner=result.winner||null;
+
+    if(!winner){
+
+        const s1=Number(score1);
+        const s2=Number(score2);
+
+        if(!isNaN(s1)&&!isNaN(s2)){
+
+            if(s1>s2)
+                winner=wrestler1;
+
+            else if(s2>s1)
+                winner=wrestler2;
+
+        }
+    }
+
+    return{
+        type:result.type||"SINGLES",
+        wrestler1,
+        wrestler2,
+        score1,
+        score2,
+        winner
+    };
 }
-
-return{
-type:"SINGLES",
-wrestler1,
-wrestler2,
-score1,
-score2,
-winner
-};
-
-}
-
-
-const wrestler1=
-result.wrestler1||
-result.a||
-result.player1||
-result.p1||
-"";
-
-const wrestler2=
-result.wrestler2||
-result.b||
-result.player2||
-result.p2||
-"";
-
-const score1=
-result.score1!==undefined
-?result.score1
-:result.scoreA!==undefined
-?result.scoreA
-:"";
-
-const score2=
-result.score2!==undefined
-?result.score2
-:result.scoreB!==undefined
-?result.scoreB
-:"";
-
-let winner=result.winner||null;
-
-if(!winner){
-
-const s1=Number(score1);
-const s2=Number(score2);
-
-if(!isNaN(s1)&&!isNaN(s2)){
-
-if(s1>s2)
-winner=wrestler1;
-
-else if(s2>s1)
-winner=wrestler2;
-
-}
-
-}
-
-return{
-type:"SINGLES",
-wrestler1,
-wrestler2,
-score1,
-score2,
-winner
-};
-
-}
-
 
 /* =========================================
    TOURNAMENT EVENTS
@@ -448,136 +387,231 @@ winner
 
 function getTournamentEvents(){
 
-const list=[];
+    const list=[];
 
-if(typeof tournamentData==="undefined")
-return list;
+    if(typeof tournamentData==="undefined")
+        return list;
 
-const added=new Set();
+    const added=new Set();
 
+    Object.entries(tournamentData)
+    .forEach(([tournamentKey,data])=>{
 
-Object.entries(tournamentData)
-.forEach(([tournamentKey,data])=>{
+        if(!data)return;
 
-if(!data)
-return;
+        function addEvent(id,event,results){
 
+            if(!event)return;
 
-function addEvent(id,event,results){
+            if(
+                !/^raw-\d+$/.test(id)&&
+                !/^smackdown-\d+$/.test(id)&&
+                !/^nxt-\d+$/.test(id)
+            )
+                return;
 
-if(!event)
-return;
+            const uniqueKey=
+                `${id}-${tournamentKey}`;
 
-if(
-!/^raw-\d+$/.test(id)&&
-!/^smackdown-\d+$/.test(id)&&
-!/^nxt-\d+$/.test(id)
-)
-return;
+            if(added.has(uniqueKey))
+                return;
 
+            added.add(uniqueKey);
 
-const uniqueKey=
-`${id}-${tournamentKey}`;
+            list.push({
 
-if(added.has(uniqueKey))
-return;
+                id,
 
-added.add(uniqueKey);
+                title:
+                    id.startsWith("nxt-")
+                        ?"NXT #"+id.split("-")[1]
+                        :id.startsWith("raw-")
+                            ?"RAW #"+id.split("-")[1]
+                            :"SMACKDOWN #"+id.split("-")[1],
 
+                date:event.date||"",
 
-list.push({
+                brand:
+                    id.startsWith("nxt-")
+                        ?"NXT"
+                        :id.startsWith("raw-")
+                            ?"RAW"
+                            :"SMACKDOWN",
 
-id,
+                type:
+                    id.startsWith("nxt-")
+                        ?"NXT"
+                        :"WEEKLY",
 
-title:
-id.startsWith("nxt-")
-?"NXT #"+id.split("-")[1]
-:id.startsWith("raw-")
-?"RAW #"+id.split("-")[1]
-:"SMACKDOWN #"+id.split("-")[1],
+                results:(results||[])
+                    .map(adaptTournamentResult)
+                    .filter(Boolean),
 
-date:event.date||"",
+                tournamentSource:true,
+                tournamentKey
 
-brand:
-id.startsWith("nxt-")
-?"NXT"
-:id.startsWith("raw-")
-?"RAW"
-:"SMACKDOWN",
+            });
+        }
 
-type:
-id.startsWith("nxt-")
-?"NXT"
-:"WEEKLY",
+        if(data.weekly){
 
-results:(results||[])
-.map(adaptTournamentResult)
-.filter(Boolean),
+            Object.entries(data.weekly)
+            .forEach(([id,event])=>{
 
-tournamentSource:true,
-tournamentKey
+                addEvent(
+                    id,
+                    event,
+                    event.results||[]
+                );
 
-});
+            });
 
+        }
+
+        if(
+            data.matches&&
+            !Array.isArray(data.matches)
+        ){
+
+            Object.entries(data.matches)
+            .forEach(([id,event])=>{
+
+                addEvent(
+                    id,
+                    event,
+                    event.results||[]
+                );
+
+            });
+
+        }
+
+        if(data.shows){
+
+            Object.entries(data.shows)
+            .forEach(([id,event])=>{
+
+                addEvent(
+                    id,
+                    event,
+                    event.matches||[]
+                );
+
+            });
+
+        }
+
+    });
+
+    return list;
 }
 
+/* =========================================
+   OUTSIDER EVENTS
+   ========================================= */
 
-if(data.weekly){
+function getOutsiderEvents(){
 
-Object.entries(data.weekly)
-.forEach(([id,event])=>{
+    const list=[];
 
-addEvent(
-id,
-event,
-event.results||[]
-);
+    if(typeof outsiderData==="undefined")
+        return list;
 
-});
+    Object.entries(outsiderData)
+    .forEach(([tournamentKey,data])=>{
 
+        if(!data)return;
+
+        const brand=
+            (data.brand||"OUTSIDER").toUpperCase();
+
+        const title=
+            data.title||
+            tournamentKey
+                .replace(/^outsider-/,"")
+                .replace(/-/g," ")
+                .toUpperCase();
+
+        if(data.shows){
+
+            Object.entries(data.shows)
+            .forEach(([showId,event])=>{
+
+                if(!event)return;
+
+                list.push({
+
+                    id:showId,
+
+                    title:
+                        showId
+                            .replace(/-/g," ")
+                            .toUpperCase(),
+
+                    date:event.date||"",
+
+                    brand,
+
+                    type:brand,
+
+                    results:(event.matches||[])
+                        .map(adaptTournamentResult)
+                        .filter(Boolean),
+
+                    outsiderSource:true,
+                    outsiderKey:tournamentKey,
+                    tournamentKey,
+                    tournamentTitle:title
+
+                });
+
+            });
+
+        }
+
+        if(data.finalMatches){
+
+            const finalDate=
+                data.finalDate||
+                data.date||
+                "";
+
+            list.push({
+
+                id:
+                    data.finalEvent||
+                    tournamentKey+"-final",
+
+                title:
+                    (data.finalEvent||
+                    title)
+                    .replace(/-/g," ")
+                    .toUpperCase(),
+
+                date:finalDate,
+
+                brand,
+
+                type:"SPECIAL EVENT",
+
+                results:data.finalMatches
+                    .map(adaptTournamentResult)
+                    .filter(Boolean),
+
+                outsiderSource:true,
+                outsiderKey:tournamentKey,
+                tournamentKey,
+                tournamentTitle:title,
+                finalEvent:true
+
+            });
+
+        }
+
+    });
+
+    return list;
 }
-
-
-if(
-data.matches&&
-!Array.isArray(data.matches)
-){
-
-Object.entries(data.matches)
-.forEach(([id,event])=>{
-
-addEvent(
-id,
-event,
-event.results||[]
-);
-
-});
-
-}
-
-
-if(data.shows){
-
-Object.entries(data.shows)
-.forEach(([id,event])=>{
-
-addEvent(
-id,
-event,
-event.matches||[]
-);
-
-});
-
-}
-
-});
-
-return list;
-
-}
-
 
 /* =========================================
    RECORDS
@@ -585,158 +619,179 @@ return list;
 
 function renderRecords(){
 
-let wins=0;
-let losses=0;
-let draws=0;
+    let wins=0;
+    let losses=0;
+    let draws=0;
 
-let singles={w:0,l:0,d:0};
-let tag={w:0,l:0,d:0};
-let six={w:0,l:0,d:0};
+    let singles={w:0,l:0,d:0};
+    let tag={w:0,l:0,d:0};
+    let six={w:0,l:0,d:0};
 
-let history=[];
+    let history=[];
 
+    /* =====================================
+       PROCESS RESULT
+       ===================================== */
 
-if(typeof eventData!=="undefined"){
+    function processResult(
+        eventId,
+        event,
+        result,
+        index
+    ){
 
-Object.entries(eventData)
-.forEach(([eventId,event])=>{
+        if(
+            !participants(result)
+            .some(isThisWrestler)
+        )
+            return;
 
-(event.results||[])
-.forEach((result,index)=>{
+        const resultOutcome=
+            outcome(result);
 
-processResult(
-eventId,
-event,
-result,
-index
-);
+        if(!resultOutcome)
+            return;
 
-});
+        if(resultOutcome==="WIN")
+            wins++;
 
-});
+        if(resultOutcome==="LOSS")
+            losses++;
 
+        if(resultOutcome==="DRAW")
+            draws++;
+
+        const cat=category(result);
+
+        const target=
+            cat==="TAG"
+                ?tag
+                :cat==="SIX"
+                    ?six
+                    :singles;
+
+        if(resultOutcome==="WIN")
+            target.w++;
+
+        if(resultOutcome==="LOSS")
+            target.l++;
+
+        if(resultOutcome==="DRAW")
+            target.d++;
+
+        history.push({
+
+            eventId,
+            event,
+            result,
+            index,
+            outcome:resultOutcome,
+            rivals:rivals(result),
+
+            link:matchLink(
+                {
+                    id:eventId,
+                    ...event
+                },
+                result,
+                index
+            )
+
+        });
+
+    }
+
+    /* =====================================
+       EVENT DATA
+       ===================================== */
+
+    if(typeof eventData!=="undefined"){
+
+        Object.entries(eventData)
+        .forEach(([eventId,event])=>{
+
+            (event.results||[])
+            .forEach((result,index)=>{
+
+                processResult(
+                    eventId,
+                    event,
+                    result,
+                    index
+                );
+
+            });
+
+        });
+
+    }
+
+    /* =====================================
+       TOURNAMENT DATA
+       ===================================== */
+
+    getTournamentEvents()
+    .forEach(event=>{
+
+        (event.results||[])
+        .forEach((result,index)=>{
+
+            processResult(
+                event.id,
+                event,
+                result,
+                index
+            );
+
+        });
+
+    });
+
+    /* =====================================
+       OUTSIDER DATA
+       ===================================== */
+
+    getOutsiderEvents()
+    .forEach(event=>{
+
+        (event.results||[])
+        .forEach((result,index)=>{
+
+            processResult(
+                event.id,
+                event,
+                result,
+                index
+            );
+
+        });
+
+    });
+
+    /* =====================================
+       DISPLAY RECORD
+       ===================================== */
+
+    winsEl.textContent=wins;
+    lossesEl.textContent=losses;
+    drawsEl.textContent=draws;
+
+    singlesEl.textContent=
+        `${singles.w} - ${singles.d} - ${singles.l}`;
+
+    tagEl.textContent=
+        `${tag.w} - ${tag.d} - ${tag.l}`;
+
+    sixManEl.textContent=
+        `${six.w} - ${six.d} - ${six.l}`;
+
+    history.sort((a,b)=>
+        parseDate(b.event.date)-
+        parseDate(a.event.date)
+    );
+
+    renderHistory(history);
 }
-
-
-const tournamentEvents=
-getTournamentEvents();
-
-
-tournamentEvents.forEach(event=>{
-
-(event.results||[])
-.forEach((result,index)=>{
-
-processResult(
-event.id,
-event,
-result,
-index
-);
-
-});
-
-});
-
-
-function processResult(
-eventId,
-event,
-result,
-index
-){
-
-if(
-!participants(result)
-.some(isThisWrestler)
-)
-return;
-
-
-const resultOutcome=
-outcome(result);
-
-if(!resultOutcome)
-return;
-
-
-if(resultOutcome==="WIN")
-wins++;
-
-if(resultOutcome==="LOSS")
-losses++;
-
-if(resultOutcome==="DRAW")
-draws++;
-
-
-const cat=category(result);
-
-const target=
-cat==="TAG"
-?tag
-:cat==="SIX"
-?six
-:singles;
-
-
-if(resultOutcome==="WIN")
-target.w++;
-
-if(resultOutcome==="LOSS")
-target.l++;
-
-if(resultOutcome==="DRAW")
-target.d++;
-
-
-history.push({
-
-eventId,
-event,
-result,
-index,
-outcome:resultOutcome,
-rivals:rivals(result),
-
-link:matchLink(
-{
-id:eventId,
-...event
-},
-result,
-index
-)
-
-});
-
-}
-
-
-winsEl.textContent=wins;
-lossesEl.textContent=losses;
-drawsEl.textContent=draws;
-
-singlesEl.textContent=
-`${singles.w} - ${singles.d} - ${singles.l}`;
-
-tagEl.textContent=
-`${tag.w} - ${tag.d} - ${tag.l}`;
-
-sixManEl.textContent=
-`${six.w} - ${six.d} - ${six.l}`;
-
-
-history.sort((a,b)=>
-parseDate(b.event.date)-
-parseDate(a.event.date)
-);
-
-
-renderHistory(history);
-
-}
-
 
 /* =========================================
    MATCH HISTORY
@@ -745,232 +800,209 @@ renderHistory(history);
 
 function renderHistory(history){
 
-const searchInput=
-document.getElementById("history-search");
+    const searchInput=
+        document.getElementById("history-search");
 
-const pagesContainer=
-document.getElementById("history-pages");
+    const pagesContainer=
+        document.getElementById("history-pages");
 
-let currentHistoryPage=1;
+    let currentHistoryPage=1;
 
-const matchesPerPage=20;
+    const matchesPerPage=20;
 
+    function getFilteredHistory(){
 
-function getFilteredHistory(){
+        const search=
+            (searchInput?.value||"")
+            .trim()
+            .toLowerCase();
 
-const search=
-(searchInput?.value||"")
-.trim()
-.toLowerCase();
+        if(!search)
+            return history;
 
-if(!search)
-return history;
+        return history.filter(item=>{
 
+            const eventTitle=
+                item.event?.title||"";
 
-return history.filter(item=>{
+            const eventType=
+                item.event?.type||"";
 
-const eventTitle=
-item.event?.title||"";
+            const match=
+                matchLabel(item.result)||"";
 
-const eventType=
-item.event?.type||"";
+            const rivalsText=
+                (item.rivals||[]).join(" ");
 
-const match=
-matchLabel(item.result)||"";
+            const outcomeText=
+                item.outcome||"";
 
-const rivalsText=
-(item.rivals||[]).join(" ");
+            const date=
+                item.event?.date||"";
 
-const outcomeText=
-item.outcome||"";
+            const text=
+                `${eventTitle}
+                ${eventType}
+                ${match}
+                ${rivalsText}
+                ${outcomeText}
+                ${date}`
+                .toLowerCase();
 
-const date=
-item.event?.date||"";
+            return text.includes(search);
 
-const text=
-`${eventTitle}
-${eventType}
-${match}
-${rivalsText}
-${outcomeText}
-${date}`
-.toLowerCase();
+        });
 
-return text.includes(search);
+    }
 
-});
+    function createPageButtons(totalPages){
 
-}
+        pagesContainer.innerHTML="";
 
+        for(
+            let i=1;
+            i<=totalPages;
+            i++
+        ){
 
-function createPageButtons(totalPages){
+            const button=
+                document.createElement("button");
 
-pagesContainer.innerHTML="";
+            button.className="history-page";
 
+            if(i===currentHistoryPage)
+                button.classList.add("active");
 
-for(
-let i=1;
-i<=totalPages;
-i++
-){
+            button.textContent=`PART ${i}`;
 
-const button=
-document.createElement("button");
+            button.addEventListener(
+                "click",
+                ()=>{
+                    currentHistoryPage=i;
+                    renderPage();
+                }
+            );
 
-button.className="history-page";
+            pagesContainer.appendChild(button);
 
-if(i===currentHistoryPage)
-button.classList.add("active");
+        }
 
-button.textContent=
-`PART ${i}`;
+    }
 
-button.addEventListener(
-"click",
-()=>{
+    function renderPage(){
 
-currentHistoryPage=i;
+        const filtered=
+            getFilteredHistory();
 
-renderPage();
+        const totalPages=
+            Math.max(
+                1,
+                Math.ceil(
+                    filtered.length/
+                    matchesPerPage
+                )
+            );
 
-}
-);
+        if(currentHistoryPage>totalPages)
+            currentHistoryPage=totalPages;
 
-pagesContainer.appendChild(button);
+        const start=
+            (currentHistoryPage-1)*
+            matchesPerPage;
 
-}
+        const end=
+            start+matchesPerPage;
 
-}
+        const pageItems=
+            filtered.slice(start,end);
 
+        historyEl.innerHTML="";
 
-function renderPage(){
+        if(!filtered.length){
 
-const filtered=
-getFilteredHistory();
+            historyEl.innerHTML=
+                "<p>NO MATCHES FOUND.</p>";
 
-const totalPages=
-Math.max(
-1,
-Math.ceil(
-filtered.length/
-matchesPerPage
-)
-);
+            pagesContainer.innerHTML="";
 
+            return;
+        }
 
-if(currentHistoryPage>totalPages)
-currentHistoryPage=totalPages;
+        pageItems.forEach(item=>{
 
+            const rivalText=
+                item.rivals.length
+                    ?item.rivals.join(" / ")
+                    :"NO RIVAL";
 
-const start=
-(currentHistoryPage-1)*
-matchesPerPage;
+            const div=
+                document.createElement("a");
 
-const end=
-start+matchesPerPage;
+            div.className=
+                `history-item result-${item.outcome.toLowerCase()}`;
 
-const pageItems=
-filtered.slice(start,end);
+            div.href=item.link;
 
+            div.innerHTML=`
 
-historyEl.innerHTML="";
+                <div class="history-top">
 
+                    <div class="history-event">
+                        ${item.event.title||"EVENT"}
+                    </div>
 
-if(!filtered.length){
+                    <div class="history-date">
+                        ${item.event.date||""}
+                    </div>
 
-historyEl.innerHTML=
-"<p>NO MATCHES FOUND.</p>";
+                </div>
 
-pagesContainer.innerHTML="";
+                <div class="history-type">
 
-return;
+                    ${
+                        item.event.type==="PLE"
+                            ?"SPECIAL EVENT"
+                            :item.event.type||"EVENT"
+                    }
 
-}
+                    · ${matchLabel(item.result)}
 
+                </div>
 
-pageItems.forEach(item=>{
+                <div class="history-rivals">
 
-const rivalText=
-item.rivals.length
-?item.rivals.join(" / ")
-:"NO RIVAL";
+                    <span>RIVAL</span>
 
+                    ${rivalText}
 
-const div=
-document.createElement("a");
+                </div>
 
-div.className=
-`history-item result-${item.outcome.toLowerCase()}`;
+                <div class="history-result">
+                    ${item.outcome}
+                </div>
 
-div.href=item.link;
+            `;
 
+            historyEl.appendChild(div);
 
-div.innerHTML=`
+        });
 
-<div class="history-top">
+        createPageButtons(totalPages);
 
-<div class="history-event">
-${item.event.title||"EVENT"}
-</div>
+    }
 
-<div class="history-date">
-${item.event.date||""}
-</div>
+    if(searchInput){
 
-</div>
+        searchInput.addEventListener(
+            "input",
+            ()=>{
+                currentHistoryPage=1;
+                renderPage();
+            }
+        );
 
-<div class="history-type">
+    }
 
-${
-item.event.type==="PLE"
-?"SPECIAL EVENT"
-:item.event.type||"EVENT"
-}
-
-· ${matchLabel(item.result)}
-
-</div>
-
-<div class="history-rivals">
-
-<span>RIVAL</span>
-
-${rivalText}
-
-</div>
-
-<div class="history-result">
-${item.outcome}
-</div>
-
-`;
-
-
-historyEl.appendChild(div);
-
-});
-
-
-createPageButtons(totalPages);
-
-}
-
-
-if(searchInput){
-
-searchInput.addEventListener(
-"input",
-()=>{
-
-currentHistoryPage=1;
-
-renderPage();
-
-});
-
-}
-
-
-renderPage();
+    renderPage();
 
 }
