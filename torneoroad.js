@@ -678,6 +678,8 @@ function renderChampionship4(data){
 // PAGE RENDER
 // =========================================
 
+alert("LLEGUE A SPECIAL");
+
 if(special){
 
     tournamentBrand.textContent=special.brand;
