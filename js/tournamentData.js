@@ -1,3 +1,5 @@
+alert("ARCHIVO CARGADO");
+
 const tournamentData = {
 
     "campeonato-3":{
@@ -285,4 +287,4 @@ const tournamentData = {
     }
 };
 
-alert("TOURNAMENT DATA CARGADO");
+
