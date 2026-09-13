@@ -1,7 +1,68 @@
 alert("ARCHIVO CARGADO");
 
 const tournamentData = {
+"monday-night-raw-1":{
+    roster:[
+        "Rob Van Dam",
+        "Roman Reigns",
+        "Johnny Gargano",
+        "Cody Rhodes",
+        "AJ Styles",
+        "Damian Priest"
+    ],
+    format:"LEAGUE_ELIMINATION",
 
+    shows:{
+        "raw-9":{
+            date:"08/05/2023",
+            matches:[
+                ["Rob Van Dam","Roman Reigns",1,1],
+                ["AJ Styles","Johnny Gargano",1,4],
+                ["Damian Priest","Cody Rhodes",0,5]
+            ]
+        },
+        "raw-10":{
+            date:"15/05/2023",
+            matches:[
+                ["Cody Rhodes","Rob Van Dam",3,2],
+                ["Roman Reigns","AJ Styles",3,1],
+                ["Damian Priest","Johnny Gargano",0,5]
+            ]
+        },
+        "raw-11":{
+            date:"22/05/2023",
+            matches:[
+                ["AJ Styles","Cody Rhodes",0,5],
+                ["Johnny Gargano","Roman Reigns",3,1],
+                ["Damian Priest","Rob Van Dam",0,4]
+            ]
+        },
+        "raw-12":{
+            date:"29/05/2023",
+            matches:[
+                ["Roman Reigns","Damian Priest",4,0],
+                ["Rob Van Dam","AJ Styles",2,2],
+                ["Cody Rhodes","Johnny Gargano",4,1]
+            ]
+        },
+        "raw-13":{
+            date:"05/06/2023",
+            matches:[
+                ["AJ Styles","Damian Priest",3,2],
+                ["Johnny Gargano","Rob Van Dam",2,1],
+                ["Cody Rhodes","Roman Reigns",4,1]
+            ]
+        }
+    },
+
+    finalEvent:"night-of-champions-2023",
+
+    finalMatches:[
+        ["Rob Van Dam","Cody Rhodes",1,3],
+        ["Johnny Gargano","Roman Reigns",1,2],
+        ["Cody Rhodes","Roman Reigns",4,0]
+    ]
+},
 /* =========================================
    CAMPEONATO 3
    ========================================= */
