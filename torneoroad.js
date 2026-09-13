@@ -1,4 +1,5 @@
 alert("TORNEOROAD.JS FUNCIONA");
+
 // =========================================
 // CONFIGURATION
 // =========================================
@@ -558,30 +559,25 @@ function renderChampionship1(data){
 
     renderDraft(participants);
 
-    // LIVE 1-5 = LIGA
     const leagueEvents=events.league||{};
     const leagueIds=Object.values(leagueEvents);
     const leagueMatches=getEventMatches(leagueIds);
 
-    // SOLO LIVE 1-5 ENTRAN EN TABLA Y MATRIX
     renderStandings(participants,leagueMatches);
     renderMatrix(participants,leagueMatches);
 
     resultsContainer.innerHTML="";
 
-    // ELIMINATION CHAMBER = BRACKET
     renderChamberBracket(
         eventData?.[events.bracket]?.results||[],
         resultsContainer
     );
 
-    // LIVE 6 = PLAY-IN
     renderPhase(
         "PLAY-IN",
         eventData?.[events.playIn]?.results||[]
     );
 
-    // LIVE 1-5 = RESULTADOS DE LA LIGA
     Object.entries(leagueEvents).forEach(([title,id])=>{
         renderPhase(
             title,
@@ -694,11 +690,10 @@ if(special){
 
     const currentData=tournamentData[tournamentId];
 
-    document.body.insertAdjacentHTML("afterbegin",
-        `<div style="background:red;color:white;padding:20px;font-size:18px;">
-            DATA: ${currentData ? "YES" : "NO"} |
-            PARTICIPANTS: ${currentData?.participants?.length || 0}
-        </div>`
+    alert(
+        "ID: " + tournamentId +
+        "\nDATA: " + (currentData ? "SI" : "NO") +
+        "\nPARTICIPANTES: " + (currentData?.participants?.length || 0)
     );
 
     clearSections();
