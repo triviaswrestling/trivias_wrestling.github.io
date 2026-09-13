@@ -7,6 +7,7 @@ const eventTitle=document.getElementById("event-title");
 const eventDate=document.getElementById("event-date");
 const eventBrand=document.getElementById("event-brand");
 const eventResults=document.getElementById("event-results");
+
 const params=new URLSearchParams(window.location.search);
 const eventId=params.get("id");
 
@@ -23,7 +24,6 @@ if(typeof tournamentData==="undefined")return null;
 /* =====================================
    WEEKLY
    RAW + SMACKDOWN
-   weekly-1 ... weekly-1000
    ===================================== */
 
 const weeklyMatch=id.match(/^weekly-(\d+)$/);
@@ -61,7 +61,10 @@ if(event.date)dates.push(event.date);
 
 if(event.results){
 results.push(
-...convertTournamentResults(event.results)
+...convertTournamentResults(
+event.results,
+eventKey
+)
 );
 }
 
@@ -84,7 +87,10 @@ if(event.date)dates.push(event.date);
 
 if(event.results){
 results.push(
-...convertTournamentResults(event.results)
+...convertTournamentResults(
+event.results,
+eventKey
+)
 );
 }
 
@@ -107,7 +113,10 @@ if(event.date)dates.push(event.date);
 
 if(event.matches){
 results.push(
-...convertTournamentResults(event.matches)
+...convertTournamentResults(
+event.matches,
+eventKey
+)
 );
 }
 
@@ -140,6 +149,7 @@ title:"WEEKLY #"+number,
 date:date,
 brand:"",
 type:"WEEKLY",
+source:"tournamentData",
 results:results
 };
 
@@ -148,7 +158,6 @@ results:results
 
 /* =====================================
    NXT
-   nxt-1 ... nxt-1000
    ===================================== */
 
 const nxtMatch=id.match(/^nxt-(\d+)$/);
@@ -180,8 +189,10 @@ title:"NXT #"+number,
 date:event.date||"",
 brand:"NXT",
 type:"NXT",
+source:"tournamentData",
 results:convertTournamentResults(
-event.matches||[]
+event.matches||[],
+nxtId
 )
 };
 
@@ -200,8 +211,10 @@ title:"NXT #"+number,
 date:event.date||"",
 brand:"NXT",
 type:"NXT",
+source:"tournamentData",
 results:convertTournamentResults(
-event.results||[]
+event.results||[],
+nxtId
 )
 };
 
@@ -224,8 +237,10 @@ title:"NXT #"+number,
 date:event.date||"",
 brand:"NXT",
 type:"NXT",
+source:"tournamentData",
 results:convertTournamentResults(
-event.results||[]
+event.results||[],
+nxtId
 )
 };
 
@@ -246,9 +261,23 @@ return null;
    TOURNAMENT RESULT ADAPTER
    ========================================= */
 
-function convertTournamentResults(results){
+function convertTournamentResults(results,showId=""){
 
 if(!Array.isArray(results))return[];
+
+let brand="";
+
+if(showId.startsWith("raw-")){
+brand="RAW";
+}else if(showId.startsWith("smackdown-")){
+brand="SMACKDOWN";
+}else if(showId.startsWith("nxt-")){
+brand="NXT";
+}else if(showId.startsWith("speed-")){
+brand="SPEED";
+}else if(showId.startsWith("aaa-")){
+brand="AAA";
+}
 
 return results.map(match=>{
 
@@ -313,7 +342,9 @@ wrestler1:wrestler1,
 wrestler2:wrestler2,
 score1:score1,
 score2:score2,
-winner:winner
+winner:winner,
+source:"tournamentData",
+brand:brand
 };
 
 });
@@ -353,7 +384,7 @@ day
 let event=null;
 
 if(
-typeof eventData!=="undefined" &&
+typeof eventData!=="undefined"&&
 eventData[eventId]
 ){
 
@@ -434,20 +465,34 @@ results.forEach(result=>{
 
 const card=document.createElement("div");
 
+
+/* RESULT SOURCE + BRAND */
+
+const source=
+result.source||
+event.source||
+"eventData";
+
 const brand=
+source==="tournamentData"
+?(
 result.brand||
 event.brand||
-"PLE";
+""
+)
+:"PLE";
 
 card.className=
-`result-card brand-${brand
+`result-card source-${source.toLowerCase()} brand-${brand
 .toLowerCase()
 .replace(/\s+/g,"-")}`;
 
 let html="";
 
 
-/* POSITION */
+/* =====================================
+   POSITION
+   ===================================== */
 
 if(result.position){
 
@@ -459,19 +504,23 @@ ${result.position}
 }
 
 
-/* CHAMPIONSHIP */
+/* =====================================
+   CHAMPIONSHIP
+   ===================================== */
 
 if(result.championship){
 
 html+=`
 <div class="match-championship">
-${result.championship}
+${formatChampionshipName(result.championship)}
 </div>`;
 
 }
 
 
-/* MULTI PARTICIPANT */
+/* =====================================
+   MULTI PARTICIPANT
+   ===================================== */
 
 if([
 "TRIPLE THREAT",
@@ -537,7 +586,9 @@ ${createMultiScore(scores)}
 }
 
 
-/* TAG TEAM */
+/* =====================================
+   TAG TEAM
+   ===================================== */
 
 else if(result.type==="TAG TEAM"){
 
@@ -586,7 +637,9 @@ result.images?.[name]
 }
 
 
-/* MULTI TEAM */
+/* =====================================
+   MULTI TEAM
+   ===================================== */
 
 else if([
 "3 VS 3",
@@ -650,7 +703,9 @@ result.images?.[name]
 }
 
 
-/* ELIMINATION CHAMBER TAG TEAM */
+/* =====================================
+   ELIMINATION CHAMBER TAG TEAM
+   ===================================== */
 
 else if(
 result.type==="ELIMINATION CHAMBER TAG TEAM"
@@ -704,7 +759,9 @@ result.images?.[name]
 }
 
 
-/* LADDER TAG */
+/* =====================================
+   LADDER TAG
+   ===================================== */
 
 else if(result.type==="LADDER TAG"){
 
@@ -756,7 +813,9 @@ result.images?.[name]
 }
 
 
-/* BATTLE ROYALE */
+/* =====================================
+   BATTLE ROYALE
+   ===================================== */
 
 else if(result.type==="BATTLE ROYALE"){
 
@@ -783,7 +842,9 @@ result.images?.[name]
 }
 
 
-/* ROYAL RUMBLE */
+/* =====================================
+   ROYAL RUMBLE
+   ===================================== */
 
 else if(result.type==="ROYAL RUMBLE"){
 
@@ -810,7 +871,9 @@ result.images?.[name]
 }
 
 
-/* NORMAL MATCH */
+/* =====================================
+   NORMAL MATCH
+   ===================================== */
 
 else{
 
@@ -851,7 +914,9 @@ result.image2
 }
 
 
-/* WINNER */
+/* =====================================
+   WINNER
+   ===================================== */
 
 if(result.winner){
 
@@ -864,7 +929,9 @@ WINNER:
 }
 
 
-/* WINNER - MULTI */
+/* =====================================
+   WINNER - MULTI
+   ===================================== */
 
 else if(
 Array.isArray(result.participants)&&
@@ -911,7 +978,9 @@ WINNER:
 }
 
 
-/* WINNER - NORMAL */
+/* =====================================
+   WINNER - NORMAL
+   ===================================== */
 
 else{
 
@@ -957,6 +1026,75 @@ card.innerHTML=html;
 eventResults.appendChild(card);
 
 });
+
+}
+
+
+/* =========================================
+   CHAMPIONSHIP NAME
+   ========================================= */
+
+function formatChampionshipName(name){
+
+const championships={
+
+"wwe-championship":
+"WWE Championship",
+
+"world-heavyweight-championship":
+"World Heavyweight Championship",
+
+"wwe-undisputed-championship":
+"WWE Undisputed Championship",
+
+"undisputed-wwe-championship":
+"Undisputed WWE Championship",
+
+"universal-championship":
+"Universal Championship",
+
+"wwe-universal-championship":
+"WWE Universal Championship",
+
+"intercontinental-championship":
+"Intercontinental Championship",
+
+"united-states-championship":
+"United States Championship",
+
+"wwe-womens-championship":
+"WWE Women's Championship",
+
+"womens-world-championship":
+"Women's World Championship",
+
+"womens-united-states-championship":
+"Women's United States Championship",
+
+"womens-intercontinental-championship":
+"Women's Intercontinental Championship",
+
+"world-tag-team-championship":
+"World Tag Team Championship",
+
+"wwe-tag-team-championship":
+"WWE Tag Team Championship",
+
+"world-womens-tag-team-championship":
+"World Women's Tag Team Championship",
+
+"wwe-womens-tag-team-championship":
+"WWE Women's Tag Team Championship"
+
+};
+
+if(championships[name]){
+return championships[name];
+}
+
+return String(name)
+.replace(/-/g," ")
+.replace(/\b\w/g,char=>char.toUpperCase());
 
 }
 
@@ -1117,6 +1255,10 @@ score!==undefined
 }
 
 
+/* =========================================
+   SCORE HELPERS
+   ========================================= */
+
 function createScore(score1,score2){
 
 return`
@@ -1131,9 +1273,11 @@ return`
 
 function createSingleScore(score){
 
-if(score===undefined||
+if(
+score===undefined||
 score===null||
-score==="")return"";
+score===""
+)return"";
 
 return`
 <div class="match-score">
