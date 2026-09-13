@@ -9,7 +9,384 @@ const eventBrand=document.getElementById("event-brand");
 const eventResults=document.getElementById("event-results");
 const params=new URLSearchParams(window.location.search);
 const eventId=params.get("id");
-const event=eventData[eventId];
+
+
+/* =========================================
+   GET TOURNAMENT EVENT
+   ADAPT TO EVENT FORMAT
+   ========================================= */
+
+function getTournamentEvent(id){
+
+if(typeof tournamentData==="undefined"){
+return null;
+}
+
+
+/* =====================================
+   WEEKLY
+   weekly-1 = raw-1 + smackdown-1
+   weekly-2 = raw-2 + smackdown-2
+   ===================================== */
+
+const weeklyMatch=id.match(/^weekly-(\d+)$/);
+
+if(weeklyMatch){
+
+const number=weeklyMatch[1];
+
+const rawId="raw-"+number;
+const smackdownId="smackdown-"+number;
+
+const results=[];
+const dates=[];
+
+for(const tournamentId in tournamentData){
+
+const data=tournamentData[tournamentId];
+
+if(!data)continue;
+
+
+/* =================================
+   MATCHES
+   ================================= */
+
+if(data.matches && !Array.isArray(data.matches)){
+
+for(const eventKey of [rawId,smackdownId]){
+
+const event=data.matches[eventKey];
+
+if(!event)continue;
+
+if(event.date){
+dates.push(event.date);
+}
+
+if(event.results){
+results.push(
+...convertTournamentResults(event.results)
+);
+}
+
+}
+
+}
+
+
+/* =================================
+   WEEKLY
+   ================================= */
+
+if(data.weekly){
+
+for(const eventKey of [rawId,smackdownId]){
+
+const event=data.weekly[eventKey];
+
+if(!event)continue;
+
+if(event.date){
+dates.push(event.date);
+}
+
+if(event.results){
+results.push(
+...convertTournamentResults(event.results)
+);
+}
+
+}
+
+}
+
+}
+
+
+/* =================================
+   NO RESULTS
+   ================================= */
+
+if(!results.length){
+return null;
+}
+
+
+/* =================================
+   DATE
+   ================================= */
+
+let date="";
+
+if(dates.length){
+
+const sortedDates=dates
+.map(date=>({
+original:date,
+value:parseDate(date)
+}))
+.sort((a,b)=>a.value-b.value);
+
+date=sortedDates[0].original;
+
+}
+
+
+/* =================================
+   EVENT
+   ================================= */
+
+return{
+
+id:id,
+
+title:"WEEKLY #"+number,
+
+date:date,
+
+brand:"",
+
+type:"WEEKLY",
+
+results:results
+
+};
+
+}
+
+
+/* =====================================
+   NXT
+   nxt-1
+   nxt-2
+   nxt-3
+   ...
+   ===================================== */
+
+const nxtMatch=id.match(/^nxt-(\d+)$/);
+
+if(nxtMatch){
+
+const number=nxtMatch[1];
+const nxtId="nxt-"+number;
+
+for(const tournamentId in tournamentData){
+
+const data=tournamentData[tournamentId];
+
+if(!data)continue;
+
+
+/* =================================
+   WEEKLY
+   ================================= */
+
+if(data.weekly && data.weekly[nxtId]){
+
+const event=data.weekly[nxtId];
+
+return{
+
+id:id,
+
+title:"NXT #"+number,
+
+date:event.date||"",
+
+brand:"NXT",
+
+type:"NXT",
+
+results:convertTournamentResults(
+event.results||[]
+)
+
+};
+
+}
+
+
+/* =================================
+   MATCHES
+   ================================= */
+
+if(
+data.matches &&
+!Array.isArray(data.matches) &&
+data.matches[nxtId]
+){
+
+const event=data.matches[nxtId];
+
+return{
+
+id:id,
+
+title:"NXT #"+number,
+
+date:event.date||"",
+
+brand:"NXT",
+
+type:"NXT",
+
+results:convertTournamentResults(
+event.results||[]
+)
+
+};
+
+}
+
+}
+
+return null;
+
+}
+
+return null;
+
+}
+
+
+/* =========================================
+   TOURNAMENT RESULT ADAPTER
+   ========================================= */
+
+function convertTournamentResults(results){
+
+if(!Array.isArray(results)){
+return[];
+}
+
+return results.map(match=>{
+
+const wrestler1=
+match.wrestler1||
+match.a||
+match.player1||
+match.p1||
+"";
+
+const wrestler2=
+match.wrestler2||
+match.b||
+match.player2||
+match.p2||
+"";
+
+const score1=
+match.score1!==undefined
+?match.score1
+:match.scoreA!==undefined
+?match.scoreA
+:"";
+
+const score2=
+match.score2!==undefined
+?match.score2
+:match.scoreB!==undefined
+?match.scoreB
+:"";
+
+let winner=match.winner||null;
+
+if(!winner){
+
+const s1=Number(score1);
+const s2=Number(score2);
+
+if(!isNaN(s1)&&!isNaN(s2)){
+
+if(s1>s2){
+winner=wrestler1;
+}
+
+else if(s2>s1){
+winner=wrestler2;
+}
+
+}
+
+}
+
+return{
+
+type:"NORMAL",
+
+wrestler1:wrestler1,
+
+wrestler2:wrestler2,
+
+score1:score1,
+
+score2:score2,
+
+winner:winner
+
+};
+
+});
+
+}
+
+
+/* =========================================
+   DATE HELPER
+   ========================================= */
+
+function parseDate(date){
+
+if(!date)return 0;
+
+const parts=String(date).split("/");
+
+if(parts.length!==3)return 0;
+
+const day=Number(parts[0]);
+const month=Number(parts[1]);
+const year=Number(parts[2]);
+
+return new Date(
+year,
+month-1,
+day
+).getTime();
+
+}
+
+
+/* =========================================
+   GET EVENT
+   ========================================= */
+
+let event=null;
+
+
+/* =====================================
+   EVENT DATA HAS PRIORITY
+   ===================================== */
+
+if(
+typeof eventData!=="undefined" &&
+eventData[eventId]
+){
+
+event=eventData[eventId];
+
+}
+
+
+/* =====================================
+   TOURNAMENT DATA
+   ===================================== */
+
+else{
+
+event=getTournamentEvent(eventId);
+
+}
 
 
 /* =========================================
@@ -17,22 +394,45 @@ const event=eventData[eventId];
    ========================================= */
 
 if(!event){
-eventTitle.textContent="EVENT NOT FOUND";
-eventDate.textContent="";
-eventBrand.textContent="";
-eventResults.innerHTML="<p>THE REQUESTED EVENT COULD NOT BE FOUND.</p>";
-}else{
-eventTitle.textContent=event.title||"EVENT";
-eventDate.textContent=event.date||"";
-eventBrand.textContent=event.brand||"";
 
-const type=document.querySelector(".event-header .event-type");
+eventTitle.textContent="EVENT NOT FOUND";
+
+eventDate.textContent="";
+
+eventBrand.textContent="";
+
+eventResults.innerHTML=
+"<p>THE REQUESTED EVENT COULD NOT BE FOUND.</p>";
+
+}
+
+else{
+
+eventTitle.textContent=
+event.title||"EVENT";
+
+eventDate.textContent=
+event.date||"";
+
+eventBrand.textContent=
+event.brand||"";
+
+const type=
+document.querySelector(
+".event-header .event-type"
+);
 
 if(type){
-type.textContent=event.type==="PLE"?"SPECIAL EVENT":event.type||"EVENT";
+
+type.textContent=
+event.type==="PLE"
+?"SPECIAL EVENT"
+:event.type||"EVENT";
+
 }
 
 renderResults(event.results||[]);
+
 }
 
 
@@ -48,20 +448,28 @@ if(!results.length){
 
 eventResults.innerHTML=`
 <div class="result-card">
-<div class="match-winner">NO RESULTS AVAILABLE.</div>
+<div class="match-winner">
+NO RESULTS AVAILABLE.
+</div>
 </div>`;
 
 return;
+
 }
 
 results.forEach(result=>{
 
 const card=document.createElement("div");
 
-const brand=result.brand||event.brand||"PLE";
+const brand=
+result.brand||
+event.brand||
+"PLE";
 
 card.className=
-`result-card brand-${brand.toLowerCase().replace(/\s+/g,"-")}`;
+`result-card brand-${brand
+.toLowerCase()
+.replace(/\s+/g,"-")}`;
 
 let html="";
 
@@ -190,7 +598,10 @@ result.images?.[name]
 
 <span>VS</span>
 
-${createScore(result.score1,result.score2)}
+${createScore(
+result.score1,
+result.score2
+)}
 
 </div>
 
@@ -250,7 +661,10 @@ result.images?.[name]
 
 ${
 result.score1!==undefined
-?createScore(result.score1,result.score2)
+?createScore(
+result.score1,
+result.score2
+)
 :""
 }
 
@@ -277,7 +691,9 @@ result.images?.[name]
    ELIMINATION CHAMBER TAG TEAM
    ===================================== */
 
-else if(result.type==="ELIMINATION CHAMBER TAG TEAM"){
+else if(
+result.type==="ELIMINATION CHAMBER TAG TEAM"
+){
 
 html+=`
 <div class="match-name">
@@ -461,7 +877,10 @@ result.image1
 
 <span>VS</span>
 
-${createScore(result.score1,result.score2)}
+${createScore(
+result.score1,
+result.score2
+)}
 
 </div>
 
@@ -501,11 +920,14 @@ WINNER:
 else if(
 Array.isArray(result.participants)&&
 Array.isArray(result.scores)&&
-result.participants.length===result.scores.length
+result.participants.length===
+result.scores.length
 ){
 
 const scores=result.scores.map(Number);
+
 const highest=Math.max(...scores);
+
 const winnerIndexes=[];
 
 scores.forEach((score,index)=>{
@@ -518,7 +940,10 @@ winnerIndexes.push(index);
 
 if(winnerIndexes.length===1){
 
-const winner=result.participants[winnerIndexes[0]];
+const winner=
+result.participants[
+winnerIndexes[0]
+];
 
 html+=`
 <div class="match-winner">
@@ -526,7 +951,9 @@ WINNER:
 <strong>${winner}</strong>
 </div>`;
 
-}else{
+}
+
+else{
 
 html+=`
 <div class="match-winner">
@@ -583,6 +1010,7 @@ WINNER:
 }
 
 card.innerHTML=html;
+
 eventResults.appendChild(card);
 
 });
@@ -595,28 +1023,40 @@ eventResults.appendChild(card);
    ========================================= */
 
 function normalizeName(name){
-return String(name||"").toLowerCase().trim();
+
+return String(name||"")
+.toLowerCase()
+.trim();
+
 }
 
 
 function getWrestler(name){
 
-if(typeof wrestlers==="undefined")return null;
+if(typeof wrestlers==="undefined"){
+return null;
+}
 
 return wrestlers.find(w=>
-normalizeName(w.name)===normalizeName(name)
+normalizeName(w.name)===
+normalizeName(name)
 )||null;
 
 }
 
 
-function getEventWrestlerImage(name,customImage){
+function getEventWrestlerImage(
+name,
+customImage
+){
 
 if(customImage)return customImage;
 
 const wrestler=getWrestler(name);
 
-if(wrestler?.image)return wrestler.image;
+if(wrestler?.image){
+return wrestler.image;
+}
 
 return"images/Vacante.jpg";
 
@@ -627,7 +1067,10 @@ return"images/Vacante.jpg";
    CREATE WRESTLER
    ========================================= */
 
-function createWrestler(name,customImage){
+function createWrestler(
+name,
+customImage
+){
 
 if(!name)return"";
 
@@ -640,7 +1083,11 @@ name
 .replace(/[^a-z0-9]+/g,"-")
 .replace(/^-|-$/g,"");
 
-const image=getEventWrestlerImage(name,customImage);
+const image=
+getEventWrestlerImage(
+name,
+customImage
+);
 
 return`
 <a
@@ -674,7 +1121,11 @@ ${name}
    CREATE WRESTLER WITH SCORE
    ========================================= */
 
-function createWrestlerWithScore(name,score,customImage){
+function createWrestlerWithScore(
+name,
+score,
+customImage
+){
 
 if(!name)return"";
 
@@ -687,7 +1138,11 @@ name
 .replace(/[^a-z0-9]+/g,"-")
 .replace(/^-|-$/g,"");
 
-const image=getEventWrestlerImage(name,customImage);
+const image=
+getEventWrestlerImage(
+name,
+customImage
+);
 
 return`
 <a
@@ -749,13 +1204,21 @@ return`
 
 function createSingleScore(score){
 
-if(score===undefined||score===null||score===""){
+if(
+score===undefined||
+score===null||
+score===""
+){
+
 return"";
+
 }
 
 return`
 <div class="match-score">
+
 <span>${score}</span>
+
 </div>`;
 
 }
@@ -767,8 +1230,13 @@ return`
 
 function createMultiScore(scores){
 
-if(!Array.isArray(scores)||!scores.length){
+if(
+!Array.isArray(scores)||
+!scores.length
+){
+
 return"";
+
 }
 
 return`
