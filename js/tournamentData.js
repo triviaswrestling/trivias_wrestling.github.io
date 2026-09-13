@@ -1,5 +1,3 @@
-alert("ARCHIVO CARGADO");
-
 const tournamentData = {
 "monday-night-raw-1":{
     roster:[
