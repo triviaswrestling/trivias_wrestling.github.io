@@ -10,15 +10,17 @@ const tournaments=[];
 
 for(let number=25;number>=1;number--){
     tournaments.push({
-        id:`raw-${number}`,
+        id:`monday-night-raw-${number}`,
         number,
         brand:"RAW",
         division:"FIRST DIVISION",
         title:`TOURNAMENT ${number}`
     });
+}
 
+for(let number=25;number>=1;number--){
     tournaments.push({
-        id:`smackdown-${number}`,
+        id:`friday-night-smackdown-${number}`,
         number,
         brand:"SMACKDOWN",
         division:"FIRST DIVISION",
@@ -28,7 +30,7 @@ for(let number=25;number>=1;number--){
 
 for(let number=18;number>=1;number--){
     tournaments.push({
-        id:`nxt-${number}`,
+        id:`wwe-nxt-${number}`,
         number,
         brand:"NXT",
         division:"SECOND DIVISION",
