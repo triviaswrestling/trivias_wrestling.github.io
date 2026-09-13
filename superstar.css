@@ -727,3 +727,92 @@ padding:11px;
 }
 
                 }
+/* =========================================
+   HISTORY SEARCH
+   ========================================= */
+
+.history-tools{
+display:flex;
+gap:12px;
+margin-bottom:16px;
+flex-wrap:wrap;
+}
+
+#history-search{
+flex:1;
+min-width:200px;
+padding:13px 15px;
+background:#111;
+border:1px solid #292929;
+color:#fff;
+font-size:10px;
+font-weight:bold;
+letter-spacing:1.5px;
+outline:none;
+}
+
+#history-search::placeholder{
+color:#666;
+}
+
+#history-search:focus{
+border-color:#555;
+}
+
+
+/* =========================================
+   HISTORY PAGES
+   ========================================= */
+
+#history-pages{
+display:flex;
+gap:6px;
+flex-wrap:wrap;
+}
+
+.history-page{
+padding:12px 14px;
+background:#111;
+border:1px solid #292929;
+color:#777;
+font-size:9px;
+font-weight:bold;
+letter-spacing:1px;
+cursor:pointer;
+}
+
+.history-page:hover{
+color:#fff;
+border-color:#555;
+}
+
+.history-page.active{
+color:#fff;
+border-color:#fff;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media(max-width:600px){
+
+.history-tools{
+flex-direction:column;
+}
+
+#history-search{
+width:100%;
+}
+
+#history-pages{
+width:100%;
+}
+
+.history-page{
+flex:1;
+text-align:center;
+}
+
+   }
