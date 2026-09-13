@@ -694,6 +694,13 @@ if(special){
 
     const currentData=tournamentData[tournamentId];
 
+    document.body.insertAdjacentHTML("afterbegin",
+        `<div style="background:red;color:white;padding:20px;font-size:18px;">
+            DATA: ${currentData ? "YES" : "NO"} |
+            PARTICIPANTS: ${currentData?.participants?.length || 0}
+        </div>`
+    );
+
     clearSections();
 
     if(currentData){
