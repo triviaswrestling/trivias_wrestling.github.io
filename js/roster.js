@@ -3,7 +3,6 @@ console.log("ROSTER.JS CARGADO");
 const rosterContainer=document.getElementById("roster");
 const nxtRosterContainer=document.getElementById("nxt-roster");
 
-
 function slug(name){
 return String(name)
 .toLowerCase()
@@ -11,31 +10,21 @@ return String(name)
 .replace(/^-|-$/g,"");
 }
 
-
 function getRecord(name,fromYear=null){
 
 let w=0,d=0,l=0;
-
 const id=slug(name);
-
 
 function processResult(result){
 
-/* NUEVO FORMATO:
-   ["A","B",1,2]
-*/
-
 if(Array.isArray(result)){
-
 result={
 wrestler1:result[0]||"",
 wrestler2:result[1]||"",
 score1:result[2]??"",
 score2:result[3]??""
 };
-
 }
-
 
 let people=[];
 
@@ -54,13 +43,10 @@ people.push(...result.team2.flat());
 if(Array.isArray(result.participants))
 people.push(...result.participants);
 
-
 if(!people.some(n=>slug(n)===id))
 return;
 
-
 let outcome=null;
-
 
 if(result.winner){
 
@@ -71,7 +57,6 @@ slug(result.winner)===id
 
 }
 
-
 else if(
 Array.isArray(result.participants)&&
 Array.isArray(result.scores)&&
@@ -79,14 +64,12 @@ result.participants.length===
 result.scores.length
 ){
 
-const scores=
-result.scores.map(Number);
+const scores=result.scores.map(Number);
 
 if(scores.some(isNaN))
 return;
 
-const high=
-Math.max(...scores);
+const high=Math.max(...scores);
 
 const winners=
 scores
@@ -99,21 +82,17 @@ n=>slug(n)===id
 );
 
 if(winners.length===1)
-
 outcome=
 index===winners[0]
 ?"WIN"
 :"LOSS";
-
 else
-
 outcome=
 winners.includes(index)
 ?"WIN"
 :"DRAW";
 
 }
-
 
 else if(
 result.score1!==undefined&&
@@ -125,7 +104,6 @@ const b=Number(result.score2);
 
 if(isNaN(a)||isNaN(b))
 return;
-
 
 if(
 result.wrestler1&&
@@ -139,7 +117,6 @@ a>b
 ?"LOSS"
 :"DRAW";
 
-
 else if(
 result.wrestler2&&
 slug(result.wrestler2)===id
@@ -151,7 +128,6 @@ b>a
 :b<a
 ?"LOSS"
 :"DRAW";
-
 
 else if(
 Array.isArray(result.team1)&&
@@ -166,7 +142,6 @@ a>b
 :a<b
 ?"LOSS"
 :"DRAW";
-
 
 else if(
 Array.isArray(result.team2)&&
@@ -184,7 +159,6 @@ b>a
 
 }
 
-
 if(outcome==="WIN")
 w++;
 
@@ -195,7 +169,6 @@ if(outcome==="LOSS")
 l++;
 
 }
-
 
 /* =========================================
    EVENT DATA
@@ -221,7 +194,6 @@ return;
 
 });
 
-
 /* =========================================
    TOURNAMENT DATA
    ========================================= */
@@ -233,11 +205,6 @@ Object.values(tournamentData)
 
 if(!data)
 return;
-
-
-/* =========================================
-   OLD WEEKLY FORMAT
-   ========================================= */
 
 if(data.weekly){
 
@@ -262,11 +229,6 @@ return;
 });
 
 }
-
-
-/* =========================================
-   OLD MATCHES FORMAT
-   ========================================= */
 
 if(
 data.matches&&
@@ -294,11 +256,6 @@ return;
 });
 
 }
-
-
-/* =========================================
-   NEW SHOWS FORMAT
-   ========================================= */
 
 if(data.shows){
 
@@ -328,18 +285,81 @@ return;
 
 }
 
+/* =========================================
+   OUTSIDER DATA
+   ========================================= */
+
+if(typeof outsiderData!=="undefined"){
+
+Object.values(outsiderData)
+.forEach(data=>{
+
+if(!data)
+return;
+
+if(data.shows){
+
+Object.values(data.shows)
+.forEach(event=>{
+
+const year=
+Number(
+String(event.date||"")
+.split("/")[2]
+);
+
+if(
+fromYear!==null&&
+(!year||year<fromYear)
+)
+return;
+
+(event.matches||[])
+.forEach(processResult);
+
+});
+
+}
+
+if(data.finalMatches){
+
+let year=0;
+
+if(data.finalDate){
+
+year=
+Number(
+String(data.finalDate)
+.split("/")[2]
+);
+
+}
+
+if(
+fromYear===null||
+(year&&year>=fromYear)
+){
+
+data.finalMatches
+.forEach(processResult);
+
+}
+
+}
+
+});
+
+}
 
 return`${w} - ${d} - ${l}`;
 
 }
-
 
 function createWrestlerCard(wrestler,index){
 
 const card=document.createElement("div");
 
 card.className="wrestler";
-
 
 if(wrestler.brand){
 
@@ -351,11 +371,9 @@ wrestler.brand
 
 }
 
-
 card.onclick=function(){
 openModal(index);
 };
-
 
 const image=document.createElement("img");
 
@@ -363,24 +381,20 @@ image.src=wrestler.image;
 image.alt=wrestler.name;
 image.loading="lazy";
 
-
 const nickname=document.createElement("p");
 
 nickname.textContent=
 wrestler.nickname||"";
-
 
 const name=document.createElement("h2");
 
 name.textContent=
 wrestler.name;
 
-
 const stable=document.createElement("p");
 
 stable.textContent=
 wrestler.stable||"";
-
 
 const record2026=
 document.createElement("div");
@@ -392,7 +406,6 @@ record2026.innerHTML=
 getRecord(wrestler.name,2026)+
 "</strong>";
 
-
 const careerRecord=
 document.createElement("div");
 
@@ -403,7 +416,6 @@ careerRecord.innerHTML=
 getRecord(wrestler.name)+
 "</strong>";
 
-
 card.appendChild(image);
 card.appendChild(nickname);
 card.appendChild(name);
@@ -411,11 +423,9 @@ card.appendChild(stable);
 card.appendChild(record2026);
 card.appendChild(careerRecord);
 
-
 return card;
 
 }
-
 
 function loadMainRoster(status){
 
@@ -423,7 +433,6 @@ if(!rosterContainer)
 return;
 
 rosterContainer.innerHTML="";
-
 
 wrestlers.forEach(
 function(wrestler,index){
@@ -446,14 +455,12 @@ index
 
 }
 
-
 function loadNXTRoster(status){
 
 if(!nxtRosterContainer)
 return;
 
 nxtRosterContainer.innerHTML="";
-
 
 wrestlers.forEach(
 function(wrestler,index){
@@ -476,10 +483,8 @@ index
 
 }
 
-
 const main=
 document.querySelector("main");
-
 
 if(main){
 
