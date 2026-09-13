@@ -17,11 +17,16 @@ const wrestlerRecords = wrestlers.map(wrestler => {
 
     const wrestlerId = slug(wrestler.name);
 
+
     function participants(result) {
+
         let list = [];
 
-        if (result.wrestler1) list.push(result.wrestler1);
-        if (result.wrestler2) list.push(result.wrestler2);
+        if (result.wrestler1)
+            list.push(result.wrestler1);
+
+        if (result.wrestler2)
+            list.push(result.wrestler2);
 
         if (Array.isArray(result.team1))
             list.push(...result.team1.flat());
@@ -32,12 +37,20 @@ const wrestlerRecords = wrestlers.map(wrestler => {
         if (Array.isArray(result.participants))
             list.push(...result.participants);
 
-        return [...new Set(list.filter(Boolean))];
+        return [
+            ...new Set(list.filter(Boolean))
+        ];
+
     }
 
+
     function isThisWrestler(name) {
-        return name && slug(name) === wrestlerId;
+
+        return name &&
+            slug(name) === wrestlerId;
+
     }
+
 
     function outcome(result) {
 
@@ -46,47 +59,66 @@ const wrestlerRecords = wrestlers.map(wrestler => {
         if (!people.some(isThisWrestler))
             return null;
 
+
         if (result.winner) {
+
             return isThisWrestler(result.winner)
                 ? "WIN"
                 : "LOSS";
+
         }
+
 
         if (
             Array.isArray(result.participants) &&
             Array.isArray(result.scores) &&
-            result.participants.length === result.scores.length
+            result.participants.length ===
+            result.scores.length
         ) {
 
-            const scores = result.scores.map(Number);
+            const scores =
+                result.scores.map(Number);
 
             if (scores.some(isNaN))
                 return null;
 
-            const highest = Math.max(...scores);
+            const highest =
+                Math.max(...scores);
 
             const winnerIndexes = [];
 
             scores.forEach((score, index) => {
+
                 if (score === highest)
                     winnerIndexes.push(index);
+
             });
 
             const thisIndex =
-                result.participants.findIndex(isThisWrestler);
+                result.participants.findIndex(
+                    isThisWrestler
+                );
 
             if (winnerIndexes.length !== 1) {
-                return winnerIndexes.includes(thisIndex)
+
+                return winnerIndexes.includes(
+                    thisIndex
+                )
                     ? "WIN"
                     : "DRAW";
+
             }
 
             return isThisWrestler(
-                result.participants[winnerIndexes[0]]
+                result.participants[
+                    winnerIndexes[0]
+                ]
             )
                 ? "WIN"
                 : "LOSS";
+
         }
+
 
         if (
             result.score1 === undefined ||
@@ -94,62 +126,287 @@ const wrestlerRecords = wrestlers.map(wrestler => {
         )
             return null;
 
+
         const a = Number(result.score1);
         const b = Number(result.score2);
 
-        if (result.wrestler1 && isThisWrestler(result.wrestler1)) {
+        if (isNaN(a) || isNaN(b))
+            return null;
+
+
+        if (
+            result.wrestler1 &&
+            isThisWrestler(result.wrestler1)
+        ) {
+
             if (a > b) return "WIN";
             if (a < b) return "LOSS";
+
             return "DRAW";
+
         }
 
-        if (result.wrestler2 && isThisWrestler(result.wrestler2)) {
+
+        if (
+            result.wrestler2 &&
+            isThisWrestler(result.wrestler2)
+        ) {
+
             if (b > a) return "WIN";
             if (b < a) return "LOSS";
+
             return "DRAW";
+
         }
+
 
         if (
             Array.isArray(result.team1) &&
-            result.team1.flat().some(isThisWrestler)
+            result.team1.flat().some(
+                isThisWrestler
+            )
         ) {
+
             if (a > b) return "WIN";
             if (a < b) return "LOSS";
+
             return "DRAW";
+
         }
+
 
         if (
             Array.isArray(result.team2) &&
-            result.team2.flat().some(isThisWrestler)
+            result.team2.flat().some(
+                isThisWrestler
+            )
         ) {
+
             if (b > a) return "WIN";
             if (b < a) return "LOSS";
+
             return "DRAW";
+
         }
 
         return null;
+
     }
 
-    Object.values(eventData || {}).forEach(event => {
-        (event.results || []).forEach(result => {
 
-            const resultOutcome = outcome(result);
+    /* =========================================
+       EVENT DATA
+       ========================================= */
 
-            if (resultOutcome === "WIN") wins++;
-            if (resultOutcome === "LOSS") losses++;
-            if (resultOutcome === "DRAW") draws++;
+    Object.values(eventData || {})
+        .forEach(event => {
+
+            (event.results || [])
+                .forEach(result => {
+
+                    const resultOutcome =
+                        outcome(result);
+
+                    if (resultOutcome === "WIN")
+                        wins++;
+
+                    if (resultOutcome === "LOSS")
+                        losses++;
+
+                    if (resultOutcome === "DRAW")
+                        draws++;
+
+                });
 
         });
-    });
+
+
+    /* =========================================
+       TOURNAMENT DATA
+       ========================================= */
+
+    if (typeof tournamentData !== "undefined") {
+
+        Object.values(tournamentData)
+            .forEach(data => {
+
+                if (!data)
+                    return;
+
+
+                function processResults(results) {
+
+                    (results || [])
+                        .forEach(result => {
+
+                            let adapted = result;
+
+
+                            /* NUEVO FORMATO:
+                               ["A","B",1,2]
+                            */
+
+                            if (Array.isArray(result)) {
+
+                                const wrestler1 =
+                                    result[0] || "";
+
+                                const wrestler2 =
+                                    result[1] || "";
+
+                                const score1 =
+                                    result[2] ?? "";
+
+                                const score2 =
+                                    result[3] ?? "";
+
+                                let winner = null;
+
+                                const a =
+                                    Number(score1);
+
+                                const b =
+                                    Number(score2);
+
+                                if (
+                                    !isNaN(a) &&
+                                    !isNaN(b)
+                                ) {
+
+                                    if (a > b)
+                                        winner = wrestler1;
+
+                                    else if (b > a)
+                                        winner = wrestler2;
+
+                                }
+
+                                adapted = {
+
+                                    type: "SINGLES",
+
+                                    wrestler1:
+                                        wrestler1,
+
+                                    wrestler2:
+                                        wrestler2,
+
+                                    score1:
+                                        score1,
+
+                                    score2:
+                                        score2,
+
+                                    winner:
+                                        winner
+
+                                };
+
+                            }
+
+
+                            const resultOutcome =
+                                outcome(adapted);
+
+                            if (
+                                resultOutcome === "WIN"
+                            )
+                                wins++;
+
+                            if (
+                                resultOutcome === "LOSS"
+                            )
+                                losses++;
+
+                            if (
+                                resultOutcome === "DRAW"
+                            )
+                                draws++;
+
+                        });
+
+                }
+
+
+                /* =================================
+                   OLD WEEKLY FORMAT
+                   ================================= */
+
+                if (data.weekly) {
+
+                    Object.values(data.weekly)
+                        .forEach(event => {
+
+                            processResults(
+                                event.results || []
+                            );
+
+                        });
+
+                }
+
+
+                /* =================================
+                   OLD MATCHES FORMAT
+                   ================================= */
+
+                if (
+                    data.matches &&
+                    !Array.isArray(data.matches)
+                ) {
+
+                    Object.values(data.matches)
+                        .forEach(event => {
+
+                            processResults(
+                                event.results || []
+                            );
+
+                        });
+
+                }
+
+
+                /* =================================
+                   NEW SHOWS FORMAT
+                   ================================= */
+
+                if (data.shows) {
+
+                    Object.values(data.shows)
+                        .forEach(event => {
+
+                            processResults(
+                                event.matches || []
+                            );
+
+                        });
+
+                }
+
+            });
+
+    }
+
 
     return {
+
         id: wrestlerId,
+
         name: wrestler.name,
-        brand: wrestler.brand || "NO BRAND",
+
+        brand:
+            wrestler.brand ||
+            "NO BRAND",
+
         wins,
+
         losses,
+
         draws
+
     };
+
 });
 
 
@@ -301,7 +558,11 @@ function createPageButtons(totalPages) {
 
     pagesContainer.innerHTML = "";
 
-    for (let i = 1; i <= totalPages; i++) {
+    for (
+        let i = 1;
+        i <= totalPages;
+        i++
+    ) {
 
         const button =
             document.createElement("button");
