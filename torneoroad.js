@@ -807,29 +807,73 @@ function renderPhase(title,matches){
 
 function renderNormalTournament(data){
 
-    const participants=
-        data.participants||[];
+    const participants=data.roster||[];
+    const leagueMatches=[];
 
-    const matches=
-        Array.isArray(data.matches)
-            ?data.matches
-            :[];
+    Object.entries(data.shows||{}).forEach(([show,event])=>{
+
+        (event.matches||[]).forEach(match=>{
+
+            leagueMatches.push({
+                wrestler1:match[0],
+                wrestler2:match[1],
+                score1:match[2],
+                score2:match[3],
+                date:event.date,
+                show
+            });
+
+        });
+
+    });
 
     renderDraft(participants);
 
     renderStandings(
         participants,
-        matches
+        leagueMatches
     );
 
     renderMatrix(
         participants,
-        matches
+        leagueMatches
     );
 
-    renderResults(
-        matches
-    );
+    resultsContainer.innerHTML="";
+
+    Object.entries(data.shows||{}).forEach(([show,event])=>{
+
+        renderPhase(
+            show.replace(/-/g," ").toUpperCase(),
+            (event.matches||[]).map(match=>({
+                wrestler1:match[0],
+                wrestler2:match[1],
+                score1:match[2],
+                score2:match[3]
+            }))
+        );
+
+    });
+
+    if(
+        data.finalEvent &&
+        Array.isArray(data.finalMatches) &&
+        data.finalMatches.length
+    ){
+
+        renderPhase(
+            data.finalEvent
+                .replace(/-/g," ")
+                .toUpperCase(),
+            data.finalMatches.map(match=>({
+                wrestler1:match[0],
+                wrestler2:match[1],
+                score1:match[2],
+                score2:match[3]
+            }))
+        );
+
+    }
 
 }
 
