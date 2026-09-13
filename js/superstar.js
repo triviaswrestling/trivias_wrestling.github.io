@@ -49,9 +49,7 @@ w=>slug(w.name)===wrestlerId
 
 }
 
-
 const wrestler=findWrestler();
-
 
 if(!wrestler){
 
@@ -99,9 +97,7 @@ list.push(...result.participants);
 }
 
 return[
-...new Set(
-list.filter(Boolean)
-)
+...new Set(list.filter(Boolean))
 ];
 
 }
@@ -143,9 +139,7 @@ return null;
 }
 
 
-/* =====================================
-   EXPLICIT WINNER
-   ===================================== */
+/* EXPLICIT WINNER */
 
 if(result.winner){
 
@@ -156,9 +150,7 @@ return isThisWrestler(result.winner)
 }
 
 
-/* =====================================
-   MULTI PARTICIPANT WITH SCORES
-   ===================================== */
+/* MULTI PARTICIPANT */
 
 if(
 Array.isArray(result.participants)&&
@@ -185,11 +177,6 @@ winnerIndexes.push(index);
 
 });
 
-
-/* =====================================
-   DRAW IF MORE THAN ONE HAS HIGHEST
-   ===================================== */
-
 if(winnerIndexes.length!==1){
 
 const thisIndex=
@@ -205,15 +192,8 @@ return"DRAW";
 
 }
 
-
-/* =====================================
-   SINGLE WINNER
-   ===================================== */
-
-const winnerIndex=winnerIndexes[0];
-
 return isThisWrestler(
-result.participants[winnerIndex]
+result.participants[winnerIndexes[0]]
 )
 ?"WIN"
 :"LOSS";
@@ -221,9 +201,7 @@ result.participants[winnerIndex]
 }
 
 
-/* =====================================
-   NORMAL TWO-PERSON MATCH
-   ===================================== */
+/* NORMAL MATCH */
 
 if(
 result.score1===undefined||
@@ -307,7 +285,6 @@ function category(result){
 const type=
 (result.type||"").toUpperCase();
 
-
 if(
 type==="TAG TEAM"||
 type==="LADDER TAG"||
@@ -320,7 +297,6 @@ return"TAG";
 
 }
 
-
 if(
 type==="6 VS 6"||
 type==="6-MAN TAG TEAM"||
@@ -330,7 +306,6 @@ type==="WARGAMES"
 return"SIX";
 
 }
-
 
 return"SINGLES";
 
@@ -352,7 +327,6 @@ const n=
 
 const brand=
 (result.brand||event.brand||"").toUpperCase();
-
 
 if(brand==="RAW"){
 return`raw-${n}`;
@@ -429,18 +403,6 @@ Number(day)
 
 /* =========================================
    TOURNAMENT RESULT ADAPTER
-   =========================================
-
-   Convierte:
-
-   a / b / scoreA / scoreB
-
-   en:
-
-   wrestler1 / wrestler2 / score1 / score2
-
-   para que use exactamente la misma
-   lógica de récord que eventData.
    ========================================= */
 
 function adaptTournamentResult(result){
@@ -448,6 +410,50 @@ function adaptTournamentResult(result){
 if(!result){
 return null;
 }
+
+
+/* NEW SHOW FORMAT */
+
+if(Array.isArray(result)){
+
+const wrestler1=result[0]||"";
+const wrestler2=result[1]||"";
+const score1=result[2]??"";
+const score2=result[3]??"";
+
+let winner=null;
+
+const s1=Number(score1);
+const s2=Number(score2);
+
+if(!isNaN(s1)&&!isNaN(s2)){
+
+if(s1>s2){
+winner=wrestler1;
+}
+
+else if(s2>s1){
+winner=wrestler2;
+}
+
+}
+
+return{
+
+type:"SINGLES",
+
+wrestler1:wrestler1,
+wrestler2:wrestler2,
+score1:score1,
+score2:score2,
+winner:winner
+
+};
+
+}
+
+
+/* OLD OBJECT FORMAT */
 
 const wrestler1=
 result.wrestler1||
@@ -477,10 +483,7 @@ result.score2!==undefined
 ?result.scoreB
 :"";
 
-
-let winner=
-result.winner||null;
-
+let winner=result.winner||null;
 
 if(!winner){
 
@@ -501,19 +504,14 @@ winner=wrestler2;
 
 }
 
-
 return{
 
 type:"SINGLES",
 
 wrestler1:wrestler1,
-
 wrestler2:wrestler2,
-
 score1:score1,
-
 score2:score2,
-
 winner:winner
 
 };
@@ -523,21 +521,6 @@ winner:winner
 
 /* =========================================
    GET TOURNAMENT EVENTS
-   =========================================
-
-   IMPORTANTE:
-
-   Se leen SOLO:
-
-   raw-X
-   smackdown-X
-   nxt-X
-
-   NO se lee weekly-X.
-
-   weekly-X es solamente una agrupación
-   visual de RAW + SmackDown y no debe
-   volver a contar los combates.
    ========================================= */
 
 function getTournamentEvents(){
@@ -548,9 +531,7 @@ if(typeof tournamentData==="undefined"){
 return list;
 }
 
-
 const added=new Set();
-
 
 Object.entries(tournamentData)
 .forEach(([tournamentKey,data])=>{
@@ -561,13 +542,10 @@ return;
 
 
 /* =====================================
-   WEEKLY OBJECT
+   ADD EVENT
    ===================================== */
 
-if(data.weekly){
-
-Object.entries(data.weekly)
-.forEach(([id,event])=>{
+function addEvent(id,event,results){
 
 if(!event){
 return;
@@ -582,7 +560,6 @@ if(
 return;
 }
 
-
 const uniqueKey=
 `${id}-${tournamentKey}`;
 
@@ -591,7 +568,6 @@ return;
 }
 
 added.add(uniqueKey);
-
 
 list.push({
 
@@ -618,7 +594,7 @@ id.startsWith("nxt-")
 ?"NXT"
 :"WEEKLY",
 
-results:(event.results||[])
+results:(results||[])
 .map(adaptTournamentResult)
 .filter(Boolean),
 
@@ -628,13 +604,31 @@ tournamentKey:tournamentKey
 
 });
 
+}
+
+
+/* =====================================
+   OLD WEEKLY
+   ===================================== */
+
+if(data.weekly){
+
+Object.entries(data.weekly)
+.forEach(([id,event])=>{
+
+addEvent(
+id,
+event,
+event.results||[]
+);
+
 });
 
 }
 
 
 /* =====================================
-   MATCHES OBJECT
+   OLD MATCHES
    ===================================== */
 
 if(
@@ -645,64 +639,31 @@ data.matches&&
 Object.entries(data.matches)
 .forEach(([id,event])=>{
 
-if(!event){
-return;
-}
-
-if(
-!/^raw-\d+$/.test(id)&&
-!/^smackdown-\d+$/.test(id)&&
-!/^nxt-\d+$/.test(id)
-){
-
-return;
-}
-
-
-const uniqueKey=
-`${id}-${tournamentKey}`;
-
-if(added.has(uniqueKey)){
-return;
-}
-
-added.add(uniqueKey);
-
-
-list.push({
-
-id:id,
-
-title:
-id.startsWith("nxt-")
-?"NXT #"+id.split("-")[1]
-:id.startsWith("raw-")
-?"RAW #"+id.split("-")[1]
-:"SMACKDOWN #"+id.split("-")[1],
-
-date:event.date||"",
-
-brand:
-id.startsWith("nxt-")
-?"NXT"
-:id.startsWith("raw-")
-?"RAW"
-:"SMACKDOWN",
-
-type:
-id.startsWith("nxt-")
-?"NXT"
-:"WEEKLY",
-
-results:(event.results||[])
-.map(adaptTournamentResult)
-.filter(Boolean),
-
-tournamentSource:true,
-
-tournamentKey:tournamentKey
+addEvent(
+id,
+event,
+event.results||[]
+);
 
 });
+
+}
+
+
+/* =====================================
+   NEW SHOWS
+   ===================================== */
+
+if(data.shows){
+
+Object.entries(data.shows)
+.forEach(([id,event])=>{
+
+addEvent(
+id,
+event,
+event.matches||[]
+);
 
 });
 
@@ -774,16 +735,10 @@ index
 
 /* =========================================
    TOURNAMENTDATA
-   =========================================
-
-   RAW / SMACKDOWN / NXT solamente.
-
-   NO WEEKLY.
    ========================================= */
 
 const tournamentEvents=
 getTournamentEvents();
-
 
 tournamentEvents.forEach(event=>{
 
@@ -822,19 +777,15 @@ return;
 
 }
 
-
 const resultOutcome=
 outcome(result);
-
 
 if(!resultOutcome){
 return;
 }
 
 
-/* =====================================
-   OVERALL
-   ===================================== */
+/* OVERALL */
 
 if(resultOutcome==="WIN"){
 wins++;
@@ -849,9 +800,7 @@ draws++;
 }
 
 
-/* =====================================
-   CATEGORY
-   ===================================== */
+/* CATEGORY */
 
 const cat=
 category(result);
@@ -862,7 +811,6 @@ cat==="TAG"
 :cat==="SIX"
 ?six
 :singles;
-
 
 if(resultOutcome==="WIN"){
 target.w++;
@@ -877,9 +825,7 @@ target.d++;
 }
 
 
-/* =====================================
-   HISTORY
-   ===================================== */
+/* HISTORY */
 
 history.push({
 
@@ -908,19 +854,9 @@ index
 
 }
 
-
-/* =========================================
-   DISPLAY OVERALL
-   ========================================= */
-
 winsEl.textContent=wins;
 lossesEl.textContent=losses;
 drawsEl.textContent=draws;
-
-
-/* =========================================
-   DISPLAY CATEGORY RECORDS
-   ========================================= */
 
 singlesEl.textContent=
 `${singles.w} - ${singles.d} - ${singles.l}`;
@@ -943,7 +879,6 @@ parseDate(a.event.date);
 
 });
 
-
 renderHistory(history);
 
 }
@@ -957,7 +892,6 @@ function renderHistory(history){
 
 historyEl.innerHTML="";
 
-
 if(!history.length){
 
 historyEl.innerHTML=
@@ -967,7 +901,6 @@ return;
 
 }
 
-
 history.forEach(item=>{
 
 const rivalText=
@@ -975,14 +908,12 @@ item.rivals.length
 ?item.rivals.join(" / ")
 :"NO RIVAL";
 
-
 const div=document.createElement("a");
 
 div.className=
 `history-item result-${item.outcome.toLowerCase()}`;
 
 div.href=item.link;
-
 
 div.innerHTML=`
 
@@ -999,17 +930,21 @@ ${item.event.date||""}
 </div>
 
 <div class="history-type">
+
 ${
 item.event.type==="PLE"
 ?"SPECIAL EVENT"
 :item.event.type||"EVENT"
 }
+
 · ${matchLabel(item.result)}
+
 </div>
 
 <div class="history-rivals">
 
 <span>RIVAL</span>
+
 ${rivalText}
 
 </div>
@@ -1019,7 +954,6 @@ ${item.outcome}
 </div>
 
 `;
-
 
 historyEl.appendChild(div);
 
