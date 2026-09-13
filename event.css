@@ -544,17 +544,30 @@ main {
    CHAMPIONSHIP
    ========================================= */
 
-.championship-name {
-    text-align: center;
+.match-championship {
+    display: block;
 
-    margin: 5px 0 20px;
+    width: fit-content;
 
-    font-size: 13px;
-    font-weight: bold;
+    margin: 5px auto 20px;
+    padding: 8px 16px;
+
+    background: #17140d;
+
+    border: 1px solid #b89b5e;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 900;
 
     letter-spacing: 1.5px;
 
-    color: #fff;
+    text-transform: uppercase;
+
+    text-align: center;
+
+    box-shadow: 0 0 8px rgba(184,155,94,.22);
 }
 
 
