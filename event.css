@@ -1,86 +1,743 @@
-*{box-sizing:border-box}html,body{margin:0;padding:0}body{margin:0;background:#0b0b0b;color:#fff;font-family:Arial,sans-serif;overflow-x:hidden}
-
-header{width:100%;height:70px;background:#111;border-bottom:1px solid #292929;display:flex;align-items:center;padding:0 35px}.back-button{color:#fff;text-decoration:none;font-size:13px;font-weight:bold;letter-spacing:1px}.back-button:hover{opacity:.6}
-
-main{width:100%;max-width:1100px;margin:40px auto;padding:0 25px}.event-header{background:#111;border:1px solid #292929;padding:35px;text-align:center;margin-bottom:30px}.event-type{display:inline-block;font-size:11px;font-weight:bold;letter-spacing:2px;color:#999;margin-bottom:12px}.event-header h1{margin:0;font-size:32px;letter-spacing:2px}.event-date{margin-top:12px;color:#888;font-size:14px}.event-brand{margin-top:6px;color:#666;font-size:11px;letter-spacing:1px}
-
-.results-section{width:100%}.results-section>h2{margin:0 0 18px;font-size:16px;letter-spacing:2px}
-
-.result-card{position:relative;background:#111;border:1px solid #292929;padding:22px;margin-bottom:14px;transition:.2s;--brand:#d90024}.result-card.brand-raw{--brand:#d90024}.result-card.brand-smackdown{--brand:#2588ff}.result-card.brand-nxt{--brand:#bfc3c7}.result-card.brand-speed{--brand:#20c878}.result-card.brand-ple{--brand:#d4a72c}.result-card:before{content:"";display:block;height:3px;margin:-22px -22px 20px;background:var(--brand);box-shadow:0 0 10px var(--brand)}.result-card:hover{border-color:#444;transform:translateY(-2px)}
-
-.match-name{text-align:center;color:#888;font-size:11px;font-weight:bold;letter-spacing:2px;margin-bottom:12px}.match{display:flex;align-items:center;justify-content:center;gap:45px;margin-top:20px}
-
-.team{display:flex;justify-content:center;align-items:flex-start;gap:15px;flex-wrap:wrap;max-width:430px}
-
-/* ================================
-   CARD DEL LUCHADOR
-   ================================ */
-
-.wrestler{
-    width:125px;
-    text-align:center;
-    position:relative;
-    padding-top:5px;
-    border:1px solid transparent!important;
-    box-shadow:none!important;
-    transition:.25s;
+* {
+    box-sizing: border-box;
 }
 
-.wrestler:before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:12.5px;
-    right:12.5px;
-    height:3px;
-    background:var(--brand)!important;
-    box-shadow:0 0 8px var(--brand)!important;
+html,
+body {
+    margin: 0;
+    padding: 0;
 }
 
-.wrestler img{
-    width:100px;
-    height:100px;
-    object-fit:cover;
-    display:block;
-    margin:0 auto 10px;
-    border:none!important;
-    box-shadow:none!important;
-    transition:.25s;
+body {
+    margin: 0;
+    background: #0b0b0b;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
 }
 
-.wrestler:hover img{
-    transform:scale(1.04);
-    box-shadow:none!important;
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+header {
+    width: 100%;
+    height: 70px;
+
+    background: #111;
+
+    border-bottom: 1px solid #292929;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 35px;
 }
 
-/* BORDE Y GLOW DEL CARD AL ACTIVAR/SELECCIONAR */
+.back-button {
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.back-button:hover {
+    opacity: .6;
+}
+
+
+/* =========================================
+   MAIN
+   ========================================= */
+
+main {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 40px auto;
+
+    padding: 0 25px;
+}
+
+
+/* =========================================
+   EVENT HEADER
+   ========================================= */
+
+.event-header {
+    background: #111;
+
+    border: 1px solid #292929;
+
+    padding: 35px;
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.event-type {
+    display: inline-block;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    color: #999;
+
+    margin-bottom: 12px;
+}
+
+.event-header h1 {
+    margin: 0;
+
+    font-size: 32px;
+
+    letter-spacing: 2px;
+}
+
+.event-date {
+    margin-top: 12px;
+
+    color: #888;
+
+    font-size: 14px;
+}
+
+.event-brand {
+    margin-top: 6px;
+
+    color: #666;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   RESULTS
+   ========================================= */
+
+.results-section {
+    width: 100%;
+}
+
+.results-section > h2 {
+    margin: 0 0 18px;
+
+    font-size: 16px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   RESULT CARD
+   ========================================= */
+
+.result-card {
+    position: relative;
+
+    background: #111;
+
+    border: 1px solid #292929;
+
+    padding: 22px;
+
+    margin-bottom: 14px;
+
+    transition: .2s;
+
+    --brand: #d4a72c;
+}
+
+
+/* =========================================
+   EVENT DATA
+   SPECIAL EVENTS / PLE
+   ========================================= */
+
+.result-card.brand-ple {
+    --brand: #d4a72c;
+}
+
+
+/* =========================================
+   TOURNAMENT DATA
+   RAW
+   ========================================= */
+
+.result-card.source-tournamentdata.brand-raw {
+    --brand: #d90024;
+}
+
+
+/* =========================================
+   TOURNAMENT DATA
+   SMACKDOWN
+   ========================================= */
+
+.result-card.source-tournamentdata.brand-smackdown {
+    --brand: #2588ff;
+}
+
+
+/* =========================================
+   TOURNAMENT DATA
+   NXT
+   ========================================= */
+
+.result-card.source-tournamentdata.brand-nxt {
+    --brand: #bfc3c7;
+}
+
+
+/* =========================================
+   TOURNAMENT DATA
+   SPEED
+   ========================================= */
+
+.result-card.source-tournamentdata.brand-speed {
+    --brand: #20c878;
+}
+
+
+/* =========================================
+   TOURNAMENT DATA
+   AAA
+   ========================================= */
+
+.result-card.source-tournamentdata.brand-aaa {
+    --brand: #20c878;
+}
+
+
+/* =========================================
+   AAA MULTICOLOR
+   ========================================= */
+
+.result-card.source-tournamentdata.brand-aaa:before {
+    background:
+        linear-gradient(
+            90deg,
+            #20c878 0%,
+            #ffffff 50%,
+            #d90024 100%
+        );
+
+    box-shadow:
+        0 0 10px #20c878,
+        0 0 10px #d90024;
+}
+
+
+/* =========================================
+   CARD TOP LINE
+   ========================================= */
+
+.result-card:before {
+    content: "";
+
+    display: block;
+
+    height: 3px;
+
+    margin: -22px -22px 20px;
+
+    background: var(--brand);
+
+    box-shadow: 0 0 10px var(--brand);
+}
+
+
+/* =========================================
+   CARD HOVER
+   ========================================= */
+
+.result-card:hover {
+    border-color: #444;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   MATCH NAME
+   ========================================= */
+
+.match-name {
+    text-align: center;
+
+    color: #888;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================================
+   MATCH
+   ========================================= */
+
+.match {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 45px;
+
+    margin-top: 20px;
+}
+
+
+/* =========================================
+   TEAM
+   ========================================= */
+
+.team {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    max-width: 430px;
+}
+
+
+/* =========================================
+   WRESTLER CARD
+   ========================================= */
+
+.wrestler {
+    width: 125px;
+
+    text-align: center;
+
+    position: relative;
+
+    padding-top: 5px;
+
+    border: 1px solid transparent !important;
+
+    box-shadow: none !important;
+
+    transition: .25s;
+}
+
+
+.wrestler:before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 12.5px;
+    right: 12.5px;
+
+    height: 3px;
+
+    background: var(--brand) !important;
+
+    box-shadow: 0 0 8px var(--brand) !important;
+}
+
+
+.wrestler img {
+    width: 100px;
+    height: 100px;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin: 0 auto 10px;
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    transition: .25s;
+}
+
+
+.wrestler:hover img {
+    transform: scale(1.04);
+
+    box-shadow: none !important;
+}
+
+
+/* =========================================
+   WRESTLER ACTIVE / FOCUS
+   ========================================= */
+
 .wrestler:focus,
 .wrestler:focus-within,
-.wrestler:active{
-    border-color:var(--brand)!important;
-    box-shadow:0 0 12px var(--brand)!important;
+.wrestler:active {
+    border-color: var(--brand) !important;
+
+    box-shadow:
+        0 0 12px var(--brand) !important;
 }
 
-/* LA ANIMACIÓN NO AGREGA ROJO A LA FOTO */
+
 .wrestler:focus img,
 .wrestler:focus-within img,
-.wrestler:active img{
-    border:none!important;
-    box-shadow:none!important;
+.wrestler:active img {
+    border: none !important;
+
+    box-shadow: none !important;
 }
 
-.wrestler span{display:flex;align-items:center;justify-content:center;min-height:34px;padding:5px 6px;color:#fff;font-size:11px;font-weight:bold;letter-spacing:.5px;line-height:15px;background:#0c0c0c;border:1px solid #292929}
 
-.match a,.wrestler-link{color:#fff;text-decoration:none}.match a:visited,.wrestler-link:visited{color:#fff}.match a:hover,.wrestler-link:hover{color:#fff}
+/* =========================================
+   WRESTLER NAME
+   ========================================= */
 
-.vs{min-width:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#777;font-size:12px;font-weight:900;letter-spacing:2px}
+.wrestler span {
+    display: flex;
 
-.match-score{min-width:92px;height:46px;padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;background:#090909;border:1px solid var(--brand);border-top:2px solid var(--brand);color:var(--brand);font-size:25px;font-weight:900;line-height:1;letter-spacing:1px;text-shadow:0 0 7px var(--brand);box-shadow:0 0 0 1px var(--brand),0 0 12px var(--brand);animation:score .55s ease-out both}.match-score span{display:inline-block;white-space:nowrap}
+    align-items: center;
 
-.championship-name{text-align:center;margin:5px 0 20px;font-size:13px;font-weight:bold;letter-spacing:1.5px;color:#fff}.match-winner{margin-top:22px;padding-top:13px;border-top:1px solid #292929;color:#777;font-size:11px;letter-spacing:1px;text-align:center}.match-winner strong{color:#fff;margin-left:5px}
+    justify-content: center;
 
-@keyframes score{0%{opacity:0;transform:scale(.75);filter:blur(4px)}60%{opacity:1;transform:scale(1.08);filter:blur(0)}100%{opacity:1;transform:scale(1)}}
+    min-height: 34px;
 
-@media(max-width:600px){
-header{height:60px;padding:0 18px}main{margin:25px auto;padding:0 14px}.event-header{padding:25px 18px}.event-header h1{font-size:23px}.result-card{padding:18px}.result-card:before{margin:-18px -18px 18px}.match{width:90%;margin:20px auto 0;gap:8px}.team{flex:1 1 0;width:0;max-width:none;gap:8px}.team .wrestler{width:100%;max-width:100px;padding-top:4px}.team .wrestler:before{left:5px;right:5px}.team .wrestler img{width:90px;height:90px}.team .wrestler span{font-size:9px;min-height:36px;line-height:13px}.vs{flex:0 0 64px;min-width:64px;gap:9px;font-size:9px;letter-spacing:1px}.match-score{min-width:76px;width:76px;height:42px;padding:7px 5px;gap:5px;font-size:21px;letter-spacing:0;white-space:nowrap}
+    padding: 5px 6px;
+
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: .5px;
+
+    line-height: 15px;
+
+    background: #0c0c0c;
+
+    border: 1px solid #292929;
+}
+
+
+/* =========================================
+   WRESTLER LINKS
+   ========================================= */
+
+.match a,
+.wrestler-link {
+    color: #fff;
+
+    text-decoration: none;
+}
+
+.match a:visited,
+.wrestler-link:visited {
+    color: #fff;
+}
+
+.match a:hover,
+.wrestler-link:hover {
+    color: #fff;
+}
+
+
+/* =========================================
+   VS
+   ========================================= */
+
+.vs {
+    min-width: 92px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    color: #777;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   SCORE
+   ========================================= */
+
+.match-score {
+    min-width: 92px;
+
+    height: 46px;
+
+    padding: 8px 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    white-space: nowrap;
+
+    background: #090909;
+
+    border: 1px solid var(--brand);
+
+    border-top: 2px solid var(--brand);
+
+    color: var(--brand);
+
+    font-size: 25px;
+    font-weight: 900;
+
+    line-height: 1;
+
+    letter-spacing: 1px;
+
+    text-shadow: 0 0 7px var(--brand);
+
+    box-shadow:
+        0 0 0 1px var(--brand),
+        0 0 12px var(--brand);
+
+    animation: score .55s ease-out both;
+}
+
+
+.match-score span {
+    display: inline-block;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   CHAMPIONSHIP
+   ========================================= */
+
+.championship-name {
+    text-align: center;
+
+    margin: 5px 0 20px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    color: #fff;
+}
+
+
+/* =========================================
+   WINNER
+   ========================================= */
+
+.match-winner {
+    margin-top: 22px;
+
+    padding-top: 13px;
+
+    border-top: 1px solid #292929;
+
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+
+.match-winner strong {
+    color: #fff;
+
+    margin-left: 5px;
+}
+
+
+/* =========================================
+   SCORE ANIMATION
+   ========================================= */
+
+@keyframes score {
+
+    0% {
+        opacity: 0;
+
+        transform: scale(.75);
+
+        filter: blur(4px);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform: scale(1.08);
+
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    header {
+        height: 60px;
+
+        padding: 0 18px;
+    }
+
+
+    main {
+        margin: 25px auto;
+
+        padding: 0 14px;
+    }
+
+
+    .event-header {
+        padding: 25px 18px;
+    }
+
+
+    .event-header h1 {
+        font-size: 23px;
+    }
+
+
+    .result-card {
+        padding: 18px;
+    }
+
+
+    .result-card:before {
+        margin: -18px -18px 18px;
+    }
+
+
+    .match {
+        width: 90%;
+
+        margin: 20px auto 0;
+
+        gap: 8px;
+    }
+
+
+    .team {
+        flex: 1 1 0;
+
+        width: 0;
+
+        max-width: none;
+
+        gap: 8px;
+    }
+
+
+    .team .wrestler {
+        width: 100%;
+
+        max-width: 100px;
+
+        padding-top: 4px;
+    }
+
+
+    .team .wrestler:before {
+        left: 5px;
+
+        right: 5px;
+    }
+
+
+    .team .wrestler img {
+        width: 90px;
+
+        height: 90px;
+    }
+
+
+    .team .wrestler span {
+        font-size: 9px;
+
+        min-height: 36px;
+
+        line-height: 13px;
+    }
+
+
+    .vs {
+        flex: 0 0 64px;
+
+        min-width: 64px;
+
+        gap: 9px;
+
+        font-size: 9px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .match-score {
+        min-width: 76px;
+
+        width: 76px;
+
+        height: 42px;
+
+        padding: 7px 5px;
+
+        gap: 5px;
+
+        font-size: 21px;
+
+        letter-spacing: 0;
+
+        white-space: nowrap;
+    }
+
 }
