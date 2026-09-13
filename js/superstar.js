@@ -19,37 +19,25 @@ const sixManEl=document.getElementById("six-man-record");
 const historyEl=document.getElementById("match-history");
 
 
-/* =========================================
-   SLUG
-   ========================================= */
-
 function slug(name){
-
 return String(name)
 .toLowerCase()
 .replace(/[^a-z0-9]+/g,"-")
 .replace(/^-|-$/g,"");
-
 }
 
-
-/* =========================================
-   FIND WRESTLER
-   ========================================= */
 
 function findWrestler(){
-
-if(typeof wrestlers==="undefined"){
-return null;
-}
+if(typeof wrestlers==="undefined")return null;
 
 return wrestlers.find(
 w=>slug(w.name)===wrestlerId
 );
-
 }
 
+
 const wrestler=findWrestler();
+
 
 if(!wrestler){
 
@@ -76,25 +64,20 @@ function participants(result){
 
 let list=[];
 
-if(result.wrestler1){
+if(result.wrestler1)
 list.push(result.wrestler1);
-}
 
-if(result.wrestler2){
+if(result.wrestler2)
 list.push(result.wrestler2);
-}
 
-if(Array.isArray(result.team1)){
+if(Array.isArray(result.team1))
 list.push(...result.team1.flat());
-}
 
-if(Array.isArray(result.team2)){
+if(Array.isArray(result.team2))
 list.push(...result.team2.flat());
-}
 
-if(Array.isArray(result.participants)){
+if(Array.isArray(result.participants))
 list.push(...result.participants);
-}
 
 return[
 ...new Set(list.filter(Boolean))
@@ -103,20 +86,10 @@ return[
 }
 
 
-/* =========================================
-   THIS WRESTLER?
-   ========================================= */
-
 function isThisWrestler(name){
-
 return name&&slug(name)===wrestlerId;
-
 }
 
-
-/* =========================================
-   RIVALS
-   ========================================= */
 
 function rivals(result){
 
@@ -134,12 +107,9 @@ function outcome(result){
 
 const people=participants(result);
 
-if(!people.some(isThisWrestler)){
+if(!people.some(isThisWrestler))
 return null;
-}
 
-
-/* EXPLICIT WINNER */
 
 if(result.winner){
 
@@ -150,8 +120,6 @@ return isThisWrestler(result.winner)
 }
 
 
-/* MULTI PARTICIPANT */
-
 if(
 Array.isArray(result.participants)&&
 Array.isArray(result.scores)&&
@@ -161,34 +129,29 @@ result.scores.length
 
 const scores=result.scores.map(Number);
 
-if(scores.some(isNaN)){
+if(scores.some(isNaN))
 return null;
-}
 
 const highest=Math.max(...scores);
-
 const winnerIndexes=[];
 
 scores.forEach((score,index)=>{
 
-if(score===highest){
+if(score===highest)
 winnerIndexes.push(index);
-}
 
 });
-
-if(winnerIndexes.length!==1){
 
 const thisIndex=
 result.participants.findIndex(
 isThisWrestler
 );
 
-if(winnerIndexes.includes(thisIndex)){
-return"WIN";
-}
+if(winnerIndexes.length!==1){
 
-return"DRAW";
+return winnerIndexes.includes(thisIndex)
+?"WIN"
+:"DRAW";
 
 }
 
@@ -201,23 +164,18 @@ result.participants[winnerIndexes[0]]
 }
 
 
-/* NORMAL MATCH */
-
 if(
 result.score1===undefined||
 result.score2===undefined
-){
-
+)
 return null;
 
-}
 
 const a=Number(result.score1);
 const b=Number(result.score2);
 
-if(isNaN(a)||isNaN(b)){
+if(isNaN(a)||isNaN(b))
 return null;
-}
 
 
 if(
@@ -291,21 +249,15 @@ type==="LADDER TAG"||
 type==="ELIMINATION CHAMBER TAG TEAM"||
 type==="TRIPLE THREAT TAG"||
 type==="4-WAY TAG"
-){
-
+)
 return"TAG";
-
-}
 
 if(
 type==="6 VS 6"||
 type==="6-MAN TAG TEAM"||
 type==="WARGAMES"
-){
-
+)
 return"SIX";
-
-}
 
 return"SINGLES";
 
@@ -313,14 +265,13 @@ return"SINGLES";
 
 
 /* =========================================
-   TOURNAMENT ID
+   TOURNAMENT LINK
    ========================================= */
 
 function tournamentId(event,result){
 
-if(!result.tournament){
+if(!result.tournament)
 return null;
-}
 
 const n=
 (String(result.tournament).match(/\d+/)||["1"])[0];
@@ -328,26 +279,19 @@ const n=
 const brand=
 (result.brand||event.brand||"").toUpperCase();
 
-if(brand==="RAW"){
+if(brand==="RAW")
 return`raw-${n}`;
-}
 
-if(brand==="SMACKDOWN"){
+if(brand==="SMACKDOWN")
 return`smackdown-${n}`;
-}
 
-if(brand==="NXT"){
+if(brand==="NXT")
 return`nxt-${n}`;
-}
 
 return null;
 
 }
 
-
-/* =========================================
-   MATCH LINK
-   ========================================= */
 
 function matchLink(event,result,index){
 
@@ -365,10 +309,6 @@ return`event.html?id=${encodeURIComponent(event.id)}&match=${index}`;
 }
 
 
-/* =========================================
-   MATCH LABEL
-   ========================================= */
-
 function matchLabel(result){
 
 return result.match||result.type||"SINGLES";
@@ -382,9 +322,7 @@ return result.match||result.type||"SINGLES";
 
 function parseDate(date){
 
-if(!date){
-return 0;
-}
+if(!date)return 0;
 
 const[
 day,
@@ -402,17 +340,14 @@ Number(day)
 
 
 /* =========================================
-   TOURNAMENT RESULT ADAPTER
+   ADAPT TOURNAMENT RESULT
    ========================================= */
 
 function adaptTournamentResult(result){
 
-if(!result){
+if(!result)
 return null;
-}
 
-
-/* NEW SHOW FORMAT */
 
 if(Array.isArray(result)){
 
@@ -428,32 +363,25 @@ const s2=Number(score2);
 
 if(!isNaN(s1)&&!isNaN(s2)){
 
-if(s1>s2){
+if(s1>s2)
 winner=wrestler1;
-}
 
-else if(s2>s1){
+else if(s2>s1)
 winner=wrestler2;
-}
 
 }
 
 return{
-
 type:"SINGLES",
-
-wrestler1:wrestler1,
-wrestler2:wrestler2,
-score1:score1,
-score2:score2,
-winner:winner
-
+wrestler1,
+wrestler2,
+score1,
+score2,
+winner
 };
 
 }
 
-
-/* OLD OBJECT FORMAT */
 
 const wrestler1=
 result.wrestler1||
@@ -492,86 +420,74 @@ const s2=Number(score2);
 
 if(!isNaN(s1)&&!isNaN(s2)){
 
-if(s1>s2){
+if(s1>s2)
 winner=wrestler1;
-}
 
-else if(s2>s1){
+else if(s2>s1)
 winner=wrestler2;
-}
 
 }
 
 }
 
 return{
-
 type:"SINGLES",
-
-wrestler1:wrestler1,
-wrestler2:wrestler2,
-score1:score1,
-score2:score2,
-winner:winner
-
+wrestler1,
+wrestler2,
+score1,
+score2,
+winner
 };
 
 }
 
 
 /* =========================================
-   GET TOURNAMENT EVENTS
+   TOURNAMENT EVENTS
    ========================================= */
 
 function getTournamentEvents(){
 
 const list=[];
 
-if(typeof tournamentData==="undefined"){
+if(typeof tournamentData==="undefined")
 return list;
-}
 
 const added=new Set();
+
 
 Object.entries(tournamentData)
 .forEach(([tournamentKey,data])=>{
 
-if(!data){
+if(!data)
 return;
-}
 
-
-/* =====================================
-   ADD EVENT
-   ===================================== */
 
 function addEvent(id,event,results){
 
-if(!event){
+if(!event)
 return;
-}
 
 if(
 !/^raw-\d+$/.test(id)&&
 !/^smackdown-\d+$/.test(id)&&
 !/^nxt-\d+$/.test(id)
-){
-
+)
 return;
-}
+
 
 const uniqueKey=
 `${id}-${tournamentKey}`;
 
-if(added.has(uniqueKey)){
+if(added.has(uniqueKey))
 return;
-}
 
 added.add(uniqueKey);
 
+
 list.push({
 
-id:id,
+id,
 
 title:
 id.startsWith("nxt-")
@@ -599,17 +515,12 @@ results:(results||[])
 .filter(Boolean),
 
 tournamentSource:true,
-
-tournamentKey:tournamentKey
+tournamentKey
 
 });
 
 }
 
-
-/* =====================================
-   OLD WEEKLY
-   ===================================== */
 
 if(data.weekly){
 
@@ -626,10 +537,6 @@ event.results||[]
 
 }
 
-
-/* =====================================
-   OLD MATCHES
-   ===================================== */
 
 if(
 data.matches&&
@@ -649,10 +556,6 @@ event.results||[]
 
 }
 
-
-/* =====================================
-   NEW SHOWS
-   ===================================== */
 
 if(data.shows){
 
@@ -677,7 +580,7 @@ return list;
 
 
 /* =========================================
-   RENDER RECORDS
+   RECORDS
    ========================================= */
 
 function renderRecords(){
@@ -686,30 +589,12 @@ let wins=0;
 let losses=0;
 let draws=0;
 
-let singles={
-w:0,
-l:0,
-d:0
-};
-
-let tag={
-w:0,
-l:0,
-d:0
-};
-
-let six={
-w:0,
-l:0,
-d:0
-};
+let singles={w:0,l:0,d:0};
+let tag={w:0,l:0,d:0};
+let six={w:0,l:0,d:0};
 
 let history=[];
 
-
-/* =========================================
-   EVENTDATA
-   ========================================= */
 
 if(typeof eventData!=="undefined"){
 
@@ -733,12 +618,9 @@ index
 }
 
 
-/* =========================================
-   TOURNAMENTDATA
-   ========================================= */
-
 const tournamentEvents=
 getTournamentEvents();
+
 
 tournamentEvents.forEach(event=>{
 
@@ -757,10 +639,6 @@ index
 });
 
 
-/* =========================================
-   PROCESS RESULT
-   ========================================= */
-
 function processResult(
 eventId,
 event,
@@ -771,39 +649,28 @@ index
 if(
 !participants(result)
 .some(isThisWrestler)
-){
-
+)
 return;
 
-}
 
 const resultOutcome=
 outcome(result);
 
-if(!resultOutcome){
+if(!resultOutcome)
 return;
-}
 
 
-/* OVERALL */
-
-if(resultOutcome==="WIN"){
+if(resultOutcome==="WIN")
 wins++;
-}
 
-if(resultOutcome==="LOSS"){
+if(resultOutcome==="LOSS")
 losses++;
-}
 
-if(resultOutcome==="DRAW"){
+if(resultOutcome==="DRAW")
 draws++;
-}
 
 
-/* CATEGORY */
-
-const cat=
-category(result);
+const cat=category(result);
 
 const target=
 cat==="TAG"
@@ -812,33 +679,24 @@ cat==="TAG"
 ?six
 :singles;
 
-if(resultOutcome==="WIN"){
+
+if(resultOutcome==="WIN")
 target.w++;
-}
 
-if(resultOutcome==="LOSS"){
+if(resultOutcome==="LOSS")
 target.l++;
-}
 
-if(resultOutcome==="DRAW"){
+if(resultOutcome==="DRAW")
 target.d++;
-}
 
-
-/* HISTORY */
 
 history.push({
 
-eventId:eventId,
-
-event:event,
-
-result:result,
-
-index:index,
-
+eventId,
+event,
+result,
+index,
 outcome:resultOutcome,
-
 rivals:rivals(result),
 
 link:matchLink(
@@ -854,6 +712,7 @@ index
 
 }
 
+
 winsEl.textContent=wins;
 lossesEl.textContent=losses;
 drawsEl.textContent=draws;
@@ -868,16 +727,11 @@ sixManEl.textContent=
 `${six.w} - ${six.d} - ${six.l}`;
 
 
-/* =========================================
-   SORT HISTORY
-   ========================================= */
+history.sort((a,b)=>
+parseDate(b.event.date)-
+parseDate(a.event.date)
+);
 
-history.sort((a,b)=>{
-
-return parseDate(b.event.date)-
-parseDate(a.event.date);
-
-});
 
 renderHistory(history);
 
@@ -885,35 +739,171 @@ renderHistory(history);
 
 
 /* =========================================
-   RENDER HISTORY
+   MATCH HISTORY
+   SEARCH + PAGINATION
    ========================================= */
 
 function renderHistory(history){
 
+const searchInput=
+document.getElementById("history-search");
+
+const pagesContainer=
+document.getElementById("history-pages");
+
+let currentHistoryPage=1;
+
+const matchesPerPage=20;
+
+
+function getFilteredHistory(){
+
+const search=
+(searchInput?.value||"")
+.trim()
+.toLowerCase();
+
+if(!search)
+return history;
+
+
+return history.filter(item=>{
+
+const eventTitle=
+item.event?.title||"";
+
+const eventType=
+item.event?.type||"";
+
+const match=
+matchLabel(item.result)||"";
+
+const rivalsText=
+(item.rivals||[]).join(" ");
+
+const outcomeText=
+item.outcome||"";
+
+const date=
+item.event?.date||"";
+
+const text=
+`${eventTitle}
+${eventType}
+${match}
+${rivalsText}
+${outcomeText}
+${date}`
+.toLowerCase();
+
+return text.includes(search);
+
+});
+
+}
+
+
+function createPageButtons(totalPages){
+
+pagesContainer.innerHTML="";
+
+
+for(
+let i=1;
+i<=totalPages;
+i++
+){
+
+const button=
+document.createElement("button");
+
+button.className="history-page";
+
+if(i===currentHistoryPage)
+button.classList.add("active");
+
+button.textContent=
+`PART ${i}`;
+
+button.addEventListener(
+"click",
+()=>{
+
+currentHistoryPage=i;
+
+renderPage();
+
+}
+);
+
+pagesContainer.appendChild(button);
+
+}
+
+}
+
+
+function renderPage(){
+
+const filtered=
+getFilteredHistory();
+
+const totalPages=
+Math.max(
+1,
+Math.ceil(
+filtered.length/
+matchesPerPage
+)
+);
+
+
+if(currentHistoryPage>totalPages)
+currentHistoryPage=totalPages;
+
+
+const start=
+(currentHistoryPage-1)*
+matchesPerPage;
+
+const end=
+start+matchesPerPage;
+
+const pageItems=
+filtered.slice(start,end);
+
+
 historyEl.innerHTML="";
 
-if(!history.length){
+
+if(!filtered.length){
 
 historyEl.innerHTML=
 "<p>NO MATCHES FOUND.</p>";
+
+pagesContainer.innerHTML="";
 
 return;
 
 }
 
-history.forEach(item=>{
+
+pageItems.forEach(item=>{
 
 const rivalText=
 item.rivals.length
 ?item.rivals.join(" / ")
 :"NO RIVAL";
 
-const div=document.createElement("a");
+
+const div=
+document.createElement("a");
 
 div.className=
 `history-item result-${item.outcome.toLowerCase()}`;
 
 div.href=item.link;
+
 
 div.innerHTML=`
 
@@ -955,8 +945,32 @@ ${item.outcome}
 
 `;
 
+
 historyEl.appendChild(div);
 
 });
+
+
+createPageButtons(totalPages);
+
+}
+
+
+if(searchInput){
+
+searchInput.addEventListener(
+"input",
+()=>{
+
+currentHistoryPage=1;
+
+renderPage();
+
+});
+
+}
+
+
+renderPage();
 
 }
