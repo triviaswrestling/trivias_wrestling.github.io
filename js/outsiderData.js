@@ -18,7 +18,8 @@ const outsiderData = {
         "speed-7":{date:"19/09/2024",matches:[["Rey Mysterio","AJ Styles",1,2]]}
     },
     finalEvent:"bash-in-berlin-2024",
-    finalMatches:[["Edge","AJ Styles",5,0]]},
+finalDate:"23/09/2024",
+finalMatches:[["Edge","AJ Styles",5,0]]},
   
     /* =========================================
        SPEED
@@ -33,4 +34,5 @@ const outsiderData = {
             "speed-2":{date:"15/08/2024",matches:[["Jey Uso","Edge",1,2],["Rob Van Dam","Wade Barrett",0,3]]},
             "speed-3":{date:"22/08/2024",matches:[["Aleister Black","Edge",0,3],["Tommaso Ciampa","Wade Barrett",3,0]]}},
         finalEvent:"summerslam-2024",
-        finalMatches:[["Edge","Tommaso Ciampa",3,2]]}};
+finalDate:"25/08/2024",
+finalMatches:[["Edge","Tommaso Ciampa",3,2]]}};
