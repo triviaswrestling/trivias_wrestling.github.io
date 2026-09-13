@@ -533,19 +533,69 @@ function renderChampionship2(data){
 
 function renderChampionship3(data){
     const participants=data.participants||[];
-    const matches=data.matches||[];
+    const weekly=data.weekly||{};
 
     renderDraft(participants);
 
-    if(matches.length){
-        renderStandings(participants,matches);
-        renderMatrix(participants,matches);
-        renderResults(matches,data.phases);
-    }else{
-        standingsBody.innerHTML=`<tr><td colspan="7">EDITING</td></tr>`;
-        matrixTable.innerHTML="<tr><td>EDITING</td></tr>";
-        resultsContainer.innerHTML="<p>EDITING</p>";
-    }
+    const matches=[];
+
+    Object.values(weekly).forEach(event=>{
+        if(!event?.results)return;
+
+        event.results.forEach(match=>{
+            matches.push({
+                ...match,
+                date:event.date
+            });
+        });
+    });
+
+    matches.sort((a,b)=>{
+        const da=a.date.split("/").reverse().join("");
+        const db=b.date.split("/").reverse().join("");
+        return da.localeCompare(db);
+    });
+
+    renderStandings(participants,matches);
+    renderMatrix(participants,matches);
+
+    resultsContainer.innerHTML="";
+
+    // BACKLASH — CUADRO FINAL
+    renderChamberBracket(
+        eventData?.[data.bracket]?.results||[],
+        resultsContainer
+    );
+
+    // RESULTADOS DE LOS SHOWS
+    matches.forEach(match=>{
+        const result=document.createElement("div");
+        result.className="result-card";
+
+        if(match.score1>match.score2){
+            result.classList.add("wrestler1-win");
+        }else if(match.score1<match.score2){
+            result.classList.add("wrestler2-win");
+        }else{
+            result.classList.add("draw");
+        }
+
+        result.innerHTML=`
+            <div class="result-wrestler">
+                ${createWrestlerLink(match.wrestler1)}
+            </div>
+
+            <div class="result-score">
+                ${match.score1} - ${match.score2}
+            </div>
+
+            <div class="result-wrestler">
+                ${createWrestlerLink(match.wrestler2)}
+            </div>
+        `;
+
+        resultsContainer.appendChild(result);
+    });
 }
 
 function renderChampionship4(data){
