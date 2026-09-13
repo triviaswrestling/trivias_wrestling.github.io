@@ -562,10 +562,74 @@ function renderChampionship3(data){
     resultsContainer.innerHTML="";
 
     // BACKLASH — CUADRO FINAL
-    renderChamberBracket(
-        eventData?.[data.bracket]?.results||[],
-        resultsContainer
+    function renderChamberBracket(matches,container){
+
+    const chamberMatches=matches.filter(m=>
+        m.wrestler1&&
+        m.wrestler2&&
+        m.score1!==undefined&&
+        m.score2!==undefined
     );
+
+    const heading=document.createElement("div");
+    heading.className="results-date";
+    heading.textContent="BACKLASH";
+    container.appendChild(heading);
+
+    if(!chamberMatches.length){
+        const p=document.createElement("p");
+        p.textContent="EDITING";
+        container.appendChild(p);
+        return;
+    }
+
+    const bracket=document.createElement("div");
+    bracket.className="chamber-bracket";
+
+    const rounds=[
+        {title:"PLAY-IN 1",matches:chamberMatches.slice(0,1)},
+        {title:"PLAY-IN 2",matches:chamberMatches.slice(1,2)},
+        {title:"FINAL",matches:chamberMatches.slice(2,3)},
+        {title:"UNDISPUTED CHAMPIONSHIP",matches:chamberMatches.slice(3,4)}
+    ];
+
+    rounds.forEach(round=>{
+
+        const column=document.createElement("div");
+        column.className="bracket-round";
+
+        const title=document.createElement("h3");
+        title.textContent=round.title;
+        column.appendChild(title);
+
+        round.matches.forEach(match=>{
+
+            const card=document.createElement("div");
+            card.className="bracket-match";
+
+            const winner1=match.score1>match.score2;
+            const winner2=match.score2>match.score1;
+
+            card.innerHTML=`
+                <div class="${winner1?"winner":""}">
+                    ${createWrestlerLink(match.wrestler1)}
+                    <span>${match.score1}</span>
+                </div>
+
+                <div class="${winner2?"winner":""}">
+                    ${createWrestlerLink(match.wrestler2)}
+                    <span>${match.score2}</span>
+                </div>
+            `;
+
+            column.appendChild(card);
+        });
+
+        bracket.appendChild(column);
+    });
+
+    container.appendChild(bracket);
+}
 
     // RESULTADOS DE LOS SHOWS
     matches.forEach(match=>{
