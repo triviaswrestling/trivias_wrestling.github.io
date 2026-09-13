@@ -1,32 +1,18 @@
-/* =========================================
-   MI WRESTLING
-   RECAPS / EVENTS
-   ========================================= */
-
 const eventsContainer=document.getElementById("events-container");
 const filterButtons=document.querySelectorAll(".recap-filter");
-
-
-/* =========================================
-   EVENTS
-   ========================================= */
 
 const events=[];
 
 
 /* =========================================
-   EVENTDATA
-   SPECIAL EVENTS / EXISTING EVENTS
+   SPECIAL EVENTS
    ========================================= */
 
 if(typeof eventData!=="undefined"){
 
-Object.entries(eventData)
-.forEach(([id,event])=>{
+Object.entries(eventData).forEach(([id,event])=>{
 
-if(
-event.type==="PLE"
-){
+if(event.type==="PLE"){
 
 events.push({
 id:id,
@@ -41,219 +27,128 @@ id:id,
 
 
 /* =========================================
-   TOURNAMENTDATA
+   TOURNAMENT DATA
    ========================================= */
 
 if(typeof tournamentData!=="undefined"){
 
-
-/* =====================================
-   FIND ALL WEEKLY / NXT
-   ===================================== */
-
 const weeklyEvents={};
 const nxtEvents={};
 
+function addWeekly(id,event){
 
-Object.entries(tournamentData)
-.forEach(([tournamentId,data])=>{
+if(!event)return;
+
+const match=id.match(/^(raw|smackdown)-(\d+)$/);
+
+if(!match)return;
+
+const number=Number(match[2]);
+
+if(!weeklyEvents[number]){
+
+weeklyEvents[number]={
+number:number,
+events:[]
+};
+
+}
+
+weeklyEvents[number].events.push({
+id:id,
+...event
+});
+
+}
+
+
+function addNXT(id,event){
+
+if(!event)return;
+
+const match=id.match(/^nxt-(\d+)$/);
+
+if(!match)return;
+
+const number=Number(match[1]);
+
+nxtEvents[number]={
+number:number,
+event:{
+id:id,
+...event
+}
+};
+
+}
+
+
+/* =========================================
+   READ ALL TOURNAMENTS
+   ========================================= */
+
+Object.entries(tournamentData).forEach(
+([tournamentId,data])=>{
 
 if(!data)return;
 
 
-/* =================================
-   WEEKLY OBJECT
-   ================================= */
+/* OLD WEEKLY */
 
 if(data.weekly){
 
-Object.entries(data.weekly)
-.forEach(([id,event])=>{
+Object.entries(data.weekly).forEach(
+([id,event])=>{
 
-if(!event)return;
-
-const rawMatch=id.match(/^raw-(\d+)$/);
-const smackdownMatch=id.match(/^smackdown-(\d+)$/);
-const nxtMatch=id.match(/^nxt-(\d+)$/);
-
-
-/* ===============================
-   RAW
-   =============================== */
-
-if(rawMatch){
-
-const number=rawMatch[1];
-
-if(!weeklyEvents[number]){
-weeklyEvents[number]={
-number:Number(number),
-events:[]
-};
-}
-
-weeklyEvents[number].events.push({
-id:id,
-...event
-});
-
-}
-
-
-/* ===============================
-   SMACKDOWN
-   =============================== */
-
-if(smackdownMatch){
-
-const number=smackdownMatch[1];
-
-if(!weeklyEvents[number]){
-weeklyEvents[number]={
-number:Number(number),
-events:[]
-};
-}
-
-weeklyEvents[number].events.push({
-id:id,
-...event
-});
-
-}
-
-
-/* ===============================
-   NXT
-   =============================== */
-
-if(nxtMatch){
-
-const number=nxtMatch[1];
-
-if(!nxtEvents[number]){
-
-nxtEvents[number]={
-number:Number(number),
-event:null
-};
-
-}
-
-nxtEvents[number].event={
-id:id,
-...event
-};
-
-}
+addWeekly(id,event);
+addNXT(id,event);
 
 });
 
 }
 
 
-/* =================================
-   MATCHES OBJECT
-   ================================= */
+/* OLD MATCHES */
 
 if(
-data.matches &&
+data.matches&&
 !Array.isArray(data.matches)
 ){
 
-Object.entries(data.matches)
-.forEach(([id,event])=>{
+Object.entries(data.matches).forEach(
+([id,event])=>{
 
-if(!event)return;
+addWeekly(id,event);
+addNXT(id,event);
 
-const rawMatch=id.match(/^raw-(\d+)$/);
-const smackdownMatch=id.match(/^smackdown-(\d+)$/);
-const nxtMatch=id.match(/^nxt-(\d+)$/);
-
-
-/* ===============================
-   RAW
-   =============================== */
-
-if(rawMatch){
-
-const number=rawMatch[1];
-
-if(!weeklyEvents[number]){
-weeklyEvents[number]={
-number:Number(number),
-events:[]
-};
-}
-
-weeklyEvents[number].events.push({
-id:id,
-...event
 });
 
 }
 
 
-/* ===============================
-   SMACKDOWN
-   =============================== */
+/* NEW TOURNAMENT SHOWS */
 
-if(smackdownMatch){
+if(data.shows){
 
-const number=smackdownMatch[1];
+Object.entries(data.shows).forEach(
+([id,event])=>{
 
-if(!weeklyEvents[number]){
-weeklyEvents[number]={
-number:Number(number),
-events:[]
-};
-}
-
-weeklyEvents[number].events.push({
-id:id,
-...event
-});
-
-}
-
-
-/* ===============================
-   NXT
-   =============================== */
-
-if(nxtMatch){
-
-const number=nxtMatch[1];
-
-if(!nxtEvents[number]){
-
-nxtEvents[number]={
-number:Number(number),
-event:null
-};
-
-}
-
-nxtEvents[number].event={
-id:id,
-...event
-};
-
-}
+addWeekly(id,event);
+addNXT(id,event);
 
 });
 
 }
 
 });
+
 
 
 /* =========================================
-   CREATE WEEKLY EVENTS
+   CREATE WEEKLY
    ========================================= */
 
-Object.values(weeklyEvents)
-.forEach(weekly=>{
+Object.values(weeklyEvents).forEach(weekly=>{
 
 if(!weekly.events.length)return;
 
@@ -264,8 +159,9 @@ weekly.events.sort(
 const dates=weekly.events
 .map(event=>event.date)
 .filter(Boolean)
-.sort((a,b)=>dateValue(a)-dateValue(b));
-
+.sort(
+(a,b)=>dateValue(a)-dateValue(b)
+);
 
 events.push({
 
@@ -287,11 +183,10 @@ image:"images/events/default.jpg"
 
 
 /* =========================================
-   CREATE NXT EVENTS
+   CREATE NXT
    ========================================= */
 
-Object.values(nxtEvents)
-.forEach(nxt=>{
+Object.values(nxtEvents).forEach(nxt=>{
 
 if(!nxt.event)return;
 
@@ -325,7 +220,7 @@ function dateValue(date){
 
 if(!date)return 0;
 
-const[d,m,y]=date.split("/");
+const[d,m,y]=String(date).split("/");
 
 return new Date(
 Number(y),
@@ -346,7 +241,7 @@ events.sort(
 
 
 /* =========================================
-   RENDER EVENTS
+   RENDER
    ========================================= */
 
 function renderEvents(list){
@@ -364,14 +259,12 @@ return;
 
 }
 
-
 list.forEach(event=>{
 
 const card=document.createElement("div");
 
 card.className=
 `event-card ${event.type.toLowerCase()}`;
-
 
 card.innerHTML=`
 
@@ -391,9 +284,7 @@ event.type==="PLE"
 }
 </div>
 
-<h2>
-${event.title}
-</h2>
+<h2>${event.title}</h2>
 
 <div class="event-date">
 ${event.date||""}
@@ -407,7 +298,6 @@ ${event.brand||""}
 
 `;
 
-
 card.addEventListener(
 "click",
 ()=>{
@@ -415,9 +305,7 @@ card.addEventListener(
 window.location.href=
 `event.html?id=${event.id}`;
 
-}
-);
-
+});
 
 eventsContainer.appendChild(card);
 
@@ -440,15 +328,12 @@ btn.classList.remove("active")
 
 button.classList.add("active");
 
-
 const filter=
 button.textContent
 .trim()
 .toUpperCase();
 
-
 let list=events;
-
 
 if(filter==="WEEKLY"){
 
@@ -458,7 +343,6 @@ event=>event.type==="WEEKLY"
 
 }
 
-
 if(filter==="NXT"){
 
 list=events.filter(
@@ -467,7 +351,6 @@ event=>event.type==="NXT"
 
 }
 
-
 if(filter==="SPECIAL EVENTS"){
 
 list=events.filter(
@@ -475,7 +358,6 @@ event=>event.type==="PLE"
 );
 
 }
-
 
 renderEvents(list);
 
