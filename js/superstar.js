@@ -19,19 +19,33 @@ const sixManEl=document.getElementById("six-man-record");
 const historyEl=document.getElementById("match-history");
 
 
+/* =========================================
+   SLUG
+   ========================================= */
+
 function slug(name){
+
 return String(name)
 .toLowerCase()
 .replace(/[^a-z0-9]+/g,"-")
 .replace(/^-|-$/g,"");
+
 }
 
 
+/* =========================================
+   FIND WRESTLER
+   ========================================= */
+
 function findWrestler(){
 
-if(typeof wrestlers==="undefined")return null;
+if(typeof wrestlers==="undefined"){
+return null;
+}
 
-return wrestlers.find(w=>slug(w.name)===wrestlerId);
+return wrestlers.find(
+w=>slug(w.name)===wrestlerId
+);
 
 }
 
@@ -64,8 +78,13 @@ function participants(result){
 
 let list=[];
 
-if(result.wrestler1)list.push(result.wrestler1);
-if(result.wrestler2)list.push(result.wrestler2);
+if(result.wrestler1){
+list.push(result.wrestler1);
+}
+
+if(result.wrestler2){
+list.push(result.wrestler2);
+}
 
 if(Array.isArray(result.team1)){
 list.push(...result.team1.flat());
@@ -79,7 +98,11 @@ if(Array.isArray(result.participants)){
 list.push(...result.participants);
 }
 
-return[...new Set(list.filter(Boolean))];
+return[
+...new Set(
+list.filter(Boolean)
+)
+];
 
 }
 
@@ -115,7 +138,9 @@ function outcome(result){
 
 const people=participants(result);
 
-if(!people.some(isThisWrestler))return null;
+if(!people.some(isThisWrestler)){
+return null;
+}
 
 
 /* =====================================
@@ -138,12 +163,15 @@ return isThisWrestler(result.winner)
 if(
 Array.isArray(result.participants)&&
 Array.isArray(result.scores)&&
-result.participants.length===result.scores.length
+result.participants.length===
+result.scores.length
 ){
 
 const scores=result.scores.map(Number);
 
-if(scores.some(isNaN))return null;
+if(scores.some(isNaN)){
+return null;
+}
 
 const highest=Math.max(...scores);
 
@@ -158,12 +186,16 @@ winnerIndexes.push(index);
 });
 
 
-/* DRAW IF MORE THAN ONE HAS THE HIGHEST SCORE */
+/* =====================================
+   DRAW IF MORE THAN ONE HAS HIGHEST
+   ===================================== */
 
 if(winnerIndexes.length!==1){
 
-const thisIndex=result.participants
-.findIndex(isThisWrestler);
+const thisIndex=
+result.participants.findIndex(
+isThisWrestler
+);
 
 if(winnerIndexes.includes(thisIndex)){
 return"WIN";
@@ -174,11 +206,15 @@ return"DRAW";
 }
 
 
-/* SINGLE WINNER */
+/* =====================================
+   SINGLE WINNER
+   ===================================== */
 
 const winnerIndex=winnerIndexes[0];
 
-return isThisWrestler(result.participants[winnerIndex])
+return isThisWrestler(
+result.participants[winnerIndex]
+)
 ?"WIN"
 :"LOSS";
 
@@ -189,14 +225,21 @@ return isThisWrestler(result.participants[winnerIndex])
    NORMAL TWO-PERSON MATCH
    ===================================== */
 
-if(result.score1===undefined||result.score2===undefined){
+if(
+result.score1===undefined||
+result.score2===undefined
+){
+
 return null;
+
 }
 
 const a=Number(result.score1);
 const b=Number(result.score2);
 
-if(isNaN(a)||isNaN(b))return null;
+if(isNaN(a)||isNaN(b)){
+return null;
+}
 
 
 if(
@@ -261,7 +304,8 @@ return null;
 
 function category(result){
 
-const type=(result.type||"").toUpperCase();
+const type=
+(result.type||"").toUpperCase();
 
 
 if(
@@ -299,7 +343,9 @@ return"SINGLES";
 
 function tournamentId(event,result){
 
-if(!result.tournament)return null;
+if(!result.tournament){
+return null;
+}
 
 const n=
 (String(result.tournament).match(/\d+/)||["1"])[0];
@@ -331,7 +377,8 @@ return null;
 
 function matchLink(event,result,index){
 
-const tournament=tournamentId(event,result);
+const tournament=
+tournamentId(event,result);
 
 if(tournament){
 
@@ -356,6 +403,319 @@ return result.match||result.type||"SINGLES";
 
 
 /* =========================================
+   DATE
+   ========================================= */
+
+function parseDate(date){
+
+if(!date){
+return 0;
+}
+
+const[
+day,
+month,
+year
+]=String(date).split("/");
+
+return new Date(
+Number(year),
+Number(month)-1,
+Number(day)
+).getTime()||0;
+
+}
+
+
+/* =========================================
+   TOURNAMENT RESULT ADAPTER
+   =========================================
+
+   Convierte:
+
+   a / b / scoreA / scoreB
+
+   en:
+
+   wrestler1 / wrestler2 / score1 / score2
+
+   para que use exactamente la misma
+   lógica de récord que eventData.
+   ========================================= */
+
+function adaptTournamentResult(result){
+
+if(!result){
+return null;
+}
+
+const wrestler1=
+result.wrestler1||
+result.a||
+result.player1||
+result.p1||
+"";
+
+const wrestler2=
+result.wrestler2||
+result.b||
+result.player2||
+result.p2||
+"";
+
+const score1=
+result.score1!==undefined
+?result.score1
+:result.scoreA!==undefined
+?result.scoreA
+:"";
+
+const score2=
+result.score2!==undefined
+?result.score2
+:result.scoreB!==undefined
+?result.scoreB
+:"";
+
+
+let winner=
+result.winner||null;
+
+
+if(!winner){
+
+const s1=Number(score1);
+const s2=Number(score2);
+
+if(!isNaN(s1)&&!isNaN(s2)){
+
+if(s1>s2){
+winner=wrestler1;
+}
+
+else if(s2>s1){
+winner=wrestler2;
+}
+
+}
+
+}
+
+
+return{
+
+type:"SINGLES",
+
+wrestler1:wrestler1,
+
+wrestler2:wrestler2,
+
+score1:score1,
+
+score2:score2,
+
+winner:winner
+
+};
+
+}
+
+
+/* =========================================
+   GET TOURNAMENT EVENTS
+   =========================================
+
+   IMPORTANTE:
+
+   Se leen SOLO:
+
+   raw-X
+   smackdown-X
+   nxt-X
+
+   NO se lee weekly-X.
+
+   weekly-X es solamente una agrupación
+   visual de RAW + SmackDown y no debe
+   volver a contar los combates.
+   ========================================= */
+
+function getTournamentEvents(){
+
+const list=[];
+
+if(typeof tournamentData==="undefined"){
+return list;
+}
+
+
+const added=new Set();
+
+
+Object.entries(tournamentData)
+.forEach(([tournamentKey,data])=>{
+
+if(!data){
+return;
+}
+
+
+/* =====================================
+   WEEKLY OBJECT
+   ===================================== */
+
+if(data.weekly){
+
+Object.entries(data.weekly)
+.forEach(([id,event])=>{
+
+if(!event){
+return;
+}
+
+if(
+!/^raw-\d+$/.test(id)&&
+!/^smackdown-\d+$/.test(id)&&
+!/^nxt-\d+$/.test(id)
+){
+
+return;
+}
+
+
+const uniqueKey=
+`${id}-${tournamentKey}`;
+
+if(added.has(uniqueKey)){
+return;
+}
+
+added.add(uniqueKey);
+
+
+list.push({
+
+id:id,
+
+title:
+id.startsWith("nxt-")
+?"NXT #"+id.split("-")[1]
+:id.startsWith("raw-")
+?"RAW #"+id.split("-")[1]
+:"SMACKDOWN #"+id.split("-")[1],
+
+date:event.date||"",
+
+brand:
+id.startsWith("nxt-")
+?"NXT"
+:id.startsWith("raw-")
+?"RAW"
+:"SMACKDOWN",
+
+type:
+id.startsWith("nxt-")
+?"NXT"
+:"WEEKLY",
+
+results:(event.results||[])
+.map(adaptTournamentResult)
+.filter(Boolean),
+
+tournamentSource:true,
+
+tournamentKey:tournamentKey
+
+});
+
+});
+
+}
+
+
+/* =====================================
+   MATCHES OBJECT
+   ===================================== */
+
+if(
+data.matches&&
+!Array.isArray(data.matches)
+){
+
+Object.entries(data.matches)
+.forEach(([id,event])=>{
+
+if(!event){
+return;
+}
+
+if(
+!/^raw-\d+$/.test(id)&&
+!/^smackdown-\d+$/.test(id)&&
+!/^nxt-\d+$/.test(id)
+){
+
+return;
+}
+
+
+const uniqueKey=
+`${id}-${tournamentKey}`;
+
+if(added.has(uniqueKey)){
+return;
+}
+
+added.add(uniqueKey);
+
+
+list.push({
+
+id:id,
+
+title:
+id.startsWith("nxt-")
+?"NXT #"+id.split("-")[1]
+:id.startsWith("raw-")
+?"RAW #"+id.split("-")[1]
+:"SMACKDOWN #"+id.split("-")[1],
+
+date:event.date||"",
+
+brand:
+id.startsWith("nxt-")
+?"NXT"
+:id.startsWith("raw-")
+?"RAW"
+:"SMACKDOWN",
+
+type:
+id.startsWith("nxt-")
+?"NXT"
+:"WEEKLY",
+
+results:(event.results||[])
+.map(adaptTournamentResult)
+.filter(Boolean),
+
+tournamentSource:true,
+
+tournamentKey:tournamentKey
+
+});
+
+});
+
+}
+
+});
+
+return list;
+
+}
+
+
+/* =========================================
    RENDER RECORDS
    ========================================= */
 
@@ -365,23 +725,107 @@ let wins=0;
 let losses=0;
 let draws=0;
 
-let singles={w:0,l:0,d:0};
-let tag={w:0,l:0,d:0};
-let six={w:0,l:0,d:0};
+let singles={
+w:0,
+l:0,
+d:0
+};
+
+let tag={
+w:0,
+l:0,
+d:0
+};
+
+let six={
+w:0,
+l:0,
+d:0
+};
 
 let history=[];
 
 
-Object.entries(eventData||{}).forEach(([eventId,event])=>{
+/* =========================================
+   EVENTDATA
+   ========================================= */
 
-(event.results||[]).forEach((result,index)=>{
+if(typeof eventData!=="undefined"){
 
-if(!participants(result).some(isThisWrestler)){
-return;
+Object.entries(eventData)
+.forEach(([eventId,event])=>{
+
+(event.results||[])
+.forEach((result,index)=>{
+
+processResult(
+eventId,
+event,
+result,
+index
+);
+
+});
+
+});
+
 }
 
 
-const resultOutcome=outcome(result);
+/* =========================================
+   TOURNAMENTDATA
+   =========================================
+
+   RAW / SMACKDOWN / NXT solamente.
+
+   NO WEEKLY.
+   ========================================= */
+
+const tournamentEvents=
+getTournamentEvents();
+
+
+tournamentEvents.forEach(event=>{
+
+(event.results||[])
+.forEach((result,index)=>{
+
+processResult(
+event.id,
+event,
+result,
+index
+);
+
+});
+
+});
+
+
+/* =========================================
+   PROCESS RESULT
+   ========================================= */
+
+function processResult(
+eventId,
+event,
+result,
+index
+){
+
+if(
+!participants(result)
+.some(isThisWrestler)
+){
+
+return;
+
+}
+
+
+const resultOutcome=
+outcome(result);
+
 
 if(!resultOutcome){
 return;
@@ -406,10 +850,11 @@ draws++;
 
 
 /* =====================================
-   CATEGORY RECORD
+   CATEGORY
    ===================================== */
 
-const cat=category(result);
+const cat=
+category(result);
 
 const target=
 cat==="TAG"
@@ -438,38 +883,44 @@ target.d++;
 
 history.push({
 
-eventId,
-event,
-result,
-index,
+eventId:eventId,
+
+event:event,
+
+result:result,
+
+index:index,
+
 outcome:resultOutcome,
+
 rivals:rivals(result),
 
 link:matchLink(
-{id:eventId,...event},
+{
+id:eventId,
+...event
+},
 result,
 index
 )
 
 });
 
-});
-
-});
+}
 
 
-/* =====================================
+/* =========================================
    DISPLAY OVERALL
-   ===================================== */
+   ========================================= */
 
 winsEl.textContent=wins;
 lossesEl.textContent=losses;
 drawsEl.textContent=draws;
 
 
-/* =====================================
+/* =========================================
    DISPLAY CATEGORY RECORDS
-   ===================================== */
+   ========================================= */
 
 singlesEl.textContent=
 `${singles.w} - ${singles.d} - ${singles.l}`;
@@ -481,25 +932,14 @@ sixManEl.textContent=
 `${six.w} - ${six.d} - ${six.l}`;
 
 
-/* =====================================
+/* =========================================
    SORT HISTORY
-   ===================================== */
+   ========================================= */
 
 history.sort((a,b)=>{
 
-const parse=d=>{
-
-const[day,month,year]=String(d||"").split("/");
-
-return new Date(
-year,
-month-1,
-day
-).getTime()||0;
-
-};
-
-return parse(b.event.date)-parse(a.event.date);
+return parseDate(b.event.date)-
+parseDate(a.event.date);
 
 });
 
@@ -520,7 +960,8 @@ historyEl.innerHTML="";
 
 if(!history.length){
 
-historyEl.innerHTML="<p>NO MATCHES FOUND.</p>";
+historyEl.innerHTML=
+"<p>NO MATCHES FOUND.</p>";
 
 return;
 
@@ -558,9 +999,11 @@ ${item.event.date||""}
 </div>
 
 <div class="history-type">
-${item.event.type==="PLE"
+${
+item.event.type==="PLE"
 ?"SPECIAL EVENT"
-:item.event.type||"EVENT"}
+:item.event.type||"EVENT"
+}
 · ${matchLabel(item.result)}
 </div>
 
