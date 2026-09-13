@@ -560,6 +560,10 @@ function renderChampionship3(data){
     renderMatrix(participants,matches);
 
     resultsContainer.innerHTML="";
+    renderChamberBracket(
+    eventData?.[data.bracket]?.results||[],
+    resultsContainer
+);
 
     // BACKLASH — CUADRO FINAL
     function renderChamberBracket(matches,container){
