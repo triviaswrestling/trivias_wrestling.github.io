@@ -1,38 +1,24 @@
 alert("TORNEOROAD.JS FUNCIONA");
 
-// =========================================
-// CONFIGURATION
-// =========================================
-
 const urlParams=new URLSearchParams(window.location.search);
 const tournamentId=urlParams.get("id");
 const tournaments=[];
 
 for(let number=25;number>=1;number--){
     tournaments.push({
-        id:`raw-${number}`,
-        number,
-        brand:"RAW",
-        division:"FIRST DIVISION",
-        title:`TOURNAMENT ${number}`
+        id:`raw-${number}`,number,brand:"RAW",
+        division:"FIRST DIVISION",title:`TOURNAMENT ${number}`
     });
-
     tournaments.push({
-        id:`smackdown-${number}`,
-        number,
-        brand:"SMACKDOWN",
-        division:"FIRST DIVISION",
-        title:`TOURNAMENT ${number}`
+        id:`smackdown-${number}`,number,brand:"SMACKDOWN",
+        division:"FIRST DIVISION",title:`TOURNAMENT ${number}`
     });
 }
 
 for(let number=18;number>=1;number--){
     tournaments.push({
-        id:`nxt-${number}`,
-        number,
-        brand:"NXT",
-        division:"SECOND DIVISION",
-        title:`TOURNAMENT ${number}`
+        id:`nxt-${number}`,number,brand:"NXT",
+        division:"SECOND DIVISION",title:`TOURNAMENT ${number}`
     });
 }
 
@@ -70,10 +56,6 @@ const standingsBody=document.getElementById("standings-body");
 const matrixTable=document.getElementById("matrix-table");
 const resultsContainer=document.getElementById("results-container");
 
-// =========================================
-// SUPERSTAR FUNCTIONS
-// =========================================
-
 function createWrestlerId(name){
     return name.toLowerCase().trim().replace(/\s+/g,"-");
 }
@@ -84,7 +66,6 @@ function normalizeName(name){
 
 function getWrestler(name){
     if(typeof wrestlers==="undefined")return null;
-
     return wrestlers.find(w=>
         normalizeName(w.name)===normalizeName(name)
     )||null;
@@ -107,10 +88,6 @@ function createWrestlerLink(name){
     return `<a href="superstar.html?id=${createWrestlerId(name)}" class="table-wrestler-link">${name}</a>`;
 }
 
-// =========================================
-// GENERAL
-// =========================================
-
 function clearSections(){
     draftContainer.innerHTML="";
     standingsBody.innerHTML="";
@@ -131,10 +108,6 @@ function showComingSoon(){
     matrixTable.innerHTML="<tr><td>MATRIX COMING SOON</td></tr>";
     resultsContainer.innerHTML="<p>RESULTS COMING SOON</p>";
 }
-
-// =========================================
-// DRAFT
-// =========================================
 
 function renderDraft(participants){
     draftContainer.innerHTML="";
@@ -159,23 +132,13 @@ function renderDraft(participants){
     });
 }
 
-// =========================================
-// STANDINGS
-// =========================================
-
 function buildStandings(participants,matches){
     const standings={};
 
     participants.forEach(name=>{
         standings[name]={
-            name,
-            played:0,
-            wins:0,
-            draws:0,
-            losses:0,
-            points:0,
-            scoreFor:0,
-            scoreAgainst:0
+            name,played:0,wins:0,draws:0,losses:0,
+            points:0,scoreFor:0,scoreAgainst:0
         };
     });
 
@@ -249,10 +212,6 @@ function renderStandings(participants,matches){
     });
 }
 
-// =========================================
-// MATCH MATRIX
-// =========================================
-
 function renderMatrix(participants,matches){
     matrixTable.innerHTML="";
 
@@ -307,9 +266,7 @@ function renderMatrix(participants,matches){
                     :match.score2>match.score1;
 
                 cell.textContent=won?"W":"L";
-                cell.classList.add(
-                    won?"matrix-win":"matrix-loss"
-                );
+                cell.classList.add(won?"matrix-win":"matrix-loss");
             }
 
             row.appendChild(cell);
@@ -318,10 +275,6 @@ function renderMatrix(participants,matches){
         matrixTable.appendChild(row);
     });
 }
-
-// =========================================
-// NORMAL RESULTS
-// =========================================
 
 function renderResults(matches,phases){
     resultsContainer.innerHTML="";
@@ -393,10 +346,6 @@ function renderResults(matches,phases){
     });
 }
 
-// =========================================
-// EVENT DATA
-// =========================================
-
 function getEventMatches(ids){
     if(!Array.isArray(ids))return [];
 
@@ -409,10 +358,6 @@ function getEventMatches(ids){
             m.score2!==undefined
         );
 }
-
-// =========================================
-// ELIMINATION CHAMBER
-// =========================================
 
 function renderChamberBracket(matches,container){
     const chamberMatches=matches.filter(m=>
@@ -438,18 +383,9 @@ function renderChamberBracket(matches,container){
     bracket.className="chamber-bracket";
 
     const rounds=[
-        {
-            title:"QUARTERFINALS",
-            matches:chamberMatches.slice(0,4)
-        },
-        {
-            title:"SEMIFINALS",
-            matches:chamberMatches.slice(4,6)
-        },
-        {
-            title:"FINAL",
-            matches:chamberMatches.slice(6,7)
-        }
+        {title:"QUARTERFINALS",matches:chamberMatches.slice(0,4)},
+        {title:"SEMIFINALS",matches:chamberMatches.slice(4,6)},
+        {title:"FINAL",matches:chamberMatches.slice(6,7)}
     ];
 
     rounds.forEach(round=>{
@@ -487,10 +423,6 @@ function renderChamberBracket(matches,container){
 
     container.appendChild(bracket);
 }
-
-// =========================================
-// CHAMPIONSHIP PHASE RESULTS
-// =========================================
 
 function renderPhase(title,matches){
     if(!matches.length)return;
@@ -535,10 +467,6 @@ function renderPhase(title,matches){
     resultsContainer.appendChild(section);
 }
 
-// =========================================
-// NORMAL TOURNAMENT
-// =========================================
-
 function renderNormalTournament(data){
     const participants=data.participants||[];
     const matches=data.matches||[];
@@ -548,10 +476,6 @@ function renderNormalTournament(data){
     renderMatrix(participants,matches);
     renderResults(matches);
 }
-
-// =========================================
-// CHAMPIONSHIP 1
-// =========================================
 
 function renderChampionship1(data){
     const participants=data.participants||[];
@@ -586,10 +510,6 @@ function renderChampionship1(data){
     });
 }
 
-// =========================================
-// CHAMPIONSHIP 2
-// =========================================
-
 function renderChampionship2(data){
     const zones=data.zones||{};
 
@@ -605,20 +525,11 @@ function renderChampionship2(data){
         renderMatrix(participants,data.matches);
         renderResults(data.matches,data.phases);
     }else{
-        standingsBody.innerHTML=
-            `<tr><td colspan="7">EDITING</td></tr>`;
-
-        matrixTable.innerHTML=
-            "<tr><td>EDITING</td></tr>";
-
-        resultsContainer.innerHTML=
-            "<p>EDITING</p>";
+        standingsBody.innerHTML=`<tr><td colspan="7">EDITING</td></tr>`;
+        matrixTable.innerHTML="<tr><td>EDITING</td></tr>";
+        resultsContainer.innerHTML="<p>EDITING</p>";
     }
 }
-
-// =========================================
-// CHAMPIONSHIP 3
-// =========================================
 
 function renderChampionship3(data){
     const participants=data.participants||[];
@@ -631,20 +542,11 @@ function renderChampionship3(data){
         renderMatrix(participants,matches);
         renderResults(matches,data.phases);
     }else{
-        standingsBody.innerHTML=
-            `<tr><td colspan="7">EDITING</td></tr>`;
-
-        matrixTable.innerHTML=
-            "<tr><td>EDITING</td></tr>";
-
-        resultsContainer.innerHTML=
-            "<p>EDITING</p>";
+        standingsBody.innerHTML=`<tr><td colspan="7">EDITING</td></tr>`;
+        matrixTable.innerHTML="<tr><td>EDITING</td></tr>";
+        resultsContainer.innerHTML="<p>EDITING</p>";
     }
 }
-
-// =========================================
-// CHAMPIONSHIP 4
-// =========================================
 
 function renderChampionship4(data){
     const zones=data.zones||{};
@@ -663,14 +565,9 @@ function renderChampionship4(data){
         renderMatrix(participants,data.matches);
         renderResults(data.matches,data.phases);
     }else{
-        standingsBody.innerHTML=
-            `<tr><td colspan="7">EDITING</td></tr>`;
-
-        matrixTable.innerHTML=
-            "<tr><td>EDITING</td></tr>";
-
-        resultsContainer.innerHTML=
-            "<p>EDITING</p>";
+        standingsBody.innerHTML=`<tr><td colspan="7">EDITING</td></tr>`;
+        matrixTable.innerHTML="<tr><td>EDITING</td></tr>";
+        resultsContainer.innerHTML="<p>EDITING</p>";
     }
 }
 
@@ -690,13 +587,9 @@ if(special){
 
     if(page)page.classList.add("championship");
 
-    const currentData=tournamentData[tournamentId];
+    alert("TOURNAMENT DATA: "+typeof tournamentData);
 
-    alert(
-        "ID: " + tournamentId +
-        "\nDATA: " + (currentData ? "SI" : "NO") +
-        "\nPARTICIPANTES: " + (currentData?.participants?.length || 0)
-    );
+    const currentData=tournamentData[tournamentId];
 
     clearSections();
 
@@ -746,4 +639,4 @@ if(special){
     }else{
         renderNormalTournament(currentData);
     }
-}
+        }
