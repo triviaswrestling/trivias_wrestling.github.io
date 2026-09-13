@@ -635,3 +635,4 @@ const tournamentData = {
 },
 
 };
+alert("TOURNAMENT DATA CARGADO");
