@@ -194,7 +194,48 @@ const tournamentData = {
         final:"wrestlemania-i"
     },
 
-    matches:{
+    matches:{"smackdown-1":{
+    date:"22/03/2023",
+    results:[
+        {type:"SINGLES",position:"OPENER",wrestler1:"The Rock",wrestler2:"John Cena",score1:0,score2:5},
+        {type:"SINGLES",position:"MAIN EVENT",wrestler1:"Adam Cole",wrestler2:"RICOCHET",score1:2,score2:3}
+    ]
+},
+
+"smackdown-2":{
+    date:"24/03/2023",
+    results:[
+        {type:"SINGLES",position:"OPENER",wrestler1:"Adam Cole",wrestler2:"The Rock",score1:5,score2:0},
+        {type:"SINGLES",wrestler1:"Cody Rhodes",wrestler2:"John Cena",score1:4,score2:0},
+        {type:"SINGLES",position:"MAIN EVENT",wrestler1:"Damian Priest",wrestler2:"RICOCHET",score1:0,score2:4}
+    ]
+},
+
+"smackdown-3":{
+    date:"31/03/2023",
+    results:[
+        {type:"SINGLES",position:"OPENER",wrestler1:"Adam Cole",wrestler2:"Cody Rhodes",score1:0,score2:4},
+        {type:"SINGLES",position:"MAIN EVENT",wrestler1:"RICOCHET",wrestler2:"The Rock",score1:5,score2:0}
+    ]
+},
+
+"smackdown-4":{
+    date:"03/04/2023",
+    results:[
+        {type:"SINGLES",position:"OPENER",wrestler1:"Cody Rhodes",wrestler2:"RICOCHET",score1:3,score2:2},
+        {type:"SINGLES",wrestler1:"John Cena",wrestler2:"Adam Cole",score1:4,score2:1},
+        {type:"SINGLES",position:"MAIN EVENT",wrestler1:"Kofi Kingston",wrestler2:"The Rock",score1:2,score2:0}
+    ]
+},
+
+"smackdown-5":{
+    date:"05/04/2023",
+    results:[
+        {type:"SINGLES",position:"OPENER",wrestler1:"Cody Rhodes",wrestler2:"The Rock",score1:5,score2:0},
+        {type:"SINGLES",wrestler1:"John Cena",wrestler2:"RICOCHET",score1:3,score2:2},
+        {type:"SINGLES",position:"MAIN EVENT",wrestler1:"Rob Van Dam",wrestler2:"Adam Cole",score1:0,score2:3}
+    ]
+        }
         "raw-1":{
             date:"22/03/2023",
             results:[
