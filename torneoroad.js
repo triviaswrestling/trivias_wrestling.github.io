@@ -1188,110 +1188,67 @@ function renderChampionship3(data){
 
 function renderBacklashBracket(matches,container){
 
-    const backlashMatches=
-        matches.filter(m=>
-            m.wrestler1&&
-            m.wrestler2&&
-            m.score1!==undefined&&
-            m.score2!==undefined
-        );
+    const backlashMatches=matches.filter(m=>
+        m.wrestler1&&m.wrestler2&&
+        m.score1!==undefined&&m.score2!==undefined
+    );
 
-    const heading=
-        document.createElement("div");
-
-    heading.className=
-        "results-date";
-
-    heading.textContent=
-        "BACKLASH";
-
+    const heading=document.createElement("div");
+    heading.className="results-date";
+    heading.textContent="BACKLASH";
     container.appendChild(heading);
 
     if(!backlashMatches.length){
-
-        const p=
-            document.createElement("p");
-
-        p.textContent=
-            "EDITING";
-
+        const p=document.createElement("p");
+        p.textContent="EDITING";
         container.appendChild(p);
-
         return;
     }
 
-    const bracket=
-        document.createElement("div");
-
-    bracket.className=
-        "chamber-bracket";
+    const bracket=document.createElement("div");
+    bracket.className="chamber-bracket";
 
     const rounds=[
-
         {
-            title:"PLAY-IN 1",
+            title:"PLAY-IN",
             matches:backlashMatches.slice(0,1)
         },
-
         {
-            title:"PLAY-IN 2",
-            matches:backlashMatches.slice(1,2)
+            title:"SEMIFINALS",
+            matches:backlashMatches.slice(1,3)
         },
-
         {
             title:"FINAL",
-            matches:backlashMatches.slice(2,3)
-        },
-
-        {
-            title:"UNDISPUTED CHAMPIONSHIP",
             matches:backlashMatches.slice(3,4)
         }
-
     ];
 
     rounds.forEach(round=>{
 
-        const column=
-            document.createElement("div");
+        const column=document.createElement("div");
+        column.className="bracket-round";
 
-        column.className=
-            "bracket-round";
-
-        const title=
-            document.createElement("h3");
-
-        title.textContent=
-            round.title;
-
+        const title=document.createElement("h3");
+        title.textContent=round.title;
         column.appendChild(title);
 
         round.matches.forEach(match=>{
 
-            const card=
-                document.createElement("div");
+            const card=document.createElement("div");
+            card.className="bracket-match";
 
-            card.className=
-                "bracket-match";
-
-            const winner1=
-                match.score1>match.score2;
-
-            const winner2=
-                match.score2>match.score1;
+            const winner1=match.score1>match.score2;
+            const winner2=match.score2>match.score1;
 
             card.innerHTML=`
-
                 <div class="${winner1?"winner":""}">
                     ${createWrestlerLink(match.wrestler1)}
                     <span>${match.score1}</span>
                 </div>
-
                 <div class="${winner2?"winner":""}">
                     ${createWrestlerLink(match.wrestler2)}
                     <span>${match.score2}</span>
                 </div>
-
             `;
 
             column.appendChild(card);
