@@ -10,12 +10,9 @@
 </head>
 <body>
 
-<!-- =========================================
-     HEADER
-     ========================================= -->
-
 <header class="navbar">
 <a href="index.html" class="logo"><img src="images/logo.png" alt="MI WRESTLING"></a>
+
 <nav id="mainNav">
 <a href="index.html">Roster</a>
 <a href="inactive.html">Alumni</a>
@@ -27,29 +24,33 @@
 <a href="about.html">About</a>
 <a href="https://www.instagram.com/triviaswwe?stkn=eWhqNWV0a2xsNnh4">Watch</a>
 </nav>
+
 <button class="menu" id="menuButton">☰</button>
 </header>
 
-<!-- =========================================
-     MAIN
-     ========================================= -->
 
 <main>
 
 <section class="superstar-header">
+
 <div class="superstar-photo">
 <img id="superstar-image" src="images/Vacante.jpg" alt="Superstar">
 </div>
+
 <div class="superstar-info">
 <div class="section-label">MI WRESTLING</div>
 <h1 id="superstar-name">LOADING...</h1>
 <p id="superstar-nickname"></p>
 <p id="superstar-brand"></p>
 </div>
+
 </section>
 
+
 <section class="superstar-section">
+
 <h2>OVERALL RECORD</h2>
+
 <div class="stats-grid">
 
 <div class="stat-box">
@@ -68,10 +69,14 @@
 </div>
 
 </div>
+
 </section>
 
+
 <section class="superstar-section">
+
 <h2>MATCH RECORD</h2>
+
 <div class="match-record">
 
 <div class="match-record-row">
@@ -90,23 +95,46 @@
 </div>
 
 </div>
+
 </section>
 
+
 <section class="superstar-section">
+
 <h2>CHAMPIONSHIPS</h2>
+
 <div id="championships" class="championships">
 <p>NO CHAMPIONSHIPS</p>
 </div>
+
 </section>
 
+
 <section class="superstar-section">
+
 <h2>MATCH HISTORY</h2>
+
+<div class="history-tools">
+
+<input
+type="text"
+id="history-search"
+placeholder="SEARCH MATCH HISTORY..."
+>
+
+<div id="history-pages"></div>
+
+</div>
+
+
 <div id="match-history" class="match-history">
 <p>NO MATCHES</p>
 </div>
+
 </section>
 
 </main>
+
 
 <script src="js/wrestlers.js"></script>
 <script src="js/tournamentData.js"></script>
