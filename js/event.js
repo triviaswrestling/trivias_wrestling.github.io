@@ -13,6 +13,29 @@ const eventId=params.get("id");
 
 
 /* =========================================
+   SHOW BRAND
+   ========================================= */
+
+function getShowBrand(id){
+
+const show=String(id||"").split("-")[0].toLowerCase();
+
+const brands={
+raw:"RAW",
+smackdown:"SMACKDOWN",
+nxt:"NXT",
+speed:"SPEED",
+aaa:"AAA",
+aew:"AEW",
+tna:"TNA"
+};
+
+return brands[show]||"";
+
+}
+
+
+/* =========================================
    GET TOURNAMENT EVENT
    ========================================= */
 
@@ -34,8 +57,10 @@ const number=Number(weeklyMatch[1]);
 
 if(number<1||number>1000)return null;
 
-const rawId="raw-"+number;
-const smackdownId="smackdown-"+number;
+const showIds=[
+"raw-"+number,
+"smackdown-"+number
+];
 
 const results=[];
 const dates=[];
@@ -46,81 +71,51 @@ const data=tournamentData[tournamentId];
 
 if(!data)continue;
 
+for(const showId of showIds){
 
-/* OLD MATCHES */
+let show=null;
 
-if(data.matches&&!Array.isArray(data.matches)){
 
-for(const eventKey of [rawId,smackdownId]){
+/* NEW SHOWS */
 
-const event=data.matches[eventKey];
-
-if(!event)continue;
-
-if(event.date)dates.push(event.date);
-
-if(event.results){
-results.push(
-...convertTournamentResults(
-event.results,
-eventKey
-)
-);
-}
-
-}
-
+if(data.shows&&data.shows[showId]){
+show=data.shows[showId];
 }
 
 
 /* OLD WEEKLY */
 
-if(data.weekly){
+if(!show&&data.weekly&&data.weekly[showId]){
+show=data.weekly[showId];
+}
 
-for(const eventKey of [rawId,smackdownId]){
 
-const event=data.weekly[eventKey];
+/* OLD MATCHES */
 
-if(!event)continue;
+if(
+!show&&
+data.matches&&
+!Array.isArray(data.matches)&&
+data.matches[showId]
+){
+show=data.matches[showId];
+}
 
-if(event.date)dates.push(event.date);
+if(!show)continue;
 
-if(event.results){
+if(show.date)dates.push(show.date);
+
+const matches=
+show.matches||
+show.results||
+[];
+
 results.push(
 ...convertTournamentResults(
-event.results,
-eventKey
+matches,
+showId
 )
 );
-}
-
-}
-
-}
-
-
-/* NEW TOURNAMENT SHOWS */
-
-if(data.shows){
-
-for(const eventKey of [rawId,smackdownId]){
-
-const event=data.shows[eventKey];
-
-if(!event)continue;
-
-if(event.date)dates.push(event.date);
-
-if(event.matches){
-results.push(
-...convertTournamentResults(
-event.matches,
-eventKey
-)
-);
-}
-
-}
 
 }
 
@@ -132,14 +127,11 @@ let date="";
 
 if(dates.length){
 
-const sortedDates=dates
-.map(date=>({
-original:date,
-value:parseDate(date)
-}))
-.sort((a,b)=>a.value-b.value);
+dates.sort((a,b)=>
+parseDate(a)-parseDate(b)
+);
 
-date=sortedDates[0].original;
+date=dates[0];
 
 }
 
@@ -157,18 +149,26 @@ results:results
 
 
 /* =====================================
-   NXT
+   INDIVIDUAL SHOW
+   RAW / SMACKDOWN / NXT / SPEED /
+   AAA / AEW / TNA
    ===================================== */
 
-const nxtMatch=id.match(/^nxt-(\d+)$/);
+const showMatch=
+id.match(/^(raw|smackdown|nxt|speed|aaa|aew|tna)-(\d+)$/i);
 
-if(nxtMatch){
+if(showMatch){
 
-const number=Number(nxtMatch[1]);
+const showId=id.toLowerCase();
+const number=Number(showMatch[2]);
+const brand=getShowBrand(showId);
 
-if(number<1||number>1000)return null;
+if(number<1||number>10000)return null;
 
-const nxtId="nxt-"+number;
+
+/* =================================
+   SEARCH ONLY THIS SHOW
+   ================================= */
 
 for(const tournamentId in tournamentData){
 
@@ -176,75 +176,53 @@ const data=tournamentData[tournamentId];
 
 if(!data)continue;
 
+let show=null;
 
-/* NEW TOURNAMENT SHOWS */
 
-if(data.shows&&data.shows[nxtId]){
+/* NEW SHOWS */
 
-const event=data.shows[nxtId];
-
-return{
-id:id,
-title:"NXT #"+number,
-date:event.date||"",
-brand:"NXT",
-type:"NXT",
-source:"tournamentData",
-results:convertTournamentResults(
-event.matches||[],
-nxtId
-)
-};
-
+if(data.shows&&data.shows[showId]){
+show=data.shows[showId];
 }
 
 
 /* OLD WEEKLY */
 
-if(data.weekly&&data.weekly[nxtId]){
-
-const event=data.weekly[nxtId];
-
-return{
-id:id,
-title:"NXT #"+number,
-date:event.date||"",
-brand:"NXT",
-type:"NXT",
-source:"tournamentData",
-results:convertTournamentResults(
-event.results||[],
-nxtId
-)
-};
-
+if(!show&&data.weekly&&data.weekly[showId]){
+show=data.weekly[showId];
 }
 
 
 /* OLD MATCHES */
 
 if(
+!show&&
 data.matches&&
 !Array.isArray(data.matches)&&
-data.matches[nxtId]
+data.matches[showId]
 ){
+show=data.matches[showId];
+}
 
-const event=data.matches[nxtId];
+if(!show)continue;
+
+const matches=
+show.matches||
+show.results||
+[];
 
 return{
 id:id,
-title:"NXT #"+number,
-date:event.date||"",
-brand:"NXT",
-type:"NXT",
+title:brand+" #"+number,
+date:show.date||"",
+brand:brand,
+type:brand==="NXT"?"NXT":"WEEKLY",
 source:"tournamentData",
 results:convertTournamentResults(
-event.results||[],
-nxtId
+matches,
+showId
 )
 };
-
-}
 
 }
 
@@ -261,23 +239,14 @@ return null;
    TOURNAMENT RESULT ADAPTER
    ========================================= */
 
-function convertTournamentResults(results,showId=""){
+function convertTournamentResults(
+results,
+showId=""
+){
 
 if(!Array.isArray(results))return[];
 
-let brand="";
-
-if(showId.startsWith("raw-")){
-brand="RAW";
-}else if(showId.startsWith("smackdown-")){
-brand="SMACKDOWN";
-}else if(showId.startsWith("nxt-")){
-brand="NXT";
-}else if(showId.startsWith("speed-")){
-brand="SPEED";
-}else if(showId.startsWith("aaa-")){
-brand="AAA";
-}
+const brand=getShowBrand(showId);
 
 return results.map(match=>{
 
@@ -465,9 +434,6 @@ results.forEach(result=>{
 
 const card=document.createElement("div");
 
-
-/* RESULT SOURCE + BRAND */
-
 const source=
 result.source||
 event.source||
@@ -564,7 +530,8 @@ ${result.match||result.type}
 <div class="team">
 
 ${participants
-.map((name,index)=>createWrestlerWithScore(
+.map((name,index)=>
+createWrestlerWithScore(
 name,
 scores[index],
 result.images?.[name]
