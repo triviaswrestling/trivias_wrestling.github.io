@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" type="image/png" href="../images/triviaswwe.png">
+<link rel="stylesheet" href="torneoroad.css">
+<title>OUTSIDER TOURNAMENT — MI WRESTLING</title>
+</head>
+
+<body>
+
+<header class="top-bar">
+    <a href="../index.html" class="logo">MI WRESTLING</a>
+    <button id="menuButton">☰</button>
+    <nav id="mainNav">
+        <a href="../index.html">ROSTER</a>
+        <a href="../inactive.html">ALUMNI</a>
+        <a href="../History/index.html">HISTORY</a>
+        <a href="../records.html">RECORDS</a>
+        <a href="../recaps.html">RECAPS</a>
+        <a href="../torneos.html">GAMES</a>
+        <a href="../guide.html">GUIDE</a>
+        <a href="../about.html">ABOUT</a>
+    </nav>
+</header>
+
+<main>
+
+    <section class="tournament-header">
+        <div id="tournament-brand"></div>
+        <h1 id="tournament-title">TOURNAMENT</h1>
+        <p id="tournament-format"></p>
+    </section>
+
+    <section id="tournament-container"></section>
+
+</main>
+
+<script src="../js/wrestlers.js"></script>
+<script src="outsiderData.js"></script>
+<script src="outsiderRoad.js"></script>
+
+<script>
+const menuButton=document.getElementById("menuButton");
+const mainNav=document.getElementById("mainNav");
+
+menuButton.addEventListener("click",()=>{
+    mainNav.classList.toggle("show");
+});
+</script>
+
+</body>
+</html>
