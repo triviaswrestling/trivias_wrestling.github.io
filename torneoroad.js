@@ -1182,6 +1182,7 @@ function renderChampionship3(data){
 }
 
 /* =========================================
+/* =========================================
    CHAMPIONSHIP 3
    BACKLASH BRACKET
    ========================================= */
@@ -1211,15 +1212,15 @@ function renderBacklashBracket(matches,container){
     const rounds=[
         {
             title:"PLAY-IN",
-            matches:backlashMatches.slice(0,1)
+            matches:backlashMatches.slice(0,2)
         },
         {
             title:"SEMIFINALS",
-            matches:backlashMatches.slice(1,3)
+            matches:backlashMatches.slice(2,4)
         },
         {
-            title:"FINAL",
-            matches:backlashMatches.slice(3,4)
+            title:"FINAL — UNDISPUTED CHAMPIONSHIP",
+            matches:backlashMatches.slice(4,5)
         }
     ];
 
