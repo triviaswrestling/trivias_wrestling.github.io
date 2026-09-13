@@ -1,54 +1,140 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<link rel="icon" type="image/png" href="../images/triviaswwe.png">
-<link rel="stylesheet" href="torneoroad.css">
-<title>OUTSIDER TOURNAMENT — MI WRESTLING</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/triviaswwe.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="torneos.css">
+    <link rel="stylesheet" href="torneoroad.css">
+
+    <title>Outsider Tournament | MI WRESTLING</title>
 </head>
 
 <body>
 
-<header class="top-bar">
-    <a href="../index.html" class="logo">MI WRESTLING</a>
-    <button id="menuButton">☰</button>
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="MI WRESTLING">
+    </a>
+
     <nav id="mainNav">
-        <a href="../index.html">ROSTER</a>
-        <a href="../inactive.html">ALUMNI</a>
-        <a href="../History/index.html">HISTORY</a>
-        <a href="../records.html">RECORDS</a>
-        <a href="../recaps.html">RECAPS</a>
-        <a href="../torneos.html">GAMES</a>
-        <a href="../guide.html">GUIDE</a>
-        <a href="../about.html">ABOUT</a>
+        <a href="index.html">Roster</a>
+        <a href="inactive.html">Alumni</a>
+        <a href="History/index.html">History</a>
+        <a href="records.html">Records</a>
+        <a href="recaps.html">Recaps</a>
+        <a href="torneos.html">Games</a>
+        <a href="guide.html">Guide</a>
+        <a href="about.html">About</a>
+        <a href="https://www.instagram.com/triviaswwe?stkn=eWhqNWV0a2xsNnh4">Watch</a>
     </nav>
+
+    <button class="menu" id="menuButton">☰</button>
+
 </header>
 
-<main>
+<main class="torneoroad-page">
 
-    <section class="tournament-header">
-        <div id="tournament-brand"></div>
-        <h1 id="tournament-title">TOURNAMENT</h1>
-        <p id="tournament-format"></p>
+    <section class="torneoroad-header">
+
+        <a href="torneos.html" class="back-button">
+            ← GAMES
+        </a>
+
+        <div class="torneoroad-heading">
+
+            <span id="tournament-brand" class="torneoroad-brand">
+                SPEED
+            </span>
+
+            <h1 id="tournament-title">
+                TOURNAMENT
+            </h1>
+
+            <p id="tournament-division">
+                BRACKET
+            </p>
+
+        </div>
+
     </section>
 
-    <section id="tournament-container"></section>
+    <section class="torneoroad-section">
+
+        <div class="torneoroad-divider">
+            <h2>DRAFT</h2>
+        </div>
+
+        <div id="draft-container" class="draft-container"></div>
+
+    </section>
+
+    <section class="torneoroad-section">
+
+        <div class="torneoroad-divider">
+            <h2>STANDINGS</h2>
+        </div>
+
+        <div class="standings-wrapper">
+
+            <table class="standings-table">
+
+                <thead>
+
+                    <tr>
+                        <th>#</th>
+                        <th>WRESTLER</th>
+                        <th>PJ</th>
+                        <th>G</th>
+                        <th>E</th>
+                        <th>P</th>
+                        <th>PTS</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="standings-body"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <section class="torneoroad-section">
+
+        <div class="torneoroad-divider">
+            <h2>MATCH MATRIX</h2>
+        </div>
+
+        <div class="matrix-wrapper">
+
+            <table id="matrix-table" class="matrix-table"></table>
+
+        </div>
+
+    </section>
+
+    <section class="torneoroad-section">
+
+        <div class="torneoroad-divider">
+            <h2>RESULTS</h2>
+        </div>
+
+        <div id="results-container" class="results-container"></div>
+
+    </section>
 
 </main>
 
-<script src="../js/wrestlers.js"></script>
-<script src="outsiderData.js"></script>
+<script src="History/menu.js"></script>
+<script src="js/wrestlers.js"></script>
+<script src="js/outsiderData.js"></script>
 <script src="outsiderRoad.js"></script>
 
-<script>
-const menuButton=document.getElementById("menuButton");
-const mainNav=document.getElementById("mainNav");
-
-menuButton.addEventListener("click",()=>{
-    mainNav.classList.toggle("show");
-});
-</script>
-
 </body>
+
 </html>
