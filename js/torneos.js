@@ -6,9 +6,8 @@ const directoryContainer=document.getElementById("directory-tournaments");
 const directoryTitle=document.getElementById("directory-title");
 const searchInput=document.getElementById("tournament-search");
 const backButton=document.getElementById("back-button");
-const championshipContainer=document.getElementById("championship-tournaments");
-const directoryList=document.getElementById("tournament-directories");
-directoryList.className="tournaments-grid";
+const homeSearch=document.getElementById("home-tournament-search");
+const gamesSections=document.getElementById("games-sections");
 
 const directoryImages={
     RAW:"images/raw1.jpg",
@@ -30,10 +29,13 @@ const championships=[
 function getNormalTournaments(){
     return Object.entries(tournamentData||{}).map(([id,data])=>{
         let brand="OTHER";
+
         if(id.startsWith("monday-night-raw-"))brand="RAW";
         else if(id.startsWith("friday-night-smackdown-"))brand="SMACKDOWN";
         else if(id.startsWith("wwe-nxt-"))brand="NXT";
+
         const number=id.match(/\d+$/)?.[0]||"";
+
         return{
             id,
             number:Number(number),
@@ -49,6 +51,7 @@ function getOutsiderTournaments(){
     return Object.entries(outsiderData||{}).map(([id,data])=>{
         const brand=(data.brand||"OUTSIDER").toUpperCase();
         const number=id.match(/\d+$/)?.[0]||"";
+
         return{
             id,
             number:Number(number),
@@ -61,15 +64,24 @@ function getOutsiderTournaments(){
     });
 }
 
+function getAllTournaments(){
+    return[
+        ...getNormalTournaments(),
+        ...getOutsiderTournaments()
+    ];
+}
+
 function getTournamentImage(brand,number){
     if(brand==="NXT"){
         return number>=9?"images/nxt-b.png":"images/nxt-a.png";
     }
+
     return directoryImages[brand]||"images/Vacante.jpg";
 }
 
 function createTournamentCard(tournament){
     const card=document.createElement("div");
+
     card.className="tournament-card";
     card.style.backgroundImage=`url("${tournament.image}")`;
     card.dataset.id=tournament.id;
@@ -102,22 +114,103 @@ function createTournamentCard(tournament){
     return card;
 }
 
-function renderAllTournaments(){
-    directoryList.innerHTML="";
+const sectionConfig=[
+    {title:"RAW / SMACKDOWN",brands:["RAW","SMACKDOWN"]},
+    {title:"NXT",brands:["NXT"]},
+    {title:"AAA",brands:["AAA"]},
+    {title:"SPEED",brands:["SPEED"]},
+    {title:"AEW",brands:["AEW"]},
+    {title:"TNA",brands:["TNA"]}
+];
 
-    const tournaments=[
-        ...getNormalTournaments(),
-        ...getOutsiderTournaments()
-    ];
+function createSection(title,tournaments){
+    if(!tournaments.length)return;
 
-    tournaments.sort((a,b)=>{
-        if(a.brand!==b.brand)return a.brand.localeCompare(b.brand);
-        return b.number-a.number;
-    });
+    const section=document.createElement("section");
+    section.className="division-section";
+
+    const divider=document.createElement("div");
+    divider.className="division-divider";
+
+    const heading=document.createElement("h2");
+    heading.textContent=title;
+
+    divider.appendChild(heading);
+
+    const grid=document.createElement("div");
+    grid.className="tournaments-grid";
 
     tournaments.forEach(tournament=>{
-        directoryList.appendChild(createTournamentCard(tournament));
+        grid.appendChild(createTournamentCard(tournament));
     });
+
+    section.appendChild(divider);
+    section.appendChild(grid);
+    gamesSections.appendChild(section);
+}
+
+function renderHome(){
+    gamesSections.innerHTML="";
+
+    const query=homeSearch.value.toLowerCase().trim();
+    const tournaments=getAllTournaments();
+
+    sectionConfig.forEach(section=>{
+        const filtered=tournaments
+            .filter(tournament=>section.brands.includes(tournament.brand))
+            .filter(tournament=>
+                !query||
+                tournament.title.toLowerCase().includes(query)||
+                tournament.id.toLowerCase().includes(query)||
+                tournament.brand.toLowerCase().includes(query)||
+                String(tournament.number).includes(query)
+            )
+            .sort((a,b)=>b.number-a.number);
+
+        createSection(section.title,filtered);
+    });
+
+    const filteredChampionships=championships.filter(championship=>
+        !query||
+        championship.title.toLowerCase().includes(query)||
+        String(championship.number).includes(query)||
+        "championship".includes(query)
+    );
+
+    if(filteredChampionships.length){
+        const section=document.createElement("section");
+        section.className="division-section";
+
+        const divider=document.createElement("div");
+        divider.className="division-divider";
+
+        const heading=document.createElement("h2");
+        heading.textContent="CHAMPIONSHIP";
+
+        divider.appendChild(heading);
+
+        const grid=document.createElement("div");
+        grid.className="tournaments-grid";
+
+        filteredChampionships.forEach(championship=>{
+            const card=createTournamentCard({
+                ...championship,
+                brand:"CHAMPIONSHIP"
+            });
+
+            card.classList.add("championship");
+
+            card.addEventListener("click",()=>{
+                window.location.href=`torneoroad.html?id=${championship.id}`;
+            });
+
+            grid.appendChild(card);
+        });
+
+        section.appendChild(divider);
+        section.appendChild(grid);
+        gamesSections.appendChild(section);
+    }
 }
 
 function openDirectory(brand,tournaments){
@@ -130,6 +223,7 @@ function openDirectory(brand,tournaments){
 
 function renderDirectoryTournaments(tournaments){
     directoryContainer.innerHTML="";
+
     tournaments.forEach(tournament=>{
         directoryContainer.appendChild(createTournamentCard(tournament));
     });
@@ -139,10 +233,8 @@ searchInput.addEventListener("input",()=>{
     const query=searchInput.value.toLowerCase().trim();
     const brand=directoryTitle.textContent;
 
-    const tournaments=[
-        ...getNormalTournaments(),
-        ...getOutsiderTournaments()
-    ].filter(tournament=>tournament.brand===brand);
+    const tournaments=getAllTournaments()
+        .filter(tournament=>tournament.brand===brand);
 
     const filtered=tournaments.filter(tournament=>
         tournament.title.toLowerCase().includes(query)||
@@ -153,30 +245,12 @@ searchInput.addEventListener("input",()=>{
     renderDirectoryTournaments(filtered);
 });
 
+homeSearch.addEventListener("input",renderHome);
+
 backButton.addEventListener("click",()=>{
     gamesDirectory.style.display="none";
     gamesHome.style.display="block";
     searchInput.value="";
 });
 
-function renderChampionships(){
-    championshipContainer.innerHTML="";
-
-    championships.forEach(championship=>{
-        const card=createTournamentCard({
-            ...championship,
-            brand:"CHAMPIONSHIP"
-        });
-
-        card.classList.add("championship");
-
-        card.addEventListener("click",()=>{
-            window.location.href=`torneoroad.html?id=${championship.id}`;
-        });
-
-        championshipContainer.appendChild(card);
-    });
-}
-
-renderAllTournaments();
-renderChampionships();
+renderHome();
