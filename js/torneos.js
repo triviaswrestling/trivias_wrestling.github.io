@@ -8,6 +8,7 @@ const searchInput=document.getElementById("tournament-search");
 const backButton=document.getElementById("back-button");
 const championshipContainer=document.getElementById("championship-tournaments");
 const directoryList=document.getElementById("tournament-directories");
+directoryList.className="tournaments-grid";
 
 const directoryImages={
     RAW:"images/raw1.jpg",
@@ -32,9 +33,7 @@ function getNormalTournaments(){
         if(id.startsWith("monday-night-raw-"))brand="RAW";
         else if(id.startsWith("friday-night-smackdown-"))brand="SMACKDOWN";
         else if(id.startsWith("wwe-nxt-"))brand="NXT";
-
         const number=id.match(/\d+$/)?.[0]||"";
-
         return{
             id,
             number:Number(number),
@@ -50,7 +49,6 @@ function getOutsiderTournaments(){
     return Object.entries(outsiderData||{}).map(([id,data])=>{
         const brand=(data.brand||"OUTSIDER").toUpperCase();
         const number=id.match(/\d+$/)?.[0]||"";
-
         return{
             id,
             number:Number(number),
@@ -118,9 +116,7 @@ function renderAllTournaments(){
     });
 
     tournaments.forEach(tournament=>{
-        directoryList.appendChild(
-            createTournamentCard(tournament)
-        );
+        directoryList.appendChild(createTournamentCard(tournament));
     });
 }
 
@@ -135,9 +131,7 @@ function openDirectory(brand,tournaments){
 function renderDirectoryTournaments(tournaments){
     directoryContainer.innerHTML="";
     tournaments.forEach(tournament=>{
-        directoryContainer.appendChild(
-            createTournamentCard(tournament)
-        );
+        directoryContainer.appendChild(createTournamentCard(tournament));
     });
 }
 
