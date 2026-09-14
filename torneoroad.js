@@ -1,4 +1,3 @@
-alert("TORNEOROAD.JS FUNCIONA");
 
 const urlParams=new URLSearchParams(window.location.search);
 const tournamentId=urlParams.get("id");
@@ -1326,7 +1325,6 @@ function renderChampionship4(data){
    PAGE RENDER
    ========================================= */
 
-alert("LLEGUE A SPECIAL");
 
 if(special){
 
