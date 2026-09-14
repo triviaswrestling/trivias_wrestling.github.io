@@ -437,3 +437,71 @@
     }
 
 }
+
+/* =========================================
+   TOURNAMENT SEARCH
+   ========================================= */
+
+#home-tournament-search {
+    display: block;
+    width: 100%;
+    margin: 0 0 55px;
+    padding: 16px 20px;
+
+    background:
+        linear-gradient(#080808,#080808) padding-box,
+        linear-gradient(
+            90deg,
+            #ff1744,
+            #ff8a00,
+            #ffe600,
+            #00e5ff,
+            #2979ff,
+            #9c27ff,
+            #ff1744
+        ) border-box;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+
+    outline: none;
+    box-sizing: border-box;
+}
+
+#home-tournament-search::placeholder {
+    color: #ffffff;
+    opacity: 0.55;
+    text-transform: uppercase;
+}
+
+#home-tournament-search:focus {
+    background:
+        linear-gradient(#080808,#080808) padding-box,
+        linear-gradient(
+            90deg,
+            #ff1744,
+            #ff8a00,
+            #ffe600,
+            #00e5ff,
+            #2979ff,
+            #9c27ff,
+            #ff1744
+        ) border-box;
+}
+
+@media (max-width: 600px) {
+
+    #home-tournament-search {
+        width: 100%;
+        margin-bottom: 40px;
+        padding: 14px 16px;
+        font-size: 11px;
+    }
+
+       }
