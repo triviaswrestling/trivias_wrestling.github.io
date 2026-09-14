@@ -25,6 +25,7 @@ finalMatches:[["Edge","AJ Styles",5,0]]},
        SPEED
        ========================================= */
     "outsider-speed-1":{
+       name:"SPEED #1",
         brand:"SPEED",
         promotion:"WWE",
         format:"BRACKET",
