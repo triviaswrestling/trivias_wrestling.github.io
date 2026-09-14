@@ -78,7 +78,7 @@ if(!tournament){
 }else{
 
     brandElement.textContent=tournament.brand||"OUTSIDER";
-    titleElement.textContent=tournament.title||tournamentId;
+    titleElement.textContent=tournament.name||tournament.title||tournamentId;
     divisionElement.textContent=tournament.division||tournament.format||"";
 
     renderDraft(tournament);
