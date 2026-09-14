@@ -1350,10 +1350,7 @@ if(special){
 
     }
 
-    alert(
-        "TOURNAMENT DATA: "+
-        typeof tournamentData
-    );
+    
 
     const currentData=
         tournamentData[tournamentId];
