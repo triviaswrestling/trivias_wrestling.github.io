@@ -4,45 +4,88 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="images/triviaswwe.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="recaps.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="images/triviaswwe.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="recaps.css"
+    >
 
     <title>Recaps | MI WRESTLING</title>
 
 </head>
 
+
 <body>
+
 
 <header class="navbar">
 
     <a href="index.html" class="logo">
-        <img src="images/logo.png" alt="MI WRESTLING">
+
+        <img
+            src="images/logo.png"
+            alt="MI WRESTLING"
+        >
+
     </a>
+
 
     <nav id="mainNav">
 
         <a href="index.html">Roster</a>
+
         <a href="inactive.html">Alumni</a>
+
         <a href="History/index.html">History</a>
+
         <a href="records.html">Records</a>
+
         <a href="recaps.html">Recaps</a>
+
         <a href="torneos.html">Games</a>
+
         <a href="guide.html">Guide</a>
+
         <a href="about.html">About</a>
-        <a href="https://www.instagram.com/triviaswwe?stkn=eWhqNWV0a2xsNnh4">Watch</a>
+
+        <a href="https://www.instagram.com/triviaswwe?stkn=eWhqNWV0a2xsNnh4">
+            Watch
+        </a>
 
     </nav>
 
-    <button class="menu" id="menuButton">☰</button>
+
+    <button
+        class="menu"
+        id="menuButton"
+    >
+        ☰
+    </button>
 
 </header>
+
 
 
 <main class="recaps-page">
 
     <section class="recaps-section">
+
 
         <div class="recaps-header">
 
@@ -53,46 +96,106 @@
         </div>
 
 
-        <!-- FILTERS -->
+
+        <!-- =========================================
+             FILTERS
+             ========================================= -->
 
         <section class="recaps-filters">
+
 
             <button class="recap-filter active">
                 ALL
             </button>
 
-            <button class="recap-filter">
-                WEEKLY
-            </button>
-
-            <button class="recap-filter">
-                NXT
-            </button>
 
             <button class="recap-filter">
                 SPECIAL EVENTS
             </button>
 
+
+            <button class="recap-filter">
+                WEEKLY
+            </button>
+
+
+            <button class="recap-filter">
+                NXT
+            </button>
+
+
+            <button class="recap-filter">
+                SPEED
+            </button>
+
+
+            <button class="recap-filter">
+                TNA
+            </button>
+
+
+            <button class="recap-filter">
+                AEW
+            </button>
+
+
+            <button class="recap-filter">
+                AAA
+            </button>
+
+
+            <button class="recap-filter">
+                CMLL
+            </button>
+
+
         </section>
 
 
-        <!-- EVENTS -->
+
+        <!-- =========================================
+             EVENTS
+             ========================================= -->
 
         <section class="events-section">
 
-            <div class="events-grid" id="events-container"></div>
+
+            <div
+                class="events-grid"
+                id="events-container"
+            ></div>
+
+
+            <!-- =====================================
+                 PAGINATION
+                 ===================================== -->
+
+            <div id="pagination"></div>
+
 
         </section>
+
 
     </section>
 
 </main>
 
 
+
+<!-- =========================================
+     JAVASCRIPT
+     ========================================= -->
+
 <script src="History/menu.js"></script>
+
 <script src="js/tournamentData.js"></script>
+
 <script src="js/eventData.js"></script>
-<script src="js/recaps.js"></script>
+
+<script src="js/outsiderData.js"></script>
+
+<script src="js/recap.js"></script>
+
 
 </body>
 
