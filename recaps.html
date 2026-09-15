@@ -48,21 +48,37 @@
 
     <nav id="mainNav">
 
-        <a href="index.html">Roster</a>
+        <a href="index.html">
+            Roster
+        </a>
 
-        <a href="inactive.html">Alumni</a>
+        <a href="inactive.html">
+            Alumni
+        </a>
 
-        <a href="History/index.html">History</a>
+        <a href="History/index.html">
+            History
+        </a>
 
-        <a href="records.html">Records</a>
+        <a href="records.html">
+            Records
+        </a>
 
-        <a href="recaps.html">Recaps</a>
+        <a href="recaps.html">
+            Recaps
+        </a>
 
-        <a href="torneos.html">Games</a>
+        <a href="torneos.html">
+            Games
+        </a>
 
-        <a href="guide.html">Guide</a>
+        <a href="guide.html">
+            Guide
+        </a>
 
-        <a href="about.html">About</a>
+        <a href="about.html">
+            About
+        </a>
 
         <a href="https://www.instagram.com/triviaswwe?stkn=eWhqNWV0a2xsNnh4">
             Watch
@@ -87,66 +103,91 @@
     <section class="recaps-section">
 
 
+        <!-- =========================================
+             HEADER
+             ========================================= -->
+
         <div class="recaps-header">
 
-            <h1>RECAPS</h1>
+            <h1>
+                RECAPS
+            </h1>
 
-            <p>EVENTS</p>
+            <p>
+                EVENTS
+            </p>
 
         </div>
 
 
 
         <!-- =========================================
-             FILTERS
+             FILTERS + DATE PARTS
              ========================================= -->
 
-        <section class="recaps-filters">
+        <section class="recaps-controls">
 
 
-            <button class="recap-filter active">
-                ALL
-            </button>
+            <!-- EVENT FILTERS -->
+
+            <section class="recaps-filters">
 
 
-            <button class="recap-filter">
-                SPECIAL EVENTS
-            </button>
+                <button class="recap-filter active">
+                    ALL
+                </button>
 
 
-            <button class="recap-filter">
-                WEEKLY
-            </button>
+                <button class="recap-filter">
+                    SPECIAL EVENTS
+                </button>
 
 
-            <button class="recap-filter">
-                NXT
-            </button>
+                <button class="recap-filter">
+                    WEEKLY
+                </button>
 
 
-            <button class="recap-filter">
-                SPEED
-            </button>
+                <button class="recap-filter">
+                    NXT
+                </button>
 
 
-            <button class="recap-filter">
-                TNA
-            </button>
+                <button class="recap-filter">
+                    SPEED
+                </button>
 
 
-            <button class="recap-filter">
-                AEW
-            </button>
+                <button class="recap-filter">
+                    TNA
+                </button>
 
 
-            <button class="recap-filter">
-                AAA
-            </button>
+                <button class="recap-filter">
+                    AEW
+                </button>
 
 
-            <button class="recap-filter">
-                CMLL
-            </button>
+                <button class="recap-filter">
+                    AAA
+                </button>
+
+
+                <button class="recap-filter">
+                    CMLL
+                </button>
+
+
+            </section>
+
+
+
+            <!-- =====================================
+                 DATE PARTS
+                 PART 01 / PART 02 / PART 03...
+                 ===================================== -->
+
+            <div id="date-parts"></div>
 
 
         </section>
@@ -164,6 +205,7 @@
                 class="events-grid"
                 id="events-container"
             ></div>
+
 
 
             <!-- =====================================
@@ -187,9 +229,13 @@
      ========================================= -->
 
 <script src="History/menu.js"></script>
+
 <script src="js/tournamentData.js"></script>
+
 <script src="js/eventData.js"></script>
+
 <script src="js/outsiderData.js"></script>
+
 <script src="js/recaps.js"></script>
 
 
