@@ -46,17 +46,36 @@
 
 
 /* =========================================
+   FILTERS + DATE PARTS
+   ========================================= */
+
+.recaps-controls {
+    display: flex;
+
+    align-items: stretch;
+    justify-content: center;
+
+    gap: 18px;
+
+    width: 100%;
+
+    margin-bottom: 45px;
+}
+
+
+/* =========================================
    FILTERS
    ========================================= */
 
 .recaps-filters {
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     gap: 10px;
 
-    margin-bottom: 45px;
+    margin-bottom: 0;
 
     flex-wrap: wrap;
 }
@@ -98,6 +117,104 @@
 
 
 /* =========================================
+   DATE PARTS
+   ========================================= */
+
+#date-parts {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 10px 12px;
+
+    background: #090909;
+
+    border: 1px solid #292929;
+
+    box-shadow:
+        inset 0 0 0 1px #111111,
+        0 4px 0 #050505;
+}
+
+
+/* =========================================
+   PART BUTTON
+   ========================================= */
+
+.date-part {
+    min-width: 82px;
+
+    padding: 11px 16px;
+
+    background: #111111;
+
+    border: 1px solid #333333;
+
+    color: #bdbdbd;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   PART HOVER
+   ========================================= */
+
+.date-part:hover {
+    background: #181818;
+
+    border-color: #d90024;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   ACTIVE PART
+   ========================================= */
+
+.date-part.active {
+    background: #d90024;
+
+    border-color: #ff334f;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 0 0 1px #6f0012,
+        inset 0 -3px 0 #8f0018;
+}
+
+
+/* =========================================
+   PART NUMBER
+   ========================================= */
+
+.date-part span {
+    display: block;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.6;
+
+    margin-bottom: 3px;
+}
+
+
+/* =========================================
    EVENTS
    ========================================= */
 
@@ -133,7 +250,9 @@
     border: 1px solid #292929;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: space-between;
 
     cursor: pointer;
@@ -196,108 +315,7 @@
 
     letter-spacing: 2px;
 
-    opacity
-/* =========================================
-   DATE PARTS / EVENT PAGES
-   ========================================= */
-
-#date-parts {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-
-    gap: 8px;
-
-    width: 100%;
-
-    margin: 0 auto 30px;
-
-    padding: 14px;
-
-    background: #090909;
-
-    border: 1px solid #292929;
-
-    box-shadow:
-        inset 0 0 0 1px #111111,
-        0 4px 0 #050505;
-}
-
-
-/* =========================================
-   PART BUTTON
-   ========================================= */
-
-.date-part {
-    position: relative;
-
-    min-width: 82px;
-
-    padding: 11px 16px;
-
-    background: #111111;
-
-    border: 1px solid #333333;
-
-    color: #bdbdbd;
-
-    font-size: 10px;
-
-    font-weight: 900;
-
-    letter-spacing: 1.5px;
-
-    text-align: center;
-
-    cursor: pointer;
-}
-
-
-/* =========================================
-   HOVER
-   ========================================= */
-
-.date-part:hover {
-    background: #181818;
-
-    border-color: #d90024;
-
-    color: #ffffff;
-}
-
-
-/* =========================================
-   ACTIVE PART
-   ========================================= */
-
-.date-part.active {
-    background: #d90024;
-
-    border-color: #ff334f;
-
-    color: #ffffff;
-
-    box-shadow:
-        0 0 0 1px #6f0012,
-        inset 0 -3px 0 #8f0018;
-}
-
-
-/* =========================================
-   PART NUMBER
-   ========================================= */
-
-.date-part span {
-    display: block;
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-
-    opacity: 0.6;
-
-    margin-bottom: 3px;
+    opacity: 0.55;
 }
 
 
@@ -305,16 +323,22 @@
    MOBILE
    ========================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
+
+    .recaps-controls {
+        flex-direction: column;
+
+        gap: 15px;
+    }
 
     #date-parts {
+        width: 100%;
+
         justify-content: flex-start;
 
         overflow-x: auto;
 
         flex-wrap: nowrap;
-
-        padding: 10px;
 
         scrollbar-width: none;
     }
@@ -329,4 +353,23 @@
         min-width: 78px;
     }
 
-   }
+}
+
+
+@media (max-width: 900px) {
+
+    .events-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
