@@ -35,6 +35,11 @@ if(typeof tournamentData!=="undefined"){
 const weeklyEvents={};
 const nxtEvents={};
 
+
+/* =========================================
+   WEEKLY
+   ========================================= */
+
 function addWeekly(id,event){
 
 if(!event)return;
@@ -61,6 +66,10 @@ id:id,
 
 }
 
+
+/* =========================================
+   NXT
+   ========================================= */
 
 function addNXT(id,event){
 
@@ -143,7 +152,6 @@ addNXT(id,event);
 });
 
 
-
 /* =========================================
    CREATE WEEKLY
    ========================================= */
@@ -213,6 +221,59 @@ image:nxt.event.image||
 
 
 /* =========================================
+   OUTSIDER DATA
+   SPEED / TNA / AEW / AAA / CMLL
+   ========================================= */
+
+if(typeof outsiderData!=="undefined"){
+
+Object.entries(outsiderData).forEach(
+([tournamentId,data])=>{
+
+if(!data||!data.shows)return;
+
+const brand=(data.brand||"").toUpperCase();
+
+if(![
+"SPEED",
+"TNA",
+"AEW",
+"AAA",
+"CMLL"
+].includes(brand))return;
+
+Object.entries(data.shows).forEach(
+([id,event])=>{
+
+if(!event)return;
+
+events.push({
+
+id:id,
+
+title:`${brand} #${
+id.match(/-(\d+)$/)?.[1]||""
+}`,
+
+date:event.date||"",
+
+brand:brand,
+
+type:brand,
+
+image:event.image||
+"images/events/default.jpg"
+
+});
+
+});
+
+});
+
+}
+
+
+/* =========================================
    DATE
    ========================================= */
 
@@ -241,6 +302,41 @@ events.sort(
 
 
 /* =========================================
+   AVAILABLE FILTERS
+   ========================================= */
+
+const outsiderBrands=[
+"SPEED",
+"TNA",
+"AEW",
+"AAA",
+"CMLL"
+];
+
+filterButtons.forEach(button=>{
+
+const filter=button.textContent
+.trim()
+.toUpperCase();
+
+if(outsiderBrands.includes(filter)){
+
+const exists=events.some(
+event=>event.type===filter
+);
+
+if(!exists){
+
+button.style.display="none";
+
+}
+
+}
+
+});
+
+
+/* =========================================
    RENDER
    ========================================= */
 
@@ -258,6 +354,17 @@ eventsContainer.innerHTML=`
 return;
 
 }
+
+
+/* SOLO LOS 20 MÁS RECIENTES */
+
+list=list
+.slice()
+.sort(
+(a,b)=>dateValue(b.date)-dateValue(a.date)
+)
+.slice(0,20);
+
 
 list.forEach(event=>{
 
@@ -335,6 +442,9 @@ button.textContent
 
 let list=events;
 
+
+/* WEEKLY */
+
 if(filter==="WEEKLY"){
 
 list=events.filter(
@@ -342,6 +452,9 @@ event=>event.type==="WEEKLY"
 );
 
 }
+
+
+/* NXT */
 
 if(filter==="NXT"){
 
@@ -351,10 +464,30 @@ event=>event.type==="NXT"
 
 }
 
+
+/* SPECIAL EVENTS */
+
 if(filter==="SPECIAL EVENTS"){
 
 list=events.filter(
 event=>event.type==="PLE"
+);
+
+}
+
+
+/* OUTSIDERS */
+
+if([
+"SPEED",
+"TNA",
+"AEW",
+"AAA",
+"CMLL"
+].includes(filter)){
+
+list=events.filter(
+event=>event.type===filter
 );
 
 }
