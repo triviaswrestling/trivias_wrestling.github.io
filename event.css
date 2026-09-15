@@ -170,6 +170,34 @@ main {
     --brand: #20c878;
 }
 
+.result-card.brand-speed:before {
+    background: linear-gradient(
+        90deg,
+        #20c878 0%,
+        #20c878 50%,
+        #55d9ff 100%
+    );
+
+    box-shadow:
+        0 0 10px #20c878,
+        0 0 10px #55d9ff;
+}
+
+
+/* SCORE SPEED */
+
+.result-card.brand-speed .result-score {
+    background: linear-gradient(
+        90deg,
+        #20c878,
+        #55d9ff
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 
 /* =========================================
    AAA
