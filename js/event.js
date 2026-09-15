@@ -27,7 +27,8 @@ nxt:"NXT",
 speed:"SPEED",
 aaa:"AAA",
 aew:"AEW",
-tna:"TNA"
+tna:"TNA",
+cmll:"CMLL"
 };
 
 return brands[show]||"";
@@ -155,7 +156,7 @@ results:results
    ===================================== */
 
 const showMatch=
-id.match(/^(raw|smackdown|nxt|speed|aaa|aew|tna)-(\d+)$/i);
+id.match(/^(raw|smackdown|nxt|speed|aaa|aew|tna|cmll)-(\d+)$/i);
 
 if(showMatch){
 
@@ -322,6 +323,143 @@ brand:brand
 
 
 /* =========================================
+   GET OUTSIDER EVENT
+   SPEED / AEW / TNA / AAA / CMLL
+   ========================================= */
+
+function getOutsiderEvent(id){
+
+if(typeof outsiderData==="undefined")return null;
+
+for(const tournamentId in outsiderData){
+
+const data=outsiderData[tournamentId];
+
+if(!data||!data.shows)continue;
+
+const show=data.shows[id];
+
+if(!show)continue;
+
+const brand=data.brand||getShowBrand(id);
+
+const matches=
+show.matches||
+show.results||
+[];
+
+return{
+
+id:id,
+
+title:
+show.title||
+brand+" #"+id.split("-").pop(),
+
+date:
+show.date||"",
+
+brand:brand,
+
+type:brand,
+
+source:"outsiderData",
+
+results:
+convertOutsiderResults(
+matches,
+id,
+brand
+)
+
+};
+
+}
+
+return null;
+
+}
+
+
+/* =========================================
+   OUTSIDER RESULT ADAPTER
+   ========================================= */
+
+function convertOutsiderResults(
+results,
+showId="",
+brand=""
+){
+
+if(!Array.isArray(results))return[];
+
+return results.map(match=>{
+
+const wrestler1=
+Array.isArray(match)
+?match[0]
+:"";
+
+const wrestler2=
+Array.isArray(match)
+?match[1]
+:"";
+
+const score1=
+Array.isArray(match)
+?match[2]
+:"";
+
+const score2=
+Array.isArray(match)
+?match[3]
+:"";
+
+let winner=null;
+
+const s1=Number(score1);
+const s2=Number(score2);
+
+if(!isNaN(s1)&&!isNaN(s2)){
+
+if(s1>s2){
+
+winner=wrestler1;
+
+}else if(s2>s1){
+
+winner=wrestler2;
+
+}
+
+}
+
+return{
+
+type:"NORMAL",
+
+wrestler1:wrestler1,
+
+wrestler2:wrestler2,
+
+score1:score1,
+
+score2:score2,
+
+winner:winner,
+
+source:"outsiderData",
+
+brand:brand
+
+};
+
+});
+
+}
+
+
+/* =========================================
    DATE HELPER
    ========================================= */
 
@@ -352,6 +490,11 @@ day
 
 let event=null;
 
+
+/* =========================================
+   1. EVENT DATA
+   ========================================= */
+
 if(
 typeof eventData!=="undefined"&&
 eventData[eventId]
@@ -359,9 +502,27 @@ eventData[eventId]
 
 event=eventData[eventId];
 
-}else{
+}
+
+
+/* =========================================
+   2. TOURNAMENT DATA
+   ========================================= */
+
+if(!event){
 
 event=getTournamentEvent(eventId);
+
+}
+
+
+/* =========================================
+   3. OUTSIDER DATA
+   ========================================= */
+
+if(!event){
+
+event=getOutsiderEvent(eventId);
 
 }
 
@@ -440,13 +601,9 @@ event.source||
 "eventData";
 
 const brand=
-source==="tournamentData"
-?(
 result.brand||
 event.brand||
-""
-)
-:"PLE";
+"";
 
 card.className=
 `result-card source-${source.toLowerCase()} brand-${brand
