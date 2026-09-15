@@ -1,7 +1,12 @@
 const eventsContainer=document.getElementById("events-container");
+const pagination=document.getElementById("pagination");
 const filterButtons=document.querySelectorAll(".recap-filter");
 
 const events=[];
+
+const EVENTS_PER_PAGE=20;
+let currentPage=1;
+let currentFilter="ALL";
 
 
 /* =========================================
@@ -337,36 +342,119 @@ button.style.display="none";
 
 
 /* =========================================
+   GET FILTERED EVENTS
+   ========================================= */
+
+function getFilteredEvents(){
+
+let list=events;
+
+if(currentFilter==="WEEKLY"){
+
+list=events.filter(
+event=>event.type==="WEEKLY"
+);
+
+}
+
+if(currentFilter==="NXT"){
+
+list=events.filter(
+event=>event.type==="NXT"
+);
+
+}
+
+if(currentFilter==="SPECIAL EVENTS"){
+
+list=events.filter(
+event=>event.type==="PLE"
+);
+
+}
+
+if([
+"SPEED",
+"TNA",
+"AEW",
+"AAA",
+"CMLL"
+].includes(currentFilter)){
+
+list=events.filter(
+event=>event.type===currentFilter
+);
+
+}
+
+return list
+.slice()
+.sort(
+(a,b)=>dateValue(b.date)-dateValue(a.date)
+);
+
+}
+
+
+/* =========================================
    RENDER
    ========================================= */
 
-function renderEvents(list){
+function renderEvents(){
 
 eventsContainer.innerHTML="";
+
+const list=getFilteredEvents();
+
+const totalPages=Math.ceil(
+list.length/EVENTS_PER_PAGE
+);
+
+
+/* =========================================
+   NO EVENTS
+   ========================================= */
 
 if(!list.length){
 
 eventsContainer.innerHTML=`
 <div class="event-card">
 <h2>NO EVENTS FOUND</h2>
-</div>`;
+</div>
+`;
+
+renderPagination(0);
 
 return;
 
 }
 
 
-/* SOLO LOS 20 MÁS RECIENTES */
+/* =========================================
+   CURRENT PAGE
+   ========================================= */
 
-list=list
-.slice()
-.sort(
-(a,b)=>dateValue(b.date)-dateValue(a.date)
-)
-.slice(0,20);
+if(currentPage>totalPages){
+
+currentPage=totalPages;
+
+}
+
+const start=
+(currentPage-1)*EVENTS_PER_PAGE;
+
+const pageEvents=
+list.slice(
+start,
+start+EVENTS_PER_PAGE
+);
 
 
-list.forEach(event=>{
+/* =========================================
+   CREATE CARDS
+   ========================================= */
+
+pageEvents.forEach(event=>{
 
 const card=document.createElement("div");
 
@@ -418,6 +506,121 @@ eventsContainer.appendChild(card);
 
 });
 
+
+renderPagination(totalPages);
+
+}
+
+
+/* =========================================
+   PAGINATION
+   ========================================= */
+
+function renderPagination(totalPages){
+
+if(!pagination)return;
+
+pagination.innerHTML="";
+
+if(totalPages<=1)return;
+
+
+const previous=document.createElement("button");
+
+previous.textContent="‹";
+
+previous.disabled=currentPage===1;
+
+previous.addEventListener(
+"click",
+()=>{
+
+if(currentPage>1){
+
+currentPage--;
+
+renderEvents();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+});
+
+pagination.appendChild(previous);
+
+
+/* =========================================
+   PAGE NUMBERS
+   ========================================= */
+
+for(let i=1;i<=totalPages;i++){
+
+const button=document.createElement("button");
+
+button.textContent=i;
+
+if(i===currentPage){
+
+button.classList.add("active");
+
+}
+
+button.addEventListener(
+"click",
+()=>{
+
+currentPage=i;
+
+renderEvents();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+});
+
+pagination.appendChild(button);
+
+}
+
+
+/* =========================================
+   NEXT
+   ========================================= */
+
+const next=document.createElement("button");
+
+next.textContent="›";
+
+next.disabled=
+currentPage===totalPages;
+
+next.addEventListener(
+"click",
+()=>{
+
+if(currentPage<totalPages){
+
+currentPage++;
+
+renderEvents();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+});
+
+pagination.appendChild(next);
+
 }
 
 
@@ -427,7 +630,9 @@ eventsContainer.appendChild(card);
 
 filterButtons.forEach(button=>{
 
-button.addEventListener("click",()=>{
+button.addEventListener(
+"click",
+()=>{
 
 filterButtons.forEach(btn=>
 btn.classList.remove("active")
@@ -435,64 +640,14 @@ btn.classList.remove("active")
 
 button.classList.add("active");
 
-const filter=
+currentFilter=
 button.textContent
 .trim()
 .toUpperCase();
 
-let list=events;
+currentPage=1;
 
-
-/* WEEKLY */
-
-if(filter==="WEEKLY"){
-
-list=events.filter(
-event=>event.type==="WEEKLY"
-);
-
-}
-
-
-/* NXT */
-
-if(filter==="NXT"){
-
-list=events.filter(
-event=>event.type==="NXT"
-);
-
-}
-
-
-/* SPECIAL EVENTS */
-
-if(filter==="SPECIAL EVENTS"){
-
-list=events.filter(
-event=>event.type==="PLE"
-);
-
-}
-
-
-/* OUTSIDERS */
-
-if([
-"SPEED",
-"TNA",
-"AEW",
-"AAA",
-"CMLL"
-].includes(filter)){
-
-list=events.filter(
-event=>event.type===filter
-);
-
-}
-
-renderEvents(list);
+renderEvents();
 
 });
 
@@ -503,4 +658,4 @@ renderEvents(list);
    INITIAL RENDER
    ========================================= */
 
-renderEvents(events);
+renderEvents();
