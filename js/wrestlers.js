@@ -385,6 +385,17 @@ const wrestlers = [
       division: "NXT",  brand: "NXT",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "inactive",achievements: []},
+
+    {name: "Pete Dunne",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "",  brand: "",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "inactive",achievements: []},
+
+    {name: "Psycho Clown",image: "images/zacarias.jpg", nickname: "", stable: "",
+      division: "NXT",  brand: "NXT",
+      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
+ status: "active",achievements: []},
+
     
      {name: "Randy Orton",
         image: "images/Vacante.jpg",
@@ -401,11 +412,7 @@ const wrestlers = [
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "inactive",achievements: []},
 
-    {name: "Pete Dunne",image: "images/zacarias.jpg", nickname: "", stable: "",
-      division: "",  brand: "",
-      overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
- status: "inactive",achievements: []},
-
+   
     {name: "R-Truth",image: "images/zacarias.jpg", nickname: "", stable: "",
       division: "",  brand: "",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
