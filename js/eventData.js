@@ -193,7 +193,14 @@ addPLE("clash-at-the-castle-scotland-2024","CLASH AT THE CASTLE: SCOTLAND 2024",
 addPLE("backlash-france-2024","BACKLASH FRANCE 2024","20/05/2024","ROAD","images/events/backlash-france-2024.jpg");
 addPLE("wrestlemania-ii","WRESTLEMANIA II","28/04/2024","BOOK","images/events/wrestlemania-ii.jpg");
 addPLE("elimination-chamber-perth-2024","ELIMINATION CHAMBER: PERTH 2024","25/03/2024","ROAD","images/events/elimination-chamber-perth-2024.jpg");
-addPLE("royal-rumble-2024","ROYAL RUMBLE 2024: 1ST ANNIVERSARY","25/02/2024","BOOK","images/events/royal-rumble-2024.jpg");
+
+addPLE("royal-rumble-2024","Royal Rumble 2024: 1st Anniversary","02/25/2024","WWE","images/royal-rumble.jpg",[
+{type:"EXTREME RULES",position:"OPENER",wrestler1:"Cody Rhodes",wrestler2:"MJF",score1:4,score2:1,winner:"Cody Rhodes"},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Drew McIntyre","Sheamus"],score1:2,score2:3,winner:"Drew McIntyre & Sheamus"},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Jon Moxley",score1:7,score2:1,winner:"Bryan Danielson"},
+{type:"ROYAL RUMBLE",position:"MAIN EVENT",participants:["R-Truth","Adam Cole","Damian Priest","Cesaro","Alberto del Rio","LA Knight","Seth Rollins","Rob Van Dam","Ilja Dragunov","Johnny Gargano","AJ Styles","Drew McIntyre","CM Punk","Jeff Jarrett","Finn Balor","Chad Gable","Logan Paul","Jon Moxley","Randy Orton","Tommaso Ciampa","Bret Hart","Sheamus","MJF","Roman Reigns","Jey Uso","Pete Dunne","Kevin Owens","Gunther","Solo Sikoa","Bron Breakker"],winner:"R-Truth"}
+]);
+
 addPLE("tlc-2024","TLC 2024","22/01/2024","ROAD","images/events/tlc-2024.jpg");
 
 /* =========================================
