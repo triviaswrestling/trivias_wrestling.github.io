@@ -195,7 +195,7 @@ addPLE("wrestlemania-ii","WRESTLEMANIA II","28/04/2024","BOOK","images/events/wr
 addPLE("elimination-chamber-perth-2024","ELIMINATION CHAMBER: PERTH 2024","25/03/2024","ROAD","images/events/elimination-chamber-perth-2024.jpg");
 
 addPLE("royal-rumble-2024","ROYAL RUMBLE 2024: 1ST ANNIVERSARY","25/02/2024","BOOK","images/events/royal-rumble-2024.jpg",[
-{type:"EXTREME RULES",position:"OPENER",wrestler1:"Cody Rhodes",wrestler2:"MJF",score1:4,score2:1},
+{type:"OPENER",position:"EXTREME RULES",wrestler1:"Cody Rhodes",wrestler2:"MJF",score1:4,score2:1},
 {type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Drew McIntyre","Sheamus"],score1:2,score2:3},
 {type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Jon Moxley",score1:7,score2:1},
 {type:"ROYAL RUMBLE",position:"MAIN EVENT",participants:["R-Truth","Adam Cole","Damian Priest","Cesaro","Alberto del Rio","LA Knight","Seth Rollins","Rob Van Dam","Ilja Dragunov","Johnny Gargano","AJ Styles","Drew McIntyre","CM Punk","Jeff Jarrett","Finn Balor","Chad Gable","Logan Paul","Jon Moxley","Randy Orton","Tommaso Ciampa","Bret Hart","Sheamus","MJF","Roman Reigns","Jey Uso","Pete Dunne","Kevin Owens","Gunther","Solo Sikoa","Bron Breakker"],winner:"R-Truth"}
