@@ -636,6 +636,9 @@ if(result.championship){
 html+=`
 <div class="match-championship">
 ${formatChampionshipName(result.championship)}
+${result.type&&result.type!=="SINGLES"&&result.type!=="TAG TEAM"
+?`<small>${result.type} MATCH</small>`
+:""}
 </div>`;
 
 }
