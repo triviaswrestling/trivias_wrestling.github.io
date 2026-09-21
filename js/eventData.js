@@ -145,7 +145,13 @@ addPLE("summerslam-2026","SUMMERSLAM 2026","23/08/2026","ROAD","images/events/su
 {type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Christian Cage",wrestler2:"Seth Rollins",score1:5,score2:5}
 ]);
 
-addPLE("night-of-champions-2026","NIGHT OF CHAMPIONS 2026","26/07/2026","BOOK","images/events/night-of-champions-2026.jpg");
+addPLE("night-of-champions-2026","NIGHT OF CHAMPIONS 2026","26/07/2026","BOOK","images/events/night-of-champions-2026.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Intercontinental Championship",wrestler1:"Bryan Danielson",wrestler2:"LA Knight",score1:7,score2:0},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Cody Rhodes",wrestler2:"Trick Williams",score1:6,score2:3},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Christian Cage",wrestler2:"Seth Rollins",score1:7,score2:2},
+{type:"STEEL CAGE",position:"MAIN EVENT",championship:"World Heavyweight Championship",wrestler1:"Bret Hart",wrestler2:"Jacob Fatu",score1:3,score2:0}
+]);
+
 addPLE("clash-in-italy-2026","CLASH IN ITALY 2026","21/06/2026","ROAD","images/events/clash-in-italy-2026.jpg");
 addPLE("backlash-tampa-2026","BACKLASH: TAMPA 2026","24/05/2026","BOOK","images/events/backlash-tampa-2026.jpg");
 addPLE("wrestlemania-4-life","WRESTLEMANIA 4 LIFE","26/04/2026","ROAD","images/events/wrestlemania-4-life.jpg");
