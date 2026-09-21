@@ -194,10 +194,10 @@ addPLE("backlash-france-2024","BACKLASH FRANCE 2024","20/05/2024","ROAD","images
 addPLE("wrestlemania-ii","WRESTLEMANIA II","28/04/2024","BOOK","images/events/wrestlemania-ii.jpg");
 addPLE("elimination-chamber-perth-2024","ELIMINATION CHAMBER: PERTH 2024","25/03/2024","ROAD","images/events/elimination-chamber-perth-2024.jpg");
 
-addPLE("royal-rumble-2024","Royal Rumble 2024: 1st Anniversary","02/25/2024","WWE","images/royal-rumble.jpg",[
-{type:"EXTREME RULES",position:"OPENER",wrestler1:"Cody Rhodes",wrestler2:"MJF",score1:4,score2:1,winner:"Cody Rhodes"},
-{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Drew McIntyre","Sheamus"],score1:2,score2:3,winner:"Drew McIntyre & Sheamus"},
-{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Jon Moxley",score1:7,score2:1,winner:"Bryan Danielson"},
+addPLE("royal-rumble-2024","ROYAL RUMBLE 2024: 1ST ANNIVERSARY","25/02/2024","BOOK","images/events/royal-rumble-2024.jpg",[
+{type:"EXTREME RULES",position:"OPENER",wrestler1:"Cody Rhodes",wrestler2:"MJF",score1:4,score2:1},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Drew McIntyre","Sheamus"],score1:2,score2:3},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Jon Moxley",score1:7,score2:1},
 {type:"ROYAL RUMBLE",position:"MAIN EVENT",participants:["R-Truth","Adam Cole","Damian Priest","Cesaro","Alberto del Rio","LA Knight","Seth Rollins","Rob Van Dam","Ilja Dragunov","Johnny Gargano","AJ Styles","Drew McIntyre","CM Punk","Jeff Jarrett","Finn Balor","Chad Gable","Logan Paul","Jon Moxley","Randy Orton","Tommaso Ciampa","Bret Hart","Sheamus","MJF","Roman Reigns","Jey Uso","Pete Dunne","Kevin Owens","Gunther","Solo Sikoa","Bron Breakker"],winner:"R-Truth"}
 ]);
 
@@ -214,6 +214,7 @@ addPLE("payback-2023","PAYBACK 2023","02/10/2023","ROAD","images/events/payback-
 addPLE("summerslam-2023","SUMMERSLAM 2023","03/09/2023","BOOK","images/events/summerslam-2023.jpg");
 addPLE("money-in-the-bank-2023","MONEY IN THE BANK 2023","07/08/2023","ROAD","images/events/money-in-the-bank-2023.jpg");
 addPLE("night-of-champions-2023","NIGHT OF CHAMPIONS 2023","12/06/2023","ROAD","images/events/night-of-champions-2023.jpg");
+
 addPLE("backlash-2023","BACKLASH 2023","05/05/2023","ROAD","images/events/backlash-2023.jpg",[
 {type:"SINGLES",position:"OPENER",wrestler1:"RICOCHET",wrestler2:"AJ Styles",score1:2,score2:3},
 {type:"SINGLES",wrestler1:"Rob Van Dam",wrestler2:"Adam Cole",score1:2,score2:3},
