@@ -198,7 +198,13 @@ addPLE("money-in-the-bank-2024","MONEY IN THE BANK 2024","22/07/2024","ROAD","im
 addPLE("clash-at-the-castle-scotland-2024","CLASH AT THE CASTLE: SCOTLAND 2024","23/06/2024","BOOK","images/events/clash-at-the-castle-scotland-2024.jpg");
 addPLE("backlash-france-2024","BACKLASH FRANCE 2024","20/05/2024","ROAD","images/events/backlash-france-2024.jpg");
 addPLE("wrestlemania-ii","WRESTLEMANIA II","28/04/2024","BOOK","images/events/wrestlemania-ii.jpg");
-addPLE("elimination-chamber-perth-2024","ELIMINATION CHAMBER: PERTH 2024","25/03/2024","ROAD","images/events/elimination-chamber-perth-2024.jpg");
+
+addPLE("elimination-chamber-perth-2024","ELIMINATION CHAMBER: PERTH 2024","25/03/2024","ROAD","images/events/elimination-chamber-perth-2024.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Intercontinental Championship",wrestler1:"MJF",wrestler2:"Roman Reigns",score1:7,score2:1},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Randy Orton",wrestler2:"Bray Wyatt",score1:7,score2:3},
+{type:"ELIMINATION CHAMBER",championship:"WWE World Tag Team Championship",team1:["Jey Uso","AJ Styles"],team2:["Finn Balor","Damian Priest"],team3:["Bryan Danielson","Jon Moxley"],team4:["Alberto del Rio","Andrade"],team5:["Tommaso Ciampa","Johnny Gargano"],team6:["Drew McIntyre","Sheamus"],winner:"Jey Uso & AJ Styles"},
+{type:"ELIMINATION CHAMBER",position:"MAIN EVENT",participants:["Jeff Jarrett","Logan Paul","Bret Hart","Rob Van Dam","Adam Cole","Pete Dunne"],winner:"Jeff Jarrett"}
+]);
 
 addPLE("royal-rumble-2024","ROYAL RUMBLE 2024: 1ST ANNIVERSARY","25/02/2024","BOOK","images/events/royal-rumble-2024.jpg",[
 {type:"OPENER",position:"EXTREME RULES",wrestler1:"Cody Rhodes",wrestler2:"MJF",score1:4,score2:1},
