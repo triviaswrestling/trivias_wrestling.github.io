@@ -346,7 +346,7 @@ addPLE("bad-blood-2024","BAD BLOOD 2024","27/10/2024","ROAD","images/events/bad-
 {type:"TAG TEAM",match:"SAMOAN TAG TEAM MATCH",team1:["Roman Reigns","Jacob Fatu"],team2:["Jey Uso","Jimmy Uso"],score1:2,score2:3},
 {type:"TAG TEAM",match:"IRON MAN MATCH",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Drew McIntyre","Sheamus"],score1:5,score2:0},
 {type:"DEATH MATCH",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Cody Rhodes",score1:2,score2:3},
-{type:"TRIPLE THREAT",match:"HELL IN A CELL MATCH",position:"MAIN EVENT",participants:["Bret Hart","Bron Breakker","Tommaso Ciampa"],scores:[11,1,6]}
+{type:"TRIPLE THREAT",match:"HELL IN A CELL",position:"MAIN EVENT",participants:["Bret Hart","Bron Breakker","Tommaso Ciampa"],scores:[11,1,6]}
 ]);
 
 addPLE("bash-in-berlin-2024","BASH IN BERLIN 2024","23/09/2024","BOOK","images/events/bash-in-berlin-2024.jpg",[
