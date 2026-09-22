@@ -152,11 +152,41 @@ addPLE("night-of-champions-2026","NIGHT OF CHAMPIONS 2026","26/07/2026","BOOK","
 {type:"STEEL CAGE",position:"MAIN EVENT",championship:"World Heavyweight Championship",wrestler1:"Bret Hart",wrestler2:"Jacob Fatu",score1:3,score2:0}
 ]);
 
-addPLE("clash-in-italy-2026","CLASH IN ITALY 2026","21/06/2026","ROAD","images/events/clash-in-italy-2026.jpg");
-addPLE("backlash-tampa-2026","BACKLASH: TAMPA 2026","24/05/2026","BOOK","images/events/backlash-tampa-2026.jpg");
-addPLE("wrestlemania-4-life","WRESTLEMANIA 4 LIFE","26/04/2026","ROAD","images/events/wrestlemania-4-life.jpg");
-addPLE("elimination-chamber-2026","ELIMINATION CHAMBER 2026","29/03/2026","BOOK","images/events/elimination-chamber-2026.jpg");
+addPLE("clash-in-italy-2026","CLASH IN ITALY 2026","21/06/2026","ROAD","images/events/clash-in-italy-2026.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Intercontinental Championship",wrestler1:"Kyle O'Reilly",wrestler2:"Bryan Danielson",score1:4,score2:5},
+{type:"SINGLES",championship:"NXT Championship",wrestler1:"Bron Breakker",wrestler2:"Bo Dallas",score1:3,score2:7},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Jacob Fatu",wrestler2:"Bret Hart",score1:1,score2:9},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Leon Slater","Je'Von Evans"],score1:4,score2:0},
+{type:"FATAL 4-WAY",championship:"Undisputed WWE Championship",participants:["Randy Orton","Axiom","Christian Cage","Seth Rollins"],scores:[1,0,5,3]},
+{type:"SINGLES",position:"MAIN EVENT",championship:"United States Championship",wrestler1:"Trick Williams",wrestler2:"Cody Rhodes",score1:3,score2:4}
+]);
 
+addPLE("backlash-tampa-2026","BACKLASH: TAMPA 2026","24/05/2026","BOOK","images/events/backlash-tampa-2026.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Undisputed WWE Championship",wrestler1:"Randy Orton",wrestler2:"Axiom",score1:5,score2:5},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Trick Williams",wrestler2:"Shawn Spears",score1:3,score2:3},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Bron Breakker","Seth Rollins"],score1:3,score2:2},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Kyle O'Reilly",wrestler2:"Rey Fenix",score1:7,score2:1},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Swerve Strickland",wrestler2:"Jacob Fatu",score1:0,score2:10},
+{type:"SINGLES",match:"THREE STAGES OF HELL MATCH",position:"MAIN EVENT",wrestler1:"Bo Dallas",wrestler2:"Finn Balor",score1:2,score2:0}
+]);
+
+addPLE("wrestlemania-4-life","WRESTLEMANIA 4 LIFE","26/04/2026","ROAD","images/events/wrestlemania-4-life.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"United States Championship",wrestler1:"Bret Hart",wrestler2:"Trick Williams",score1:1,score2:4},
+{type:"BATTLE ROYALE",match:"ANDRE THE GIANT MEMORIAL BATTLE ROYAL MATCH",participants:["Axiom","Ludwig Kaiser","Rey Fenix","Shawn Spears","Batista","Rey Mysterio"],winner:"Axiom"},
+{type:"SINGLES",match:"UNSANCTIONED MATCH",championship:"NXT Championship",wrestler1:"Jacob Fatu",wrestler2:"Bron Breakker",score1:4,score2:6},
+{type:"PITCH BLACK",wrestler1:"Bo Dallas",wrestler2:"Finn Balor",score1:2,score2:2},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Cody Rhodes","Randy Orton"],team2:["Bryan Danielson","Jon Moxley"],score1:2,score2:3},
+{type:"TAG TEAM",match:"LADDER MATCH",championship:"Intercontinental Championship",team1:["Sheamus"],team2:["Kyle O'Reilly"],score1:0,score2:7},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Seth Rollins",wrestler2:"Swerve Strickland",score1:2,score2:6},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Christian Cage",wrestler2:"Randy Orton",score1:3,score2:7}
+]);
+
+addPLE("elimination-chamber-2026","ELIMINATION CHAMBER 2026","29/03/2026","BOOK","images/events/elimination-chamber-2026.jpg",[
+{type:"ELIMINATION CHAMBER",position:"OPENER",match:"NXT CHAMPIONSHIP ELIMINATION CHAMBER MATCH",championship:"NXT Championship",participants:["Jacob Fatu","Jon Moxley","JD Mcdonagh","Karrion Kross","Joe Hendry","Bo Dallas"],winner:"Jacob Fatu"},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Bret Hart",wrestler2:"Bron Breakker",score1:6,score2:1},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Sheamus",wrestler2:"Kyle O'Reilly",score1:3,score2:2},
+{type:"ELIMINATION CHAMBER",position:"MAIN EVENT",participants:["Randy Orton","Bryan Danielson","Rey Fenix","Batista","LA Knight","Trick Williams"],winner:"Randy Orton"}
+]);
 addPLE("royal-rumble-2026","ROYAL RUMBLE 2026","23/02/2026","ROAD","images/events/royal-rumble-2026.jpg",[
 {type:"SINGLES",position:"OPENER",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Seth Rollins",score1:3,score2:4},
 {type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bron Breakker","Seth Rollins"],team2:["Cody Rhodes","Randy Orton"],score1:0,score2:3},
@@ -164,7 +194,14 @@ addPLE("royal-rumble-2026","ROYAL RUMBLE 2026","23/02/2026","ROAD","images/event
 {type:"ROYAL RUMBLE",position:"MAIN EVENT",participants:["Swerve Strickland","Trick Williams","R-Truth","Austin Theory","Ilja Dragunov","Kyle O'Reilly","Bo Dallas","CM Punk","JD Mcdonagh","Bret Hart","Alberto del Rio","Finn Balor","Rey Fenix","LA Knight","Karrion Kross","Rob Van Dam","Axiom","Wade Barrett","Randy Orton","Batista","Jon Moxley","Dezmond Xavier","Sheamus","Joe Hendry","Shawn Spears","Bron Breakker","Bryan Danielson","Jacob Fatu","Rey Mysterio","Chris Benoit"],winner:"Swerve Strickland"}
 ]);
 
-addPLE("saturday-nights-main-event-2026","SATURDAY NIGHT'S MAIN EVENT 2026","24/01/2026","BOOK","images/events/saturday-nights-main-event-2026.jpg");
+addPLE("saturday-nights-main-event-2026","SATURDAY NIGHT'S MAIN EVENT 2026","24/01/2026","BOOK","images/events/saturday-nights-main-event-2026.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"NXT Championship",wrestler1:"Timothy Thatcher",wrestler2:"Jacob Fatu",score1:1,score2:3},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bron Breakker","Seth Rollins"],team2:["Rey Mysterio","Batista"],score1:3,score2:0},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Kyle O'Reilly",wrestler2:"Sheamus",score1:4,score2:5},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Bret Hart",wrestler2:"Swerve Strickland",score1:10,score2:0},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Trick Williams",wrestler2:"Christian Cage",score1:1,score2:9},
+{type:"SINGLES",position:"MAIN EVENT",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Seth Rollins",score1:7,score2:3}
+]);
 
 /* =========================================
    2025
@@ -306,8 +343,8 @@ addPLE("bad-blood-2024","BAD BLOOD 2024","27/10/2024","ROAD","images/events/bad-
 {type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Edge",wrestler2:"Roman Reigns",score1:4,score2:1},
 {type:"SINGLES",championship:"United States Championship",wrestler1:"Tama Tonga",wrestler2:"Finn Balor",score1:5,score2:3},
 {type:"SINGLES",championship:"NXT Championship",wrestler1:"Kyle O'Reilly",wrestler2:"Adam Cole",score1:7,score2:3},
-{type:"TAG TEAM",team1:["Roman Reigns","Jacob Fatu"],team2:["Jey Uso","Jimmy Uso"],score1:2,score2:3},
-{type:"IRON MAN",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Drew McIntyre","Sheamus"],score1:5,score2:0},
+{type:"TAG TEAM",match:"SAMOAN TAG TEAM MATCH",team1:["Roman Reigns","Jacob Fatu"],team2:["Jey Uso","Jimmy Uso"],score1:2,score2:3},
+{type:"TAG TEAM",match:"IRON MAN MATCH",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Drew McIntyre","Sheamus"],score1:5,score2:0},
 {type:"DEATH MATCH",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Cody Rhodes",score1:2,score2:3},
 {type:"TRIPLE THREAT",match:"HELL IN A CELL MATCH",position:"MAIN EVENT",participants:["Bret Hart","Bron Breakker","Tommaso Ciampa"],scores:[11,1,6]}
 ]);
