@@ -170,21 +170,117 @@ addPLE("saturday-nights-main-event-2026","SATURDAY NIGHT'S MAIN EVENT 2026","24/
    2025
    ========================================= */
 
-addPLE("survivor-series-wargames-2025","SURVIVOR SERIES: WARGAMES 2025","20/12/2025","BOOK","images/events/survivor-series-wargames-2025.jpg");
-addPLE("crown-jewel-2025","CROWN JEWEL 2025","22/11/2025","BOOK","images/events/crown-jewel-2025.jpg");
-addPLE("wrestlepalooza-2025","WRESTLEPALOOZA 2025","26/10/2025","BOOK","images/events/wrestlepalooza-2025.jpg");
-addPLE("clash-in-paris-2025","CLASH IN PARIS 2025","18/10/2025","ROAD","images/events/clash-in-paris-2025.jpg");
-addPLE("summerslam-2025","SUMMERSLAM 2025","20/09/2025","BOOK","images/events/summerslam-2025.jpg");
-addPLE("money-in-the-bank-2025","MONEY IN THE BANK 2025","23/08/2025","ROAD","images/events/money-in-the-bank-2025.jpg");
-addPLE("night-of-champions-2025","NIGHT OF CHAMPIONS 2025","26/07/2025","BOOK","images/events/night-of-champions-2025.jpg");
-addPLE("backlash-st-louis-2025","BACKLASH ST. LOUIS 2025","28/06/2025","BOOK","images/events/backlash-st-louis-2025.jpg");
-addPLE("wrestlemania-iii-sunday","WRESTLEMANIA III SUNDAY","08/06/2025","BOOK","images/events/wrestlemania-iii-sunday.jpg");
-addPLE("wrestlemania-iii-saturday","WRESTLEMANIA III SATURDAY","07/06/2025","BOOK","images/events/wrestlemania-iii-saturday.jpg");
-addPLE("elimination-chamber-toronto-2025","ELIMINATION CHAMBER: TORONTO 2025","22/04/2025","ROAD","images/events/elimination-chamber-toronto-2025.jpg");
-addPLE("royal-rumble-2025","ROYAL RUMBLE 2025","22/03/2025","BOOK","images/events/royal-rumble-2025.jpg");
-addPLE("tlc-2025","TLC 2025","24/02/2025","ROAD","images/events/tlc-2025.jpg");
-addPLE("saturday-nights-main-event-2025","SATURDAY NIGHT'S MAIN EVENT 2025","25/01/2025","BOOK","images/events/saturday-nights-main-event-2025.jpg");
-
+addPLE("survivor-series-wargames-2025","SURVIVOR SERIES: WARGAMES 2025","20/12/2025","BOOK","images/events/survivor-series-wargames-2025.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Jacob Fatu",wrestler2:"Rey Fenix",score1:3,score2:2},
+{type:"TAG TEAM",team1:["Alberto del Rio","Wade Barrett"],team2:["Rey Mysterio","Batista"],score1:0,score2:5},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Sheamus",score1:4,score2:3},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Randy Orton",wrestler2:"Trick Williams",score1:0,score2:1},
+{type:"WARGAMES",position:"MAIN EVENT",team1:["Bret Hart","Jey Uso","Christian Cage","Chris Benoit"],team2:["Bron Breakker","Kyle O'Reilly","Seth Rollins","Shawn Michaels"],score1:0,score2:1}
+]);
+addPLE("crown-jewel-2025","CROWN JEWEL 2025","22/11/2025","BOOK","images/events/crown-jewel-2025.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Rey Mysterio",wrestler2:"Jacob Fatu",score1:1,score2:4},
+{type:"SINGLES",wrestler1:"Bron Breakker",wrestler2:"Jey Uso",score1:2,score2:3},
+{type:"PITCH BLACK",wrestler1:"Chris Benoit",wrestler2:"Kyle O'Reilly",score1:0,score2:6},
+{type:"STRAP MATCH",wrestler1:"Bret Hart",wrestler2:"Seth Rollins",score1:13,score2:10},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Crown Jewel Championship",wrestler1:"Cody Rhodes",wrestler2:"Randy Orton",score1:3,score2:6}
+]);
+addPLE("wrestlepalooza-2025","WRESTLEPALOOZA 2025","26/10/2025","BOOK","images/events/wrestlepalooza-2025.jpg",[
+{type:"SINGLES",position:"OPENER",wrestler1:"OG Grande Americano",wrestler2:"Jacob Fatu",score1:2,score2:2},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Pete Dunne","Sheamus"],team2:["Bron Breakker","Seth Rollins"],score1:1,score2:3},
+{type:"EXTREME RULES",championship:"United States Championship",wrestler1:"Chris Benoit",wrestler2:"Finn Balor",score1:5,score2:0},
+{type:"PITCH BLACK",wrestler1:"Bret Hart",wrestler2:"Kyle O'Reilly",score1:7,score2:0},
+{type:"SINGLES",match:"FALLS COUNT ANYWHERE MATCH",position:"MAIN EVENT",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Jon Moxley",score1:11,score2:1}
+]);
+addPLE("clash-in-paris-2025","CLASH IN PARIS 2025","18/10/2025","ROAD","images/events/clash-in-paris-2025.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Rey Mysterio",wrestler2:"Axiom",score1:5,score2:0},
+{type:"TAG TEAM",team1:["Alberto del Rio","Wade Barrett"],team2:["Bron Breakker","Seth Rollins"],score1:0,score2:1},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Chris Benoit",wrestler2:"Finn Balor",score1:5,score2:5},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Kyle O'Reilly",wrestler2:"Pete Dunne",score1:10,score2:0},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Randy Orton",wrestler2:"Christian Cage",score1:6,score2:3},
+{type:"SINGLES",position:"MAIN EVENT",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Bret Hart",score1:5,score2:4}
+]);
+addPLE("summerslam-2025","SUMMERSLAM 2025","20/09/2025","BOOK","images/events/summerslam-2025.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Karrion Kross",wrestler2:"Rey Mysterio",score1:2,score2:3},
+{type:"SINGLES",championship:"NXT Championship",wrestler1:"Trick Williams",wrestler2:"Timothy Thatcher",score1:5,score2:5},
+{type:"FATAL 4-WAY",championship:"WWE World Tag Team Championship",team1:["Pete Dunne","Sheamus"],team2:["Rey Mysterio","Batista"],team3:["Bron Breakker","Seth Rollins"],team4:["AJ Styles","Finn Balor"],scores:[8,0,0,2]},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Randy Orton",wrestler2:"LA Knight",score1:7,score2:2},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Christian Cage",wrestler2:"Kyle O'Reilly",score1:2,score2:7},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Chris Benoit",wrestler2:"Jey Uso",score1:3,score2:1},
+{type:"SINGLES",match:"FALLS COUNT ANYWHERE MATCH",position:"MAIN EVENT",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Jacob Fatu",score1:8,score2:7}
+]);
+addPLE("money-in-the-bank-2025","MONEY IN THE BANK 2025","23/08/2025","ROAD","images/events/money-in-the-bank-2025.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Trick Williams",wrestler2:"Sheamus",score1:3,score2:1},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Kyle O'Reilly",score1:6,score2:4},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Christian Cage",wrestler2:"CM Punk",score1:9,score2:0},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Pete Dunne",wrestler2:"Chris Benoit",score1:3,score2:7},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bret Hart","Kyle O'Reilly"],team2:["Edge","Christian Cage"],score1:3,score2:2},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Bret Hart",wrestler2:"Randy Orton",score1:2,score2:7},
+{type:"LADDER",position:"MAIN EVENT",match:"MONEY IN THE BANK LADDER MATCH",participants:["Adam Cole","Finn Balor","Jacob Fatu","Karrion Kross","LA Knight","Sheamus"],scores:[6,0,0,1,3,2]}
+]);
+addPLE("night-of-champions-2025","NIGHT OF CHAMPIONS 2025","26/07/2025","BOOK","images/events/night-of-champions-2025.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Jacob Fatu",wrestler2:"Trick Williams",score1:2,score2:3},
+{type:"TAG TEAM",team1:["Cody Rhodes","Jon Moxley"],team2:["Edge","Christian Cage"],score1:2,score2:3},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Christian Cage",wrestler2:"CM Punk",score1:10,score2:0},
+{type:"TRIPLE THREAT",championship:"United States Championship",participants:["Tommaso Ciampa","Finn Balor","Pete Dunne"],scores:[2,1,7]},
+{type:"SINGLES",championship:"NXT Championship",wrestler1:"Ethan Page",wrestler2:"Seth Rollins",score1:6,score2:4},
+{type:"SINGLES",match:"2 OUT OF 3 FALLS MATCH",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Jacob Fatu",score1:2,score2:0},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Bret Hart",wrestler2:"Karrion Kross",score1:4,score2:0}
+]);
+addPLE("backlash-st-louis-2025","BACKLASH ST. LOUIS 2025","28/06/2025","ROAD","images/events/backlash-st-louis-2025.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Jacob Fatu",wrestler2:"Trick Williams",score1:3,score2:2},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bret Hart","Kyle O'Reilly"],team2:["Trick Williams","Karrion Kross"],score1:4,score2:1},
+{type:"SINGLES",wrestler1:"Edge",wrestler2:"Finn Balor",score1:2,score2:2},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Christian Cage",wrestler2:"Adam Cole",score1:8,score2:1},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Tommaso Ciampa",wrestler2:"Pete Dunne",score1:5,score2:5},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Swerve Strickland",wrestler2:"Cody Rhodes",score1:4,score2:5},
+{type:"TABLES",match:"TABLES MATCH",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Randy Orton",wrestler2:"Bret Hart",score1:0,score2:10}
+]);
+addPLE("wrestlemania-iii-sunday","WRESTLEMANIA III SUNDAY","08/06/2025","BOOK","images/events/wrestlemania-iii-sunday.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"NXT Championship",wrestler1:"Ethan Page",wrestler2:"Karrion Kross",score1:5,score2:2},
+{type:"BATTLE ROYALE",match:"ANDRE THE GIANT MEMORIAL BATTLE ROYAL MATCH",participants:["Finn Balor","Seth Rollins","Sami Zayn","Alberto del Rio","Kane","LA Knight","Rob Van Dam","Rey Mysterio","Joe Hendry","Edge","Batista","CM Punk"],winner:"Finn Balor"},
+{type:"TRIBAL COMBAT",wrestler1:"Jacob Fatu",wrestler2:"Jey Uso",score1:3,score2:3},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Tommaso Ciampa",wrestler2:"Bron Breakker",score1:5,score2:4},
+{type:"DEATH MATCH",wrestler1:"Cody Rhodes",wrestler2:"Jeff Jarrett",score1:3,score2:4},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Bret Hart",wrestler2:"Randy Orton",score1:3,score2:7}
+]);
+addPLE("wrestlemania-iii-saturday","WRESTLEMANIA III SATURDAY","07/06/2025","BOOK","images/events/wrestlemania-iii-saturday.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Jacob Fatu",wrestler2:"Trick Williams",score1:3,score2:2},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bret Hart","Kyle O'Reilly"],team2:["Cody Rhodes","Jon Moxley"],score1:3,score2:1},
+{type:"SINGLES",wrestler1:"AJ Styles",wrestler2:"R-Truth",score1:5,score2:0},
+{type:"SINGLES",match:"ONLY-ONE-SHOT MATCH",wrestler1:"Drew McIntyre",wrestler2:"Sheamus",score1:0,score2:10},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Christian Cage",wrestler2:"Adam Cole",score1:6,score2:3},
+{type:"SINGLES",position:"MAIN EVENT",championship:"World Heavyweight Championship",wrestler1:"Pete Dunne",wrestler2:"Swerve Strickland",score1:4,score2:5}
+]);
+addPLE("elimination-chamber-toronto-2025","ELIMINATION CHAMBER: TORONTO 2025","22/04/2025","ROAD","images/events/elimination-chamber-toronto-2025.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Jacob Fatu",wrestler2:"Trick Williams",score1:3,score2:2},
+{type:"ELIMINATION CHAMBER",championship:"WWE World Tag Team Championship",team1:["Cody Rhodes","Jon Moxley"],team2:["Randy Orton","Christian Cage"],team3:["Jey Uso","Jacob Fatu"],team4:["Rey Mysterio","Batista"],team5:["Edge","Finn Balor"],team6:["Bron Breakker","Tommaso Ciampa"],winner:"Cody Rhodes & Jon Moxley"},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Bret Hart",wrestler2:"Sheamus",score1:6,score2:4},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Pete Dunne",score1:3,score2:6},
+{type:"ELIMINATION CHAMBER",position:"MAIN EVENT",participants:["Randy Orton","Cody Rhodes","Tama Tonga","Edge","Finn Balor","Adam Cole"],winner:"Randy Orton"}
+]);
+addPLE("royal-rumble-2025","ROYAL RUMBLE 2025","22/03/2025","BOOK","images/events/royal-rumble-2025.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Jacob Fatu",wrestler2:"Trick Williams",score1:3,score2:2},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bret Hart","Kyle O'Reilly"],team2:["Pete Dunne","Sheamus"],score1:4,score2:1},
+{type:"TABLES",championship:"United States Championship",wrestler1:"Tommaso Ciampa",wrestler2:"Tama Tonga",score1:7,score2:0},
+{type:"STEEL CAGE",championship:"Intercontinental Championship",wrestler1:"Randy Orton",wrestler2:"Christian Cage",score1:9,score2:10},
+{type:"ROYAL RUMBLE",position:"MAIN EVENT",participants:["Swerve Strickland","Tommaso Ciampa","Bron Breakker","Rey Mysterio","Finn Balor","Edge","Claudio Castagnoli","Batista","Jey Uso","LA Knight","Alberto del Rio","Adam Cole","Pete Dunne","MJF","Ethan Page","Trick Williams","CM Punk","Christian Cage","Shinsuke Nakamura","Jeff Jarrett","Zack Ryder","Rob Van Dam","Randy Orton","Jon Moxley","Jacob Fatu","Tama Tonga","Kane","Owen Hart","Kyle O'Reilly","R-Truth"],winner:"Swerve Strickland"}
+]);
+addPLE("tlc-2025","TLC 2025","24/02/2025","ROAD","images/events/tlc-2025.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Bron Breakker",wrestler2:"Jacob Fatu",score1:2,score2:3},
+{type:"TRIPLE THREAT",match:"TRIPLE THREAT MATCH",championship:"NXT Championship",participants:["Christian Cage","Sheamus","AJ Styles"],scores:[7,0,0]},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Randy Orton",wrestler2:"Christian Cage",score1:7,score2:0},
+{type:"TAG TEAM",match:"LADDER MATCH",championship:"WWE World Tag Team Championship",team1:["Bret Hart","Kyle O'Reilly"],team2:["Edge","Finn Balor"],score1:7,score2:0},
+{type:"SINGLES",match:"TLC MATCH",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Bret Hart",score1:7,score2:10},
+{type:"SINGLES",match:"TLC MATCH",position:"MAIN EVENT",championship:"World Heavyweight Championship",wrestler1:"Adam Cole",wrestler2:"Cody Rhodes",score1:2,score2:10}
+]);
+addPLE("saturday-nights-main-event-2025","SATURDAY NIGHT'S MAIN EVENT 2025","25/01/2025","BOOK","images/events/saturday-nights-main-event-2025.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Bron Breakker",wrestler2:"Edge",score1:3,score2:2},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Tama Tonga",wrestler2:"Tommaso Ciampa",score1:1,score2:3},
+{type:"SINGLES",championship:"Intercontinental Championship",match:"STREET FIGHT MATCH",wrestler1:"Randy Orton",wrestler2:"Edge",score1:9,score2:1},
+{type:"TAG TEAM",match:"TAG TEAM MATCH",championship:"WWE World Tag Team Championship",team1:["Cody Rhodes","Bryan Danielson"],team2:["Bret Hart","Kyle O'Reilly"],score1:1,score2:4},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Finn Balor",score1:9,score2:1},
+{type:"SINGLES",position:"MAIN EVENT",championship:"World Heavyweight Championship",wrestler1:"Bryan Danielson",wrestler2:"Adam Cole",score1:2,score2:7}
+]);
 /* =========================================
    2024
    ========================================= */
