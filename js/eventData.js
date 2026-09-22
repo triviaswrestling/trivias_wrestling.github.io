@@ -213,9 +213,30 @@ addPLE("tlc-2024","TLC 2024","22/01/2024","ROAD","images/events/tlc-2024.jpg");
    2023
    ========================================= */
 
-addPLE("survivor-series-wargames-2023","SURVIVOR SERIES: WARGAMES 2023","17/12/2023","BOOK","images/events/survivor-series-wargames-2023.jpg");
-addPLE("crown-jewel-2023","CROWN JEWEL 2023","27/11/2023","ROAD","images/events/crown-jewel-2023.jpg");
-addPLE("fastlane-2023","FASTLANE 2023","29/10/2023","BOOK","images/events/fastlane-2023.jpg");
+addPLE("survivor-series-wargames-2023","SURVIVOR SERIES: WARGAMES 2023","17/12/2023","BOOK","images/events/survivor-series-wargames-2023.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"NXT Championship",wrestler1:"Bret Hart",wrestler2:"Pete Dunne",score1:5,score2:4},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Adam Cole","MJF"],score1:3,score2:1},
+{type:"SINGLES",wrestler1:"Logan Paul",wrestler2:"Dominik Mysterio",score1:7,score2:3},
+{type:"TRIPLE THREAT",championship:"Undisputed WWE Championship",participants:["Jeff Jarrett","Bron Breakker","Randy Orton"],scores:[3,1,0]},
+{type:"WARGAMES",position:"MAIN EVENT",team1:["Cody Rhodes","Bryan Danielson","Jon Moxley","Claudio Castagnoli","Sheamus"],team2:["AJ Styles","Roman Reigns","GUNTHER","Sami Zayn","Solo Sikoa"],score1:1,score2:0}
+]);
+
+addPLE("crown-jewel-2023","CROWN JEWEL 2023","27/11/2023","ROAD","images/events/crown-jewel-2023.jpg",[
+{type:"TAG TEAM",position:"OPENER",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Pete Dunne","Tyler Bate"],score1:5,score2:0},
+{type:"TRIPLE THREAT",championship:"United States Championship",participants:["Kevin Owens","Johnny Gargano","Logan Paul"],scores:[0,1,9]},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Randy Orton",wrestler2:"Dominik Mysterio",score1:0,score2:10},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Jeff Jarrett",score1:0,score2:8},
+{type:"SINGLES",position:"MAIN EVENT",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Adam Cole",score1:7,score2:3}
+]);
+
+addPLE("fastlane-2023","FASTLANE 2023","29/10/2023","BOOK","images/events/fastlane-2023.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"NXT Championship",wrestler1:"Bret Hart",wrestler2:"Roman Reigns",score1:5,score2:3},
+{type:"TAG TEAM",team1:["Adam Cole","MJF"],team2:["Pete Dunne","Tyler Bate"],score1:0,score2:5},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Chris Jericho",wrestler2:"Randy Orton",score1:3,score2:6},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Kevin Owens",wrestler2:"Johnny Gargano",score1:4,score2:4},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"GUNTHER",score1:6,score2:4},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Bryan Danielson",score1:0,score2:10}
+]);
 
 addPLE("payback-2023","PAYBACK 2023","02/10/2023","ROAD","images/events/payback-2023.jpg",[
 {type:"TAG TEAM",position:"OPENER",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Pete Dunne","Sheamus"],score1:3,score2:1},
