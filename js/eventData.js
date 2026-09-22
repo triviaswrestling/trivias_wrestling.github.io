@@ -205,15 +205,17 @@ addPLE("crown-jewel-2024","CROWN JEWEL 2024","26/11/2024","ROAD","images/events/
 {type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Bryan Danielson",wrestler2:"Bret Hart",score1:5,score2:4},
 {type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Cody Rhodes",wrestler2:"Jeff Jarrett",score1:3,score2:6}
 ]);
+
 addPLE("bad-blood-2024","BAD BLOOD 2024","27/10/2024","ROAD","images/events/bad-blood-2024.jpg",[
 {type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Edge",wrestler2:"Roman Reigns",score1:4,score2:1},
 {type:"SINGLES",championship:"United States Championship",wrestler1:"Tama Tonga",wrestler2:"Finn Balor",score1:5,score2:3},
 {type:"SINGLES",championship:"NXT Championship",wrestler1:"Kyle O'Reilly",wrestler2:"Adam Cole",score1:7,score2:3},
-{type:"SAMOAN TAG TEAM",team1:["Roman Reigns","Jacob Fatu"],team2:["Jey Uso","Jimmy Uso"],score1:2,score2:3},
+{type:"TAG TEAM",team1:["Roman Reigns","Jacob Fatu"],team2:["Jey Uso","Jimmy Uso"],score1:2,score2:3},
 {type:"IRON MAN",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Drew McIntyre","Sheamus"],score1:5,score2:0},
 {type:"DEATH MATCH",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Cody Rhodes",score1:2,score2:3},
-{type:"HELL IN A CELL",position:"MAIN EVENT",participants:["Bret Hart","Bron Breakker","Tommaso Ciampa"],scores:[11,1,6]}
+{type:"TRIPLE THREAT",match:"HELL IN A CELL MATCH",position:"MAIN EVENT",participants:["Bret Hart","Bron Breakker","Tommaso Ciampa"],scores:[11,1,6]}
 ]);
+
 addPLE("bash-in-berlin-2024","BASH IN BERLIN 2024","23/09/2024","BOOK","images/events/bash-in-berlin-2024.jpg",[
 {type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Edge",wrestler2:"AJ Styles",score1:5,score2:0},
 {type:"TRIBAL COMBAT",wrestler1:"Jey Uso",wrestler2:"Jacob Fatu",score1:2,score2:3},
@@ -225,7 +227,7 @@ addPLE("bash-in-berlin-2024","BASH IN BERLIN 2024","23/09/2024","BOOK","images/e
 addPLE("summerslam-2024","SUMMERSLAM 2024","25/08/2024","BOOK","images/events/summerslam-2024.jpg",[
 {type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Edge",wrestler2:"Tommaso Ciampa",score1:3,score2:2},
 {type:"SINGLES",championship:"NXT Championship",wrestler1:"Tama Tonga",wrestler2:"Shawn Spears",score1:5,score2:5},
-{type:"LADDER",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Bron Breakker","Tommaso Ciampa"],score1:2,score2:0},
+{type:"TAG TEAM",match:"LADDER MATCH",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Bron Breakker","Tommaso Ciampa"],score1:2,score2:0},
 {type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Adam Cole",wrestler2:"Claudio Castagnoli",score1:3,score2:2},
 {type:"SINGLES",championship:"United States Championship",wrestler1:"Randy Orton",wrestler2:"Cody Rhodes",score1:6,score2:2},
 {type:"PITCH BLACK",championship:"World Heavyweight Championship",wrestler1:"Bret Hart",wrestler2:"Finn Balor",score1:8,score2:0},
