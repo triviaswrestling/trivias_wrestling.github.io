@@ -509,10 +509,12 @@ const wrestlers = [
       division: "",  brand: "",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "inactive",achievements: []},
-    {name: "Ted Dibiase Jr",image: "images/zacarias.jpg", nickname: "", stable: "",
+    
+    {name: "Ted Dibiase Jr",image: "https://i.ibb.co/m5WNVGTq/Ted-Dibiase-trivias.jpg", nickname: "", stable: "",
       division: "",  brand: "",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "inactive",achievements: []},
+    
     {name: "The Miz",image: "images/zacarias.jpg", nickname: "", stable: "",
       division: "",  brand: "",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
