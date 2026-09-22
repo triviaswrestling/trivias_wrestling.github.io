@@ -218,7 +218,14 @@ addPLE("crown-jewel-2023","CROWN JEWEL 2023","27/11/2023","ROAD","images/events/
 addPLE("fastlane-2023","FASTLANE 2023","29/10/2023","BOOK","images/events/fastlane-2023.jpg");
 addPLE("payback-2023","PAYBACK 2023","02/10/2023","ROAD","images/events/payback-2023.jpg");
 addPLE("summerslam-2023","SUMMERSLAM 2023","03/09/2023","BOOK","images/events/summerslam-2023.jpg");
-addPLE("money-in-the-bank-2023","MONEY IN THE BANK 2023","07/08/2023","ROAD","images/events/money-in-the-bank-2023.jpg");
+
+addPLE("money-in-the-bank-2023","MONEY IN THE BANK 2023","07/08/2023","ROAD","images/events/money-in-the-bank-2023.jpg",[
+{type:"TAG TEAM",position:"OPENER",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Finn Balor"],team2:["Bray Wyatt","The Undertaker"],score1:5,score2:0},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Chris Jericho",score1:6,score2:4},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Adam Cole",wrestler2:"Kevin Owens",score1:2,score2:8},
+{type:"LADDER",position:"MAIN EVENT",match:"MONEY IN THE BANK LADDER MATCH",participants:["Bryan Danielson","Karrion Kross","Randy Orton","Roman Reigns","Ricochet","Jon Moxley"],scores:[6,0,0,0,0,1]}
+]);
+
 addPLE("night-of-champions-2023","NIGHT OF CHAMPIONS 2023","12/06/2023","ROAD","images/events/night-of-champions-2023.jpg");
 
 addPLE("backlash-2023","BACKLASH 2023","05/05/2023","ROAD","images/events/backlash-2023.jpg",[
