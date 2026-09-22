@@ -217,7 +217,14 @@ addPLE("survivor-series-wargames-2023","SURVIVOR SERIES: WARGAMES 2023","17/12/2
 addPLE("crown-jewel-2023","CROWN JEWEL 2023","27/11/2023","ROAD","images/events/crown-jewel-2023.jpg");
 addPLE("fastlane-2023","FASTLANE 2023","29/10/2023","BOOK","images/events/fastlane-2023.jpg");
 addPLE("payback-2023","PAYBACK 2023","02/10/2023","ROAD","images/events/payback-2023.jpg");
-addPLE("summerslam-2023","SUMMERSLAM 2023","03/09/2023","BOOK","images/events/summerslam-2023.jpg");
+
+addPLE("summerslam-2023","SUMMERSLAM 2023","03/09/2023","BOOK","images/events/summerslam-2023.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"NXT Championship",wrestler1:"Jeff Jarrett",wrestler2:"Karrion Kross",score1:6,score2:3},
+{type:"TRIPLE THREAT",championship:"Intercontinental Championship",participants:["Chris Jericho","AJ Styles","Gunther"],scores:[8,1,1]},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Adam Cole",wrestler2:"Jon Moxley",score1:5,score2:3},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Ricochet",score1:6,score2:1},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Kevin Owens",score1:6,score2:4}
+]);
 
 addPLE("money-in-the-bank-2023","MONEY IN THE BANK 2023","07/08/2023","ROAD","images/events/money-in-the-bank-2023.jpg",[
 {type:"TAG TEAM",position:"OPENER",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Finn Balor"],team2:["Bray Wyatt","The Undertaker"],score1:5,score2:0},
