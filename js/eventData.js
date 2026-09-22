@@ -189,15 +189,80 @@ addPLE("saturday-nights-main-event-2025","SATURDAY NIGHT'S MAIN EVENT 2025","25/
    2024
    ========================================= */
 
-addPLE("survivor-series-wargames-2024","SURVIVOR SERIES: WARGAMES 2024","22/12/2024","BOOK","images/events/survivor-series-wargames-2024.jpg");
-addPLE("crown-jewel-2024","CROWN JEWEL 2024","26/11/2024","BOOK","images/events/crown-jewel-2024.jpg");
-addPLE("bad-blood-2024","BAD BLOOD 2024","27/10/2024","ROAD","images/events/bad-blood-2024.jpg");
-addPLE("bash-in-berlin-2024","BASH IN BERLIN 2024","23/09/2024","BOOK","images/events/bash-in-berlin-2024.jpg");
-addPLE("summerslam-2024","SUMMERSLAM 2024","25/08/2024","BOOK","images/events/summerslam-2024.jpg");
-addPLE("money-in-the-bank-2024","MONEY IN THE BANK 2024","22/07/2024","ROAD","images/events/money-in-the-bank-2024.jpg");
-addPLE("clash-at-the-castle-scotland-2024","CLASH AT THE CASTLE: SCOTLAND 2024","23/06/2024","BOOK","images/events/clash-at-the-castle-scotland-2024.jpg");
-addPLE("backlash-france-2024","BACKLASH FRANCE 2024","20/05/2024","ROAD","images/events/backlash-france-2024.jpg");
-addPLE("wrestlemania-ii","WRESTLEMANIA II","28/04/2024","BOOK","images/events/wrestlemania-ii.jpg");
+addPLE("survivor-series-wargames-2024","SURVIVOR SERIES: WARGAMES 2024","22/12/2024","BOOK","images/events/survivor-series-wargames-2024.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Bron Breakker",wrestler2:"Rey Mysterio",score1:4,score2:1},
+{type:"SINGLES",wrestler1:"Jey Uso",wrestler2:"Finn Balor",score1:5,score2:0},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Randy Orton",wrestler2:"Edge",score1:3,score2:0},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Tama Tonga",wrestler2:"Tommaso Ciampa",score1:3,score2:3},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Rob Van Dam",score1:7,score2:2},
+{type:"WARGAMES",position:"MAIN EVENT",team1:["Cody Rhodes","Bryan Danielson","Jon Moxley","Jeff Hardy"],team2:["Adam Cole","Bret Hart","Kyle O'Reilly","Roderick Strong"],score1:0,score2:11}
+]);
+addPLE("crown-jewel-2024","CROWN JEWEL 2024","26/11/2024","ROAD","images/events/crown-jewel-2024.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Edge",wrestler2:"Bron Breakker",score1:2,score2:3},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Jey Uso","Jimmy Uso"],score1:4,score2:1},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Tama Tonga",wrestler2:"Adam Cole",score1:5,score2:4},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Jimmy Uso",wrestler2:"Randy Orton",score1:1,score2:8},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Bryan Danielson",wrestler2:"Bret Hart",score1:5,score2:4},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Cody Rhodes",wrestler2:"Jeff Jarrett",score1:3,score2:6}
+]);
+addPLE("bad-blood-2024","BAD BLOOD 2024","27/10/2024","ROAD","images/events/bad-blood-2024.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Edge",wrestler2:"Roman Reigns",score1:4,score2:1},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Tama Tonga",wrestler2:"Finn Balor",score1:5,score2:3},
+{type:"SINGLES",championship:"NXT Championship",wrestler1:"Kyle O'Reilly",wrestler2:"Adam Cole",score1:7,score2:3},
+{type:"SAMOAN TAG TEAM",team1:["Roman Reigns","Jacob Fatu"],team2:["Jey Uso","Jimmy Uso"],score1:2,score2:3},
+{type:"IRON MAN",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Drew McIntyre","Sheamus"],score1:5,score2:0},
+{type:"DEATH MATCH",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Cody Rhodes",score1:2,score2:3},
+{type:"HELL IN A CELL",position:"MAIN EVENT",participants:["Bret Hart","Bron Breakker","Tommaso Ciampa"],scores:[11,1,6]}
+]);
+addPLE("bash-in-berlin-2024","BASH IN BERLIN 2024","23/09/2024","BOOK","images/events/bash-in-berlin-2024.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Edge",wrestler2:"AJ Styles",score1:5,score2:0},
+{type:"TRIBAL COMBAT",wrestler1:"Jey Uso",wrestler2:"Jacob Fatu",score1:2,score2:3},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Randy Orton",wrestler2:"Tama Tonga",score1:3,score2:6},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Adam Cole",wrestler2:"Jimmy Uso",score1:3,score2:4},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Bret Hart",wrestler2:"Bryan Danielson",score1:2,score2:3},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Cody Rhodes",score1:5,score2:5}
+]);
+addPLE("summerslam-2024","SUMMERSLAM 2024","25/08/2024","BOOK","images/events/summerslam-2024.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Edge",wrestler2:"Tommaso Ciampa",score1:3,score2:2},
+{type:"SINGLES",championship:"NXT Championship",wrestler1:"Tama Tonga",wrestler2:"Shawn Spears",score1:5,score2:5},
+{type:"LADDER",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Bron Breakker","Tommaso Ciampa"],score1:2,score2:0},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Adam Cole",wrestler2:"Claudio Castagnoli",score1:3,score2:2},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Randy Orton",wrestler2:"Cody Rhodes",score1:6,score2:2},
+{type:"PITCH BLACK",championship:"World Heavyweight Championship",wrestler1:"Bret Hart",wrestler2:"Finn Balor",score1:8,score2:0},
+{type:"TRIBAL COMBAT",wrestler1:"Roman Reigns",wrestler2:"Jey Uso",score1:3,score2:6},
+{type:"2 OUT OF 3 FALLS",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Pete Dunne",score1:2,score2:1}
+]);
+addPLE("money-in-the-bank-2024","MONEY IN THE BANK 2024","22/07/2024","ROAD","images/events/money-in-the-bank-2024.jpg",[
+{type:"TAG TEAM",position:"OPENER",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Jey Uso","Tama Tonga"],score1:4,score2:1},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Randy Orton",wrestler2:"Jey Uso",score1:9,score2:0},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Adam Cole",wrestler2:"Rob Van Dam",score1:6,score2:2},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Bret Hart",wrestler2:"Jimmy Uso",score1:5,score2:3},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Pete Dunne",wrestler2:"Jeff Jarrett",score1:4,score2:6},
+{type:"LADDER",position:"MAIN EVENT",match:"MONEY IN THE BANK LADDER MATCH",participants:["Bryan Danielson","MJF","Bron Breakker","Cody Rhodes","Finn Balor","Tommaso Ciampa"],scores:[1,6,0,4,0,0]}
+]);
+addPLE("clash-at-the-castle-scotland-2024","CLASH AT THE CASTLE: SCOTLAND 2024","23/06/2024","BOOK","images/events/clash-at-the-castle-scotland-2024.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"World Heavyweight Championship",wrestler1:"Bret Hart",wrestler2:"Rob Van Dam",score1:6,score2:2},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Randy Orton",wrestler2:"Alberto del Rio",score1:6,score2:2},
+{type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Adam Cole",wrestler2:"Finn Balor",score1:9,score2:1},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bron Breakker","Tommaso Ciampa"],team2:["Bryan Danielson","Jon Moxley"],score1:1,score2:4},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Pete Dunne",score1:4,score2:4}
+]);
+addPLE("backlash-france-2024","BACKLASH FRANCE 2024","20/05/2024","ROAD","images/events/backlash-france-2024.jpg",[
+{type:"DEATH MATCH",position:"OPENER",championship:"Intercontinental Championship",wrestler1:"MJF",wrestler2:"Adam Cole",score1:0,score2:1},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Logan Paul",wrestler2:"Randy Orton",score1:3,score2:6},
+{type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Jey Uso","Tama Tonga"],team2:["Bron Breakker","Tommaso Ciampa"],score1:3,score2:4},
+{type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Pete Dunne",score1:5,score2:5},
+{type:"SINGLES",position:"MAIN EVENT",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Bret Hart",score1:4,score2:5}
+]);
+
+addPLE("wrestlemania-ii","WRESTLEMANIA II","28/04/2024","BOOK","images/events/wrestlemania-ii.jpg",[
+{type:"SINGLES",position:"OPENER",championship:"NXT Championship",wrestler1:"Bret Hart",wrestler2:"Kevin Owens",score1:10,score2:0},
+{type:"NO HOLDS BARRED",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"R-Truth",score1:8,score2:0},
+{type:"STREET FIGHT",championship:"United States Championship",wrestler1:"Randy Orton",wrestler2:"Logan Paul",score1:6,score2:3},
+{type:"UNDISPUTED ERA RULES",championship:"WWE World Tag Team Championship",team1:["Jey Uso","Bron Breakker"],team2:["Tommaso Ciampa","Johnny Gargano"],score1:7,score2:2},
+{type:"BATTLE ROYALE",championship:"Intercontinental Championship",match:"ANDRE THE GIANT MEMORIAL BATTLE ROYAL",participants:["MJF","Claudio Castagnoli","Seth Rollins","Bray Wyatt","Rob Van Dam","Adam Cole","The Sandman","Alberto del Rio","Finn Balor","Rey Mysterio","AJ Styles","Tama Tonga"],winner:"MJF"},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Jeff Jarrett",score1:3,score2:6}
+]);
 
 addPLE("elimination-chamber-perth-2024","ELIMINATION CHAMBER: PERTH 2024","25/03/2024","ROAD","images/events/elimination-chamber-perth-2024.jpg",[
 {type:"SINGLES",position:"OPENER",championship:"Intercontinental Championship",wrestler1:"MJF",wrestler2:"Roman Reigns",score1:7,score2:1},
