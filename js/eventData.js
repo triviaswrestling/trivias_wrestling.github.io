@@ -207,7 +207,14 @@ addPLE("royal-rumble-2024","ROYAL RUMBLE 2024: 1ST ANNIVERSARY","25/02/2024","BO
 {type:"ROYAL RUMBLE",position:"MAIN EVENT",participants:["R-Truth","Adam Cole","Damian Priest","Cesaro","Alberto del Rio","LA Knight","Seth Rollins","Rob Van Dam","Ilja Dragunov","Johnny Gargano","AJ Styles","Drew McIntyre","CM Punk","Jeff Jarrett","Finn Balor","Chad Gable","Logan Paul","Jon Moxley","Randy Orton","Tommaso Ciampa","Bret Hart","Sheamus","MJF","Roman Reigns","Jey Uso","Pete Dunne","Kevin Owens","Gunther","Solo Sikoa","Bron Breakker"],winner:"R-Truth"}
 ]);
 
-addPLE("tlc-2024","TLC 2024","22/01/2024","ROAD","images/events/tlc-2024.jpg");
+addPLE("tlc-2024","TLC 2024","22/01/2024","ROAD","images/events/tlc-2024.jpg",[
+{type:"TLC",position:"OPENER",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Adam Cole",score1:10,score2:5},
+{type:"SINGLES",wrestler1:"Drew McIntyre",wrestler2:"Claudio Castagnoli",score1:3,score2:1},
+{type:"SINGLES",championship:"United States Championship",wrestler1:"Logan Paul",wrestler2:"Randy Orton",score1:1,score2:8},
+{type:"FATAL 4-WAY",championship:"Intercontinental Championship",participants:["Dominik Mysterio","Solo Sikoa","GUNTHER","MJF"],scores:[1,2,1,6]},
+{type:"LADDER",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Roman Reigns","Axiom"],score1:7,score2:2},
+{type:"TLC",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Jeff Jarrett",wrestler2:"Bryan Danielson",score1:9,score2:10}
+]);
 
 /* =========================================
    2023
