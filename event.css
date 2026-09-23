@@ -578,6 +578,7 @@ main {
 
 .chamber-team {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: flex-start;
     gap: 8px;
@@ -590,6 +591,7 @@ main {
 
 .chamber-team .wrestler {
     width: 125px;
+    flex: 0 0 125px;
 }
 
 .chamber-team .wrestler img {
@@ -695,11 +697,13 @@ main {
     }
 
     .chamber-team {
+        flex-direction: row;
         gap: 5px;
     }
 
     .chamber-team .wrestler {
         width: 90px;
+        flex: 0 0 90px;
     }
 
     .chamber-team .wrestler img {
