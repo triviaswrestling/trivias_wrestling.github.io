@@ -655,7 +655,6 @@ if([
 "6-WAY",
 "8-WAY",
 "LADDER",
-"ELIMINATION CHAMBER"
 ].includes(result.type)){
 
 const participants=result.participants||[
@@ -835,22 +834,72 @@ result.images?.[name]
    ===================================== */
 
 else if(
-result.type==="ELIMINATION CHAMBER TAG TEAM"
+result.type==="ELIMINATION CHAMBER"&&
+result.team1&&
+result.team2&&
+result.team3&&
+result.team4&&
+result.team5&&
+result.team6
 ){
+
+const teams=[
+result.team1,
+result.team2,
+result.team3,
+result.team4,
+result.team5,
+result.team6
+];
 
 html+=`
 <div class="match-name">
-ELIMINATION CHAMBER TAG TEAM
+${result.match||"ELIMINATION CHAMBER TAG TEAM"}
+</div>
+
+<div class="chamber-teams">
+
+${teams.map((team,index)=>`
+
+<div class="chamber-team">
+
+<div class="chamber-team-number">
+TEAM ${index+1}
+</div>
+
+${(team||[])
+.flat()
+.map(name=>createWrestler(
+name,
+result.images?.[name]
+))
+.join("")}
+
+</div>
+
+`).join("")}
+
+</div>`;
+
+}
+   else if(result.type==="ELIMINATION CHAMBER"){
+
+const participants=result.participants||[];
+
+html+=`
+<div class="match-name">
+${result.match||"ELIMINATION CHAMBER"}
 </div>
 
 <div class="match">
 
 <div class="team">
 
-${(result.team1||[])
-.flat()
-.map(name=>createWrestler(
+${participants
+.map((name,index)=>
+createWrestlerWithScore(
 name,
+result.scores?.[index],
 result.images?.[name]
 ))
 .join("")}
@@ -861,29 +910,13 @@ result.images?.[name]
 
 <span>FINAL</span>
 
-${
-result.score!==undefined
-?createSingleScore(result.score)
-:""
-}
-
-</div>
-
-<div class="team">
-
-${(result.team2||[])
-.flat()
-.map(name=>createWrestler(
-name,
-result.images?.[name]
-))
-.join("")}
+${createMultiScore(result.scores||[])}
 
 </div>
 
 </div>`;
 
-}
+   }
 
 
 /* =====================================
