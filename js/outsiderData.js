@@ -8,6 +8,7 @@ const outsiderData = {
 
 // SPEED #2
 "outsider-speed-2":{
+   name:"SPEED #2",
     brand:"SPEED",
     promotion:"WWE",
     format:"BRACKET",
@@ -44,10 +45,14 @@ const outsiderData = {
         "speed-2":{date:"15/08/2024",matches:[["Jey Uso","Edge",1,2],["Rob Van Dam","Wade Barrett",0,3]]},
         "speed-3":{date:"22/08/2024",matches:[["Aleister Black","Edge",0,3],["Tommaso Ciampa","Wade Barrett",3,0]]}
     },
-    finalEvent:"summerslam-2024",
+        finalEvent:"summerslam-2024",
     finalDate:"25/08/2024",
     finalMatches:[
-        ["Edge","Tommaso Ciampa",3,2]
+        {
+            type:"EVENT_REFERENCE",
+            eventId:"summerslam-2024",
+            matchIndex:1
+        }
     ]
 }
 
