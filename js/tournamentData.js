@@ -189,6 +189,7 @@ matches:[]
 
 zones:{
 RAW:[
+    "Bryan Danielson",
 "Roman Reigns",
 "AJ Styles",
 "Kofi Kingston",
