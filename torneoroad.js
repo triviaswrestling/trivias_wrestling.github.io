@@ -1014,9 +1014,11 @@ function renderChampionship2(data){
 
     if(finalMatches.length){
 
-        renderChamberBracket(
+        renderBracket(
             finalMatches,
-            resultsContainer
+            resultsContainer,
+            data.bracketFormat,
+            data.bracketTitle
         );
 
     }
