@@ -326,12 +326,58 @@ function renderResults(tournament){
     );
 
 }
+/* =========================================
+   EVENT REFERENCE
+   ========================================= */
 
+function resolveEventReference(match){
+
+    if(
+        !match||
+        match.type!=="EVENT_REFERENCE"
+    )
+        return match;
+
+    if(
+        typeof eventData==="undefined"||
+        !eventData[match.eventId]
+    )
+        return null;
+
+    const event=eventData[match.eventId];
+
+    const result=
+        event.results?.[match.matchIndex];
+
+    if(!result)
+        return null;
+
+    if(
+        result.wrestler1&&
+        result.wrestler2
+    ){
+
+        return[
+            result.wrestler1,
+            result.wrestler2,
+            result.score1??0,
+            result.score2??0
+        ];
+
+    }
+
+    return null;
+}
 /* =========================================
    MATCH CARD
    ========================================= */
 
 function createMatchCard(match,showId,date){
+
+    match=resolveEventReference(match);
+
+    if(!match)
+        return document.createElement("div");
 
     const [
         wrestler1,
