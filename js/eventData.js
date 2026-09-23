@@ -301,7 +301,7 @@ addPLE("royal-rumble-2025","ROYAL RUMBLE 2025","22/03/2025","BOOK","images/event
 {type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bret Hart","Kyle O'Reilly"],team2:["Pete Dunne","Sheamus"],score1:4,score2:1},
 {type:"TABLES",championship:"United States Championship",wrestler1:"Tommaso Ciampa",wrestler2:"Tama Tonga",score1:7,score2:0},
 {type:"STEEL CAGE",championship:"Intercontinental Championship",wrestler1:"Randy Orton",wrestler2:"Christian Cage",score1:9,score2:10},
-{type:"ROYAL RUMBLE",position:"MAIN EVENT",participants:["Swerve Strickland","Tommaso Ciampa","Bron Breakker","Rey Mysterio","Finn Balor","Edge","Claudio Castagnoli","Batista","Jey Uso","LA Knight","Alberto del Rio","Adam Cole","Pete Dunne","MJF","Ethan Page","Trick Williams","CM Punk","Christian Cage","Shinsuke Nakamura","Jeff Jarrett","Zack Ryder","Rob Van Dam","Randy Orton","Jon Moxley","Jacob Fatu","Tama Tonga","Kane","Owen Hart","Kyle O'Reilly","R-Truth"],winner:"Swerve Strickland"}
+{type:"ROYAL RUMBLE",position:"MAIN EVENT",participants:["Swerve Strickland","Tommaso Ciampa","Bron Breakker","Rey Mysterio","Finn Balor","Edge","Claudio Castagnoli","Batista","Jey Uso","LA Knight","Alberto del Rio","Adam Cole","Pete Dunne","MJF","Ethan Page","Trick Williams","CM Punk","Christian Cage","Shinsuke Nakamura","Jeff Jarrett","Matt Cardona","Rob Van Dam","Randy Orton","Jon Moxley","Jacob Fatu","Tama Tonga","Kane","Owen Hart","Kyle O'Reilly","R-Truth"],winner:"Swerve Strickland"}
 ]);
 addPLE("tlc-2025","TLC 2025","24/02/2025","ROAD","images/events/tlc-2025.jpg",[
 {type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Bron Breakker",wrestler2:"Jacob Fatu",score1:2,score2:3},
