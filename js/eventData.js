@@ -288,6 +288,7 @@ addPLE("wrestlemania-iii-saturday","WRESTLEMANIA III SATURDAY","07/06/2025","BOO
 {type:"SINGLES",championship:"Intercontinental Championship",wrestler1:"Christian Cage",wrestler2:"Adam Cole",score1:6,score2:3},
 {type:"SINGLES",position:"MAIN EVENT",championship:"World Heavyweight Championship",wrestler1:"Pete Dunne",wrestler2:"Swerve Strickland",score1:4,score2:5}
 ]);
+
 addPLE("elimination-chamber-toronto-2025","ELIMINATION CHAMBER: TORONTO 2025","22/04/2025","ROAD","images/events/elimination-chamber-toronto-2025.jpg",[
 {type:"SINGLES",position:"OPENER",championship:"Speed Championship",wrestler1:"Jacob Fatu",wrestler2:"Trick Williams",score1:3,score2:2},
 {type:"ELIMINATION CHAMBER",championship:"WWE World Tag Team Championship",team1:["Cody Rhodes","Jon Moxley"],team2:["Randy Orton","Christian Cage"],team3:["Jey Uso","Jacob Fatu"],team4:["Rey Mysterio","Batista"],team5:["Edge","Finn Balor"],team6:["Bron Breakker","Tommaso Ciampa"],winner:"Cody Rhodes & Jon Moxley"},
