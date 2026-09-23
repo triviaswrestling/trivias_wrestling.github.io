@@ -215,6 +215,9 @@ phases:[
 
 format:"TWO_ZONES_ELIMINATION",
 
+bracketFormat:"SEMIFINALS_FINAL_CHAMPION",
+bracketTitle:"WRESTLEMANIA I",
+
 events:{
 final:"wrestlemania-i"
 },
