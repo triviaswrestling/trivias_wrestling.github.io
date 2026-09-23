@@ -566,6 +566,39 @@ main {
 
 
 /* =========================================
+   ELIMINATION CHAMBER TAG TEAM
+   ========================================= */
+
+.chamber-teams {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px 15px;
+    margin-top: 20px;
+}
+
+.chamber-team {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    min-width: 0;
+}
+
+.chamber-team-number {
+    display: none;
+}
+
+.chamber-team .wrestler {
+    width: 125px;
+}
+
+.chamber-team .wrestler img {
+    width: 100px;
+    height: 100px;
+}
+
+
+/* =========================================
    MOBILE
    ========================================= */
 
@@ -651,6 +684,27 @@ main {
         white-space: nowrap;
     }
 
-}
 
-l
+    /* =====================================
+       ELIMINATION CHAMBER TAG TEAM
+       ===================================== */
+
+    .chamber-teams {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px 8px;
+    }
+
+    .chamber-team {
+        gap: 5px;
+    }
+
+    .chamber-team .wrestler {
+        width: 90px;
+    }
+
+    .chamber-team .wrestler img {
+        width: 70px;
+        height: 70px;
+    }
+
+}
