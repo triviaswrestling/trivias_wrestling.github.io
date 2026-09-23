@@ -875,7 +875,196 @@ function renderNormalTournament(data){
     }
 
 }
+/* =========================================
+   GENERIC BRACKET
+   ========================================= */
 
+function renderBracket(matches,container,format,title){
+
+    const bracketMatches=matches.filter(m=>
+        m.wrestler1&&
+        m.wrestler2&&
+        m.score1!==undefined&&
+        m.score2!==undefined
+    );
+
+    const heading=document.createElement("div");
+
+    heading.className="results-date";
+
+    heading.textContent=
+        title||"BRACKET";
+
+    container.appendChild(heading);
+
+    if(!bracketMatches.length){
+
+        const p=document.createElement("p");
+
+        p.textContent="EDITING";
+
+        container.appendChild(p);
+
+        return;
+    }
+
+    const bracket=document.createElement("div");
+
+    bracket.className="chamber-bracket";
+
+    let rounds=[];
+
+    if(format==="QUARTERS_SEMIFINALS_FINAL"){
+
+        rounds=[
+            {
+                title:"QUARTERFINALS",
+                matches:bracketMatches.slice(0,4)
+            },
+            {
+                title:"SEMIFINALS",
+                matches:bracketMatches.slice(4,6)
+            },
+            {
+                title:"FINAL",
+                matches:bracketMatches.slice(6,7)
+            }
+        ];
+
+    }
+
+    else if(format==="SEMIFINALS_FINAL"){
+
+        rounds=[
+            {
+                title:"SEMIFINALS",
+                matches:bracketMatches.slice(0,2)
+            },
+            {
+                title:"FINAL",
+                matches:bracketMatches.slice(2,3)
+            }
+        ];
+
+    }
+
+    else if(format==="SEMIFINALS_FINAL_CHAMPION"){
+
+        rounds=[
+            {
+                title:"SEMIFINALS",
+                matches:bracketMatches.slice(0,2)
+            },
+            {
+                title:"FINAL",
+                matches:bracketMatches.slice(2,3)
+            },
+            {
+                title:"CHAMPIONSHIP MATCH",
+                matches:bracketMatches.slice(3,4)
+            }
+        ];
+
+    }
+
+    rounds.forEach(round=>{
+
+        const column=
+            document.createElement("div");
+
+        column.className=
+            "bracket-round";
+
+        const roundTitle=
+            document.createElement("h3");
+
+        roundTitle.textContent=
+            round.title;
+
+        column.appendChild(roundTitle);
+
+        round.matches.forEach(match=>{
+
+            const card=
+                document.createElement("div");
+
+            card.className=
+                "bracket-match";
+
+            if(match.wrestler3){
+
+                const players=[
+                    [match.wrestler1,match.score1],
+                    [match.wrestler2,match.score2],
+                    [match.wrestler3,match.score3]
+                ];
+
+                const maxScore=
+                    Math.max(
+                        ...players.map(p=>p[1])
+                    );
+
+                players.forEach(player=>{
+
+                    const row=
+                        document.createElement("div");
+
+                    row.className=
+                        player[1]===maxScore
+                        ?"winner"
+                        :"";
+
+                    row.innerHTML=`
+
+                        ${createWrestlerLink(
+                            player[0]
+                        )}
+
+                        <span>
+                            ${player[1]}
+                        </span>
+
+                    `;
+
+                    card.appendChild(row);
+
+                });
+
+            }else{
+
+                const winner1=
+                    match.score1>match.score2;
+
+                const winner2=
+                    match.score2>match.score1;
+
+                card.innerHTML=`
+
+                    <div class="${winner1?"winner":""}">
+                        ${createWrestlerLink(match.wrestler1)}
+                        <span>${match.score1}</span>
+                    </div>
+
+                    <div class="${winner2?"winner":""}">
+                        ${createWrestlerLink(match.wrestler2)}
+                        <span>${match.score2}</span>
+                    </div>
+
+                `;
+
+            }
+
+            column.appendChild(card);
+
+        });
+
+        bracket.appendChild(column);
+
+    });
+
+    container.appendChild(bracket);
+
+}
 /* =========================================
    CHAMPIONSHIP 1
    ========================================= */
