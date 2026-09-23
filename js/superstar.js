@@ -60,6 +60,18 @@ function participants(result){
     if(Array.isArray(result.team2))
         list.push(...result.team2.flat());
 
+    if(Array.isArray(result.team3))
+        list.push(...result.team3.flat());
+
+    if(Array.isArray(result.team4))
+        list.push(...result.team4.flat());
+
+    if(Array.isArray(result.team5))
+        list.push(...result.team5.flat());
+
+    if(Array.isArray(result.team6))
+        list.push(...result.team6.flat());
+
     if(Array.isArray(result.participants))
         list.push(...result.participants);
 
@@ -87,11 +99,68 @@ function outcome(result){
     if(!people.some(isThisWrestler))
         return null;
 
+    /* =====================================
+       ELIMINATION CHAMBER TAG TEAM
+       ===================================== */
+
+    if(
+        result.type==="ELIMINATION CHAMBER"&&
+        result.team1&&
+        result.team2&&
+        result.team3&&
+        result.team4&&
+        result.team5&&
+        result.team6&&
+        result.winner
+    ){
+
+        const teams=[
+            result.team1,
+            result.team2,
+            result.team3,
+            result.team4,
+            result.team5,
+            result.team6
+        ];
+
+        const winnerText=
+            String(result.winner)
+            .toLowerCase();
+
+        const winningTeam=
+            teams.find(team=>
+                team
+                .flat()
+                .some(name=>
+                    winnerText.includes(
+                        String(name).toLowerCase()
+                    )
+                )
+            );
+
+        if(!winningTeam)
+            return null;
+
+        return winningTeam
+            .flat()
+            .some(isThisWrestler)
+                ?"WIN"
+                :"LOSS";
+    }
+
+    /* =====================================
+       WINNER NORMAL
+       ===================================== */
+
     if(result.winner){
         return isThisWrestler(result.winner)
             ?"WIN"
             :"LOSS";
     }
+
+    /* =====================================
+       MULTI PARTICIPANT CON SCORES
+       ===================================== */
 
     if(
         Array.isArray(result.participants)&&
@@ -127,6 +196,10 @@ function outcome(result){
             ?"WIN"
             :"LOSS";
     }
+
+    /* =====================================
+       SCORE 1 VS SCORE 2
+       ===================================== */
 
     if(
         result.score1===undefined||
