@@ -8,13 +8,12 @@ const nxtRosterContainer=document.getElementById("nxt-roster");
    ========================================= */
 
 function slug(name){
-
-return String(name)
-.toLowerCase()
-.replace(/[^a-z0-9]+/g,"-")
-.replace(/^-|-$/g,"");
-
+    return String(name)
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g,"-")
+        .replace(/^-|-$/g,"");
 }
+
 
 /* =========================================
    PARTICIPANTS
@@ -22,693 +21,676 @@ return String(name)
 
 function participants(result){
 
-let list=[];
+    let list=[];
 
-if(result.wrestler1)
-list.push(result.wrestler1);
+    if(result.wrestler1)
+        list.push(result.wrestler1);
 
-if(result.wrestler2)
-list.push(result.wrestler2);
+    if(result.wrestler2)
+        list.push(result.wrestler2);
 
-if(Array.isArray(result.team1))
-list.push(...result.team1.flat());
+    if(Array.isArray(result.team1))
+        list.push(...result.team1.flat());
 
-if(Array.isArray(result.team2))
-list.push(...result.team2.flat());
+    if(Array.isArray(result.team2))
+        list.push(...result.team2.flat());
 
-if(Array.isArray(result.team3))
-list.push(...result.team3.flat());
+    if(Array.isArray(result.team3))
+        list.push(...result.team3.flat());
 
-if(Array.isArray(result.team4))
-list.push(...result.team4.flat());
+    if(Array.isArray(result.team4))
+        list.push(...result.team4.flat());
 
-if(Array.isArray(result.team5))
-list.push(...result.team5.flat());
+    if(Array.isArray(result.team5))
+        list.push(...result.team5.flat());
 
-if(Array.isArray(result.team6))
-list.push(...result.team6.flat());
+    if(Array.isArray(result.team6))
+        list.push(...result.team6.flat());
 
-if(Array.isArray(result.participants))
-list.push(...result.participants);
+    if(Array.isArray(result.participants))
+        list.push(...result.participants);
 
-return[
-...new Set(
-list.filter(Boolean)
-)
-];
+    return[
+        ...new Set(
+            list.filter(Boolean)
+        )
+    ];
 
 }
 
+
 /* =========================================
    ADAPT TOURNAMENT RESULT
+   MISMA LOGICA QUE SUPERSTAR
    ========================================= */
 
 function adaptTournamentResult(result){
 
-if(!result)
-return null;
+    if(!result)
+        return null;
 
-if(Array.isArray(result)){
+    if(Array.isArray(result)){
 
-const wrestler1=result[0]||"";
-const wrestler2=result[1]||"";
-const score1=result[2]??"";
-const score2=result[3]??"";
+        const wrestler1=result[0]||"";
+        const wrestler2=result[1]||"";
+        const score1=result[2]??"";
+        const score2=result[3]??"";
 
-let winner=null;
+        let winner=null;
 
-const s1=Number(score1);
-const s2=Number(score2);
+        const s1=Number(score1);
+        const s2=Number(score2);
 
-if(!isNaN(s1)&&!isNaN(s2)){
+        if(!isNaN(s1)&&!isNaN(s2)){
 
-if(s1>s2)
-winner=wrestler1;
+            if(s1>s2)
+                winner=wrestler1;
 
-else if(s2>s1)
-winner=wrestler2;
+            else if(s2>s1)
+                winner=wrestler2;
 
-}
+        }
 
-return{
+        return{
+            type:"SINGLES",
+            wrestler1,
+            wrestler2,
+            score1,
+            score2,
+            winner
+        };
 
-type:"SINGLES",
+    }
 
-wrestler1,
-wrestler2,
+    const wrestler1=
+        result.wrestler1||
+        result.a||
+        result.player1||
+        result.p1||
+        "";
 
-score1,
-score2,
+    const wrestler2=
+        result.wrestler2||
+        result.b||
+        result.player2||
+        result.p2||
+        "";
 
-winner
+    const score1=
+        result.score1!==undefined
+            ?result.score1
+            :result.scoreA!==undefined
+                ?result.scoreA
+                :"";
 
-};
+    const score2=
+        result.score2!==undefined
+            ?result.score2
+            :result.scoreB!==undefined
+                ?result.scoreB
+                :"";
 
-}
+    let winner=result.winner||null;
 
-const wrestler1=
-result.wrestler1||
-result.a||
-result.player1||
-result.p1||
-"";
+    if(!winner){
 
-const wrestler2=
-result.wrestler2||
-result.b||
-result.player2||
-result.p2||
-"";
+        const s1=Number(score1);
+        const s2=Number(score2);
 
-const score1=
-result.score1!==undefined
-?result.score1
-:result.scoreA!==undefined
-?result.scoreA
-:"";
+        if(!isNaN(s1)&&!isNaN(s2)){
 
-const score2=
-result.score2!==undefined
-?result.score2
-:result.scoreB!==undefined
-?result.scoreB
-:"";
+            if(s1>s2)
+                winner=wrestler1;
 
-let winner=
-result.winner||null;
+            else if(s2>s1)
+                winner=wrestler2;
 
-if(!winner){
+        }
 
-const s1=Number(score1);
-const s2=Number(score2);
+    }
 
-if(!isNaN(s1)&&!isNaN(s2)){
+    return{
+        ...result,
 
-if(s1>s2)
-winner=wrestler1;
+        type:
+            result.type||
+            "SINGLES",
 
-else if(s2>s1)
-winner=wrestler2;
+        wrestler1,
+        wrestler2,
 
-}
+        score1,
+        score2,
 
-}
-
-return{
-
-...result,
-
-type:
-result.type||
-"SINGLES",
-
-wrestler1,
-wrestler2,
-
-score1,
-score2,
-
-winner
-
-};
+        winner
+    };
 
 }
+
 
 /* =========================================
    GET RECORD
+   MISMA LOGICA QUE SUPERSTAR
    ========================================= */
 
 function getRecord(name,fromYear=null){
 
-let w=0;
-let d=0;
-let l=0;
+    let w=0;
+    let d=0;
+    let l=0;
 
-const id=slug(name);
+    const id=slug(name);
 
-/* =========================================
-   CHECK WRESTLER
-   ========================================= */
 
-function isThisWrestler(wrestlerName){
+    /* =====================================
+       IS THIS WRESTLER
+       ===================================== */
 
-return(
-wrestlerName&&
-slug(wrestlerName)===id
-);
+    function isThisWrestler(wrestlerName){
 
-}
+        return(
+            wrestlerName&&
+            slug(wrestlerName)===id
+        );
 
-/* =========================================
-   OUTCOME
-   ========================================= */
+    }
 
-function outcome(result){
 
-const people=participants(result);
+    /* =====================================
+       OUTCOME
+       ===================================== */
 
-if(!people.some(isThisWrestler))
-return null;
+    function outcome(result){
 
+        const people=participants(result);
 
-/* =====================================
-   ELIMINATION CHAMBER TAG TEAM
-   ===================================== */
+        if(!people.some(isThisWrestler))
+            return null;
 
-if(
-result.type==="ELIMINATION CHAMBER"&&
-result.team1&&
-result.team2&&
-result.team3&&
-result.team4&&
-result.team5&&
-result.team6&&
-result.winner
-){
 
-const teams=[
+        /* =================================
+           ELIMINATION CHAMBER TAG TEAM
+           ================================= */
 
-result.team1,
-result.team2,
-result.team3,
-result.team4,
-result.team5,
-result.team6
+        if(
+            result.type==="ELIMINATION CHAMBER"&&
+            result.team1&&
+            result.team2&&
+            result.team3&&
+            result.team4&&
+            result.team5&&
+            result.team6&&
+            result.winner
+        ){
 
-];
+            const teams=[
+                result.team1,
+                result.team2,
+                result.team3,
+                result.team4,
+                result.team5,
+                result.team6
+            ];
 
-const winnerText=
-String(result.winner)
-.toLowerCase();
+            const winnerText=
+                String(result.winner)
+                .toLowerCase();
 
-const winningTeam=
-teams.find(team=>
+            const winningTeam=
+                teams.find(team=>
 
-team
-.flat()
-.some(wrestlerName=>
+                    team
+                    .flat()
+                    .some(name=>
 
-winnerText.includes(
-String(wrestlerName)
-.toLowerCase()
-)
+                        winnerText.includes(
+                            String(name)
+                            .toLowerCase()
+                        )
 
-)
+                    )
 
-);
+                );
 
-if(!winningTeam)
-return null;
+            if(!winningTeam)
+                return null;
 
-return winningTeam
-.flat()
-.some(isThisWrestler)
+            return winningTeam
+                .flat()
+                .some(isThisWrestler)
 
-?"WIN"
-:"LOSS";
+                    ?"WIN"
+                    :"LOSS";
 
-}
+        }
 
 
-/* =====================================
-   NORMAL WINNER
-   ===================================== */
+        /* =================================
+           NORMAL WINNER
+           ================================= */
 
-if(result.winner){
+        if(result.winner){
 
-return isThisWrestler(result.winner)
-?"WIN"
-:"LOSS";
+            return isThisWrestler(result.winner)
+                ?"WIN"
+                :"LOSS";
 
-}
+        }
 
 
-/* =====================================
-   MULTI PARTICIPANT + SCORES
-   ===================================== */
+        /* =================================
+           MULTI PARTICIPANT + SCORES
+           ================================= */
 
-if(
-Array.isArray(result.participants)&&
-Array.isArray(result.scores)&&
-result.participants.length===
-result.scores.length
-){
+        if(
+            Array.isArray(result.participants)&&
+            Array.isArray(result.scores)&&
+            result.participants.length===
+            result.scores.length
+        ){
 
-const scores=
-result.scores.map(Number);
+            const scores=
+                result.scores.map(Number);
 
-if(scores.some(isNaN))
-return null;
+            if(scores.some(isNaN))
+                return null;
 
-const highest=
-Math.max(...scores);
+            const highest=
+                Math.max(...scores);
 
-const winnerIndexes=[];
+            const winnerIndexes=[];
 
-scores.forEach(
-(score,index)=>{
+            scores.forEach((score,index)=>{
 
-if(score===highest)
-winnerIndexes.push(index);
+                if(score===highest)
+                    winnerIndexes.push(index);
 
-});
+            });
 
-const thisIndex=
-result.participants.findIndex(
-isThisWrestler
-);
+            const thisIndex=
+                result.participants.findIndex(
+                    isThisWrestler
+                );
 
-if(winnerIndexes.length!==1){
+            if(winnerIndexes.length!==1){
 
-return winnerIndexes.includes(thisIndex)
-?"WIN"
-:"DRAW";
+                return winnerIndexes.includes(thisIndex)
+                    ?"WIN"
+                    :"DRAW";
 
-}
+            }
 
-return isThisWrestler(
-result.participants[winnerIndexes[0]]
-)
+            return isThisWrestler(
+                result.participants[
+                    winnerIndexes[0]
+                ]
+            )
 
-?"WIN"
-:"LOSS";
+                ?"WIN"
+                :"LOSS";
 
-}
+        }
 
 
-/* =====================================
-   SCORE 1 VS SCORE 2
-   ===================================== */
+        /* =================================
+           SCORE 1 VS SCORE 2
+           ================================= */
 
-if(
-result.score1===undefined||
-result.score2===undefined
-)
-return null;
+        if(
+            result.score1===undefined||
+            result.score2===undefined
+        )
+            return null;
 
-const a=Number(result.score1);
-const b=Number(result.score2);
+        const a=Number(result.score1);
+        const b=Number(result.score2);
 
-if(isNaN(a)||isNaN(b))
-return null;
+        if(isNaN(a)||isNaN(b))
+            return null;
 
 
-/* =====================================
-   WRESTLER 1
-   ===================================== */
+        /* =================================
+           WRESTLER 1
+           ================================= */
 
-if(
-result.wrestler1&&
-isThisWrestler(result.wrestler1)
-){
+        if(
+            result.wrestler1&&
+            isThisWrestler(result.wrestler1)
+        ){
 
-if(a>b)
-return "WIN";
+            if(a>b)
+                return"WIN";
 
-if(a<b)
-return "LOSS";
+            if(a<b)
+                return"LOSS";
 
-return "DRAW";
+            return"DRAW";
 
-}
+        }
 
 
-/* =====================================
-   WRESTLER 2
-   ===================================== */
+        /* =================================
+           WRESTLER 2
+           ================================= */
 
-if(
-result.wrestler2&&
-isThisWrestler(result.wrestler2)
-){
+        if(
+            result.wrestler2&&
+            isThisWrestler(result.wrestler2)
+        ){
 
-if(b>a)
-return "WIN";
+            if(b>a)
+                return"WIN";
 
-if(b<a)
-return "LOSS";
+            if(b<a)
+                return"LOSS";
 
-return "DRAW";
+            return"DRAW";
 
-}
+        }
 
 
-/* =====================================
-   TEAM 1
-   ===================================== */
+        /* =================================
+           TEAM 1
+           ================================= */
 
-if(
-Array.isArray(result.team1)&&
-result.team1
-.flat()
-.some(isThisWrestler)
-){
+        if(
+            Array.isArray(result.team1)&&
+            result.team1
+                .flat()
+                .some(isThisWrestler)
+        ){
 
-if(a>b)
-return "WIN";
+            if(a>b)
+                return"WIN";
 
-if(a<b)
-return "LOSS";
+            if(a<b)
+                return"LOSS";
 
-return "DRAW";
+            return"DRAW";
 
-}
+        }
 
 
-/* =====================================
-   TEAM 2
-   ===================================== */
+        /* =================================
+           TEAM 2
+           ================================= */
 
-if(
-Array.isArray(result.team2)&&
-result.team2
-.flat()
-.some(isThisWrestler)
-){
+        if(
+            Array.isArray(result.team2)&&
+            result.team2
+                .flat()
+                .some(isThisWrestler)
+        ){
 
-if(b>a)
-return "WIN";
+            if(b>a)
+                return"WIN";
 
-if(b<a)
-return "LOSS";
+            if(b<a)
+                return"LOSS";
 
-return "DRAW";
+            return"DRAW";
 
-}
+        }
 
-return null;
+        return null;
 
-}
+    }
 
 
-/* =========================================
-   ADD OUTCOME
-   ========================================= */
+    /* =========================================
+       PROCESS RESULT
+       ========================================= */
 
-function addOutcome(result){
+    function processResult(result){
 
-const resultOutcome=
-outcome(result);
+        const adapted=
+            adaptTournamentResult(result);
 
-if(resultOutcome==="WIN")
-w++;
+        if(!adapted)
+            return;
 
-if(resultOutcome==="LOSS")
-l++;
+        const resultOutcome=
+            outcome(adapted);
 
-if(resultOutcome==="DRAW")
-d++;
+        if(resultOutcome==="WIN")
+            w++;
 
-}
+        if(resultOutcome==="LOSS")
+            l++;
 
+        if(resultOutcome==="DRAW")
+            d++;
 
-/* =========================================
-   PROCESS RESULTS
-   ========================================= */
+    }
 
-function processResults(results){
 
-(results||[]).forEach(result=>{
+    /* =========================================
+       DATE FILTER
+       ========================================= */
 
-const adapted=
-adaptTournamentResult(result);
+    function validDate(date){
 
-if(adapted)
-addOutcome(adapted);
+        if(fromYear===null)
+            return true;
 
-});
+        const year=
+            Number(
+                String(date||"")
+                .split("/")[2]
+            );
 
-}
+        if(!year)
+            return false;
 
+        return year>=fromYear;
 
-/* =========================================
-   DATE FILTER
-   ========================================= */
+    }
 
-function validDate(date){
 
-if(fromYear===null)
-return true;
+    /* =========================================
+       EVENT DATA
+       ========================================= */
 
-const year=
-Number(
-String(date||"")
-.split("/")[2]
-);
+    if(typeof eventData!=="undefined"){
 
-if(!year)
-return false;
+        Object.entries(eventData)
+        .forEach(([eventId,event])=>{
 
-return year>=fromYear;
+            if(!event)
+                return;
 
-}
+            if(!validDate(event.date))
+                return;
 
+            (event.results||[])
+            .forEach(processResult);
 
-/* =========================================
-   EVENT DATA
-   ========================================= */
+        });
 
-if(typeof eventData!=="undefined"){
+    }
 
-Object.values(eventData)
-.forEach(event=>{
 
-if(!event)
-return;
+    /* =========================================
+       TOURNAMENT DATA
+       ========================================= */
 
-if(!validDate(event.date))
-return;
+    if(typeof tournamentData!=="undefined"){
 
-processResults(
-event.results||[]
-);
+        const added=new Set();
 
-});
+        Object.entries(tournamentData)
+        .forEach(([tournamentKey,data])=>{
 
-}
+            if(!data)
+                return;
 
 
-/* =========================================
-   TOURNAMENT DATA
-   ========================================= */
+            function processTournamentEvent(
+                id,
+                event,
+                results
+            ){
 
-if(typeof tournamentData!=="undefined"){
+                if(!event)
+                    return;
 
-Object.entries(tournamentData)
-.forEach(([tournamentKey,data])=>{
+                if(
+                    !/^raw-\d+$/.test(id)&&
+                    !/^smackdown-\d+$/.test(id)&&
+                    !/^nxt-\d+$/.test(id)
+                )
+                    return;
 
-if(!data)
-return;
+                const uniqueKey=
+                    `${id}-${tournamentKey}`;
 
+                if(added.has(uniqueKey))
+                    return;
 
-/* =====================================
-   WEEKLY
-   ===================================== */
+                added.add(uniqueKey);
 
-if(data.weekly){
+                if(!validDate(event.date))
+                    return;
 
-Object.entries(data.weekly)
-.forEach(([id,event])=>{
+                (results||[])
+                .forEach(processResult);
 
-if(!event)
-return;
+            }
 
-if(
-!/^raw-\d+$/.test(id)&&
-!/^smackdown-\d+$/.test(id)&&
-!/^nxt-\d+$/.test(id)
-)
-return;
 
-if(!validDate(event.date))
-return;
+            /* =============================
+               WEEKLY
+               ============================= */
 
-processResults(
-event.results||[]
-);
+            if(data.weekly){
 
-});
+                Object.entries(data.weekly)
+                .forEach(([id,event])=>{
 
-}
+                    processTournamentEvent(
+                        id,
+                        event,
+                        event.results||[]
+                    );
 
+                });
 
-/* =====================================
-   MATCHES
-   ===================================== */
+            }
 
-if(
-data.matches&&
-!Array.isArray(data.matches)
-){
 
-Object.entries(data.matches)
-.forEach(([id,event])=>{
+            /* =============================
+               MATCHES
+               ============================= */
 
-if(!event)
-return;
+            if(
+                data.matches&&
+                !Array.isArray(data.matches)
+            ){
 
-if(
-!/^raw-\d+$/.test(id)&&
-!/^smackdown-\d+$/.test(id)&&
-!/^nxt-\d+$/.test(id)
-)
-return;
+                Object.entries(data.matches)
+                .forEach(([id,event])=>{
 
-if(!validDate(event.date))
-return;
+                    processTournamentEvent(
+                        id,
+                        event,
+                        event.results||[]
+                    );
 
-processResults(
-event.results||[]
-);
+                });
 
-});
+            }
 
-}
 
+            /* =============================
+               SHOWS
+               ============================= */
 
-/* =====================================
-   SHOWS
-   ===================================== */
+            if(data.shows){
 
-if(data.shows){
+                Object.entries(data.shows)
+                .forEach(([id,event])=>{
 
-Object.entries(data.shows)
-.forEach(([id,event])=>{
+                    processTournamentEvent(
+                        id,
+                        event,
+                        event.matches||[]
+                    );
 
-if(!event)
-return;
+                });
 
-if(
-!/^raw-\d+$/.test(id)&&
-!/^smackdown-\d+$/.test(id)&&
-!/^nxt-\d+$/.test(id)
-)
-return;
+            }
 
-if(!validDate(event.date))
-return;
+        });
 
-processResults(
-event.matches||[]
-);
+    }
 
-});
 
-}
+    /* =========================================
+       OUTSIDER DATA
+       ========================================= */
 
-});
+    if(typeof outsiderData!=="undefined"){
 
-}
+        Object.entries(outsiderData)
+        .forEach(([tournamentKey,data])=>{
 
+            if(!data)
+                return;
 
-/* =========================================
-   OUTSIDER DATA
-   ========================================= */
 
-if(typeof outsiderData!=="undefined"){
+            /* =============================
+               SHOWS
+               ============================= */
 
-Object.entries(outsiderData)
-.forEach(([tournamentKey,data])=>{
+            if(data.shows){
 
-if(!data)
-return;
+                Object.entries(data.shows)
+                .forEach(([showId,event])=>{
 
+                    if(!event)
+                        return;
 
-/* =====================================
-   SHOWS
-   ===================================== */
+                    if(!validDate(event.date))
+                        return;
 
-if(data.shows){
+                    (event.matches||[])
+                    .forEach(processResult);
 
-Object.values(data.shows)
-.forEach(event=>{
+                });
 
-if(!event)
-return;
+            }
 
-if(!validDate(event.date))
-return;
 
-processResults(
-event.matches||[]
-);
+            /* =============================
+               FINAL MATCHES
+               ============================= */
 
-});
+            if(data.finalMatches){
 
-}
+                const finalDate=
+                    data.finalDate||
+                    data.date||
+                    "";
 
+                if(validDate(finalDate)){
 
-/* =====================================
-   FINAL MATCHES
-   ===================================== */
+                    data.finalMatches
+                    .forEach(processResult);
 
-if(data.finalMatches){
+                }
 
-const finalDate=
-data.finalDate||
-data.date||
-"";
+            }
 
-if(validDate(finalDate)){
+        });
 
-processResults(
-data.finalMatches
-);
+    }
 
-}
 
-}
+    /* =========================================
+       RETURN
+       ========================================= */
 
-});
-
-}
-
-
-/* =========================================
-   RETURN
-   ========================================= */
-
-return`${w} - ${d} - ${l}`;
+    return`${w} - ${d} - ${l}`;
 
 }
 
@@ -719,107 +701,109 @@ return`${w} - ${d} - ${l}`;
 
 function createWrestlerCard(wrestler,index){
 
-const card=
-document.createElement("div");
+    const card=
+        document.createElement("div");
 
-card.className="wrestler";
-
-if(wrestler.brand){
-
-card.classList.add(
-wrestler.brand
-.toLowerCase()
-.replace(" ","-")
-);
-
-}
-
-card.onclick=function(){
-
-openModal(index);
-
-};
+    card.className="wrestler";
 
 
-const image=
-document.createElement("img");
+    if(wrestler.brand){
 
-image.src=
-wrestler.image;
+        card.classList.add(
+            wrestler.brand
+            .toLowerCase()
+            .replace(" ","-")
+        );
 
-image.alt=
-wrestler.name;
-
-image.loading=
-"lazy";
+    }
 
 
-const nickname=
-document.createElement("p");
+    card.onclick=function(){
 
-nickname.textContent=
-wrestler.nickname||"";
+        openModal(index);
 
-
-const name=
-document.createElement("h2");
-
-name.textContent=
-wrestler.name;
+    };
 
 
-const stable=
-document.createElement("p");
+    const image=
+        document.createElement("img");
 
-stable.textContent=
-wrestler.stable||"";
+    image.src=
+        wrestler.image;
 
+    image.alt=
+        wrestler.name;
 
-/* =========================================
-   2026 RECORD
-   ========================================= */
-
-const record2026=
-document.createElement("div");
-
-record2026.className=
-"record";
-
-record2026.innerHTML=
-"<span>2026 Overall</span><strong>"+
-getRecord(
-wrestler.name,
-2026
-)+
-"</strong>";
+    image.loading=
+        "lazy";
 
 
-/* =========================================
-   CAREER RECORD
-   ========================================= */
+    const nickname=
+        document.createElement("p");
 
-const careerRecord=
-document.createElement("div");
-
-careerRecord.className=
-"record";
-
-careerRecord.innerHTML=
-"<span>Career Overall</span><strong>"+
-getRecord(
-wrestler.name
-)+
-"</strong>";
+    nickname.textContent=
+        wrestler.nickname||"";
 
 
-card.appendChild(image);
-card.appendChild(nickname);
-card.appendChild(name);
-card.appendChild(stable);
-card.appendChild(record2026);
-card.appendChild(careerRecord);
+    const name=
+        document.createElement("h2");
 
-return card;
+    name.textContent=
+        wrestler.name;
+
+
+    const stable=
+        document.createElement("p");
+
+    stable.textContent=
+        wrestler.stable||"";
+
+
+    /* =========================================
+       2026 RECORD
+       ========================================= */
+
+    const record2026=
+        document.createElement("div");
+
+    record2026.className=
+        "record";
+
+    record2026.innerHTML=
+        "<span>2026 Overall</span><strong>"+
+        getRecord(
+            wrestler.name,
+            2026
+        )+
+        "</strong>";
+
+
+    /* =========================================
+       CAREER RECORD
+       ========================================= */
+
+    const careerRecord=
+        document.createElement("div");
+
+    careerRecord.className=
+        "record";
+
+    careerRecord.innerHTML=
+        "<span>Career Overall</span><strong>"+
+        getRecord(
+            wrestler.name
+        )+
+        "</strong>";
+
+
+    card.appendChild(image);
+    card.appendChild(nickname);
+    card.appendChild(name);
+    card.appendChild(stable);
+    card.appendChild(record2026);
+    card.appendChild(careerRecord);
+
+    return card;
 
 }
 
@@ -830,29 +814,30 @@ return card;
 
 function loadMainRoster(status){
 
-if(!rosterContainer)
-return;
+    if(!rosterContainer)
+        return;
 
-rosterContainer.innerHTML="";
+    rosterContainer.innerHTML="";
 
-wrestlers.forEach(
-function(wrestler,index){
+    wrestlers.forEach(
+        function(wrestler,index){
 
-if(
-wrestler.status===status&&
-wrestler.division!=="NXT"
-){
+            if(
+                wrestler.status===status&&
+                wrestler.division!=="NXT"
+            ){
 
-rosterContainer.appendChild(
-createWrestlerCard(
-wrestler,
-index
-)
-);
+                rosterContainer.appendChild(
+                    createWrestlerCard(
+                        wrestler,
+                        index
+                    )
+                );
 
-}
+            }
 
-});
+        }
+    );
 
 }
 
@@ -863,29 +848,30 @@ index
 
 function loadNXTRoster(status){
 
-if(!nxtRosterContainer)
-return;
+    if(!nxtRosterContainer)
+        return;
 
-nxtRosterContainer.innerHTML="";
+    nxtRosterContainer.innerHTML="";
 
-wrestlers.forEach(
-function(wrestler,index){
+    wrestlers.forEach(
+        function(wrestler,index){
 
-if(
-wrestler.status===status&&
-wrestler.division==="NXT"
-){
+            if(
+                wrestler.status===status&&
+                wrestler.division==="NXT"
+            ){
 
-nxtRosterContainer.appendChild(
-createWrestlerCard(
-wrestler,
-index
-)
-);
+                nxtRosterContainer.appendChild(
+                    createWrestlerCard(
+                        wrestler,
+                        index
+                    )
+                );
 
-}
+            }
 
-});
+        }
+    );
 
 }
 
@@ -895,14 +881,14 @@ index
    ========================================= */
 
 const main=
-document.querySelector("main");
+    document.querySelector("main");
 
 if(main){
 
-const status=
-main.dataset.rosterStatus;
+    const status=
+        main.dataset.rosterStatus;
 
-loadMainRoster(status);
-loadNXTRoster(status);
+    loadMainRoster(status);
+    loadNXTRoster(status);
 
 }
