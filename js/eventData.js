@@ -411,7 +411,7 @@ addPLE("royal-rumble-2024","ROYAL RUMBLE 2024: 1ST ANNIVERSARY","25/02/2024","BO
 {type:"OPENER",position:"EXTREME RULES",wrestler1:"Cody Rhodes",wrestler2:"MJF",score1:4,score2:1},
 {type:"TAG TEAM",championship:"WWE World Tag Team Championship",team1:["Bryan Danielson","Jon Moxley"],team2:["Drew McIntyre","Sheamus"],score1:2,score2:3},
 {type:"SINGLES",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Jon Moxley",score1:7,score2:1},
-{type:"ROYAL RUMBLE",position:"MAIN EVENT",participants:["R-Truth","Adam Cole","Damian Priest","Cesaro","Alberto del Rio","LA Knight","Seth Rollins","Rob Van Dam","Ilja Dragunov","Johnny Gargano","AJ Styles","Drew McIntyre","CM Punk","Jeff Jarrett","Finn Balor","Chad Gable","Logan Paul","Jon Moxley","Randy Orton","Tommaso Ciampa","Bret Hart","Sheamus","MJF","Roman Reigns","Jey Uso","Pete Dunne","Kevin Owens","Gunther","Solo Sikoa","Bron Breakker"],winner:"R-Truth"}
+{type:"ROYAL RUMBLE",position:"MAIN EVENT",participants:["R-Truth","Adam Cole","Damian Priest","Claudio Castagnoli","Alberto del Rio","LA Knight","Seth Rollins","Rob Van Dam","Ilja Dragunov","Johnny Gargano","AJ Styles","Drew McIntyre","CM Punk","Jeff Jarrett","Finn Balor","Chad Gable","Logan Paul","Jon Moxley","Randy Orton","Tommaso Ciampa","Bret Hart","Sheamus","MJF","Roman Reigns","Jey Uso","Pete Dunne","Kevin Owens","GUNTHER","Solo Sikoa","Bron Breakker"],winner:"R-Truth"}
 ]);
 
 addPLE("tlc-2024","TLC 2024","22/01/2024","ROAD","images/events/tlc-2024.jpg",[
