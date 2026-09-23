@@ -285,9 +285,18 @@ function renderBracket(tournament){
 
         tournament.finalMatches.forEach(match=>{
 
-            resultsContainer.appendChild(
-                createMatchCard(match)
-            );
+            const resolvedMatch=
+                resolveEventReference(match);
+
+            if(resolvedMatch){
+
+                resultsContainer.appendChild(
+                    createMatchCard(
+                        resolvedMatch
+                    )
+                );
+
+            }
 
         });
 
@@ -326,6 +335,7 @@ function renderResults(tournament){
     );
 
 }
+
 /* =========================================
    EVENT REFERENCE
    ========================================= */
@@ -368,6 +378,7 @@ function resolveEventReference(match){
 
     return null;
 }
+
 /* =========================================
    MATCH CARD
    ========================================= */
