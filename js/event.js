@@ -1808,5 +1808,26 @@ undefined,
 
 
 return events;
-
+function getChronologySaga(e){
+if(!e)return null;
+const t=((e.title||"")+" "+(e.id||"")).toLowerCase();
+if(t.includes("takeover"))return"TAKEOVER";
+if(t.includes("wrestlemania"))return"WRESTLEMANIA";
+if(t.includes("summerslam")||t.includes("summer slam"))return"SUMMERSLAM";
+if(t.includes("money in the bank")||t.includes("money-in-the-bank"))return"MONEY IN THE BANK";
+if(t.includes("night of champions"))return"NIGHT OF CHAMPIONS";
+if(t.includes("royal rumble"))return"ROYAL RUMBLE";
+if(t.includes("survivor series"))return"SURVIVOR SERIES";
+if(t.includes("backlash"))return"BACKLASH";
+if(t.includes("extreme rules"))return"EXTREME RULES";
+if(t.includes("hell in a cell"))return"HELL IN A CELL";
+if(t.includes("elimination chamber"))return"ELIMINATION CHAMBER";
+if(t.includes("tlc"))return"TLC";
+if(t.includes("clash of champions"))return"CLASH OF CHAMPIONS";
+if(t.includes("king of the ring"))return"KING OF THE RING";
+if(t.includes("crown jewel"))return"CROWN JEWEL";
+if(t.includes("fastlane"))return"FASTLANE";
+if(t.includes("payback"))return"PAYBACK";
+return null;
+   }
 }
