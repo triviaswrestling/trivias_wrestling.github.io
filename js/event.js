@@ -1463,698 +1463,591 @@ ${scores.map(score=>`<span>${score}</span>`).join("")}
 }
 
 
+
+
+
+
+
+
+
+
 JIJOOOOOO
 
 
-/* =========================================
-   EVENT CHRONOLOGY
-   ========================================= */
+/* EVENT CHRONOLOGY */
 
-function getAllChronologyEvents(){
+function getAllChronologyEvents() {
+  const events = [];
 
-    const events=[];
+  // =========================
+  // PLE / SPECIAL EVENTS
+  // =========================
+  if (typeof eventData !== "undefined" && Array.isArray(eventData)) {
+    eventData.forEach(e => {
+      events.push({
+        id: e.id,
+        title: e.title,
+        date: e.date,
+        type: e.type || "PLE",
+        source: "eventData",
+        category: "PLE",
+        image: e.image || "",
+        includeGeneral: true
+      });
+    });
+  }
 
-    /* PLE / SPECIAL EVENTS */
-    if(typeof eventData!=="undefined"){
+  // =========================
+  // TOURNAMENT / WEEKLY DATA
+  // =========================
+  if (typeof tournamentData !== "undefined") {
 
-        for(const id in eventData){
+    const data = tournamentData;
 
-            const e=eventData[id];
+    function addTournamentShow(id, show) {
+      if (!show || !show.date) return;
 
-            if(!e)continue;
+      let category = "WEEKLY";
 
-            events.push({
-                id:id,
-                title:e.title||id,
-                date:e.date||"",
-                type:"PLE",
-                source:"eventData",
-                category:"PLE",
-                image:e.image||"",
-                includeGeneral:true
-            });
+      if (/^nxt-\d+$/i.test(id)) {
+        category = "NXT";
+      }
 
-        }
-
+      events.push({
+        id: id,
+        title: show.title || id.toUpperCase(),
+        date: show.date,
+        type: category,
+        source: "tournamentData",
+        category: category,
+        image: show.image || "",
+        includeGeneral: true
+      });
     }
 
-
-    /* RAW / SMACKDOWN / NXT */
-    if(typeof tournamentData!=="undefined"){
-
-        const added=new Set();
-
-        for(const key in tournamentData){
-
-            const data=tournamentData[key];
-
-            if(!data)continue;
-
-            const collections=[
-                data.shows,
-                data.weekly,
-                data.matches
-            ];
-
-            for(const collection of collections){
-
-                if(!collection||Array.isArray(collection))continue;
-
-                for(const id in collection){
-
-                    if(!/^(raw|smackdown|nxt)-\d+$/i.test(id))
-                        continue;
-
-                    if(added.has(id))
-                        continue;
-
-                    const e=collection[id];
-
-                    if(!e)continue;
-
-                    const brand=getShowBrand(id);
-                    const number=id.split("-").pop();
-
-                    events.push({
-                        id:id,
-                        title:e.title||brand+" #"+number,
-                        date:e.date||"",
-                        type:brand==="NXT"?"NXT":"WEEKLY",
-                        source:"tournamentData",
-                        category:brand==="NXT"?"NXT":"WEEKLY",
-                        image:e.image||"",
-                        includeGeneral:true
-                    });
-
-                    added.add(id);
-
-                }
-
-            }
-
+    // -------------------------
+    // SHOWS
+    // -------------------------
+    if (data.shows && typeof data.shows === "object") {
+      Object.entries(data.shows).forEach(([id, show]) => {
+        if (
+          /^raw-\d+$/i.test(id) ||
+          /^smackdown-\d+$/i.test(id) ||
+          /^nxt-\d+$/i.test(id)
+        ) {
+          addTournamentShow(id, show);
         }
-
-
-        /* WEEKLY COMBINADOS */
-
-        const rawShows=events.filter(
-            e=>/^raw-\d+$/i.test(e.id)
-        );
-
-        const smackdownShows=events.filter(
-            e=>/^smackdown-\d+$/i.test(e.id)
-        );
-
-        const numbers=new Set();
-
-        rawShows.forEach(e=>{
-            numbers.add(e.id.split("-").pop());
-        });
-
-        smackdownShows.forEach(e=>{
-            numbers.add(e.id.split("-").pop());
-        });
-
-        numbers.forEach(number=>{
-
-            const raw=rawShows.find(
-                e=>e.id==="raw-"+number
-            );
-
-            const smackdown=smackdownShows.find(
-                e=>e.id==="smackdown-"+number
-            );
-
-            events.push({
-                id:"weekly-"+number,
-                title:"WEEKLY #"+number,
-                date:raw?.date||smackdown?.date||"",
-                type:"WEEKLY",
-                source:"tournamentData",
-                category:"WEEKLY",
-                image:raw?.image||smackdown?.image||"",
-                includeGeneral:true,
-                combinedWeekly:true
-            });
-
-        });
-
+      });
     }
 
+    // -------------------------
+    // WEEKLY COMBINADOS
+    // RAW + SMACKDOWN = WEEKLY
+    // -------------------------
+    const weeklyNumbers = new Set();
 
-    /* OUTSIDER DATA */
-
-    if(typeof outsiderData!=="undefined"){
-
-        const added=new Set();
-
-        for(const key in outsiderData){
-
-            const data=outsiderData[key];
-
-            if(!data||!data.shows)continue;
-
-            const brand=data.brand||"";
-
-            for(const id in data.shows){
-
-                if(added.has(id))
-                    continue;
-
-                const e=data.shows[id];
-
-                if(!e)continue;
-
-                events.push({
-                    id:id,
-                    title:e.title||brand+" #"+id.split("-").pop(),
-                    date:e.date||"",
-                    type:brand,
-                    source:"outsiderData",
-                    category:brand,
-                    image:e.image||"",
-                    includeGeneral:true
-                });
-
-                added.add(id);
-
-            }
-
-        }
-
-    }
-
-
-    /* ORDEN CRONOLÓGICO */
-
-    events.sort((a,b)=>{
-
-        const dateA=parseDate(a.date);
-        const dateB=parseDate(b.date);
-
-        if(dateA!==dateB)
-            return dateA-dateB;
-
-        return String(a.id).localeCompare(
-            String(b.id),
-            undefined,
-            {numeric:true}
-        );
-
+    Object.keys(data.shows || {}).forEach(id => {
+      const match = id.match(/^(raw|smackdown)-(\d+)$/i);
+      if (match) {
+        weeklyNumbers.add(match[2]);
+      }
     });
 
-    return events;
-           }
-function getChronologySaga(event){
+    [...weeklyNumbers].forEach(number => {
 
-    if(!event)return null;
+      const raw =
+        data.shows?.[`raw-${number}`] ||
+        data.shows?.[`RAW-${number}`];
 
-    const text=(
-        (event.title||"")+" "+
-        (event.id||"")
-    ).toLowerCase();
+      const smackdown =
+        data.shows?.[`smackdown-${number}`] ||
+        data.shows?.[`SMACKDOWN-${number}`];
 
-    if(text.includes("wrestlemania"))
-        return"WRESTLEMANIA";
+      const sourceShow = raw || smackdown;
 
-    if(
-        text.includes("royal rumble")
-    )
-        return"ROYAL RUMBLE";
+      if (!sourceShow || !sourceShow.date) return;
 
-    if(
-        text.includes("summerslam")||
-        text.includes("summer slam")
-    )
-        return"SUMMERSLAM";
+      events.push({
+        id: `weekly-${number}`,
+        title: `WEEKLY #${number}`,
+        date: sourceShow.date,
+        type: "WEEKLY",
+        source: "tournamentData",
+        category: "WEEKLY",
+        image: sourceShow.image || "",
+        includeGeneral: true,
+        combinedWeekly: true
+      });
+    });
+  }
 
-    if(
-        text.includes("money in the bank")||
-        text.includes("money-in-the-bank")
-    )
-        return"MONEY IN THE BANK";
+  // =========================
+  // OUTSIDER DATA
+  // SPEED / AEW / AAA / CMLL / TNA
+  // =========================
+  if (
+    typeof outsiderData !== "undefined" &&
+    outsiderData &&
+    outsiderData.shows
+  ) {
+    Object.entries(outsiderData.shows).forEach(([id, show]) => {
 
-    if(
-        text.includes("night of champions")
-    )
-        return"NIGHT OF CHAMPIONS";
+      if (!show || !show.date) return;
 
-    if(
-        text.includes("survivor series")
-    )
-        return"SURVIVOR SERIES";
+      const brand = (
+        getShowBrand(id) ||
+        show.brand ||
+        show.type ||
+        ""
+      ).toUpperCase();
 
-    if(
-        text.includes("backlash")
-    )
-        return"BACKLASH";
+      if (!["SPEED", "AEW", "AAA", "CMLL", "TNA"].includes(brand)) {
+        return;
+      }
 
-    if(
-        text.includes("extreme rules")
-    )
-        return"EXTREME RULES";
+      events.push({
+        id: id,
+        title: show.title || id.toUpperCase(),
+        date: show.date,
+        type: brand,
+        source: "outsiderData",
+        category: brand,
+        image: show.image || "",
+        includeGeneral: true
+      });
+    });
+  }
 
-    if(
-        text.includes("hell in a cell")
-    )
-        return"HELL IN A CELL";
+  // =========================
+  // SORT
+  // =========================
+  events.sort((a, b) => {
+    const dateA = parseDate(a.date);
+    const dateB = parseDate(b.date);
 
-    if(
-        text.includes("elimination chamber")
-    )
-        return"ELIMINATION CHAMBER";
+    const timeA = dateA ? dateA.getTime() : 0;
+    const timeB = dateB ? dateB.getTime() : 0;
 
-    if(
-        text.includes("clash of champions")
-    )
-        return"CLASH OF CHAMPIONS";
-
-    if(
-        text.includes("king of the ring")
-    )
-        return"KING OF THE RING";
-
-    if(
-        text.includes("crown jewel")
-    )
-        return"CROWN JEWEL";
-
-    if(
-        text.includes("fastlane")
-    )
-        return"FASTLANE";
-
-    if(
-        text.includes("payback")
-    )
-        return"PAYBACK";
-
-    if(
-        text.includes("takeover")
-    )
-        return"TAKEOVER";
-
-    if(
-        text.includes("tlc")
-    )
-        return"TLC";
-
-    return null;
-}
-
-function getChronologyPosition(list,event){
-
-    let index=list.findIndex(
-        e=>e.id===event.id
-    );
-
-    if(index<0){
-
-        const date=parseDate(event.date);
-
-        index=list.findIndex(
-            e=>parseDate(e.date)>=date
-        );
-
+    if (timeA !== timeB) {
+      return timeA - timeB;
     }
 
-    return index;
+    return String(a.id).localeCompare(String(b.id));
+  });
+
+  return events;
 }
 
+
+/* =========================
+   SAGA
+========================= */
+
+function getChronologySaga(event) {
+
+  const text = (
+    (event.title || "") +
+    " " +
+    (event.id || "")
+  ).toLowerCase();
+
+  const sagas = [
+    "wrestlemania",
+    "royal rumble",
+    "summerslam",
+    "summer slam",
+    "money in the bank",
+    "night of champions",
+    "survivor series",
+    "backlash",
+    "extreme rules",
+    "hell in a cell",
+    "elimination chamber",
+    "clash of champions",
+    "king of the ring",
+    "crown jewel",
+    "fastlane",
+    "payback",
+    "takeover",
+    "take over",
+    "tlc"
+  ];
+
+  for (const saga of sagas) {
+    if (text.includes(saga)) {
+      return saga;
+    }
+  }
+
+  return null;
+}
+
+
+/* =========================
+   NORMALIZE ID
+========================= */
+
+function getChronologyCurrentId(event) {
+  if (!event) return null;
+
+  if (/^weekly-\d+$/i.test(event.id)) {
+    return event.id.toLowerCase();
+  }
+
+  return event.id;
+}
+
+
+/* =========================
+   LINK
+========================= */
+
+function chronologyLink(event, arrow = "") {
+
+  if (!event) {
+    return `
+      <div class="chronology-card chronology-empty">
+        —
+      </div>
+    `;
+  }
+
+  const currentId = getChronologyCurrentId(event);
+
+  return `
+    <a
+      class="chronology-link"
+      href="event.html?id=${encodeURIComponent(currentId)}"
+    >
+      <div class="chronology-card">
+
+        ${event.image
+          ? `<img class="chronology-image"
+                  src="${event.image}"
+                  alt="${event.title || ""}"
+                  onerror="this.style.display='none'">`
+          : ""
+        }
+
+        <div class="chronology-title">
+          ${event.title || currentId}
+        </div>
+
+        ${event.date
+          ? `<div class="chronology-date">${event.date}</div>`
+          : ""
+        }
+
+      </div>
+    </a>
+  `;
+}
+
+
+/* =========================
+   ROW
+========================= */
 
 function createChronologyRow(
-    title,
-    previous,
-    current,
-    next
-){
-
-    return`
+  title,
+  previous,
+  current,
+  next
+) {
+  return `
     <div class="chronology-block">
 
-        <h3>${title}</h3>
+      <h3>${title}</h3>
 
-        <div class="chronology-row">
+      <div class="chronology-row">
 
-            ${chronologyLink(previous,"←")}
-
-            <div class="chronology-current">
-
-                ${
-                    current?.image
-                    ?
-                    `<img
-                        src="${current.image}"
-                        alt="${current.title}"
-                        class="chronology-image chronology-current-image"
-                    >`
-                    :""
-                }
-
-                <span>
-                    ${current?.title||""}
-                </span>
-
-            </div>
-
-            ${chronologyLink(next,"→")}
-
+        <div class="chronology-column">
+          ${chronologyLink(previous)}
         </div>
+
+        <div class="chronology-column chronology-current">
+          ${chronologyLink(current)}
+        </div>
+
+        <div class="chronology-column">
+          ${chronologyLink(next)}
+        </div>
+
+      </div>
 
     </div>
-    `;
+  `;
 }
 
 
-function chronologyLink(event,arrow){
+/* =========================
+   GENERAL
+========================= */
 
-    if(!event){
+function renderGeneralChronology(events, event) {
 
-        return`
-        <div class="chronology-empty"></div>
-        `;
+  const list = events.filter(e => e.includeGeneral !== false);
 
-    }
+  const currentId = getChronologyCurrentId(event);
 
-    return`
-    <a
-        href="event.html?id=${encodeURIComponent(event.id)}"
-        class="chronology-link"
-    >
+  let index = list.findIndex(
+    e => getChronologyCurrentId(e) === currentId
+  );
 
-        <span class="chronology-arrow">
-            ${arrow}
-        </span>
+  // Si la página actual es RAW/SMACKDOWN,
+  // intentar encontrar su WEEKLY equivalente.
+  if (index === -1 && /^(raw|smackdown)-\d+$/i.test(event.id)) {
 
-        <div class="chronology-card">
+    const number = event.id.split("-")[1];
 
-            ${
-                event.image
-                ?
-                `<img
-                    src="${event.image}"
-                    alt="${event.title}"
-                    class="chronology-image"
-                >`
-                :""
-            }
-
-            <span class="chronology-title">
-                ${event.title}
-            </span>
-
-        </div>
-
-    </a>
-    `;
-}
-function renderGeneralChronology(events,event){
-
-    const list=events
-        .filter(e=>e.includeGeneral!==false)
-        .sort(
-            (a,b)=>parseDate(a.date)-parseDate(b.date)
-        );
-
-    const index=getChronologyPosition(
-        list,
-        event
+    index = list.findIndex(
+      e => e.id.toLowerCase() === `weekly-${number}`
     );
-
-    if(index<0)return null;
-
-    return createChronologyRow(
-
-        "GENERAL",
-
-        list[index-1]||null,
-
-        event,
-
-        list[index+1]||null
-
-    );
-}
-function renderWeeklyChronology(events,event){
-
-    const list=events
-        .filter(e=>e.combinedWeekly===true)
-        .sort(
-            (a,b)=>parseDate(a.date)-parseDate(b.date)
-        );
-
-    let id=event.id;
-
-    if(
-        /^(raw|smackdown)-\d+$/i.test(id)
-    ){
-
-        id="weekly-"+id.split("-").pop();
-
-    }
-
-    const index=list.findIndex(
-        e=>e.id===id
-    );
-
-    if(index<0)return null;
-
-    return createChronologyRow(
-
-        "WEEKLY",
-
-        list[index-1]||null,
-
-        list[index],
-
-        list[index+1]||null
-
-    );
-}
-function renderPLEChronology(events,event){
-
-    const list=events
-        .filter(e=>e.category==="PLE")
-        .sort(
-            (a,b)=>parseDate(a.date)-parseDate(b.date)
-        );
-
-    const index=getChronologyPosition(
-        list,
-        event
-    );
-
-    if(index<0)return null;
-
-    return createChronologyRow(
-
-        "PLE",
-
-        list[index-1]||null,
-
-        event,
-
-        list[index+1]||null
-
-    );
-}
-function renderSagaChronology(events,event){
-
-    const saga=getChronologySaga(event);
-
-    if(!saga)return null;
-
-    const list=events
-        .filter(
-            e=>getChronologySaga(e)===saga
-        )
-        .sort(
-            (a,b)=>parseDate(a.date)-parseDate(b.date)
-        );
-
-    const index=getChronologyPosition(
-        list,
-        event
-    );
-
-    if(index<0)return null;
-
-    return createChronologyRow(
-
-        saga,
-
-        list[index-1]||null,
-
-        event,
-
-        list[index+1]||null
-
-    );
-}
-function renderChronology(event){
-
-    if(typeof eventChronology==="undefined")
-        return;
-
-    if(!eventChronology)
-        return;
-
-    eventChronology.innerHTML="";
-
-    const events=getAllChronologyEvents();
-
-
-    /* =====================================
-       GENERAL
-       ===================================== */
-
-    const general=renderGeneralChronology(
-        events,
-        event
-    );
-
-    if(general)
-        eventChronology.innerHTML+=general;
-
-
-    /* =====================================
-       PLE
-       
-       GENERAL
-       SAGA
-       PLE
-       ===================================== */
-
-    if(event.source==="eventData"){
-
-        const saga=renderSagaChronology(
-            events,
-            event
-        );
-
-        if(saga)
-            eventChronology.innerHTML+=saga;
-
-
-        const ple=renderPLEChronology(
-            events,
-            event
-        );
-
-        if(ple)
-            eventChronology.innerHTML+=ple;
-
-    }
-
-
-    /* =====================================
-       WEEKLY
-       
-       GENERAL
-       WEEKLY
-       ===================================== */
-
-    else if(
-        event.category==="WEEKLY"||
-        event.combinedWeekly===true||
-        /^(raw|smackdown)-\d+$/i.test(event.id)
-    ){
-
-        const weekly=renderWeeklyChronology(
-            events,
-            event
-        );
-
-        if(weekly)
-            eventChronology.innerHTML+=weekly;
-
-    }
-
-
-    /* =====================================
-       NXT
-       ===================================== */
-
-    else if(event.category==="NXT"){
-
-        const list=events
-            .filter(e=>e.category==="NXT")
-            .sort(
-                (a,b)=>parseDate(a.date)-parseDate(b.date)
-            );
-
-        const index=getChronologyPosition(
-            list,
-            event
-        );
-
-        if(index>=0){
-
-            eventChronology.innerHTML+=
-                createChronologyRow(
-
-                    "NXT",
-
-                    list[index-1]||null,
-
-                    event,
-
-                    list[index+1]||null
-
-                );
-
-        }
-
-    }
-
-
-    /* =====================================
-       OUTSIDER
-       ===================================== */
-
-    else if(event.source==="outsiderData"){
-
-        const list=events
-            .filter(
-                e=>
-                    e.source==="outsiderData"&&
-                    e.category===event.category
-            )
-            .sort(
-                (a,b)=>parseDate(a.date)-parseDate(b.date)
-            );
-
-        const index=getChronologyPosition(
-            list,
-            event
-        );
-
-        if(index>=0){
-
-            eventChronology.innerHTML+=
-                createChronologyRow(
-
-                    event.category,
-
-                    list[index-1]||null,
-
-                    event,
-
-                    list[index+1]||null
-
-                );
-
-        }
-
-    }
-
+  }
+
+  if (index === -1) {
+    return "";
+  }
+
+  return createChronologyRow(
+    "GENERAL",
+    list[index - 1] || null,
+    event,
+    list[index + 1] || null
+  );
 }
 
 
+/* =========================
+   WEEKLY
+========================= */
+
+function renderWeeklyChronology(events, event) {
+
+  const list = events
+    .filter(e => e.combinedWeekly === true)
+    .sort((a, b) => parseDate(a.date) - parseDate(b.date));
+
+  let currentId = getChronologyCurrentId(event);
+
+  if (/^(raw|smackdown)-\d+$/i.test(currentId)) {
+    currentId = `weekly-${currentId.split("-")[1]}`;
+  }
+
+  const index = list.findIndex(
+    e => e.id.toLowerCase() === currentId.toLowerCase()
+  );
+
+  if (index === -1) {
+    return "";
+  }
+
+  return createChronologyRow(
+    "WEEKLY",
+    list[index - 1] || null,
+    list[index],
+    list[index + 1] || null
+  );
+}
 
 
+/* =========================
+   NXT
+========================= */
+
+function renderNXTChronology(events, event) {
+
+  const list = events
+    .filter(e => e.category === "NXT")
+    .sort((a, b) => parseDate(a.date) - parseDate(b.date));
+
+  const index = list.findIndex(
+    e => e.id === event.id
+  );
+
+  if (index === -1) {
+    return "";
+  }
+
+  return createChronologyRow(
+    "NXT",
+    list[index - 1] || null,
+    list[index],
+    list[index + 1] || null
+  );
+}
 
 
+/* =========================
+   OUTSIDER
+   SPEED / AEW / AAA / CMLL / TNA
+========================= */
+
+function renderOutsiderChronology(events, event) {
+
+  const category = (
+    event.category ||
+    event.type ||
+    ""
+  ).toUpperCase();
+
+  const list = events
+    .filter(e =>
+      e.source === "outsiderData" &&
+      e.category === category
+    )
+    .sort((a, b) => parseDate(a.date) - parseDate(b.date));
+
+  const index = list.findIndex(
+    e => e.id === event.id
+  );
+
+  if (index === -1) {
+    return "";
+  }
+
+  return createChronologyRow(
+    category,
+    list[index - 1] || null,
+    list[index],
+    list[index + 1] || null
+  );
+}
 
 
+/* =========================
+   PLE GENERAL
+========================= */
+
+function renderPLEChronology(events, event) {
+
+  const list = events
+    .filter(e => e.category === "PLE")
+    .sort((a, b) => parseDate(a.date) - parseDate(b.date));
+
+  const index = list.findIndex(
+    e => e.id === event.id
+  );
+
+  if (index === -1) {
+    return "";
+  }
+
+  return createChronologyRow(
+    "PLE",
+    list[index - 1] || null,
+    list[index],
+    list[index + 1] || null
+  );
+}
+
+
+/* =========================
+   PLE SAGA
+========================= */
+
+function renderSagaChronology(events, event) {
+
+  const saga = getChronologySaga(event);
+
+  if (!saga) {
+    return "";
+  }
+
+  const list = events
+    .filter(e =>
+      e.category === "PLE" &&
+      getChronologySaga(e) === saga
+    )
+    .sort((a, b) => parseDate(a.date) - parseDate(b.date));
+
+  const index = list.findIndex(
+    e => e.id === event.id
+  );
+
+  if (index === -1) {
+    return "";
+  }
+
+  return createChronologyRow(
+    "SAGA",
+    list[index - 1] || null,
+    list[index],
+    list[index + 1] || null
+  );
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+function renderChronology(event) {
+
+  const container = document.getElementById("event-chronology");
+
+  if (!container || !event) {
+    return;
+  }
+
+  const events = getAllChronologyEvents();
+
+  let html = "";
+
+  // =========================
+  // SIEMPRE: GENERAL
+  // =========================
+  html += renderGeneralChronology(events, event);
+
+
+  // =========================
+  // PLE
+  // GENERAL + SAGA + PLE
+  // =========================
+  if (event.source === "eventData") {
+
+    html += renderSagaChronology(events, event);
+
+    html += renderPLEChronology(events, event);
+  }
+
+
+  // =========================
+  // WEEKLY
+  // GENERAL + WEEKLY
+  // =========================
+  else if (
+    event.category === "WEEKLY" ||
+    event.type === "WEEKLY"
+  ) {
+
+    html += renderWeeklyChronology(events, event);
+  }
+
+
+  // =========================
+  // NXT
+  // GENERAL + NXT
+  // =========================
+  else if (
+    event.category === "NXT" ||
+    event.type === "NXT"
+  ) {
+
+    html += renderNXTChronology(events, event);
+  }
+
+
+  // =========================
+  // SPEED / AEW / AAA / CMLL / TNA
+  // GENERAL + CATEGORY
+  // =========================
+  else if (event.source === "outsiderData") {
+
+    html += renderOutsiderChronology(events, event);
+  }
+
+
+  container.innerHTML = html;
+}
                                             
