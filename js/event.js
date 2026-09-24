@@ -1871,47 +1871,58 @@ currentEvent.category==="WEEKLY"||
 ){
 
 const weeklyShows=
-allEvents.filter(
-item=>item.category==="WEEKLY"
-);
+allEvents
+.filter(
+item=>
+item.category==="WEEKLY" &&
+item.combinedWeekly===true
+)
+.sort((a,b)=>{
+
+return parseDate(a.date)-
+parseDate(b.date);
+
+});
+
+
+/* =====================================
+   FIND CURRENT WEEKLY
+   ===================================== */
+
+let weeklyId=currentEvent.id;
 
 
 /*
-   Current RAW/SmackDown is treated
-   as an individual weekly show.
-*/
-
-let weeklyIndex=
-weeklyShows.findIndex(
-item=>item.id===currentEvent.id
-);
-
-
-/*
-   If we're on weekly-145,
-   use RAW #145 as the reference.
+   RAW #145 / SMACKDOWN #145
+   pertenece a WEEKLY #145.
 */
 
 if(
-weeklyIndex===-1&&
-/^weekly-\d+$/i.test(currentEvent.id)
+/^(raw|smackdown)-\d+$/i.test(currentEvent.id)
 ){
 
 const number=
-Number(
-currentEvent.id.match(/^weekly-(\d+)$/i)[1]
-);
+currentEvent.id.split("-").pop();
 
-weeklyIndex=
-weeklyShows.findIndex(
-item=>item.id==="weekly-"+number
-);
+weeklyId=
+"weekly-"+number;
 
 }
 
 
+/*
+   weekly-145
+   ya es directamente el evento actual.
+*/
+
+const weeklyIndex=
+weeklyShows.findIndex(
+item=>item.id===weeklyId
+);
+
+
 /* =====================================
-   WEEKLY PREVIOUS / NEXT
+   PREVIOUS / NEXT WEEKLY
    ===================================== */
 
 if(weeklyIndex!==-1){
@@ -1922,11 +1933,19 @@ weeklyShows[weeklyIndex-1]||null;
 const nextWeekly=
 weeklyShows[weeklyIndex+1]||null;
 
+const currentWeekly=
+weeklyShows[weeklyIndex];
+
+
+/* =====================================
+   RENDER
+   ===================================== */
+
 eventChronology.innerHTML+=
 createChronologyRow(
 "WEEKLY CHRONOLOGY",
 previousWeekly,
-currentEvent,
+currentWeekly,
 nextWeekly
 );
 
