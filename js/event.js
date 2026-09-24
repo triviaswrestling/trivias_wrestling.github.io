@@ -1707,225 +1707,314 @@ if(t.includes("payback"))return"PAYBACK";
 
 return null;
 }
+
+
+   
 /* =========================================
-   RENDER CHRONOLOGY
+   EVENT CHRONOLOGY
    ========================================= */
 
-function renderChronology(e){
+function getAllChronologyEvents(){
+    const events=[];
 
-if(!eventChronology)return;
+    if(typeof eventData!=="undefined"){
+        for(const id in eventData){
+            const e=eventData[id];
+            if(!e)continue;
+            events.push({
+                id,
+                title:e.title||id,
+                date:e.date||"",
+                type:"PLE",
+                category:"PLE",
+                source:"eventData",
+                image:e.image||"",
+                includeGeneral:true
+            });
+        }
+    }
 
-eventChronology.innerHTML="";
+    if(typeof tournamentData!=="undefined"){
+        const added=new Set();
 
-const a=getAllChronologyEvents();
+        for(const key in tournamentData){
+            const data=tournamentData[key];
+            if(!data)continue;
 
-const s=getChronologySaga(e);
+            const collections=[data.shows,data.weekly,data.matches];
 
+            for(const collection of collections){
+                if(!collection||Array.isArray(collection))continue;
 
-/* =========================================
-   GENERAL CHRONOLOGY
-   ========================================= */
+                for(const id in collection){
+                    if(!/^(raw|smackdown|nxt)-\d+$/i.test(id))continue;
+                    if(added.has(id))continue;
 
-const g=a
-.filter(x=>x.includeGeneral!==false)
-.sort((x,y)=>parseDate(x.date)-parseDate(y.date));
+                    const e=collection[id];
+                    if(!e)continue;
 
-let i=g.findIndex(x=>x.id===e.id);
+                    const brand=getShowBrand(id);
+                    const number=id.split("-").pop();
 
-if(i<0){
+                    events.push({
+                        id,
+                        title:e.title||brand+" #"+number,
+                        date:e.date||"",
+                        type:brand==="NXT"?"NXT":"WEEKLY",
+                        category:brand==="NXT"?"NXT":"WEEKLY",
+                        source:"tournamentData",
+                        image:e.image||"",
+                        includeGeneral:true
+                    });
 
-const d=parseDate(e.date);
+                    added.add(id);
+                }
+            }
+        }
 
-i=g.findIndex(
-x=>parseDate(x.date)>=d
-);
+        const raw=events.filter(e=>/^raw-\d+$/i.test(e.id));
+        const sd=events.filter(e=>/^smackdown-\d+$/i.test(e.id));
+        const nums=new Set();
 
-}
+        raw.forEach(e=>nums.add(e.id.split("-").pop()));
+        sd.forEach(e=>nums.add(e.id.split("-").pop()));
 
-if(i>=0){
+        nums.forEach(n=>{
+            const r=raw.find(e=>e.id==="raw-"+n);
+            const s=sd.find(e=>e.id==="smackdown-"+n);
 
-eventChronology.innerHTML+=
-createChronologyRow(
-"GENERAL CHRONOLOGY",
-g[i-1]||null,
-e,
-g[i+1]||null
-);
+            events.push({
+                id:"weekly-"+n,
+                title:"WEEKLY #"+n,
+                date:r?.date||s?.date||"",
+                type:"WEEKLY",
+                category:"WEEKLY",
+                source:"tournamentData",
+                image:r?.image||s?.image||"",
+                includeGeneral:true,
+                combinedWeekly:true
+            });
+        });
+    }
 
-}
+    if(typeof outsiderData!=="undefined"){
+        const added=new Set();
 
+        for(const key in outsiderData){
+            const data=outsiderData[key];
+            if(!data?.shows)continue;
 
-/* =========================================
-   SAGA CHRONOLOGY
-   ========================================= */
+            const brand=data.brand||"";
 
-if(s){
+            for(const id in data.shows){
+                if(added.has(id))continue;
 
-const l=a
-.filter(x=>getChronologySaga(x)===s)
-.sort(
-(x,y)=>parseDate(x.date)-parseDate(y.date)
-);
+                const e=data.shows[id];
+                if(!e)continue;
 
-const n=l.findIndex(
-x=>x.id===e.id
-);
+                events.push({
+                    id,
+                    title:e.title||brand+" #"+id.split("-").pop(),
+                    date:e.date||"",
+                    type:brand,
+                    category:brand,
+                    source:"outsiderData",
+                    image:e.image||"",
+                    includeGeneral:true
+                });
 
-if(n>=0){
+                added.add(id);
+            }
+        }
+    }
 
-eventChronology.innerHTML+=
-createChronologyRow(
-s+" CHRONOLOGY",
-l[n-1]||null,
-e,
-l[n+1]||null
-);
+    events.sort((a,b)=>{
+        const d=parseDate(a.date)-parseDate(b.date);
+        return d||String(a.id).localeCompare(String(b.id),undefined,{numeric:true});
+    });
 
-}
-
-}
-
-
-/* =========================================
-   PLE CHRONOLOGY
-   ========================================= */
-
-if(e.source==="eventData"){
-
-const l=a
-.filter(x=>x.category==="PLE")
-.sort(
-(x,y)=>parseDate(x.date)-parseDate(y.date)
-);
-
-const n=l.findIndex(
-x=>x.id===e.id
-);
-
-if(n>=0){
-
-eventChronology.innerHTML+=
-createChronologyRow(
-"PLE CHRONOLOGY",
-l[n-1]||null,
-e,
-l[n+1]||null
-);
-
-}
-
-}
-
-
-/* =========================================
-   WEEKLY CHRONOLOGY
-   ========================================= */
-
-if(
-e.category==="WEEKLY"||
-/^(raw|smackdown)-\d+$/i.test(e.id)
-){
-
-const l=a.filter(
-x=>x.combinedWeekly
-);
-
-const id=
-/^(raw|smackdown)-\d+$/i.test(e.id)
-?
-"weekly-"+e.id.split("-").pop()
-:
-e.id;
-
-const n=l.findIndex(
-x=>x.id===id
-);
-
-if(n>=0){
-
-eventChronology.innerHTML+=
-createChronologyRow(
-"WEEKLY CHRONOLOGY",
-l[n-1]||null,
-l[n],
-l[n+1]||null
-);
-
-}
-
+    return events;
 }
 
 
-/* =========================================
-   NXT CHRONOLOGY
-   ========================================= */
+function getChronologySaga(e){
+    if(!e)return null;
 
-if(
-e.category==="NXT"||
-s==="TAKEOVER"
-){
+    const t=((e.title||"")+" "+(e.id||"")).toLowerCase();
 
-const l=a
-.filter(x=>
-x.category==="NXT"||
-getChronologySaga(x)==="TAKEOVER"
-)
-.sort(
-(x,y)=>parseDate(x.date)-parseDate(y.date)
-);
+    const sagas=[
+        ["wrestlemania","WRESTLEMANIA"],
+        ["royal rumble","ROYAL RUMBLE"],
+        ["summerslam","SUMMERSLAM"],
+        ["summer slam","SUMMERSLAM"],
+        ["money in the bank","MONEY IN THE BANK"],
+        ["money-in-the-bank","MONEY IN THE BANK"],
+        ["night of champions","NIGHT OF CHAMPIONS"],
+        ["survivor series","SURVIVOR SERIES"],
+        ["backlash","BACKLASH"],
+        ["extreme rules","EXTREME RULES"],
+        ["hell in a cell","HELL IN A CELL"],
+        ["elimination chamber","ELIMINATION CHAMBER"],
+        ["clash of champions","CLASH OF CHAMPIONS"],
+        ["king of the ring","KING OF THE RING"],
+        ["crown jewel","CROWN JEWEL"],
+        ["fastlane","FASTLANE"],
+        ["payback","PAYBACK"],
+        ["takeover","TAKEOVER"],
+        ["tlc","TLC"]
+    ];
 
-const n=l.findIndex(
-x=>x.id===e.id
-);
-
-if(n>=0){
-
-eventChronology.innerHTML+=
-createChronologyRow(
-"NXT CHRONOLOGY",
-l[n-1]||null,
-e,
-l[n+1]||null
-);
-
-}
-
+    const found=sagas.find(x=>t.includes(x[0]));
+    return found?found[1]:null;
 }
 
 
-/* =========================================
-   OUTSIDER CHRONOLOGY
-   ========================================= */
+function getChronologyPosition(list,event){
+    let i=list.findIndex(e=>e.id===event.id);
 
-if(e.source==="outsiderData"){
+    if(i<0){
+        const d=parseDate(event.date);
+        i=list.findIndex(e=>parseDate(e.date)>=d);
+    }
 
-const l=a
-.filter(x=>
-x.source==="outsiderData"&&
-x.category===e.category
-)
-.sort(
-(x,y)=>parseDate(x.date)-parseDate(y.date)
-);
-
-const n=l.findIndex(
-x=>x.id===e.id
-);
-
-if(n>=0){
-
-eventChronology.innerHTML+=
-createChronologyRow(
-e.category+" CHRONOLOGY",
-l[n-1]||null,
-e,
-l[n+1]||null
-);
-
+    return i;
 }
 
+
+function renderGeneralChronology(events,event){
+    const list=events
+        .filter(e=>e.includeGeneral!==false)
+        .sort((a,b)=>parseDate(a.date)-parseDate(b.date));
+
+    const i=getChronologyPosition(list,event);
+    if(i<0)return null;
+
+    return createChronologyRow(
+        "GENERAL",
+        list[i-1]||null,
+        event,
+        list[i+1]||null
+    );
 }
 
+
+function renderWeeklyChronology(events,event){
+    const list=events
+        .filter(e=>e.combinedWeekly===true)
+        .sort((a,b)=>parseDate(a.date)-parseDate(b.date));
+
+    let id=event.id;
+
+    if(/^(raw|smackdown)-\d+$/i.test(id)){
+        id="weekly-"+id.split("-").pop();
+    }
+
+    const i=list.findIndex(e=>e.id===id);
+    if(i<0)return null;
+
+    return createChronologyRow(
+        "WEEKLY",
+        list[i-1]||null,
+        list[i],
+        list[i+1]||null
+    );
+}
+
+
+function renderPLEChronology(events,event){
+    const list=events
+        .filter(e=>e.category==="PLE")
+        .sort((a,b)=>parseDate(a.date)-parseDate(b.date));
+
+    const i=getChronologyPosition(list,event);
+    if(i<0)return null;
+
+    return createChronologyRow(
+        "PLE",
+        list[i-1]||null,
+        event,
+        list[i+1]||null
+    );
+}
+
+
+function renderSagaChronology(events,event){
+    const saga=getChronologySaga(event);
+    if(!saga)return null;
+
+    const list=events
+        .filter(e=>getChronologySaga(e)===saga)
+        .sort((a,b)=>parseDate(a.date)-parseDate(b.date));
+
+    const i=getChronologyPosition(list,event);
+    if(i<0)return null;
+
+    return createChronologyRow(
+        saga,
+        list[i-1]||null,
+        event,
+        list[i+1]||null
+    );
+}
+
+
+function renderChronology(event){
+    if(typeof eventChronology==="undefined"||!eventChronology)return;
+
+    eventChronology.innerHTML="";
+
+    const events=getAllChronologyEvents();
+
+    const general=renderGeneralChronology(events,event);
+    if(general)eventChronology.innerHTML+=general;
+
+    if(event.source==="eventData"){
+        const saga=renderSagaChronology(events,event);
+        if(saga)eventChronology.innerHTML+=saga;
+
+        const ple=renderPLEChronology(events,event);
+        if(ple)eventChronology.innerHTML+=ple;
+
+    }else if(
+        event.category==="WEEKLY"||
+        event.combinedWeekly===true||
+        /^(raw|smackdown)-\d+$/i.test(event.id)
+    ){
+        const weekly=renderWeeklyChronology(events,event);
+        if(weekly)eventChronology.innerHTML+=weekly;
+
+    }else if(event.category==="NXT"){
+        const list=events
+            .filter(e=>e.category==="NXT")
+            .sort((a,b)=>parseDate(a.date)-parseDate(b.date));
+
+        const i=getChronologyPosition(list,event);
+
+        if(i>=0){
+            eventChronology.innerHTML+=createChronologyRow(
+                "NXT",
+                list[i-1]||null,
+                event,
+                list[i+1]||null
+            );
+        }
+
+    }else if(event.source==="outsiderData"){
+        const list=events
+            .filter(e=>e.source==="outsiderData"&&e.category===event.category)
+            .sort((a,b)=>parseDate(a.date)-parseDate(b.date));
+
+        const i=getChronologyPosition(list,event);
+
+        if(i>=0){
+            eventChronology.innerHTML+=createChronologyRow(
+                event.category,
+                list[i-1]||null,
+                event,
+                list[i+1]||null
+            );
+        }
+    }
 }
 /* =========================================
    CHRONOLOGY LINK
