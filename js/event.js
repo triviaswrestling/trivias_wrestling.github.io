@@ -1459,3 +1459,476 @@ ${scores.map(score=>`<span>${score}</span>`).join("")}
 </div>`;
 
 }
+/* =========================================
+   EVENT CHRONOLOGY
+   ========================================= */
+
+function getAllChronologyEvents(){
+
+const events=[];
+
+
+/* =====================================
+   EVENT DATA
+   PLE / SPECIAL EVENTS
+   ===================================== */
+
+if(typeof eventData!=="undefined"){
+
+for(const id in eventData){
+
+const data=eventData[id];
+
+if(!data)continue;
+
+events.push({
+id:id,
+title:data.title||id,
+date:data.date||"",
+type:"PLE",
+source:"eventData",
+category:"PLE"
+});
+
+}
+
+}
+
+
+/* =====================================
+   TOURNAMENT DATA
+   RAW / SMACKDOWN / NXT
+   ===================================== */
+
+if(typeof tournamentData!=="undefined"){
+
+const addedShows=new Set();
+
+for(const tournamentId in tournamentData){
+
+const data=tournamentData[tournamentId];
+
+if(!data)continue;
+
+const collections=[
+data.shows,
+data.weekly,
+data.matches
+];
+
+for(const collection of collections){
+
+if(!collection||Array.isArray(collection))continue;
+
+for(const showId in collection){
+
+/* ONLY INDIVIDUAL SHOWS */
+
+if(
+!/^(raw|smackdown|nxt)-\d+$/i.test(showId)
+){
+continue;
+}
+
+if(addedShows.has(showId))continue;
+
+const show=collection[showId];
+
+if(!show)continue;
+
+const brand=getShowBrand(showId);
+
+const number=
+showId.split("-").pop();
+
+events.push({
+
+id:showId,
+
+title:
+show.title||
+brand+" #"+number,
+
+date:
+show.date||"",
+
+type:
+brand==="NXT"
+?"NXT"
+:"WEEKLY",
+
+source:"tournamentData",
+
+category:
+brand==="NXT"
+?"NXT"
+:"WEEKLY"
+
+});
+
+addedShows.add(showId);
+
+}
+
+}
+
+}
+
+}
+
+
+/* =====================================
+   OUTSIDER DATA
+   SPEED / AEW / TNA / AAA / CMLL
+   ===================================== */
+
+if(typeof outsiderData!=="undefined"){
+
+const addedShows=new Set();
+
+for(const tournamentId in outsiderData){
+
+const data=outsiderData[tournamentId];
+
+if(!data||!data.shows)continue;
+
+const brand=
+data.brand||
+"";
+
+for(const showId in data.shows){
+
+if(addedShows.has(showId))continue;
+
+const show=data.shows[showId];
+
+if(!show)continue;
+
+events.push({
+
+id:showId,
+
+title:
+show.title||
+brand+" #"+showId.split("-").pop(),
+
+date:
+show.date||"",
+
+type:brand,
+
+source:"outsiderData",
+
+category:brand
+
+});
+
+addedShows.add(showId);
+
+}
+
+}
+
+}
+
+
+/* =====================================
+   SORT
+   ===================================== */
+
+events.sort((a,b)=>{
+
+const dateA=parseDate(a.date);
+const dateB=parseDate(b.date);
+
+if(dateA!==dateB){
+return dateA-dateB;
+}
+
+return String(a.id).localeCompare(
+String(b.id),
+undefined,
+{numeric:true}
+);
+
+});
+
+
+return events;
+
+}
+
+
+/* =========================================
+   CHRONOLOGY LINK
+   ========================================= */
+
+function chronologyLink(eventData,arrow){
+
+if(!eventData){
+
+return`
+<div class="chronology-empty"></div>
+`;
+
+}
+
+return`
+<a
+href="event.html?id=${encodeURIComponent(eventData.id)}"
+class="chronology-link"
+>
+
+<span class="chronology-arrow">
+${arrow}
+</span>
+
+<span class="chronology-title">
+${eventData.title}
+</span>
+
+</a>`;
+
+}
+
+
+/* =========================================
+   CHRONOLOGY ROW
+   ========================================= */
+
+function createChronologyRow(
+title,
+previous,
+current,
+next
+){
+
+return`
+<div class="chronology-block">
+
+<h3>
+${title}
+</h3>
+
+<div class="chronology-row">
+
+${chronologyLink(previous,"←")}
+
+<div class="chronology-current">
+${current.title}
+</div>
+
+${chronologyLink(next,"→")}
+
+</div>
+
+</div>`;
+
+}
+
+
+/* =========================================
+   RENDER CHRONOLOGY
+   ========================================= */
+
+function renderChronology(currentEvent){
+
+if(!eventChronology)return;
+
+eventChronology.innerHTML="";
+
+const allEvents=
+getAllChronologyEvents();
+
+
+/* =====================================
+   GENERAL CHRONOLOGY
+   ===================================== */
+
+let currentIndex=
+allEvents.findIndex(
+item=>item.id===currentEvent.id
+);
+
+
+/*
+   WEEKLY EVENT:
+   weekly-145 represents RAW + SMACKDOWN.
+   For GENERAL CHRONOLOGY we use the
+   individual show surrounding it.
+*/
+
+if(
+currentIndex===-1&&
+/^weekly-\d+$/i.test(currentEvent.id)
+){
+
+const number=
+Number(
+currentEvent.id.match(/^weekly-(\d+)$/i)[1]
+);
+
+const rawId="raw-"+number;
+const smackdownId="smackdown-"+number;
+
+currentIndex=
+allEvents.findIndex(
+item=>
+item.id===rawId||
+item.id===smackdownId
+);
+
+}
+
+
+/* =====================================
+   GENERAL PREVIOUS / NEXT
+   ===================================== */
+
+let previousGeneral=null;
+let nextGeneral=null;
+
+if(currentIndex!==-1){
+
+previousGeneral=
+allEvents[currentIndex-1]||null;
+
+nextGeneral=
+allEvents[currentIndex+1]||null;
+
+}
+
+
+/*
+   If current event is a PLE,
+   this produces for example:
+
+   ← SmackDown #145
+   Night of Champions 2026
+   RAW #146 →
+*/
+
+
+eventChronology.innerHTML+=
+createChronologyRow(
+"GENERAL CHRONOLOGY",
+previousGeneral,
+currentEvent,
+nextGeneral
+);
+
+
+/* =====================================
+   PLE CHRONOLOGY
+   ===================================== */
+
+if(currentEvent.category==="PLE"){
+
+const ples=
+allEvents.filter(
+item=>item.category==="PLE"
+);
+
+const pleIndex=
+ples.findIndex(
+item=>item.id===currentEvent.id
+);
+
+const previousPLE=
+pleIndex>0
+?ples[pleIndex-1]
+:null;
+
+const nextPLE=
+pleIndex>=0&&
+pleIndex<ples.length-1
+?ples[pleIndex+1]
+:null;
+
+eventChronology.innerHTML+=
+createChronologyRow(
+"PLE CHRONOLOGY",
+previousPLE,
+currentEvent,
+nextPLE
+);
+
+}
+
+
+/* =====================================
+   WEEKLY CHRONOLOGY
+   ===================================== */
+
+if(
+currentEvent.category==="WEEKLY"||
+/^(raw|smackdown)-\d+$/i.test(currentEvent.id)
+){
+
+const weeklyShows=
+allEvents.filter(
+item=>item.category==="WEEKLY"
+);
+
+
+/*
+   Current RAW/SmackDown is treated
+   as an individual weekly show.
+*/
+
+let weeklyIndex=
+weeklyShows.findIndex(
+item=>item.id===currentEvent.id
+);
+
+
+/*
+   If we're on weekly-145,
+   use RAW #145 as the reference.
+*/
+
+if(
+weeklyIndex===-1&&
+/^weekly-\d+$/i.test(currentEvent.id)
+){
+
+const number=
+Number(
+currentEvent.id.match(/^weekly-(\d+)$/i)[1]
+);
+
+weeklyIndex=
+weeklyShows.findIndex(
+item=>item.id==="raw-"+number
+||
+item.id==="smackdown-"+number
+);
+
+}
+
+
+/* =====================================
+   WEEKLY PREVIOUS / NEXT
+   ===================================== */
+
+if(weeklyIndex!==-1){
+
+const previousWeekly=
+weeklyShows[weeklyIndex-1]||null;
+
+const nextWeekly=
+weeklyShows[weeklyIndex+1]||null;
+
+eventChronology.innerHTML+=
+createChronologyRow(
+"WEEKLY CHRONOLOGY",
+previousWeekly,
+currentEvent,
+nextWeekly
+);
+
+}
+
+}
+
+   }
