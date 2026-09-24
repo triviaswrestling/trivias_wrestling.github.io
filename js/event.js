@@ -1475,10 +1475,7 @@ ${scores.map(score=>`<span>${score}</span>`).join("")}
 
 
 
-
-
-
-
+jijo
 /* =========================================
    EVENT CHRONOLOGY
    ========================================= */
@@ -1486,7 +1483,6 @@ ${scores.map(score=>`<span>${score}</span>`).join("")}
 function getAllChronologyEvents(){
 
 const events=[];
-
 
 /* =====================================
    EVENT DATA
@@ -1502,34 +1498,19 @@ const data=eventData[id];
 if(!data)continue;
 
 events.push({
-
 id:id,
-
-title:
-data.title||id,
-
-date:
-data.date||"",
-
+title:data.title||id,
+date:data.date||"",
 type:"PLE",
-
 source:"eventData",
-
 category:"PLE",
-
-image:
-data.image||"",
-
+image:data.image||"",
 includeGeneral:true
-
 });
 
 }
-
 }
-
-
-/* =====================================
+   /* =====================================
    TOURNAMENT DATA
    RAW / SMACKDOWN / NXT
    ===================================== */
@@ -1540,8 +1521,7 @@ const addedShows=new Set();
 
 for(const tournamentId in tournamentData){
 
-const data=
-tournamentData[tournamentId];
+const data=tournamentData[tournamentId];
 
 if(!data)continue;
 
@@ -1553,250 +1533,137 @@ data.matches
 
 for(const collection of collections){
 
-if(!collection||Array.isArray(collection))
-continue;
+if(!collection||Array.isArray(collection))continue;
 
 for(const showId in collection){
 
 /* ONLY INDIVIDUAL SHOWS */
 
-if(
-!/^(raw|smackdown|nxt)-\d+$/i.test(showId)
-){
-continue;
-}
+if(!/^(raw|smackdown|nxt)-\d+$/i.test(showId))continue;
 
-if(addedShows.has(showId))
-continue;
+if(addedShows.has(showId))continue;
 
-const show=
-collection[showId];
+const show=collection[showId];
 
 if(!show)continue;
 
-const brand=
-getShowBrand(showId);
-
-const number=
-showId.split("-").pop();
+const brand=getShowBrand(showId);
+const number=showId.split("-").pop();
 
 events.push({
-
 id:showId,
-
-title:
-show.title||
-brand+" #"+number,
-
-date:
-show.date||"",
-
-type:
-brand==="NXT"
-?"NXT"
-:"WEEKLY",
-
+title:show.title||brand+" #"+number,
+date:show.date||"",
+type:brand==="NXT"?"NXT":"WEEKLY",
 source:"tournamentData",
-
-category:
-brand==="NXT"
-?"NXT"
-:"WEEKLY",
-
-image:
-show.image||"",
-
+category:brand==="NXT"?"NXT":"WEEKLY",
+image:show.image||"",
 includeGeneral:true
-
 });
 
 addedShows.add(showId);
 
 }
-
 }
-
 }
-
 }
-
-
 /* =====================================
    COMBINED WEEKLY EVENTS
    weekly-1 = RAW + SMACKDOWN
    ===================================== */
 
-const rawShows=
-events.filter(
-item=>
-/^raw-\d+$/i.test(item.id)
+const rawShows=events.filter(
+x=>/^raw-\d+$/i.test(x.id)
 );
 
-const smackdownShows=
-events.filter(
-item=>
-/^smackdown-\d+$/i.test(item.id)
+const smackdownShows=events.filter(
+x=>/^smackdown-\d+$/i.test(x.id)
 );
 
-const weeklyNumbers=
-new Set();
+const weeklyNumbers=new Set();
 
-rawShows.forEach(show=>{
-
-weeklyNumbers.add(
-show.id.split("-").pop()
-);
-
+rawShows.forEach(x=>{
+weeklyNumbers.add(x.id.split("-").pop());
 });
 
-smackdownShows.forEach(show=>{
-
-weeklyNumbers.add(
-show.id.split("-").pop()
-);
-
+smackdownShows.forEach(x=>{
+weeklyNumbers.add(x.id.split("-").pop());
 });
-
 
 weeklyNumbers.forEach(number=>{
 
-const raw=
-rawShows.find(
-item=>
-item.id==="raw-"+number
+const raw=rawShows.find(
+x=>x.id==="raw-"+number
 );
 
-const smackdown=
-smackdownShows.find(
-item=>
-item.id==="smackdown-"+number
+const smackdown=smackdownShows.find(
+x=>x.id==="smackdown-"+number
 );
-
-const date=
-raw?.date||
-smackdown?.date||
-"";
 
 events.push({
-
-id:
-"weekly-"+number,
-
-title:
-"WEEKLY #"+number,
-
-date:
-date,
-
-type:
-"WEEKLY",
-
-source:
-"tournamentData",
-
-category:
-"WEEKLY",
-
-image:
-raw?.image||
-smackdown?.image||
-"",
-
+id:"weekly-"+number,
+title:"WEEKLY #"+number,
+date:raw?.date||smackdown?.date||"",
+type:"WEEKLY",
+source:"tournamentData",
+category:"WEEKLY",
+image:raw?.image||smackdown?.image||"",
 includeGeneral:false,
-
 combinedWeekly:true
-
 });
 
 });
-
-
-/* =====================================
+   /* =====================================
    OUTSIDER DATA
    SPEED / AEW / TNA / AAA / CMLL
    ===================================== */
 
 if(typeof outsiderData!=="undefined"){
 
-const addedShows=
-new Set();
+const addedShows=new Set();
 
 for(const tournamentId in outsiderData){
 
-const data=
-outsiderData[tournamentId];
+const data=outsiderData[tournamentId];
 
-if(!data||!data.shows)
-continue;
+if(!data||!data.shows)continue;
 
-const brand=
-data.brand||
-"";
+const brand=data.brand||"";
 
 for(const showId in data.shows){
 
-if(addedShows.has(showId))
-continue;
+if(addedShows.has(showId))continue;
 
-const show=
-data.shows[showId];
+const show=data.shows[showId];
 
 if(!show)continue;
 
 events.push({
-
-id:
-showId,
-
-title:
-show.title||
-brand+" #"+showId.split("-").pop(),
-
-date:
-show.date||"",
-
-type:
-brand,
-
-source:
-"outsiderData",
-
-category:
-brand,
-
-image:
-show.image||"",
-
+id:showId,
+title:show.title||brand+" #"+showId.split("-").pop(),
+date:show.date||"",
+type:brand,
+source:"outsiderData",
+category:brand,
+image:show.image||"",
 includeGeneral:true
-
 });
 
 addedShows.add(showId);
 
 }
-
 }
-
 }
-
-
 /* =====================================
-   SORT
+   SORT CHRONOLOGY
    ===================================== */
 
 events.sort((a,b)=>{
 
-const dateA=
-parseDate(a.date);
+const dateA=parseDate(a.date);
+const dateB=parseDate(b.date);
 
-const dateB=
-parseDate(b.date);
-
-if(dateA!==dateB){
-
-return dateA-dateB;
-
-}
+if(dateA!==dateB)return dateA-dateB;
 
 return String(a.id).localeCompare(
 String(b.id),
@@ -1806,11 +1673,20 @@ undefined,
 
 });
 
-
 return events;
+
+}
+
+/* =========================================
+   CHRONOLOGY SAGA
+   ========================================= */
+
 function getChronologySaga(e){
+
 if(!e)return null;
+
 const t=((e.title||"")+" "+(e.id||"")).toLowerCase();
+
 if(t.includes("takeover"))return"TAKEOVER";
 if(t.includes("wrestlemania"))return"WRESTLEMANIA";
 if(t.includes("summerslam")||t.includes("summer slam"))return"SUMMERSLAM";
@@ -1828,6 +1704,173 @@ if(t.includes("king of the ring"))return"KING OF THE RING";
 if(t.includes("crown jewel"))return"CROWN JEWEL";
 if(t.includes("fastlane"))return"FASTLANE";
 if(t.includes("payback"))return"PAYBACK";
+
 return null;
-   }
 }
+/* =========================================
+   RENDER CHRONOLOGY
+   ========================================= */
+
+function renderChronology(e){
+
+if(!eventChronology)return;
+
+eventChronology.innerHTML="";
+
+const a=getAllChronologyEvents();
+const s=getChronologySaga(e);
+const g=a.filter(x=>x.includeGeneral!==false);
+
+let i=g.findIndex(x=>x.id===e.id);
+
+if(i<0){
+
+const d=parseDate(e.date);
+
+i=g.findIndex(
+x=>parseDate(x.date)>d
+);
+
+}
+
+eventChronology.innerHTML+=createChronologyRow(
+"GENERAL CHRONOLOGY",
+g[i-1]||null,
+e,
+g[i+1]||null
+);
+
+if(s){
+
+const l=a
+.filter(x=>getChronologySaga(x)===s)
+.sort((x,y)=>parseDate(x.date)-parseDate(y.date));
+
+const n=l.findIndex(x=>x.id===e.id);
+
+if(n>=0){
+
+eventChronology.innerHTML+=createChronologyRow(
+s+" CHRONOLOGY",
+l[n-1]||null,
+e,
+l[n+1]||null
+);
+
+}
+}
+
+if(e.source==="eventData"&&s!=="TAKEOVER"){
+
+const l=a.filter(
+x=>x.category==="PLE"
+);
+
+const n=l.findIndex(
+x=>x.id===e.id
+);
+
+if(n>=0){
+
+eventChronology.innerHTML+=createChronologyRow(
+"PLE CHRONOLOGY",
+l[n-1]||null,
+e,
+l[n+1]||null
+);
+
+}
+}
+
+if(
+e.category==="WEEKLY"||
+/^(raw|smackdown)-\d+$/i.test(e.id)
+){
+
+const l=a.filter(
+x=>x.combinedWeekly
+);
+
+const id=
+/^(raw|smackdown)-\d+$/i.test(e.id)
+?"weekly-"+e.id.split("-").pop()
+:e.id;
+
+const n=l.findIndex(
+x=>x.id===id
+);
+
+if(n>=0){
+
+eventChronology.innerHTML+=createChronologyRow(
+"WEEKLY CHRONOLOGY",
+l[n-1]||null,
+l[n],
+l[n+1]||null
+);
+
+}
+}
+
+if(
+e.category==="NXT"||
+s==="TAKEOVER"
+){
+
+const l=a
+.filter(x=>
+x.category==="NXT"||
+getChronologySaga(x)==="TAKEOVER"
+)
+.sort(
+(x,y)=>parseDate(x.date)-parseDate(y.date)
+);
+
+const n=l.findIndex(
+x=>x.id===e.id
+);
+
+if(n>=0){
+
+eventChronology.innerHTML+=createChronologyRow(
+"NXT CHRONOLOGY",
+l[n-1]||null,
+e,
+l[n+1]||null
+);
+
+}
+}
+
+if(e.source==="outsiderData"){
+
+const l=a
+.filter(x=>
+x.source==="outsiderData"&&
+x.category===e.category
+)
+.sort(
+(x,y)=>parseDate(x.date)-parseDate(y.date)
+);
+
+const n=l.findIndex(
+x=>x.id===e.id
+);
+
+if(n>=0){
+
+eventChronology.innerHTML+=createChronologyRow(
+e.category+" CHRONOLOGY",
+l[n-1]||null,
+e,
+l[n+1]||null
+);
+
+}
+}
+
+}
+
+
+
+
