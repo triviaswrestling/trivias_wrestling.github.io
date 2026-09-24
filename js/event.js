@@ -1982,16 +1982,13 @@ function isTakeOver(event){
    ========================================= */
 
 function isPLE(event){
-
     if(!event) return false;
 
     return(
-        event.source==="eventData" &&
         String(event.type || "")
         .toUpperCase()==="PLE" &&
         !isTakeOver(event)
     );
-
 }
 
 
