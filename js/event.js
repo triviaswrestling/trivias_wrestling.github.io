@@ -7,6 +7,7 @@ const eventTitle=document.getElementById("event-title");
 const eventDate=document.getElementById("event-date");
 const eventBrand=document.getElementById("event-brand");
 const eventResults=document.getElementById("event-results");
+const eventChronology=document.getElementById("event-chronology");
 
 const params=new URLSearchParams(window.location.search);
 const eventId=params.get("id");
@@ -566,6 +567,7 @@ event.type==="PLE"
 }
 
 renderResults(event.results||[]);
+renderChronology(event);
 
 }
 
@@ -1822,7 +1824,10 @@ nextGeneral
    PLE CHRONOLOGY
    ===================================== */
 
-if(currentEvent.category==="PLE"){
+if(
+currentEvent.category==="PLE"||
+currentEvent.source==="eventData"
+){
 
 const ples=
 allEvents.filter(
