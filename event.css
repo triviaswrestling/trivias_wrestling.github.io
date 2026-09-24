@@ -754,14 +754,13 @@ main {
 
     background:linear-gradient(
         90deg,
-        #0057B8,
-        #C40000,
-        #FFD000,
-        #A8A8A8,
-        #00AEEF,
-        #00A651,
-        #FFFFFF,
-        #0057B8
+        #C1121F,
+        #1D4E89,
+        #C7CBD1,
+        #2E86AB,
+        #2E7D4F,
+        #E6E6E6,
+        #C1121F
     );
 
     background-size:300% 100%;
@@ -853,13 +852,12 @@ main {
 
     background:linear-gradient(
         90deg,
-        #0057B8,
-        #C40000,
-        #FFD000,
-        #A8A8A8,
-        #00AEEF,
-        #00A651,
-        #FFFFFF
+        #C1121F,
+        #1D4E89,
+        #C7CBD1,
+        #2E86AB,
+        #2E7D4F,
+        #E6E6E6
     );
 
     z-index:3;
@@ -884,12 +882,12 @@ main {
     background:linear-gradient(
         100deg,
         transparent 0%,
-        rgba(0,87,184,.12) 12%,
-        rgba(0,174,239,.30) 25%,
-        rgba(0,166,81,.30) 38%,
-        rgba(255,208,0,.32) 52%,
-        rgba(196,0,0,.32) 66%,
-        rgba(255,255,255,.22) 78%,
+        rgba(29,78,137,.12) 12%,
+        rgba(46,134,171,.30) 25%,
+        rgba(46,125,79,.30) 38%,
+        rgba(199,203,209,.32) 52%,
+        rgba(193,18,31,.32) 66%,
+        rgba(230,230,230,.22) 78%,
         transparent 100%
     );
 
@@ -927,7 +925,7 @@ main {
 .chronology-link:hover .chronology-card{
     transform:translateY(-2px);
 
-    border-color:#A8A8A8;
+    border-color:#C7CBD1;
 
     box-shadow:
         0 4px 12px rgba(0,0,0,.8);
@@ -961,10 +959,10 @@ main {
 }
 
 .chronology-link:hover .chronology-image{
-    border-color:#FFD000;
+    border-color:#C7CBD1;
 
     box-shadow:
-        0 0 8px rgba(255,208,0,.25);
+        0 0 8px rgba(199,203,209,.25);
 }
 
 
@@ -993,7 +991,7 @@ main {
 
     margin-top:4px;
 
-    color:#A8A8A8;
+    color:#C7CBD1;
 
     font-size:7px;
     line-height:9px;
@@ -1020,14 +1018,13 @@ main {
         linear-gradient(#111,#111) padding-box,
         linear-gradient(
             135deg,
-            #0057B8,
-            #C40000,
-            #FFD000,
-            #A8A8A8,
-            #00AEEF,
-            #00A651,
-            #FFFFFF,
-            #0057B8
+            #C1121F,
+            #1D4E89,
+            #C7CBD1,
+            #2E86AB,
+            #2E7D4F,
+            #E6E6E6,
+            #C1121F
         ) border-box;
 
     background-size:auto,300% 300%;
@@ -1048,14 +1045,13 @@ main {
 
     background:linear-gradient(
         90deg,
-        #0057B8,
-        #C40000,
-        #FFD000,
-        #A8A8A8,
-        #00AEEF,
-        #00A651,
-        #FFFFFF,
-        #0057B8
+        #C1121F,
+        #1D4E89,
+        #C7CBD1,
+        #2E86AB,
+        #2E7D4F,
+        #E6E6E6,
+        #C1121F
     );
 
     background-size:300% 100%;
@@ -1092,10 +1088,10 @@ main {
 /* ACTUAL - IMAGEN */
 
 .chronology-current .chronology-image{
-    border-color:#FFD000;
+    border-color:#C7CBD1;
 
     box-shadow:
-        0 0 10px rgba(255,208,0,.25);
+        0 0 10px rgba(199,203,209,.25);
 }
 
 
@@ -1181,4 +1177,4 @@ main {
         font-size:6px;
         line-height:8px;
     }
-}
+}       
