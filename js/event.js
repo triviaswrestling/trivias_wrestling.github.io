@@ -1718,8 +1718,17 @@ if(!eventChronology)return;
 eventChronology.innerHTML="";
 
 const a=getAllChronologyEvents();
+
 const s=getChronologySaga(e);
-const g=a.filter(x=>x.includeGeneral!==false);
+
+
+/* =========================================
+   GENERAL CHRONOLOGY
+   ========================================= */
+
+const g=a
+.filter(x=>x.includeGeneral!==false)
+.sort((x,y)=>parseDate(x.date)-parseDate(y.date));
 
 let i=g.findIndex(x=>x.id===e.id);
 
@@ -1728,42 +1737,34 @@ if(i<0){
 const d=parseDate(e.date);
 
 i=g.findIndex(
-x=>parseDate(x.date)>d
+x=>parseDate(x.date)>=d
 );
 
 }
 
-eventChronology.innerHTML+=createChronologyRow(
+if(i>=0){
+
+eventChronology.innerHTML+=
+createChronologyRow(
 "GENERAL CHRONOLOGY",
 g[i-1]||null,
 e,
 g[i+1]||null
 );
 
+}
+
+
+/* =========================================
+   SAGA CHRONOLOGY
+   ========================================= */
+
 if(s){
 
 const l=a
 .filter(x=>getChronologySaga(x)===s)
-.sort((x,y)=>parseDate(x.date)-parseDate(y.date));
-
-const n=l.findIndex(x=>x.id===e.id);
-
-if(n>=0){
-
-eventChronology.innerHTML+=createChronologyRow(
-s+" CHRONOLOGY",
-l[n-1]||null,
-e,
-l[n+1]||null
-);
-
-}
-}
-
-if(e.source==="eventData"&&s!=="TAKEOVER"){
-
-const l=a.filter(
-x=>x.category==="PLE"
+.sort(
+(x,y)=>parseDate(x.date)-parseDate(y.date)
 );
 
 const n=l.findIndex(
@@ -1772,7 +1773,39 @@ x=>x.id===e.id
 
 if(n>=0){
 
-eventChronology.innerHTML+=createChronologyRow(
+eventChronology.innerHTML+=
+createChronologyRow(
+s+" CHRONOLOGY",
+l[n-1]||null,
+e,
+l[n+1]||null
+);
+
+}
+
+}
+
+
+/* =========================================
+   PLE CHRONOLOGY
+   ========================================= */
+
+if(e.source==="eventData"){
+
+const l=a
+.filter(x=>x.category==="PLE")
+.sort(
+(x,y)=>parseDate(x.date)-parseDate(y.date)
+);
+
+const n=l.findIndex(
+x=>x.id===e.id
+);
+
+if(n>=0){
+
+eventChronology.innerHTML+=
+createChronologyRow(
 "PLE CHRONOLOGY",
 l[n-1]||null,
 e,
@@ -1780,7 +1813,13 @@ l[n+1]||null
 );
 
 }
+
 }
+
+
+/* =========================================
+   WEEKLY CHRONOLOGY
+   ========================================= */
 
 if(
 e.category==="WEEKLY"||
@@ -1793,8 +1832,10 @@ x=>x.combinedWeekly
 
 const id=
 /^(raw|smackdown)-\d+$/i.test(e.id)
-?"weekly-"+e.id.split("-").pop()
-:e.id;
+?
+"weekly-"+e.id.split("-").pop()
+:
+e.id;
 
 const n=l.findIndex(
 x=>x.id===id
@@ -1802,7 +1843,8 @@ x=>x.id===id
 
 if(n>=0){
 
-eventChronology.innerHTML+=createChronologyRow(
+eventChronology.innerHTML+=
+createChronologyRow(
 "WEEKLY CHRONOLOGY",
 l[n-1]||null,
 l[n],
@@ -1810,7 +1852,13 @@ l[n+1]||null
 );
 
 }
+
 }
+
+
+/* =========================================
+   NXT CHRONOLOGY
+   ========================================= */
 
 if(
 e.category==="NXT"||
@@ -1832,7 +1880,8 @@ x=>x.id===e.id
 
 if(n>=0){
 
-eventChronology.innerHTML+=createChronologyRow(
+eventChronology.innerHTML+=
+createChronologyRow(
 "NXT CHRONOLOGY",
 l[n-1]||null,
 e,
@@ -1840,7 +1889,13 @@ l[n+1]||null
 );
 
 }
+
 }
+
+
+/* =========================================
+   OUTSIDER CHRONOLOGY
+   ========================================= */
 
 if(e.source==="outsiderData"){
 
@@ -1859,7 +1914,8 @@ x=>x.id===e.id
 
 if(n>=0){
 
-eventChronology.innerHTML+=createChronologyRow(
+eventChronology.innerHTML+=
+createChronologyRow(
 e.category+" CHRONOLOGY",
 l[n-1]||null,
 e,
@@ -1867,6 +1923,7 @@ l[n+1]||null
 );
 
 }
+
 }
 
 }
