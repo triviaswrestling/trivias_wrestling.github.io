@@ -716,82 +716,121 @@ main {
 
 
 
+
 /* =========================================
    EVENT CHRONOLOGY
-   COMPACT - WCW NITRO STYLE
-   SIN ANIMACIONES
+   COMPACTO / WCW NITRO + CHROMA
    ========================================= */
 
-#event-chronology {
-    width: 100%;
-    margin-top: 35px;
+#event-chronology{
+    width:100%;
+    margin-top:35px;
 }
 
-.chronology-block {
-    width: 100%;
-    margin-bottom: 25px;
+.chronology-block{
+    width:100%;
+    margin-bottom:25px;
 }
 
-.chronology-block h3 {
-    margin: 0 0 10px;
-    padding-bottom: 7px;
-    color: #FFFFFF;
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    text-align: center;
-    text-transform: uppercase;
-    border-bottom: 2px solid #C40000;
+.chronology-block h3{
+    margin:0 0 10px;
+    padding-bottom:7px;
+    color:#fff;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-align:center;
+    text-transform:uppercase;
 }
+
+/* BARRA DE SECCIÓN */
+
+.chronology-block h3:after{
+    content:"";
+    display:block;
+    width:100%;
+    height:2px;
+    margin-top:7px;
+
+    background:linear-gradient(
+        90deg,
+        #0057B8,
+        #C40000,
+        #FFD000,
+        #A8A8A8,
+        #00AEEF,
+        #00A651,
+        #FFFFFF,
+        #0057B8
+    );
+
+    background-size:300% 100%;
+    animation:chronoBar 5s linear infinite;
+}
+
+@keyframes chronoBar{
+    0%{
+        background-position:0% 50%;
+    }
+
+    100%{
+        background-position:300% 50%;
+    }
+}
+
 
 /* =========================================
-   FILA: 3 CARDS
+   FILA
    ========================================= */
 
-.chronology-row {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1.08fr 1fr;
-    gap: 8px;
-    align-items: stretch;
+.chronology-row{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1.08fr 1fr;
+    gap:8px;
+    align-items:stretch;
 }
 
-.chronology-column {
-    min-width: 0;
-    display: flex;
+.chronology-column{
+    min-width:0;
+    display:flex;
 }
 
-.chronology-link {
-    width: 100%;
-    color: #FFFFFF;
-    text-decoration: none;
+.chronology-link{
+    width:100%;
+    color:#fff;
+    text-decoration:none;
 }
 
-.chronology-link:visited {
-    color: #FFFFFF;
+.chronology-link:visited{
+    color:#fff;
 }
+
 
 /* =========================================
    CARD
    ========================================= */
 
-.chronology-card {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    min-height: 115px;
-    padding: 8px;
+.chronology-card{
+    position:relative;
+    overflow:hidden;
 
-    background: #0D0D0D;
-    border: 1px solid #333333;
+    width:100%;
+    min-height:115px;
+    padding:8px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    background:#0d0d0d;
+    border:1px solid #333;
 
-    box-shadow: 0 2px 7px rgba(0,0,0,.65);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    box-shadow:
+        0 2px 7px rgba(0,0,0,.65);
 
     transition:
         transform .15s ease,
@@ -799,228 +838,347 @@ main {
         box-shadow .15s ease;
 }
 
-/* Línea superior multicolor */
 
-.chronology-card:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
+/* FRANJA SUPERIOR */
 
-    width: 100%;
-    height: 3px;
+.chronology-card:before{
+    content:"";
 
-    background:
-        linear-gradient(
-            90deg,
-            #0057B8 0%,
-            #C40000 16%,
-            #FFD000 32%,
-            #A8A8A8 48%,
-            #00AEEF 64%,
-            #00A651 80%,
-            #FFFFFF 100%
-        );
+    position:absolute;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:3px;
+
+    background:linear-gradient(
+        90deg,
+        #0057B8,
+        #C40000,
+        #FFD000,
+        #A8A8A8,
+        #00AEEF,
+        #00A651,
+        #FFFFFF
+    );
+
+    z-index:3;
 }
 
-/* Detalle inferior */
-
-.chronology-card:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    width: 100%;
-    height: 2px;
-
-    background: #222222;
-}
 
 /* =========================================
-   HOVER
+   CHROMA
+   TIPO GOOGLE CHROME
    ========================================= */
 
-.chronology-link:hover .chronology-card {
-    transform: translateY(-2px);
-    border-color: #A8A8A8;
+.chronology-card:after{
+    content:"";
+
+    position:absolute;
+    top:-20%;
+    left:-130%;
+
+    width:70%;
+    height:140%;
+
+    background:linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(0,87,184,.12) 12%,
+        rgba(0,174,239,.30) 25%,
+        rgba(0,166,81,.30) 38%,
+        rgba(255,208,0,.32) 52%,
+        rgba(196,0,0,.32) 66%,
+        rgba(255,255,255,.22) 78%,
+        transparent 100%
+    );
+
+    transform:skewX(-22deg);
+
+    pointer-events:none;
+    z-index:5;
+}
+
+
+/* PC */
+
+.chronology-link:hover .chronology-card:after{
+    left:140%;
+
+    transition:
+        left .65s cubic-bezier(.22,.61,.36,1);
+}
+
+
+/* CELULAR */
+
+.chronology-link:active .chronology-card:after{
+    left:140%;
+
+    transition:
+        left .65s cubic-bezier(.22,.61,.36,1);
+}
+
+
+/* =========================================
+   HOVER CARD
+   ========================================= */
+
+.chronology-link:hover .chronology-card{
+    transform:translateY(-2px);
+
+    border-color:#A8A8A8;
 
     box-shadow:
         0 4px 12px rgba(0,0,0,.8);
 }
 
+
 /* =========================================
    IMAGEN
    ========================================= */
 
-.chronology-image {
-    position: relative;
-    z-index: 2;
+.chronology-image{
+    position:relative;
+    z-index:4;
 
-    width: 58px;
-    height: 58px;
+    width:58px;
+    height:58px;
 
-    object-fit: cover;
-    display: block;
+    object-fit:cover;
+    display:block;
 
-    margin-bottom: 7px;
+    margin-bottom:7px;
 
-    border: 1px solid #555555;
+    border:1px solid #555;
 
     box-shadow:
         0 2px 6px rgba(0,0,0,.7);
+
+    transition:
+        border-color .15s ease,
+        box-shadow .15s ease;
 }
 
-.chronology-link:hover .chronology-image {
-    border-color: #FFD000;
+.chronology-link:hover .chronology-image{
+    border-color:#FFD000;
+
+    box-shadow:
+        0 0 8px rgba(255,208,0,.25);
 }
+
 
 /* =========================================
    TEXTO
    ========================================= */
 
-.chronology-title {
-    position: relative;
-    z-index: 2;
+.chronology-title{
+    position:relative;
+    z-index:4;
 
-    color: #FFFFFF;
+    color:#fff;
 
-    font-size: 9px;
-    font-weight: 900;
+    font-size:9px;
+    font-weight:900;
 
-    line-height: 12px;
-    letter-spacing: .4px;
+    line-height:12px;
+    letter-spacing:.4px;
 
-    text-transform: uppercase;
+    text-transform:uppercase;
 }
 
-.chronology-date {
-    position: relative;
-    z-index: 2;
+.chronology-date{
+    position:relative;
+    z-index:4;
 
-    margin-top: 4px;
+    margin-top:4px;
 
-    color: #A8A8A8;
+    color:#A8A8A8;
 
-    font-size: 7px;
-    line-height: 9px;
+    font-size:7px;
+    line-height:9px;
 
-    letter-spacing: .3px;
+    letter-spacing:.3px;
 }
+
 
 /* =========================================
-   EVENTO ACTUAL
+   CARD ACTUAL
    ========================================= */
 
-.chronology-current {
-    position: relative;
-    z-index: 3;
+.chronology-current{
+    position:relative;
+    z-index:6;
 }
 
-.chronology-current .chronology-card {
-    min-height: 122px;
+.chronology-current .chronology-card{
+    min-height:122px;
 
-    border: 2px solid #FFD000;
-
-    background: #111111;
-
-    box-shadow:
-        0 0 0 1px #0057B8,
-        0 4px 14px rgba(0,0,0,.85);
-}
-
-.chronology-current .chronology-card:before {
-    height: 4px;
+    border:2px solid transparent;
 
     background:
+        linear-gradient(#111,#111) padding-box,
         linear-gradient(
-            90deg,
+            135deg,
             #0057B8,
             #C40000,
             #FFD000,
             #A8A8A8,
             #00AEEF,
             #00A651,
-            #FFFFFF
-        );
+            #FFFFFF,
+            #0057B8
+        ) border-box;
+
+    background-size:auto,300% 300%;
+
+    animation:
+        chronoCurrent 5s linear infinite;
+
+    box-shadow:
+        0 0 0 1px #111,
+        0 4px 14px rgba(0,0,0,.85);
 }
 
-.chronology-current .chronology-image {
-    border-color: #FFD000;
+
+/* BARRA DE LA CARD ACTUAL */
+
+.chronology-current .chronology-card:before{
+    height:4px;
+
+    background:linear-gradient(
+        90deg,
+        #0057B8,
+        #C40000,
+        #FFD000,
+        #A8A8A8,
+        #00AEEF,
+        #00A651,
+        #FFFFFF,
+        #0057B8
+    );
+
+    background-size:300% 100%;
+
+    animation:
+        chronoBar 3s linear infinite;
 }
 
-.chronology-current .chronology-title {
-    color: #FFFFFF;
+
+/* ANIMACIÓN DEL BORDE ACTUAL */
+
+@keyframes chronoCurrent{
+
+    0%{
+        background-position:
+            0 0,
+            0% 50%;
+    }
+
+    50%{
+        background-position:
+            0 0,
+            100% 50%;
+    }
+
+    100%{
+        background-position:
+            0 0,
+            0% 50%;
+    }
 }
+
+
+/* ACTUAL - IMAGEN */
+
+.chronology-current .chronology-image{
+    border-color:#FFD000;
+
+    box-shadow:
+        0 0 10px rgba(255,208,0,.25);
+}
+
+
+/* ACTUAL - TEXTO */
+
+.chronology-current .chronology-title{
+    color:#fff;
+}
+
 
 /* =========================================
    CARD VACÍA
    ========================================= */
 
-.chronology-empty {
-    color: #444444;
+.chronology-empty{
+    color:#444;
 
-    border-color: #1A1A1A;
-    background: #090909;
+    border-color:#1A1A1A;
 
-    box-shadow: none;
+    background:#090909;
+
+    box-shadow:none;
 }
 
 .chronology-empty:before,
-.chronology-empty:after {
-    display: none;
+.chronology-empty:after{
+    display:none;
 }
+
 
 /* =========================================
    MOBILE
    ========================================= */
 
-@media (max-width: 600px) {
+@media(max-width:600px){
 
-    #event-chronology {
-        margin-top: 25px;
+    #event-chronology{
+        margin-top:25px;
     }
 
-    .chronology-block {
-        margin-bottom: 20px;
+    .chronology-block{
+        margin-bottom:20px;
     }
 
-    .chronology-block h3 {
-        margin-bottom: 7px;
-        padding-bottom: 5px;
-        font-size: 9px;
-        letter-spacing: 1.5px;
+    .chronology-block h3{
+        margin-bottom:7px;
+        padding-bottom:5px;
+
+        font-size:9px;
+        letter-spacing:1.5px;
     }
 
-    .chronology-row {
-        grid-template-columns: 1fr 1.08fr 1fr;
-        gap: 4px;
+    .chronology-row{
+        grid-template-columns:
+            1fr 1.08fr 1fr;
+
+        gap:4px;
     }
 
-    .chronology-card {
-        min-height: 92px;
-        padding: 5px 3px;
+    .chronology-card{
+        min-height:92px;
+        padding:5px 3px;
     }
 
-    .chronology-current .chronology-card {
-        min-height: 98px;
+    .chronology-current .chronology-card{
+        min-height:98px;
     }
 
-    .chronology-image {
-        width: 42px;
-        height: 42px;
-        margin-bottom: 5px;
+    .chronology-image{
+        width:42px;
+        height:42px;
+        margin-bottom:5px;
     }
 
-    .chronology-title {
-        font-size: 7px;
-        line-height: 9px;
-        letter-spacing: .2px;
+    .chronology-title{
+        font-size:7px;
+        line-height:9px;
+        letter-spacing:.2px;
     }
 
-    .chronology-date {
-        margin-top: 3px;
-        font-size: 6px;
-        line-height: 8px;
+    .chronology-date{
+        margin-top:3px;
+        font-size:6px;
+        line-height:8px;
     }
 }
