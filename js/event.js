@@ -1471,8 +1471,15 @@ ${scores.map(score=>`<span>${score}</span>`).join("")}
 
 
 
+
+
 /* =========================================
    EVENT CHRONOLOGY
+   ========================================= */
+
+
+/* =========================================
+   GET ALL CHRONOLOGY EVENTS
    ========================================= */
 
 function getAllChronologyEvents(){
@@ -1481,7 +1488,7 @@ function getAllChronologyEvents(){
 
     /* =====================================
        EVENT DATA
-       PLE / WEEKLY / NXT / SPECIAL
+       WEEKLY / NXT / PLE
        ===================================== */
 
     if(
@@ -1490,358 +1497,55 @@ function getAllChronologyEvents(){
         typeof eventData === "object"
     ){
 
-        Object.entries(eventData).forEach(([id, e]) => {
+        Object.entries(eventData).forEach(
+            ([id,event])=>{
 
-            if(!e || !e.date) return;
+                if(!event || !event.date) return;
 
-            const type = String(e.type || "").toUpperCase();
+                const type =
+                    String(event.type || "")
+                    .toUpperCase();
 
-            /*
-             * Para la cronología general usamos:
-             * PLE
-             * WEEKLY
-             * NXT
-             * SPECIAL
-             */
-
-            if(
-                type !== "PLE" &&
-                type !== "WEEKLY" &&
-                type !== "NXT" &&
-                type !== "SPECIAL"
-            ){
-                return;
-            }
-
-            events.push({
-                id:id,
-                title:e.title || id.toUpperCase(),
-                date:e.date,
-                type:type,
-                source:"eventData",
-                category:type === "SPECIAL" ? "SPECIAL" : type,
-                image:e.image || "",
-                includeGeneral:true
-            });
-
-        });
-
-    }
-
-
-    /* =====================================
-       TOURNAMENT DATA
-       RAW / SMACKDOWN / NXT
-       ===================================== */
-
-    if(
-        typeof tournamentData !== "undefined" &&
-        tournamentData &&
-        typeof tournamentData === "object"
-    ){
-
-        Object.entries(tournamentData).forEach(
-            ([tournamentId, tournament]) => {
-
-                if(!tournament) return;
-
-
-                /* =========================
-                   SHOWS
-                   ========================= */
+                /*
+                 * EVENT DATA YA TIENE:
+                 *
+                 * WEEKLY
+                 * NXT
+                 * PLE
+                 *
+                 * NO AGREGAMOS RAW/SMACKDOWN
+                 * POR SEPARADO.
+                 */
 
                 if(
-                    tournament.shows &&
-                    typeof tournament.shows === "object"
-                ){
-
-                    Object.entries(tournament.shows).forEach(
-                        ([id, show]) => {
-
-                            if(!show || !show.date) return;
-
-                            const lowerId =
-                                String(id).toLowerCase();
-
-                            let category = "";
-
-                            if(/^raw-\d+$/.test(lowerId)){
-                                category = "RAW";
-                            }
-
-                            else if(
-                                /^smackdown-\d+$/.test(lowerId)
-                            ){
-                                category = "SMACKDOWN";
-                            }
-
-                            else if(/^nxt-\d+$/.test(lowerId)){
-                                category = "NXT";
-                            }
-
-                            if(!category) return;
-
-
-                            /*
-                             * NXT/RAW/SMACKDOWN se agregan
-                             * solamente para que puedan ser
-                             * eventos generales.
-                             *
-                             * No reemplazan los WEEKLY.
-                             */
-
-                            events.push({
-                                id:id,
-                                title:
-                                    show.title ||
-                                    category + " #" +
-                                    id.split("-").pop(),
-
-                                date:show.date,
-
-                                type:category,
-
-                                source:"tournamentData",
-
-                                category:category,
-
-                                image:show.image || "",
-
-                                includeGeneral:true,
-
-                                rawShow:true
-                            });
-
-                        }
-                    );
-
-                }
-
-
-                /* =========================
-                   OLD WEEKLY DATA
-                   ========================= */
-
-                if(
-                    tournament.weekly &&
-                    typeof tournament.weekly === "object"
-                ){
-
-                    Object.entries(tournament.weekly).forEach(
-                        ([id, show]) => {
-
-                            if(!show || !show.date) return;
-
-                            const lowerId =
-                                String(id).toLowerCase();
-
-                            let category = "";
-
-                            if(/^raw-\d+$/.test(lowerId)){
-                                category = "RAW";
-                            }
-
-                            else if(
-                                /^smackdown-\d+$/.test(lowerId)
-                            ){
-                                category = "SMACKDOWN";
-                            }
-
-                            else if(/^nxt-\d+$/.test(lowerId)){
-                                category = "NXT";
-                            }
-
-                            if(!category) return;
-
-                            /*
-                             * Solamente agregar si todavía
-                             * no existe un evento equivalente.
-                             */
-
-                            const exists =
-                                events.some(
-                                    e =>
-                                        e.id === id &&
-                                        e.date === show.date
-                                );
-
-                            if(exists) return;
-
-                            events.push({
-                                id:id,
-
-                                title:
-                                    show.title ||
-                                    category + " #" +
-                                    id.split("-").pop(),
-
-                                date:show.date,
-
-                                type:category,
-
-                                source:"tournamentData",
-
-                                category:category,
-
-                                image:show.image || "",
-
-                                includeGeneral:true,
-
-                                rawShow:true
-                            });
-
-                        }
-                    );
-
-                }
-
-
-                /* =========================
-                   OLD MATCHES DATA
-                   ========================= */
-
-                if(
-                    tournament.matches &&
-                    typeof tournament.matches === "object" &&
-                    !Array.isArray(tournament.matches)
-                ){
-
-                    Object.entries(
-                        tournament.matches
-                    ).forEach(([id, show]) => {
-
-                        if(!show || !show.date) return;
-
-                        const lowerId =
-                            String(id).toLowerCase();
-
-                        let category = "";
-
-                        if(/^raw-\d+$/.test(lowerId)){
-                            category = "RAW";
-                        }
-
-                        else if(
-                            /^smackdown-\d+$/.test(lowerId)
-                        ){
-                            category = "SMACKDOWN";
-                        }
-
-                        else if(/^nxt-\d+$/.test(lowerId)){
-                            category = "NXT";
-                        }
-
-                        if(!category) return;
-
-                        const exists =
-                            events.some(
-                                e =>
-                                    e.id === id &&
-                                    e.date === show.date
-                            );
-
-                        if(exists) return;
-
-                        events.push({
-                            id:id,
-
-                            title:
-                                show.title ||
-                                category + " #" +
-                                id.split("-").pop(),
-
-                            date:show.date,
-
-                            type:category,
-
-                            source:"tournamentData",
-
-                            category:category,
-
-                            image:show.image || "",
-
-                            includeGeneral:true,
-
-                            rawShow:true
-                        });
-
-                    });
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================
-       OUTSIDER DATA
-       SPEED / AEW / AAA / CMLL / TNA
-       ===================================== */
-
-    if(
-        typeof outsiderData !== "undefined" &&
-        outsiderData &&
-        typeof outsiderData === "object"
-    ){
-
-        Object.entries(outsiderData).forEach(
-            ([tournamentId, tournament]) => {
-
-                if(
-                    !tournament ||
-                    !tournament.shows
+                    type !== "WEEKLY" &&
+                    type !== "NXT" &&
+                    type !== "PLE"
                 ){
                     return;
                 }
 
-                Object.entries(
-                    tournament.shows
-                ).forEach(([id, show]) => {
+                events.push({
 
-                    if(!show || !show.date) return;
+                    id:id,
 
-                    const brand = (
-                        tournament.brand ||
-                        getShowBrand(id) ||
-                        show.brand ||
-                        show.type ||
-                        ""
-                    ).toUpperCase();
+                    title:
+                        event.title ||
+                        id.toUpperCase(),
 
-                    if(
-                        ![
-                            "SPEED",
-                            "AEW",
-                            "AAA",
-                            "CMLL",
-                            "TNA"
-                        ].includes(brand)
-                    ){
-                        return;
-                    }
+                    date:event.date,
 
-                    events.push({
-                        id:id,
+                    type:type,
 
-                        title:
-                            show.title ||
-                            brand + " #" +
-                            id.split("-").pop(),
+                    source:"eventData",
 
-                        date:show.date,
+                    category:type,
 
-                        type:brand,
+                    image:event.image || "",
 
-                        source:"outsiderData",
+                    brand:event.brand || "",
 
-                        category:brand,
-
-                        image:show.image || "",
-
-                        includeGeneral:true
-                    });
+                    original:event
 
                 });
 
@@ -1852,22 +1556,108 @@ function getAllChronologyEvents(){
 
 
     /* =====================================
-       SORT
+       OUTSIDERS
+       SPEED / AEW / AAA / CMLL / TNA
        ===================================== */
 
-    events.sort((a,b) => {
+    if(
+        typeof outsiderData !== "undefined" &&
+        outsiderData &&
+        typeof outsiderData === "object"
+    ){
 
-        const dateA = parseDate(a.date);
-        const dateB = parseDate(b.date);
+        Object.entries(outsiderData).forEach(
+            ([tournamentId,tournament])=>{
 
-        if(dateA !== dateB){
-            return dateA - dateB;
+                if(
+                    !tournament ||
+                    !tournament.shows
+                ){
+                    return;
+                }
+
+                Object.entries(
+                    tournament.shows
+                ).forEach(
+                    ([id,show])=>{
+
+                        if(!show || !show.date){
+                            return;
+                        }
+
+                        const brand = String(
+                            tournament.brand ||
+                            getShowBrand(id) ||
+                            show.brand ||
+                            show.type ||
+                            ""
+                        ).toUpperCase();
+
+                        if(
+                            ![
+                                "SPEED",
+                                "AEW",
+                                "AAA",
+                                "CMLL",
+                                "TNA"
+                            ].includes(brand)
+                        ){
+                            return;
+                        }
+
+                        events.push({
+
+                            id:id,
+
+                            title:
+                                show.title ||
+                                brand+" #"+
+                                id.split("-").pop(),
+
+                            date:show.date,
+
+                            type:brand,
+
+                            source:"outsiderData",
+
+                            category:brand,
+
+                            image:show.image || "",
+
+                            brand:brand,
+
+                            tournamentId:tournamentId
+
+                        });
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================
+       ORDEN GENERAL
+       ===================================== */
+
+    events.sort(
+        (a,b)=>{
+
+            const dateA=parseDate(a.date);
+            const dateB=parseDate(b.date);
+
+            if(dateA!==dateB){
+                return dateA-dateB;
+            }
+
+            return String(a.id)
+                .localeCompare(String(b.id));
+
         }
-
-        return String(a.id)
-            .localeCompare(String(b.id));
-
-    });
+    );
 
 
     return events;
@@ -1876,18 +1666,107 @@ function getAllChronologyEvents(){
 
 
 /* =========================================
-   SAGA
+   IDENTIFICAR TAKEOVER
+   ========================================= */
+
+function isTakeOver(event){
+
+    if(!event) return false;
+
+    const text=(
+        String(event.title || "")+
+        " "+
+        String(event.id || "")
+    ).toLowerCase();
+
+    return(
+        text.includes("takeover") ||
+        text.includes("take over")
+    );
+
+}
+
+
+/* =========================================
+   IDENTIFICAR PLE
+   ========================================= */
+
+function isPLE(event){
+
+    if(!event) return false;
+
+    return(
+        event.source==="eventData" &&
+        String(event.type || "")
+        .toUpperCase()==="PLE"
+    );
+
+}
+
+
+/* =========================================
+   IDENTIFICAR WEEKLY
+   ========================================= */
+
+function isWeekly(event){
+
+    if(!event) return false;
+
+    return(
+        String(event.type || "")
+        .toUpperCase()==="WEEKLY"
+    );
+
+}
+
+
+/* =========================================
+   IDENTIFICAR NXT
+   ========================================= */
+
+function isNXT(event){
+
+    if(!event) return false;
+
+    return(
+        String(event.type || "")
+        .toUpperCase()==="NXT"
+    );
+
+}
+
+
+/* =========================================
+   IDENTIFICAR OUTSIDER
+   ========================================= */
+
+function isOutsider(event){
+
+    if(!event) return false;
+
+    return(
+        event.source==="outsiderData"
+    );
+
+}
+
+
+/* =========================================
+   SAGA PLE
    ========================================= */
 
 function getChronologySaga(event){
 
-    const text = (
-        (event.title || "") +
-        " " +
-        (event.id || "")
+    if(!event) return null;
+
+    const text=(
+        String(event.title || "")+
+        " "+
+        String(event.id || "")
     ).toLowerCase();
 
-    const sagas = [
+
+    const sagas=[
 
         "wrestlemania",
 
@@ -1920,12 +1799,16 @@ function getChronologySaga(event){
 
         "payback",
 
-        "takeover",
-        "take over",
+        "tlc",
 
-        "tlc"
+        "worlds collide",
+
+        "clash at the castle",
+
+        "clash in italy"
 
     ];
+
 
     for(const saga of sagas){
 
@@ -1935,20 +1818,89 @@ function getChronologySaga(event){
 
     }
 
+
     return null;
 
 }
 
 
 /* =========================================
-   CURRENT ID
+   ID DE COMPARACIÓN
    ========================================= */
 
 function getChronologyCurrentId(event){
 
     if(!event) return null;
 
-    return String(event.id).toLowerCase();
+    return String(
+        event.id || ""
+    ).toLowerCase();
+
+}
+
+
+/* =========================================
+   EVENTO EQUIVALENTE PARA GENERAL
+   ========================================= */
+
+function getGeneralEquivalent(event,events){
+
+    if(!event) return null;
+
+
+    /*
+     * RAW #10 / SMACKDOWN #10
+     *
+     * Siempre se convierten en:
+     *
+     * WEEKLY #10
+     *
+     * aunque el usuario haya entrado
+     * directamente desde raw-10.
+     */
+
+    const rawMatch=
+        String(event.id || "")
+        .match(
+            /^(raw|smackdown)-(\d+)$/i
+        );
+
+
+    if(rawMatch){
+
+        const weeklyId=
+            "weekly-"+rawMatch[2];
+
+        const weekly=
+            events.find(
+                e =>
+                    String(e.id)
+                    .toLowerCase()===weeklyId
+            );
+
+        if(weekly){
+            return weekly;
+        }
+
+    }
+
+
+    /*
+     * Si ya es WEEKLY,
+     * se usa directamente.
+     */
+
+    if(isWeekly(event)){
+        return event;
+    }
+
+
+    /*
+     * PLE / NXT / OUTSIDER
+     * usan su propio evento.
+     */
+
+    return event;
 
 }
 
@@ -1957,7 +1909,10 @@ function getChronologyCurrentId(event){
    CARD LINK
    ========================================= */
 
-function chronologyLink(event){
+function chronologyLink(
+    event,
+    current=false
+){
 
     if(!event){
 
@@ -1969,13 +1924,41 @@ function chronologyLink(event){
 
     }
 
-    const currentId =
+
+    const id=
         getChronologyCurrentId(event);
+
+
+    /*
+     * SI ES LA CARD CENTRAL DEL EVENTO ACTUAL:
+     *
+     * NO ARMAMOS:
+     *
+     * event.html?id=undefined
+     *
+     * Simplemente recargamos la URL actual.
+     */
+
+    let href="";
+
+
+    if(current){
+
+        href=window.location.href;
+
+    }else{
+
+        href=
+            "event.html?id="+
+            encodeURIComponent(id);
+
+    }
+
 
     return `
         <a
             class="chronology-link"
-            href="event.html?id=${encodeURIComponent(currentId)}"
+            href="${href}"
         >
 
             <div class="chronology-card">
@@ -1996,7 +1979,7 @@ function chronologyLink(event){
                 }
 
                 <div class="chronology-title">
-                    ${event.title || currentId}
+                    ${event.title || id}
                 </div>
 
                 ${
@@ -2020,7 +2003,7 @@ function chronologyLink(event){
 
 
 /* =========================================
-   ROW
+   CREAR FILA
    ========================================= */
 
 function createChronologyRow(
@@ -2038,15 +2021,26 @@ function createChronologyRow(
             <div class="chronology-row">
 
                 <div class="chronology-column">
-                    ${chronologyLink(previous)}
+                    ${chronologyLink(
+                        previous,
+                        false
+                    )}
                 </div>
+
 
                 <div class="chronology-column chronology-current">
-                    ${chronologyLink(current)}
+                    ${chronologyLink(
+                        current,
+                        true
+                    )}
                 </div>
 
+
                 <div class="chronology-column">
-                    ${chronologyLink(next)}
+                    ${chronologyLink(
+                        next,
+                        false
+                    )}
                 </div>
 
             </div>
@@ -2058,7 +2052,33 @@ function createChronologyRow(
 
 
 /* =========================================
+   BUSCAR ÍNDICE
+   ========================================= */
+
+function findChronologyIndex(
+    list,
+    event
+){
+
+    if(!event || !list.length){
+        return -1;
+    }
+
+    const id=
+        getChronologyCurrentId(event);
+
+
+    return list.findIndex(
+        e =>
+            getChronologyCurrentId(e)===id
+    );
+
+}
+
+
+/* =========================================
    GENERAL
+   TODO LO QUE TIENE FECHA
    ========================================= */
 
 function renderGeneralChronology(
@@ -2066,113 +2086,55 @@ function renderGeneralChronology(
     event
 ){
 
-    const list = events
-        .filter(e => e.includeGeneral !== false)
+    const list=
+        events
+        .filter(e=>e.date)
         .sort(
-            (a,b) =>
-                parseDate(a.date) -
+            (a,b)=>
+                parseDate(a.date)-
                 parseDate(b.date)
         );
 
-    const currentId =
-        getChronologyCurrentId(event);
 
-    let index =
-        list.findIndex(
-            e =>
-                getChronologyCurrentId(e) ===
-                currentId
+    const generalCurrent=
+        getGeneralEquivalent(
+            event,
+            events
         );
 
 
-    /*
-     * Si estamos viendo RAW/SMACKDOWN,
-     * usamos su WEEKLY equivalente como
-     * evento central de la cronología general.
-     */
-
-    if(
-        index === -1 &&
-        /^(raw|smackdown)-\d+$/i.test(event.id)
-    ){
-
-        const number =
-            event.id.split("-")[1];
-
-        index =
-            list.findIndex(
-                e =>
-                    e.id.toLowerCase() ===
-                    `weekly-${number}`
-            );
-
-        if(index !== -1){
-
-            return createChronologyRow(
-                "GENERAL",
-                list[index - 1] || null,
-                list[index],
-                list[index + 1] || null
-            );
-
-        }
-
+    if(!generalCurrent){
+        return "";
     }
 
 
-    if(index === -1){
+    const index=
+        findChronologyIndex(
+            list,
+            generalCurrent
+        );
 
-        /*
-         * Para un show RAW/SD que no tenga
-         * WEEKLY equivalente, buscamos por
-         * fecha.
-         */
 
-        const currentDate =
-            parseDate(event.date);
+    if(index===-1){
 
-        if(currentDate){
-
-            let previous = null;
-            let next = null;
-
-            for(const item of list){
-
-                const itemDate =
-                    parseDate(item.date);
-
-                if(itemDate < currentDate){
-                    previous = item;
-                }
-
-                else if(
-                    itemDate > currentDate &&
-                    !next
-                ){
-                    next = item;
-                }
-
-            }
-
-            return createChronologyRow(
-                "GENERAL",
-                previous,
-                event,
-                next
-            );
-
-        }
-
-        return "";
+        return createChronologyRow(
+            "GENERAL",
+            null,
+            generalCurrent,
+            null
+        );
 
     }
 
 
     return createChronologyRow(
         "GENERAL",
-        list[index - 1] || null,
-        event,
-        list[index + 1] || null
+
+        list[index-1] || null,
+
+        generalCurrent,
+
+        list[index+1] || null
     );
 
 }
@@ -2187,44 +2149,75 @@ function renderWeeklyChronology(
     event
 ){
 
-    const list = events
+    const list=
+        events
         .filter(
-            e =>
-                e.category === "WEEKLY"
+            e=>isWeekly(e)
         )
         .sort(
-            (a,b) =>
-                parseDate(a.date) -
+            (a,b)=>
+                parseDate(a.date)-
                 parseDate(b.date)
         );
 
 
-    const currentId =
-        getChronologyCurrentId(event);
+    let current=event;
 
-    const index =
-        list.findIndex(
-            e =>
-                getChronologyCurrentId(e) ===
-                currentId
+
+    /*
+     * Si entramos directamente a RAW #10
+     * o SMACKDOWN #10, buscamos WEEKLY #10.
+     */
+
+    const rawMatch=
+        String(event.id || "")
+        .match(
+            /^(raw|smackdown)-(\d+)$/i
         );
 
 
-    if(index === -1) return "";
+    if(rawMatch){
+
+        const weeklyId=
+            "weekly-"+rawMatch[2];
+
+        current=
+            list.find(
+                e =>
+                    String(e.id)
+                    .toLowerCase()===weeklyId
+            ) || event;
+
+    }
+
+
+    const index=
+        findChronologyIndex(
+            list,
+            current
+        );
+
+
+    if(index===-1){
+        return "";
+    }
 
 
     return createChronologyRow(
         "WEEKLY",
-        list[index - 1] || null,
-        list[index],
-        list[index + 1] || null
+
+        list[index-1] || null,
+
+        current,
+
+        list[index+1] || null
     );
 
 }
 
 
 /* =========================================
-   NXT
+   NXT NORMAL
    ========================================= */
 
 function renderNXTChronology(
@@ -2232,37 +2225,87 @@ function renderNXTChronology(
     event
 ){
 
-    const list = events
+    const list=
+        events
         .filter(
             e =>
-                e.category === "NXT"
+                isNXT(e) &&
+                !isTakeOver(e)
         )
         .sort(
-            (a,b) =>
-                parseDate(a.date) -
+            (a,b)=>
+                parseDate(a.date)-
                 parseDate(b.date)
         );
 
 
-    const currentId =
-        getChronologyCurrentId(event);
-
-    const index =
-        list.findIndex(
-            e =>
-                getChronologyCurrentId(e) ===
-                currentId
+    const index=
+        findChronologyIndex(
+            list,
+            event
         );
 
 
-    if(index === -1) return "";
+    if(index===-1){
+        return "";
+    }
 
 
     return createChronologyRow(
         "NXT",
-        list[index - 1] || null,
+
+        list[index-1] || null,
+
         list[index],
-        list[index + 1] || null
+
+        list[index+1] || null
+    );
+
+}
+
+
+/* =========================================
+   TAKEOVER
+   ========================================= */
+
+function renderTakeOverChronology(
+    events,
+    event
+){
+
+    const list=
+        events
+        .filter(
+            e =>
+                isTakeOver(e)
+        )
+        .sort(
+            (a,b)=>
+                parseDate(a.date)-
+                parseDate(b.date)
+        );
+
+
+    const index=
+        findChronologyIndex(
+            list,
+            event
+        );
+
+
+    if(index===-1){
+        return "";
+    }
+
+
+    return createChronologyRow(
+        "TAKEOVER",
+
+        list[index-1] || null,
+
+        list[index],
+
+        list[index+1] || null
     );
 
 }
@@ -2277,52 +2320,59 @@ function renderOutsiderChronology(
     event
 ){
 
-    const category = (
-        event.category ||
-        event.type ||
-        ""
-    ).toUpperCase();
+    const category=
+        String(
+            event.category ||
+            event.type ||
+            ""
+        ).toUpperCase();
 
 
-    const list = events
+    const list=
+        events
         .filter(
             e =>
-                e.source === "outsiderData" &&
-                e.category === category
+                isOutsider(e) &&
+                String(
+                    e.category ||
+                    e.type ||
+                    ""
+                ).toUpperCase()===category
         )
         .sort(
-            (a,b) =>
-                parseDate(a.date) -
+            (a,b)=>
+                parseDate(a.date)-
                 parseDate(b.date)
         );
 
 
-    const currentId =
-        getChronologyCurrentId(event);
-
-    const index =
-        list.findIndex(
-            e =>
-                getChronologyCurrentId(e) ===
-                currentId
+    const index=
+        findChronologyIndex(
+            list,
+            event
         );
 
 
-    if(index === -1) return "";
+    if(index===-1){
+        return "";
+    }
 
 
     return createChronologyRow(
         category,
-        list[index - 1] || null,
+
+        list[index-1] || null,
+
         list[index],
-        list[index + 1] || null
+
+        list[index+1] || null
     );
 
 }
 
 
 /* =========================================
-   PLE
+   TODOS LOS PLE
    ========================================= */
 
 function renderPLEChronology(
@@ -2330,44 +2380,47 @@ function renderPLEChronology(
     event
 ){
 
-    const list = events
+    const list=
+        events
         .filter(
             e =>
-                e.category === "PLE"
+                isPLE(e) &&
+                !isTakeOver(e)
         )
         .sort(
-            (a,b) =>
-                parseDate(a.date) -
+            (a,b)=>
+                parseDate(a.date)-
                 parseDate(b.date)
         );
 
 
-    const currentId =
-        getChronologyCurrentId(event);
-
-    const index =
-        list.findIndex(
-            e =>
-                getChronologyCurrentId(e) ===
-                currentId
+    const index=
+        findChronologyIndex(
+            list,
+            event
         );
 
 
-    if(index === -1) return "";
+    if(index===-1){
+        return "";
+    }
 
 
     return createChronologyRow(
         "PLE",
-        list[index - 1] || null,
+
+        list[index-1] || null,
+
         list[index],
-        list[index + 1] || null
+
+        list[index+1] || null
     );
 
 }
 
 
 /* =========================================
-   SAGA
+   SAGA PLE
    ========================================= */
 
 function renderSagaChronology(
@@ -2375,75 +2428,85 @@ function renderSagaChronology(
     event
 ){
 
-    const saga =
+    const saga=
         getChronologySaga(event);
 
-    if(!saga) return "";
+
+    if(!saga){
+        return "";
+    }
 
 
-    const list = events
+    const list=
+        events
         .filter(
             e =>
-                e.category === "PLE" &&
-                getChronologySaga(e) === saga
+                isPLE(e) &&
+                !isTakeOver(e) &&
+                getChronologySaga(e)===saga
         )
         .sort(
-            (a,b) =>
-                parseDate(a.date) -
+            (a,b)=>
+                parseDate(a.date)-
                 parseDate(b.date)
         );
 
 
-    const currentId =
-        getChronologyCurrentId(event);
-
-    const index =
-        list.findIndex(
-            e =>
-                getChronologyCurrentId(e) ===
-                currentId
+    const index=
+        findChronologyIndex(
+            list,
+            event
         );
 
 
-    if(index === -1) return "";
+    if(index===-1){
+        return "";
+    }
 
 
     return createChronologyRow(
         "SAGA",
-        list[index - 1] || null,
+
+        list[index-1] || null,
+
         list[index],
-        list[index + 1] || null
+
+        list[index+1] || null
     );
 
 }
 
 
 /* =========================================
-   MAIN
+   RENDER CHRONOLOGY
    ========================================= */
 
 function renderChronology(event){
 
-    const container =
+    const container=
         document.getElementById(
             "event-chronology"
         );
 
-    if(!container || !event) return;
+
+    if(!container || !event){
+        return;
+    }
 
 
-    const events =
+    const events=
         getAllChronologyEvents();
 
 
-    let html = "";
+    let html="";
 
 
     /* =====================================
        GENERAL
+       SIEMPRE
        ===================================== */
 
-    html +=
+    html+=
         renderGeneralChronology(
             events,
             event
@@ -2456,18 +2519,37 @@ function renderChronology(event){
        ===================================== */
 
     if(
-        event.source === "eventData" &&
-        event.type === "PLE"
+        isPLE(event) &&
+        !isTakeOver(event)
     ){
 
-        html +=
+        html+=
             renderSagaChronology(
                 events,
                 event
             );
 
-        html +=
+
+        html+=
             renderPLEChronology(
+                events,
+                event
+            );
+
+    }
+
+
+    /* =====================================
+       TAKEOVER
+       GENERAL + TAKEOVER
+       ===================================== */
+
+    else if(
+        isTakeOver(event)
+    ){
+
+        html+=
+            renderTakeOverChronology(
                 events,
                 event
             );
@@ -2481,10 +2563,10 @@ function renderChronology(event){
        ===================================== */
 
     else if(
-        event.type === "WEEKLY"
+        isWeekly(event)
     ){
 
-        html +=
+        html+=
             renderWeeklyChronology(
                 events,
                 event
@@ -2499,10 +2581,10 @@ function renderChronology(event){
        ===================================== */
 
     else if(
-        event.type === "NXT"
+        isNXT(event)
     ){
 
-        html +=
+        html+=
             renderNXTChronology(
                 events,
                 event
@@ -2512,15 +2594,15 @@ function renderChronology(event){
 
 
     /* =====================================
-       OUTSIDER
+       OUTSIDERS
        GENERAL + CATEGORY
        ===================================== */
 
     else if(
-        event.source === "outsiderData"
+        isOutsider(event)
     ){
 
-        html +=
+        html+=
             renderOutsiderChronology(
                 events,
                 event
@@ -2529,6 +2611,17 @@ function renderChronology(event){
     }
 
 
-    container.innerHTML = html;
+    /* =====================================
+       MOSTRAR
+       ===================================== */
+
+    container.innerHTML=html;
 
 }
+
+       
+        
+
+    
+    
+
