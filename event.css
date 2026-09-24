@@ -712,3 +712,562 @@ main {
     }
 
 }
+/* =========================================
+   EVENT CHRONOLOGY
+   MULTICOLOR WRESTLING STYLE
+   ========================================= */
+
+#event-chronology {
+    width: 100%;
+    margin-top: 45px;
+}
+
+
+/* =========================================
+   BLOCK
+   ========================================= */
+
+.chronology-block {
+    position: relative;
+    width: 100%;
+    margin-bottom: 35px;
+}
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.chronology-block h3 {
+    position: relative;
+    margin: 0 0 15px;
+    padding-bottom: 10px;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+/* LINE UNDER TITLE */
+
+.chronology-block h3:after {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+    height: 2px;
+
+    margin-top: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff1744 0%,
+            #ff7a00 18%,
+            #ffd600 35%,
+            #00d084 52%,
+            #00a8ff 70%,
+            #7c4dff 86%,
+            #ff1744 100%
+        );
+
+    background-size: 300% 100%;
+
+    animation:
+        chronologyRainbow 6s linear infinite;
+
+    box-shadow:
+        0 0 6px rgba(255,23,68,.45),
+        0 0 10px rgba(0,168,255,.25);
+}
+
+
+/* =========================================
+   THREE COLUMNS
+   ========================================= */
+
+.chronology-row {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1.15fr
+        1fr;
+
+    gap: 14px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================
+   COLUMN
+   ========================================= */
+
+.chronology-column {
+    min-width: 0;
+
+    display: flex;
+}
+
+
+/* =========================================
+   LINK
+   ========================================= */
+
+.chronology-link {
+    width: 100%;
+
+    color: #ffffff;
+
+    text-decoration: none;
+}
+
+.chronology-link:visited {
+    color: #ffffff;
+}
+
+
+/* =========================================
+   CARD
+   ========================================= */
+
+.chronology-card {
+    position: relative;
+
+    overflow: hidden;
+
+    width: 100%;
+    min-height: 145px;
+
+    padding: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #161616 0%,
+            #0b0b0b 65%,
+            #131313 100%
+        );
+
+    border: 1px solid #292929;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+
+/* =========================================
+   MULTICOLOR TOP LINE
+   ========================================= */
+
+.chronology-card:before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff1744,
+            #ff7a00,
+            #ffd600,
+            #00d084,
+            #00a8ff,
+            #7c4dff,
+            #ff1744
+        );
+
+    background-size: 300% 100%;
+
+    animation:
+        chronologyRainbow 5s linear infinite;
+}
+
+
+/* =========================================
+   LIGHT SWEEP
+   ========================================= */
+
+.chronology-card:after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 65%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.09),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: left .65s ease;
+
+    pointer-events: none;
+}
+
+.chronology-link:hover .chronology-card:after {
+    left: 140%;
+}
+
+
+/* =========================================
+   HOVER
+   ========================================= */
+
+.chronology-link:hover .chronology-card {
+    transform: translateY(-5px);
+
+    border-color: #555555;
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,.07),
+        0 8px 25px rgba(0,0,0,.65);
+}
+
+
+/* =========================================
+   IMAGE
+   ========================================= */
+
+.chronology-image {
+    position: relative;
+
+    z-index: 2;
+
+    width: 72px;
+    height: 72px;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    border: 1px solid #3a3a3a;
+
+    box-shadow:
+        0 0 9px rgba(255,255,255,.08);
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+
+/* IMAGE HOVER */
+
+.chronology-link:hover .chronology-image {
+    transform: scale(1.06);
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,.25),
+        0 0 18px rgba(0,168,255,.15);
+}
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.chronology-title {
+    position: relative;
+
+    z-index: 2;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    line-height: 15px;
+
+    letter-spacing: .7px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   DATE
+   ========================================= */
+
+.chronology-date {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 7px;
+
+    color: #777777;
+
+    font-size: 9px;
+
+    line-height: 12px;
+
+    letter-spacing: .5px;
+}
+
+
+/* =========================================
+   CURRENT EVENT
+   ========================================= */
+
+.chronology-current {
+    position: relative;
+
+    z-index: 3;
+}
+
+
+/* CURRENT CARD */
+
+.chronology-current .chronology-card {
+    min-height: 155px;
+
+    border: 1px solid transparent;
+
+    background:
+        linear-gradient(#111111, #111111) padding-box,
+        linear-gradient(
+            135deg,
+            #ff1744,
+            #ff7a00,
+            #ffd600,
+            #00d084,
+            #00a8ff,
+            #7c4dff,
+            #ff1744
+        ) border-box;
+
+    background-size:
+        auto,
+        300% 300%;
+
+    animation:
+        currentRainbow 7s linear infinite;
+
+    box-shadow:
+        0 0 14px rgba(255,23,68,.15),
+        0 0 22px rgba(0,168,255,.10);
+
+    transform: scale(1.035);
+}
+
+
+/* CURRENT TOP LINE */
+
+.chronology-current .chronology-card:before {
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff1744,
+            #ff7a00,
+            #ffd600,
+            #00d084,
+            #00a8ff,
+            #7c4dff,
+            #ff1744
+        );
+
+    background-size: 300% 100%;
+
+    animation:
+        chronologyRainbow 3s linear infinite;
+}
+
+
+/* CURRENT TITLE */
+
+.chronology-current .chronology-title {
+    color: #ffffff;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,.35);
+}
+
+
+/* CURRENT IMAGE */
+
+.chronology-current .chronology-image {
+    border-color: #ffffff;
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,.25),
+        0 0 20px rgba(0,168,255,.15);
+}
+
+
+/* =========================================
+   EMPTY CARD
+   ========================================= */
+
+.chronology-empty {
+    color: #444444;
+
+    border-color: #1d1d1d;
+
+    background: #0c0c0c;
+
+    box-shadow: none;
+}
+
+.chronology-empty:before,
+.chronology-empty:after {
+    display: none;
+}
+
+
+/* =========================================
+   ANIMATION
+   ========================================= */
+
+@keyframes chronologyRainbow {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+@keyframes currentRainbow {
+
+    0% {
+        background-position:
+            0% 0%,
+            0% 50%;
+    }
+
+    50% {
+        background-position:
+            0% 0%,
+            100% 50%;
+    }
+
+    100% {
+        background-position:
+            0% 0%,
+            0% 50%;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    #event-chronology {
+        margin-top: 32px;
+    }
+
+    .chronology-block {
+        margin-bottom: 27px;
+    }
+
+    .chronology-block h3 {
+        font-size: 10px;
+
+        letter-spacing: 2px;
+
+        margin-bottom: 11px;
+    }
+
+    .chronology-row {
+        grid-template-columns:
+            1fr
+            1.12fr
+            1fr;
+
+        gap: 6px;
+    }
+
+    .chronology-card {
+        min-height: 112px;
+
+        padding: 8px 5px;
+    }
+
+    .chronology-current .chronology-card {
+        min-height: 120px;
+
+        transform: scale(1.025);
+    }
+
+    .chronology-image {
+        width: 50px;
+        height: 50px;
+
+        margin-bottom: 7px;
+    }
+
+    .chronology-title {
+        font-size: 8px;
+
+        line-height: 11px;
+
+        letter-spacing: .3px;
+    }
+
+    .chronology-date {
+        margin-top: 4px;
+
+        font-size: 7px;
+
+        line-height: 9px;
+    }
+
+        }
