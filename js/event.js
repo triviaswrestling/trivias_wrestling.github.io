@@ -1473,9 +1473,68 @@ ${scores.map(score=>`<span>${score}</span>`).join("")}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /* =========================================
    EVENT CHRONOLOGY
    ========================================= */
+
+
+/* =========================================
+   GET SHOW FROM TOURNAMENT DATA
+   ========================================= */
+
+function getChronologyTournamentShow(showId){
+
+    if(typeof tournamentData==="undefined") return null;
+
+    for(const tournamentId in tournamentData){
+
+        const data=tournamentData[tournamentId];
+
+        if(!data) continue;
+
+        let show=null;
+
+        if(data.shows && data.shows[showId]){
+            show=data.shows[showId];
+        }
+
+        if(!show && data.weekly && data.weekly[showId]){
+            show=data.weekly[showId];
+        }
+
+        if(
+            !show &&
+            data.matches &&
+            !Array.isArray(data.matches) &&
+            data.matches[showId]
+        ){
+            show=data.matches[showId];
+        }
+
+        if(show){
+            return {
+                show:show,
+                tournamentId:tournamentId
+            };
+        }
+
+    }
+
+    return null;
+
+}
 
 
 /* =========================================
@@ -1484,17 +1543,217 @@ ${scores.map(score=>`<span>${score}</span>`).join("")}
 
 function getAllChronologyEvents(){
 
-    const events = [];
+    const events=[];
+
 
     /* =====================================
-       EVENT DATA
-       WEEKLY / NXT / PLE
+       WEEKLY
+       RAW + SMACKDOWN = WEEKLY
+       ===================================== */
+
+    const weeklyNumbers={};
+
+    if(typeof tournamentData!=="undefined"){
+
+        for(const tournamentId in tournamentData){
+
+            const data=tournamentData[tournamentId];
+
+            if(!data) continue;
+
+            const containers=[
+                data.shows,
+                data.weekly,
+                (!Array.isArray(data.matches)
+                    ?data.matches
+                    :null)
+            ];
+
+            containers.forEach(container=>{
+
+                if(!container) return;
+
+                Object.keys(container).forEach(id=>{
+
+                    const match=id.match(
+                        /^(raw|smackdown)-(\d+)$/i
+                    );
+
+                    if(!match) return;
+
+                    const number=match[2];
+
+                    if(!weeklyNumbers[number]){
+                        weeklyNumbers[number]={
+                            raw:null,
+                            smackdown:null
+                        };
+                    }
+
+                    const type=
+                        match[1].toLowerCase();
+
+                    weeklyNumbers[number][type]={
+                        show:container[id],
+                        tournamentId:tournamentId
+                    };
+
+                });
+
+            });
+
+        }
+
+    }
+
+
+    Object.entries(weeklyNumbers).forEach(
+        ([number,data])=>{
+
+            const raw=data.raw
+                ?data.raw.show
+                :null;
+
+            const smackdown=data.smackdown
+                ?data.smackdown.show
+                :null;
+
+            const dates=[];
+
+            if(raw && raw.date){
+                dates.push(raw.date);
+            }
+
+            if(smackdown && smackdown.date){
+                dates.push(smackdown.date);
+            }
+
+            if(!dates.length) return;
+
+            dates.sort(
+                (a,b)=>parseDate(a)-parseDate(b)
+            );
+
+            events.push({
+
+                id:"weekly-"+number,
+
+                title:"WEEKLY #"+number,
+
+                date:dates[0],
+
+                type:"WEEKLY",
+
+                source:"tournamentData",
+
+                category:"WEEKLY",
+
+                image:
+                    (raw && raw.image) ||
+                    (smackdown && smackdown.image) ||
+                    "",
+
+                brand:"",
+
+                raw:raw,
+
+                smackdown:smackdown
+
+            });
+
+        }
+    );
+
+
+    /* =====================================
+       NXT
+       tournamentData
+       ===================================== */
+
+    const nxtSeen={};
+
+    if(typeof tournamentData!=="undefined"){
+
+        for(const tournamentId in tournamentData){
+
+            const data=tournamentData[tournamentId];
+
+            if(!data) continue;
+
+            const containers=[
+                data.shows,
+                data.weekly,
+                (!Array.isArray(data.matches)
+                    ?data.matches
+                    :null)
+            ];
+
+            containers.forEach(container=>{
+
+                if(!container) return;
+
+                Object.entries(container).forEach(
+                    ([id,show])=>{
+
+                        const match=id.match(
+                            /^nxt-(\d+)$/i
+                        );
+
+                        if(!match || !show || !show.date){
+                            return;
+                        }
+
+                        const number=match[1];
+
+                        if(nxtSeen[number]){
+                            return;
+                        }
+
+                        nxtSeen[number]=true;
+
+                        events.push({
+
+                            id:id.toLowerCase(),
+
+                            title:
+                                show.title ||
+                                "NXT #"+number,
+
+                            date:show.date,
+
+                            type:"NXT",
+
+                            source:"tournamentData",
+
+                            category:"NXT",
+
+                            image:show.image || "",
+
+                            brand:"NXT",
+
+                            tournamentId:tournamentId
+
+                        });
+
+                    }
+                );
+
+            });
+
+        }
+
+    }
+
+
+    /* =====================================
+       PLE + TAKEOVER
+       eventData / addPLE
        ===================================== */
 
     if(
-        typeof eventData !== "undefined" &&
+        typeof eventData!=="undefined" &&
         eventData &&
-        typeof eventData === "object"
+        typeof eventData==="object"
     ){
 
         Object.entries(eventData).forEach(
@@ -1502,28 +1761,23 @@ function getAllChronologyEvents(){
 
                 if(!event || !event.date) return;
 
-                const type =
+                const type=
                     String(event.type || "")
                     .toUpperCase();
 
-                /*
-                 * EVENT DATA YA TIENE:
-                 *
-                 * WEEKLY
-                 * NXT
-                 * PLE
-                 *
-                 * NO AGREGAMOS RAW/SMACKDOWN
-                 * POR SEPARADO.
-                 */
-
-                if(
-                    type !== "WEEKLY" &&
-                    type !== "NXT" &&
-                    type !== "PLE"
-                ){
+                if(type!=="PLE"){
                     return;
                 }
+
+                const text=(
+                    String(event.title || "")+
+                    " "+
+                    String(id || "")
+                ).toLowerCase();
+
+                const takeover=
+                    text.includes("takeover") ||
+                    text.includes("take over");
 
                 events.push({
 
@@ -1535,17 +1789,22 @@ function getAllChronologyEvents(){
 
                     date:event.date,
 
-                    type:type,
+                    type:"PLE",
 
                     source:"eventData",
 
-                    category:type,
+                    category:
+                        takeover
+                        ?"TAKEOVER"
+                        :"PLE",
 
                     image:event.image || "",
 
                     brand:event.brand || "",
 
-                    original:event
+                    original:event,
+
+                    takeover:takeover
 
                 });
 
@@ -1561,9 +1820,9 @@ function getAllChronologyEvents(){
        ===================================== */
 
     if(
-        typeof outsiderData !== "undefined" &&
+        typeof outsiderData!=="undefined" &&
         outsiderData &&
-        typeof outsiderData === "object"
+        typeof outsiderData==="object"
     ){
 
         Object.entries(outsiderData).forEach(
@@ -1585,7 +1844,7 @@ function getAllChronologyEvents(){
                             return;
                         }
 
-                        const brand = String(
+                        const brand=String(
                             tournament.brand ||
                             getShowBrand(id) ||
                             show.brand ||
@@ -1640,27 +1899,54 @@ function getAllChronologyEvents(){
 
 
     /* =====================================
-       ORDEN GENERAL
+       ELIMINAR DUPLICADOS
        ===================================== */
 
-    events.sort(
-        (a,b)=>{
+    const unique={};
 
-            const dateA=parseDate(a.date);
-            const dateB=parseDate(b.date);
+    events.forEach(event=>{
 
-            if(dateA!==dateB){
-                return dateA-dateB;
-            }
+        const key=
+            String(event.id || "")
+            .toLowerCase();
 
-            return String(a.id)
-                .localeCompare(String(b.id));
+        if(!key) return;
 
+        /*
+         * Si hay un duplicado,
+         * conservamos el primero.
+         */
+
+        if(!unique[key]){
+            unique[key]=event;
         }
-    );
+
+    });
 
 
-    return events;
+    const result=Object.values(unique);
+
+
+    /* =====================================
+       ORDEN GENERAL POR FECHA
+       ===================================== */
+
+    result.sort((a,b)=>{
+
+        const dateA=parseDate(a.date);
+        const dateB=parseDate(b.date);
+
+        if(dateA!==dateB){
+            return dateA-dateB;
+        }
+
+        return String(a.id)
+            .localeCompare(String(b.id));
+
+    });
+
+
+    return result;
 
 }
 
@@ -1672,6 +1958,10 @@ function getAllChronologyEvents(){
 function isTakeOver(event){
 
     if(!event) return false;
+
+    if(event.category==="TAKEOVER"){
+        return true;
+    }
 
     const text=(
         String(event.title || "")+
@@ -1698,7 +1988,8 @@ function isPLE(event){
     return(
         event.source==="eventData" &&
         String(event.type || "")
-        .toUpperCase()==="PLE"
+        .toUpperCase()==="PLE" &&
+        !isTakeOver(event)
     );
 
 }
@@ -1714,7 +2005,11 @@ function isWeekly(event){
 
     return(
         String(event.type || "")
-        .toUpperCase()==="WEEKLY"
+        .toUpperCase()==="WEEKLY" &&
+        event.id &&
+        String(event.id)
+        .toLowerCase()
+        .startsWith("weekly-")
     );
 
 }
@@ -1847,22 +2142,18 @@ function getGeneralEquivalent(event,events){
 
     if(!event) return null;
 
+    const id=
+        String(event.id || "")
+        .toLowerCase();
 
-    /*
-     * RAW #10 / SMACKDOWN #10
-     *
-     * Siempre se convierten en:
-     *
-     * WEEKLY #10
-     *
-     * aunque el usuario haya entrado
-     * directamente desde raw-10.
-     */
+
+    /* ================================
+       RAW / SMACKDOWN
+       ================================ */
 
     const rawMatch=
-        String(event.id || "")
-        .match(
-            /^(raw|smackdown)-(\d+)$/i
+        id.match(
+            /^(raw|smackdown)-(\d+)$/
         );
 
 
@@ -1885,22 +2176,67 @@ function getGeneralEquivalent(event,events){
     }
 
 
-    /*
-     * Si ya es WEEKLY,
-     * se usa directamente.
-     */
+    /* ================================
+       WEEKLY
+       ================================ */
 
-    if(isWeekly(event)){
+    if(
+        id.startsWith("weekly-")
+    ){
         return event;
     }
 
 
+    return event;
+
+}
+
+
+/* =========================================
+   ENCONTRAR EVENTO ACTUAL
+   ========================================= */
+
+function findChronologyIndex(
+    list,
+    event
+){
+
+    if(!event || !list.length){
+        return -1;
+    }
+
+    const id=
+        getChronologyCurrentId(event);
+
+
+    let index=list.findIndex(
+        e =>
+            getChronologyCurrentId(e)===id
+    );
+
+
+    if(index!==-1){
+        return index;
+    }
+
+
     /*
-     * PLE / NXT / OUTSIDER
-     * usan su propio evento.
+     * SEGURIDAD EXTRA:
+     * si el ID no coincide,
+     * buscamos por fecha + título.
      */
 
-    return event;
+    index=list.findIndex(
+        e =>
+            parseDate(e.date)===parseDate(event.date) &&
+            String(e.title || "")
+            .toLowerCase()===
+            String(event.title || "")
+            .toLowerCase()
+    );
+
+
+    return index;
 
 }
 
@@ -1929,20 +2265,15 @@ function chronologyLink(
         getChronologyCurrentId(event);
 
 
-    /*
-     * SI ES LA CARD CENTRAL DEL EVENTO ACTUAL:
-     *
-     * NO ARMAMOS:
-     *
-     * event.html?id=undefined
-     *
-     * Simplemente recargamos la URL actual.
-     */
-
-    let href="";
+    let href;
 
 
     if(current){
+
+        /*
+         * EL EVENTO CENTRAL
+         * SIEMPRE RECARGA LA URL ACTUAL.
+         */
 
         href=window.location.href;
 
@@ -2004,6 +2335,7 @@ function chronologyLink(
 
 /* =========================================
    CREAR FILA
+   SIEMPRE 3 COLUMNAS
    ========================================= */
 
 function createChronologyRow(
@@ -2027,14 +2359,12 @@ function createChronologyRow(
                     )}
                 </div>
 
-
                 <div class="chronology-column chronology-current">
                     ${chronologyLink(
                         current,
                         true
                     )}
                 </div>
-
 
                 <div class="chronology-column">
                     ${chronologyLink(
@@ -2052,33 +2382,8 @@ function createChronologyRow(
 
 
 /* =========================================
-   BUSCAR ÍNDICE
-   ========================================= */
-
-function findChronologyIndex(
-    list,
-    event
-){
-
-    if(!event || !list.length){
-        return -1;
-    }
-
-    const id=
-        getChronologyCurrentId(event);
-
-
-    return list.findIndex(
-        e =>
-            getChronologyCurrentId(e)===id
-    );
-
-}
-
-
-/* =========================================
    GENERAL
-   TODO LO QUE TIENE FECHA
+   TODOS LOS EVENTOS
    ========================================= */
 
 function renderGeneralChronology(
@@ -2096,22 +2401,43 @@ function renderGeneralChronology(
         );
 
 
-    const generalCurrent=
+    const current=
         getGeneralEquivalent(
             event,
             events
         );
 
 
-    if(!generalCurrent){
-        return "";
+    if(!current){
+
+        return `
+            <div class="chronology-block">
+                <h3>GENERAL</h3>
+                <div class="chronology-row">
+
+                    <div class="chronology-column">
+                        ${chronologyLink(null,false)}
+                    </div>
+
+                    <div class="chronology-column chronology-current">
+                        ${chronologyLink(null,true)}
+                    </div>
+
+                    <div class="chronology-column">
+                        ${chronologyLink(null,false)}
+                    </div>
+
+                </div>
+            </div>
+        `;
+
     }
 
 
     const index=
         findChronologyIndex(
             list,
-            generalCurrent
+            current
         );
 
 
@@ -2120,7 +2446,7 @@ function renderGeneralChronology(
         return createChronologyRow(
             "GENERAL",
             null,
-            generalCurrent,
+            current,
             null
         );
 
@@ -2128,13 +2454,15 @@ function renderGeneralChronology(
 
 
     return createChronologyRow(
+
         "GENERAL",
 
         list[index-1] || null,
 
-        generalCurrent,
+        list[index],
 
         list[index+1] || null
+
     );
 
 }
@@ -2151,9 +2479,7 @@ function renderWeeklyChronology(
 
     const list=
         events
-        .filter(
-            e=>isWeekly(e)
-        )
+        .filter(e=>isWeekly(e))
         .sort(
             (a,b)=>
                 parseDate(a.date)-
@@ -2161,18 +2487,22 @@ function renderWeeklyChronology(
         );
 
 
+    const id=
+        String(event.id || "")
+        .toLowerCase();
+
+
     let current=event;
 
 
     /*
-     * Si entramos directamente a RAW #10
-     * o SMACKDOWN #10, buscamos WEEKLY #10.
+     * RAW-X / SMACKDOWN-X
+     * -> WEEKLY-X
      */
 
     const rawMatch=
-        String(event.id || "")
-        .match(
-            /^(raw|smackdown)-(\d+)$/i
+        id.match(
+            /^(raw|smackdown)-(\d+)$/
         );
 
 
@@ -2191,6 +2521,22 @@ function renderWeeklyChronology(
     }
 
 
+    /*
+     * Si entramos por weekly-X
+     */
+
+    if(id.startsWith("weekly-")){
+
+        current=
+            list.find(
+                e =>
+                    String(e.id)
+                    .toLowerCase()===id
+            ) || event;
+
+    }
+
+
     const index=
         findChronologyIndex(
             list,
@@ -2199,25 +2545,34 @@ function renderWeeklyChronology(
 
 
     if(index===-1){
-        return "";
+
+        return createChronologyRow(
+            "WEEKLY",
+            null,
+            current,
+            null
+        );
+
     }
 
 
     return createChronologyRow(
+
         "WEEKLY",
 
         list[index-1] || null,
 
-        current,
+        list[index],
 
         list[index+1] || null
+
     );
 
 }
 
 
 /* =========================================
-   NXT NORMAL
+   NXT
    ========================================= */
 
 function renderNXTChronology(
@@ -2247,11 +2602,19 @@ function renderNXTChronology(
 
 
     if(index===-1){
-        return "";
+
+        return createChronologyRow(
+            "NXT",
+            null,
+            event,
+            null
+        );
+
     }
 
 
     return createChronologyRow(
+
         "NXT",
 
         list[index-1] || null,
@@ -2259,6 +2622,7 @@ function renderNXTChronology(
         list[index],
 
         list[index+1] || null
+
     );
 
 }
@@ -2276,8 +2640,7 @@ function renderTakeOverChronology(
     const list=
         events
         .filter(
-            e =>
-                isTakeOver(e)
+            e => isTakeOver(e)
         )
         .sort(
             (a,b)=>
@@ -2294,11 +2657,19 @@ function renderTakeOverChronology(
 
 
     if(index===-1){
-        return "";
+
+        return createChronologyRow(
+            "TAKEOVER",
+            null,
+            event,
+            null
+        );
+
     }
 
 
     return createChronologyRow(
+
         "TAKEOVER",
 
         list[index-1] || null,
@@ -2306,6 +2677,7 @@ function renderTakeOverChronology(
         list[index],
 
         list[index+1] || null
+
     );
 
 }
@@ -2354,11 +2726,19 @@ function renderOutsiderChronology(
 
 
     if(index===-1){
-        return "";
+
+        return createChronologyRow(
+            category,
+            null,
+            event,
+            null
+        );
+
     }
 
 
     return createChronologyRow(
+
         category,
 
         list[index-1] || null,
@@ -2366,13 +2746,14 @@ function renderOutsiderChronology(
         list[index],
 
         list[index+1] || null
+
     );
 
 }
 
 
 /* =========================================
-   TODOS LOS PLE
+   PLE
    ========================================= */
 
 function renderPLEChronology(
@@ -2384,8 +2765,7 @@ function renderPLEChronology(
         events
         .filter(
             e =>
-                isPLE(e) &&
-                !isTakeOver(e)
+                isPLE(e)
         )
         .sort(
             (a,b)=>
@@ -2402,11 +2782,19 @@ function renderPLEChronology(
 
 
     if(index===-1){
-        return "";
+
+        return createChronologyRow(
+            "PLE",
+            null,
+            event,
+            null
+        );
+
     }
 
 
     return createChronologyRow(
+
         "PLE",
 
         list[index-1] || null,
@@ -2414,6 +2802,7 @@ function renderPLEChronology(
         list[index],
 
         list[index+1] || null
+
     );
 
 }
@@ -2432,8 +2821,20 @@ function renderSagaChronology(
         getChronologySaga(event);
 
 
+    /*
+     * Si no pudimos identificar saga,
+     * dejamos igualmente la fila.
+     */
+
     if(!saga){
-        return "";
+
+        return createChronologyRow(
+            "SAGA",
+            null,
+            event,
+            null
+        );
+
     }
 
 
@@ -2442,7 +2843,6 @@ function renderSagaChronology(
         .filter(
             e =>
                 isPLE(e) &&
-                !isTakeOver(e) &&
                 getChronologySaga(e)===saga
         )
         .sort(
@@ -2460,11 +2860,19 @@ function renderSagaChronology(
 
 
     if(index===-1){
-        return "";
+
+        return createChronologyRow(
+            "SAGA",
+            null,
+            event,
+            null
+        );
+
     }
 
 
     return createChronologyRow(
+
         "SAGA",
 
         list[index-1] || null,
@@ -2472,6 +2880,7 @@ function renderSagaChronology(
         list[index],
 
         list[index+1] || null
+
     );
 
 }
@@ -2503,7 +2912,6 @@ function renderChronology(event){
 
     /* =====================================
        GENERAL
-       SIEMPRE
        ===================================== */
 
     html+=
@@ -2519,8 +2927,7 @@ function renderChronology(event){
        ===================================== */
 
     if(
-        isPLE(event) &&
-        !isTakeOver(event)
+        isPLE(event)
     ){
 
         html+=
@@ -2528,7 +2935,6 @@ function renderChronology(event){
                 events,
                 event
             );
-
 
         html+=
             renderPLEChronology(
@@ -2563,7 +2969,10 @@ function renderChronology(event){
        ===================================== */
 
     else if(
-        isWeekly(event)
+        isWeekly(event) ||
+        /^(raw|smackdown)-\d+$/i.test(
+            String(event.id || "")
+        )
     ){
 
         html+=
@@ -2611,17 +3020,9 @@ function renderChronology(event){
     }
 
 
-    /* =====================================
-       MOSTRAR
-       ===================================== */
-
     container.innerHTML=html;
 
 }
 
-       
-        
 
-    
-    
 
