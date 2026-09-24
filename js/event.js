@@ -1904,9 +1904,7 @@ currentEvent.id.match(/^weekly-(\d+)$/i)[1]
 
 weeklyIndex=
 weeklyShows.findIndex(
-item=>item.id==="raw-"+number
-||
-item.id==="smackdown-"+number
+item=>item.id==="weekly-"+number
 );
 
 }
