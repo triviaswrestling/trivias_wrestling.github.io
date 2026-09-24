@@ -717,6 +717,10 @@ main {
 
 
 
+
+──────────────────────────────────────────────────────────────── 
+
+
 /* =========================================
    EVENT CHRONOLOGY
    COMPACTO / WCW NITRO + CHROMA
@@ -838,7 +842,10 @@ main {
 }
 
 
-/* FRANJA SUPERIOR */
+/* =========================================
+   BARRA GORDA SUPERIOR
+   ESTÁTICA NORMALMENTE
+   ========================================= */
 
 .chronology-card:before{
     content:"";
@@ -860,7 +867,20 @@ main {
         #E6E6E6
     );
 
+    background-size:300% 100%;
+
     z-index:3;
+}
+
+
+/* =========================================
+   BARRA GORDA
+   SOLO SE ANIMA AL TOCAR / HOVER
+   ========================================= */
+
+.chronology-link:hover .chronology-card:before,
+.chronology-link:active .chronology-card:before{
+    animation:chronoBar .8s linear;
 }
 
 
@@ -931,6 +951,15 @@ main {
         0 4px 12px rgba(0,0,0,.8);
 }
 
+.chronology-link:active .chronology-card{
+    transform:translateY(-2px);
+
+    border-color:#C7CBD1;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.8);
+}
+
 
 /* =========================================
    IMAGEN
@@ -958,7 +987,20 @@ main {
         box-shadow .15s ease;
 }
 
+
+/* PC */
+
 .chronology-link:hover .chronology-image{
+    border-color:#C7CBD1;
+
+    box-shadow:
+        0 0 8px rgba(199,203,209,.25);
+}
+
+
+/* CELULAR */
+
+.chronology-link:active .chronology-image{
     border-color:#C7CBD1;
 
     box-shadow:
@@ -1056,12 +1098,22 @@ main {
 
     background-size:300% 100%;
 
-    animation:
-        chronoBar 3s linear infinite;
+    /* NO SE ANIMA SOLA */
 }
 
 
-/* ANIMACIÓN DEL BORDE ACTUAL */
+/* AL TOCAR / HOVER LA CARD ACTUAL,
+   TAMBIÉN SE MUEVE SU BARRA GORDA */
+
+.chronology-current .chronology-card:hover:before,
+.chronology-current .chronology-card:active:before{
+    animation:chronoBar .8s linear;
+}
+
+
+/* =========================================
+   ANIMACIÓN DEL BORDE ACTUAL
+   ========================================= */
 
 @keyframes chronoCurrent{
 
@@ -1085,7 +1137,9 @@ main {
 }
 
 
-/* ACTUAL - IMAGEN */
+/* =========================================
+   ACTUAL - IMAGEN
+   ========================================= */
 
 .chronology-current .chronology-image{
     border-color:#C7CBD1;
@@ -1095,7 +1149,9 @@ main {
 }
 
 
-/* ACTUAL - TEXTO */
+/* =========================================
+   ACTUAL - TEXTO
+   ========================================= */
 
 .chronology-current .chronology-title{
     color:#fff;
@@ -1177,4 +1233,4 @@ main {
         font-size:6px;
         line-height:8px;
     }
-}       
+}
