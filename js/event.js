@@ -1870,7 +1870,97 @@ l[n+1]||null
 }
 
 }
+/* =========================================
+   CHRONOLOGY LINK
+   ========================================= */
 
+function chronologyLink(eventData,arrow){
+
+if(!eventData){
+return`
+<div class="chronology-empty"></div>
+`;
+}
+
+return`
+<a
+href="event.html?id=${encodeURIComponent(eventData.id)}"
+class="chronology-link"
+>
+<span class="chronology-arrow">
+${arrow}
+</span>
+
+<div class="chronology-card">
+
+${
+eventData.image
+?
+`<img
+src="${eventData.image}"
+alt="${eventData.title}"
+class="chronology-image"
+>`
+:""
+}
+
+<span class="chronology-title">
+${eventData.title}
+</span>
+
+</div>
+
+</a>`;
+}
+
+
+/* =========================================
+   CHRONOLOGY ROW
+   ========================================= */
+
+function createChronologyRow(
+title,
+previous,
+current,
+next
+){
+
+return`
+<div class="chronology-block">
+
+<h3>
+${title}
+</h3>
+
+<div class="chronology-row">
+
+${chronologyLink(previous,"←")}
+
+<div class="chronology-current">
+
+${
+current&&current.image
+?
+`<img
+src="${current.image}"
+alt="${current.title}"
+class="chronology-image chronology-current-image"
+>`
+:""
+}
+
+<span>
+${current?.title||""}
+</span>
+
+</div>
+
+${chronologyLink(next,"→")}
+
+</div>
+
+</div>`;
+}
 
 
 
