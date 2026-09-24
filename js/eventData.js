@@ -474,7 +474,14 @@ addPLE("money-in-the-bank-2023","MONEY IN THE BANK 2023","07/08/2023","ROAD","im
 {type:"LADDER",position:"MAIN EVENT",match:"MONEY IN THE BANK LADDER MATCH",participants:["Bryan Danielson","Karrion Kross","Randy Orton","Roman Reigns","Ricochet","Jon Moxley"],scores:[6,0,0,0,0,1]}
 ]);
 
-addPLE("night-of-champions-2023","NIGHT OF CHAMPIONS 2023","12/06/2023","ROAD","images/events/night-of-champions-2023.jpg");
+addPLE("night-of-champions-2023","NIGHT OF CHAMPIONS 2023","12/06/2023","ROAD","images/events/night-of-champions-2023.jpg",[
+{type:"SINGLES",position:"OPENER",wrestler1:"Cody Rhodes",wrestler2:"Rob Van Dam",score1:3,score2:1},
+{type:"SINGLES",wrestler1:"Johnny Gargano",wrestler2:"Roman Reigns",score1:1,score2:2},
+{type:"SINGLES",wrestler1:"RICOCHET",wrestler2:"Bryan Danielson",score1:1,score2:3},
+{type:"SINGLES",wrestler1:"Adam Cole",wrestler2:"John Cena",score1:3,score2:2},
+{type:"SINGLES",championship:"World Heavyweight Championship",wrestler1:"Cody Rhodes",wrestler2:"Roman Reigns",score1:4,score2:0},
+{type:"SINGLES",position:"MAIN EVENT",championship:"Undisputed WWE Championship",wrestler1:"Bryan Danielson",wrestler2:"Adam Cole",score1:3,score2:5}
+]);
 
 addPLE("backlash-2023","BACKLASH 2023","05/05/2023","ROAD","images/events/backlash-2023.jpg",[
 {type:"SINGLES",position:"OPENER",wrestler1:"RICOCHET",wrestler2:"AJ Styles",score1:2,score2:3},
