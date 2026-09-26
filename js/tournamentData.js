@@ -11,8 +11,7 @@ shows:{"raw-9":{date:"08/05/2023",matches:[["Rob Van Dam","Roman Reigns",1,1],["
        "raw-13":{date:"05/06/2023",matches:[["AJ Styles","Damian Priest",3,2],["Johnny Gargano","Rob Van Dam",2,1],["Cody Rhodes","Roman Reigns",4,1]]}},
 bracketFormat:"SEMIFINALS_FINAL",
 bracketTitle:"NIGHT OF CHAMPIONS 2023",
-events:{
-final:"night-of-champions-2023"},
+finalEvent:"night-of-champions-2023",
 finalMatches:[
 {type:"EVENT_REFERENCE",eventId:"night-of-champions-2023",matchIndex:0},
 {type:"EVENT_REFERENCE",eventId:"night-of-champions-2023",matchIndex:1},
