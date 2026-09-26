@@ -6,6 +6,23 @@
 
 const outsiderData = {
 
+// SPEED #4
+"outsider-speed-4":{
+    name:"SPEED #4/Road to Crown Jewel",
+    brand:"SPEED",
+    promotion:"WWE",
+    format:"BRACKET",
+    roster:["Edge"],
+    shows:{
+        "speed-11":{date:"07/11/2024",matches:[["Christian Cage","Matt Cardona",2,1],["Claudio Castagnoli","Jacob Fatu",0,3],["LA Knight","Bron Breakker",0,3],["Tommaso Ciampa","Roman Reigns",3,0]]},
+        "speed-12":{date:"14/11/2024",matches:[["Christian Cage","Jacob Fatu",2,1],["Bron Breakker","Tommaso Ciampa",3,0]]},
+        "speed-13":{date:"21/11/2024",matches:[["Christian Cage","Bron Breakker",1,2]]}
+    },
+    finalEvent:"crown-jewel-2024",
+    finalDate:"26/11/2024",
+    finalMatches:[{type:"EVENT_REFERENCE",eventId:"crown-jewel-2024",matchIndex:0}]
+},
+   
 // SPEED #3
 "outsider-speed-3":{
     name:"SPEED #3",
@@ -22,7 +39,6 @@ const outsiderData = {
     finalDate:"27/10/2024",
     finalMatches:[{type:"EVENT_REFERENCE",eventId:"bad-blood-2024",matchIndex:0}]
 },
-   
 // SPEED #2
 "outsider-speed-2":{
    name:"SPEED #2",
@@ -46,8 +62,7 @@ const outsiderData = {
         }
     ]
 },
-
-/* =========================================
+   /* =========================================
    SPEED
    ========================================= */
 
