@@ -6,6 +6,23 @@
 
 const outsiderData = {
 
+// SPEED #3
+"outsider-speed-3":{
+    name:"SPEED #3",
+    brand:"SPEED",
+    promotion:"WWE",
+    format:"BRACKET",
+    roster:[],
+    shows:{
+        "speed-10":{date:"24/10/2024",matches:[["AJ Styles","Roman Reigns",0,3]]},
+        "speed-9":{date:"17/10/2024",matches:[["Aleister Black","AJ Styles",0,3],["Alberto Del Rio","Roman Reigns",0,3]]},
+        "speed-8":{date:"10/10/2024",matches:[["Aleister Black","Chad Gable",3,0],["AJ Styles","Rob Van Dam",3,0],["Alberto Del Rio","Jey Uso",3,0],["CM Punk","Roman Reigns",1,2]]}
+    },
+    finalEvent:"bad-blood-2024",
+    finalDate:"",
+    finalMatches:[]
+},
+   
 // SPEED #2
 "outsider-speed-2":{
    name:"SPEED #2",
