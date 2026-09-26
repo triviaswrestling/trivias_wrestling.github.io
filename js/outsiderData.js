@@ -12,15 +12,15 @@ const outsiderData = {
     brand:"SPEED",
     promotion:"WWE",
     format:"BRACKET",
-    roster:[],
+    roster:["AJ Styles","Alberto Del Rio","Aleister Black","Chad Gable","CM Punk","Jey Uso","Rob Van Dam","Roman Reigns","Edge"],
     shows:{
         "speed-8":{date:"10/10/2024",matches:[["Aleister Black","Chad Gable",3,0],["AJ Styles","Rob Van Dam",3,0],["Alberto Del Rio","Jey Uso",3,0],["CM Punk","Roman Reigns",1,2]]},
         "speed-9":{date:"17/10/2024",matches:[["Aleister Black","AJ Styles",0,3],["Alberto Del Rio","Roman Reigns",0,3]]},
         "speed-10":{date:"24/10/2024",matches:[["AJ Styles","Roman Reigns",0,3]]}
     },
     finalEvent:"bad-blood-2024",
-    finalDate:"",
-    finalMatches:[{type:"EVENT_REFERENCE",eventId:"OTRO-EVENT-ID",matchIndex:0}]
+    finalDate:"27/10/2024",
+    finalMatches:[{type:"EVENT_REFERENCE",eventId:"bad-blood-2024",matchIndex:0}]
 },
    
 // SPEED #2
