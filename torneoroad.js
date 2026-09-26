@@ -854,16 +854,18 @@ function renderNormalTournament(data){
 
     });
 
-    if(
-        data.finalEvent &&
-        Array.isArray(data.finalMatches) &&
-        data.finalMatches.length
-    ){
+    if(data.finalEvent&&Array.isArray(data.finalMatches)&&data.finalMatches.length){
 
+    if(data.bracketFormat){
+        renderBracket(
+            data.finalMatches,
+            resultsContainer,
+            data.bracketFormat,
+            data.bracketTitle||data.finalEvent
+        );
+    }else{
         renderPhase(
-            data.finalEvent
-                .replace(/-/g," ")
-                .toUpperCase(),
+            data.finalEvent.replace(/-/g," ").toUpperCase(),
             data.finalMatches.map(match=>({
                 wrestler1:match[0],
                 wrestler2:match[1],
@@ -871,11 +873,9 @@ function renderNormalTournament(data){
                 score2:match[3]
             }))
         );
-
     }
 
 }
-
 
 
 
