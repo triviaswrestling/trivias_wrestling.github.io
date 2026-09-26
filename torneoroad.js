@@ -854,27 +854,73 @@ function renderNormalTournament(data){
 
     });
 
-    if(
+        if(
         data.finalEvent &&
         Array.isArray(data.finalMatches) &&
         data.finalMatches.length
     ){
 
-        renderPhase(
-            data.finalEvent
-                .replace(/-/g," ")
-                .toUpperCase(),
-            data.finalMatches.map(match=>({
-                wrestler1:match[0],
-                wrestler2:match[1],
-                score1:match[2],
-                score2:match[3]
-            }))
-        );
+        const finalMatches=data.finalMatches
+            .map(match=>{
+
+                /* EVENT DATA */
+                if(match?.type==="EVENT_REFERENCE"){
+
+                    const result=
+                        eventData?.[match.eventId]
+                            ?.results?.[match.matchIndex];
+
+                    if(!result){
+                        return null;
+                    }
+
+                    return {
+                        wrestler1:result.wrestler1,
+                        wrestler2:result.wrestler2,
+                        wrestler3:result.wrestler3,
+
+                        score1:result.score1,
+                        score2:result.score2,
+                        score3:result.score3
+                    };
+
+                }
+
+                /* TOURNAMENT DATA */
+                return {
+                    wrestler1:match[0],
+                    wrestler2:match[1],
+                    wrestler3:match[4],
+
+                    score1:match[2],
+                    score2:match[3],
+                    score3:match[5]
+                };
+
+            })
+            .filter(Boolean);
+
+        if(data.bracketFormat){
+
+            renderBracket(
+                finalMatches,
+                resultsContainer,
+                data.bracketFormat,
+                data.bracketTitle||data.finalEvent
+            );
+
+        }else{
+
+            renderPhase(
+                data.finalEvent
+                    .replace(/-/g," ")
+                    .toUpperCase(),
+                finalMatches
+            );
+
+        }
 
     }
-
-}
 /* =========================================
    GENERIC BRACKET
    ========================================= */
