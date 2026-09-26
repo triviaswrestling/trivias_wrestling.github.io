@@ -854,7 +854,7 @@ function renderNormalTournament(data){
 
     });
 
-    if(data.finalEvent&&Array.isArray(data.finalMatches)&&data.finalMatches.length){
+    if(data.finalEvent&&data.finalMatches?.length){
 
     if(data.bracketFormat){
         renderBracket(
@@ -876,8 +876,6 @@ function renderNormalTournament(data){
     }
 
 }
-
-
 
 
 /* =========================================
