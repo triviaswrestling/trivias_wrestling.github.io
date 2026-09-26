@@ -8,7 +8,7 @@ const outsiderData = {
 
 // SPEED #4
 "outsider-speed-4":{
-    name:"SPEED #4/Road to Crown Jewel",
+    name:"Road to Crown Jewel",
     brand:"SPEED",
     promotion:"WWE",
     format:"BRACKET",
