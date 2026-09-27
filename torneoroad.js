@@ -544,6 +544,18 @@ function renderResults(matches,phases){
 
             result.className="result-card";
 
+            result.addEventListener("click",()=>{
+
+                document
+                    .querySelectorAll(".result-card.selected")
+                    .forEach(el=>{
+                        el.classList.remove("selected");
+                    });
+
+                result.classList.add("selected");
+
+            });
+
             if(match.score1>match.score2){
 
                 result.classList.add(
