@@ -860,8 +860,11 @@
         min-height:36px;
     }
    }
+
+
+
 /* =========================================
-   RESULT CARD - GOLDEN LIGHTNING
+   RESULT CARD - GOLDEN LIGHTNING FUERTE
    ========================================= */
 
 .result-card {
@@ -869,58 +872,136 @@
     overflow: hidden;
 }
 
-/* Rayo dorado que atraviesa el recuadro */
 .result-card::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: -120%;
-    width: 70%;
-    height: 100%;
+
+    top: -40%;
+    left: -100%;
+
+    width: 55%;
+    height: 180%;
 
     background: linear-gradient(
         90deg,
-        transparent,
-        rgba(255,215,80,0.08),
-        rgba(255,230,120,0.45),
-        rgba(255,255,220,0.75),
-        rgba(255,215,80,0.25),
-        transparent
+        transparent 0%,
+        rgba(255,180,0,0.15) 20%,
+        rgba(255,215,0,0.75) 40%,
+        #fffbd0 50%,
+        rgba(255,215,0,0.9) 55%,
+        rgba(255,170,0,0.35) 75%,
+        transparent 100%
     );
 
-    transform: skewX(-20deg);
+    transform: skewX(-25deg);
+
     pointer-events: none;
-    z-index: 0;
+    z-index: 5;
+
+    opacity: 0;
 }
 
-/* Todo el contenido queda arriba del efecto */
+.result-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255,215,0,0.38) 0%,
+            rgba(255,190,0,0.18) 35%,
+            transparent 72%
+        );
+
+    pointer-events: none;
+    z-index: 4;
+
+    opacity: 0;
+}
+
 .result-card > * {
     position: relative;
-    z-index: 1;
-}
-
-/* Activación al tocar */
-.result-card.selected {
-    border-color: #f5d76e;
-
-    animation:
-        resultGoldenBorder 0.7s ease-out,
-        resultGoldenPulse 0.7s ease-out;
-}
-
-.result-card.selected::before {
-    animation: goldenLightning 0.65s ease-out;
+    z-index: 6;
 }
 
 
 /* =========================================
-   RAYO
+   ACTIVACIÓN
+   ========================================= */
+
+.result-card.selected {
+    border: 2px solid #ffd700 !important;
+
+    animation:
+        goldenImpact 0.8s ease-out,
+        goldenBorder 0.8s ease-out;
+
+    box-shadow:
+        0 0 10px #ffd700,
+        0 0 25px rgba(255,215,0,0.95),
+        0 0 50px rgba(255,180,0,0.75),
+        inset 0 0 25px rgba(255,215,0,0.35);
+}
+
+.result-card.selected::before {
+    animation: goldenLightning 0.65s cubic-bezier(.15,.8,.2,1);
+}
+
+.result-card.selected::after {
+    animation: goldenFlash 0.8s ease-out;
+}
+
+
+/* =========================================
+   RAYO DORADO
    ========================================= */
 
 @keyframes goldenLightning {
 
     0% {
-        left: -120%;
+        left: -110%;
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    25% {
+        left: -40%;
+        opacity: 1;
+    }
+
+    50% {
+        left: 20%;
+        opacity: 1;
+    }
+
+    70% {
+        left: 65%;
+        opacity: 1;
+    }
+
+    88% {
+        left: 110%;
+        opacity: 0.8;
+    }
+
+    100% {
+        left: 140%;
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   DESTELLO INTERIOR
+   ========================================= */
+
+@keyframes goldenFlash {
+
+    0% {
         opacity: 0;
     }
 
@@ -928,69 +1009,94 @@
         opacity: 1;
     }
 
+    35% {
+        opacity: 0.7;
+    }
+
     55% {
-        opacity: 1;
+        opacity: 0.35;
     }
 
     100% {
-        left: 130%;
         opacity: 0;
     }
-
 }
 
 
 /* =========================================
-   BORDE
+   BORDE FUERTE
    ========================================= */
 
-@keyframes resultGoldenBorder {
+@keyframes goldenBorder {
 
     0% {
         border-color: #292929;
-        box-shadow: 0 0 0 rgba(245,215,110,0);
-    }
-
-    30% {
-        border-color: #fff2a8;
 
         box-shadow:
-            0 0 5px rgba(245,215,110,0.8),
-            0 0 15px rgba(245,215,110,0.45);
+            0 0 0 transparent;
+    }
+
+    20% {
+        border-color: #fffbd0;
+
+        box-shadow:
+            0 0 12px #ffd700,
+            0 0 30px #ffd700,
+            0 0 60px rgba(255,180,0,0.9);
+    }
+
+    40% {
+        border-color: #ffd700;
+
+        box-shadow:
+            0 0 15px #ffd700,
+            0 0 40px #ffd700,
+            0 0 80px rgba(255,180,0,0.85),
+            inset 0 0 25px rgba(255,215,0,0.4);
     }
 
     60% {
-        border-color: #f5d76e;
+        border-color: #fffbd0;
 
         box-shadow:
-            0 0 8px rgba(245,215,110,0.9),
-            0 0 25px rgba(245,215,110,0.55);
+            0 0 12px #ffd700,
+            0 0 30px #ffd700,
+            0 0 55px rgba(255,180,0,0.7);
     }
 
     100% {
-        border-color: #292929;
-        box-shadow: 0 0 0 rgba(245,215,110,0);
-    }
+        border-color: #ffd700;
 
+        box-shadow:
+            0 0 8px #ffd700,
+            0 0 20px rgba(255,215,0,0.7);
+    }
 }
 
 
 /* =========================================
-   PEQUEÑO PULSO
+   IMPACTO
    ========================================= */
 
-@keyframes resultGoldenPulse {
+@keyframes goldenImpact {
 
     0% {
         transform: scale(1);
     }
 
-    35% {
-        transform: scale(1.012);
+    20% {
+        transform: scale(1.035);
+    }
+
+    40% {
+        transform: scale(1.015);
+    }
+
+    60% {
+        transform: scale(1.025);
     }
 
     100% {
         transform: scale(1);
     }
-
-       }
+}
