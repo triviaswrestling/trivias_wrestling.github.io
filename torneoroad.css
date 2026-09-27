@@ -1,6 +1,7 @@
-/* =========================================================
-   TORNEO ROAD
-========================================================= */
+/* =========================================
+   MI WRESTLING
+   TORNEOROAD
+   ========================================= */
 
 .torneoroad-page {
     width: 100%;
@@ -9,81 +10,539 @@
     padding: 40px 5% 80px;
 }
 
-.torneoroad-page h1 {
-    margin-bottom: 30px;
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: 1px;
-}
 
-.torneoroad-page h2 {
-    margin: 35px 0 15px;
-    font-size: 20px;
-    font-weight: 900;
+/* =========================================
+   HEADER
+   ========================================= */
+
+.torneoroad-header {
+    position: relative;
+    margin-bottom: 60px;
 }
 
 
-/* =========================================================
+.back-button {
+    display: inline-block;
+
+    margin-bottom: 35px;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    opacity: 0.6;
+
+    transition: opacity 0.2s ease;
+}
+
+
+.back-button:hover {
+    opacity: 1;
+}
+
+
+.torneoroad-heading {
+    text-align: center;
+}
+
+
+.torneoroad-brand {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    opacity: 0.6;
+}
+
+
+.torneoroad-heading h1 {
+    margin: 0;
+
+    font-size: 46px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+
+.torneoroad-heading p {
+    margin: 10px 0 0;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    opacity: 0.5;
+}
+
+
+/* =========================================
+   SECTIONS
+   ========================================= */
+
+.torneoroad-section {
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+
+.torneoroad-divider {
+    display: flex;
+    align-items: center;
+
+    border-bottom: 2px solid #ffffff;
+
+    padding-bottom: 12px;
+
+    margin-bottom: 25px;
+}
+
+
+.torneoroad-divider h2 {
+    margin: 0;
+
+    font-size: 23px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
    DRAFT
-========================================================= */
+   ========================================= */
 
 .draft-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 10px;
-    margin-bottom: 30px;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 15px;
 }
 
+
 .draft-card {
-    padding: 15px;
-    background: #111;
+    background: #111111;
     border: 1px solid #292929;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.draft-card:hover {
+    transform: translateY(-3px);
+    border-color: #ffffff;
+}
+
+.draft-card-image {
+    display: block;
+
+    width: 100%;
+    height: 180px;
+
+    object-fit: cover;
+    object-position: center;
+
+    background: #181818;
+}
+
+.draft-card-name {
+    display: block;
+
+    padding: 16px;
+
+    font-size: 14px;
+    font-weight: bold;
     text-align: center;
+}
+
+
+/* =========================================
+   STANDINGS
+   ========================================= */
+
+.standings-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+.standings-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #111111;
+}
+
+
+.standings-table th {
+    padding: 16px 12px;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    border-bottom: 2px solid #ffffff;
+}
+
+
+.standings-table th:nth-child(2) {
+    text-align: left;
+}
+
+
+.standings-table td {
+    padding: 15px 12px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid #292929;
+}
+
+
+.standings-table td:nth-child(2) {
+    text-align: left;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   WRESTLER LINKS
+   ========================================= */
+
+.tournament-wrestler-link,
+.table-wrestler-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 900;
+    transition: opacity 0.2s ease;
+}
+
+.tournament-wrestler-link:hover,
+.table-wrestler-link:hover {
+    color: #ffffff;
+    opacity: 0.65;
+}
+
+
+.standings-table tr {
+    transition: background 0.2s ease;
+}
+
+
+.standings-table tbody tr:hover {
+    background: #181818;
+}
+
+
+/* =========================================
+   MATRIX
+   ========================================= */
+
+.matrix-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+.matrix-table {
+    border-collapse: collapse;
+
+    background: #111111;
+
+    min-width: 700px;
+}
+
+
+.matrix-table th,
+.matrix-table td {
+    width: 65px;
+    height: 55px;
+
+    padding: 8px;
+
+    text-align: center;
+
+    border: 1px solid #292929;
+
+    font-size: 12px;
+}
+
+
+.matrix-table th {
+    font-weight: bold;
+
+    background: #151515;
+}
+
+
+.matrix-table th:first-child {
+    width: 150px;
+}
+
+
+.matrix-table td:first-child {
+    width: 150px;
+
+    text-align: left;
+
+    padding-left: 15px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   MATRIX RESULTS
+   ========================================= */
+
+.matrix-win {
     font-weight: 900;
 }
 
 
-/* =========================================================
-   STANDINGS
-========================================================= */
-
-.standings-wrapper {
-    width: 100%;
-    overflow-x: auto;
+.matrix-loss {
+    opacity: 0.45;
 }
 
-.standings-table {
+
+.matrix-draw {
+    font-weight: bold;
+}
+
+
+.matrix-empty {
+    opacity: 0.25;
+}
+
+
+/* =========================================
+   RESULTS
+   ========================================= */
+
+.results-container {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.result-card {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 18px 22px;
+
+    background: #111111;
+
+    border: 1px solid #292929;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.result-card:hover {
+    background: #171717;
+
+    border-color: #ffffff;
+}
+
+
+.result-wrestler {
+    flex: 1;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+.result-score {
+    min-width: 80px;
+
+    text-align: center;
+
+    font-size: 17px;
+
+    font-weight: 900;
+}
+
+
+/* =========================================
+   RAW
+   ========================================= */
+
+.torneoroad-page.raw .torneoroad-brand {
+    color: #d00000;
+}
+
+
+/* =========================================
+   SMACKDOWN
+   ========================================= */
+
+.torneoroad-page.smackdown .torneoroad-brand {
+    color: #0066ff;
+}
+
+
+/* =========================================
+   NXT
+   ========================================= */
+
+.torneoroad-page.nxt .torneoroad-brand {
+    color: #8a8a8a;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .draft-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .torneoroad-page {
+        padding: 30px 15px 60px;
+    }
+
+
+    .torneoroad-heading h1 {
+        font-size: 32px;
+    }
+
+
+    .torneoroad-brand {
+        font-size: 11px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .torneoroad-heading p {
+        font-size: 9px;
+    }
+
+
+    .torneoroad-divider h2 {
+        font-size: 18px;
+    }
+
+
+    .draft-container {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+
+    .draft-card {
+    min-height: 0;
+}
+
+.draft-card-image {
+    height: 120px;
+}
+
+.draft-card-name {
+    padding: 12px 8px;
+    font-size: 12px;
+}
+
+
+    .standings-table {
+    min-width: 0;
     width: 100%;
-    min-width: 600px;
-    border-collapse: collapse;
-    background: #111;
 }
 
 .standings-table th,
 .standings-table td {
-    padding: 13px 10px;
-    border: 1px solid #292929;
-    text-align: center;
-    font-size: 13px;
+    padding: 10px 5px;
 }
 
-.standings-table th {
-    background: #151515;
-    font-weight: 900;
+.standings-table th:nth-child(2),
+.standings-table td:nth-child(2) {
+    width: 90px;
+    min-width: 90px;
+}
+   
+.matrix-table th:first-child,
+.matrix-table td:first-child {
+    width: 20px;
+    min-width: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-.standings-table td:first-child {
-    text-align: left;
-    font-weight: 900;
-}
 
-.standings-table tbody tr:hover {
-    background: #171717;
+    .result-card {
+        padding: 15px;
+
+        gap: 10px;
+    }
+
+
+    .result-wrestler {
+        font-size: 12px;
+    }
+
+
+    .result-score {
+        min-width: 60px;
+
+        font-size: 15px;
+    }
+
 }
+/* =========================================
+   STANDINGS - POSITIONS
+   ========================================= */
 
 .standings-table tbody tr.champion {
     background: #b8860b;
-    color: #fff;
+    color: #ffffff;
 }
 
 .standings-table tbody tr.champion:hover {
@@ -92,17 +551,26 @@
 
 .standings-table tbody tr.relegation {
     background: #b00000;
-    color: #fff;
+    color: #ffffff;
 }
 
 .standings-table tbody tr.relegation:hover {
     background: #c00000;
 }
 
+.standings-table tbody tr.champion td,
+.standings-table tbody tr.relegation td {
+    border-bottom-color: rgba(255,255,255,0.25);
+}
 
-/* =========================================================
-   MATCH MATRIX
-========================================================= */
+.standings-table tbody tr.champion td:first-child,
+.standings-table tbody tr.relegation td:first-child {
+    font-weight: 900;
+}
+
+/* =========================================
+   MATCH MATRIX - IMPROVED
+   ========================================= */
 
 .matrix-wrapper {
     width: 100%;
@@ -113,7 +581,7 @@
 .matrix-table {
     border-collapse: separate;
     border-spacing: 0;
-    background: #111;
+    background: #111111;
     min-width: 850px;
 }
 
@@ -124,8 +592,10 @@
     height: 60px;
     padding: 8px;
     text-align: center;
+
     border-right: 1px solid #292929;
     border-bottom: 1px solid #292929;
+
     font-size: 12px;
 }
 
@@ -139,6 +609,7 @@
     min-width: 170px;
     text-align: left;
     padding-left: 15px;
+
     position: sticky;
     left: 0;
     z-index: 3;
@@ -147,17 +618,23 @@
 .matrix-table td:first-child {
     width: 170px;
     min-width: 170px;
+
     text-align: left;
     padding-left: 15px;
+
     font-weight: bold;
-    background: #111;
+
+    background: #111111;
+
     position: sticky;
     left: 0;
     z-index: 2;
 }
 
 
-/* RESULTADOS DE LA MATRIZ */
+/* =========================================
+   MATRIX RESULTS
+   ========================================= */
 
 .matrix-win {
     font-weight: 900;
@@ -166,8 +643,7 @@
 
 .matrix-loss {
     font-weight: 700;
-    background: rgba(180, 0, 0, 0.25);
-    opacity: 1;
+    opacity: 0.45;
 }
 
 .matrix-draw {
@@ -179,142 +655,38 @@
     opacity: 0.2;
 }
 
+
+/* =========================================
+   MATRIX HOVER
+   ========================================= */
+
 .matrix-table td:not(:first-child):hover {
-    background: #222;
+    background: #222222;
 }
 
+   /* =========================================
+   RESULTS - DATES
+   ========================================= */
 
-/* =========================================================
-   RESULTADOS
-========================================================= */
+.results-date {
+    margin-top: 35px;
+    margin-bottom: 15px;
 
-.results-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+    padding-bottom: 10px;
 
-.result-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 18px 22px;
-    background: #111;
-    border: 1px solid #292929;
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-    cursor: pointer;
-}
+    border-bottom: 2px solid #ffffff;
 
-.result-card:hover {
-    background: #171717;
-}
-
-.result-wrestler {
-    flex: 1;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.result-score {
-    min-width: 80px;
-    text-align: center;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 900;
+
+    letter-spacing: 2px;
 }
 
-
-/* =========================================================
-   ANIMACIÓN AL TOCAR
-========================================================= */
-
-.result-card.selected {
-    border-color: #f5d76e;
-    animation: resultGlow 1.4s ease-in-out infinite;
+.results-date:first-child {
+    margin-top: 0;
 }
-
-@keyframes resultGlow {
-    0% {
-        border-color: #f5d76e;
-        box-shadow:
-            0 0 0 0 rgba(255,255,255,0.0),
-            0 0 4px rgba(245,215,110,0.25);
-    }
-
-    50% {
-        border-color: #fff;
-        box-shadow:
-            0 0 0 1px rgba(255,255,255,0.25),
-            0 0 12px rgba(245,215,110,0.55);
-    }
-
-    100% {
-        border-color: #f5d76e;
-        box-shadow:
-            0 0 0 0 rgba(255,255,255,0.0),
-            0 0 4px rgba(245,215,110,0.25);
-    }
-}
-
-
-/* =========================================================
-   BRACKET
-========================================================= */
-
-.chamber-bracket {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    width: 100%;
-    overflow-x: auto;
-}
-
-.bracket-round {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.bracket-round h3 {
-    margin: 0 0 5px;
-    font-size: 14px;
-    font-weight: 900;
-    text-align: center;
-}
-
-.bracket-match {
-    padding: 12px;
-    background: #111;
-    border: 1px solid #292929;
-}
-
-.bracket-match div {
-    padding: 5px 0;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
 
 @media (max-width: 600px) {
-
-    .torneoroad-page {
-        padding: 25px 4% 60px;
-    }
-
-    .torneoroad-page h1 {
-        font-size: 23px;
-    }
-
-    .torneoroad-page h2 {
-        font-size: 18px;
-    }
 
     .matrix-table {
         min-width: 0 !important;
@@ -325,26 +697,296 @@
     .matrix-table td:first-child {
         width: 90px !important;
         min-width: 90px !important;
+
         padding-left: 5px !important;
         padding-right: 5px !important;
+
         white-space: nowrap;
     }
 
-    .result-card {
-        padding: 15px;
-        gap: 10px;
+}
+/* =========================================
+   CHAMPIONSHIP BRACKET
+   ========================================= */
+
+.chamber-bracket{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    width:100%;
+    margin:20px auto;
+    padding:10px 0;
+}
+
+.bracket-round{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:20px;
+    min-width:0;
+}
+
+.bracket-round h3{
+    margin:0 0 5px;
+    padding:10px;
+    text-align:center;
+    color:#d90024;
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:1px;
+    border-bottom:2px solid #d90024;
+}
+
+.bracket-match{
+    position:relative;
+    background:#111;
+    border:1px solid #333;
+    border-left:3px solid #d90024;
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 0 10px rgba(217,0,36,.08);
+    animation:bracketAppear .45s ease both;
+    transition:.25s;
+}
+
+.bracket-match:hover{
+    transform:translateY(-3px);
+    border-color:#d90024;
+    box-shadow:0 0 15px rgba(217,0,36,.25);
+}
+
+.bracket-match div{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    min-height:38px;
+    padding:7px 10px;
+    border-bottom:1px solid #292929;
+}
+
+.bracket-match div:last-child{
+    border-bottom:none;
+}
+
+.bracket-match a{
+    flex:1;
+    color:#ccc;
+    text-decoration:none;
+    font-size:11px;
+    font-weight:800;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.bracket-match span{
+    min-width:20px;
+    color:#fff;
+    font-size:12px;
+    font-weight:900;
+    text-align:center;
+}
+
+.bracket-match .winner{
+    background:rgba(217,0,36,.12);
+}
+
+.bracket-match .winner a,
+.bracket-match .winner span{
+    color:#fff;
+}
+
+.bracket-match .winner a{
+    font-weight:900;
+}
+
+/* Animación */
+
+@keyframes bracketAppear{
+    from{
+        opacity:0;
+        transform:translateY(10px);
     }
 
-    .result-wrestler {
-        font-size: 13px;
-    }
-
-    .result-score {
-        min-width: 60px;
-        font-size: 15px;
-    }
-
-    .chamber-bracket {
-        min-width: 700px;
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
 }
+
+/* Entrada escalonada */
+
+.bracket-round:nth-child(1) .bracket-match{
+    animation-delay:.1s;
+}
+
+.bracket-round:nth-child(2) .bracket-match{
+    animation-delay:.25s;
+}
+
+.bracket-round:nth-child(3) .bracket-match{
+    animation-delay:.4s;
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media(max-width:700px){
+
+    .chamber-bracket{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+
+    .bracket-round{
+        gap:12px;
+    }
+
+    .bracket-round h3{
+        font-size:12px;
+    }
+
+    .bracket-match{
+        width:100%;
+    }
+
+    .bracket-match div{
+        min-height:36px;
+    }
+   }
+/* =========================================
+   RESULT CARD - GOLDEN LIGHTNING
+   ========================================= */
+
+.result-card {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Rayo dorado que atraviesa el recuadro */
+.result-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,215,80,0.08),
+        rgba(255,230,120,0.45),
+        rgba(255,255,220,0.75),
+        rgba(255,215,80,0.25),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Todo el contenido queda arriba del efecto */
+.result-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Activación al tocar */
+.result-card.selected {
+    border-color: #f5d76e;
+
+    animation:
+        resultGoldenBorder 0.7s ease-out,
+        resultGoldenPulse 0.7s ease-out;
+}
+
+.result-card.selected::before {
+    animation: goldenLightning 0.65s ease-out;
+}
+
+
+/* =========================================
+   RAYO
+   ========================================= */
+
+@keyframes goldenLightning {
+
+    0% {
+        left: -120%;
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    55% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 130%;
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================
+   BORDE
+   ========================================= */
+
+@keyframes resultGoldenBorder {
+
+    0% {
+        border-color: #292929;
+        box-shadow: 0 0 0 rgba(245,215,110,0);
+    }
+
+    30% {
+        border-color: #fff2a8;
+
+        box-shadow:
+            0 0 5px rgba(245,215,110,0.8),
+            0 0 15px rgba(245,215,110,0.45);
+    }
+
+    60% {
+        border-color: #f5d76e;
+
+        box-shadow:
+            0 0 8px rgba(245,215,110,0.9),
+            0 0 25px rgba(245,215,110,0.55);
+    }
+
+    100% {
+        border-color: #292929;
+        box-shadow: 0 0 0 rgba(245,215,110,0);
+    }
+
+}
+
+
+/* =========================================
+   PEQUEÑO PULSO
+   ========================================= */
+
+@keyframes resultGoldenPulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.012);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+       }
