@@ -323,13 +323,15 @@
 
 .matrix-win {
     font-weight: 900;
+    background: rgba(0, 150, 70, 0.25);
 }
-
 
 .matrix-loss {
-    opacity: 0.45;
+    font-weight: 900;
+    background: rgba(180, 0, 0, 0.25);
+    color: #ffffff;
+    opacity: 1;
 }
-
 
 .matrix-draw {
     font-weight: bold;
@@ -642,8 +644,10 @@
 }
 
 .matrix-loss {
-    font-weight: 700;
-    opacity: 0.45;
+    font-weight: 900;
+    background: rgba(180, 0, 0, 0.25);
+    color: #ffffff;
+    opacity: 1;
 }
 
 .matrix-draw {
