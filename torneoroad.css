@@ -146,10 +146,12 @@
         border-color 0.2s ease;
 }
 
+
 .draft-card:hover {
     transform: translateY(-3px);
     border-color: #ffffff;
 }
+
 
 .draft-card-image {
     display: block;
@@ -162,6 +164,7 @@
 
     background: #181818;
 }
+
 
 .draft-card-name {
     display: block;
@@ -241,6 +244,7 @@
     font-weight: 900;
     transition: opacity 0.2s ease;
 }
+
 
 .tournament-wrestler-link:hover,
 .table-wrestler-link:hover {
@@ -378,7 +382,8 @@
 
     transition:
         background 0.2s ease,
-        border-color 0.2s ease;
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
@@ -386,6 +391,39 @@
     background: #171717;
 
     border-color: #ffffff;
+}
+
+
+/* =========================================
+   RESULT CARD — SELECCIONADO
+   ========================================= */
+
+.result-card.selected {
+    border: 2px solid #d4af37;
+
+    animation: resultGoldPulse 1.8s ease-in-out infinite;
+}
+
+
+@keyframes resultGoldPulse {
+
+    0%,
+    100% {
+        border-color: #d4af37;
+
+        box-shadow:
+            0 0 4px rgba(212, 175, 55, 0.35),
+            0 0 8px rgba(255, 255, 255, 0.15);
+    }
+
+    50% {
+        border-color: #fff1a8;
+
+        box-shadow:
+            0 0 7px rgba(212, 175, 55, 0.65),
+            0 0 13px rgba(255, 255, 255, 0.30);
+    }
+
 }
 
 
@@ -486,42 +524,47 @@
 
 
     .draft-card {
-    min-height: 0;
-}
+        min-height: 0;
+    }
 
-.draft-card-image {
-    height: 120px;
-}
 
-.draft-card-name {
-    padding: 12px 8px;
-    font-size: 12px;
-}
+    .draft-card-image {
+        height: 120px;
+    }
+
+
+    .draft-card-name {
+        padding: 12px 8px;
+        font-size: 12px;
+    }
 
 
     .standings-table {
-    min-width: 0;
-    width: 100%;
-}
+        min-width: 0;
+        width: 100%;
+    }
 
-.standings-table th,
-.standings-table td {
-    padding: 10px 5px;
-}
 
-.standings-table th:nth-child(2),
-.standings-table td:nth-child(2) {
-    width: 90px;
-    min-width: 90px;
-}
-   
-.matrix-table th:first-child,
-.matrix-table td:first-child {
-    width: 20px;
-    min-width: 20px;
-    padding-left: 5px;
-    padding-right: 5px;
-}
+    .standings-table th,
+    .standings-table td {
+        padding: 10px 5px;
+    }
+
+
+    .standings-table th:nth-child(2),
+    .standings-table td:nth-child(2) {
+        width: 90px;
+        min-width: 90px;
+    }
+
+
+    .matrix-table th:first-child,
+    .matrix-table td:first-child {
+        width: 20px;
+        min-width: 20px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 
 
     .result-card {
@@ -543,6 +586,8 @@
     }
 
 }
+
+
 /* =========================================
    STANDINGS - POSITIONS
    ========================================= */
@@ -552,28 +597,34 @@
     color: #ffffff;
 }
 
+
 .standings-table tbody tr.champion:hover {
     background: #c99719;
 }
+
 
 .standings-table tbody tr.relegation {
     background: #b00000;
     color: #ffffff;
 }
 
+
 .standings-table tbody tr.relegation:hover {
     background: #c00000;
 }
+
 
 .standings-table tbody tr.champion td,
 .standings-table tbody tr.relegation td {
     border-bottom-color: rgba(255,255,255,0.25);
 }
 
+
 .standings-table tbody tr.champion td:first-child,
 .standings-table tbody tr.relegation td:first-child {
     font-weight: 900;
 }
+
 
 /* =========================================
    MATCH MATRIX - IMPROVED
@@ -585,12 +636,14 @@
     padding-bottom: 5px;
 }
 
+
 .matrix-table {
     border-collapse: separate;
     border-spacing: 0;
     background: #111111;
     min-width: 850px;
 }
+
 
 .matrix-table th,
 .matrix-table td {
@@ -606,10 +659,14 @@
     font-size: 12px;
 }
 
+
 .matrix-table th {
     font-weight: 900;
-    background: #151515;
+
+    background: #5a0000;
+    color: #ffffff;
 }
+
 
 .matrix-table th:first-child {
     width: 170px;
@@ -620,7 +677,11 @@
     position: sticky;
     left: 0;
     z-index: 3;
+
+    background: #5a0000;
+    color: #ffffff;
 }
+
 
 .matrix-table td:first-child {
     width: 170px;
@@ -631,7 +692,8 @@
 
     font-weight: bold;
 
-    background: #111111;
+    background: #5a0000;
+    color: #ffffff;
 
     position: sticky;
     left: 0;
@@ -648,15 +710,18 @@
     background: rgba(0, 150, 70, 0.25);
 }
 
+
 .matrix-loss {
     font-weight: 700;
     opacity: 0.45;
 }
 
+
 .matrix-draw {
     font-weight: 900;
     background: rgba(180, 180, 180, 0.12);
 }
+
 
 .matrix-empty {
     opacity: 0.2;
@@ -671,7 +736,8 @@
     background: #222222;
 }
 
-   /* =========================================
+
+/* =========================================
    RESULTS - DATES
    ========================================= */
 
@@ -689,9 +755,15 @@
     letter-spacing: 2px;
 }
 
+
 .results-date:first-child {
     margin-top: 0;
 }
+
+
+/* =========================================
+   MOBILE MATRIX
+   ========================================= */
 
 @media (max-width: 600px) {
 
@@ -699,6 +771,7 @@
         min-width: 0 !important;
         width: auto !important;
     }
+
 
     .matrix-table th:first-child,
     .matrix-table td:first-child {
@@ -712,206 +785,223 @@
     }
 
 }
+
+
 /* =========================================
    CHAMPIONSHIP BRACKET
    ========================================= */
 
-.chamber-bracket{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:30px;
-    width:100%;
-    margin:20px auto;
-    padding:10px 0;
+.chamber-bracket {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 30px;
+
+    width: 100%;
+
+    margin: 20px auto;
+
+    padding: 10px 0;
 }
 
-.bracket-round{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    gap:20px;
-    min-width:0;
+
+.bracket-round {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    min-width: 0;
 }
 
-.bracket-round h3{
-    margin:0 0 5px;
-    padding:10px;
-    text-align:center;
-    color:#d90024;
-    font-size:13px;
-    font-weight:900;
-    letter-spacing:1px;
-    border-bottom:2px solid #d90024;
+
+.bracket-round h3 {
+    margin: 0 0 5px;
+
+    padding: 10px;
+
+    text-align: center;
+
+    color: #d90024;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    border-bottom: 2px solid #d90024;
 }
 
-.bracket-match{
-    position:relative;
-    background:#111;
-    border:1px solid #333;
-    border-left:3px solid #d90024;
-    border-radius:6px;
-    overflow:hidden;
-    box-shadow:0 0 10px rgba(217,0,36,.08);
-    animation:bracketAppear .45s ease both;
-    transition:.25s;
+
+.bracket-match {
+    position: relative;
+
+    background: #111;
+
+    border: 1px solid #333;
+
+    border-left: 3px solid #d90024;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    box-shadow: 0 0 10px rgba(217,0,36,.08);
+
+    animation: bracketAppear .45s ease both;
+
+    transition: .25s;
 }
 
-.bracket-match:hover{
-    transform:translateY(-3px);
-    border-color:#d90024;
-    box-shadow:0 0 15px rgba(217,0,36,.25);
+
+.bracket-match:hover {
+    transform: translateY(-3px);
+
+    border-color: #d90024;
+
+    box-shadow: 0 0 15px rgba(217,0,36,.25);
 }
 
-.bracket-match div{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    min-height:38px;
-    padding:7px 10px;
-    border-bottom:1px solid #292929;
+
+.bracket-match div {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    min-height: 38px;
+
+    padding: 7px 10px;
+
+    border-bottom: 1px solid #292929;
 }
 
-.bracket-match div:last-child{
-    border-bottom:none;
+
+.bracket-match div:last-child {
+    border-bottom: none;
 }
 
-.bracket-match a{
-    flex:1;
-    color:#ccc;
-    text-decoration:none;
-    font-size:11px;
-    font-weight:800;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+
+.bracket-match a {
+    flex: 1;
+
+    color: #ccc;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 }
 
-.bracket-match span{
-    min-width:20px;
-    color:#fff;
-    font-size:12px;
-    font-weight:900;
-    text-align:center;
+
+.bracket-match span {
+    min-width: 20px;
+
+    color: #fff;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    text-align: center;
 }
 
-.bracket-match .winner{
-    background:rgba(217,0,36,.12);
+
+.bracket-match .winner {
+    background: rgba(217,0,36,.12);
 }
+
 
 .bracket-match .winner a,
-.bracket-match .winner span{
-    color:#fff;
+.bracket-match .winner span {
+    color: #fff;
 }
 
-.bracket-match .winner a{
-    font-weight:900;
+
+.bracket-match .winner a {
+    font-weight: 900;
 }
 
-/* Animación */
-
-@keyframes bracketAppear{
-    from{
-        opacity:0;
-        transform:translateY(10px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* Entrada escalonada */
-
-.bracket-round:nth-child(1) .bracket-match{
-    animation-delay:.1s;
-}
-
-.bracket-round:nth-child(2) .bracket-match{
-    animation-delay:.25s;
-}
-
-.bracket-round:nth-child(3) .bracket-match{
-    animation-delay:.4s;
-}
 
 /* =========================================
-   MOBILE
+   BRACKET ANIMATION
    ========================================= */
 
-@media(max-width:700px){
+@keyframes bracketAppear {
 
-    .chamber-bracket{
-        grid-template-columns:1fr;
-        gap:25px;
+    from {
+        opacity: 0;
+        transform: translateY(10px);
     }
 
-    .bracket-round{
-        gap:12px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 
-    .bracket-round h3{
-        font-size:12px;
-    }
+}
 
-    .bracket-match{
-        width:100%;
-    }
 
-    .bracket-match div{
-        min-height:36px;
-    }
-   }
+.bracket-round:nth-child(1) .bracket-match {
+    animation-delay: .1s;
+}
+
+
+.bracket-round:nth-child(2) .bracket-match {
+    animation-delay: .25s;
+}
+
+
+.bracket-round:nth-child(3) .bracket-match {
+    animation-delay: .4s;
+}
+
+
 /* =========================================
-   FINAL MATCH — BORDE ANIMADO
+   BRACKET MOBILE
    ========================================= */
 
-.final-match {
-    position: relative;
-    border: 1px solid #444;
-    border-radius: 6px;
-    overflow: hidden;
-}
+@media (max-width: 700px) {
 
+    .chamber-bracket {
+        grid-template-columns: 1fr;
 
-/* FINAL MATCH SELECCIONADO */
-
-.final-match.selected {
-    border: 2px solid transparent;
-    background:
-        linear-gradient(#111, #111) padding-box,
-        linear-gradient(
-            90deg,
-            #d4af37,
-            #fff1a8,
-            #d4af37,
-            #8f7200,
-            #d4af37
-        ) border-box;
-
-    background-size:
-        100% 100%,
-        300% 100%;
-
-    animation: finalMatchBorder 2s linear infinite;
-}
-
-
-/* ANIMACIÓN INFINITA DEL BORDE */
-
-@keyframes finalMatchBorder {
-
-    0% {
-        background-position:
-            0 0,
-            0% 50%;
+        gap: 25px;
     }
 
-    100% {
-        background-position:
-            0 0,
-            300% 50%;
+
+    .bracket-round {
+        gap: 12px;
+    }
+
+
+    .bracket-round h3 {
+        font-size: 12px;
+    }
+
+
+    .bracket-match {
+        width: 100%;
+    }
+
+
+    .bracket-match div {
+        min-height: 36px;
     }
 
 }
