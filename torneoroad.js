@@ -806,9 +806,13 @@ function renderPhase(title,matches){
 
         }
 
-        card.innerHTML=`
+                card.innerHTML=`
 
             <div class="result-wrestler">
+                ${match.champion===match.wrestler1&&match.championshipImage?
+                    `<img src="${match.championshipImage}" style="width:22px;height:22px;object-fit:contain;vertical-align:middle;margin-right:5px;">`
+                    :""
+                }
                 ${createWrestlerLink(match.wrestler1)}
             </div>
 
@@ -817,6 +821,10 @@ function renderPhase(title,matches){
             </div>
 
             <div class="result-wrestler">
+                ${match.champion===match.wrestler2&&match.championshipImage?
+                    `<img src="${match.championshipImage}" style="width:22px;height:22px;object-fit:contain;vertical-align:middle;margin-right:5px;">`
+                    :""
+                }
                 ${createWrestlerLink(match.wrestler2)}
             </div>
 
