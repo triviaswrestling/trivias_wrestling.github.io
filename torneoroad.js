@@ -1020,10 +1020,47 @@ function renderBracket(matches,container,format,title){
         round.matches.forEach(match=>{
 
             const card=
-                document.createElement("div");
+    document.createElement("div");
 
-            card.className=
-                "bracket-match";
+card.className=
+    "bracket-match";
+
+if(match.championship){
+
+    const championship=
+        document.createElement("div");
+
+    championship.className=
+        "bracket-championship";
+
+    championship.innerHTML=`
+
+        <div class="bracket-championship-title">
+            ${match.championship}
+        </div>
+
+        ${
+            match.champion &&
+            match.championshipImage
+            ?`
+                <div class="bracket-champion">
+                    <img src="${match.championshipImage}">
+                    ${createWrestlerLink(match.champion)}
+                </div>
+            `
+            :""
+        }
+
+    `;
+
+    championship.style.setProperty(
+        "--championship-color",
+        match.championshipColor||"#d4af37"
+    );
+
+    card.appendChild(championship);
+
+}
 
             if(match.wrestler3){
 
