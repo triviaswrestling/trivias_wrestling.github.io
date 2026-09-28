@@ -1108,3 +1108,27 @@
             0 0 20px rgba(255, 215, 0, 0.7);
     }
 }
+
+.result-wrestler img{
+    width:22px;
+    height:22px;
+    object-fit:contain;
+    vertical-align:middle;
+    margin-right:5px;
+    filter:drop-shadow(0 0 4px var(--championship-color,#d4af37));
+}
+.bracket-championship+.result-card{
+    border-top:0;
+    margin-top:0;
+                          }
+
+       @media(max-width:600px){
+    .bracket-championship{
+        padding:6px 8px;
+        font-size:10px;
+        letter-spacing:.3px;
+    }
+    .bracket-championship+.result-card{
+        margin-top:0;
+    }
+                                }
