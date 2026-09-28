@@ -826,13 +826,17 @@ function renderNormalTournament(data){
         (event.matches||[]).forEach(match=>{
 
             leagueMatches.push({
-                wrestler1:match[0],
-                wrestler2:match[1],
-                score1:match[2],
-                score2:match[3],
-                date:event.date,
-                show
-            });
+    wrestler1:match[0],
+    wrestler2:match[1],
+    score1:match[2],
+    score2:match[3],
+    championship:match[4]?.championship,
+    championshipImage:match[4]?.championshipImage,
+    championshipColor:match[4]?.championshipColor,
+    champion:match[4]?.champion,
+    date:event.date,
+    show
+ });
 
         });
 
