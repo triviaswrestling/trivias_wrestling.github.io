@@ -818,6 +818,246 @@ function renderPhase(title,matches){
 
 function renderNormalTournament(data){
 
+    /* ==============================
+       TORNEOS CON ZONAS
+       ============================== */
+
+    if(Array.isArray(data.zones)){
+
+        draftContainer.innerHTML="";
+        standingsBody.innerHTML="";
+        matrixTable.innerHTML="";
+        resultsContainer.innerHTML="";
+
+        data.zones.forEach((zone,i)=>{
+
+            const participants=
+                zone.wrestlers||
+                zone.roster||
+                zone.participants||
+                [];
+
+            const matches=zone.matches||[];
+
+            const section=document.createElement("section");
+            section.className="tournament-zone";
+
+            const heading=document.createElement("div");
+            heading.className="results-date";
+            heading.textContent=
+                zone.name||`ZONE ${i+1}`;
+
+            section.appendChild(heading);
+
+            /* DRAFT */
+
+            if(participants.length){
+
+                const draft=document.createElement("div");
+                draft.className="zone-draft";
+
+                participants.forEach(name=>{
+
+                    const card=document.createElement("div");
+                    card.className="draft-card";
+
+                    card.innerHTML=`
+                        <a href="superstar.html?id=${createWrestlerId(name)}"
+                           style="text-decoration:none;color:inherit;">
+                            <img src="${getWrestlerImage(name)}"
+                                 alt="${name}"
+                                 class="draft-card-image">
+                            <span class="draft-card-name">${name}</span>
+                        </a>
+                    `;
+
+                    draft.appendChild(card);
+
+                });
+
+                section.appendChild(draft);
+
+            }
+
+            /* STANDINGS */
+
+            const table=document.createElement("table");
+            table.className="zone-standings";
+            table.innerHTML="<tbody></tbody>";
+
+            const body=table.querySelector("tbody");
+            const list=buildStandings(
+                participants,
+                matches
+            );
+
+            if(!list.length){
+
+                body.innerHTML=
+                    `<tr><td colspan="7">EDITING</td></tr>`;
+
+            }else{
+
+                list.forEach((w,index)=>{
+
+                    const row=document.createElement("tr");
+
+                    row.innerHTML=`
+                        <td>${index+1}</td>
+                        <td>${createWrestlerLink(w.name)}</td>
+                        <td>${w.played}</td>
+                        <td>${w.wins}</td>
+                        <td>${w.draws}</td>
+                        <td>${w.losses}</td>
+                        <td>${w.points}</td>
+                    `;
+
+                    if(index===0)
+                        row.classList.add("champion");
+
+                    if(index===list.length-1)
+                        row.classList.add("relegation");
+
+                    body.appendChild(row);
+
+                });
+
+            }
+
+            section.appendChild(table);
+
+            /* MATRIX */
+
+            const matrix=document.createElement("table");
+            matrix.className="zone-matrix";
+
+            if(!participants.length){
+
+                matrix.innerHTML=
+                    "<tr><td>EDITING</td></tr>";
+
+            }else{
+
+                const header=document.createElement("tr");
+                header.innerHTML="<th>WRESTLER</th>";
+
+                participants.forEach(name=>{
+
+                    const th=document.createElement("th");
+                    th.textContent=name;
+                    header.appendChild(th);
+
+                });
+
+                matrix.appendChild(header);
+
+                participants.forEach(name=>{
+
+                    const row=document.createElement("tr");
+
+                    const nameCell=document.createElement("td");
+                    nameCell.innerHTML=
+                        createWrestlerLink(name);
+
+                    row.appendChild(nameCell);
+
+                    participants.forEach(opponent=>{
+
+                        const cell=document.createElement("td");
+
+                        if(name===opponent){
+
+                            cell.textContent="—";
+
+                        }else{
+
+                            const match=matches.find(m=>
+                                (
+                                    m.wrestler1===name &&
+                                    m.wrestler2===opponent
+                                )||
+                                (
+                                    m.wrestler1===opponent &&
+                                    m.wrestler2===name
+                                )
+                            );
+
+                            if(!match){
+
+                                cell.textContent="·";
+                                cell.classList.add(
+                                    "matrix-empty"
+                                );
+
+                            }else if(
+                                match.score1===match.score2
+                            ){
+
+                                cell.textContent="D";
+                                cell.classList.add(
+                                    "matrix-draw"
+                                );
+
+                            }else{
+
+                                const first=
+                                    match.wrestler1===name;
+
+                                const won=first
+                                    ?match.score1>match.score2
+                                    :match.score2>match.score1;
+
+                                cell.textContent=
+                                    won?"W":"L";
+
+                                cell.classList.add(
+                                    won
+                                        ?"matrix-win"
+                                        :"matrix-loss"
+                                );
+
+                            }
+
+                        }
+
+                        row.appendChild(cell);
+
+                    });
+
+                    matrix.appendChild(row);
+
+                });
+
+            }
+
+            section.appendChild(matrix);
+            resultsContainer.appendChild(section);
+
+        });
+
+        /* BRACKET OPCIONAL */
+
+        if(
+            Array.isArray(data.bracket) &&
+            data.bracket.length
+        ){
+
+            renderBracket(
+                data.bracket,
+                resultsContainer,
+                data.bracketFormat,
+                data.bracketTitle
+            );
+
+        }
+
+        return;
+    }
+
+    /* ==============================
+       SISTEMA ANTERIOR
+       ============================== */
+
     const participants=data.roster||[];
     const leagueMatches=[];
 
@@ -873,9 +1113,7 @@ function renderNormalTournament(data){
     ){
 
         renderPhase(
-            data.finalEvent
-                .replace(/-/g," ")
-                .toUpperCase(),
+            data.finalEvent.replace(/-/g," ").toUpperCase(),
             data.finalMatches.map(match=>({
                 wrestler1:match[0],
                 wrestler2:match[1],
