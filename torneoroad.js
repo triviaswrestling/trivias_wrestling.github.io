@@ -783,8 +783,24 @@ function renderPhase(title,matches){
         const card=
             document.createElement("div");
 
-        card.className=
+                card.className=
             "result-card";
+
+        if(match.championship){
+
+            card.addEventListener("click",()=>{
+
+                document
+                    .querySelectorAll(".result-card.selected")
+                    .forEach(el=>{
+                        el.classList.remove("selected");
+                    });
+
+                card.classList.add("selected");
+
+            });
+
+        }
 
         if(match.score1>match.score2){
 
