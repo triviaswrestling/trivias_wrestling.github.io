@@ -738,6 +738,20 @@ function renderChamberBracket(matches,container){
    GENERIC PHASE
    ========================================= */
 
+document.addEventListener("click",e=>{
+
+    if(!e.target.closest(".result-card")){
+
+        document
+            .querySelectorAll(".result-card.selected")
+            .forEach(el=>{
+                el.classList.remove("selected");
+            });
+
+    }
+
+});
+
 function renderPhase(title,matches){
 
     if(!matches.length){
@@ -788,19 +802,21 @@ function renderPhase(title,matches){
 
         if(match.championship){
 
-            card.addEventListener("click",()=>{
+    card.addEventListener("click",e=>{
 
-                document
-                    .querySelectorAll(".result-card.selected")
-                    .forEach(el=>{
-                        el.classList.remove("selected");
-                    });
+        e.stopPropagation();
 
-                 card.classList.add("selected");
-
+        document
+            .querySelectorAll(".result-card.selected")
+            .forEach(el=>{
+                el.classList.remove("selected");
             });
 
-        }
+        card.classList.add("selected");
+
+    });
+
+}
 
         if(match.score1>match.score2){
 
