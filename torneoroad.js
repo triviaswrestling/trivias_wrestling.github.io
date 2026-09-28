@@ -875,24 +875,26 @@ function renderNormalTournament(data){
 });
 
     if(
-        data.finalEvent &&
-        Array.isArray(data.finalMatches) &&
-        data.finalMatches.length
-    ){
+    data.finalEvent &&
+    Array.isArray(data.finalMatches) &&
+    data.finalMatches.length
+){
 
-        renderPhase(
-            data.finalEvent
-                .replace(/-/g," ")
-                .toUpperCase(),
-            data.finalMatches.map(match=>({
-                wrestler1:match[0],
-                wrestler2:match[1],
-                score1:match[2],
-                score2:match[3]
-            }))
-        );
-
-    }
+    renderPhase(
+        data.finalEvent
+            .replace(/-/g," ")
+            .toUpperCase(),
+        data.finalMatches.map(match=>({
+            wrestler1:match[0],
+            wrestler2:match[1],
+            score1:match[2],
+            score2:match[3],
+            championship:match[4]?.championship,
+            championshipImage:match[4]?.championshipImage,
+            championshipColor:match[4]?.championshipColor,
+            champion:match[4]?.champion
+        }))
+    );
 
 }
 /* =========================================
