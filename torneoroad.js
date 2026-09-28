@@ -739,7 +739,6 @@ function renderChamberBracket(matches,container){
    ========================================= */
 
 function renderPhase(title,matches){
-function renderPhase(title,matches){
 if(!matches.length)return;
 const section=document.createElement("div");section.className="championship-phase";
 const heading=document.createElement("div");heading.className="results-date";heading.textContent=title;section.appendChild(heading);
@@ -748,10 +747,10 @@ const card=document.createElement("div");card.className="result-card";
 if(match.score1>match.score2)card.classList.add("wrestler1-win");
 else if(match.score1<match.score2)card.classList.add("wrestler2-win");
 else card.classList.add("draw");
+card.innerHTML=`<div class="result-wrestler">${createWrestlerLink(match.wrestler1)}</div><div class="result-score">${match.score1} - ${match.score2}</div><div class="result-wrestler">${createWrestlerLink(match.wrestler2)}</div>`;
 if(match.championship){
-const championship=document.createElement("div");championship.className="result-championship";championship.innerHTML=`<div class="result-championship-title">${match.championship}</div>`;championship.style.setProperty("--championship-color",match.championshipColor||"#d4af37");card.appendChild(championship);
+const championship=document.createElement("div");championship.className="result-championship";championship.innerHTML=`<div class="result-championship-title">${match.championship}</div>`;championship.style.setProperty("--championship-color",match.championshipColor||"#d4af37");card.prepend(championship);
 }
-const matchRow=document.createElement("div");matchRow.className="result-match";matchRow.innerHTML=`<div class="result-wrestler">${createWrestlerLink(match.wrestler1)}</div><div class="result-score">${match.score1} - ${match.score2}</div><div class="result-wrestler">${createWrestlerLink(match.wrestler2)}</div>`;card.appendChild(matchRow);
 section.appendChild(card);
 });
 resultsContainer.appendChild(section);
