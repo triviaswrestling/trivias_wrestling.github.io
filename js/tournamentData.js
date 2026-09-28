@@ -12,11 +12,10 @@ shows:{"raw-9":{date:"08/05/2023",matches:[["Rob Van Dam","Roman Reigns",1,1],["
 bracketFormat:"SEMIFINALS_FINAL",
 bracketTitle:"NIGHT OF CHAMPIONS 2023",
 finalEvent:"night-of-champions-2023",
-
 finalMatches:[
-    ["Rob Van Dam","Cody Rhodes",1,3],
-    ["Johnny Gargano","Roman Reigns",1,2],
-    ["Cody Rhodes","Roman Reigns",4,0]
+["Rob Van Dam","Cody Rhodes",1,3],
+["Johnny Gargano","Roman Reigns",1,2],
+["Cody Rhodes","Roman Reigns",4,0,{championship:"WWE WORLD HEAVYWEIGHT CHAMPIONSHIP",championshipImage:"images/titles/world-heavyweight.png",championshipColor:"#c0c0c0"}]
 ]
 },
 /* =========================================
