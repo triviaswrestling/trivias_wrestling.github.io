@@ -7,7 +7,7 @@ const tournaments=[];
    TOURNAMENTS
    ========================================= */
 
-for(let number=25;number>=1;number--){
+for(let number=30;number>=1;number--){
     tournaments.push({
         id:`monday-night-raw-${number}`,
         number,
