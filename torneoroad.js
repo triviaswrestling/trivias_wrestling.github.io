@@ -476,6 +476,7 @@ function renderMatrix(participants,matches){
 }
 
 /* =========================================
+/* =========================================
    NORMAL RESULTS
    ========================================= */
 
@@ -544,15 +545,55 @@ function renderResults(matches,phases){
 
             result.className="result-card";
 
+            const championship=
+                match.championship||null;
+
+            const championshipColor=
+                match.championshipColor||
+                "#d4af37";
+
+            const championshipImage=
+                match.championshipImage||"";
+
+            const champion=
+                match.champion||
+                match.wrestler1;
+
             result.addEventListener("click",()=>{
 
                 document
                     .querySelectorAll(".result-card.selected")
                     .forEach(el=>{
+
                         el.classList.remove("selected");
+
+                        el.style.removeProperty(
+                            "border-color"
+                        );
+
+                        el.style.removeProperty(
+                            "box-shadow"
+                        );
+
                     });
 
                 result.classList.add("selected");
+
+                if(championship){
+
+                    result.style.setProperty(
+                        "border-color",
+                        championshipColor,
+                        "important"
+                    );
+
+                    result.style.setProperty(
+                        "box-shadow",
+                        `0 0 12px ${championshipColor}`,
+                        "important"
+                    );
+
+                }
 
             });
 
@@ -576,10 +617,63 @@ function renderResults(matches,phases){
 
             }
 
+            const championshipBar=
+                championship
+                    ?`
+                        <div style="
+                            width:100%;
+                            box-sizing:border-box;
+                            padding:3px 6px;
+                            margin-bottom:5px;
+                            border:1px solid ${championshipColor};
+                            border-radius:4px;
+                            text-align:center;
+                            font-size:10px;
+                            font-weight:700;
+                            line-height:1;
+                            letter-spacing:.4px;
+                            text-transform:uppercase;
+                        ">
+                            ${championship}
+                        </div>
+                    `
+                    :"";
+
+            const image=
+                championship &&
+                championshipImage
+                    ?`
+                        <img
+                            src="${championshipImage}"
+                            alt=""
+                            style="
+                                width:20px;
+                                height:20px;
+                                object-fit:contain;
+                                border-radius:50%;
+                                vertical-align:middle;
+                                margin-right:4px;
+                            "
+                        >
+                    `
+                    :"";
+
+            const wrestler1=
+                champion===match.wrestler1
+                    ?`${image}${createWrestlerLink(match.wrestler1)}`
+                    :createWrestlerLink(match.wrestler1);
+
+            const wrestler2=
+                champion===match.wrestler2
+                    ?`${image}${createWrestlerLink(match.wrestler2)}`
+                    :createWrestlerLink(match.wrestler2);
+
             result.innerHTML=`
 
+                ${championshipBar}
+
                 <div class="result-wrestler">
-                    ${createWrestlerLink(match.wrestler1)}
+                    ${wrestler1}
                 </div>
 
                 <div class="result-score">
@@ -587,7 +681,7 @@ function renderResults(matches,phases){
                 </div>
 
                 <div class="result-wrestler">
-                    ${createWrestlerLink(match.wrestler2)}
+                    ${wrestler2}
                 </div>
 
             `;
@@ -1066,13 +1160,17 @@ function renderNormalTournament(data){
         (event.matches||[]).forEach(match=>{
 
             leagueMatches.push({
-                wrestler1:match[0],
-                wrestler2:match[1],
-                score1:match[2],
-                score2:match[3],
-                date:event.date,
-                show
-            });
+    wrestler1:match[0],
+    wrestler2:match[1],
+    score1:match[2],
+    score2:match[3],
+    championship:match[4]?.championship,
+    championshipImage:match[4]?.championshipImage,
+    championshipColor:match[4]?.championshipColor,
+    champion:match[4]?.champion,
+    date:event.date,
+    show
+});
 
         });
 
