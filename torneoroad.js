@@ -761,7 +761,25 @@ function renderPhase(title,matches){
     section.appendChild(heading);
 
     matches.forEach(match=>{
+        if(match.championship){
 
+            const championship=
+                document.createElement("div");
+
+            championship.className=
+                "bracket-championship";
+
+            championship.textContent=
+                match.championship;
+
+            championship.style.setProperty(
+                "--championship-color",
+                match.championshipColor||"#d4af37"
+            );
+
+            section.appendChild(championship);
+
+               }
         const card=
             document.createElement("div");
 
