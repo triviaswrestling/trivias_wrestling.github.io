@@ -796,7 +796,7 @@ function renderPhase(title,matches){
                         el.classList.remove("selected");
                     });
 
-                card.classList.add("selected");
+                 card.classList.add("selected");
 
             });
 
