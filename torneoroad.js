@@ -923,27 +923,18 @@ function renderBracket(matches,container,format,title){
     );
 
     const heading=document.createElement("div");
-
     heading.className="results-date";
-
-    heading.textContent=
-        title||"BRACKET";
-
+    heading.textContent=title||"BRACKET";
     container.appendChild(heading);
 
     if(!bracketMatches.length){
-
         const p=document.createElement("p");
-
         p.textContent="EDITING";
-
         container.appendChild(p);
-
         return;
     }
 
     const bracket=document.createElement("div");
-
     bracket.className="chamber-bracket";
 
     let rounds=[];
@@ -965,9 +956,7 @@ function renderBracket(matches,container,format,title){
             }
         ];
 
-    }
-
-    else if(format==="SEMIFINALS_FINAL"){
+    }else if(format==="SEMIFINALS_FINAL"){
 
         rounds=[
             {
@@ -980,9 +969,7 @@ function renderBracket(matches,container,format,title){
             }
         ];
 
-    }
-
-    else if(format==="SEMIFINALS_FINAL_CHAMPION"){
+    }else if(format==="SEMIFINALS_FINAL_CHAMPION"){
 
         rounds=[
             {
@@ -1003,64 +990,17 @@ function renderBracket(matches,container,format,title){
 
     rounds.forEach(round=>{
 
-        const column=
-            document.createElement("div");
+        const column=document.createElement("div");
+        column.className="bracket-round";
 
-        column.className=
-            "bracket-round";
-
-        const roundTitle=
-            document.createElement("h3");
-
-        roundTitle.textContent=
-            round.title;
-
+        const roundTitle=document.createElement("h3");
+        roundTitle.textContent=round.title;
         column.appendChild(roundTitle);
 
         round.matches.forEach(match=>{
 
-            const card=
-    document.createElement("div");
-
-card.className=
-    "bracket-match";
-
-if(match.championship){
-
-    const championship=
-        document.createElement("div");
-
-    championship.className=
-        "bracket-championship";
-
-    championship.innerHTML=`
-
-        <div class="bracket-championship-title">
-            ${match.championship}
-        </div>
-
-        ${
-            match.champion &&
-            match.championshipImage
-            ?`
-                <div class="bracket-champion">
-                    <img src="${match.championshipImage}">
-                    ${createWrestlerLink(match.champion)}
-                </div>
-            `
-            :""
-        }
-
-    `;
-
-    championship.style.setProperty(
-        "--championship-color",
-        match.championshipColor||"#d4af37"
-    );
-
-    card.appendChild(championship);
-
-}
+            const card=document.createElement("div");
+            card.className="bracket-match";
 
             if(match.wrestler3){
 
@@ -1070,15 +1010,13 @@ if(match.championship){
                     [match.wrestler3,match.score3]
                 ];
 
-                const maxScore=
-                    Math.max(
-                        ...players.map(p=>p[1])
-                    );
+                const maxScore=Math.max(
+                    ...players.map(p=>p[1])
+                );
 
                 players.forEach(player=>{
 
-                    const row=
-                        document.createElement("div");
+                    const row=document.createElement("div");
 
                     row.className=
                         player[1]===maxScore
@@ -1087,9 +1025,7 @@ if(match.championship){
 
                     row.innerHTML=`
 
-                        ${createWrestlerLink(
-                            player[0]
-                        )}
+                        ${createWrestlerLink(player[0])}
 
                         <span>
                             ${player[1]}
@@ -1125,6 +1061,43 @@ if(match.championship){
 
             }
 
+            if(match.championship){
+
+                const championship=
+                    document.createElement("div");
+
+                championship.className=
+                    "bracket-championship";
+
+                championship.innerHTML=`
+
+                    <div class="bracket-championship-title">
+                        ${match.championship}
+                    </div>
+
+                    ${
+                        match.champion &&
+                        match.championshipImage
+                        ?`
+                            <div class="bracket-champion">
+                                <img src="${match.championshipImage}">
+                                ${createWrestlerLink(match.champion)}
+                            </div>
+                        `
+                        :""
+                    }
+
+                `;
+
+                championship.style.setProperty(
+                    "--championship-color",
+                    match.championshipColor||"#d4af37"
+                );
+
+                card.appendChild(championship);
+
+            }
+
             column.appendChild(card);
 
         });
@@ -1135,7 +1108,8 @@ if(match.championship){
 
     container.appendChild(bracket);
 
-}
+                   }
+
 /* =========================================
    CHAMPIONSHIP 1
    ========================================= */
