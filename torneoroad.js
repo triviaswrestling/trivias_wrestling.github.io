@@ -826,17 +826,17 @@ function renderNormalTournament(data){
         (event.matches||[]).forEach(match=>{
 
             leagueMatches.push({
-    wrestler1:match[0],
-    wrestler2:match[1],
-    score1:match[2],
-    score2:match[3],
-    championship:match[4]?.championship,
-    championshipImage:match[4]?.championshipImage,
-    championshipColor:match[4]?.championshipColor,
-    champion:match[4]?.champion,
-    date:event.date,
-    show
- });
+                wrestler1:match[0],
+                wrestler2:match[1],
+                score1:match[2],
+                score2:match[3],
+                championship:match[4]?.championship,
+                championshipImage:match[4]?.championshipImage,
+                championshipColor:match[4]?.championshipColor,
+                champion:match[4]?.champion,
+                date:event.date,
+                show
+            });
 
         });
 
@@ -858,43 +858,52 @@ function renderNormalTournament(data){
 
     Object.entries(data.shows||{}).forEach(([show,event])=>{
 
-    renderPhase(
-        show.replace(/-/g," ").toUpperCase(),
-        (event.matches||[]).map(match=>({
-            wrestler1:match[0],
-            wrestler2:match[1],
-            score1:match[2],
-            score2:match[3],
-            championship:match[4]?.championship,
-            championshipImage:match[4]?.championshipImage,
-            championshipColor:match[4]?.championshipColor,
-            champion:match[4]?.champion
-        }))
-    );
+        renderPhase(
+            show.replace(/-/g," ").toUpperCase(),
+            (event.matches||[]).map(match=>({
 
-});
+                wrestler1:match[0],
+                wrestler2:match[1],
+                score1:match[2],
+                score2:match[3],
+
+                championship:match[4]?.championship,
+                championshipImage:match[4]?.championshipImage,
+                championshipColor:match[4]?.championshipColor,
+                champion:match[4]?.champion
+
+            }))
+        );
+
+    });
 
     if(
-    data.finalEvent &&
-    Array.isArray(data.finalMatches) &&
-    data.finalMatches.length
-){
+        data.finalEvent &&
+        Array.isArray(data.finalMatches) &&
+        data.finalMatches.length
+    ){
 
-    renderPhase(
-        data.finalEvent
-            .replace(/-/g," ")
-            .toUpperCase(),
-        data.finalMatches.map(match=>({
-            wrestler1:match[0],
-            wrestler2:match[1],
-            score1:match[2],
-            score2:match[3],
-            championship:match[4]?.championship,
-            championshipImage:match[4]?.championshipImage,
-            championshipColor:match[4]?.championshipColor,
-            champion:match[4]?.champion
-        }))
-    );
+        renderPhase(
+            data.finalEvent
+                .replace(/-/g," ")
+                .toUpperCase(),
+
+            data.finalMatches.map(match=>({
+
+                wrestler1:match[0],
+                wrestler2:match[1],
+                score1:match[2],
+                score2:match[3],
+
+                championship:match[4]?.championship,
+                championshipImage:match[4]?.championshipImage,
+                championshipColor:match[4]?.championshipColor,
+                champion:match[4]?.champion
+
+            }))
+        );
+
+    }
 
 }
 /* =========================================
