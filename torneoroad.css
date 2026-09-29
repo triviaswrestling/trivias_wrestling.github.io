@@ -870,77 +870,16 @@
    }
 
 
-
-/* =========================================
-   RESULT CARD - RAYO DORADO
-   ========================================= */
-
-.result-card {
-    position: relative;
-    overflow: hidden;
-}
+──────────────────────────────────────────────────────────────── 
 
 
 /* =========================================
-   RAYO QUE ATRAVIESA EL RESULT
+   RESULT CARD - ORO VIVO
    ========================================= */
 
-.result-card::before {
-    content: "";
-
-    position: absolute;
-
-    top: -100%;
-    left: -70%;
-
-    width: 45%;
-    height: 300%;
-
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 180, 0, 0.15) 20%,
-        rgba(255, 215, 0, 0.8) 40%,
-        #fff 50%,
-        rgba(255, 215, 0, 0.9) 60%,
-        rgba(255, 180, 0, 0.2) 80%,
-        transparent 100%
-    );
-
-    transform: rotate(15deg);
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    z-index: 10;
-}
-
-
-/* =========================================
-   DESTELLO INTERIOR
-   ========================================= */
-
-.result-card::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(255, 230, 80, 0.7),
-            rgba(255, 190, 0, 0.25) 35%,
-            transparent 70%
-        );
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    z-index: 9;
+.result-card{
+    position:relative;
+    overflow:hidden;
 }
 
 
@@ -948,166 +887,111 @@
    CONTENIDO
    ========================================= */
 
-.result-card > * {
-    position: relative;
-
-    z-index: 11;
+.result-card > *{
+    position:relative;
+    z-index:2;
 }
 
 
 /* =========================================
-   RESULT SELECCIONADO
+   RESULTADO SELECCIONADO
    ========================================= */
 
-.result-card.selected {
-    border-color: #ffd700 !important;
+.result-card.selected{
+    border-color:#ffd700 !important;
 
     animation:
-        resultGoldImpact 2s ease-out;
+        goldBreathing 1.8s ease-in-out infinite;
 
     box-shadow:
-        0 0 8px #ffd700,
-        0 0 25px #ffd700,
-        0 0 50px rgba(255, 170, 0, 0.9),
-        inset 0 0 20px rgba(255, 215, 0, 0.35);
+        0 0 8px rgba(255,215,0,.65),
+        0 0 20px rgba(255,215,0,.35),
+        inset 0 0 10px rgba(255,215,0,.18);
 }
 
 
 /* =========================================
-   RAYO
+   BRILLO SUAVE
    ========================================= */
 
-.result-card.selected::before {
+.result-card.selected::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,215,0,.10),
+            rgba(255,240,120,.22),
+            rgba(255,215,0,.10),
+            transparent
+        );
+
+    opacity:.35;
+
+    pointer-events:none;
+
+    z-index:1;
+
     animation:
-        resultGoldRay 2s linear forwards;
+        goldBreathingLight 1.8s ease-in-out infinite;
 }
 
 
 /* =========================================
-   FLASH
+   RESPIRACIÓN DORADA
    ========================================= */
 
-.result-card.selected::after {
-    animation:
-        resultGoldFlash 2s ease-out forwards;
-}
+@keyframes goldBreathing{
 
-
-/* =========================================
-   ANIMACIÓN DEL RAYO
-   ========================================= */
-
-@keyframes resultGoldRay {
-
-    0% {
-        left: -70%;
-
-        opacity: 0;
+    0%{
+        box-shadow:
+            0 0 5px rgba(255,215,0,.45),
+            0 0 12px rgba(255,215,0,.20),
+            inset 0 0 5px rgba(255,215,0,.08);
     }
 
-    10% {
-        opacity: 1;
+    50%{
+        box-shadow:
+            0 0 12px rgba(255,215,0,.90),
+            0 0 30px rgba(255,215,0,.50),
+            inset 0 0 16px rgba(255,215,0,.25);
     }
 
-    35% {
-        left: 15%;
-
-        opacity: 1;
-    }
-
-    60% {
-        left: 65%;
-
-        opacity: 1;
-    }
-
-    85% {
-        left: 110%;
-
-        opacity: 0.8;
-    }
-
-    100% {
-        left: 150%;
-
-        opacity: 0;
+    100%{
+        box-shadow:
+            0 0 5px rgba(255,215,0,.45),
+            0 0 12px rgba(255,215,0,.20),
+            inset 0 0 5px rgba(255,215,0,.08);
     }
 }
 
 
 /* =========================================
-   FLASH INTERIOR
+   LUZ QUE RESPIRA
    ========================================= */
 
-@keyframes resultGoldFlash {
+@keyframes goldBreathingLight{
 
-    0% {
-        opacity: 0;
+    0%{
+        opacity:.20;
+        transform:translateX(-12%);
     }
 
-    15% {
-        opacity: 0.9;
+    50%{
+        opacity:.55;
+        transform:translateX(12%);
     }
 
-    35% {
-        opacity: 0.5;
-    }
-
-    60% {
-        opacity: 0.2;
-    }
-
-    100% {
-        opacity: 0;
+    100%{
+        opacity:.20;
+        transform:translateX(-12%);
     }
 }
-
-
-/* =========================================
-   IMPACTO DEL RECUADRO
-   ========================================= */
-
-@keyframes resultGoldImpact {
-
-    0% {
-        transform: scale(1);
-
-        box-shadow:
-            0 0 0 transparent;
-    }
-
-    20% {
-        transform: scale(1.025);
-
-        box-shadow:
-            0 0 15px #ffd700,
-            0 0 40px #ffd700,
-            0 0 70px rgba(255, 180, 0, 0.9),
-            inset 0 0 25px rgba(255, 215, 0, 0.5);
-    }
-
-    45% {
-        transform: scale(1.01);
-
-        box-shadow:
-            0 0 20px #fff000,
-            0 0 50px #ffd700,
-            0 0 90px rgba(255, 170, 0, 0.8),
-            inset 0 0 30px rgba(255, 215, 0, 0.45);
-    }
-
-    70% {
-        transform: scale(1.02);
-    }
-
-    100% {
-        transform: scale(1);
-
-        box-shadow:
-            0 0 8px #ffd700,
-            0 0 20px rgba(255, 215, 0, 0.7);
-    }
-}
+──────────────────────────────────────────────────────────────── 
 
 .result-wrestler img{
     width:22px;
