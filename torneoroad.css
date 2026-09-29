@@ -3,373 +3,331 @@
    TORNEOROAD
    ========================================= */
 
-.torneoroad-page {
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 40px 5% 80px;
+.torneoroad-page{
+    width:100%;
+    max-width:1600px;
+    margin:0 auto;
+    padding:40px 5% 80px;
 }
-
 
 /* =========================================
    HEADER
    ========================================= */
 
-.torneoroad-header {
-    position: relative;
-    margin-bottom: 60px;
+.torneoroad-header{
+    position:relative;
+    margin-bottom:60px;
 }
 
-
-.back-button {
-    display: inline-block;
-
-    margin-bottom: 35px;
-
-    color: #ffffff;
-    text-decoration: none;
-
-    font-size: 12px;
-    font-weight: bold;
-
-    letter-spacing: 2px;
-
-    opacity: 0.6;
-
-    transition: opacity 0.2s ease;
+.back-button{
+    display:inline-block;
+    margin-bottom:35px;
+    color:#fff;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:2px;
+    opacity:.6;
+    transition:opacity .2s ease;
 }
 
+.back-button:hover{opacity:1}
 
-.back-button:hover {
-    opacity: 1;
+.torneoroad-heading{text-align:center}
+
+.torneoroad-brand{
+    display:block;
+    margin-bottom:8px;
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:4px;
+    opacity:.6;
 }
 
-
-.torneoroad-heading {
-    text-align: center;
+.torneoroad-heading h1{
+    margin:0;
+    font-size:46px;
+    font-weight:900;
+    letter-spacing:3px;
 }
 
-
-.torneoroad-brand {
-    display: block;
-
-    margin-bottom: 8px;
-
-    font-size: 13px;
-    font-weight: bold;
-
-    letter-spacing: 4px;
-
-    opacity: 0.6;
+.torneoroad-heading p{
+    margin:10px 0 0;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:3px;
+    opacity:.5;
 }
-
-
-.torneoroad-heading h1 {
-    margin: 0;
-
-    font-size: 46px;
-    font-weight: 900;
-
-    letter-spacing: 3px;
-}
-
-
-.torneoroad-heading p {
-    margin: 10px 0 0;
-
-    font-size: 12px;
-    font-weight: bold;
-
-    letter-spacing: 3px;
-
-    opacity: 0.5;
-}
-
 
 /* =========================================
    SECTIONS
    ========================================= */
 
-.torneoroad-section {
-    width: 100%;
-    margin-bottom: 60px;
+.torneoroad-section{
+    width:100%;
+    margin-bottom:60px;
 }
 
-
-.torneoroad-divider {
-    display: flex;
-    align-items: center;
-
-    border-bottom: 2px solid #ffffff;
-
-    padding-bottom: 12px;
-
-    margin-bottom: 25px;
+.torneoroad-divider{
+    display:flex;
+    align-items:center;
+    border-bottom:2px solid #fff;
+    padding-bottom:12px;
+    margin-bottom:25px;
 }
 
-
-.torneoroad-divider h2 {
-    margin: 0;
-
-    font-size: 23px;
-    font-weight: 900;
-
-    letter-spacing: 2px;
+.torneoroad-divider h2{
+    margin:0;
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:2px;
 }
-
 
 /* =========================================
    DRAFT
    ========================================= */
 
-.draft-container {
-    display: grid;
-
-    grid-template-columns: repeat(5, 1fr);
-
-    gap: 15px;
+.draft-container{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
 }
 
-
-.draft-card {
-    background: #111111;
-    border: 1px solid #292929;
-
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    overflow: hidden;
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
+.draft-card{
+    background:#111;
+    border:1px solid #292929;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    overflow:hidden;
+    transition:transform .2s ease,border-color .2s ease;
 }
 
-.draft-card:hover {
-    transform: translateY(-3px);
-    border-color: #ffffff;
+.draft-card:hover{
+    transform:translateY(-3px);
+    border-color:#fff;
 }
 
-.draft-card-image {
-    display: block;
-
-    width: 100%;
-    height: 180px;
-
-    object-fit: cover;
-    object-position: center;
-
-    background: #181818;
+.draft-card-image{
+    display:block;
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    object-position:center;
+    background:#181818;
 }
 
-.draft-card-name {
-    display: block;
-
-    padding: 16px;
-
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
+.draft-card-name{
+    display:block;
+    padding:16px;
+    font-size:14px;
+    font-weight:bold;
+    text-align:center;
 }
-
 
 /* =========================================
    STANDINGS
    ========================================= */
 
-.standings-wrapper {
-    width: 100%;
-
-    overflow-x: auto;
+.standings-wrapper{
+    width:100%;
+    overflow-x:auto;
 }
 
-
-.standings-table {
-    width: 100%;
-
-    border-collapse: collapse;
-
-    background: #111111;
+.standings-table{
+    width:100%;
+    border-collapse:collapse;
+    background:#111;
 }
 
-
-.standings-table th {
-    padding: 16px 12px;
-
-    text-align: center;
-
-    font-size: 11px;
-
-    letter-spacing: 1px;
-
-    border-bottom: 2px solid #ffffff;
+.standings-table th{
+    padding:16px 12px;
+    text-align:center;
+    font-size:11px;
+    letter-spacing:1px;
+    border-bottom:2px solid #fff;
 }
 
+.standings-table th:nth-child(2){text-align:left}
 
-.standings-table th:nth-child(2) {
-    text-align: left;
+.standings-table td{
+    padding:15px 12px;
+    text-align:center;
+    font-size:13px;
+    border-bottom:1px solid #292929;
 }
 
-
-.standings-table td {
-    padding: 15px 12px;
-
-    text-align: center;
-
-    font-size: 13px;
-
-    border-bottom: 1px solid #292929;
+.standings-table td:nth-child(2){
+    text-align:left;
+    font-weight:bold;
 }
-
-
-.standings-table td:nth-child(2) {
-    text-align: left;
-
-    font-weight: bold;
-}
-
-
-/* =========================================
-   WRESTLER LINKS
-   ========================================= */
 
 .tournament-wrestler-link,
-.table-wrestler-link {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 900;
-    transition: opacity 0.2s ease;
+.table-wrestler-link{
+    color:#fff;
+    text-decoration:none;
+    font-weight:900;
+    transition:opacity .2s ease;
 }
 
 .tournament-wrestler-link:hover,
-.table-wrestler-link:hover {
-    color: #ffffff;
-    opacity: 0.65;
+.table-wrestler-link:hover{
+    color:#fff;
+    opacity:.65;
 }
 
+.standings-table tr{transition:background .2s ease}
 
-.standings-table tr {
-    transition: background 0.2s ease;
+.standings-table tbody tr:hover{background:#181818}
+
+.standings-table tbody tr.champion{
+    background:#b8860b;
+    color:#fff;
 }
 
+.standings-table tbody tr.champion:hover{background:#c99719}
 
-.standings-table tbody tr:hover {
-    background: #181818;
+.standings-table tbody tr.relegation{
+    background:#b00000;
+    color:#fff;
 }
 
+.standings-table tbody tr.relegation:hover{background:#c00000}
+
+.standings-table tbody tr.champion td,
+.standings-table tbody tr.relegation td{
+    border-bottom-color:rgba(255,255,255,.25);
+}
+
+.standings-table tbody tr.champion td:first-child,
+.standings-table tbody tr.relegation td:first-child{
+    font-weight:900;
+}
 
 /* =========================================
    MATRIX
    ========================================= */
 
-.matrix-wrapper {
-    width: 100%;
-
-    overflow-x: auto;
+.matrix-wrapper{
+    width:100%;
+    overflow-x:auto;
+    padding-bottom:5px;
 }
 
-
-.matrix-table {
-    border-collapse: collapse;
-
-    background: #111111;
-
-    min-width: 700px;
+.matrix-table{
+    border-collapse:separate;
+    border-spacing:0;
+    background:#111;
+    min-width:850px;
 }
-
 
 .matrix-table th,
-.matrix-table td {
-    width: 65px;
-    height: 55px;
-
-    padding: 8px;
-
-    text-align: center;
-
-    border: 1px solid #292929;
-
-    font-size: 12px;
+.matrix-table td{
+    width:65px;
+    min-width:65px;
+    height:60px;
+    padding:8px;
+    text-align:center;
+    border-right:1px solid #292929;
+    border-bottom:1px solid #292929;
+    font-size:12px;
 }
 
-
-.matrix-table th {
-    font-weight: bold;
-
-    background: #151515;
+.matrix-table th{
+    font-weight:900;
+    background:#151515;
 }
 
-
-.matrix-table th:first-child {
-    width: 150px;
+.matrix-table th:first-child{
+    width:170px;
+    min-width:170px;
+    text-align:left;
+    padding-left:15px;
+    position:sticky;
+    left:0;
+    z-index:3;
 }
 
-
-.matrix-table td:first-child {
-    width: 150px;
-
-    text-align: left;
-
-    padding-left: 15px;
-
-    font-weight: bold;
+.matrix-table td:first-child{
+    width:170px;
+    min-width:170px;
+    text-align:left;
+    padding-left:15px;
+    font-weight:bold;
+    background:#111;
+    position:sticky;
+    left:0;
+    z-index:2;
 }
 
-
-/* =========================================
-   MATRIX RESULTS
-   ========================================= */
-
-.matrix-win {
-    font-weight: 900;
-    background: rgba(0, 150, 70, 0.25);
+.matrix-win{
+    font-weight:900;
+    background:rgba(0,150,70,.25);
 }
 
-.matrix-loss {
-    font-weight: 900;
-    background: rgba(180, 0, 0, 0.25);
-    color: #ffffff;
-    opacity: 1;
+.matrix-loss{
+    font-weight:900;
+    background:rgba(180,0,0,.25);
+    color:#fff;
+    opacity:1;
 }
 
-.matrix-draw {
-    font-weight: bold;
+.matrix-draw{
+    font-weight:900;
+    background:rgba(180,180,180,.12);
 }
 
+.matrix-empty{opacity:.2}
 
-.matrix-empty {
-    opacity: 0.25;
-}
-
+.matrix-table td:not(:first-child):hover{background:#222}
 
 /* =========================================
    RESULTS
    ========================================= */
 
-.results-container {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 10px;
+.results-container{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
 }
 
-
-.result-card {
+.result-card{
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:20px;
     padding:18px 22px;
-    background:#111111;
+    background:#111;
     border:1px solid #292929;
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
+    transition:background .2s ease,border-color .2s ease;
 }
 
+.result-card:hover{
+    background:#171717;
+    border-color:#fff;
+}
+
+.result-wrestler{
+    flex:1;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.result-score{
+    min-width:80px;
+    text-align:center;
+    font-size:17px;
+    font-weight:900;
+}
+
+/* =========================================
+   CHAMPIONSHIP BAR
+   ========================================= */
+
 .bracket-championship{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
     width:100%;
     box-sizing:border-box;
     padding:7px 12px;
@@ -379,344 +337,120 @@
     font-size:12px;
     font-weight:900;
     letter-spacing:.5px;
-    color:var(--championship-color,#d4af37);
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,.04),transparent);
-    border:1px solid var(--championship-color,#d4af37);
+    color:#241700;
+    background:
+        linear-gradient(
+            135deg,
+            #8f6500 0%,
+            #d4a900 15%,
+            #ffe66b 30%,
+            #b8860b 45%,
+            #fff1a8 55%,
+            #c99719 70%,
+            #ffe36a 85%,
+            #9c7000 100%
+        );
+    border:1px solid #ffd700;
     border-bottom:0;
-    text-shadow:0 0 8px var(--championship-color,#d4af37);
+    text-shadow:
+        0 1px 1px rgba(255,255,255,.35),
+        0 0 6px rgba(255,215,0,.7);
+    box-shadow:
+        0 0 8px rgba(255,215,0,.55),
+        inset 0 0 12px rgba(255,245,160,.35);
 }
 
-.result-card:hover {
-    background:#171717;
-    border-color:#ffffff;
+.bracket-championship::before{
+    content:"";
+    position:absolute;
+    top:-80%;
+    left:-70%;
+    width:35%;
+    height:260%;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255,255,255,0) 20%,
+            rgba(255,255,255,.55) 40%,
+            #fff 50%,
+            rgba(255,255,255,.55) 60%,
+            rgba(255,255,255,0) 80%,
+            transparent 100%
+        );
+    transform:rotate(15deg);
+    animation:championshipGoldFlash 2.4s linear infinite;
+    z-index:1;
 }
 
-
-.result-wrestler {
-    flex: 1;
-
-    font-size: 14px;
-
-    font-weight: bold;
+.bracket-championship::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,.12),
+            rgba(255,240,120,.22),
+            rgba(255,255,255,.08),
+            transparent
+        );
+    animation:championshipGoldShine 2.4s ease-in-out infinite;
+    z-index:0;
 }
 
-
-.result-score {
-    min-width: 80px;
-
-    text-align: center;
-
-    font-size: 17px;
-
-    font-weight: 900;
+.bracket-championship{
+    color:#241700 !important;
 }
 
-
-/* =========================================
-   RAW
-   ========================================= */
-
-.torneoroad-page.raw .torneoroad-brand {
-    color: #d00000;
-}
-
-
-/* =========================================
-   SMACKDOWN
-   ========================================= */
-
-.torneoroad-page.smackdown .torneoroad-brand {
-    color: #0066ff;
-}
-
-
-/* =========================================
-   NXT
-   ========================================= */
-
-.torneoroad-page.nxt .torneoroad-brand {
-    color: #8a8a8a;
-}
-
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 900px) {
-
-    .draft-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-}
-
-
-@media (max-width: 600px) {
-
-    .torneoroad-page {
-        padding: 30px 15px 60px;
-    }
-
-
-    .torneoroad-heading h1 {
-        font-size: 32px;
-    }
-
-
-    .torneoroad-brand {
-        font-size: 11px;
-
-        letter-spacing: 3px;
-    }
-
-
-    .torneoroad-heading p {
-        font-size: 9px;
-    }
-
-
-    .torneoroad-divider h2 {
-        font-size: 18px;
-    }
-
-
-    .draft-container {
-        grid-template-columns: repeat(2, 1fr);
-
-        gap: 10px;
-    }
-
-
-    .draft-card {
-    min-height: 0;
-}
-
-.draft-card-image {
-    height: 120px;
-}
-
-.draft-card-name {
-    padding: 12px 8px;
-    font-size: 12px;
-}
-
-
-    .standings-table {
-    min-width: 0;
-    width: 100%;
-}
-
-.standings-table th,
-.standings-table td {
-    padding: 10px 5px;
-}
-
-.standings-table th:nth-child(2),
-.standings-table td:nth-child(2) {
-    width: 90px;
-    min-width: 90px;
-}
-   
-.matrix-table th:first-child,
-.matrix-table td:first-child {
-    width: 20px;
-    min-width: 20px;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-
-    .result-card {
-        padding: 15px;
-
-        gap: 10px;
-    }
-
-
-    .result-wrestler {
-        font-size: 12px;
-    }
-
-
-    .result-score {
-        min-width: 60px;
-
-        font-size: 15px;
-    }
-
-}
-/* =========================================
-   STANDINGS - POSITIONS
-   ========================================= */
-
-.standings-table tbody tr.champion {
-    background: #b8860b;
-    color: #ffffff;
-}
-
-.standings-table tbody tr.champion:hover {
-    background: #c99719;
-}
-
-.standings-table tbody tr.relegation {
-    background: #b00000;
-    color: #ffffff;
-}
-
-.standings-table tbody tr.relegation:hover {
-    background: #c00000;
-}
-
-.standings-table tbody tr.champion td,
-.standings-table tbody tr.relegation td {
-    border-bottom-color: rgba(255,255,255,0.25);
-}
-
-.standings-table tbody tr.champion td:first-child,
-.standings-table tbody tr.relegation td:first-child {
-    font-weight: 900;
+.bracket-championship+.result-card{
+    border-top:0;
+    margin-top:0;
 }
 
 /* =========================================
-   MATCH MATRIX - IMPROVED
+   CHAMPIONSHIP BAR ANIMATION
    ========================================= */
 
-.matrix-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 5px;
-}
-
-.matrix-table {
-    border-collapse: separate;
-    border-spacing: 0;
-    background: #111111;
-    min-width: 850px;
-}
-
-.matrix-table th,
-.matrix-table td {
-    width: 65px;
-    min-width: 65px;
-    height: 60px;
-    padding: 8px;
-    text-align: center;
-
-    border-right: 1px solid #292929;
-    border-bottom: 1px solid #292929;
-
-    font-size: 12px;
-}
-
-.matrix-table th {
-    font-weight: 900;
-    background: #151515;
-}
-
-.matrix-table th:first-child {
-    width: 170px;
-    min-width: 170px;
-    text-align: left;
-    padding-left: 15px;
-
-    position: sticky;
-    left: 0;
-    z-index: 3;
-}
-
-.matrix-table td:first-child {
-    width: 170px;
-    min-width: 170px;
-
-    text-align: left;
-    padding-left: 15px;
-
-    font-weight: bold;
-
-    background: #111111;
-
-    position: sticky;
-    left: 0;
-    z-index: 2;
-}
-
-
-/* =========================================
-   MATRIX RESULTS
-   ========================================= */
-
-.matrix-win {
-    font-weight: 900;
-    background: rgba(0, 150, 70, 0.25);
-}
-
-.matrix-loss {
-    font-weight: 900;
-    background: rgba(180, 0, 0, 0.25);
-    color: #ffffff;
-    opacity: 1;
-}
-
-.matrix-draw {
-    font-weight: 900;
-    background: rgba(180, 180, 180, 0.12);
-}
-
-.matrix-empty {
-    opacity: 0.2;
-}
-
-
-/* =========================================
-   MATRIX HOVER
-   ========================================= */
-
-.matrix-table td:not(:first-child):hover {
-    background: #222222;
-}
-
-   /* =========================================
-   RESULTS - DATES
-   ========================================= */
-
-.results-date {
-    margin-top: 35px;
-    margin-bottom: 15px;
-
-    padding-bottom: 10px;
-
-    border-bottom: 2px solid #ffffff;
-
-    font-size: 16px;
-    font-weight: 900;
-
-    letter-spacing: 2px;
-}
-
-.results-date:first-child {
-    margin-top: 0;
-}
-
-@media (max-width: 600px) {
-
-    .matrix-table {
-        min-width: 0 !important;
-        width: auto !important;
+@keyframes championshipGoldFlash{
+    0%{
+        left:-70%;
+        opacity:0;
     }
 
-    .matrix-table th:first-child,
-    .matrix-table td:first-child {
-        width: 90px !important;
-        min-width: 90px !important;
+    15%{opacity:.2}
 
-        padding-left: 5px !important;
-        padding-right: 5px !important;
+    35%{opacity:1}
 
-        white-space: nowrap;
+    55%{opacity:.8}
+
+    75%{opacity:.2}
+
+    100%{
+        left:145%;
+        opacity:0;
     }
-
 }
+
+@keyframes championshipGoldShine{
+    0%{opacity:.12}
+    50%{opacity:.45}
+    100%{opacity:.12}
+}
+
+/* =========================================
+   BRANDS
+   ========================================= */
+
+.torneoroad-page.raw .torneoroad-brand{color:#d00000}
+
+.torneoroad-page.smackdown .torneoroad-brand{color:#0066ff}
+
+.torneoroad-page.nxt .torneoroad-brand{color:#8a8a8a}
+
 /* =========================================
    CHAMPIONSHIP BRACKET
    ========================================= */
@@ -777,9 +511,7 @@
     border-bottom:1px solid #292929;
 }
 
-.bracket-match div:last-child{
-    border-bottom:none;
-}
+.bracket-match div:last-child{border-bottom:none}
 
 .bracket-match a{
     flex:1;
@@ -809,11 +541,11 @@
     color:#fff;
 }
 
-.bracket-match .winner a{
-    font-weight:900;
-}
+.bracket-match .winner a{font-weight:900}
 
-/* Animación */
+/* =========================================
+   BRACKET ANIMATION
+   ========================================= */
 
 @keyframes bracketAppear{
     from{
@@ -827,23 +559,239 @@
     }
 }
 
-/* Entrada escalonada */
+.bracket-round:nth-child(1) .bracket-match{animation-delay:.1s}
 
-.bracket-round:nth-child(1) .bracket-match{
-    animation-delay:.1s;
+.bracket-round:nth-child(2) .bracket-match{animation-delay:.25s}
+
+.bracket-round:nth-child(3) .bracket-match{animation-delay:.4s}
+
+/* =========================================
+   RESULT - GOLDEN TICKET
+   ========================================= */
+
+.result-card{
+    position:relative;
+    overflow:hidden;
 }
 
-.bracket-round:nth-child(2) .bracket-match{
-    animation-delay:.25s;
+.result-card > *{
+    position:relative;
+    z-index:3;
 }
 
-.bracket-round:nth-child(3) .bracket-match{
-    animation-delay:.4s;
+/* =========================================
+   TODO EL RECTÁNGULO DORADO
+   ========================================= */
+
+.result-card.selected{
+    color:#241700;
+    border-color:#ffd700 !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8f6500 0%,
+            #d4a900 12%,
+            #ffe66b 28%,
+            #b8860b 42%,
+            #fff1a8 55%,
+            #c99719 70%,
+            #ffe36a 84%,
+            #9c7000 100%
+        );
+
+    box-shadow:
+        0 0 8px rgba(255,215,0,.9),
+        0 0 20px rgba(255,215,0,.7),
+        0 0 38px rgba(255,190,0,.45),
+        inset 0 0 18px rgba(255,245,160,.55);
+
+    animation:goldenTicketPulse 1.8s ease-in-out infinite;
 }
+
+/* =========================================
+   FLASH POR TODO EL RECTÁNGULO
+   ========================================= */
+
+.result-card.selected::before{
+    content:"";
+    position:absolute;
+    top:-30%;
+    left:-70%;
+    width:45%;
+    height:160%;
+    pointer-events:none;
+    z-index:2;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255,255,255,0) 15%,
+            rgba(255,255,255,.45) 35%,
+            #fff 50%,
+            rgba(255,255,255,.45) 65%,
+            rgba(255,255,255,0) 85%,
+            transparent 100%
+        );
+
+    transform:rotate(15deg);
+    animation:goldenTicketFlash 1.8s linear infinite;
+}
+
+/* =========================================
+   BRILLO INTERIOR
+   ========================================= */
+
+.result-card.selected::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 0%,
+            rgba(255,255,255,.12) 25%,
+            rgba(255,240,120,.28) 50%,
+            rgba(255,255,255,.08) 75%,
+            transparent 100%
+        );
+
+    animation:goldenTicketShine 1.8s ease-in-out infinite;
+}
+
+/* =========================================
+   TEXTO SOBRE EL DORADO
+   ========================================= */
+
+.result-card.selected .result-wrestler,
+.result-card.selected .result-score,
+.result-card.selected a{
+    color:#241700 !important;
+}
+
+.result-card.selected a{
+    text-shadow:
+        0 1px 1px rgba(255,255,255,.35);
+}
+
+/* =========================================
+   GOLDEN TICKET - PULSO
+   ========================================= */
+
+@keyframes goldenTicketPulse{
+    0%{
+        box-shadow:
+            0 0 7px rgba(255,215,0,.65),
+            0 0 15px rgba(255,215,0,.35),
+            inset 0 0 10px rgba(255,245,160,.30);
+    }
+
+    50%{
+        box-shadow:
+            0 0 12px rgba(255,215,0,1),
+            0 0 28px rgba(255,215,0,.75),
+            0 0 42px rgba(255,190,0,.45),
+            inset 0 0 22px rgba(255,250,180,.65);
+    }
+
+    100%{
+        box-shadow:
+            0 0 7px rgba(255,215,0,.65),
+            0 0 15px rgba(255,215,0,.35),
+            inset 0 0 10px rgba(255,245,160,.30);
+    }
+}
+
+/* =========================================
+   GOLDEN TICKET - FLASH
+   ========================================= */
+
+@keyframes goldenTicketFlash{
+    0%{
+        left:-75%;
+        opacity:0;
+    }
+
+    15%{opacity:.25}
+
+    35%{opacity:1}
+
+    55%{opacity:.9}
+
+    75%{opacity:.25}
+
+    100%{
+        left:145%;
+        opacity:0;
+    }
+}
+
+/* =========================================
+   GOLDEN TICKET - BRILLO
+   ========================================= */
+
+@keyframes goldenTicketShine{
+    0%{
+        opacity:.15;
+        transform:translateX(-18%);
+    }
+
+    50%{
+        opacity:.55;
+        transform:translateX(18%);
+    }
+
+    100%{
+        opacity:.15;
+        transform:translateX(-18%);
+    }
+}
+
+/* =========================================
+   TITLE IMAGE
+   ========================================= */
+
+.result-wrestler img{
+    width:22px;
+    height:22px;
+    object-fit:contain;
+    vertical-align:middle;
+    margin-right:5px;
+    filter:drop-shadow(
+        0 0 4px var(--championship-color,#d4af37)
+    );
+}
+
+/* =========================================
+   DATES
+   ========================================= */
+
+.results-date{
+    margin-top:35px;
+    margin-bottom:15px;
+    padding-bottom:10px;
+    border-bottom:2px solid #fff;
+    font-size:16px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.results-date:first-child{margin-top:0}
 
 /* =========================================
    MOBILE
    ========================================= */
+
+@media(max-width:900px){
+
+    .draft-container{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
 
 @media(max-width:700px){
 
@@ -852,169 +800,95 @@
         gap:25px;
     }
 
-    .bracket-round{
-        gap:12px;
+    .bracket-round{gap:12px}
+
+    .bracket-round h3{font-size:12px}
+
+    .bracket-match{width:100%}
+
+    .bracket-match div{min-height:36px}
+}
+
+@media(max-width:600px){
+
+    .torneoroad-page{
+        padding:30px 15px 60px;
     }
 
-    .bracket-round h3{
+    .torneoroad-heading h1{font-size:32px}
+
+    .torneoroad-brand{
+        font-size:11px;
+        letter-spacing:3px;
+    }
+
+    .torneoroad-heading p{font-size:9px}
+
+    .torneoroad-divider h2{font-size:18px}
+
+    .draft-container{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .draft-card{min-height:0}
+
+    .draft-card-image{height:120px}
+
+    .draft-card-name{
+        padding:12px 8px;
         font-size:12px;
     }
 
-    .bracket-match{
+    .standings-table{
+        min-width:0;
         width:100%;
     }
 
-    .bracket-match div{
-        min-height:36px;
-    }
-   }
-
-
-
-/* =========================================
-   RESULT CARD - ORO VIVO
-   ========================================= */
-
-.result-card{
-    position:relative;
-    overflow:hidden;
-}
-
-
-/* =========================================
-   CONTENIDO
-   ========================================= */
-
-.result-card > *{
-    position:relative;
-    z-index:2;
-}
-
-
-/* =========================================
-   RESULTADO SELECCIONADO
-   ========================================= */
-
-.result-card.selected{
-    border-color:#ffd700 !important;
-
-    animation:
-        goldBreathing 1.8s ease-in-out infinite;
-
-    box-shadow:
-        0 0 8px rgba(255,215,0,.65),
-        0 0 20px rgba(255,215,0,.35),
-        inset 0 0 10px rgba(255,215,0,.18);
-}
-
-
-/* =========================================
-   BRILLO SUAVE
-   ========================================= */
-
-.result-card.selected::before{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,215,0,.10),
-            rgba(255,240,120,.22),
-            rgba(255,215,0,.10),
-            transparent
-        );
-
-    opacity:.35;
-
-    pointer-events:none;
-
-    z-index:1;
-
-    animation:
-        goldBreathingLight 1.8s ease-in-out infinite;
-}
-
-
-/* =========================================
-   RESPIRACIÓN DORADA
-   ========================================= */
-
-@keyframes goldBreathing{
-
-    0%{
-        box-shadow:
-            0 0 5px rgba(255,215,0,.45),
-            0 0 12px rgba(255,215,0,.20),
-            inset 0 0 5px rgba(255,215,0,.08);
+    .standings-table th,
+    .standings-table td{
+        padding:10px 5px;
     }
 
-    50%{
-        box-shadow:
-            0 0 12px rgba(255,215,0,.90),
-            0 0 30px rgba(255,215,0,.50),
-            inset 0 0 16px rgba(255,215,0,.25);
+    .standings-table th:nth-child(2),
+    .standings-table td:nth-child(2){
+        width:90px;
+        min-width:90px;
     }
 
-    100%{
-        box-shadow:
-            0 0 5px rgba(255,215,0,.45),
-            0 0 12px rgba(255,215,0,.20),
-            inset 0 0 5px rgba(255,215,0,.08);
-    }
-}
-
-
-/* =========================================
-   LUZ QUE RESPIRA
-   ========================================= */
-
-@keyframes goldBreathingLight{
-
-    0%{
-        opacity:.20;
-        transform:translateX(-12%);
+    .matrix-table{
+        min-width:0 !important;
+        width:auto !important;
     }
 
-    50%{
-        opacity:.55;
-        transform:translateX(12%);
+    .matrix-table th:first-child,
+    .matrix-table td:first-child{
+        width:90px !important;
+        min-width:90px !important;
+        padding-left:5px !important;
+        padding-right:5px !important;
+        white-space:nowrap;
     }
 
-    100%{
-        opacity:.20;
-        transform:translateX(-12%);
+    .result-card{
+        padding:15px;
+        gap:10px;
     }
-}
 
+    .result-wrestler{font-size:12px}
 
+    .result-score{
+        min-width:60px;
+        font-size:15px;
+    }
 
-/* =========================================
-   PEGAR
-   ========================================= */
-.result-wrestler img{
-    width:22px;
-    height:22px;
-    object-fit:contain;
-    vertical-align:middle;
-    margin-right:5px;
-    filter:drop-shadow(0 0 4px var(--championship-color,#d4af37));
-}
-.bracket-championship+.result-card{
-    border-top:0;
-    margin-top:0;
-                          }
-
-       @media(max-width:600px){
     .bracket-championship{
         padding:6px 8px;
         font-size:10px;
         letter-spacing:.3px;
     }
+
     .bracket-championship+.result-card{
         margin-top:0;
     }
-                                }
+}
