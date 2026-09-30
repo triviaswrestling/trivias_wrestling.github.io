@@ -17,6 +17,7 @@ finalMatches:[
 ["Johnny Gargano","Roman Reigns",1,2],
 ["Cody Rhodes","Roman Reigns",4,0,{championship:"WWE WORLD HEAVYWEIGHT CHAMPIONSHIP",championshipColor:"#c0c0c0",championshipImage:"images/titles/world-heavyweight.png",champion:"Cody Rhodes"}]
 ]
+},
 /* =========================================
    CAMPEONATO 3
    ========================================= */
