@@ -1,5 +1,15 @@
 const tournamentData = {
 
+"wwe-nxt-1":{
+roster:["Bobby Lashley","Jeff Hardy","Kevin Owens","Karrion Kross","Seth Rollins","Drew McIntyre","Eddie Guerrero","Finn Balor","Randy Orton","Sin Cara"],
+format:"LEAGUE_ELIMINATION",
+leagues:[
+{name:"ZONE A",participants:["Bobby Lashley","Jeff Hardy","Kevin Owens","Karrion Kross","Seth Rollins"],
+ shows:{},bracketFormat:"SEMIFINALS_FINAL",bracketTitle:"TAKEOVER",finalMatches:[]},
+{name:"ZONE B",participants:["Drew McIntyre","Eddie Guerrero","Finn Balor","Randy Orton","Sin Cara"],
+ shows:{},bracketFormat:"SEMIFINALS_FINAL",bracketTitle:"TAKEOVER",finalMatches:[]}
+]},
+ 
 "friday-night-smackdown-1":{
 roster:["Bryan Danielson","John Cena","Adam Cole","Kofi Kingston","RICOCHET","Shawn Michaels"],
 format:"LEAGUE_ELIMINATION",
