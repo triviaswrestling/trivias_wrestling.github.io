@@ -1,5 +1,14 @@
 const tournamentData = {
 
+"friday-night-smackdown-1":{
+roster:["Bryan Danielson","John Cena","Adam Cole","Kofi Kingston","RICOCHET","Shawn Michaels"],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-9":{date:"12/05/2023",matches:[["Bryan Danielson","John Cena",4,0],["Adam Cole","Kofi Kingston",3,0],["RICOCHET","Shawn Michaels",5,0]]}},
+bracketFormat:"SEMIFINALS_FINAL",
+bracketTitle:"NIGHT OF CHAMPIONS 2023",
+finalEvent:"night-of-champions-2023",
+finalMatches:[]
+},
  
 "monday-night-raw-1":{
 roster:["Rob Van Dam","Roman Reigns","Johnny Gargano","Cody Rhodes","AJ Styles","Damian Priest"],
