@@ -1,5 +1,6 @@
 const tournamentData = {
 
+ 
 "wwe-nxt-1":{
 roster:["Bobby Lashley","Jeff Hardy","Kevin Owens","Karrion Kross","Seth Rollins","Drew McIntyre","Eddie Guerrero","Finn Balor","Randy Orton","Sin Cara"],
 format:"LEAGUE_ELIMINATION",
