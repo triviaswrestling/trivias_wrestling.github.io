@@ -875,97 +875,154 @@ function renderPhase(title,matches){
    ========================================= */
 
 function renderNormalTournament(data){
+    if(data.leagues)return renderLeaguesTournament(data);
 
-    const participants=data.roster||[];
-    const leagueMatches=[];
+    const participants=data.roster||[],leagueMatches=[];
 
     Object.entries(data.shows||{}).forEach(([show,event])=>{
-
         (event.matches||[]).forEach(match=>{
-
             leagueMatches.push({
-                wrestler1:match[0],
-                wrestler2:match[1],
-                score1:match[2],
-                score2:match[3],
+                wrestler1:match[0],wrestler2:match[1],
+                score1:match[2],score2:match[3],
                 championship:match[4]?.championship,
                 championshipImage:match[4]?.championshipImage,
                 championshipColor:match[4]?.championshipColor,
                 champion:match[4]?.champion,
-                date:event.date,
-                show
+                date:event.date,show
             });
-
         });
-
     });
 
     renderDraft(participants);
-
-    renderStandings(
-        participants,
-        leagueMatches
-    );
-
-    renderMatrix(
-        participants,
-        leagueMatches
-    );
-
+    renderStandings(participants,leagueMatches);
+    renderMatrix(participants,leagueMatches);
     resultsContainer.innerHTML="";
 
     Object.entries(data.shows||{}).forEach(([show,event])=>{
-
         renderPhase(
             show.replace(/-/g," ").toUpperCase(),
             (event.matches||[]).map(match=>({
-
-                wrestler1:match[0],
-                wrestler2:match[1],
-                score1:match[2],
-                score2:match[3],
-
+                wrestler1:match[0],wrestler2:match[1],
+                score1:match[2],score2:match[3],
                 championship:match[4]?.championship,
                 championshipImage:match[4]?.championshipImage,
                 championshipColor:match[4]?.championshipColor,
                 champion:match[4]?.champion
-
             }))
         );
-
     });
 
-    if(
-    data.finalEvent &&
-    Array.isArray(data.finalMatches) &&
-    data.finalMatches.length &&
-    data.bracketFormat
-){
-
-    const bracketMatches=
-        data.finalMatches.map(match=>({
-
-            wrestler1:match[0],
-            wrestler2:match[1],
-            score1:match[2],
-            score2:match[3],
-
-            championship:match[4]?.championship,
-            championshipImage:match[4]?.championshipImage,
-            championshipColor:match[4]?.championshipColor,
-            champion:match[4]?.champion
-
-        }));
-
-    renderBracket(
-        bracketMatches,
-        resultsContainer,
-        data.bracketFormat,
-        data.bracketTitle
-    );
-
+    if(data.finalEvent&&Array.isArray(data.finalMatches)&&data.finalMatches.length&&data.bracketFormat){
+        renderBracket(
+            data.finalMatches.map(match=>({
+                wrestler1:match[0],wrestler2:match[1],
+                score1:match[2],score2:match[3],
+                championship:match[4]?.championship,
+                championshipImage:match[4]?.championshipImage,
+                championshipColor:match[4]?.championshipColor,
+                champion:match[4]?.champion
+            })),
+            resultsContainer,data.bracketFormat,data.bracketTitle
+        );
+    }
 }
 
+
+function renderLeaguesTournament(data){
+    renderDraft(data.roster||[]);
+    standingsBody.innerHTML="";
+    matrixTable.innerHTML="";
+    resultsContainer.innerHTML="";
+
+    data.leagues.forEach(league=>{
+        const participants=league.participants||league.roster||[];
+        const matches=[];
+
+        Object.entries(league.shows||{}).forEach(([show,event])=>{
+            (event.matches||[]).forEach(match=>{
+                matches.push({
+                    wrestler1:match[0],wrestler2:match[1],
+                    score1:match[2],score2:match[3],
+                    championship:match[4]?.championship,
+                    championshipImage:match[4]?.championshipImage,
+                    championshipColor:match[4]?.championshipColor,
+                    champion:match[4]?.champion,
+                    date:event.date,show
+                });
+            });
+        });
+
+        const title=document.createElement("div");
+        title.className="results-date";
+        title.textContent=league.name||"LEAGUE";
+        resultsContainer.appendChild(title);
+
+        const standings=buildStandings(participants,matches);
+        standings.forEach((w,index)=>{
+            const row=document.createElement("tr");
+            row.innerHTML=`<td>${index+1}</td><td>${createWrestlerLink(w.name)}</td><td>${w.played}</td><td>${w.wins}</td><td>${w.draws}</td><td>${w.losses}</td><td>${w.points}</td>`;
+            if(index===0)row.classList.add("champion");
+            if(index===standings.length-1)row.classList.add("relegation");
+            standingsBody.appendChild(row);
+        });
+
+        participants.forEach(name=>{
+            const row=document.createElement("tr");
+            const cell=document.createElement("td");
+            cell.innerHTML=createWrestlerLink(name);
+            row.appendChild(cell);
+
+            participants.forEach(opponent=>{
+                const c=document.createElement("td");
+                if(name===opponent)c.textContent="—";
+                else{
+                    const m=matches.find(x=>
+                        (x.wrestler1===name&&x.wrestler2===opponent)||
+                        (x.wrestler1===opponent&&x.wrestler2===name)
+                    );
+                    if(!m)c.textContent="·";
+                    else if(m.score1===m.score2)c.textContent="D";
+                    else{
+                        const win=m.wrestler1===name?m.score1>m.score2:m.score2>m.score1;
+                        c.textContent=win?"W":"L";
+                        c.classList.add(win?"matrix-win":"matrix-loss");
+                    }
+                }
+                row.appendChild(c);
+            });
+            matrixTable.appendChild(row);
+        });
+
+        Object.entries(league.shows||{}).forEach(([show,event])=>{
+            renderPhase(
+                `${league.name||"LEAGUE"} — ${show.replace(/-/g," ").toUpperCase()}`,
+                (event.matches||[]).map(m=>({
+                    wrestler1:m[0],wrestler2:m[1],
+                    score1:m[2],score2:m[3],
+                    championship:m[4]?.championship,
+                    championshipImage:m[4]?.championshipImage,
+                    championshipColor:m[4]?.championshipColor,
+                    champion:m[4]?.champion
+                }))
+            );
+        });
+
+        if(league.finalMatches?.length&&league.bracketFormat){
+            renderBracket(
+                league.finalMatches.map(m=>({
+                    wrestler1:m[0],wrestler2:m[1],
+                    score1:m[2],score2:m[3],
+                    championship:m[4]?.championship,
+                    championshipImage:m[4]?.championshipImage,
+                    championshipColor:m[4]?.championshipColor,
+                    champion:m[4]?.champion
+                })),
+                resultsContainer,
+                league.bracketFormat,
+                league.bracketTitle
+            );
+        }
+    });
 }
 /* =========================================
    GENERIC BRACKET
