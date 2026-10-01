@@ -1023,6 +1023,8 @@ function renderLeaguesTournament(data){
             );
         }
     });
+   if(data.finalMatches?.length&&data.bracketFormat)
+renderBracket(data.finalMatches.map(m=>({wrestler1:m[0],wrestler2:m[1],score1:m[2],score2:m[3],championship:m[4]?.championship,championshipImage:m[4]?.championshipImage,championshipColor:m[4]?.championshipColor,champion:m[4]?.champion})),resultsContainer,data.bracketFormat,data.bracketTitle);
 }
 /* =========================================
    GENERIC BRACKET
