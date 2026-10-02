@@ -11,7 +11,7 @@ bracketFormat:"SEMIFINALS_FINAL",
 bracketTitle:"TAKEOVER",
 finalMatches:[["Karrion Kross","Finn Balor",2,0],
 ["Drew McIntyre","Kevin Owens",0,5],
-["Karrion Kross","Kevin Owens",2,4,{championship:"NXT CHAMPIONSHIP"}]
+["Karrion Kross","Kevin Owens",2,4,{championship:"NXT CHAMPIONSHIP",championshipImage:"images/titles/nxt.png",championshipColor:"#c0c0c0",champion:"Kevin Owens"}]
 ]},
  
 "friday-night-smackdown-1":{
