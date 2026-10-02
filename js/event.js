@@ -183,8 +183,8 @@ let show=null;
 
 /* NEW SHOWS */
 
-if(data.shows&&data.shows[showId]){
-show=data.shows[showId];
+if(!show&&Array.isArray(data.leagues)){
+show=getLeagueShow(data,showId);
 }
 
 
@@ -236,7 +236,18 @@ return null;
 
 }
 
-
+function getLeagueShow(data,showId){
+if(!Array.isArray(data.leagues))return null;
+const shows=[];
+data.leagues.forEach(league=>{
+if(league.shows&&league.shows[showId])shows.push(league.shows[showId]);
+});
+if(!shows.length)return null;
+return{
+date:shows.find(s=>s.date)?.date||"",
+matches:shows.flatMap(s=>s.matches||s.results||[])
+};
+}
 /* =========================================
    TOURNAMENT RESULT ADAPTER
    ========================================= */
