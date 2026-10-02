@@ -16,88 +16,53 @@ const resultsContainer=document.getElementById("results-container");
 
 const tournament=outsiderData[tournamentId];
 
+if(tournamentId){
+    document.body.dataset.tournament=tournamentId;
+}
+
 /* =========================================
    HELPERS
    ========================================= */
 
 function createWrestlerId(name){
-    return String(name||"")
-        .toLowerCase()
-        .trim()
-        .replace(/\s+/g,"-");
+    return String(name||"").toLowerCase().trim().replace(/\s+/g,"-");
 }
 
 function normalizeName(name){
-    return String(name||"")
-        .toLowerCase()
-        .trim();
+    return String(name||"").toLowerCase().trim();
 }
 
 function getWrestler(name){
-
-    if(typeof wrestlers==="undefined"){
-        return null;
-    }
-
-    return wrestlers.find(w=>
-        normalizeName(w.name)===normalizeName(name)
-    )||null;
+    if(typeof wrestlers==="undefined")return null;
+    return wrestlers.find(w=>normalizeName(w.name)===normalizeName(name))||null;
 }
 
 function getWrestlerImage(name){
-
     const wrestler=getWrestler(name);
-
-    if(wrestler?.image){
-        return wrestler.image;
-    }
-
-    return "images/Vacante.jpg";
+    return wrestler?.image||"images/Vacante.jpg";
 }
 
 function createWrestlerLink(name){
-
-    return `
-        <a
-            href="superstar.html?id=${createWrestlerId(name)}"
-            class="table-wrestler-link"
-        >
-            ${name}
-        </a>
-    `;
+    return `<a href="superstar.html?id=${createWrestlerId(name)}" class="table-wrestler-link">${name}</a>`;
 }
 
 function hideSection(element){
-
     if(!element)return;
-
-    const section=
-        element.closest("section")||
-        element.closest(".section")||
-        element.parentElement;
-
-    if(section){
-        section.style.display="none";
-    }
-
+    const section=element.closest("section")||element.closest(".section")||element.parentElement;
+    if(section)section.style.display="none";
 }
 
 function showSection(element){
-
     if(!element)return;
-
-    const section=
-        element.closest("section")||
-        element.closest(".section")||
-        element.parentElement;
-
-    if(section){
-        section.style.display="";
-    }
-
+    const section=element.closest("section")||element.closest(".section")||element.parentElement;
+    if(section)section.style.display="";
 }
 
 function getMatchData(match){
+
+    if(match&&match.type==="EVENT_REFERENCE"){
+        match=resolveEventReference(match);
+    }
 
     if(!Array.isArray(match))return match;
 
@@ -113,7 +78,6 @@ function getMatchData(match){
         championshipImage:meta.championshipImage,
         champion:meta.champion
     };
-
 }
 
 /* =========================================
@@ -181,18 +145,9 @@ function renderDraft(tournament){
         card.className="draft-card";
 
         card.innerHTML=`
-            <a
-                href="superstar.html?id=${createWrestlerId(name)}"
-                style="text-decoration:none;color:inherit;"
-            >
-                <img
-                    src="${getWrestlerImage(name)}"
-                    alt="${name}"
-                    class="draft-card-image"
-                >
-                <span class="draft-card-name">
-                    ${name}
-                </span>
+            <a href="superstar.html?id=${createWrestlerId(name)}" style="text-decoration:none;color:inherit;">
+                <img src="${getWrestlerImage(name)}" alt="${name}" class="draft-card-image">
+                <span class="draft-card-name">${name}</span>
             </a>
         `;
 
@@ -211,7 +166,6 @@ function buildStandings(participants,matches){
     const standings={};
 
     participants.forEach(name=>{
-
         standings[name]={
             name,
             played:0,
@@ -220,7 +174,6 @@ function buildStandings(participants,matches){
             losses:0,
             points:0
         };
-
     });
 
     matches.forEach(match=>{
@@ -257,15 +210,9 @@ function buildStandings(participants,matches){
     });
 
     return Object.values(standings).sort((a,b)=>{
-
-        if(b.points!==a.points)
-            return b.points-a.points;
-
-        if(b.wins!==a.wins)
-            return b.wins-a.wins;
-
+        if(b.points!==a.points)return b.points-a.points;
+        if(b.wins!==a.wins)return b.wins-a.wins;
         return 0;
-
     });
 
 }
@@ -277,10 +224,8 @@ function renderStandings(tournament){
     const list=tournament.standings||[];
 
     if(!list.length){
-
         hideSection(standingsBody);
         return;
-
     }
 
     showSection(standingsBody);
@@ -299,11 +244,8 @@ function renderStandings(tournament){
             <td>${wrestler.points??0}</td>
         `;
 
-        if(index===0)
-            row.classList.add("champion");
-
-        if(index===list.length-1)
-            row.classList.add("relegation");
+        if(index===0)row.classList.add("champion");
+        if(index===list.length-1)row.classList.add("relegation");
 
         standingsBody.appendChild(row);
 
@@ -320,10 +262,8 @@ function renderMatrix(tournament){
     matrixTable.innerHTML="";
 
     if(!tournament.matrix?.length){
-
         hideSection(matrixTable);
         return;
-
     }
 
     showSection(matrixTable);
@@ -335,18 +275,13 @@ function renderMatrix(tournament){
         rowData.forEach((value,columnIndex)=>{
 
             const cell=document.createElement(
-                rowIndex===0||columnIndex===0
-                    ?"th"
-                    :"td"
+                rowIndex===0||columnIndex===0?"th":"td"
             );
 
             cell.textContent=value;
 
-            if(value==="W")
-                cell.classList.add("matrix-win");
-
-            if(value==="L")
-                cell.classList.add("matrix-loss");
+            if(value==="W")cell.classList.add("matrix-win");
+            if(value==="L")cell.classList.add("matrix-loss");
 
             row.appendChild(cell);
 
@@ -367,12 +302,9 @@ function renderLeagueMatrix(participants,matches){
     participants.forEach(name=>{
 
         const row=document.createElement("tr");
-
         const nameCell=document.createElement("td");
 
-        nameCell.innerHTML=
-            createWrestlerLink(name);
-
+        nameCell.innerHTML=createWrestlerLink(name);
         row.appendChild(nameCell);
 
         participants.forEach(opponent=>{
@@ -386,14 +318,8 @@ function renderLeagueMatrix(participants,matches){
             }else{
 
                 const match=matches.find(m=>
-                    (
-                        m.wrestler1===name&&
-                        m.wrestler2===opponent
-                    )||
-                    (
-                        m.wrestler1===opponent&&
-                        m.wrestler2===name
-                    )
+                    (m.wrestler1===name&&m.wrestler2===opponent)||
+                    (m.wrestler1===opponent&&m.wrestler2===name)
                 );
 
                 if(!match){
@@ -406,20 +332,13 @@ function renderLeagueMatrix(participants,matches){
 
                 }else{
 
-                    const first=
-                        match.wrestler1===name;
-
+                    const first=match.wrestler1===name;
                     const won=first
                         ?match.score1>match.score2
                         :match.score2>match.score1;
 
                     cell.textContent=won?"W":"L";
-
-                    cell.classList.add(
-                        won
-                            ?"matrix-win"
-                            :"matrix-loss"
-                    );
+                    cell.classList.add(won?"matrix-win":"matrix-loss");
 
                 }
 
@@ -460,15 +379,10 @@ function renderLeaguesTournament(tournament){
 
     leagues.forEach((league,index)=>{
 
-        const participants=
-            league.participants||
-            league.roster||
-            [];
-
+        const participants=league.participants||league.roster||[];
         const matches=[];
 
-        Object.entries(league.shows||{})
-        .forEach(([showId,show])=>{
+        Object.entries(league.shows||{}).forEach(([showId,show])=>{
 
             (show.matches||[]).forEach(match=>{
 
@@ -491,18 +405,12 @@ function renderLeaguesTournament(tournament){
             const title=document.createElement("tr");
 
             title.innerHTML=`
-                <th colspan="7">
-                    ${league.name||`LEAGUE ${index+1}`}
-                </th>
+                <th colspan="7">${league.name||`LEAGUE ${index+1}`}</th>
             `;
 
             standingsBody.appendChild(title);
 
-            const standings=
-                buildStandings(
-                    participants,
-                    matches
-                );
+            const standings=buildStandings(participants,matches);
 
             standings.forEach((w,index)=>{
 
@@ -518,11 +426,8 @@ function renderLeaguesTournament(tournament){
                     <td>${w.points}</td>
                 `;
 
-                if(index===0)
-                    row.classList.add("champion");
-
-                if(index===standings.length-1)
-                    row.classList.add("relegation");
+                if(index===0)row.classList.add("champion");
+                if(index===standings.length-1)row.classList.add("relegation");
 
                 standingsBody.appendChild(row);
 
@@ -551,43 +456,30 @@ function renderLeaguesTournament(tournament){
             participants.forEach(name=>{
 
                 const th=document.createElement("th");
-
                 th.textContent=name;
-
                 header.appendChild(th);
 
             });
 
             matrixTable.appendChild(header);
 
-            renderLeagueMatrix(
-                participants,
-                matches
-            );
+            renderLeagueMatrix(participants,matches);
 
         }
 
-        Object.entries(league.shows||{})
-        .forEach(([showId,show])=>{
+        Object.entries(league.shows||{}).forEach(([showId,show])=>{
 
             renderPhase(
                 `${league.name||"LEAGUE"} — ${showId.replace(/-/g," ").toUpperCase()}`,
-                (show.matches||[]).map(
-                    getMatchData
-                )
+                (show.matches||[]).map(getMatchData)
             );
 
         });
 
-        if(
-            league.finalMatches?.length&&
-            league.bracketFormat
-        ){
+        if(league.finalMatches?.length&&league.bracketFormat){
 
             renderBracketMatches(
-                league.finalMatches.map(
-                    getMatchData
-                ),
+                league.finalMatches.map(getMatchData),
                 resultsContainer,
                 league.bracketFormat,
                 league.bracketTitle
@@ -597,15 +489,10 @@ function renderLeaguesTournament(tournament){
 
     });
 
-    if(
-        tournament.finalMatches?.length&&
-        tournament.bracketFormat
-    ){
+    if(tournament.finalMatches?.length&&tournament.bracketFormat){
 
         renderBracketMatches(
-            tournament.finalMatches.map(
-                getMatchData
-            ),
+            tournament.finalMatches.map(getMatchData),
             resultsContainer,
             tournament.bracketFormat,
             tournament.bracketTitle
@@ -613,15 +500,11 @@ function renderLeaguesTournament(tournament){
 
     }
 
-    if(hasStandings)
-        showSection(standingsBody);
-    else
-        hideSection(standingsBody);
+    if(hasStandings)showSection(standingsBody);
+    else hideSection(standingsBody);
 
-    if(hasMatrix)
-        showSection(matrixTable);
-    else
-        hideSection(matrixTable);
+    if(hasMatrix)showSection(matrixTable);
+    else hideSection(matrixTable);
 
 }
 
@@ -634,22 +517,16 @@ function renderPhase(title,matches){
     if(!matches.length)return;
 
     const section=document.createElement("div");
-
     section.className="championship-phase";
 
     const heading=document.createElement("div");
-
     heading.className="results-date";
     heading.textContent=title;
 
     section.appendChild(heading);
 
     matches.forEach(match=>{
-
-        section.appendChild(
-            createMatchCard(match)
-        );
-
+        section.appendChild(createMatchCard(match));
     });
 
     resultsContainer.appendChild(section);
@@ -664,48 +541,40 @@ function renderBracket(tournament){
 
     const matches=[];
 
-    Object.entries(tournament.shows||{})
-    .forEach(([showId,show])=>{
+    Object.entries(tournament.shows||{}).forEach(([showId,show])=>{
 
         (show.matches||[]).forEach(match=>{
 
-            matches.push({
-                ...getMatchData(match),
-                showId,
-                date:show.date
-            });
+            const data=getMatchData(match);
+
+            if(data){
+                matches.push({
+                    ...data,
+                    showId,
+                    date:show.date
+                });
+            }
 
         });
 
     });
 
-    if(
-        tournament.finalMatches?.length
-    ){
+    (tournament.finalMatches||[]).forEach(match=>{
 
-        renderBracketMatches(
-            tournament.finalMatches.map(
-                getMatchData
-            ),
-            resultsContainer,
-            tournament.bracketFormat||
-                "QUARTERS_SEMIFINALS_FINAL",
-            tournament.bracketTitle||
-                "BRACKET"
-        );
+        const data=getMatchData(match);
 
-    }else{
+        if(data)matches.push(data);
 
-        renderBracketMatches(
-            matches,
-            resultsContainer,
-            tournament.bracketFormat||
-                "QUARTERS_SEMIFINALS_FINAL",
-            tournament.bracketTitle||
-                "BRACKET"
-        );
+    });
 
-    }
+    renderBracketMatches(
+        matches,
+        resultsContainer,
+        tournament.bracketFormat||
+            "QUARTERS_SEMIFINALS_FINAL",
+        tournament.bracketTitle||
+            "BRACKET"
+    );
 
 }
 
@@ -713,12 +582,7 @@ function renderBracket(tournament){
    GENERIC BRACKET
    ========================================= */
 
-function renderBracketMatches(
-    matches,
-    container,
-    format,
-    title
-){
+function renderBracketMatches(matches,container,format,title){
 
     const valid=matches.filter(match=>
         match?.wrestler1&&
@@ -772,9 +636,7 @@ function renderBracketMatches(
             }
         ];
 
-    }else if(
-        format==="SEMIFINALS_FINAL_CHAMPION"
-    ){
+    }else if(format==="SEMIFINALS_FINAL_CHAMPION"){
 
         rounds=[
             {
@@ -805,22 +667,15 @@ function renderBracketMatches(
     rounds.forEach(round=>{
 
         const column=document.createElement("div");
-
         column.className="bracket-round";
 
-        const roundTitle=
-            document.createElement("h3");
-
+        const roundTitle=document.createElement("h3");
         roundTitle.textContent=round.title;
 
         column.appendChild(roundTitle);
 
         round.matches.forEach(match=>{
-
-            column.appendChild(
-                createBracketMatch(match)
-            );
-
+            column.appendChild(createBracketMatch(match));
         });
 
         bracket.appendChild(column);
@@ -841,10 +696,7 @@ function createBracketMatch(match){
 
     card.className="bracket-match";
 
-    addChampionshipHeader(
-        card,
-        match
-    );
+    addChampionshipHeader(card,match);
 
     if(match.wrestler3){
 
@@ -854,14 +706,11 @@ function createBracketMatch(match){
             [match.wrestler3,match.score3]
         ];
 
-        const maxScore=Math.max(
-            ...players.map(p=>p[1])
-        );
+        const maxScore=Math.max(...players.map(p=>p[1]));
 
         players.forEach(player=>{
 
-            const row=
-                document.createElement("div");
+            const row=document.createElement("div");
 
             row.className=
                 player[1]===maxScore
@@ -879,28 +728,21 @@ function createBracketMatch(match){
 
     }else{
 
-        const winner1=
-            match.score1>match.score2;
+        const winner1=match.score1>match.score2;
+        const winner2=match.score2>match.score1;
 
-        const winner2=
-            match.score2>match.score1;
+        const row1=document.createElement("div");
 
-        const row1=
-            document.createElement("div");
-
-        row1.className=
-            winner1?"winner":"";
+        row1.className=winner1?"winner":"";
 
         row1.innerHTML=`
             ${createWrestlerLink(match.wrestler1)}
             <span>${match.score1}</span>
         `;
 
-        const row2=
-            document.createElement("div");
+        const row2=document.createElement("div");
 
-        row2.className=
-            winner2?"winner":"";
+        row2.className=winner2?"winner":"";
 
         row2.innerHTML=`
             ${createWrestlerLink(match.wrestler2)}
@@ -920,18 +762,13 @@ function createBracketMatch(match){
    CHAMPIONSHIP
    ========================================= */
 
-function addChampionshipHeader(
-    card,
-    match
-){
+function addChampionshipHeader(card,match){
 
     if(!match.championship)return;
 
-    const championship=
-        document.createElement("div");
+    const championship=document.createElement("div");
 
-    championship.className=
-        "bracket-championship";
+    championship.className="bracket-championship";
 
     championship.innerHTML=`
         <div class="bracket-championship-title">
@@ -939,8 +776,7 @@ function addChampionshipHeader(
         </div>
 
         ${
-            match.champion&&
-            match.championshipImage
+            match.champion&&match.championshipImage
             ?
             `
             <div class="bracket-champion">
@@ -957,8 +793,7 @@ function addChampionshipHeader(
 
     championship.style.setProperty(
         "--championship-color",
-        match.championshipColor||
-        "#d4af37"
+        match.championshipColor||"#d4af37"
     );
 
     card.appendChild(championship);
@@ -973,34 +808,23 @@ function renderResults(tournament){
 
     resultsContainer.innerHTML="";
 
-    Object.entries(tournament.shows||{})
-    .forEach(([showId,show])=>{
+    Object.entries(tournament.shows||{}).forEach(([showId,show])=>{
 
-        const matches=
-            (show.matches||[]).map(
-                getMatchData
-            );
+        const matches=(show.matches||[]).map(getMatchData);
 
         if(!matches.length)return;
 
         renderPhase(
-            showId
-                .replace(/-/g," ")
-                .toUpperCase(),
+            showId.replace(/-/g," ").toUpperCase(),
             matches
         );
 
     });
 
-    if(
-        tournament.finalMatches?.length&&
-        tournament.bracketFormat
-    ){
+    if(tournament.finalMatches?.length&&tournament.bracketFormat){
 
         renderBracketMatches(
-            tournament.finalMatches.map(
-                getMatchData
-            ),
+            tournament.finalMatches.map(getMatchData),
             resultsContainer,
             tournament.bracketFormat,
             tournament.bracketTitle
@@ -1016,10 +840,7 @@ function renderResults(tournament){
 
 function resolveEventReference(match){
 
-    if(
-        !match||
-        match.type!=="EVENT_REFERENCE"
-    )
+    if(!match||match.type!=="EVENT_REFERENCE")
         return match;
 
     if(
@@ -1028,32 +849,21 @@ function resolveEventReference(match){
     )
         return null;
 
-    const event=
-        eventData[match.eventId];
+    const event=eventData[match.eventId];
+    const result=event.results?.[match.matchIndex];
 
-    const result=
-        event.results?.[match.matchIndex];
+    if(!result)return null;
 
-    if(!result)
-        return null;
-
-    if(
-        !result.wrestler1||
-        !result.wrestler2
-    )
+    if(!result.wrestler1||!result.wrestler2)
         return null;
 
     return{
 
         wrestler1:result.wrestler1,
-
         wrestler2:result.wrestler2,
 
         score1:result.score1??0,
-
         score2:result.score2??0,
-
-        /* EVENT_REFERENCE OVERRIDES */
 
         championship:
             match.championship||
@@ -1090,49 +900,33 @@ function createMatchCard(match){
 
     card.className="result-card";
 
-    const winner1=
-        match.score1>match.score2;
-
-    const winner2=
-        match.score2>match.score1;
+    const winner1=match.score1>match.score2;
+    const winner2=match.score2>match.score1;
 
     if(winner1)
         card.classList.add("wrestler1-win");
-
     else if(winner2)
         card.classList.add("wrestler2-win");
-
     else
         card.classList.add("draw");
 
     if(match.championship){
 
-        card.addEventListener(
-            "click",
-            e=>{
+        card.addEventListener("click",e=>{
 
-                e.stopPropagation();
+            e.stopPropagation();
 
-                document
-                    .querySelectorAll(
-                        ".result-card.selected"
-                    )
-                    .forEach(el=>
-                        el.classList.remove(
-                            "selected"
-                        )
-                    );
+            document
+                .querySelectorAll(".result-card.selected")
+                .forEach(el=>el.classList.remove("selected"));
 
-                card.classList.add("selected");
+            card.classList.add("selected");
 
-            }
-        );
+        });
 
-        const championship=
-            document.createElement("div");
+        const championship=document.createElement("div");
 
-        championship.className=
-            "bracket-championship";
+        championship.className="bracket-championship";
 
         championship.innerHTML=`
             <div class="bracket-championship-title">
@@ -1140,8 +934,7 @@ function createMatchCard(match){
             </div>
 
             ${
-                match.champion&&
-                match.championshipImage
+                match.champion&&match.championshipImage
                 ?
                 `
                 <div class="bracket-champion">
@@ -1158,40 +951,29 @@ function createMatchCard(match){
 
         championship.style.setProperty(
             "--championship-color",
-            match.championshipColor||
-            "#d4af37"
+            match.championshipColor||"#d4af37"
         );
 
         card.appendChild(championship);
 
     }else{
 
-        card.addEventListener(
-            "click",
-            ()=>{
+        card.addEventListener("click",()=>{
 
-                document
-                    .querySelectorAll(
-                        ".result-card.selected"
-                    )
-                    .forEach(el=>
-                        el.classList.remove(
-                            "selected"
-                        )
-                    );
+            document
+                .querySelectorAll(".result-card.selected")
+                .forEach(el=>el.classList.remove("selected"));
 
-                card.classList.add("selected");
+            card.classList.add("selected");
 
-            }
-        );
+        });
 
     }
 
     card.innerHTML+=`
         <div class="result-wrestler">
             ${
-                match.champion===
-                match.wrestler1&&
+                match.champion===match.wrestler1&&
                 match.championshipImage
                 ?
                 `
@@ -1212,8 +994,7 @@ function createMatchCard(match){
 
         <div class="result-wrestler">
             ${
-                match.champion===
-                match.wrestler2&&
+                match.champion===match.wrestler2&&
                 match.championshipImage
                 ?
                 `
@@ -1237,23 +1018,14 @@ function createMatchCard(match){
    CLEAR SELECTED
    ========================================= */
 
-document.addEventListener(
-    "click",
-    e=>{
+document.addEventListener("click",e=>{
 
-        if(!e.target.closest(".result-card")){
+    if(!e.target.closest(".result-card")){
 
-            document
-                .querySelectorAll(
-                    ".result-card.selected"
-                )
-                .forEach(el=>
-                    el.classList.remove(
-                        "selected"
-                    )
-                );
-
-        }
+        document
+            .querySelectorAll(".result-card.selected")
+            .forEach(el=>el.classList.remove("selected"));
 
     }
-);
+
+});
