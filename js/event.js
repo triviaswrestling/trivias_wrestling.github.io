@@ -1692,12 +1692,15 @@ function getAllChronologyEvents(){
             if(!data) continue;
 
             const containers=[
-                data.shows,
-                data.weekly,
-                (!Array.isArray(data.matches)
-                    ?data.matches
-                    :null)
-            ];
+    data.shows,
+    data.weekly,
+    (!Array.isArray(data.matches)
+        ?data.matches
+        :null),
+    ...(Array.isArray(data.leagues)
+        ?data.leagues.map(league=>league.shows)
+        :[])
+];
 
             containers.forEach(container=>{
 
