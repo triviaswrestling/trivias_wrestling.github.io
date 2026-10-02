@@ -8,17 +8,12 @@ const tournamentId=params.get("id");
 const brandElement=document.getElementById("tournament-brand");
 const titleElement=document.getElementById("tournament-title");
 const divisionElement=document.getElementById("tournament-division");
-
 const draftContainer=document.getElementById("draft-container");
 const standingsBody=document.getElementById("standings-body");
 const matrixTable=document.getElementById("matrix-table");
 const resultsContainer=document.getElementById("results-container");
 
 const tournament=outsiderData[tournamentId];
-
-if(tournamentId){
-    document.body.dataset.tournament=tournamentId;
-}
 
 /* =========================================
    HELPERS
@@ -38,8 +33,7 @@ function getWrestler(name){
 }
 
 function getWrestlerImage(name){
-    const wrestler=getWrestler(name);
-    return wrestler?.image||"images/Vacante.jpg";
+    return getWrestler(name)?.image||"images/Vacante.jpg";
 }
 
 function createWrestlerLink(name){
@@ -58,13 +52,123 @@ function showSection(element){
     if(section)section.style.display="";
 }
 
-function getMatchData(match){
+/* =========================================
+   EVENT REFERENCE
+   ========================================= */
 
-    if(match&&match.type==="EVENT_REFERENCE"){
-        match=resolveEventReference(match);
+function resolveEventReference(match){
+
+    if(!match||match.type!=="EVENT_REFERENCE")
+        return match;
+
+    if(typeof eventData==="undefined")
+        return null;
+
+    const event=eventData[match.eventId];
+
+    if(!event)
+        return null;
+
+    let result=null;
+    const index=Number(match.matchIndex??0);
+
+    /* FORMATO DIRECTO */
+    if(Array.isArray(event.results))
+        result=event.results[index];
+
+    /* FORMATO MATCHES */
+    if(!result&&Array.isArray(event.matches))
+        result=event.matches[index];
+
+    /* FORMATO SHOWS */
+    if(!result&&event.shows){
+
+        const shows=Object.values(event.shows);
+
+        for(const show of shows){
+
+            const list=
+                show.matches||
+                show.results||
+                [];
+
+            if(Array.isArray(list)&&list[index]){
+                result=list[index];
+                break;
+            }
+
+        }
+
     }
 
-    if(!Array.isArray(match))return match;
+    /* FORMATO RESULTS DENTRO DE SHOW */
+    if(!result&&Array.isArray(event.results)){
+
+        for(const item of event.results){
+
+            if(item?.matches?.[index]){
+                result=item.matches[index];
+                break;
+            }
+
+        }
+
+    }
+
+    if(!result)
+        return null;
+
+    /* ARRAY: [wrestler1,wrestler2,score1,score2,meta] */
+    if(Array.isArray(result)){
+
+        const meta=result[4]||{};
+
+        return{
+            wrestler1:result[0],
+            wrestler2:result[1],
+            score1:result[2]??0,
+            score2:result[3]??0,
+            championship:match.championship||meta.championship,
+            championshipColor:match.championshipColor||meta.championshipColor,
+            championshipImage:match.championshipImage||meta.championshipImage,
+            champion:match.champion||meta.champion
+        };
+
+    }
+
+    /* OBJETO */
+    return{
+        wrestler1:result.wrestler1||result.player1||result.winner1,
+        wrestler2:result.wrestler2||result.player2||result.winner2,
+        score1:result.score1??result.player1Score??result.scoreA??0,
+        score2:result.score2??result.player2Score??result.scoreB??0,
+        championship:
+            match.championship||
+            result.championship,
+        championshipColor:
+            match.championshipColor||
+            result.championshipColor,
+        championshipImage:
+            match.championshipImage||
+            result.championshipImage,
+        champion:
+            match.champion||
+            result.champion
+    };
+
+}
+
+/* =========================================
+   MATCH DATA
+   ========================================= */
+
+function getMatchData(match){
+
+    if(match?.type==="EVENT_REFERENCE")
+        return resolveEventReference(match);
+
+    if(!Array.isArray(match))
+        return match;
 
     const meta=match[4]||{};
 
@@ -78,6 +182,7 @@ function getMatchData(match){
         championshipImage:meta.championshipImage,
         champion:meta.champion
     };
+
 }
 
 /* =========================================
@@ -102,25 +207,24 @@ if(!tournament){
 
     }else{
 
-        if(tournament.standings?.length){
+        if(tournament.standings?.length)
             renderStandings(tournament);
-        }else{
+        else{
             standingsBody.innerHTML="";
             hideSection(standingsBody);
         }
 
-        if(tournament.matrix?.length){
+        if(tournament.matrix?.length)
             renderMatrix(tournament);
-        }else{
+        else{
             matrixTable.innerHTML="";
             hideSection(matrixTable);
         }
 
-        if(tournament.format==="BRACKET"){
+        if(tournament.format==="BRACKET")
             renderBracket(tournament);
-        }else{
+        else
             renderResults(tournament);
-        }
 
     }
 
@@ -177,6 +281,8 @@ function buildStandings(participants,matches){
     });
 
     matches.forEach(match=>{
+
+        if(!match)return;
 
         const a=standings[match.wrestler1];
         const b=standings[match.wrestler2];
@@ -302,8 +408,8 @@ function renderLeagueMatrix(participants,matches){
     participants.forEach(name=>{
 
         const row=document.createElement("tr");
-        const nameCell=document.createElement("td");
 
+        const nameCell=document.createElement("td");
         nameCell.innerHTML=createWrestlerLink(name);
         row.appendChild(nameCell);
 
@@ -388,11 +494,12 @@ function renderLeaguesTournament(tournament){
 
                 const data=getMatchData(match);
 
-                matches.push({
-                    ...data,
-                    date:show.date,
-                    show:showId
-                });
+                if(data)
+                    matches.push({
+                        ...data,
+                        date:show.date,
+                        show:showId
+                    });
 
             });
 
@@ -410,28 +517,27 @@ function renderLeaguesTournament(tournament){
 
             standingsBody.appendChild(title);
 
-            const standings=buildStandings(participants,matches);
+            buildStandings(participants,matches)
+                .forEach((w,index)=>{
 
-            standings.forEach((w,index)=>{
+                    const row=document.createElement("tr");
 
-                const row=document.createElement("tr");
+                    row.innerHTML=`
+                        <td>${index+1}</td>
+                        <td>${createWrestlerLink(w.name)}</td>
+                        <td>${w.played}</td>
+                        <td>${w.wins}</td>
+                        <td>${w.draws}</td>
+                        <td>${w.losses}</td>
+                        <td>${w.points}</td>
+                    `;
 
-                row.innerHTML=`
-                    <td>${index+1}</td>
-                    <td>${createWrestlerLink(w.name)}</td>
-                    <td>${w.played}</td>
-                    <td>${w.wins}</td>
-                    <td>${w.draws}</td>
-                    <td>${w.losses}</td>
-                    <td>${w.points}</td>
-                `;
+                    if(index===0)row.classList.add("champion");
+                    if(index===participants.length-1)row.classList.add("relegation");
 
-                if(index===0)row.classList.add("champion");
-                if(index===standings.length-1)row.classList.add("relegation");
+                    standingsBody.appendChild(row);
 
-                standingsBody.appendChild(row);
-
-            });
+                });
 
         }
 
@@ -471,7 +577,7 @@ function renderLeaguesTournament(tournament){
 
             renderPhase(
                 `${league.name||"LEAGUE"} — ${showId.replace(/-/g," ").toUpperCase()}`,
-                (show.matches||[]).map(getMatchData)
+                (show.matches||[]).map(getMatchData).filter(Boolean)
             );
 
         });
@@ -479,7 +585,7 @@ function renderLeaguesTournament(tournament){
         if(league.finalMatches?.length&&league.bracketFormat){
 
             renderBracketMatches(
-                league.finalMatches.map(getMatchData),
+                league.finalMatches.map(getMatchData).filter(Boolean),
                 resultsContainer,
                 league.bracketFormat,
                 league.bracketTitle
@@ -492,7 +598,7 @@ function renderLeaguesTournament(tournament){
     if(tournament.finalMatches?.length&&tournament.bracketFormat){
 
         renderBracketMatches(
-            tournament.finalMatches.map(getMatchData),
+            tournament.finalMatches.map(getMatchData).filter(Boolean),
             resultsContainer,
             tournament.bracketFormat,
             tournament.bracketTitle
@@ -513,6 +619,8 @@ function renderLeaguesTournament(tournament){
    ========================================= */
 
 function renderPhase(title,matches){
+
+    matches=matches.filter(Boolean);
 
     if(!matches.length)return;
 
@@ -547,13 +655,12 @@ function renderBracket(tournament){
 
             const data=getMatchData(match);
 
-            if(data){
+            if(data)
                 matches.push({
                     ...data,
                     showId,
                     date:show.date
                 });
-            }
 
         });
 
@@ -563,17 +670,16 @@ function renderBracket(tournament){
 
         const data=getMatchData(match);
 
-        if(data)matches.push(data);
+        if(data)
+            matches.push(data);
 
     });
 
     renderBracketMatches(
         matches,
         resultsContainer,
-        tournament.bracketFormat||
-            "QUARTERS_SEMIFINALS_FINAL",
-        tournament.bracketTitle||
-            "BRACKET"
+        tournament.bracketFormat||"QUARTERS_SEMIFINALS_FINAL",
+        tournament.bracketTitle||"BRACKET"
     );
 
 }
@@ -594,14 +700,12 @@ function renderBracketMatches(matches,container,format,title){
     if(!valid.length)return;
 
     const heading=document.createElement("div");
-
     heading.className="results-date";
     heading.textContent=title||"BRACKET";
 
     container.appendChild(heading);
 
     const bracket=document.createElement("div");
-
     bracket.className="chamber-bracket";
 
     let rounds=[];
@@ -609,62 +713,37 @@ function renderBracketMatches(matches,container,format,title){
     if(format==="QUARTERS_SEMIFINALS_FINAL"){
 
         rounds=[
-            {
-                title:"QUARTERFINALS",
-                matches:valid.slice(0,4)
-            },
-            {
-                title:"SEMIFINALS",
-                matches:valid.slice(4,6)
-            },
-            {
-                title:"FINAL",
-                matches:valid.slice(6,7)
-            }
+            {title:"QUARTERFINALS",matches:valid.slice(0,4)},
+            {title:"SEMIFINALS",matches:valid.slice(4,6)},
+            {title:"FINAL",matches:valid.slice(6,7)}
         ];
 
     }else if(format==="SEMIFINALS_FINAL"){
 
         rounds=[
-            {
-                title:"SEMIFINALS",
-                matches:valid.slice(0,2)
-            },
-            {
-                title:"FINAL",
-                matches:valid.slice(2,3)
-            }
+            {title:"SEMIFINALS",matches:valid.slice(0,2)},
+            {title:"FINAL",matches:valid.slice(2,3)}
         ];
 
     }else if(format==="SEMIFINALS_FINAL_CHAMPION"){
 
         rounds=[
-            {
-                title:"SEMIFINALS",
-                matches:valid.slice(0,2)
-            },
-            {
-                title:"FINAL",
-                matches:valid.slice(2,3)
-            },
-            {
-                title:"CHAMPIONSHIP MATCH",
-                matches:valid.slice(3,4)
-            }
+            {title:"SEMIFINALS",matches:valid.slice(0,2)},
+            {title:"FINAL",matches:valid.slice(2,3)},
+            {title:"CHAMPIONSHIP MATCH",matches:valid.slice(3,4)}
         ];
 
     }else{
 
         rounds=[
-            {
-                title:"FINAL",
-                matches:valid
-            }
+            {title:"FINAL",matches:valid}
         ];
 
     }
 
     rounds.forEach(round=>{
+
+        if(!round.matches.length)return;
 
         const column=document.createElement("div");
         column.className="bracket-round";
@@ -693,7 +772,6 @@ function renderBracketMatches(matches,container,format,title){
 function createBracketMatch(match){
 
     const card=document.createElement("div");
-
     card.className="bracket-match";
 
     addChampionshipHeader(card,match);
@@ -712,10 +790,7 @@ function createBracketMatch(match){
 
             const row=document.createElement("div");
 
-            row.className=
-                player[1]===maxScore
-                    ?"winner"
-                    :"";
+            row.className=player[1]===maxScore?"winner":"";
 
             row.innerHTML=`
                 ${createWrestlerLink(player[0])}
@@ -732,18 +807,14 @@ function createBracketMatch(match){
         const winner2=match.score2>match.score1;
 
         const row1=document.createElement("div");
-
         row1.className=winner1?"winner":"";
-
         row1.innerHTML=`
             ${createWrestlerLink(match.wrestler1)}
             <span>${match.score1}</span>
         `;
 
         const row2=document.createElement("div");
-
         row2.className=winner2?"winner":"";
-
         row2.innerHTML=`
             ${createWrestlerLink(match.wrestler2)}
             <span>${match.score2}</span>
@@ -767,7 +838,6 @@ function addChampionshipHeader(card,match){
     if(!match.championship)return;
 
     const championship=document.createElement("div");
-
     championship.className="bracket-championship";
 
     championship.innerHTML=`
@@ -780,10 +850,7 @@ function addChampionshipHeader(card,match){
             ?
             `
             <div class="bracket-champion">
-                <img
-                    src="${match.championshipImage}"
-                    style="width:22px;height:22px;object-fit:contain;"
-                >
+                <img src="${match.championshipImage}" style="width:22px;height:22px;object-fit:contain;">
                 ${createWrestlerLink(match.champion)}
             </div>
             `
@@ -810,7 +877,9 @@ function renderResults(tournament){
 
     Object.entries(tournament.shows||{}).forEach(([showId,show])=>{
 
-        const matches=(show.matches||[]).map(getMatchData);
+        const matches=(show.matches||[])
+            .map(getMatchData)
+            .filter(Boolean);
 
         if(!matches.length)return;
 
@@ -824,7 +893,7 @@ function renderResults(tournament){
     if(tournament.finalMatches?.length&&tournament.bracketFormat){
 
         renderBracketMatches(
-            tournament.finalMatches.map(getMatchData),
+            tournament.finalMatches.map(getMatchData).filter(Boolean),
             resultsContainer,
             tournament.bracketFormat,
             tournament.bracketTitle
@@ -835,69 +904,17 @@ function renderResults(tournament){
 }
 
 /* =========================================
-   EVENT REFERENCE
-   ========================================= */
-
-function resolveEventReference(match){
-
-    if(!match||match.type!=="EVENT_REFERENCE")
-        return match;
-
-    if(
-        typeof eventData==="undefined"||
-        !eventData[match.eventId]
-    )
-        return null;
-
-    const event=eventData[match.eventId];
-    const result=event.results?.[match.matchIndex];
-
-    if(!result)return null;
-
-    if(!result.wrestler1||!result.wrestler2)
-        return null;
-
-    return{
-
-        wrestler1:result.wrestler1,
-        wrestler2:result.wrestler2,
-
-        score1:result.score1??0,
-        score2:result.score2??0,
-
-        championship:
-            match.championship||
-            result.championship,
-
-        championshipColor:
-            match.championshipColor||
-            result.championshipColor,
-
-        championshipImage:
-            match.championshipImage||
-            result.championshipImage,
-
-        champion:
-            match.champion||
-            result.champion
-
-    };
-
-}
-
-/* =========================================
    MATCH CARD
    ========================================= */
 
 function createMatchCard(match){
 
-    match=resolveEventReference(match);
+    if(match?.type==="EVENT_REFERENCE")
+        match=resolveEventReference(match);
 
-    if(!match)
-        return document.createElement("div");
+    if(!match)return document.createElement("div");
 
     const card=document.createElement("div");
-
     card.className="result-card";
 
     const winner1=match.score1>match.score2;
@@ -925,7 +942,6 @@ function createMatchCard(match){
         });
 
         const championship=document.createElement("div");
-
         championship.className="bracket-championship";
 
         championship.innerHTML=`
@@ -938,10 +954,7 @@ function createMatchCard(match){
                 ?
                 `
                 <div class="bracket-champion">
-                    <img
-                        src="${match.championshipImage}"
-                        style="width:22px;height:22px;object-fit:contain;"
-                    >
+                    <img src="${match.championshipImage}" style="width:22px;height:22px;object-fit:contain;">
                     ${createWrestlerLink(match.champion)}
                 </div>
                 `
@@ -973,18 +986,11 @@ function createMatchCard(match){
     card.innerHTML+=`
         <div class="result-wrestler">
             ${
-                match.champion===match.wrestler1&&
-                match.championshipImage
+                match.champion===match.wrestler1&&match.championshipImage
                 ?
-                `
-                <img
-                    src="${match.championshipImage}"
-                    style="width:22px;height:22px;object-fit:contain;vertical-align:middle;margin-right:5px;"
-                >
-                `
+                `<img src="${match.championshipImage}" style="width:22px;height:22px;object-fit:contain;vertical-align:middle;margin-right:5px;">`
                 :""
             }
-
             ${createWrestlerLink(match.wrestler1)}
         </div>
 
@@ -994,18 +1000,11 @@ function createMatchCard(match){
 
         <div class="result-wrestler">
             ${
-                match.champion===match.wrestler2&&
-                match.championshipImage
+                match.champion===match.wrestler2&&match.championshipImage
                 ?
-                `
-                <img
-                    src="${match.championshipImage}"
-                    style="width:22px;height:22px;object-fit:contain;vertical-align:middle;margin-right:5px;"
-                >
-                `
+                `<img src="${match.championshipImage}" style="width:22px;height:22px;object-fit:contain;vertical-align:middle;margin-right:5px;">`
                 :""
             }
-
             ${createWrestlerLink(match.wrestler2)}
         </div>
     `;
