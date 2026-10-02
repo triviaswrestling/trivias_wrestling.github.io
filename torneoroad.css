@@ -892,3 +892,190 @@
         margin-top:0;
     }
 }
+/* =========================================
+   OUTSIDER / TOURNAMENT BRAND COLORS
+   ========================================= */
+
+/* =========================================
+   SMACKDOWN
+   ========================================= */
+
+body[data-tournament^="friday-night-smackdown"] .bracket-round h3{
+    color:#1688ff;
+    border-bottom-color:#1688ff;
+}
+
+body[data-tournament^="friday-night-smackdown"] .bracket-match{
+    border-left-color:#1688ff;
+    box-shadow:0 0 10px rgba(22,136,255,.12);
+}
+
+body[data-tournament^="friday-night-smackdown"] .bracket-match:hover{
+    border-color:#1688ff;
+    box-shadow:0 0 15px rgba(22,136,255,.30);
+}
+
+body[data-tournament^="friday-night-smackdown"] .bracket-match .winner{
+    background:rgba(22,136,255,.15);
+}
+
+/* =========================================
+   NXT
+   ========================================= */
+
+body[data-tournament^="wwe-nxt"] .bracket-round h3{
+    color:#c0c0c0;
+    border-bottom-color:#c0c0c0;
+}
+
+body[data-tournament^="wwe-nxt"] .bracket-match{
+    border-left-color:#c0c0c0;
+    box-shadow:0 0 10px rgba(192,192,192,.12);
+}
+
+body[data-tournament^="wwe-nxt"] .bracket-match:hover{
+    border-color:#c0c0c0;
+    box-shadow:0 0 15px rgba(192,192,192,.30);
+}
+
+body[data-tournament^="wwe-nxt"] .bracket-match .winner{
+    background:rgba(192,192,192,.15);
+}
+
+/* =========================================
+   SPEED
+   ========================================= */
+
+body[data-tournament^="wwe-speed"] .bracket-round h3{
+    color:#20c878;
+    border-bottom-color:#55d9ff;
+}
+
+body[data-tournament^="wwe-speed"] .bracket-match{
+    border-left-color:#20c878;
+    box-shadow:0 0 10px rgba(32,200,120,.12);
+}
+
+body[data-tournament^="wwe-speed"] .bracket-match:hover{
+    border-color:#55d9ff;
+    box-shadow:0 0 15px rgba(85,217,255,.30);
+}
+
+body[data-tournament^="wwe-speed"] .bracket-match .winner{
+    background:rgba(32,200,120,.15);
+}
+
+/* =========================================
+   TNA
+   ========================================= */
+
+body[data-tournament^="tna"] .bracket-round h3{
+    color:#ffd400;
+    border-bottom-color:#d90024;
+}
+
+body[data-tournament^="tna"] .bracket-match{
+    border-left-color:#d90024;
+    box-shadow:0 0 10px rgba(217,0,36,.12);
+}
+
+body[data-tournament^="tna"] .bracket-match:hover{
+    border-color:#ffd400;
+    box-shadow:0 0 15px rgba(255,212,0,.30);
+}
+
+body[data-tournament^="tna"] .bracket-match .winner{
+    background:rgba(217,0,36,.15);
+}
+
+/* =========================================
+   AEW
+   ========================================= */
+
+body[data-tournament^="aew"] .bracket-round h3{
+    color:#ffffff;
+    border-bottom-color:#d4af37;
+}
+
+body[data-tournament^="aew"] .bracket-match{
+    border-left-color:#ffffff;
+    box-shadow:0 0 10px rgba(255,255,255,.10);
+}
+
+body[data-tournament^="aew"] .bracket-match:hover{
+    border-color:#d4af37;
+    box-shadow:0 0 15px rgba(212,175,55,.30);
+}
+
+body[data-tournament^="aew"] .bracket-match .winner{
+    background:rgba(212,175,55,.12);
+}
+
+/* =========================================
+   AAA
+   ========================================= */
+
+body[data-tournament^="aaa"] .bracket-round h3{
+    color:#009b4d;
+    border-bottom-color:#d90024;
+}
+
+body[data-tournament^="aaa"] .bracket-match{
+    border-left-color:#009b4d;
+    box-shadow:0 0 10px rgba(0,155,77,.12);
+}
+
+body[data-tournament^="aaa"] .bracket-match:hover{
+    border-color:#ffffff;
+    box-shadow:
+        0 0 8px rgba(0,155,77,.25),
+        0 0 15px rgba(217,0,36,.20);
+}
+
+body[data-tournament^="aaa"] .bracket-match .winner{
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,155,77,.18),
+            rgba(217,0,36,.12)
+        );
+}
+
+/* =========================================
+   CMLL
+   ========================================= */
+
+body[data-tournament^="cmll"] .bracket-round h3{
+    color:#d4af37;
+    border-bottom-color:#0057b8;
+}
+
+body[data-tournament^="cmll"] .bracket-match{
+    border-left-color:#0057b8;
+    box-shadow:0 0 10px rgba(0,87,184,.12);
+}
+
+body[data-tournament^="cmll"] .bracket-match:hover{
+    border-color:#d4af37;
+    box-shadow:0 0 15px rgba(212,175,55,.30);
+}
+
+body[data-tournament^="cmll"] .bracket-match .winner{
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,87,184,.16),
+            rgba(212,175,55,.12)
+        );
+}
+
+/* =========================================
+   RAW
+   ========================================= */
+
+/*
+   RAW NO SE MODIFICA.
+   Conserva exactamente el rojo original
+   definido arriba en .bracket-round h3
+   y .bracket-match.
+*/
