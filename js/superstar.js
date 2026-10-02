@@ -459,159 +459,70 @@ function adaptTournamentResult(result){
    ========================================= */
 
 function getTournamentEvents(){
+const list=[];
+if(typeof tournamentData==="undefined")return list;
+const added=new Set();
 
-    const list=[];
+Object.entries(tournamentData).forEach(([tournamentKey,data])=>{
+if(!data)return;
 
-    if(typeof tournamentData==="undefined")
-        return list;
+function addEvent(id,event,results){
+if(!event)return;
+if(!/^raw-\d+$/.test(id)&&!/^smackdown-\d+$/.test(id)&&!/^nxt-\d+$/.test(id))return;
 
-    const added=new Set();
+const uniqueKey=`${id}-${tournamentKey}`;
+if(added.has(uniqueKey))return;
+added.add(uniqueKey);
 
-    Object.entries(tournamentData)
-    .forEach(([tournamentKey,data])=>{
+list.push({
+id,
+title:id.startsWith("nxt-")?"NXT #"+id.split("-")[1]:id.startsWith("raw-")?"RAW #"+id.split("-")[1]:"SMACKDOWN #"+id.split("-")[1],
+date:event.date||"",
+brand:id.startsWith("nxt-")?"NXT":id.startsWith("raw-")?"RAW":"SMACKDOWN",
+type:id.startsWith("nxt-")?"NXT":"WEEKLY",
+results:(results||[]).map(adaptTournamentResult).filter(Boolean),
+tournamentSource:true,
+tournamentKey
+});
+}
 
-        if(!data)return;
+if(data.weekly){
+Object.entries(data.weekly).forEach(([id,event])=>{
+addEvent(id,event,event.results||[]);
+});
+}
 
-        function addEvent(id,event,results){
+if(data.matches&&!Array.isArray(data.matches)){
+Object.entries(data.matches).forEach(([id,event])=>{
+addEvent(id,event,event.results||[]);
+});
+}
 
-            if(!event)return;
-
-            if(
-                !/^raw-\d+$/.test(id)&&
-                !/^smackdown-\d+$/.test(id)&&
-                !/^nxt-\d+$/.test(id)
-            )
-                return;
-
-            const uniqueKey=
-                `${id}-${tournamentKey}`;
-
-            if(added.has(uniqueKey))
-                return;
-
-            added.add(uniqueKey);
-
-            list.push({
-
-                id,
-
-                title:
-                    id.startsWith("nxt-")
-                        ?"NXT #"+id.split("-")[1]
-                        :id.startsWith("raw-")
-                            ?"RAW #"+id.split("-")[1]
-                            :"SMACKDOWN #"+id.split("-")[1],
-
-                date:event.date||"",
-
-                brand:
-                    id.startsWith("nxt-")
-                        ?"NXT"
-                        :id.startsWith("raw-")
-                            ?"RAW"
-                            :"SMACKDOWN",
-
-                type:
-                    id.startsWith("nxt-")
-                        ?"NXT"
-                        :"WEEKLY",
-
-                results:(results||[])
-                    .map(adaptTournamentResult)
-                    .filter(Boolean),
-
-                tournamentSource:true,
-                tournamentKey
-
-            });
-        }
-
-        if(data.weekly){
-
-            Object.entries(data.weekly)
-            .forEach(([id,event])=>{
-
-                addEvent(
-                    id,
-                    event,
-                    event.results||[]
-                );
-
-            });
-
-        }
-
-        if(
-            data.matches&&
-            !Array.isArray(data.matches)
-        ){
-
-            Object.entries(data.matches)
-            .forEach(([id,event])=>{
-
-                addEvent(
-                    id,
-                    event,
-                    event.results||[]
-                );
-
-            });
-
-        }
-
-        if(data.shows){
-
-    Object.entries(data.shows)
-    .forEach(([id,event])=>{
-
-        addEvent(
-            id,
-            event,
-            event.matches||[]
-        );
-
-    });
-
+if(data.shows){
+Object.entries(data.shows).forEach(([id,event])=>{
+addEvent(id,event,event.matches||[]);
+});
 }
 
 if(Array.isArray(data.leagues)){
+const grouped={};
 
-    const grouped={};
+data.leagues.forEach(league=>{
+Object.entries(league.shows||{}).forEach(([id,event])=>{
+if(!grouped[id])grouped[id]={date:event.date||"",matches:[]};
+grouped[id].matches.push(...(event.matches||[]));
+});
+});
 
-    data.leagues.forEach(league=>{
+Object.entries(grouped).forEach(([id,event])=>{
+addEvent(id,event,event.matches);
+});
+}
 
-        Object.entries(league.shows||{})
-        .forEach(([id,event])=>{
+});
 
-            if(!grouped[id]){
-
-                grouped[id]={
-                    date:event.date||"",
-                    matches:[]
-                };
-
-            }
-
-            grouped[id].matches.push(
-                ...(event.matches||[])
-            );
-
-        });
-
-    });
-
-    Object.entries(grouped)
-    .forEach(([id,event])=>{
-
-        addEvent(
-            id,
-            event,
-            event.matches
-        );
-
-    });
-
-   }
+return list;
+}
 
 /* =========================================
    OUTSIDER EVENTS
