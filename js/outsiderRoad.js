@@ -27,12 +27,15 @@ if(!tournament){
 }else{
 
     document.body.dataset.outsider="true";
+
     document.body.dataset.brand=
         (tournament.brand||"outsider")
         .toLowerCase()
         .replace(/\s+/g,"-");
 
-    brandElement.textContent=tournament.brand||"OUTSIDER";
+    brandElement.textContent=
+        tournament.brand||"OUTSIDER";
+
     titleElement.textContent=
         tournament.name||
         tournament.title||
@@ -66,16 +69,20 @@ if(!tournament){
    ========================================= */
 
 function createWrestlerId(name){
+
     return String(name||"")
         .toLowerCase()
         .trim()
         .replace(/\s+/g,"-");
+
 }
 
 function normalizeName(name){
+
     return String(name||"")
         .toLowerCase()
         .trim();
+
 }
 
 function getWrestler(name){
@@ -87,12 +94,14 @@ function getWrestler(name){
     return wrestlers.find(w=>
         normalizeName(w.name)===normalizeName(name)
     )||null;
+
 }
 
 function getWrestlerImage(name){
 
     return getWrestler(name)?.image||
         "images/Vacante.jpg";
+
 }
 
 function createWrestlerLink(name){
@@ -105,6 +114,7 @@ function createWrestlerLink(name){
             ${name}
         </a>
     `;
+
 }
 
 /* =========================================
@@ -121,6 +131,7 @@ function renderDraft(tournament){
             "<p>NO DRAFT DATA</p>";
 
         return;
+
     }
 
     tournament.roster.forEach(name=>{
@@ -204,6 +215,7 @@ function renderMatrix(tournament){
             );
 
             cell.textContent=value;
+
             row.appendChild(cell);
 
         });
@@ -407,12 +419,10 @@ function resolveEventReference(match){
         return null;
     }
 
-    /* ARRAY NORMAL */
     if(Array.isArray(result)){
         return result;
     }
 
-    /* OBJECT RESULT */
     if(
         result.wrestler1&&
         result.wrestler2
@@ -433,61 +443,130 @@ function resolveEventReference(match){
 }
 
 /* =========================================
-   CHAMPIONSHIP HEADER
+   CHAMPIONSHIP RESULT
    ========================================= */
 
-function addChampionshipHeader(card,meta){
+function createChampionshipResult(
+    wrestler1,
+    wrestler2,
+    score1,
+    score2,
+    meta
+){
 
-    if(!meta?.championship){
-        return;
-    }
+    const wrapper=document.createElement("div");
 
-    const color=
-        meta.championshipColor||
-        "#d4af37";
+    const championship=
+        document.createElement("div");
 
-    card.style.setProperty(
+    championship.className=
+        "bracket-championship";
+
+    championship.textContent=
+        meta.championship;
+
+    championship.style.setProperty(
         "--championship-color",
-        color
+        meta.championshipColor||"#d4af37"
     );
 
-    const header=document.createElement("div");
+    wrapper.appendChild(championship);
 
-    header.className="championship-header";
+    const card=document.createElement("div");
 
-    header.innerHTML=`
-        <span class="championship-name">
-            ${meta.championship}
-        </span>
+    card.className="result-card";
 
-        ${
-            meta.championshipImage
-            ?
-            `
-                <img
-                    src="${meta.championshipImage}"
-                    class="championship-image"
-                    alt="${meta.championship}"
-                >
-            `
-            :
-            ""
-        }
+    card.addEventListener("click",e=>{
 
-        ${
-            meta.champion
-            ?
-            `
-                <span class="champion-name">
-                    ${meta.champion}
-                </span>
-            `
-            :
-            ""
-        }
+        e.stopPropagation();
+
+        document
+            .querySelectorAll(".result-card.selected")
+            .forEach(el=>{
+                el.classList.remove("selected");
+            });
+
+        card.classList.add("selected");
+
+    });
+
+    if(Number(score1)>Number(score2)){
+
+        card.classList.add("wrestler1-win");
+
+    }else if(Number(score1)<Number(score2)){
+
+        card.classList.add("wrestler2-win");
+
+    }else{
+
+        card.classList.add("draw");
+
+    }
+
+    card.innerHTML=`
+
+        <div class="result-wrestler">
+
+            ${
+                meta.champion===wrestler1&&
+                meta.championshipImage
+                ?
+                `
+                    <img
+                        src="${meta.championshipImage}"
+                        style="
+                            width:22px;
+                            height:22px;
+                            object-fit:contain;
+                            vertical-align:middle;
+                            margin-right:5px;
+                        "
+                    >
+                `
+                :
+                ""
+            }
+
+            ${createWrestlerLink(wrestler1)}
+
+        </div>
+
+        <div class="result-score">
+            ${score1} - ${score2}
+        </div>
+
+        <div class="result-wrestler">
+
+            ${
+                meta.champion===wrestler2&&
+                meta.championshipImage
+                ?
+                `
+                    <img
+                        src="${meta.championshipImage}"
+                        style="
+                            width:22px;
+                            height:22px;
+                            object-fit:contain;
+                            vertical-align:middle;
+                            margin-right:5px;
+                        "
+                    >
+                `
+                :
+                ""
+            }
+
+            ${createWrestlerLink(wrestler2)}
+
+        </div>
+
     `;
 
-    card.prepend(header);
+    wrapper.appendChild(card);
+
+    return wrapper;
 
 }
 
@@ -515,6 +594,26 @@ function createMatchCard(match,showId,date){
         return document.createElement("div");
     }
 
+    /* =========================================
+       CHAMPIONSHIP
+       ========================================= */
+
+    if(meta?.championship){
+
+        return createChampionshipResult(
+            wrestler1,
+            wrestler2,
+            score1,
+            score2,
+            meta
+        );
+
+    }
+
+    /* =========================================
+       NORMAL MATCH
+       ========================================= */
+
     const card=document.createElement("div");
 
     card.className="bracket-match";
@@ -526,6 +625,7 @@ function createMatchCard(match,showId,date){
         Number(score2)>Number(score1);
 
     card.innerHTML=`
+
         <div class="${winner1?"winner":""}">
             ${createWrestlerLink(wrestler1)}
             <span>${score1}</span>
@@ -535,35 +635,8 @@ function createMatchCard(match,showId,date){
             ${createWrestlerLink(wrestler2)}
             <span>${score2}</span>
         </div>
+
     `;
-
-    /* =========================================
-       CHAMPIONSHIP
-       ========================================= */
-
-    if(meta?.championship){
-
-        addChampionshipHeader(card,meta);
-
-        card.classList.add(
-            "championship-match"
-        );
-
-        card.addEventListener("click",()=>{
-
-            document
-                .querySelectorAll(
-                    ".championship-match.selected"
-                )
-                .forEach(el=>
-                    el.classList.remove("selected")
-                );
-
-            card.classList.toggle("selected");
-
-        });
-
-    }
 
     return card;
 
