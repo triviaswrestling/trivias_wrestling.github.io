@@ -561,23 +561,57 @@ function getTournamentEvents(){
 
         if(data.shows){
 
-            Object.entries(data.shows)
-            .forEach(([id,event])=>{
+    Object.entries(data.shows)
+    .forEach(([id,event])=>{
 
-                addEvent(
-                    id,
-                    event,
-                    event.matches||[]
-                );
-
-            });
-
-        }
+        addEvent(
+            id,
+            event,
+            event.matches||[]
+        );
 
     });
 
-    return list;
 }
+
+if(Array.isArray(data.leagues)){
+
+    const grouped={};
+
+    data.leagues.forEach(league=>{
+
+        Object.entries(league.shows||{})
+        .forEach(([id,event])=>{
+
+            if(!grouped[id]){
+
+                grouped[id]={
+                    date:event.date||"",
+                    matches:[]
+                };
+
+            }
+
+            grouped[id].matches.push(
+                ...(event.matches||[])
+            );
+
+        });
+
+    });
+
+    Object.entries(grouped)
+    .forEach(([id,event])=>{
+
+        addEvent(
+            id,
+            event,
+            event.matches
+        );
+
+    });
+
+   }
 
 /* =========================================
    OUTSIDER EVENTS
