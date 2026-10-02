@@ -5,16 +5,23 @@ const tournamentData = {
 roster:["Bobby Lashley","Jeff Hardy","Kevin Owens","Karrion Kross","Seth Rollins","Drew McIntyre","Eddie Guerrero","Finn Balor","Randy Orton","Sin Cara"],
 format:"LEAGUE_ELIMINATION",leagues:[
 {name:"ZONE A",participants:["Bobby Lashley","Jeff Hardy","Kevin Owens","Karrion Kross","Seth Rollins"],
-shows:{"nxt-4":{date:"10/05/2023",matches:[["Jeff Hardy","Bobby Lashley",0,0],["Kevin Owens","Seth Rollins",5,0]]},
-"nxt-5":{date:"17/05/2023",matches:[["Jeff Hardy","Karrion Kross",2,2],["Bobby Lashley","Kevin Owens",0,4]]}}},
-
- {name:"ZONE B",participants:["Drew McIntyre","Eddie Guerrero","Finn Balor","Randy Orton","Sin Cara"],
-shows:{"nxt-4":{date:"10/05/2023",matches:[["Finn Balor","Sin Cara",5,0],["Eddie Guerrero","Randy Orton",5,0]]},
-"nxt-5":{date:"17/05/2023",matches:[["Drew McIntyre","Finn Balor",5,0],["Eddie Guerrero","Sin Cara",4,1]]}}}
-
+shows:{
+"nxt-4":{date:"10/05/2023",matches:[["Jeff Hardy","Bobby Lashley",0,0],["Kevin Owens","Seth Rollins",5,0]]},
+"nxt-5":{date:"17/05/2023",matches:[["Jeff Hardy","Karrion Kross",2,2],["Bobby Lashley","Kevin Owens",0,4]]},
+"nxt-6":{date:"24/05/2023",matches:[["Karrion Kross","Seth Rollins",4,1],["Jeff Hardy","Kevin Owens",0,4]]},
+"nxt-7":{date:"31/05/2023",matches:[["Seth Rollins","Bobby Lashley",5,0],["Karrion Kross","Bobby Lashley",5,0],["Kevin Owens","Karrion Kross",1,4],["Seth Rollins","Jeff Hardy",2,3]]}
+}},
+{name:"ZONE B",participants:["Drew McIntyre","Eddie Guerrero","Finn Balor","Randy Orton","Sin Cara"],
+shows:{
+"nxt-4":{date:"10/05/2023",matches:[["Finn Balor","Sin Cara",5,0],["Eddie Guerrero","Randy Orton",5,0]]},
+"nxt-5":{date:"17/05/2023",matches:[["Drew McIntyre","Finn Balor",5,0],["Eddie Guerrero","Sin Cara",4,1]]},
+"nxt-6":{date:"24/05/2023",matches:[["Drew McIntyre","Randy Orton",5,0],["Finn Balor","Eddie Guerrero",2,2]]},
+"nxt-7":{date:"31/05/2023",matches:[["Drew McIntyre","Sin Cara",5,0],["Randy Orton","Sin Cara",5,0],["Eddie Guerrero","Drew McIntyre",0,5],["Finn Balor","Randy Orton",5,0]]}
+}}
 ],
 bracketFormat:"SEMIFINALS_FINAL",bracketTitle:"TAKEOVER",
-finalMatches:[["Karrion Kross","Finn Balor",2,0],
+finalMatches:[
+["Karrion Kross","Finn Balor",2,0],
 ["Drew McIntyre","Kevin Owens",0,5],
 ["Karrion Kross","Kevin Owens",2,4,{championship:"NXT CHAMPIONSHIP",championshipImage:"images/titles/nxt.png",championshipColor:"#c0c0c0"}]
 ]},
