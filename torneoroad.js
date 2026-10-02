@@ -1513,75 +1513,37 @@ function renderChampionship4(data){
    PAGE RENDER
    ========================================= */
 
-
 if(special){
 
-    tournamentBrand.textContent=
-        special.brand;
+    tournamentBrand.textContent=special.brand;
+    tournamentTitle.textContent=special.title;
+    tournamentDivision.textContent=special.division;
 
-    tournamentTitle.textContent=
-        special.title;
+    const page=document.querySelector(".torneoroad-page");
 
-    tournamentDivision.textContent=
-        special.division;
+    if(page)page.classList.add("championship");
 
-    const page=
-        document.querySelector(
-            ".torneoroad-page"
-        );
-
-    if(page){
-
-        page.classList.add(
-            "championship"
-        );
-
-    }
-
-    
-
-    const currentData=
-        tournamentData[tournamentId];
+    const currentData=tournamentData[tournamentId];
 
     clearSections();
 
     if(currentData){
 
-        if(
-            currentData.format===
-            "LEAGUE_PLAYIN_ELIMINATION"
-        ){
+        if(currentData.format==="LEAGUE_PLAYIN_ELIMINATION"){
 
-            renderChampionship1(
-                currentData
-            );
+            renderChampionship1(currentData);
 
-        }else if(
-            currentData.format===
-            "TWO_ZONES_ELIMINATION"
-        ){
+        }else if(currentData.format==="TWO_ZONES_ELIMINATION"){
 
-            renderChampionship2(
-                currentData
-            );
+            renderChampionship2(currentData);
 
-        }else if(
-            currentData.format===
-            "LEAGUE_ELIMINATION"
-        ){
+        }else if(currentData.format==="LEAGUE_ELIMINATION"){
 
-            renderChampionship3(
-                currentData
-            );
+            renderChampionship3(currentData);
 
-        }else if(
-            currentData.format===
-            "FOUR_ZONES_ELIMINATION"
-        ){
+        }else if(currentData.format==="FOUR_ZONES_ELIMINATION"){
 
-            renderChampionship4(
-                currentData
-            );
+            renderChampionship4(currentData);
 
         }else{
 
@@ -1597,40 +1559,27 @@ if(special){
 
 }else if(tournament){
 
-    tournamentBrand.textContent=
-        tournament.brand;
-
-    tournamentTitle.textContent=
-        tournament.title;
-
-    tournamentDivision.textContent=
-        tournament.division;
-
-    const page=
-        document.querySelector(
-            ".torneoroad-page"
-        );
-
-    if(page){
-
-        page.classList.remove(
-            "championship"
-        );
-
-    }
-
     const data=
         typeof tournamentData!=="undefined"
             ?tournamentData[tournamentId]
             :null;
 
+    tournamentBrand.textContent=tournament.brand;
+
+    tournamentTitle.textContent=
+        data?.title||tournament.title;
+
+    tournamentDivision.textContent=tournament.division;
+
+    const page=document.querySelector(".torneoroad-page");
+
+    if(page)page.classList.remove("championship");
+
     clearSections();
 
     if(data){
 
-        renderNormalTournament(
-            data
-        );
+        renderNormalTournament(data);
 
     }else{
 
