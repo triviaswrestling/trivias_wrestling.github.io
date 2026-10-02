@@ -4,8 +4,7 @@ const tournamentData = {
 "wwe-nxt-1":{
 roster:["Bobby Lashley","Jeff Hardy","Kevin Owens","Karrion Kross","Seth Rollins","Drew McIntyre","Eddie Guerrero","Finn Balor","Randy Orton","Sin Cara"],
 format:"LEAGUE_ELIMINATION",
-leagues:[
-{name:"ZONE A",participants:["Bobby Lashley","Jeff Hardy","Kevin Owens","Karrion Kross","Seth Rollins"],shows:{}},
+leagues:[{name:"ZONE A",participants:["Bobby Lashley","Jeff Hardy","Kevin Owens","Karrion Kross","Seth Rollins"],shows:{}},
 {name:"ZONE B",participants:["Drew McIntyre","Eddie Guerrero","Finn Balor","Randy Orton","Sin Cara"],shows:{}}],
 bracketFormat:"SEMIFINALS_FINAL",
 bracketTitle:"TAKEOVER",
