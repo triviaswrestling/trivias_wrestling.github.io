@@ -119,6 +119,8 @@ eventNumber++;
 });
 }
 
+eventData["nxt-takeover-1"]={type:"PLE",title:"NXT TakeOver I",date:"07/06/2023",mode:"ROAD",brand:"NXT",results:[{type:"SINGLES",position:"OPENER",wrestler1:"Jeff Hardy",wrestler2:"Randy Orton",score1:5,score2:0},{type:"SINGLES",wrestler1:"Eddie Guerrero",wrestler2:"Seth Rollins",score1:5,score2:0},{type:"SINGLES",wrestler1:"Karrion Kross",wrestler2:"Finn Balor",score1:2,score2:0},{type:"SINGLES",wrestler1:"Drew McIntyre",wrestler2:"Kevin Owens",score1:0,score2:5},{type:"SINGLES",position:"MAIN EVENT",championship:"NXT Championship",wrestler1:"Karrion Kross",wrestler2:"Kevin Owens",score1:2,score2:4}]};
+
 /* =========================================
    PLE
    ========================================= */
