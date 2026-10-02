@@ -3,11 +3,17 @@ const tournamentData = {
  
 "wwe-nxt-1":{
 roster:["Bobby Lashley","Jeff Hardy","Kevin Owens","Karrion Kross","Seth Rollins","Drew McIntyre","Eddie Guerrero","Finn Balor","Randy Orton","Sin Cara"],
-format:"LEAGUE_ELIMINATION",
-leagues:[{name:"ZONE A",participants:["Bobby Lashley","Jeff Hardy","Kevin Owens","Karrion Kross","Seth Rollins"],shows:{}},
-{name:"ZONE B",participants:["Drew McIntyre","Eddie Guerrero","Finn Balor","Randy Orton","Sin Cara"],shows:{}}],
-bracketFormat:"SEMIFINALS_FINAL",
-bracketTitle:"TAKEOVER",
+format:"LEAGUE_ELIMINATION",leagues:[
+{name:"ZONE A",participants:["Bobby Lashley","Jeff Hardy","Kevin Owens","Karrion Kross","Seth Rollins"],
+shows:{"nxt-4":{date:"10/05/2023",matches:[["Jeff Hardy","Bobby Lashley",0,0],["Kevin Owens","Seth Rollins",5,0]]},
+"nxt-5":{date:"17/05/2023",matches:[["Jeff Hardy","Karrion Kross",2,2],["Bobby Lashley","Kevin Owens",0,4]]}}},
+
+ {name:"ZONE B",participants:["Drew McIntyre","Eddie Guerrero","Finn Balor","Randy Orton","Sin Cara"],
+shows:{"nxt-4":{date:"10/05/2023",matches:[["Finn Balor","Sin Cara",5,0],["Eddie Guerrero","Randy Orton",5,0]]},
+"nxt-5":{date:"17/05/2023",matches:[["Drew McIntyre","Finn Balor",5,0],["Eddie Guerrero","Sin Cara",4,1]]}}}
+
+],
+bracketFormat:"SEMIFINALS_FINAL",bracketTitle:"TAKEOVER",
 finalMatches:[["Karrion Kross","Finn Balor",2,0],
 ["Drew McIntyre","Kevin Owens",0,5],
 ["Karrion Kross","Kevin Owens",2,4,{championship:"NXT CHAMPIONSHIP",championshipImage:"images/titles/nxt.png",championshipColor:"#c0c0c0"}]
