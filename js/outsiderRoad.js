@@ -67,6 +67,55 @@ function createWrestlerLink(name){
     `;
 }
 
+function hideSection(element){
+
+    if(!element)return;
+
+    const section=
+        element.closest("section")||
+        element.closest(".section")||
+        element.parentElement;
+
+    if(section){
+        section.style.display="none";
+    }
+
+}
+
+function showSection(element){
+
+    if(!element)return;
+
+    const section=
+        element.closest("section")||
+        element.closest(".section")||
+        element.parentElement;
+
+    if(section){
+        section.style.display="";
+    }
+
+}
+
+function getMatchData(match){
+
+    if(!Array.isArray(match))return match;
+
+    const meta=match[4]||{};
+
+    return{
+        wrestler1:match[0],
+        wrestler2:match[1],
+        score1:match[2],
+        score2:match[3],
+        championship:meta.championship,
+        championshipColor:meta.championshipColor,
+        championshipImage:meta.championshipImage,
+        champion:meta.champion
+    };
+
+}
+
 /* =========================================
    LOAD TOURNAMENT
    ========================================= */
@@ -83,18 +132,32 @@ if(!tournament){
 
     renderDraft(tournament);
 
-    if(tournament.standings){
-        renderStandings(tournament);
-    }
+    if(tournament.leagues){
 
-    if(tournament.matrix){
-        renderMatrix(tournament);
-    }
+        renderLeaguesTournament(tournament);
 
-    if(tournament.format==="BRACKET"){
-        renderBracket(tournament);
     }else{
-        renderResults(tournament);
+
+        if(tournament.standings?.length){
+            renderStandings(tournament);
+        }else{
+            standingsBody.innerHTML="";
+            hideSection(standingsBody);
+        }
+
+        if(tournament.matrix?.length){
+            renderMatrix(tournament);
+        }else{
+            matrixTable.innerHTML="";
+            hideSection(matrixTable);
+        }
+
+        if(tournament.format==="BRACKET"){
+            renderBracket(tournament);
+        }else{
+            renderResults(tournament);
+        }
+
     }
 
 }
@@ -112,7 +175,7 @@ function renderDraft(tournament){
         return;
     }
 
-    tournament.roster.forEach((name,index)=>{
+    tournament.roster.forEach(name=>{
 
         const card=document.createElement("div");
         card.className="draft-card";
@@ -143,11 +206,86 @@ function renderDraft(tournament){
    STANDINGS
    ========================================= */
 
+function buildStandings(participants,matches){
+
+    const standings={};
+
+    participants.forEach(name=>{
+
+        standings[name]={
+            name,
+            played:0,
+            wins:0,
+            draws:0,
+            losses:0,
+            points:0
+        };
+
+    });
+
+    matches.forEach(match=>{
+
+        const a=standings[match.wrestler1];
+        const b=standings[match.wrestler2];
+
+        if(!a||!b)return;
+
+        a.played++;
+        b.played++;
+
+        if(match.score1>match.score2){
+
+            a.wins++;
+            a.points+=3;
+            b.losses++;
+
+        }else if(match.score1<match.score2){
+
+            b.wins++;
+            b.points+=3;
+            a.losses++;
+
+        }else{
+
+            a.draws++;
+            b.draws++;
+            a.points++;
+            b.points++;
+
+        }
+
+    });
+
+    return Object.values(standings).sort((a,b)=>{
+
+        if(b.points!==a.points)
+            return b.points-a.points;
+
+        if(b.wins!==a.wins)
+            return b.wins-a.wins;
+
+        return 0;
+
+    });
+
+}
+
 function renderStandings(tournament){
 
     standingsBody.innerHTML="";
 
-    tournament.standings.forEach((wrestler,index)=>{
+    const list=tournament.standings||[];
+
+    if(!list.length){
+
+        hideSection(standingsBody);
+        return;
+
+    }
+
+    showSection(standingsBody);
+
+    list.forEach((wrestler,index)=>{
 
         const row=document.createElement("tr");
 
@@ -160,6 +298,12 @@ function renderStandings(tournament){
             <td>${wrestler.losses??0}</td>
             <td>${wrestler.points??0}</td>
         `;
+
+        if(index===0)
+            row.classList.add("champion");
+
+        if(index===list.length-1)
+            row.classList.add("relegation");
 
         standingsBody.appendChild(row);
 
@@ -176,8 +320,13 @@ function renderMatrix(tournament){
     matrixTable.innerHTML="";
 
     if(!tournament.matrix?.length){
+
+        hideSection(matrixTable);
         return;
+
     }
+
+    showSection(matrixTable);
 
     tournament.matrix.forEach((rowData,rowIndex)=>{
 
@@ -192,6 +341,13 @@ function renderMatrix(tournament){
             );
 
             cell.textContent=value;
+
+            if(value==="W")
+                cell.classList.add("matrix-win");
+
+            if(value==="L")
+                cell.classList.add("matrix-loss");
+
             row.appendChild(cell);
 
         });
@@ -203,104 +359,609 @@ function renderMatrix(tournament){
 }
 
 /* =========================================
+   LEAGUE MATRIX
+   ========================================= */
+
+function renderLeagueMatrix(participants,matches){
+
+    participants.forEach(name=>{
+
+        const row=document.createElement("tr");
+
+        const nameCell=document.createElement("td");
+
+        nameCell.innerHTML=
+            createWrestlerLink(name);
+
+        row.appendChild(nameCell);
+
+        participants.forEach(opponent=>{
+
+            const cell=document.createElement("td");
+
+            if(name===opponent){
+
+                cell.textContent="—";
+
+            }else{
+
+                const match=matches.find(m=>
+                    (
+                        m.wrestler1===name&&
+                        m.wrestler2===opponent
+                    )||
+                    (
+                        m.wrestler1===opponent&&
+                        m.wrestler2===name
+                    )
+                );
+
+                if(!match){
+
+                    cell.textContent="·";
+
+                }else if(match.score1===match.score2){
+
+                    cell.textContent="D";
+
+                }else{
+
+                    const first=
+                        match.wrestler1===name;
+
+                    const won=first
+                        ?match.score1>match.score2
+                        :match.score2>match.score1;
+
+                    cell.textContent=won?"W":"L";
+
+                    cell.classList.add(
+                        won
+                            ?"matrix-win"
+                            :"matrix-loss"
+                    );
+
+                }
+
+            }
+
+            row.appendChild(cell);
+
+        });
+
+        matrixTable.appendChild(row);
+
+    });
+
+}
+
+/* =========================================
+   LEAGUES
+   ========================================= */
+
+function renderLeaguesTournament(tournament){
+
+    resultsContainer.innerHTML="";
+    standingsBody.innerHTML="";
+    matrixTable.innerHTML="";
+
+    const leagues=tournament.leagues||[];
+
+    if(!leagues.length){
+
+        hideSection(standingsBody);
+        hideSection(matrixTable);
+        return;
+
+    }
+
+    let hasStandings=false;
+    let hasMatrix=false;
+
+    leagues.forEach((league,index)=>{
+
+        const participants=
+            league.participants||
+            league.roster||
+            [];
+
+        const matches=[];
+
+        Object.entries(league.shows||{})
+        .forEach(([showId,show])=>{
+
+            (show.matches||[]).forEach(match=>{
+
+                const data=getMatchData(match);
+
+                matches.push({
+                    ...data,
+                    date:show.date,
+                    show:showId
+                });
+
+            });
+
+        });
+
+        if(participants.length){
+
+            hasStandings=true;
+
+            const title=document.createElement("tr");
+
+            title.innerHTML=`
+                <th colspan="7">
+                    ${league.name||`LEAGUE ${index+1}`}
+                </th>
+            `;
+
+            standingsBody.appendChild(title);
+
+            const standings=
+                buildStandings(
+                    participants,
+                    matches
+                );
+
+            standings.forEach((w,index)=>{
+
+                const row=document.createElement("tr");
+
+                row.innerHTML=`
+                    <td>${index+1}</td>
+                    <td>${createWrestlerLink(w.name)}</td>
+                    <td>${w.played}</td>
+                    <td>${w.wins}</td>
+                    <td>${w.draws}</td>
+                    <td>${w.losses}</td>
+                    <td>${w.points}</td>
+                `;
+
+                if(index===0)
+                    row.classList.add("champion");
+
+                if(index===standings.length-1)
+                    row.classList.add("relegation");
+
+                standingsBody.appendChild(row);
+
+            });
+
+        }
+
+        if(participants.length){
+
+            hasMatrix=true;
+
+            const title=document.createElement("tr");
+
+            title.innerHTML=`
+                <th colspan="${participants.length+1}">
+                    ${league.name||`LEAGUE ${index+1}`}
+                </th>
+            `;
+
+            matrixTable.appendChild(title);
+
+            const header=document.createElement("tr");
+
+            header.innerHTML="<th>WRESTLER</th>";
+
+            participants.forEach(name=>{
+
+                const th=document.createElement("th");
+
+                th.textContent=name;
+
+                header.appendChild(th);
+
+            });
+
+            matrixTable.appendChild(header);
+
+            renderLeagueMatrix(
+                participants,
+                matches
+            );
+
+        }
+
+        Object.entries(league.shows||{})
+        .forEach(([showId,show])=>{
+
+            renderPhase(
+                `${league.name||"LEAGUE"} — ${showId.replace(/-/g," ").toUpperCase()}`,
+                (show.matches||[]).map(
+                    getMatchData
+                )
+            );
+
+        });
+
+        if(
+            league.finalMatches?.length&&
+            league.bracketFormat
+        ){
+
+            renderBracketMatches(
+                league.finalMatches.map(
+                    getMatchData
+                ),
+                resultsContainer,
+                league.bracketFormat,
+                league.bracketTitle
+            );
+
+        }
+
+    });
+
+    if(
+        tournament.finalMatches?.length&&
+        tournament.bracketFormat
+    ){
+
+        renderBracketMatches(
+            tournament.finalMatches.map(
+                getMatchData
+            ),
+            resultsContainer,
+            tournament.bracketFormat,
+            tournament.bracketTitle
+        );
+
+    }
+
+    if(hasStandings)
+        showSection(standingsBody);
+    else
+        hideSection(standingsBody);
+
+    if(hasMatrix)
+        showSection(matrixTable);
+    else
+        hideSection(matrixTable);
+
+}
+
+/* =========================================
+   PHASE
+   ========================================= */
+
+function renderPhase(title,matches){
+
+    if(!matches.length)return;
+
+    const section=document.createElement("div");
+
+    section.className="championship-phase";
+
+    const heading=document.createElement("div");
+
+    heading.className="results-date";
+    heading.textContent=title;
+
+    section.appendChild(heading);
+
+    matches.forEach(match=>{
+
+        section.appendChild(
+            createMatchCard(match)
+        );
+
+    });
+
+    resultsContainer.appendChild(section);
+
+}
+
+/* =========================================
    BRACKET
    ========================================= */
 
 function renderBracket(tournament){
 
-    const bracket=document.createElement("div");
-    bracket.className="chamber-bracket";
-
     const matches=[];
 
-    Object.entries(tournament.shows||{}).forEach(
-        ([showId,show])=>{
+    Object.entries(tournament.shows||{})
+    .forEach(([showId,show])=>{
 
-            (show.matches||[]).forEach(match=>{
+        (show.matches||[]).forEach(match=>{
 
-                matches.push({
-                    showId,
-                    date:show.date,
-                    match
-                });
-
+            matches.push({
+                ...getMatchData(match),
+                showId,
+                date:show.date
             });
 
-        }
+        });
+
+    });
+
+    if(
+        tournament.finalMatches?.length
+    ){
+
+        renderBracketMatches(
+            tournament.finalMatches.map(
+                getMatchData
+            ),
+            resultsContainer,
+            tournament.bracketFormat||
+                "QUARTERS_SEMIFINALS_FINAL",
+            tournament.bracketTitle||
+                "BRACKET"
+        );
+
+    }else{
+
+        renderBracketMatches(
+            matches,
+            resultsContainer,
+            tournament.bracketFormat||
+                "QUARTERS_SEMIFINALS_FINAL",
+            tournament.bracketTitle||
+                "BRACKET"
+        );
+
+    }
+
+}
+
+/* =========================================
+   GENERIC BRACKET
+   ========================================= */
+
+function renderBracketMatches(
+    matches,
+    container,
+    format,
+    title
+){
+
+    const valid=matches.filter(match=>
+        match?.wrestler1&&
+        match?.wrestler2&&
+        match?.score1!==undefined&&
+        match?.score2!==undefined
     );
 
-    const rounds=[
-        {title:"QUARTERFINALS",count:4},
-        {title:"SEMIFINALS",count:2},
-        {title:"FINAL",count:1}
-    ];
+    if(!valid.length)return;
 
-    let position=0;
+    const heading=document.createElement("div");
+
+    heading.className="results-date";
+    heading.textContent=title||"BRACKET";
+
+    container.appendChild(heading);
+
+    const bracket=document.createElement("div");
+
+    bracket.className="chamber-bracket";
+
+    let rounds=[];
+
+    if(format==="QUARTERS_SEMIFINALS_FINAL"){
+
+        rounds=[
+            {
+                title:"QUARTERFINALS",
+                matches:valid.slice(0,4)
+            },
+            {
+                title:"SEMIFINALS",
+                matches:valid.slice(4,6)
+            },
+            {
+                title:"FINAL",
+                matches:valid.slice(6,7)
+            }
+        ];
+
+    }else if(format==="SEMIFINALS_FINAL"){
+
+        rounds=[
+            {
+                title:"SEMIFINALS",
+                matches:valid.slice(0,2)
+            },
+            {
+                title:"FINAL",
+                matches:valid.slice(2,3)
+            }
+        ];
+
+    }else if(
+        format==="SEMIFINALS_FINAL_CHAMPION"
+    ){
+
+        rounds=[
+            {
+                title:"SEMIFINALS",
+                matches:valid.slice(0,2)
+            },
+            {
+                title:"FINAL",
+                matches:valid.slice(2,3)
+            },
+            {
+                title:"CHAMPIONSHIP MATCH",
+                matches:valid.slice(3,4)
+            }
+        ];
+
+    }else{
+
+        rounds=[
+            {
+                title:"FINAL",
+                matches:valid
+            }
+        ];
+
+    }
 
     rounds.forEach(round=>{
 
         const column=document.createElement("div");
+
         column.className="bracket-round";
 
-        const heading=document.createElement("h3");
-        heading.textContent=round.title;
-        column.appendChild(heading);
+        const roundTitle=
+            document.createElement("h3");
 
-        for(let i=0;i<round.count;i++){
+        roundTitle.textContent=round.title;
 
-            const item=matches[position++];
+        column.appendChild(roundTitle);
 
-            if(!item){
-                continue;
-            }
+        round.matches.forEach(match=>{
 
             column.appendChild(
-                createMatchCard(
-                    item.match,
-                    item.showId,
-                    item.date
-                )
+                createBracketMatch(match)
             );
 
-        }
+        });
 
         bracket.appendChild(column);
 
     });
 
-    resultsContainer.appendChild(bracket);
+    container.appendChild(bracket);
 
-    if(
-        tournament.finalEvent&&
-        tournament.finalMatches?.length
-    ){
+}
 
-        const heading=document.createElement("div");
-        heading.className="results-date";
-        heading.textContent=tournament.finalEvent
-            .replace(/-/g," ")
-            .toUpperCase();
+/* =========================================
+   BRACKET MATCH
+   ========================================= */
 
-        resultsContainer.appendChild(heading);
+function createBracketMatch(match){
 
-        tournament.finalMatches.forEach(match=>{
+    const card=document.createElement("div");
 
-            const resolvedMatch=
-                resolveEventReference(match);
+    card.className="bracket-match";
 
-            if(resolvedMatch){
+    addChampionshipHeader(
+        card,
+        match
+    );
 
-                resultsContainer.appendChild(
-                    createMatchCard(
-                        resolvedMatch
-                    )
-                );
+    if(match.wrestler3){
 
-            }
+        const players=[
+            [match.wrestler1,match.score1],
+            [match.wrestler2,match.score2],
+            [match.wrestler3,match.score3]
+        ];
+
+        const maxScore=Math.max(
+            ...players.map(p=>p[1])
+        );
+
+        players.forEach(player=>{
+
+            const row=
+                document.createElement("div");
+
+            row.className=
+                player[1]===maxScore
+                    ?"winner"
+                    :"";
+
+            row.innerHTML=`
+                ${createWrestlerLink(player[0])}
+                <span>${player[1]}</span>
+            `;
+
+            card.appendChild(row);
 
         });
 
+    }else{
+
+        const winner1=
+            match.score1>match.score2;
+
+        const winner2=
+            match.score2>match.score1;
+
+        const row1=
+            document.createElement("div");
+
+        row1.className=
+            winner1?"winner":"";
+
+        row1.innerHTML=`
+            ${createWrestlerLink(match.wrestler1)}
+            <span>${match.score1}</span>
+        `;
+
+        const row2=
+            document.createElement("div");
+
+        row2.className=
+            winner2?"winner":"";
+
+        row2.innerHTML=`
+            ${createWrestlerLink(match.wrestler2)}
+            <span>${match.score2}</span>
+        `;
+
+        card.appendChild(row1);
+        card.appendChild(row2);
+
     }
+
+    return card;
+
+}
+
+/* =========================================
+   CHAMPIONSHIP
+   ========================================= */
+
+function addChampionshipHeader(
+    card,
+    match
+){
+
+    if(!match.championship)return;
+
+    const championship=
+        document.createElement("div");
+
+    championship.className=
+        "bracket-championship";
+
+    championship.innerHTML=`
+        <div class="bracket-championship-title">
+            ${match.championship}
+        </div>
+
+        ${
+            match.champion&&
+            match.championshipImage
+            ?
+            `
+            <div class="bracket-champion">
+                <img
+                    src="${match.championshipImage}"
+                    style="width:22px;height:22px;object-fit:contain;"
+                >
+                ${createWrestlerLink(match.champion)}
+            </div>
+            `
+            :""
+        }
+    `;
+
+    championship.style.setProperty(
+        "--championship-color",
+        match.championshipColor||
+        "#d4af37"
+    );
+
+    card.appendChild(championship);
 
 }
 
@@ -310,29 +971,42 @@ function renderBracket(tournament){
 
 function renderResults(tournament){
 
-    Object.entries(tournament.shows||{}).forEach(
-        ([showId,show])=>{
+    resultsContainer.innerHTML="";
 
-            const heading=document.createElement("div");
-            heading.className="results-date";
-            heading.textContent=showId.toUpperCase();
+    Object.entries(tournament.shows||{})
+    .forEach(([showId,show])=>{
 
-            resultsContainer.appendChild(heading);
+        const matches=
+            (show.matches||[]).map(
+                getMatchData
+            );
 
-            (show.matches||[]).forEach(match=>{
+        if(!matches.length)return;
 
-                resultsContainer.appendChild(
-                    createMatchCard(
-                        match,
-                        showId,
-                        show.date
-                    )
-                );
+        renderPhase(
+            showId
+                .replace(/-/g," ")
+                .toUpperCase(),
+            matches
+        );
 
-            });
+    });
 
-        }
-    );
+    if(
+        tournament.finalMatches?.length&&
+        tournament.bracketFormat
+    ){
+
+        renderBracketMatches(
+            tournament.finalMatches.map(
+                getMatchData
+            ),
+            resultsContainer,
+            tournament.bracketFormat,
+            tournament.bracketTitle
+        );
+
+    }
 
 }
 
@@ -354,7 +1028,8 @@ function resolveEventReference(match){
     )
         return null;
 
-    const event=eventData[match.eventId];
+    const event=
+        eventData[match.eventId];
 
     const result=
         event.results?.[match.matchIndex];
@@ -363,58 +1038,222 @@ function resolveEventReference(match){
         return null;
 
     if(
-        result.wrestler1&&
-        result.wrestler2
-    ){
+        !result.wrestler1||
+        !result.wrestler2
+    )
+        return null;
 
-        return[
-            result.wrestler1,
-            result.wrestler2,
-            result.score1??0,
-            result.score2??0
-        ];
+    return{
 
-    }
+        wrestler1:result.wrestler1,
 
-    return null;
+        wrestler2:result.wrestler2,
+
+        score1:result.score1??0,
+
+        score2:result.score2??0,
+
+        /* EVENT_REFERENCE OVERRIDES */
+
+        championship:
+            match.championship||
+            result.championship,
+
+        championshipColor:
+            match.championshipColor||
+            result.championshipColor,
+
+        championshipImage:
+            match.championshipImage||
+            result.championshipImage,
+
+        champion:
+            match.champion||
+            result.champion
+
+    };
+
 }
 
 /* =========================================
    MATCH CARD
    ========================================= */
 
-function createMatchCard(match,showId,date){
+function createMatchCard(match){
 
     match=resolveEventReference(match);
 
     if(!match)
         return document.createElement("div");
 
-    const [
-        wrestler1,
-        wrestler2,
-        score1,
-        score2
-    ]=match;
-
     const card=document.createElement("div");
-    card.className="bracket-match";
 
-    const winner1=score1>score2;
-    const winner2=score2>score1;
+    card.className="result-card";
 
-    card.innerHTML=`
-        <div class="${winner1?"winner":""}">
-            ${createWrestlerLink(wrestler1)}
-            <span>${score1}</span>
+    const winner1=
+        match.score1>match.score2;
+
+    const winner2=
+        match.score2>match.score1;
+
+    if(winner1)
+        card.classList.add("wrestler1-win");
+
+    else if(winner2)
+        card.classList.add("wrestler2-win");
+
+    else
+        card.classList.add("draw");
+
+    if(match.championship){
+
+        card.addEventListener(
+            "click",
+            e=>{
+
+                e.stopPropagation();
+
+                document
+                    .querySelectorAll(
+                        ".result-card.selected"
+                    )
+                    .forEach(el=>
+                        el.classList.remove(
+                            "selected"
+                        )
+                    );
+
+                card.classList.add("selected");
+
+            }
+        );
+
+        const championship=
+            document.createElement("div");
+
+        championship.className=
+            "bracket-championship";
+
+        championship.innerHTML=`
+            <div class="bracket-championship-title">
+                ${match.championship}
+            </div>
+
+            ${
+                match.champion&&
+                match.championshipImage
+                ?
+                `
+                <div class="bracket-champion">
+                    <img
+                        src="${match.championshipImage}"
+                        style="width:22px;height:22px;object-fit:contain;"
+                    >
+                    ${createWrestlerLink(match.champion)}
+                </div>
+                `
+                :""
+            }
+        `;
+
+        championship.style.setProperty(
+            "--championship-color",
+            match.championshipColor||
+            "#d4af37"
+        );
+
+        card.appendChild(championship);
+
+    }else{
+
+        card.addEventListener(
+            "click",
+            ()=>{
+
+                document
+                    .querySelectorAll(
+                        ".result-card.selected"
+                    )
+                    .forEach(el=>
+                        el.classList.remove(
+                            "selected"
+                        )
+                    );
+
+                card.classList.add("selected");
+
+            }
+        );
+
+    }
+
+    card.innerHTML+=`
+        <div class="result-wrestler">
+            ${
+                match.champion===
+                match.wrestler1&&
+                match.championshipImage
+                ?
+                `
+                <img
+                    src="${match.championshipImage}"
+                    style="width:22px;height:22px;object-fit:contain;vertical-align:middle;margin-right:5px;"
+                >
+                `
+                :""
+            }
+
+            ${createWrestlerLink(match.wrestler1)}
         </div>
 
-        <div class="${winner2?"winner":""}">
-            ${createWrestlerLink(wrestler2)}
-            <span>${score2}</span>
+        <div class="result-score">
+            ${match.score1} - ${match.score2}
+        </div>
+
+        <div class="result-wrestler">
+            ${
+                match.champion===
+                match.wrestler2&&
+                match.championshipImage
+                ?
+                `
+                <img
+                    src="${match.championshipImage}"
+                    style="width:22px;height:22px;object-fit:contain;vertical-align:middle;margin-right:5px;"
+                >
+                `
+                :""
+            }
+
+            ${createWrestlerLink(match.wrestler2)}
         </div>
     `;
 
     return card;
 
 }
+
+/* =========================================
+   CLEAR SELECTED
+   ========================================= */
+
+document.addEventListener(
+    "click",
+    e=>{
+
+        if(!e.target.closest(".result-card")){
+
+            document
+                .querySelectorAll(
+                    ".result-card.selected"
+                )
+                .forEach(el=>
+                    el.classList.remove(
+                        "selected"
+                    )
+                );
+
+        }
+
+    }
+);
