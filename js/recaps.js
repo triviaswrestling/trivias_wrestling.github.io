@@ -4,7 +4,7 @@ const dateParts=document.getElementById("date-parts");
 const filterButtons=document.querySelectorAll(".recap-filter");
 
 const events=[];
-const EVENTS_PER_PAGE=20;
+const EVENTS_PER_PAGE=21;
 
 let currentPage=1;
 let currentFilter="ALL";
@@ -18,7 +18,7 @@ if(typeof eventData!=="undefined"){
 Object.entries(eventData).forEach(([id,event])=>{
 
 if(event.type==="PLE"){
-events.push({id,...event});
+events.push({id,...event,type:event.brand==="NXT"?"TAKEOVER":"PLE"});
 }
 
 });
@@ -382,9 +382,14 @@ list=events.filter(
 event=>event.type==="NXT"
 );
 
-if(currentFilter==="SPECIAL EVENTS")
+if(currentFilter==="PLE")
 list=events.filter(
 event=>event.type==="PLE"
+);
+
+if(currentFilter==="TAKEOVER")
+list=events.filter(
+event=>event.type==="TAKEOVER"
 );
 
 if([
@@ -546,11 +551,7 @@ alt="${event.title}"
 <div class="event-info">
 
 <div class="event-type">
-${
-event.type==="PLE"
-?"SPECIAL EVENT"
-:event.type
-}
+${event.type}
 </div>
 
 <h2>${event.title}</h2>
