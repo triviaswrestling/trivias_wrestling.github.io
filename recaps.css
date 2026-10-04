@@ -6,6 +6,7 @@
 .recaps-page {
     width: 100%;
     padding: 40px 5% 80px;
+    box-sizing: border-box;
 }
 
 .recaps-section {
@@ -31,12 +32,6 @@
     font-weight: 900;
 
     letter-spacing: 3px;
-
-    color: #ffffff;
-
-    text-shadow:
-        0 0 8px rgba(255,255,255,0.25),
-        0 0 22px rgba(217,0,36,0.35);
 }
 
 .recaps-header p {
@@ -47,9 +42,7 @@
 
     letter-spacing: 4px;
 
-    color: #d7d7d7;
-
-    opacity: 0.75;
+    opacity: 0.6;
 }
 
 
@@ -91,16 +84,11 @@
 .recap-filter {
     padding: 10px 18px;
 
-    background:
-        linear-gradient(
-            180deg,
-            #1b1b1b 0%,
-            #0c0c0c 100%
-        );
+    background: #111111;
 
-    border: 1px solid #3a3a3a;
+    border: 1px solid #292929;
 
-    color: #eeeeee;
+    color: #ffffff;
 
     font-size: 11px;
     font-weight: bold;
@@ -109,54 +97,23 @@
 
     cursor: pointer;
 
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 0 0 1px #050505;
-
     transition:
         background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
+        border-color 0.2s ease;
 }
 
 .recap-filter:hover {
-    background:
-        linear-gradient(
-            180deg,
-            #292929 0%,
-            #101010 100%
-        );
+    background: #181818;
 
-    border-color: #eeeeee;
-
-    color: #ffffff;
-
-    box-shadow:
-        0 0 10px rgba(255,255,255,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.12);
-
-    transform: translateY(-1px);
+    border-color: #ffffff;
 }
 
 .recap-filter.active {
-    background:
-        linear-gradient(
-            180deg,
-            #ff334f 0%,
-            #d90024 45%,
-            #8f0018 100%
-        );
+    background: #ffffff;
 
-    color: #ffffff;
+    color: #000000;
 
-    border-color: #ff6678;
-
-    box-shadow:
-        0 0 12px rgba(217,0,36,0.55),
-        0 0 30px rgba(217,0,36,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.25);
+    border-color: #ffffff;
 }
 
 
@@ -174,20 +131,13 @@
 
     padding: 10px 12px;
 
-    background:
-        linear-gradient(
-            180deg,
-            #121212 0%,
-            #070707 100%
-        );
+    background: #090909;
 
-    border: 1px solid #333333;
+    border: 1px solid #292929;
 
     box-shadow:
-        inset 0 0 0 1px #151515,
-        inset 0 1px 0 rgba(255,255,255,0.05),
-        0 4px 0 #020202,
-        0 0 20px rgba(0,0,0,0.5);
+        inset 0 0 0 1px #111111,
+        0 4px 0 #050505;
 }
 
 
@@ -200,16 +150,11 @@
 
     padding: 11px 16px;
 
-    background:
-        linear-gradient(
-            180deg,
-            #1a1a1a 0%,
-            #0b0b0b 100%
-        );
+    background: #111111;
 
-    border: 1px solid #393939;
+    border: 1px solid #333333;
 
-    color: #cfcfcf;
+    color: #bdbdbd;
 
     font-size: 10px;
 
@@ -220,16 +165,6 @@
     text-align: center;
 
     cursor: pointer;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.07);
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
 }
 
 
@@ -238,22 +173,11 @@
    ========================================= */
 
 .date-part:hover {
-    background:
-        linear-gradient(
-            180deg,
-            #242424 0%,
-            #101010 100%
-        );
+    background: #181818;
 
-    border-color: #ff334f;
+    border-color: #d90024;
 
     color: #ffffff;
-
-    box-shadow:
-        0 0 10px rgba(217,0,36,0.35),
-        inset 0 1px 0 rgba(255,255,255,0.1);
-
-    transform: translateY(-1px);
 }
 
 
@@ -262,23 +186,15 @@
    ========================================= */
 
 .date-part.active {
-    background:
-        linear-gradient(
-            180deg,
-            #ff334f 0%,
-            #d90024 45%,
-            #8f0018 100%
-        );
+    background: #d90024;
 
-    border-color: #ff6678;
+    border-color: #ff334f;
 
     color: #ffffff;
 
     box-shadow:
-        0 0 12px rgba(217,0,36,0.55),
-        0 0 25px rgba(217,0,36,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.25),
-        0 0 0 1px #65000f;
+        0 0 0 1px #6f0012,
+        inset 0 -3px 0 #8f0018;
 }
 
 
@@ -293,7 +209,7 @@
 
     letter-spacing: 2px;
 
-    opacity: 0.7;
+    opacity: 0.6;
 
     margin-bottom: 3px;
 }
@@ -330,15 +246,9 @@
 
     padding: 22px;
 
-    background:
-        linear-gradient(
-            145deg,
-            #191919 0%,
-            #0e0e0e 48%,
-            #090909 100%
-        );
+    background: #111111;
 
-    border: 1px solid #303030;
+    border: 1px solid #292929;
 
     display: flex;
 
@@ -350,88 +260,20 @@
 
     overflow: hidden;
 
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.06),
-        inset 0 0 25px rgba(255,255,255,0.015),
-        0 6px 15px rgba(0,0,0,0.35);
+    box-sizing: border-box;
 
     transition:
         transform 0.2s ease,
         border-color 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.event-card::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #d90024,
-            #ffffff,
-            #d90024,
-            transparent
-        );
-
-    opacity: 0.7;
-
-    pointer-events: none;
-}
-
-.event-card::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            120deg,
-            transparent 30%,
-            rgba(255,255,255,0.04) 50%,
-            transparent 70%
-        );
-
-    pointer-events: none;
-
-    opacity: 0;
-
-    transition: opacity 0.25s ease;
+        background 0.2s ease;
 }
 
 .event-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
 
-    background:
-        linear-gradient(
-            145deg,
-            #202020 0%,
-            #111111 48%,
-            #0b0b0b 100%
-        );
+    background: #171717;
 
-    border-color: #ff334f;
-
-    box-shadow:
-        0 0 0 1px rgba(217,0,36,0.25),
-        0 0 18px rgba(217,0,36,0.25),
-        0 10px 25px rgba(0,0,0,0.5),
-        inset 0 1px 0 rgba(255,255,255,0.1);
-}
-
-.event-card:hover::after {
-    opacity: 1;
+    border-color: #ffffff;
 }
 
 
@@ -442,25 +284,21 @@
 .event-image {
     display: block;
 
-    width: 100%;
+    width: calc(100% + 44px);
+    max-width: none;
 
     aspect-ratio: 16 / 9;
 
     height: auto;
 
-    max-width: 100%;
-
     object-fit: cover;
-
     object-position: center;
 
     margin: -22px -22px 18px;
 
-    width: calc(100% + 44px);
+    background: #111111;
 
-    border-bottom: 1px solid #333333;
-
-    background: #050505;
+    border: 0;
 
     box-sizing: border-box;
 
@@ -470,11 +308,7 @@
 }
 
 .event-card:hover .event-image {
-    filter:
-        brightness(1.12)
-        contrast(1.08);
-
-    transform: scale(1.015);
+    filter: brightness(1.08);
 }
 
 
@@ -483,29 +317,16 @@
    ========================================= */
 
 .event-type {
-    position: relative;
-
-    z-index: 2;
-
     font-size: 10px;
 
     font-weight: bold;
 
     letter-spacing: 2px;
 
-    color: #ff5368;
-
-    opacity: 0.9;
-
-    text-shadow:
-        0 0 8px rgba(217,0,36,0.4);
+    opacity: 0.5;
 }
 
 .event-card h2 {
-    position: relative;
-
-    z-index: 2;
-
     margin: 10px 0 6px;
 
     font-size: 21px;
@@ -513,35 +334,19 @@
     line-height: 1.1;
 
     font-weight: 900;
-
-    color: #ffffff;
-
-    text-shadow:
-        0 1px 0 #000000,
-        0 0 12px rgba(255,255,255,0.08);
 }
 
 .event-date {
-    position: relative;
-
-    z-index: 2;
-
     font-size: 11px;
 
     font-weight: bold;
 
     letter-spacing: 1px;
 
-    color: #d5d5d5;
-
-    opacity: 0.7;
+    opacity: 0.55;
 }
 
 .event-brand {
-    position: relative;
-
-    z-index: 2;
-
     margin-top: 12px;
 
     font-size: 10px;
@@ -550,9 +355,7 @@
 
     letter-spacing: 2px;
 
-    color: #aaaaaa;
-
-    opacity: 0.8;
+    opacity: 0.55;
 }
 
 
@@ -578,8 +381,6 @@
         flex-wrap: nowrap;
 
         scrollbar-width: none;
-
-        box-sizing: border-box;
     }
 
     #date-parts::-webkit-scrollbar {
@@ -592,41 +393,37 @@
         min-width: 78px;
     }
 
-}
-
-
-/* =========================================
-   MOBILE EVENT IMAGE
-   ========================================= */
-
-@media (max-width: 800px) {
-
     .event-card {
         min-width: 0;
 
         max-width: 100%;
 
-        box-sizing: border-box;
-
         overflow: hidden;
+
+        box-sizing: border-box;
     }
 
     .event-image {
-        max-width: none;
-
         width: calc(100% + 44px);
 
-        height: auto;
+        max-width: none;
 
         aspect-ratio: 16 / 9;
 
+        height: auto;
+
         object-fit: cover;
+
+        object-position: center;
 
         box-sizing: border-box;
     }
-
 }
 
+
+/* =========================================
+   TABLET
+   ========================================= */
 
 @media (max-width: 900px) {
 
@@ -634,9 +431,12 @@
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
     }
-
 }
 
+
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
 
 @media (max-width: 600px) {
 
@@ -660,6 +460,9 @@
         aspect-ratio: 16 / 9;
 
         height: auto;
-    }
 
+        object-fit: cover;
+
+        object-position: center;
+    }
 }
