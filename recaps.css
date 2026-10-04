@@ -1,6 +1,7 @@
 /* =========================================
    MI WRESTLING
    RECAPS / EVENTS
+   Y2K / FUTURISTIC
    ========================================= */
 
 .recaps-page {
@@ -23,6 +24,8 @@
 .recaps-header {
     text-align: center;
     margin-bottom: 45px;
+
+    position: relative;
 }
 
 .recaps-header h1 {
@@ -32,6 +35,10 @@
     font-weight: 900;
 
     letter-spacing: 3px;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,0.16),
+        0 0 20px rgba(255,0,40,0.16);
 }
 
 .recaps-header p {
@@ -43,6 +50,31 @@
     letter-spacing: 4px;
 
     opacity: 0.6;
+}
+
+.recaps-header::after {
+    content: "";
+
+    display: block;
+
+    width: 75%;
+
+    height: 1px;
+
+    margin: 18px auto 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff1744,
+            #ffffff,
+            #ff1744,
+            transparent
+        );
+
+    box-shadow:
+        0 0 8px rgba(255,23,68,0.55);
 }
 
 
@@ -82,11 +114,18 @@
 }
 
 .recap-filter {
+    position: relative;
+
     padding: 10px 18px;
 
-    background: #111111;
+    background:
+        linear-gradient(
+            180deg,
+            #191919,
+            #0b0b0b
+        );
 
-    border: 1px solid #292929;
+    border: 1px solid #333333;
 
     color: #ffffff;
 
@@ -97,23 +136,76 @@
 
     cursor: pointer;
 
+    overflow: hidden;
+
     transition:
         background 0.2s ease,
-        border-color 0.2s ease;
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.recap-filter::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 70%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ffffff,
+            #ff1744,
+            transparent
+        );
+
+    box-shadow:
+        0 0 7px #ff1744;
+
+    transition:
+        left 0.35s ease;
+}
+
+.recap-filter:hover::before {
+    left: 130%;
 }
 
 .recap-filter:hover {
     background: #181818;
 
-    border-color: #ffffff;
+    border-color: #ff3150;
+
+    box-shadow:
+        0 0 10px rgba(255,49,80,0.22),
+        inset 0 0 8px rgba(255,49,80,0.04);
+
+    transform: translateY(-1px);
 }
 
 .recap-filter.active {
-    background: #ffffff;
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #d8d8d8
+        );
 
     color: #000000;
 
     border-color: #ffffff;
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,0.25),
+        0 0 25px rgba(255,255,255,0.06);
 }
 
 
@@ -131,13 +223,19 @@
 
     padding: 10px 12px;
 
-    background: #090909;
+    background:
+        linear-gradient(
+            180deg,
+            #111111,
+            #070707
+        );
 
     border: 1px solid #292929;
 
     box-shadow:
         inset 0 0 0 1px #111111,
-        0 4px 0 #050505;
+        0 4px 0 #050505,
+        0 0 12px rgba(255,0,40,0.05);
 }
 
 
@@ -146,11 +244,18 @@
    ========================================= */
 
 .date-part {
+    position: relative;
+
     min-width: 82px;
 
     padding: 11px 16px;
 
-    background: #111111;
+    background:
+        linear-gradient(
+            180deg,
+            #171717,
+            #0a0a0a
+        );
 
     border: 1px solid #333333;
 
@@ -165,6 +270,42 @@
     text-align: center;
 
     cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        0.2s ease;
+}
+
+.date-part::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 70%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ffffff,
+            #ff1744,
+            transparent
+        );
+
+    box-shadow:
+        0 0 7px #ff1744;
+
+    transition:
+        left 0.35s ease;
+}
+
+.date-part:hover::before {
+    left: 130%;
 }
 
 
@@ -178,6 +319,9 @@
     border-color: #d90024;
 
     color: #ffffff;
+
+    box-shadow:
+        0 0 10px rgba(217,0,36,0.2);
 }
 
 
@@ -186,7 +330,12 @@
    ========================================= */
 
 .date-part.active {
-    background: #d90024;
+    background:
+        linear-gradient(
+            180deg,
+            #e60028,
+            #a9001d
+        );
 
     border-color: #ff334f;
 
@@ -194,7 +343,8 @@
 
     box-shadow:
         0 0 0 1px #6f0012,
-        inset 0 -3px 0 #8f0018;
+        inset 0 -3px 0 #8f0018,
+        0 0 13px rgba(217,0,36,0.3);
 }
 
 
@@ -246,7 +396,13 @@
 
     padding: 22px;
 
-    background: #111111;
+    background:
+        linear-gradient(
+            145deg,
+            #171717 0%,
+            #0d0d0d 55%,
+            #111111 100%
+        );
 
     border: 1px solid #292929;
 
@@ -265,15 +421,90 @@
     transition:
         transform 0.2s ease,
         border-color 0.2s ease,
-        background 0.2s ease;
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 }
+
+
+/* =========================================
+   CARD LIGHT LINE
+   ========================================= */
+
+.event-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ffffff,
+            #ff1744,
+            transparent
+        );
+
+    box-shadow:
+        0 0 9px #ff1744;
+
+    transition:
+        left 0.45s ease;
+}
+
+.event-card:hover::before {
+    left: 130%;
+}
+
+
+/* =========================================
+   CARD CORNER
+   ========================================= */
+
+.event-card::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    width: 35px;
+    height: 1px;
+
+    background: #ff1744;
+
+    box-shadow:
+        0 0 7px rgba(255,23,68,0.7);
+
+    opacity: 0.5;
+}
+
+
+/* =========================================
+   EVENT CARD HOVER
+   ========================================= */
 
 .event-card:hover {
     transform: translateY(-4px);
 
-    background: #171717;
+    background:
+        linear-gradient(
+            145deg,
+            #1b1b1b,
+            #0d0d0d
+        );
 
-    border-color: #ffffff;
+    border-color: #ff3150;
+
+    box-shadow:
+        0 0 16px rgba(255,23,68,0.16),
+        inset 0 0 18px rgba(255,23,68,0.025);
 }
 
 
@@ -308,7 +539,9 @@
 }
 
 .event-card:hover .event-image {
-    filter: brightness(1.08);
+    filter:
+        brightness(1.08)
+        contrast(1.04);
 }
 
 
@@ -334,6 +567,9 @@
     line-height: 1.1;
 
     font-weight: 900;
+
+    text-shadow:
+        0 0 7px rgba(255,255,255,0.08);
 }
 
 .event-date {
@@ -465,4 +701,5 @@
 
         object-position: center;
     }
+
 }
