@@ -277,7 +277,7 @@ const wrestlers = [
  status: "active",achievements: []},
 
     
-    {name: "Joe Hendry",image: "images/zacarias.jpg", nickname: "", stable: "",
+    {name: "Joe Hendry",image: "images/joehendry.webp", nickname: "", stable: "",
       division: "",  brand: "",
       overall2026: "10 - 0 - 10", careerOverall: "0 - 10 - 0", 
  status: "inactive",achievements: []},
