@@ -2,6 +2,7 @@
    MI WRESTLING
    RECORDS
    Y2K / FUTURISTIC
+   LOW PERFORMANCE MODE
    ========================================= */
 
 * {
@@ -52,7 +53,7 @@ header {
 
     box-shadow:
         0 2px 0 #050505,
-        0 8px 25px rgba(0,0,0,0.6);
+        0 5px 14px rgba(0,0,0,0.45);
 }
 
 .back-button {
@@ -77,21 +78,17 @@ header {
         );
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 0 0 rgba(255,0,40,0);
+        inset 0 1px 0 rgba(255,255,255,0.08);
 
     transition:
-        0.2s ease;
+        transform 0.18s ease,
+        border-color 0.18s ease;
 }
 
 .back-button:hover {
     color: #ffffff;
 
     border-color: #ff3150;
-
-    box-shadow:
-        0 0 10px rgba(255,49,80,0.35),
-        inset 0 0 10px rgba(255,49,80,0.08);
 
     transform: translateX(-2px);
 }
@@ -132,7 +129,7 @@ main {
 
     text-shadow:
         0 0 8px rgba(255,255,255,0.18),
-        0 0 22px rgba(255,0,40,0.18);
+        0 0 15px rgba(255,0,40,0.14);
 }
 
 .records-header p {
@@ -169,7 +166,7 @@ main {
         );
 
     box-shadow:
-        0 0 8px rgba(255,23,68,0.7);
+        0 0 5px rgba(255,23,68,0.5);
 }
 
 
@@ -203,19 +200,19 @@ main {
     outline: none;
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.06),
-        0 0 0 rgba(255,23,68,0);
+        inset 0 1px 0 rgba(255,255,255,0.06);
 
     transition:
-        0.25s ease;
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
 }
 
 #record-search:focus {
     border-color: #ff1744;
 
     box-shadow:
-        0 0 12px rgba(255,23,68,0.25),
-        inset 0 0 10px rgba(255,23,68,0.05);
+        0 0 8px rgba(255,23,68,0.2),
+        inset 0 0 6px rgba(255,23,68,0.04);
 }
 
 #record-search::placeholder {
@@ -264,7 +261,9 @@ main {
     overflow: hidden;
 
     transition:
-        0.2s ease;
+        color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
 
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.05);
@@ -281,13 +280,17 @@ main {
     width: 100%;
     height: 1px;
 
-    background: #ffffff;
-
-    box-shadow:
-        0 0 8px #ffffff;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ffffff,
+            #ff1744,
+            transparent
+        );
 
     transition:
-        left 0.35s ease;
+        left 0.3s ease;
 }
 
 .record-filter:hover::before {
@@ -300,8 +303,8 @@ main {
     border-color: #ff3150;
 
     box-shadow:
-        0 0 12px rgba(255,49,80,0.25),
-        inset 0 0 10px rgba(255,49,80,0.05);
+        0 0 7px rgba(255,49,80,0.2),
+        inset 0 0 6px rgba(255,49,80,0.04);
 }
 
 .record-filter.active {
@@ -317,10 +320,7 @@ main {
     border-color: #ffffff;
 
     box-shadow:
-        0 0 12px rgba(255,255,255,0.3),
-        0 0 25px rgba(255,255,255,0.08);
-
-    text-shadow: none;
+        0 0 8px rgba(255,255,255,0.22);
 }
 
 
@@ -363,7 +363,9 @@ main {
     cursor: pointer;
 
     transition:
-        0.2s ease;
+        color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
 
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.05);
@@ -375,7 +377,7 @@ main {
     border-color: #ff3150;
 
     box-shadow:
-        0 0 10px rgba(255,49,80,0.25);
+        0 0 7px rgba(255,49,80,0.2);
 }
 
 .record-page.active {
@@ -391,7 +393,7 @@ main {
     border-color: #ffffff;
 
     box-shadow:
-        0 0 12px rgba(255,255,255,0.3);
+        0 0 8px rgba(255,255,255,0.22);
 }
 
 
@@ -419,7 +421,7 @@ main {
     background:
         linear-gradient(
             145deg,
-            #171717 0%,
+            #191919 0%,
             #0c0c0c 55%,
             #101010 100%
         );
@@ -433,10 +435,15 @@ main {
     overflow: hidden;
 
     transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
 }
+
+
+/* LIGHT RAY
+   Only moves when the card is interacted with.
+*/
 
 .record-card::before {
     content: "";
@@ -444,9 +451,9 @@ main {
     position: absolute;
 
     top: 0;
-    left: -120%;
+    left: -100%;
 
-    width: 80%;
+    width: 65%;
     height: 1px;
 
     background:
@@ -458,27 +465,30 @@ main {
             transparent
         );
 
-    box-shadow:
-        0 0 10px #ff1744;
+    opacity: 0;
 
     transition:
-        left 0.5s ease;
+        left 0.35s ease,
+        opacity 0.15s ease;
 }
 
 .record-card:hover::before {
-    left: 120%;
+    left: 130%;
+
+    opacity: 1;
 }
+
+
+/* CARD INTERACTION */
 
 .record-card:hover {
     border-color: #ff3150;
 
-    transform:
-        translateY(-3px)
-        scale(1.01);
+    transform: translateY(-2px);
 
     box-shadow:
-        0 0 18px rgba(255,23,68,0.18),
-        inset 0 0 20px rgba(255,23,68,0.025);
+        0 0 10px rgba(255,23,68,0.14),
+        inset 0 0 10px rgba(255,23,68,0.025);
 }
 
 
@@ -496,7 +506,7 @@ main {
     letter-spacing: 1px;
 
     text-shadow:
-        0 0 8px rgba(255,255,255,0.1);
+        0 0 6px rgba(255,255,255,0.1);
 }
 
 
@@ -559,7 +569,54 @@ main {
     font-weight: bold;
 
     text-shadow:
-        0 0 7px rgba(255,255,255,0.18);
+        0 0 6px rgba(255,255,255,0.14);
+}
+
+
+/* =========================================
+   TOUCH / MOBILE
+   ========================================= */
+
+@media (hover: none) {
+
+    .record-card:active {
+        transform: translateY(-2px);
+
+        border-color: #ff3150;
+
+        box-shadow:
+            0 0 10px rgba(255,23,68,0.14),
+            inset 0 0 10px rgba(255,23,68,0.025);
+    }
+
+    .record-card:active::before {
+        left: 130%;
+
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .record-card,
+    .record-filter,
+    .record-page,
+    .back-button,
+    #record-search {
+        transition: none;
+    }
+
+    .record-card::before,
+    .record-filter::before {
+        display: none;
+    }
+
 }
 
 
@@ -616,3 +673,18 @@ main {
     }
 
 }
+
+
+/* =========================================
+   LOW POWER DEVICES
+   ========================================= */
+
+@media (max-width: 600px) and (max-height: 900px) {
+
+    .record-card:hover,
+    .record-filter:hover,
+    .record-page:hover {
+        transform: none;
+    }
+
+                        }
