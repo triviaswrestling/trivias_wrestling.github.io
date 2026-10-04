@@ -37,44 +37,26 @@ const seasons={
 
 WEEKLY:[
 [1,40,"images/smackraw1.webp"],
-[41,50,"images/smackraw2.webp"]
+[41,50,"images/smackraw1.webp"]
 ],
 
-NXT:[
-[1,20,"images/nxt1.webp"],
-[21,40,"images/nxt2.webp"]
-],
+NXT:[],
 
-SPEED:[
-[1,10,"images/speed1.webp"],
-[11,20,"images/speed2.webp"]
-],
+SPEED:[],
 
-AEW:[
-[1,10,"images/aew1.webp"],
-[11,20,"images/aew2.webp"]
-],
+TNA:[],
 
-TNA:[
-[1,10,"images/tna1.webp"],
-[11,20,"images/tna2.webp"]
-],
+AEW:[],
 
-AAA:[
-[1,10,"images/aaa1.webp"],
-[11,20,"images/aaa2.webp"]
-],
+AAA:[],
 
-CMLL:[
-[1,10,"images/cmll1.webp"],
-[11,20,"images/cmll2.webp"]
-]
+CMLL:[]
 
 };
 
 const list=seasons[type];
 
-if(!list)
+if(!list||!list.length)
 return "images/events/default.jpg";
 
 const season=list.find(
@@ -366,7 +348,9 @@ events.push({
 id,
 
 title:
-`${brand} #${number||""}`,
+`${brand} #${
+id.match(/-(\d+)$/)?.[1]||""
+}`,
 
 date:event.date||"",
 
@@ -499,8 +483,8 @@ return list.slice().sort(
 
 /* =========================================
    DATE PARTS
-   PART 01 = EVENTS 1-21
-   PART 02 = EVENTS 22-42
+   PART 01 = EVENTS 1-20
+   PART 02 = EVENTS 21-40
    ========================================= */
 
 function renderDateParts(totalPages){
