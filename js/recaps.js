@@ -9,8 +9,26 @@ const EVENTS_PER_PAGE=21;
 let currentPage=1;
 let currentFilter="ALL";
 
+
 /* =========================================
-   EVENT SEASON IMAGE
+   SPECIAL EVENTS
+   ========================================= */
+
+if(typeof eventData!=="undefined"){
+
+Object.entries(eventData).forEach(([id,event])=>{
+
+if(event.type==="PLE"){
+events.push({id,...event,type:event.brand==="NXT"?"TAKEOVER":"PLE"});
+}
+
+});
+
+}
+
+
+/* =========================================
+   SEASON IMAGES
    ========================================= */
 
 function getSeasonImage(type,number){
@@ -18,38 +36,38 @@ function getSeasonImage(type,number){
 const seasons={
 
 WEEKLY:[
-[1,40,"images/events/weekly-1.jpg"],
-[41,50,"images/events/weekly-2.jpg"]
+[1,40,"images/smackraw1.webp"],
+[41,50,"images/smackraw2.webp"]
 ],
 
 NXT:[
-[1,20,"images/events/nxt-1.jpg"],
-[21,40,"images/events/nxt-2.jpg"]
+[1,20,"images/nxt1.webp"],
+[21,40,"images/nxt2.webp"]
 ],
 
 SPEED:[
-[1,10,"images/events/speed-1.jpg"],
-[11,20,"images/events/speed-2.jpg"]
+[1,10,"images/speed1.webp"],
+[11,20,"images/speed2.webp"]
 ],
 
 AEW:[
-[1,10,"images/events/aew-1.jpg"],
-[11,20,"images/events/aew-2.jpg"]
+[1,10,"images/aew1.webp"],
+[11,20,"images/aew2.webp"]
 ],
 
 TNA:[
-[1,10,"images/events/tna-1.jpg"],
-[11,20,"images/events/tna-2.jpg"]
+[1,10,"images/tna1.webp"],
+[11,20,"images/tna2.webp"]
 ],
 
 AAA:[
-[1,10,"images/events/aaa-1.jpg"],
-[11,20,"images/events/aaa-2.jpg"]
+[1,10,"images/aaa1.webp"],
+[11,20,"images/aaa2.webp"]
 ],
 
 CMLL:[
-[1,10,"images/events/cmll-1.jpg"],
-[11,20,"images/events/cmll-2.jpg"]
+[1,10,"images/cmll1.webp"],
+[11,20,"images/cmll2.webp"]
 ]
 
 };
@@ -66,27 +84,6 @@ range=>number>=range[0]&&number<=range[1]
 return season?
 season[2]:
 "images/events/default.jpg";
-
-}
-
-
-/* =========================================
-   SPECIAL EVENTS
-   ========================================= */
-
-if(typeof eventData!=="undefined"){
-
-Object.entries(eventData).forEach(([id,event])=>{
-
-if(event.type==="PLE"){
-events.push({
-id,
-...event,
-type:event.brand==="NXT"?"TAKEOVER":"PLE"
-});
-}
-
-});
 
 }
 
@@ -361,16 +358,15 @@ Object.entries(data.shows).forEach(
 
 if(!event)return;
 
-const number=Number(
-id.match(/-(\d+)$/)?.[1]||0
-);
+const number=
+Number(id.match(/-(\d+)$/)?.[1]||0);
 
 events.push({
 
 id,
 
 title:
-`${brand} #${number}`,
+`${brand} #${number||""}`,
 
 date:event.date||"",
 
@@ -503,8 +499,8 @@ return list.slice().sort(
 
 /* =========================================
    DATE PARTS
-   PART 01 = EVENTS 1-20
-   PART 02 = EVENTS 21-40
+   PART 01 = EVENTS 1-21
+   PART 02 = EVENTS 22-42
    ========================================= */
 
 function renderDateParts(totalPages){
@@ -646,6 +642,7 @@ event.image||
 "images/events/default.jpg"
 }"
 alt="${event.title}"
+onerror="this.onerror=null;this.src='images/events/default.jpg';"
 >
 
 <div class="event-info">
