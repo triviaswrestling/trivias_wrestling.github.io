@@ -1,6 +1,7 @@
 /* =========================================
    MI WRESTLING
    RECORDS
+   Y2K / FUTURISTIC
    ========================================= */
 
 * {
@@ -14,9 +15,15 @@ body {
 }
 
 body {
-    background: #0b0b0b;
+    background:
+        radial-gradient(circle at 50% -10%, #241018 0%, transparent 35%),
+        radial-gradient(circle at 100% 50%, #101d28 0%, transparent 30%),
+        #050505;
+
     color: #ffffff;
+
     font-family: Arial, sans-serif;
+
     overflow-x: hidden;
 }
 
@@ -29,18 +36,28 @@ header {
     width: 100%;
     height: 70px;
 
-    background: #111111;
+    background:
+        linear-gradient(
+            180deg,
+            #171717 0%,
+            #090909 100%
+        );
 
-    border-bottom: 1px solid #292929;
+    border-bottom: 1px solid #343434;
 
     display: flex;
     align-items: center;
 
     padding: 0 35px;
+
+    box-shadow:
+        0 2px 0 #050505,
+        0 8px 25px rgba(0,0,0,0.6);
 }
 
 .back-button {
     color: #ffffff;
+
     text-decoration: none;
 
     font-size: 13px;
@@ -48,11 +65,35 @@ header {
 
     letter-spacing: 1px;
 
-    transition: 0.2s;
+    padding: 9px 15px;
+
+    border: 1px solid #333333;
+
+    background:
+        linear-gradient(
+            180deg,
+            #1c1c1c,
+            #0c0c0c
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 0 0 rgba(255,0,40,0);
+
+    transition:
+        0.2s ease;
 }
 
 .back-button:hover {
-    opacity: 0.6;
+    color: #ffffff;
+
+    border-color: #ff3150;
+
+    box-shadow:
+        0 0 10px rgba(255,49,80,0.35),
+        inset 0 0 10px rgba(255,49,80,0.08);
+
+    transform: translateX(-2px);
 }
 
 
@@ -76,6 +117,8 @@ main {
 
 .records-header {
     margin-bottom: 30px;
+
+    position: relative;
 }
 
 .records-header h1 {
@@ -83,17 +126,50 @@ main {
 
     font-size: 32px;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+
+    font-weight: 900;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,0.18),
+        0 0 22px rgba(255,0,40,0.18);
 }
 
 .records-header p {
     margin: 8px 0 0;
 
-    color: #777777;
+    color: #8b8b8b;
 
     font-size: 12px;
 
-    letter-spacing: 1px;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+.records-header::after {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+
+    height: 1px;
+
+    margin-top: 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff1744,
+            #ffffff,
+            #ff1744,
+            transparent
+        );
+
+    box-shadow:
+        0 0 8px rgba(255,23,68,0.7);
 }
 
 
@@ -109,9 +185,14 @@ main {
     width: 100%;
     height: 48px;
 
-    background: #111111;
+    background:
+        linear-gradient(
+            180deg,
+            #151515,
+            #090909
+        );
 
-    border: 1px solid #292929;
+    border: 1px solid #333333;
 
     color: #ffffff;
 
@@ -120,14 +201,197 @@ main {
     font-size: 13px;
 
     outline: none;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 0 0 rgba(255,23,68,0);
+
+    transition:
+        0.25s ease;
 }
 
 #record-search:focus {
-    border-color: #555555;
+    border-color: #ff1744;
+
+    box-shadow:
+        0 0 12px rgba(255,23,68,0.25),
+        inset 0 0 10px rgba(255,23,68,0.05);
 }
 
 #record-search::placeholder {
     color: #666666;
+}
+
+
+/* =========================================
+   RECORD FILTERS
+   ========================================= */
+
+.record-filters {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 12px;
+
+    flex-wrap: wrap;
+}
+
+.record-filter {
+    position: relative;
+
+    background:
+        linear-gradient(
+            180deg,
+            #1a1a1a,
+            #0a0a0a
+        );
+
+    border: 1px solid #333333;
+
+    color: #888888;
+
+    padding: 11px 18px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        0.2s ease;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.record-filter::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 1px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 8px #ffffff;
+
+    transition:
+        left 0.35s ease;
+}
+
+.record-filter:hover::before {
+    left: 100%;
+}
+
+.record-filter:hover {
+    color: #ffffff;
+
+    border-color: #ff3150;
+
+    box-shadow:
+        0 0 12px rgba(255,49,80,0.25),
+        inset 0 0 10px rgba(255,49,80,0.05);
+}
+
+.record-filter.active {
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #cfcfcf
+        );
+
+    color: #080808;
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,0.3),
+        0 0 25px rgba(255,255,255,0.08);
+
+    text-shadow: none;
+}
+
+
+/* =========================================
+   RECORD PAGES
+   ========================================= */
+
+.record-pages {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 12px;
+
+    flex-wrap: wrap;
+}
+
+.record-page {
+    position: relative;
+
+    background:
+        linear-gradient(
+            180deg,
+            #171717,
+            #090909
+        );
+
+    border: 1px solid #333333;
+
+    color: #777777;
+
+    padding: 11px 18px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.record-page:hover {
+    color: #ffffff;
+
+    border-color: #ff3150;
+
+    box-shadow:
+        0 0 10px rgba(255,49,80,0.25);
+}
+
+.record-page.active {
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #d8d8d8
+        );
+
+    color: #080808;
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,0.3);
 }
 
 
@@ -138,7 +402,8 @@ main {
 #records-container {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, 1fr);
 
     gap: 15px;
 }
@@ -149,7 +414,15 @@ main {
    ========================================= */
 
 .record-card {
-    background: #111111;
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171717 0%,
+            #0c0c0c 55%,
+            #101010 100%
+        );
 
     border: 1px solid #292929;
 
@@ -157,13 +430,55 @@ main {
 
     cursor: pointer;
 
-    transition: 0.2s;
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.record-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 80%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ffffff,
+            #ff1744,
+            transparent
+        );
+
+    box-shadow:
+        0 0 10px #ff1744;
+
+    transition:
+        left 0.5s ease;
+}
+
+.record-card:hover::before {
+    left: 120%;
 }
 
 .record-card:hover {
-    border-color: #555555;
+    border-color: #ff3150;
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-3px)
+        scale(1.01);
+
+    box-shadow:
+        0 0 18px rgba(255,23,68,0.18),
+        inset 0 0 20px rgba(255,23,68,0.025);
 }
 
 
@@ -179,6 +494,38 @@ main {
     font-weight: bold;
 
     letter-spacing: 1px;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,0.1);
+}
+
+
+/* =========================================
+   RECORD CARD INFO
+   ========================================= */
+
+.record-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 15px;
+}
+
+.record-brand {
+    color: #777777;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    padding-top: 3px;
+
+    text-transform: uppercase;
 }
 
 
@@ -210,6 +557,9 @@ main {
     font-size: 14px;
 
     font-weight: bold;
+
+    text-shadow:
+        0 0 7px rgba(255,255,255,0.18);
 }
 
 
@@ -233,6 +583,8 @@ main {
 
     .records-header h1 {
         font-size: 24px;
+
+        letter-spacing: 2px;
     }
 
     #records-container {
@@ -243,112 +595,15 @@ main {
         padding: 18px;
     }
 
-}
-/* =========================================
-   RECORD FILTERS
-   ========================================= */
-
-.record-filters {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-    flex-wrap: wrap;
-}
-
-.record-filter {
-    background: #111111;
-    border: 1px solid #292929;
-    color: #777777;
-    padding: 11px 18px;
-    font-size: 10px;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.record-filter:hover {
-    color: #ffffff;
-    border-color: #555555;
-}
-
-.record-filter.active {
-    background: #ffffff;
-    color: #0b0b0b;
-    border-color: #ffffff;
-}
-
-@media (max-width: 600px) {
-
     .record-filters {
         gap: 6px;
     }
 
     .record-filter {
         padding: 10px 13px;
+
         font-size: 9px;
     }
-
-}
-
-/* =========================================
-   RECORD CARD INFO
-   ========================================= */
-
-.record-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 15px;
-}
-
-.record-name {
-    margin: 0 0 15px;
-}
-
-.record-brand {
-    color: #777777;
-    font-size: 9px;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    padding-top: 3px;
-}
-
-/* =========================================
-   RECORD PAGES
-   ========================================= */
-
-.record-pages {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-    flex-wrap: wrap;
-}
-
-.record-page {
-    background: #111111;
-    border: 1px solid #292929;
-    color: #777777;
-    padding: 11px 18px;
-    font-size: 10px;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.record-page:hover {
-    color: #ffffff;
-    border-color: #555555;
-}
-
-.record-page.active {
-    background: #ffffff;
-    color: #0b0b0b;
-    border-color: #ffffff;
-}
-
-@media (max-width: 600px) {
 
     .record-pages {
         gap: 6px;
@@ -356,6 +611,7 @@ main {
 
     .record-page {
         padding: 10px 13px;
+
         font-size: 9px;
     }
 
