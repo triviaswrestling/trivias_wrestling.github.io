@@ -10,6 +10,67 @@ let currentPage=1;
 let currentFilter="ALL";
 
 /* =========================================
+   EVENT SEASON IMAGE
+   ========================================= */
+
+function getSeasonImage(type,number){
+
+const seasons={
+
+WEEKLY:[
+[1,40,"images/events/weekly-1.jpg"],
+[41,50,"images/events/weekly-2.jpg"]
+],
+
+NXT:[
+[1,20,"images/events/nxt-1.jpg"],
+[21,40,"images/events/nxt-2.jpg"]
+],
+
+SPEED:[
+[1,10,"images/events/speed-1.jpg"],
+[11,20,"images/events/speed-2.jpg"]
+],
+
+AEW:[
+[1,10,"images/events/aew-1.jpg"],
+[11,20,"images/events/aew-2.jpg"]
+],
+
+TNA:[
+[1,10,"images/events/tna-1.jpg"],
+[11,20,"images/events/tna-2.jpg"]
+],
+
+AAA:[
+[1,10,"images/events/aaa-1.jpg"],
+[11,20,"images/events/aaa-2.jpg"]
+],
+
+CMLL:[
+[1,10,"images/events/cmll-1.jpg"],
+[11,20,"images/events/cmll-2.jpg"]
+]
+
+};
+
+const list=seasons[type];
+
+if(!list)
+return "images/events/default.jpg";
+
+const season=list.find(
+range=>number>=range[0]&&number<=range[1]
+);
+
+return season?
+season[2]:
+"images/events/default.jpg";
+
+}
+
+
+/* =========================================
    SPECIAL EVENTS
    ========================================= */
 
@@ -18,12 +79,17 @@ if(typeof eventData!=="undefined"){
 Object.entries(eventData).forEach(([id,event])=>{
 
 if(event.type==="PLE"){
-events.push({id,...event,type:event.brand==="NXT"?"TAKEOVER":"PLE"});
+events.push({
+id,
+...event,
+type:event.brand==="NXT"?"TAKEOVER":"PLE"
+});
 }
 
 });
 
 }
+
 
 /* =========================================
    TOURNAMENT DATA
@@ -33,6 +99,7 @@ if(typeof tournamentData!=="undefined"){
 
 const weeklyEvents={};
 const nxtEvents={};
+
 
 /* =========================================
    WEEKLY
@@ -62,6 +129,7 @@ id,
 
 }
 
+
 /* =========================================
    NXT
    ========================================= */
@@ -86,6 +154,7 @@ id,
 
 }
 
+
 /* =========================================
    READ ALL TOURNAMENTS
    ========================================= */
@@ -94,6 +163,7 @@ Object.entries(tournamentData).forEach(
 ([tournamentId,data])=>{
 
 if(!data)return;
+
 
 /* =====================================
    OLD WEEKLY
@@ -110,6 +180,7 @@ addNXT(id,event);
 });
 
 }
+
 
 /* =====================================
    OLD MATCHES
@@ -130,6 +201,7 @@ addNXT(id,event);
 
 }
 
+
 /* =====================================
    NEW TOURNAMENT SHOWS
    ===================================== */
@@ -145,6 +217,7 @@ addNXT(id,event);
 });
 
 }
+
 
 /* =====================================
    LEAGUES
@@ -185,6 +258,7 @@ addNXT(id,event);
 }
 );
 
+
 /* =========================================
    CREATE WEEKLY
    ========================================= */
@@ -216,11 +290,15 @@ brand:"",
 
 type:"WEEKLY",
 
-image:"images/events/default.jpg"
+image:getSeasonImage(
+"WEEKLY",
+weekly.number
+)
 
 });
 
 });
+
 
 /* =========================================
    CREATE NXT
@@ -244,13 +322,17 @@ type:"NXT",
 
 image:
 nxt.event.image||
-"images/events/default.jpg"
+getSeasonImage(
+"NXT",
+nxt.number
+)
 
 });
 
 });
 
 }
+
 
 /* =========================================
    OUTSIDER DATA
@@ -279,14 +361,16 @@ Object.entries(data.shows).forEach(
 
 if(!event)return;
 
+const number=Number(
+id.match(/-(\d+)$/)?.[1]||0
+);
+
 events.push({
 
 id,
 
 title:
-`${brand} #${
-id.match(/-(\d+)$/)?.[1]||""
-}`,
+`${brand} #${number}`,
 
 date:event.date||"",
 
@@ -296,7 +380,10 @@ type:brand,
 
 image:
 event.image||
-"images/events/default.jpg"
+getSeasonImage(
+brand,
+number
+)
 
 });
 
@@ -306,6 +393,7 @@ event.image||
 );
 
 }
+
 
 /* =========================================
    DATE
@@ -325,6 +413,7 @@ Number(d)
 
 }
 
+
 /* =========================================
    SORT
    ========================================= */
@@ -332,6 +421,7 @@ Number(d)
 events.sort(
 (a,b)=>dateValue(b.date)-dateValue(a.date)
 );
+
 
 /* =========================================
    AVAILABLE FILTERS
@@ -363,6 +453,7 @@ button.style.display="none";
 }
 
 });
+
 
 /* =========================================
    GET FILTERED EVENTS
@@ -409,6 +500,7 @@ return list.slice().sort(
 
 }
 
+
 /* =========================================
    DATE PARTS
    PART 01 = EVENTS 1-20
@@ -429,12 +521,14 @@ const button=document.createElement("button");
 
 button.className="date-part";
 
+
 /* =====================================
    ACTIVE PART
    ===================================== */
 
 if(i===currentPage)
 button.classList.add("active");
+
 
 /* =====================================
    PART TEXT
@@ -446,6 +540,7 @@ button.innerHTML=`
 <span>PART</span>
 ${number}
 `;
+
 
 /* =====================================
    CLICK
@@ -472,6 +567,7 @@ dateParts.appendChild(button);
 
 }
 
+
 /* =========================================
    RENDER
    ========================================= */
@@ -485,6 +581,7 @@ const list=getFilteredEvents();
 const totalPages=Math.ceil(
 list.length/EVENTS_PER_PAGE
 );
+
 
 /* =========================================
    NO EVENTS
@@ -504,6 +601,7 @@ return;
 
 }
 
+
 /* =========================================
    CURRENT PART
    ========================================= */
@@ -513,6 +611,7 @@ currentPage=totalPages;
 
 if(currentPage<1)
 currentPage=1;
+
 
 /* =========================================
    PART POSITION
@@ -525,6 +624,7 @@ const pageEvents=list.slice(
 start,
 start+EVENTS_PER_PAGE
 );
+
 
 /* =========================================
    CREATE CARDS
@@ -581,6 +681,7 @@ eventsContainer.appendChild(card);
 
 });
 
+
 /* =========================================
    UPDATE PARTS
    ========================================= */
@@ -588,6 +689,7 @@ eventsContainer.appendChild(card);
 renderDateParts(totalPages);
 
 }
+
 
 /* =========================================
    OLD PAGINATION CONTAINER
@@ -600,6 +702,7 @@ if(!pagination)return;
 pagination.innerHTML="";
 
 }
+
 
 /* =========================================
    FILTERS
@@ -622,6 +725,7 @@ button.textContent
 .trim()
 .toUpperCase();
 
+
 /* ================================
    RESET TO PART 01
    ================================ */
@@ -633,7 +737,6 @@ renderEvents();
 }
 );
 
-});
 
 /* =========================================
    INITIAL RENDER
