@@ -2,20 +2,25 @@
    MI WRESTLING
    RECORDS
    Y2K / FUTURISTIC
-   LOW PERFORMANCE
+   PERFORMANCE SAFE
    ========================================= */
 
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
 html,
-body {
-    margin: 0;
-    padding: 0;
+body{
+    margin:0;
+    padding:0;
+    width:100%;
 }
 
-body {
+html{
+    touch-action:manipulation;
+}
+
+body{
     background:
         radial-gradient(
             circle at 50% -10%,
@@ -24,11 +29,11 @@ body {
         ),
         #050505;
 
-    color: #ffffff;
+    color:#fff;
 
-    font-family: Arial, sans-serif;
+    font-family:Arial,sans-serif;
 
-    overflow-x: hidden;
+    overflow-x:hidden;
 }
 
 
@@ -36,9 +41,9 @@ body {
    HEADER
    ========================================= */
 
-header {
-    width: 100%;
-    height: 70px;
+header{
+    width:100%;
+    height:70px;
 
     background:
         linear-gradient(
@@ -47,60 +52,106 @@ header {
             #090909 100%
         );
 
-    border-bottom: 1px solid #343434;
+    border-bottom:1px solid #343434;
 
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
 
-    padding: 0 35px;
+    padding:0 35px;
 
     box-shadow:
         0 2px 0 #050505,
-        0 5px 14px rgba(0,0,0,0.45);
+        0 5px 14px rgba(0,0,0,.45);
 }
 
-.back-button {
-    color: #ffffff;
+.back-button{
+    position:relative;
+    overflow:hidden;
 
-    text-decoration: none;
+    color:#fff;
 
-    font-size: 13px;
-    font-weight: bold;
+    text-decoration:none;
 
-    letter-spacing: 1px;
+    font-size:13px;
+    font-weight:bold;
 
-    padding: 9px 15px;
+    letter-spacing:1px;
 
-    border: 1px solid #333333;
+    padding:9px 15px;
+
+    border:1px solid #555;
+    border-radius:5px;
 
     background:
         linear-gradient(
             180deg,
-            #1c1c1c,
-            #0c0c0c
+            #3a3a3a,
+            #222 45%,
+            #111
         );
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08);
+        inset 0 1px 0 rgba(255,255,255,.25),
+        inset 0 -3px 0 rgba(0,0,0,.7),
+        0 3px 0 #050505;
+
+    cursor:pointer;
 
     transition:
-        transform 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease;
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease;
 }
 
-@media (hover: hover) {
+.back-button::after{
+    content:"";
 
-    .back-button:hover {
-        border-color: #ff3150;
+    position:absolute;
 
-        transform: translateX(-2px);
+    top:0;
+    left:-100%;
+
+    width:35%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.2),
+            transparent
+        );
+
+    transform:skewX(-18deg);
+
+    transition:left .4s ease;
+}
+
+@media(hover:hover){
+
+    .back-button:hover{
+        transform:translateY(-2px);
+
+        border-color:#aaa;
 
         box-shadow:
-            0 0 8px rgba(255,49,80,0.25),
-            inset 0 0 6px rgba(255,49,80,0.05);
+            inset 0 1px 0 rgba(255,255,255,.3),
+            inset 0 -3px 0 rgba(0,0,0,.8),
+            0 4px 0 #050505;
     }
 
+    .back-button:hover::after{
+        left:140%;
+    }
+
+}
+
+.back-button:active{
+    transform:translateY(1px);
+
+    box-shadow:
+        inset 0 2px 4px rgba(0,0,0,.8),
+        0 1px 0 #050505;
 }
 
 
@@ -108,13 +159,13 @@ header {
    MAIN
    ========================================= */
 
-main {
-    width: 100%;
-    max-width: 1100px;
+main{
+    width:100%;
+    max-width:1100px;
 
-    margin: 40px auto;
+    margin:40px auto;
 
-    padding: 0 25px;
+    padding:0 25px;
 }
 
 
@@ -122,61 +173,60 @@ main {
    TITLE
    ========================================= */
 
-.records-header {
-    margin-bottom: 30px;
+.records-header{
+    margin-bottom:30px;
 
-    position: relative;
+    position:relative;
 }
 
-.records-header h1 {
-    margin: 0;
+.records-header h1{
+    margin:0;
 
-    font-size: 32px;
+    font-size:32px;
 
-    letter-spacing: 3px;
+    letter-spacing:3px;
 
-    font-weight: 900;
+    font-weight:900;
 
     text-shadow:
-        0 0 7px rgba(255,255,255,0.16),
-        0 0 14px rgba(255,0,40,0.12);
+        0 0 7px rgba(255,255,255,.16),
+        0 0 14px rgba(255,0,40,.12);
 }
 
-.records-header p {
-    margin: 8px 0 0;
+.records-header p{
+    margin:8px 0 0;
 
-    color: #8b8b8b;
+    color:#8b8b8b;
 
-    font-size: 12px;
+    font-size:12px;
 
-    letter-spacing: 3px;
+    letter-spacing:3px;
 
-    text-transform: uppercase;
+    text-transform:uppercase;
 }
 
-.records-header::after {
-    content: "";
+.records-header::after{
+    content:"";
 
-    display: block;
+    display:block;
 
-    width: 100%;
+    width:100%;
+    height:1px;
 
-    height: 1px;
-
-    margin-top: 18px;
+    margin-top:18px;
 
     background:
         linear-gradient(
             90deg,
             transparent,
             #ff1744,
-            #ffffff,
+            #fff,
             #ff1744,
             transparent
         );
 
     box-shadow:
-        0 0 5px rgba(255,23,68,0.45);
+        0 0 5px rgba(255,23,68,.45);
 }
 
 
@@ -184,13 +234,13 @@ main {
    SEARCH
    ========================================= */
 
-.records-search {
-    margin-bottom: 25px;
+.records-search{
+    margin-bottom:25px;
 }
 
-#record-search {
-    width: 100%;
-    height: 48px;
+#record-search{
+    width:100%;
+    height:48px;
 
     background:
         linear-gradient(
@@ -199,220 +249,311 @@ main {
             #090909
         );
 
-    border: 1px solid #333333;
+    border:1px solid #333;
 
-    color: #ffffff;
+    color:#fff;
 
-    padding: 0 16px;
+    padding:0 16px;
 
-    /* EVITA ZOOM AUTOMATICO EN ANDROID */
-    font-size: 16px;
+    font-size:16px;
 
-    outline: none;
+    outline:none;
+
+    border-radius:4px;
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.06);
+        inset 0 1px 0 rgba(255,255,255,.06);
 
     transition:
-        border-color 0.18s ease,
-        box-shadow 0.18s ease;
+        border-color .18s ease,
+        box-shadow .18s ease;
 }
 
-#record-search:focus {
-    border-color: #ff1744;
+#record-search:focus{
+    border-color:#ff1744;
 
     box-shadow:
-        0 0 8px rgba(255,23,68,0.18),
-        inset 0 0 6px rgba(255,23,68,0.03);
+        0 0 8px rgba(255,23,68,.18),
+        inset 0 0 6px rgba(255,23,68,.03);
 }
 
-#record-search::placeholder {
-    color: #666666;
+#record-search::placeholder{
+    color:#666;
 }
 
 
 /* =========================================
    RECORD FILTERS
+   3D Y2K BUTTONS
    ========================================= */
 
-.record-filters {
-    display: flex;
+.record-filters{
+    display:flex;
 
-    gap: 8px;
+    gap:10px;
 
-    margin-top: 12px;
+    margin-top:12px;
 
-    flex-wrap: wrap;
+    flex-wrap:wrap;
 }
 
-.record-filter {
-    position: relative;
+.record-filter{
+    position:relative;
+    overflow:hidden;
+
+    border:1px solid #555;
+    border-radius:5px;
+
+    padding:9px 15px;
+
+    color:#ddd;
 
     background:
         linear-gradient(
             180deg,
-            #1a1a1a,
-            #0a0a0a
+            #3a3a3a,
+            #222 45%,
+            #111
         );
 
-    border: 1px solid #333333;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.25),
+        inset 0 -3px 0 rgba(0,0,0,.7),
+        0 3px 0 #050505;
 
-    color: #888888;
+    font-size:10px;
 
-    padding: 11px 18px;
+    font-weight:bold;
 
-    font-size: 10px;
+    letter-spacing:1.5px;
 
-    font-weight: bold;
-
-    letter-spacing: 1.5px;
-
-    cursor: pointer;
-
-    overflow: hidden;
+    cursor:pointer;
 
     transition:
-        color 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.05);
+        transform .22s ease,
+        color .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease;
 }
 
-.record-filter::before {
-    content: "";
+.record-filter::after{
+    content:"";
 
-    position: absolute;
+    position:absolute;
 
-    top: 0;
-    left: -100%;
+    top:0;
+    left:-100%;
 
-    width: 100%;
-    height: 1px;
+    width:35%;
+    height:100%;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            #ffffff,
-            #ff1744,
+            rgba(255,255,255,.2),
             transparent
         );
 
-    transition:
-        left 0.45s ease;
+    transform:skewX(-18deg);
+
+    transition:left .4s ease;
 }
 
-@media (hover: hover) {
+@media(hover:hover){
 
-    .record-filter:hover::before {
-        left: 100%;
-    }
+    .record-filter:hover{
+        transform:translateY(-2px);
 
-    .record-filter:hover {
-        color: #ffffff;
+        color:#fff;
 
-        border-color: #ff3150;
+        border-color:#aaa;
 
         box-shadow:
-            0 0 7px rgba(255,49,80,0.18),
-            inset 0 0 6px rgba(255,49,80,0.03);
+            inset 0 1px 0 rgba(255,255,255,.3),
+            inset 0 -3px 0 rgba(0,0,0,.8),
+            0 4px 0 #050505;
+    }
+
+    .record-filter:hover::after{
+        left:140%;
     }
 
 }
 
-.record-filter.active {
+.record-filter:active{
+    transform:translateY(1px);
+
+    box-shadow:
+        inset 0 2px 4px rgba(0,0,0,.8),
+        0 1px 0 #050505;
+}
+
+.record-filter.active{
+    color:#fff;
+
     background:
         linear-gradient(
             180deg,
-            #ffffff,
-            #cfcfcf
+            #ff526c,
+            #d90024 45%,
+            #7b0015
         );
 
-    color: #080808;
-
-    border-color: #ffffff;
+    border-color:#ff526c;
 
     box-shadow:
-        0 0 8px rgba(255,255,255,0.2);
+        inset 0 1px 0 rgba(255,255,255,.4),
+        inset 0 -4px 0 rgba(80,0,10,.8),
+        0 3px 0 #350009;
 }
 
 
 /* =========================================
    RECORD PAGES
+   3D Y2K BUTTONS
    ========================================= */
 
-.record-pages {
-    display: flex;
+.record-pages{
+    display:flex;
 
-    gap: 8px;
+    gap:10px;
 
-    margin-top: 12px;
+    margin-top:12px;
 
-    flex-wrap: wrap;
+    flex-wrap:wrap;
 }
 
-.record-page {
-    position: relative;
+.record-page{
+    position:relative;
+    overflow:hidden;
+
+    border:1px solid #444;
+    border-radius:4px;
+
+    padding:8px 14px;
+
+    color:#ccc;
 
     background:
         linear-gradient(
             180deg,
-            #171717,
-            #090909
+            #303030,
+            #141414
         );
 
-    border: 1px solid #333333;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.2),
+        inset 0 -3px 0 rgba(0,0,0,.7),
+        0 3px 0 #050505;
 
-    color: #777777;
+    font-size:10px;
 
-    padding: 11px 18px;
+    font-weight:bold;
 
-    font-size: 10px;
+    letter-spacing:1.5px;
 
-    font-weight: bold;
-
-    letter-spacing: 1.5px;
-
-    cursor: pointer;
+    cursor:pointer;
 
     transition:
-        color 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.05);
+        transform .22s ease,
+        color .22s ease,
+        border-color .22s ease,
+        background .22s ease,
+        box-shadow .22s ease;
 }
 
-@media (hover: hover) {
+.record-page::after{
+    content:"";
 
-    .record-page:hover {
-        color: #ffffff;
+    position:absolute;
 
-        border-color: #ff3150;
+    top:0;
+    left:-100%;
+
+    width:40%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.18),
+            transparent
+        );
+
+    transform:skewX(-18deg);
+
+    transition:left .4s ease;
+
+    pointer-events:none;
+}
+
+@media(hover:hover){
+
+    .record-page:hover{
+        transform:translateY(-2px);
+
+        color:#fff;
+
+        border-color:#ff3150;
+
+        background:
+            linear-gradient(
+                180deg,
+                #3d1118,
+                #17070a
+            );
 
         box-shadow:
-            0 0 7px rgba(255,49,80,0.18);
+            inset 0 1px 0 rgba(255,255,255,.22),
+            inset 0 -3px 0 rgba(0,0,0,.75),
+            0 4px 0 #050505;
+    }
+
+    .record-page:hover::after{
+        left:140%;
     }
 
 }
 
-.record-page.active {
+.record-page:active{
+    transform:translateY(1px);
+
+    color:#fff;
+
+    border-color:#ff526c;
+
     background:
         linear-gradient(
             180deg,
-            #ffffff,
-            #d8d8d8
+            #ff526c,
+            #d90024 45%,
+            #7b0015
         );
 
-    color: #080808;
+    box-shadow:
+        inset 0 2px 4px rgba(0,0,0,.8),
+        0 1px 0 #050505;
+}
 
-    border-color: #ffffff;
+.record-page.active{
+    color:#fff;
+
+    border-color:#ff526c;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ff526c,
+            #d90024 45%,
+            #7b0015
+        );
 
     box-shadow:
-        0 0 8px rgba(255,255,255,0.2);
+        inset 0 1px 0 rgba(255,255,255,.4),
+        inset 0 -4px 0 rgba(80,0,10,.8),
+        0 3px 0 #350009;
 }
 
 
@@ -420,13 +561,13 @@ main {
    RECORDS GRID
    ========================================= */
 
-#records-container {
-    display: grid;
+#records-container{
+    display:grid;
 
     grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+        repeat(2,minmax(0,1fr));
 
-    gap: 15px;
+    gap:15px;
 }
 
 
@@ -434,8 +575,8 @@ main {
    RECORD CARD
    ========================================= */
 
-.record-card {
-    position: relative;
+.record-card{
+    position:relative;
 
     background:
         linear-gradient(
@@ -445,22 +586,22 @@ main {
             #101010 100%
         );
 
-    border: 1px solid #292929;
+    border:1px solid #292929;
 
-    padding: 22px;
+    padding:22px;
 
-    cursor: pointer;
+    cursor:pointer;
 
-    overflow: hidden;
+    overflow:hidden;
 
-    contain: layout paint;
+    contain:layout paint;
 
-    content-visibility: auto;
+    content-visibility:auto;
 
     transition:
-        transform 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease;
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
 }
 
 
@@ -468,51 +609,52 @@ main {
    LIGHT RAY
    ========================================= */
 
-.record-card::before {
-    content: "";
+.record-card::before{
+    content:"";
 
-    position: absolute;
+    position:absolute;
 
-    top: 0;
-    left: -120%;
+    top:0;
+    left:-120%;
 
-    width: 80%;
-    height: 1px;
+    width:80%;
+    height:1px;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            #ffffff,
+            #fff,
             #ff1744,
             transparent
         );
 
-    opacity: 0;
+    opacity:0;
 
     transition:
         left 1s ease,
-        opacity 0.12s ease;
+        opacity .12s ease;
+
+    pointer-events:none;
 }
 
-@media (hover: hover) {
+@media(hover:hover){
 
-    .record-card:hover::before {
-        left: 120%;
-
-        opacity: 1;
+    .record-card:hover::before{
+        left:120%;
+        opacity:1;
     }
 
-    .record-card:hover {
-        border-color: #ff3150;
+    .record-card:hover{
+        border-color:#ff3150;
 
         transform:
             translateY(-2px)
             scale(1.005);
 
         box-shadow:
-            0 0 10px rgba(255,23,68,0.14),
-            inset 0 0 10px rgba(255,23,68,0.02);
+            0 0 10px rgba(255,23,68,.14),
+            inset 0 0 10px rgba(255,23,68,.02);
     }
 
 }
@@ -522,17 +664,17 @@ main {
    NAME
    ========================================= */
 
-.record-name {
-    margin: 0 0 15px;
+.record-name{
+    margin:0 0 15px;
 
-    font-size: 18px;
+    font-size:18px;
 
-    font-weight: bold;
+    font-weight:bold;
 
-    letter-spacing: 1px;
+    letter-spacing:1px;
 
     text-shadow:
-        0 0 6px rgba(255,255,255,0.1);
+        0 0 6px rgba(255,255,255,.1);
 }
 
 
@@ -540,28 +682,28 @@ main {
    RECORD CARD INFO
    ========================================= */
 
-.record-top {
-    display: flex;
+.record-top{
+    display:flex;
 
-    justify-content: space-between;
+    justify-content:space-between;
 
-    align-items: flex-start;
+    align-items:flex-start;
 
-    gap: 15px;
+    gap:15px;
 }
 
-.record-brand {
-    color: #777777;
+.record-brand{
+    color:#777;
 
-    font-size: 9px;
+    font-size:9px;
 
-    font-weight: bold;
+    font-weight:bold;
 
-    letter-spacing: 1.5px;
+    letter-spacing:1.5px;
 
-    padding-top: 3px;
+    padding-top:3px;
 
-    text-transform: uppercase;
+    text-transform:uppercase;
 }
 
 
@@ -569,33 +711,33 @@ main {
    RECORD
    ========================================= */
 
-.record-result {
-    display: flex;
+.record-result{
+    display:flex;
 
-    justify-content: space-between;
+    justify-content:space-between;
 
-    align-items: center;
+    align-items:center;
 
-    padding-top: 12px;
+    padding-top:12px;
 
-    border-top: 1px solid #292929;
+    border-top:1px solid #292929;
 }
 
-.record-label {
-    color: #777777;
+.record-label{
+    color:#777;
 
-    font-size: 10px;
+    font-size:10px;
 
-    letter-spacing: 1.5px;
+    letter-spacing:1.5px;
 }
 
-.record-value {
-    font-size: 14px;
+.record-value{
+    font-size:14px;
 
-    font-weight: bold;
+    font-weight:bold;
 
     text-shadow:
-        0 0 6px rgba(255,255,255,0.14);
+        0 0 6px rgba(255,255,255,.14);
 }
 
 
@@ -603,28 +745,28 @@ main {
    TOUCH / MOBILE
    ========================================= */
 
-@media (hover: none) {
+@media(hover:none){
 
-    .record-card:active {
+    .record-card:active{
         transform:
-            translateY(-2px)
+            translateY(-3px)
             scale(1.005);
 
-        border-color: #ff3150;
+        border-color:#aaa;
 
         box-shadow:
-            0 0 10px rgba(255,23,68,0.14),
-            inset 0 0 8px rgba(255,23,68,0.025);
+            0 8px 18px rgba(0,0,0,.55),
+            0 0 10px rgba(255,255,255,.12);
     }
 
-    .record-card:active::before {
-        left: 120%;
+    .record-card:active::before{
+        left:120%;
 
-        opacity: 1;
+        opacity:1;
 
         transition:
-            left 1s ease,
-            opacity 0.12s ease;
+            left .7s ease,
+            opacity .12s ease;
     }
 
 }
@@ -634,19 +776,21 @@ main {
    REDUCED MOTION
    ========================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media(prefers-reduced-motion:reduce){
 
     .record-card,
     .record-filter,
     .record-page,
     .back-button,
-    #record-search {
-        transition: none;
+    #record-search{
+        transition:none;
     }
 
     .record-card::before,
-    .record-filter::before {
-        display: none;
+    .record-filter::after,
+    .record-page::after,
+    .back-button::after{
+        display:none;
     }
 
 }
@@ -656,54 +800,54 @@ main {
    MOBILE
    ========================================= */
 
-@media (max-width: 600px) {
+@media(max-width:600px){
 
-    header {
-        height: 60px;
+    header{
+        height:60px;
 
-        padding: 0 18px;
+        padding:0 18px;
     }
 
-    main {
-        margin: 25px auto;
+    main{
+        margin:25px auto;
 
-        padding: 0 14px;
+        padding:0 14px;
     }
 
-    .records-header h1 {
-        font-size: 24px;
+    .records-header h1{
+        font-size:24px;
 
-        letter-spacing: 2px;
+        letter-spacing:2px;
     }
 
-    #records-container {
-        grid-template-columns: 1fr;
+    #records-container{
+        grid-template-columns:1fr;
 
-        gap: 12px;
+        gap:12px;
     }
 
-    .record-card {
-        padding: 18px;
+    .record-card{
+        padding:18px;
     }
 
-    .record-filters {
-        gap: 6px;
+    .record-filters{
+        gap:7px;
     }
 
-    .record-filter {
-        padding: 10px 13px;
+    .record-filter{
+        padding:8px 11px;
 
-        font-size: 9px;
+        font-size:.75rem;
     }
 
-    .record-pages {
-        gap: 6px;
+    .record-pages{
+        gap:7px;
     }
 
-    .record-page {
-        padding: 10px 13px;
+    .record-page{
+        padding:8px 12px;
 
-        font-size: 9px;
+        font-size:.75rem;
     }
 
 }
@@ -713,12 +857,13 @@ main {
    LOW POWER MOBILE
    ========================================= */
 
-@media (max-width: 600px) and (max-height: 900px) {
+@media(max-width:600px) and (max-height:900px){
 
     .record-card,
     .record-filter,
-    .record-page {
-        transition-duration: 0.16s;
+    .record-page,
+    .back-button{
+        transition-duration:.16s;
     }
 
 }
