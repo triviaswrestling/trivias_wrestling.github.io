@@ -1,5 +1,14 @@
 const tournamentData = {
 
+
+ /* =========================================
+   SEASON 2
+   ========================================= */
+
+
+ /* =========================================
+   SEASON 1
+   ========================================= */
  
 "wwe-nxt-1":{
 roster:["Bobby Lashley","Jeff Hardy","Kevin Owens","Karrion Kross","Seth Rollins","Drew McIntyre","Eddie Guerrero","Finn Balor","Randy Orton","Sin Cara"],
