@@ -133,7 +133,7 @@ eventData[id]={type:"PLE",title,date,mode,brand:"PLE",image,results};
    2026
    ========================================= */
 
-addPLE("survivor-series-wargames-2026","SURVIVOR SERIES: WARGAMES 2026","20/12/2026","BOOK","images/smackraw1.webp");
+addPLE("survivor-series-wargames-2026","SURVIVOR SERIES: WARGAMES 2026","20/12/2026","BOOK","images/smackraw2 (1).webp");
 addPLE("crown-jewel-2026","CROWN JEWEL 2026","29/11/2026","BOOK","images/events/crown-jewel-2026.jpg");
 addPLE("money-in-the-bank-2026","MONEY IN THE BANK 2026","25/10/2026","ROAD","images/events/money-in-the-bank-2026.jpg");
 addPLE("worlds-collide-las-vegas-2026","WORLDS COLLIDE: LAS VEGAS 2026","27/09/2026","BOOK","images/events/worlds-collide-las-vegas-2026.jpg");
