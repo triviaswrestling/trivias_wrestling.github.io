@@ -85,12 +85,16 @@ header {
         border-color 0.18s ease;
 }
 
-.back-button:hover {
-    color: #ffffff;
+@media (hover: hover) {
 
-    border-color: #ff3150;
+    .back-button:hover {
+        color: #ffffff;
 
-    transform: translateX(-2px);
+        border-color: #ff3150;
+
+        transform: translateX(-2px);
+    }
+
 }
 
 
@@ -195,7 +199,8 @@ main {
 
     padding: 0 16px;
 
-    font-size: 13px;
+    /* EVITA ZOOM AUTOMATICO EN ANDROID */
+    font-size: 16px;
 
     outline: none;
 
@@ -293,18 +298,22 @@ main {
         left 0.3s ease;
 }
 
-.record-filter:hover::before {
-    left: 100%;
-}
+@media (hover: hover) {
 
-.record-filter:hover {
-    color: #ffffff;
+    .record-filter:hover::before {
+        left: 100%;
+    }
 
-    border-color: #ff3150;
+    .record-filter:hover {
+        color: #ffffff;
 
-    box-shadow:
-        0 0 7px rgba(255,49,80,0.2),
-        inset 0 0 6px rgba(255,49,80,0.04);
+        border-color: #ff3150;
+
+        box-shadow:
+            0 0 7px rgba(255,49,80,0.2),
+            inset 0 0 6px rgba(255,49,80,0.04);
+    }
+
 }
 
 .record-filter.active {
@@ -371,13 +380,17 @@ main {
         inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
-.record-page:hover {
-    color: #ffffff;
+@media (hover: hover) {
 
-    border-color: #ff3150;
+    .record-page:hover {
+        color: #ffffff;
 
-    box-shadow:
-        0 0 7px rgba(255,49,80,0.2);
+        border-color: #ff3150;
+
+        box-shadow:
+            0 0 7px rgba(255,49,80,0.2);
+    }
+
 }
 
 .record-page.active {
@@ -441,9 +454,10 @@ main {
 }
 
 
-/* LIGHT RAY
+/* =========================================
+   LIGHT RAY
    Only moves when the card is interacted with.
-*/
+   ========================================= */
 
 .record-card::before {
     content: "";
@@ -472,23 +486,33 @@ main {
         opacity 0.15s ease;
 }
 
-.record-card:hover::before {
-    left: 130%;
+@media (hover: hover) {
 
-    opacity: 1;
+    .record-card:hover::before {
+        left: 130%;
+
+        opacity: 1;
+    }
+
 }
 
 
-/* CARD INTERACTION */
+/* =========================================
+   CARD INTERACTION
+   ========================================= */
 
-.record-card:hover {
-    border-color: #ff3150;
+@media (hover: hover) {
 
-    transform: translateY(-2px);
+    .record-card:hover {
+        border-color: #ff3150;
 
-    box-shadow:
-        0 0 10px rgba(255,23,68,0.14),
-        inset 0 0 10px rgba(255,23,68,0.025);
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 0 10px rgba(255,23,68,0.14),
+            inset 0 0 10px rgba(255,23,68,0.025);
+    }
+
 }
 
 
@@ -687,4 +711,4 @@ main {
         transform: none;
     }
 
-                        }
+}
