@@ -34,21 +34,16 @@
 
 .recaps-header p{
     margin:5px 0 0;
-
     color:#aaa;
-
     font-size:.85rem;
     letter-spacing:5px;
 }
 
 .recaps-header::after{
     content:"";
-
     display:block;
-
     width:160px;
     height:2px;
-
     margin:15px auto 0;
 
     background:
@@ -76,12 +71,9 @@
 
 .recaps-filters{
     display:flex;
-
     justify-content:center;
     align-items:center;
-
     flex-wrap:wrap;
-
     gap:10px;
 }
 
@@ -126,7 +118,6 @@
     content:"";
 
     position:absolute;
-
     top:0;
     left:-100%;
 
@@ -142,7 +133,6 @@
         );
 
     transform:skewX(-18deg);
-
     transition:left .4s ease;
 }
 
@@ -199,12 +189,9 @@
 
 #date-parts{
     display:flex;
-
     justify-content:center;
     flex-wrap:wrap;
-
     gap:10px;
-
     margin-top:20px;
 }
 
@@ -245,7 +232,6 @@
     content:"";
 
     position:absolute;
-
     top:0;
     left:-100%;
 
@@ -261,7 +247,6 @@
         );
 
     transform:skewX(-18deg);
-
     transition:left .4s ease;
 
     pointer-events:none;
@@ -296,11 +281,11 @@
 }
 
 
-/* PART SELECCIONADO
-   Funciona sin tocar JS cuando
-   el navegador conserva el foco */
+/* =========================================
+   PART SELECCIONADO
+   ========================================= */
 
-.date-part:focus{
+.date-part.active{
     color:#fff;
 
     border-color:#ff526c;
@@ -317,6 +302,31 @@
         inset 0 1px 0 rgba(255,255,255,.4),
         inset 0 -4px 0 rgba(80,0,10,.8),
         0 3px 0 #350009;
+}
+
+
+/* =========================================
+   PART PRESIONADO
+   ========================================= */
+
+.date-part:active{
+    transform:translateY(1px);
+
+    color:#fff;
+
+    border-color:#ff526c;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ff526c,
+            #d90024 45%,
+            #7b0015
+        );
+
+    box-shadow:
+        inset 0 2px 4px rgba(0,0,0,.8),
+        0 1px 0 #050505;
 }
 
 
@@ -421,20 +431,29 @@
 
 
 /* =========================================
-   CARD HOVER / TOUCH
+   CARD HOVER
    ========================================= */
 
-.event-card:hover{
-    transform:
-        translateY(-4px)
-        scale(1.01);
+@media(hover:hover){
 
-    border-color:#555;
+    .event-card:hover{
+        transform:
+            translateY(-4px)
+            scale(1.01);
 
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.08),
-        0 9px 18px rgba(0,0,0,.5);
+        border-color:#555;
+
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.08),
+            0 9px 18px rgba(0,0,0,.5);
+    }
+
 }
+
+
+/* =========================================
+   CARD ACTIVE / TOUCH
+   ========================================= */
 
 .event-card:active{
     transform:
@@ -556,7 +575,7 @@
 
 
 /* =========================================
-   Y2K TOUCH PANEL
+   Y2K METALLIC TOUCH
    ========================================= */
 
 .event-card:active .event-info{
@@ -664,13 +683,14 @@
 
 /* =========================================
    TABLET
+   3 CARDS
    ========================================= */
 
-@media(max-width:1000px){
+@media(max-width:1000px) and (min-width:651px){
 
     .events-grid{
         grid-template-columns:
-            repeat(2,minmax(0,1fr));
+            repeat(3,minmax(0,1fr));
     }
 
 }
@@ -678,6 +698,7 @@
 
 /* =========================================
    MOBILE
+   2 CARDS
    ========================================= */
 
 @media(max-width:650px){
