@@ -44,7 +44,7 @@ WEEKLY:[[1,40,"images/smackrawlivee.webp"],
 
 NXT:[],
 
-SPEED:[[1,55,"images/wewespeed.webp"]],
+SPEED:[[1,55,"images/speeed.webp"]],
 
 TNA:[],
 
