@@ -54,83 +54,106 @@ main {
     padding: 0 25px;
 }
 
-
 /* =========================================
-   EVENT HEADER - Y2K FUTURISTIC
+   EVENT HEADER
+   WWE NETWORK + NETFLIX + Y2K FUTURISTIC
    ========================================= */
 
 .event-header {
     position: relative;
 
-    background:
-        linear-gradient(
-            180deg,
-            #5a5a5a 0%,
-            #292929 7%,
-            #0b0b0b 20%,
-            #151515 75%,
-            #292929 92%,
-            #606060 100%
-        );
-
-    border: 2px solid #777;
-
-    padding: 15px;
-
-    margin-bottom: 30px;
-
     display: flex;
     align-items: center;
     gap: 24px;
 
-    text-align: left;
+    width: 100%;
+    padding: 14px;
+
+    margin-bottom: 30px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #3b3b3b 0%,
+            #242424 4%,
+            #111 18%,
+            #0b0b0b 50%,
+            #151515 82%,
+            #292929 96%,
+            #3d3d3d 100%
+        );
+
+    border: 1px solid #555;
 
     box-shadow:
-        inset 0 2px 0 #d0d0d0,
-        inset 0 -3px 0 #050505,
-        0 4px 0 #050505,
-        0 7px 12px rgba(0,0,0,.65);
+        inset 0 1px 0 #777,
+        inset 0 -1px 0 #050505,
+        0 4px 12px rgba(0,0,0,.7);
+
+    overflow: hidden;
 }
+
+
+/* =========================================
+   TOP NETWORK STRIP
+   ========================================= */
 
 .event-header:before {
     content: "";
 
     position: absolute;
-    top: 2px;
-    left: 2px;
-    right: 2px;
 
-    height: 5px;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 3px;
 
     background:
         linear-gradient(
             90deg,
-            #4b000a,
-            #c40020 20%,
-            #ff3652 45%,
-            #d90024 65%,
-            #70000e
+            #450008 0%,
+            #a00018 18%,
+            #ff304b 40%,
+            #d90024 58%,
+            #850010 82%,
+            #350006 100%
         );
 
     box-shadow:
-        0 2px 0 #250005;
+        0 1px 0 #080808;
+
+    z-index: 5;
 }
+
+
+/* =========================================
+   METALLIC BOTTOM REFLECTION
+   ========================================= */
 
 .event-header:after {
     content: "";
 
     position: absolute;
 
-    bottom: 5px;
-    left: 12px;
-    right: 12px;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-    height: 1px;
+    height: 2px;
 
-    background: #777;
+    background:
+        linear-gradient(
+            90deg,
+            #171717,
+            #777,
+            #303030,
+            #777,
+            #171717
+        );
 
     box-shadow:
-        0 1px 0 #111;
+        0 -1px 0 #050505;
 }
 
 
@@ -139,11 +162,12 @@ main {
    ========================================= */
 
 .event-header-image {
-    width: 240px;
+    width: 250px;
 
     aspect-ratio: 16 / 9;
 
     object-fit: cover;
+
     display: block;
 
     flex-shrink: 0;
@@ -152,19 +176,70 @@ main {
 
     box-shadow:
         3px 3px 0 #050505;
+
+    position: relative;
+    z-index: 2;
 }
 
 
 /* =========================================
-   EVENT INFO
+   FUTURISTIC INFORMATION VITRINE
    ========================================= */
 
 .event-header-info {
-    min-width: 0;
-
     position: relative;
 
-    padding: 4px 8px;
+    min-width: 0;
+    flex: 1;
+
+    padding: 16px 20px 17px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.09) 0%,
+            rgba(255,255,255,.025) 18%,
+            rgba(0,0,0,.10) 55%,
+            rgba(0,0,0,.28) 100%
+        );
+
+    border-left: 1px solid #484848;
+    border-right: 1px solid #222;
+
+    box-shadow:
+        inset 1px 0 0 #111,
+        inset -1px 0 0 #444;
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   VITRINE TOP REFLECTION
+   ========================================= */
+
+.event-header-info:before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #aaa,
+            #fff,
+            #aaa,
+            transparent
+        );
+
+    opacity: .45;
 }
 
 
@@ -179,14 +254,14 @@ main {
 
     margin: 0;
 
-    padding: 10px 20px 12px;
+    padding: 0 0 9px;
 
-    color: #fff;
+    color: #eee;
 
-    font-size: 35px;
+    font-size: 34px;
     font-weight: 900;
 
-    letter-spacing: 3px;
+    letter-spacing: 2.5px;
     line-height: 1;
 
     text-transform: uppercase;
@@ -194,73 +269,73 @@ main {
     background:
         linear-gradient(
             180deg,
-            #777 0%,
-            #3d3d3d 12%,
-            #111 30%,
-            #202020 68%,
-            #555 88%,
-            #888 100%
+            #ffffff 0%,
+            #f0f0f0 17%,
+            #a8a8a8 43%,
+            #6f6f6f 50%,
+            #dcdcdc 61%,
+            #888 82%,
+            #eeeeee 100%
         );
 
-    border: 1px solid #888;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 
-    box-shadow:
-        inset 0 1px 0 #d5d5d5,
-        inset 0 -2px 0 #050505,
-        4px 4px 0 #050505;
+    -webkit-text-stroke: .5px #111;
 
     text-shadow:
-        1px 1px 0 #000,
-        2px 2px 0 #555,
-        3px 3px 0 #111;
-
-    -webkit-text-stroke: 1px #111;
+        1px 1px 0 #111,
+        2px 2px 0 #050505;
 }
+
+
+/* =========================================
+   TITLE RED LIGHT
+   ========================================= */
 
 .event-header h1:before {
     content: "";
 
     position: absolute;
 
-    top: 0;
     left: 0;
-    right: 0;
+    bottom: 0;
 
-    height: 3px;
+    width: 75px;
+    height: 2px;
 
     background:
         linear-gradient(
             90deg,
-            #76000f,
-            #ff4058,
             #d90024,
-            #65000d
+            #ff4058,
+            transparent
         );
 
     box-shadow:
-        0 1px 0 #300008;
+        0 1px 0 #090909;
 }
 
 
 /* =========================================
-   EVENT DATE
+   DATE
    ========================================= */
 
 .event-date {
-    margin-top: 12px;
+    margin-top: 14px;
 
-    color: #d8d8d8;
+    color: #a7a7a7;
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 900;
 
-    letter-spacing: 2px;
+    letter-spacing: 1.8px;
 
     text-transform: uppercase;
 
     text-shadow:
-        1px 1px 0 #000,
-        2px 2px 0 #333;
+        1px 1px 0 #000;
 }
 
 
@@ -284,15 +359,15 @@ main {
 @media (max-width: 600px) {
 
     .event-header {
-        padding: 12px;
+        padding: 10px;
 
         flex-direction: column;
 
         align-items: stretch;
 
-        gap: 12px;
+        gap: 10px;
 
-        text-align: center;
+        text-align: left;
     }
 
     .event-header-image {
@@ -306,66 +381,38 @@ main {
     .event-header-info {
         width: 100%;
 
-        padding: 3px 2px 7px;
+        padding: 13px 15px 14px;
     }
 
     .event-header h1 {
         display: block;
 
-        width: fit-content;
-        max-width: 100%;
+        width: 100%;
 
-        margin: 0 auto;
+        padding-bottom: 9px;
 
-        padding: 9px 15px 11px;
+        font-size: 23px;
 
-        font-size: 21px;
+        letter-spacing: 1.5px;
 
-        letter-spacing: 1px;
-        line-height: 1.05;
-
-        white-space: normal;
-
-        background:
-            linear-gradient(
-                180deg,
-                #777 0%,
-                #3d3d3d 12%,
-                #111 30%,
-                #202020 68%,
-                #555 88%,
-                #888 100%
-            );
-
-        border: 1px solid #888;
-
-        box-shadow:
-            inset 0 1px 0 #d5d5d5,
-            inset 0 -2px 0 #050505,
-            3px 3px 0 #050505;
-
-        text-shadow:
-            1px 1px 0 #000,
-            2px 2px 0 #555,
-            3px 3px 0 #111;
+        line-height: 1.08;
     }
 
     .event-header h1:before {
+        width: 58px;
         height: 2px;
     }
 
     .event-date {
-        margin-top: 9px;
+        margin-top: 12px;
 
         font-size: 10px;
 
-        letter-spacing: 1.5px;
-
-        color: #d0d0d0;
+        letter-spacing: 1.4px;
     }
 
 }
-
+    
 
 /* =========================================
    RESULTS
