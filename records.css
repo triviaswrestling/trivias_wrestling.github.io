@@ -2,7 +2,7 @@
    MI WRESTLING
    RECORDS
    Y2K / FUTURISTIC
-   LOW PERFORMANCE MODE
+   LOW PERFORMANCE
    ========================================= */
 
 * {
@@ -17,8 +17,11 @@ body {
 
 body {
     background:
-        radial-gradient(circle at 50% -10%, #241018 0%, transparent 35%),
-        radial-gradient(circle at 100% 50%, #101d28 0%, transparent 30%),
+        radial-gradient(
+            circle at 50% -10%,
+            #241018 0%,
+            transparent 35%
+        ),
         #050505;
 
     color: #ffffff;
@@ -82,17 +85,20 @@ header {
 
     transition:
         transform 0.18s ease,
-        border-color 0.18s ease;
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
 }
 
 @media (hover: hover) {
 
     .back-button:hover {
-        color: #ffffff;
-
         border-color: #ff3150;
 
         transform: translateX(-2px);
+
+        box-shadow:
+            0 0 8px rgba(255,49,80,0.25),
+            inset 0 0 6px rgba(255,49,80,0.05);
     }
 
 }
@@ -132,8 +138,8 @@ main {
     font-weight: 900;
 
     text-shadow:
-        0 0 8px rgba(255,255,255,0.18),
-        0 0 15px rgba(255,0,40,0.14);
+        0 0 7px rgba(255,255,255,0.16),
+        0 0 14px rgba(255,0,40,0.12);
 }
 
 .records-header p {
@@ -170,7 +176,7 @@ main {
         );
 
     box-shadow:
-        0 0 5px rgba(255,23,68,0.5);
+        0 0 5px rgba(255,23,68,0.45);
 }
 
 
@@ -216,8 +222,8 @@ main {
     border-color: #ff1744;
 
     box-shadow:
-        0 0 8px rgba(255,23,68,0.2),
-        inset 0 0 6px rgba(255,23,68,0.04);
+        0 0 8px rgba(255,23,68,0.18),
+        inset 0 0 6px rgba(255,23,68,0.03);
 }
 
 #record-search::placeholder {
@@ -295,7 +301,7 @@ main {
         );
 
     transition:
-        left 0.3s ease;
+        left 0.45s ease;
 }
 
 @media (hover: hover) {
@@ -310,8 +316,8 @@ main {
         border-color: #ff3150;
 
         box-shadow:
-            0 0 7px rgba(255,49,80,0.2),
-            inset 0 0 6px rgba(255,49,80,0.04);
+            0 0 7px rgba(255,49,80,0.18),
+            inset 0 0 6px rgba(255,49,80,0.03);
     }
 
 }
@@ -329,7 +335,7 @@ main {
     border-color: #ffffff;
 
     box-shadow:
-        0 0 8px rgba(255,255,255,0.22);
+        0 0 8px rgba(255,255,255,0.2);
 }
 
 
@@ -388,7 +394,7 @@ main {
         border-color: #ff3150;
 
         box-shadow:
-            0 0 7px rgba(255,49,80,0.2);
+            0 0 7px rgba(255,49,80,0.18);
     }
 
 }
@@ -406,7 +412,7 @@ main {
     border-color: #ffffff;
 
     box-shadow:
-        0 0 8px rgba(255,255,255,0.22);
+        0 0 8px rgba(255,255,255,0.2);
 }
 
 
@@ -418,7 +424,7 @@ main {
     display: grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(2, minmax(0, 1fr));
 
     gap: 15px;
 }
@@ -434,7 +440,7 @@ main {
     background:
         linear-gradient(
             145deg,
-            #191919 0%,
+            #171717 0%,
             #0c0c0c 55%,
             #101010 100%
         );
@@ -447,6 +453,10 @@ main {
 
     overflow: hidden;
 
+    contain: layout paint;
+
+    content-visibility: auto;
+
     transition:
         transform 0.18s ease,
         border-color 0.18s ease,
@@ -456,7 +466,6 @@ main {
 
 /* =========================================
    LIGHT RAY
-   Only moves when the card is interacted with.
    ========================================= */
 
 .record-card::before {
@@ -465,9 +474,9 @@ main {
     position: absolute;
 
     top: 0;
-    left: -100%;
+    left: -120%;
 
-    width: 65%;
+    width: 80%;
     height: 1px;
 
     background:
@@ -483,34 +492,27 @@ main {
 
     transition:
         left 1s ease,
-        opacity 0.15s ease;
+        opacity 0.12s ease;
 }
 
 @media (hover: hover) {
 
     .record-card:hover::before {
-        left: 130%;
+        left: 120%;
 
         opacity: 1;
     }
 
-}
-
-
-/* =========================================
-   CARD INTERACTION
-   ========================================= */
-
-@media (hover: hover) {
-
     .record-card:hover {
         border-color: #ff3150;
 
-        transform: translateY(-2px);
+        transform:
+            translateY(-2px)
+            scale(1.005);
 
         box-shadow:
             0 0 10px rgba(255,23,68,0.14),
-            inset 0 0 10px rgba(255,23,68,0.025);
+            inset 0 0 10px rgba(255,23,68,0.02);
     }
 
 }
@@ -604,19 +606,25 @@ main {
 @media (hover: none) {
 
     .record-card:active {
-        transform: translateY(-2px);
+        transform:
+            translateY(-2px)
+            scale(1.005);
 
         border-color: #ff3150;
 
         box-shadow:
             0 0 10px rgba(255,23,68,0.14),
-            inset 0 0 10px rgba(255,23,68,0.025);
+            inset 0 0 8px rgba(255,23,68,0.025);
     }
 
     .record-card:active::before {
-        left: 130%;
+        left: 120%;
 
         opacity: 1;
+
+        transition:
+            left 1s ease,
+            opacity 0.12s ease;
     }
 
 }
@@ -670,6 +678,8 @@ main {
 
     #records-container {
         grid-template-columns: 1fr;
+
+        gap: 12px;
     }
 
     .record-card {
@@ -700,15 +710,15 @@ main {
 
 
 /* =========================================
-   LOW POWER DEVICES
+   LOW POWER MOBILE
    ========================================= */
 
 @media (max-width: 600px) and (max-height: 900px) {
 
-    .record-card:hover,
-    .record-filter:hover,
-    .record-page:hover {
-        transform: none;
+    .record-card,
+    .record-filter,
+    .record-page {
+        transition-duration: 0.16s;
     }
 
 }
