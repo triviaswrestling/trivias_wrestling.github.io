@@ -1,14 +1,37 @@
 /* =========================================
    RECAPS — Y2K FUTURISTIC
-   PERFORMANCE SAFE
+   PERFORMANCE OPTIMIZED
+   ========================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html,
+body{
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
+
+input,
+select,
+textarea{
+    font-size:16px;
+}
+
+
+/* =========================================
+   RECAPS PAGE
    ========================================= */
 
 .recaps-page{
     width:100%;
-    max-width:1400px;
+    max-width:1200px;
     margin:auto;
-    padding:30px 20px 50px;
+    padding:30px 15px 50px;
 }
+
 
 /* =========================================
    HEADER
@@ -25,6 +48,7 @@
     font-size:2.5rem;
     letter-spacing:5px;
     color:#fff;
+
     text-shadow:
         0 0 5px rgba(255,255,255,.35),
         0 0 12px rgba(255,23,68,.2);
@@ -32,26 +56,35 @@
 
 .recaps-header p{
     margin:5px 0 0;
+
     color:#aaa;
+
     font-size:.85rem;
     letter-spacing:5px;
 }
 
 .recaps-header::after{
     content:"";
+
     display:block;
+
     width:160px;
     height:2px;
+
     margin:15px auto 0;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        #ff1744,
-        #fff,
-        #ff1744,
-        transparent
-    );
-    box-shadow:0 0 6px rgba(255,23,68,.5);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff1744,
+            #fff,
+            #ff1744,
+            transparent
+        );
+
+    box-shadow:
+        0 0 6px rgba(255,23,68,.5);
 }
 
 
@@ -65,10 +98,13 @@
 
 .recaps-filters{
     display:flex;
+
     justify-content:center;
     align-items:center;
+
     flex-wrap:wrap;
-    gap:10px;
+
+    gap:8px;
 }
 
 
@@ -83,67 +119,72 @@
     border:1px solid #555;
     border-radius:5px;
 
-    padding:9px 15px;
+    padding:9px 14px;
 
     color:#ddd;
 
-    background:linear-gradient(
-        180deg,
-        #3a3a3a 0%,
-        #222 45%,
-        #111 100%
-    );
+    background:
+        linear-gradient(
+            180deg,
+            #3a3a3a 0%,
+            #222 45%,
+            #111 100%
+        );
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.25),
+        inset 0 1px 0 rgba(255,255,255,.2),
         inset 0 -3px 0 rgba(0,0,0,.7),
-        0 3px 0 #050505,
-        0 5px 8px rgba(0,0,0,.35);
+        0 3px 0 #050505;
 
     cursor:pointer;
 
     transition:
-        transform .18s ease,
-        box-shadow .2s ease,
-        border-color .2s ease;
+        transform .15s ease,
+        box-shadow .15s ease,
+        border-color .15s ease;
 }
 
 .recap-filter::after{
     content:"";
 
     position:absolute;
+
     top:0;
     left:-100%;
 
     width:35%;
     height:100%;
 
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.22),
-        transparent
-    );
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.18),
+            transparent
+        );
 
     transform:skewX(-18deg);
 
-    transition:left .35s ease;
+    transition:left .3s ease;
 }
 
-.recap-filter:hover{
-    transform:translateY(-2px);
+@media(hover:hover){
 
-    border-color:#aaa;
+    .recap-filter:hover{
+        transform:translateY(-2px);
 
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.35),
-        inset 0 -3px 0 rgba(0,0,0,.8),
-        0 4px 0 #050505,
-        0 0 10px rgba(255,255,255,.1);
-}
+        border-color:#aaa;
 
-.recap-filter:hover::after{
-    left:140%;
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.3),
+            inset 0 -3px 0 rgba(0,0,0,.8),
+            0 4px 0 #050505;
+    }
+
+    .recap-filter:hover::after{
+        left:140%;
+    }
+
 }
 
 .recap-filter:active{
@@ -157,32 +198,35 @@
 .recap-filter.active{
     color:#fff;
 
-    background:linear-gradient(
-        180deg,
-        #ff526c 0%,
-        #d90024 45%,
-        #7b0015 100%
-    );
+    background:
+        linear-gradient(
+            180deg,
+            #ff526c 0%,
+            #d90024 45%,
+            #7b0015 100%
+        );
 
     border-color:#ff526c;
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.45),
+        inset 0 1px 0 rgba(255,255,255,.4),
         inset 0 -4px 0 rgba(80,0,10,.8),
-        0 3px 0 #350009,
-        0 0 10px rgba(255,23,68,.3);
+        0 3px 0 #350009;
 }
 
 
 /* =========================================
-   DATE PARTS
+   DATE / PART BUTTONS
    ========================================= */
 
 #date-parts{
     display:flex;
+
     justify-content:center;
     flex-wrap:wrap;
-    gap:10px;
+
+    gap:8px;
+
     margin-top:20px;
 }
 
@@ -190,66 +234,110 @@
     position:relative;
     overflow:hidden;
 
-    padding:8px 14px;
+    padding:8px 13px;
 
     color:#ccc;
 
     border:1px solid #444;
     border-radius:4px;
 
-    background:linear-gradient(
-        180deg,
-        #303030,
-        #141414
-    );
+    background:
+        linear-gradient(
+            180deg,
+            #303030,
+            #141414
+        );
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.2),
+        inset 0 1px 0 rgba(255,255,255,.18),
         inset 0 -3px 0 rgba(0,0,0,.7),
         0 3px 0 #050505;
 
+    cursor:pointer;
+
     transition:
-        transform .18s ease,
-        border-color .2s ease,
-        box-shadow .2s ease;
+        transform .15s ease,
+        color .15s ease,
+        border-color .15s ease,
+        background .15s ease,
+        box-shadow .15s ease;
 }
 
 .date-part::after{
     content:"";
 
     position:absolute;
+
     top:0;
     left:-100%;
 
     width:40%;
     height:100%;
 
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.2),
-        transparent
-    );
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.18),
+            transparent
+        );
 
     transform:skewX(-18deg);
 
-    transition:left .4s ease;
+    transition:left .3s ease;
+
+    pointer-events:none;
 }
 
-.date-part:hover{
-    transform:translateY(-2px);
+@media(hover:hover){
 
-    border-color:#777;
+    .date-part:hover{
+        transform:translateY(-2px);
+
+        color:#fff;
+
+        border-color:#ff3150;
+
+        background:
+            linear-gradient(
+                180deg,
+                #3d1118,
+                #17070a
+            );
+
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.22),
+            inset 0 -3px 0 rgba(0,0,0,.75),
+            0 4px 0 #050505,
+            0 0 8px rgba(255,23,68,.18);
+    }
+
+    .date-part:hover::after{
+        left:140%;
+    }
+
+}
+
+.date-part:active{
+    transform:translateY(-1px);
+
+    color:#fff;
+
+    border-color:#ff3150;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ff526c 0%,
+            #d90024 45%,
+            #7b0015 100%
+        );
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.25),
-        inset 0 -3px 0 rgba(0,0,0,.75),
-        0 4px 0 #050505,
-        0 0 8px rgba(255,255,255,.08);
-}
-
-.date-part:hover::after{
-    left:140%;
+        inset 0 1px 0 rgba(255,255,255,.4),
+        inset 0 -4px 0 rgba(80,0,10,.8),
+        0 3px 0 #350009,
+        0 0 10px rgba(255,23,68,.28);
 }
 
 
@@ -264,9 +352,10 @@
 .events-grid{
     display:grid;
 
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
-    gap:22px;
+    gap:14px;
 }
 
 
@@ -278,35 +367,40 @@
     position:relative;
     overflow:hidden;
 
-    padding:22px;
+    padding:18px;
 
-    min-height:150px;
+    min-height:140px;
 
     border:1px solid #303030;
     border-radius:6px;
 
-    background:linear-gradient(
-        145deg,
-        #202020 0%,
-        #121212 55%,
-        #0a0a0a 100%
-    );
+    background:
+        linear-gradient(
+            145deg,
+            #202020 0%,
+            #121212 55%,
+            #0a0a0a 100%
+        );
 
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,.05),
-        0 7px 15px rgba(0,0,0,.42);
+        0 5px 12px rgba(0,0,0,.35);
 
     cursor:pointer;
 
     transition:
-        transform .2s ease,
-        border-color .2s ease,
-        box-shadow .2s ease;
+        transform .16s ease,
+        border-color .16s ease,
+        box-shadow .16s ease;
+
+    content-visibility:auto;
+    contain:layout paint;
+    contain-intrinsic-size:180px 140px;
 }
 
 
 /* =========================================
-   CARD — TOP LIGHT RAY
+   WWE NETWORK FLASH
    ========================================= */
 
 .event-card::before{
@@ -315,63 +409,88 @@
     position:absolute;
 
     top:0;
-    left:-100%;
+    left:-120%;
 
-    width:55%;
-    height:2px;
+    width:65%;
+    height:3px;
 
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.9),
-        transparent
-    );
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.95),
+            #fff,
+            rgba(255,255,255,.95),
+            transparent
+        );
 
     box-shadow:
-        0 0 6px rgba(255,255,255,.4);
+        0 0 8px rgba(255,255,255,.8),
+        0 0 16px rgba(255,255,255,.35);
 
     transform:skewX(-20deg);
 
-    pointer-events:none;
-
     opacity:0;
 
-    transition:
-        left .4s ease,
-        opacity .15s ease;
+    pointer-events:none;
 }
 
-.event-card:hover::before,
 .event-card:active::before{
     left:140%;
     opacity:1;
+
+    transition:
+        left .38s ease,
+        opacity .05s ease;
 }
 
 
 /* =========================================
-   CARD HOVER / TOUCH
+   TOUCH / PRESS
    ========================================= */
 
-.event-card:hover{
-    transform:translateY(-4px) scale(1.012);
+.event-card:active{
 
-    border-color:#555;
+    transform:
+        translateY(-4px)
+        scale(1.015);
+
+    border-color:#aaa;
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.08),
-        0 9px 18px rgba(0,0,0,.5),
-        0 0 10px rgba(255,23,68,.1);
+        inset 0 1px 0 rgba(255,255,255,.15),
+        0 10px 22px rgba(0,0,0,.65),
+        0 0 12px rgba(255,255,255,.12);
 }
 
-.event-card:active{
-    transform:translateY(-5px) scale(1.018);
 
-    border-color:#777;
+/* =========================================
+   DESKTOP HOVER
+   ========================================= */
 
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.1),
-        0 10px 20px rgba(0,0,0,.55),
-        0 0 13px rgba(255,23,68,.15);
+@media(hover:hover){
+
+    .event-card:hover{
+        transform:
+            translateY(-3px)
+            scale(1.01);
+
+        border-color:#555;
+
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.08),
+            0 7px 14px rgba(0,0,0,.45);
+    }
+
+    .event-card:hover::before{
+        left:140%;
+        opacity:1;
+
+        transition:
+            left .38s ease,
+            opacity .05s ease;
+    }
+
 }
 
 
@@ -382,24 +501,27 @@
 .event-card img{
     display:block;
 
-    width:calc(100% + 44px);
+    width:calc(100% + 36px);
 
     aspect-ratio:16 / 9;
 
     object-fit:cover;
 
-    margin:-22px -22px 0;
-
-    /* SIN LINEA ENTRE IMAGEN Y PANEL */
+    margin:-18px -18px 0;
 
     border:0;
 
-    transition:
-        transform .2s ease;
+    transition:transform .16s ease;
+
+    content-visibility:auto;
 }
 
-.event-card:hover img{
-    transform:scale(1.008);
+@media(hover:hover){
+
+    .event-card:hover img{
+        transform:scale(1.006);
+    }
+
 }
 
 
@@ -409,36 +531,36 @@
 
 .event-info{
     position:relative;
-
     z-index:2;
 
-    margin:0 -22px -22px;
+    margin:0 -18px -18px;
 
-    padding:15px 22px 22px;
+    padding:13px 18px 18px;
 
     overflow:hidden;
 
     border:0;
 
-    background:linear-gradient(
-        180deg,
-        #181818 0%,
-        #101010 55%,
-        #0b0b0b 100%
-    );
+    background:
+        linear-gradient(
+            180deg,
+            #181818 0%,
+            #101010 55%,
+            #0b0b0b 100%
+        );
 
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,.04),
         inset 0 -4px 0 rgba(0,0,0,.6);
 
     transition:
-        background .25s ease,
-        box-shadow .25s ease;
+        background .16s ease,
+        box-shadow .16s ease;
 }
 
 
 /* =========================================
-   LOWER PANEL LIGHT RAY
+   PANEL FLASH
    ========================================= */
 
 .event-info::before{
@@ -447,184 +569,55 @@
     position:absolute;
 
     top:0;
-    left:-100%;
+    left:-120%;
 
-    width:45%;
+    width:60%;
     height:100%;
 
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.14),
-        transparent
-    );
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.28),
+            rgba(255,255,255,.12),
+            transparent
+        );
 
     transform:skewX(-18deg);
 
-    pointer-events:none;
-
     opacity:0;
 
-    transition:
-        left .4s ease,
-        opacity .15s ease;
+    pointer-events:none;
 }
 
 .event-card:active .event-info::before{
     left:140%;
     opacity:1;
+
+    transition:
+        left .42s ease,
+        opacity .05s ease;
 }
 
 
 /* =========================================
-   GENERIC TOUCH PANEL
+   PANEL LIGHTS UP
    ========================================= */
 
 .event-card:active .event-info{
-    background:linear-gradient(
-        180deg,
-        #45101a 0%,
-        #26090f 50%,
-        #100508 100%
-    );
+
+    background:
+        linear-gradient(
+            180deg,
+            #4a4a4a 0%,
+            #292929 45%,
+            #111 100%
+        );
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.22),
-        inset 0 -5px 0 rgba(0,0,0,.7),
-        0 0 12px rgba(255,23,68,.22);
-}
-
-
-/* =========================================
-   WEEKLY — RAW RED / SMACKDOWN BLUE
-   ========================================= */
-
-.event-card:active:has(.event-type[data-type="WEEKLY"]) .event-info{
-    background:linear-gradient(
-        90deg,
-        #7d0719 0%,
-        #d90024 47%,
-        #f2f2f2 49.5%,
-        #f2f2f2 50.5%,
-        #1351b5 53%,
-        #0a2865 100%
-    );
-
-    border:0;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.4),
-        inset 0 -5px 0 rgba(0,0,0,.7),
-        0 0 12px rgba(255,23,68,.25);
-}
-
-
-/* =========================================
-   PLE — GOLD
-   ========================================= */
-
-.event-card:active:has(.event-type[data-type="PLE"]) .event-info{
-    background:linear-gradient(
-        180deg,
-        #8a6a18 0%,
-        #c9a227 45%,
-        #5c430d 100%
-    );
-
-    border:0;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.4),
-        inset 0 -5px 0 rgba(60,40,0,.75),
-        0 0 14px rgba(255,196,45,.3);
-}
-
-
-/* =========================================
-   TAKEOVER / NXT — SILVER
-   ========================================= */
-
-.event-card:active:has(.event-type[data-type="TAKEOVER"]) .event-info,
-.event-card:active:has(.event-type[data-type="NXT"]) .event-info{
-    background:linear-gradient(
-        180deg,
-        #777 0%,
-        #c8c8c8 45%,
-        #4b4b4b 100%
-    );
-
-    border:0;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.55),
-        inset 0 -5px 0 rgba(0,0,0,.65),
-        0 0 14px rgba(210,210,210,.28);
-}
-
-
-/* =========================================
-   SPEED — GREEN / CYAN
-   ========================================= */
-
-.event-card:active:has(.event-type[data-type="SPEED"]) .event-info{
-    background:linear-gradient(
-        90deg,
-        #087b4a 0%,
-        #20c878 48%,
-        #55d9ff 52%,
-        #1689ad 100%
-    );
-
-    border:0;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.45),
-        inset 0 -5px 0 rgba(0,40,35,.75),
-        0 0 14px rgba(32,200,120,.28);
-}
-
-
-/* =========================================
-   AEW — WHITE / CHAMPAGNE
-   ========================================= */
-
-.event-card:active:has(.event-type[data-type="AEW"]) .event-info{
-    background:linear-gradient(
-        90deg,
-        #777 0%,
-        #f4f4f4 48%,
-        #ead9a0 52%,
-        #9d8a4f 100%
-    );
-
-    border:0;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.6),
-        inset 0 -5px 0 rgba(0,0,0,.65),
-        0 0 14px rgba(255,255,255,.25);
-}
-
-
-/* =========================================
-   TNA — RED / YELLOW
-   ========================================= */
-
-.event-card:active:has(.event-type[data-type="TNA"]) .event-info{
-    background:linear-gradient(
-        90deg,
-        #76000d 0%,
-        #d90024 47%,
-        #f4c400 53%,
-        #8f7200 100%
-    );
-
-    border:0;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.4),
-        inset 0 -5px 0 rgba(0,0,0,.7),
-        0 0 14px rgba(255,23,68,.25);
+        inset 0 1px 0 rgba(255,255,255,.3),
+        inset 0 -5px 0 rgba(0,0,0,.75),
+        0 0 10px rgba(255,255,255,.08);
 }
 
 
@@ -646,10 +639,6 @@
     letter-spacing:1.5px;
 
     text-transform:uppercase;
-
-    transition:
-        color .2s ease,
-        text-shadow .2s ease;
 }
 
 .event-card h2{
@@ -660,11 +649,8 @@
 
     color:#fff;
 
-    font-size:1.05rem;
+    font-size:1rem;
     line-height:1.2;
-
-    transition:
-        text-shadow .2s ease;
 }
 
 .event-date{
@@ -673,7 +659,7 @@
 
     color:#999;
 
-    font-size:.8rem;
+    font-size:.78rem;
 }
 
 .event-brand{
@@ -684,7 +670,7 @@
 
     color:#aaa;
 
-    font-size:.75rem;
+    font-size:.72rem;
     font-weight:bold;
 
     letter-spacing:1px;
@@ -694,11 +680,11 @@
 .event-card:active h2,
 .event-card:active .event-date,
 .event-card:active .event-brand{
+
     color:#fff;
 
     text-shadow:
-        0 0 5px rgba(255,255,255,.25),
-        0 0 8px rgba(255,23,68,.2);
+        0 0 5px rgba(255,255,255,.3);
 }
 
 
@@ -708,6 +694,7 @@
 
 #pagination{
     display:flex;
+
     justify-content:center;
     align-items:center;
 
@@ -754,14 +741,15 @@
         font-size:.75rem;
     }
 
-    /* 2 CARDS PER ROW */
     .events-grid{
         grid-template-columns:repeat(2,1fr);
-        gap:12px;
+        gap:10px;
     }
 
     .event-card{
         padding:14px;
+
+        contain-intrinsic-size:160px 120px;
     }
 
     .event-card img{
@@ -794,11 +782,13 @@
 
     .events-grid{
         grid-template-columns:repeat(2,1fr);
-        gap:9px;
+        gap:8px;
     }
 
     .event-card{
         padding:11px;
+
+        contain-intrinsic-size:140px 110px;
     }
 
     .event-card img{
@@ -815,7 +805,7 @@
 
 
 /* =========================================
-   LOW MOTION / LOW POWER
+   LOW MOTION
    ========================================= */
 
 @media(prefers-reduced-motion:reduce){
@@ -834,6 +824,20 @@
     .date-part::after,
     .event-card::before,
     .event-info::before{
+        display:none;
+    }
+
+}
+
+
+/* =========================================
+   TOUCH DEVICES
+   ========================================= */
+
+@media(hover:none){
+
+    .recap-filter::after,
+    .date-part::after{
         display:none;
     }
 
