@@ -497,6 +497,76 @@ day
 
 
 /* =========================================
+   EVENT HEADER IMAGE
+   ========================================= */
+
+function getEventHeaderImage(event){
+
+if(event?.image)return event.image;
+
+const id=
+String(event?.id||eventId||"").toLowerCase();
+
+
+/* WEEKLY */
+
+const weekly=
+id.match(/^weekly-(\d+)$/);
+
+if(weekly){
+
+const number=
+Number(weekly[1]);
+
+if(number>=1&&number<=79)
+return"images/smackraw2 (1).webp";
+
+if(number===100)
+return"images/smackraw100.webp";
+
+if(number>=101&&number<=999)
+return"images/smackrawlivee.webp";
+
+}
+
+
+/* NXT */
+
+const nxt=
+id.match(/^nxt-(\d+)$/);
+
+if(nxt){
+
+const number=
+Number(nxt[1]);
+
+if(number>=1&&number<=40)
+return"images/nxt202X.webp";
+
+}
+
+
+/* SPEED */
+
+const speed=
+id.match(/^speed-(\d+)$/);
+
+if(speed){
+
+const number=
+Number(speed[1]);
+
+if(number>=1&&number<=55)
+return"images/speeed.webp";
+
+}
+
+return"images/events/default.jpg";
+
+}
+
+
+/* =========================================
    GET EVENT
    ========================================= */
 
@@ -562,6 +632,85 @@ event.date||"";
 
 eventBrand.textContent=
 event.brand||"";
+
+
+/* =====================================
+   EVENT HEADER
+   ===================================== */
+
+const eventHeader=
+document.querySelector(".event-header");
+
+if(eventHeader){
+
+let image=
+eventHeader.querySelector(".event-header-image");
+
+if(!image){
+
+image=document.createElement("img");
+
+image.className=
+"event-header-image";
+
+eventHeader.insertBefore(
+image,
+eventHeader.firstChild
+);
+
+}
+
+image.src=
+getEventHeaderImage(event);
+
+image.alt=
+event.title||"EVENT";
+
+image.onerror=function(){
+
+this.onerror=null;
+
+this.src=
+"images/events/default.jpg";
+
+};
+
+
+/* =====================================
+   HEADER INFO
+   ===================================== */
+
+let info=
+eventHeader.querySelector(
+".event-header-info"
+);
+
+if(!info){
+
+info=document.createElement("div");
+
+info.className=
+"event-header-info";
+
+const children=
+Array.from(eventHeader.children);
+
+children.forEach(child=>{
+
+if(child!==image){
+
+info.appendChild(child);
+
+}
+
+});
+
+eventHeader.appendChild(info);
+
+}
+
+}
+
 
 const type=
 document.querySelector(
