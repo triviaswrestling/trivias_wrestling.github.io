@@ -601,7 +601,8 @@ main{
     transition:
         transform .18s ease,
         border-color .18s ease,
-        box-shadow .18s ease;
+        box-shadow .18s ease,
+        background .18s ease;
 }
 
 
@@ -749,14 +750,30 @@ main{
 
     .record-card:active{
         transform:
-            translateY(-3px)
-            scale(1.005);
+            translateY(-2px)
+            scale(1.008);
 
-        border-color:#aaa;
+        border-color:#ff526c;
+
+        background:
+            linear-gradient(
+                180deg,
+                #34363a 0%,
+                #202225 48%,
+                #0d0e10 100%
+            );
 
         box-shadow:
-            0 8px 18px rgba(0,0,0,.55),
-            0 0 10px rgba(255,255,255,.12);
+            inset 0 1px 0 rgba(255,255,255,.30),
+            inset 0 -5px 0 rgba(0,0,0,.72),
+            0 6px 14px rgba(0,0,0,.55),
+            0 0 12px rgba(255,23,68,.22);
+
+        transition:
+            transform .06s ease,
+            background .06s ease,
+            border-color .06s ease,
+            box-shadow .06s ease;
     }
 
     .record-card:active::before{
@@ -765,8 +782,23 @@ main{
         opacity:1;
 
         transition:
-            left .7s ease,
-            opacity .12s ease;
+            left .35s ease,
+            opacity .05s ease;
+    }
+
+    .record-card:active .record-name{
+        color:#fff;
+
+        text-shadow:
+            0 0 8px rgba(255,255,255,.25);
+    }
+
+    .record-card:active .record-brand{
+        color:#ff526c;
+    }
+
+    .record-card:active .record-result{
+        border-top-color:#55232b;
     }
 
 }
