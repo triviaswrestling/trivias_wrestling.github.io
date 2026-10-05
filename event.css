@@ -56,43 +56,99 @@ main {
 
 
 /* =========================================
-   EVENT HEADER
+   EVENT HEADER - Y2K
    ========================================= */
 
 .event-header {
-    background: #111;
-    border: 1px solid #292929;
-    padding: 35px;
-    text-align: center;
+    position: relative;
+
+    background:
+        linear-gradient(#151515,#0d0d0d);
+
+    border: 1px solid #555;
+
+    padding: 18px;
+
     margin-bottom: 30px;
+
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    text-align: left;
+
+    box-shadow:
+        inset 0 0 0 1px #222,
+        0 3px 0 #050505,
+        0 6px 12px rgba(0,0,0,.65);
+}
+
+.event-header:before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: #d90024;
+}
+
+.event-header-image {
+    width: 240px;
+    aspect-ratio: 16 / 9;
+
+    object-fit: cover;
+    display: block;
+
+    flex-shrink: 0;
+
+    border: 2px solid #777;
+
+    box-shadow:
+        inset 0 0 0 1px #111,
+        0 2px 8px rgba(0,0,0,.8);
+}
+
+.event-header-info {
+    min-width: 0;
 }
 
 .event-type {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #999;
-    margin-bottom: 12px;
+    display: none;
 }
 
 .event-header h1 {
     margin: 0;
+
+    color: #fff;
+
     font-size: 32px;
+    font-weight: 900;
+
     letter-spacing: 2px;
+    text-transform: uppercase;
+
+    text-shadow:
+        1px 1px 0 #000,
+        2px 2px 0 #333;
 }
 
 .event-date {
-    margin-top: 12px;
-    color: #888;
-    font-size: 14px;
+    margin-top: 9px;
+
+    color: #aaa;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
 }
 
 .event-brand {
-    margin-top: 6px;
-    color: #666;
-    font-size: 11px;
-    letter-spacing: 1px;
+    display: none;
 }
 
 
@@ -617,12 +673,36 @@ main {
     }
 
     .event-header {
-        padding: 25px 18px;
-    }
+    padding: 14px;
 
-    .event-header h1 {
-        font-size: 23px;
-    }
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 12px;
+
+    text-align: center;
+}
+
+.event-header-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    object-fit: cover;
+}
+
+.event-header-info {
+    width: 100%;
+}
+
+.event-header h1 {
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.event-date {
+    margin-top: 7px;
+    font-size: 11px;
+}
 
     .result-card {
         padding: 18px;
