@@ -4,7 +4,7 @@ const dateParts=document.getElementById("date-parts");
 const filterButtons=document.querySelectorAll(".recap-filter");
 
 const events=[];
-const EVENTS_PER_PAGE=21;
+const EVENTS_PER_PAGE=18;
 
 let currentPage=1;
 let currentFilter="ALL";
