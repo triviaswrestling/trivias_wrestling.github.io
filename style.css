@@ -274,6 +274,9 @@ main > h1 {
     font-weight: 900;
 
     letter-spacing: 1px;
+
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 
