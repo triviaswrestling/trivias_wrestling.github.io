@@ -1,5 +1,6 @@
 /* =========================================
    RECAPS — Y2K FUTURISTIC
+   TOUCH APP STYLE
    PERFORMANCE SAFE
    ========================================= */
 
@@ -9,7 +10,6 @@
     margin:auto;
     padding:30px 20px 50px;
 }
-
 
 /* =========================================
    HEADER
@@ -26,7 +26,6 @@
     font-size:2.5rem;
     letter-spacing:5px;
     color:#fff;
-
     text-shadow:
         0 0 5px rgba(255,255,255,.35),
         0 0 12px rgba(255,23,68,.2);
@@ -45,7 +44,6 @@
     width:160px;
     height:2px;
     margin:15px auto 0;
-
     background:
         linear-gradient(
             90deg,
@@ -55,11 +53,9 @@
             #ff1744,
             transparent
         );
-
     box-shadow:
         0 0 6px rgba(255,23,68,.4);
 }
-
 
 /* =========================================
    CONTROLS
@@ -77,7 +73,6 @@
     gap:10px;
 }
 
-
 /* =========================================
    3D FILTER BUTTONS
    ========================================= */
@@ -85,14 +80,10 @@
 .recap-filter{
     position:relative;
     overflow:hidden;
-
     border:1px solid #555;
     border-radius:5px;
-
     padding:9px 15px;
-
     color:#ddd;
-
     background:
         linear-gradient(
             180deg,
@@ -100,14 +91,11 @@
             #222 45%,
             #111
         );
-
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,.25),
         inset 0 -3px 0 rgba(0,0,0,.7),
         0 3px 0 #050505;
-
     cursor:pointer;
-
     transition:
         transform .22s ease,
         box-shadow .22s ease,
@@ -116,14 +104,11 @@
 
 .recap-filter::after{
     content:"";
-
     position:absolute;
     top:0;
     left:-100%;
-
     width:35%;
     height:100%;
-
     background:
         linear-gradient(
             90deg,
@@ -131,18 +116,16 @@
             rgba(255,255,255,.2),
             transparent
         );
-
     transform:skewX(-18deg);
     transition:left .4s ease;
+    pointer-events:none;
 }
 
 @media(hover:hover){
 
     .recap-filter:hover{
         transform:translateY(-2px);
-
         border-color:#aaa;
-
         box-shadow:
             inset 0 1px 0 rgba(255,255,255,.3),
             inset 0 -3px 0 rgba(0,0,0,.8),
@@ -157,7 +140,6 @@
 
 .recap-filter:active{
     transform:translateY(1px);
-
     box-shadow:
         inset 0 2px 4px rgba(0,0,0,.8),
         0 1px 0 #050505;
@@ -165,7 +147,6 @@
 
 .recap-filter.active{
     color:#fff;
-
     background:
         linear-gradient(
             180deg,
@@ -173,15 +154,12 @@
             #d90024 45%,
             #7b0015
         );
-
     border-color:#ff526c;
-
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,.4),
         inset 0 -4px 0 rgba(80,0,10,.8),
         0 3px 0 #350009;
 }
-
 
 /* =========================================
    DATE / PART BUTTONS
@@ -198,28 +176,21 @@
 .date-part{
     position:relative;
     overflow:hidden;
-
     padding:8px 14px;
-
     color:#ccc;
-
     border:1px solid #444;
     border-radius:4px;
-
     background:
         linear-gradient(
             180deg,
             #303030,
             #141414
         );
-
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,.2),
         inset 0 -3px 0 rgba(0,0,0,.7),
         0 3px 0 #050505;
-
     cursor:pointer;
-
     transition:
         transform .22s ease,
         color .22s ease,
@@ -230,14 +201,11 @@
 
 .date-part::after{
     content:"";
-
     position:absolute;
     top:0;
     left:-100%;
-
     width:40%;
     height:100%;
-
     background:
         linear-gradient(
             90deg,
@@ -245,10 +213,8 @@
             rgba(255,255,255,.18),
             transparent
         );
-
     transform:skewX(-18deg);
     transition:left .4s ease;
-
     pointer-events:none;
 }
 
@@ -256,18 +222,14 @@
 
     .date-part:hover{
         transform:translateY(-2px);
-
         color:#fff;
-
         border-color:#ff3150;
-
         background:
             linear-gradient(
                 180deg,
                 #3d1118,
                 #17070a
             );
-
         box-shadow:
             inset 0 1px 0 rgba(255,255,255,.22),
             inset 0 -3px 0 rgba(0,0,0,.75),
@@ -280,16 +242,9 @@
 
 }
 
-
-/* =========================================
-   PART SELECCIONADO
-   ========================================= */
-
 .date-part.active{
     color:#fff;
-
     border-color:#ff526c;
-
     background:
         linear-gradient(
             180deg,
@@ -297,25 +252,16 @@
             #d90024 45%,
             #7b0015
         );
-
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,.4),
         inset 0 -4px 0 rgba(80,0,10,.8),
         0 3px 0 #350009;
 }
 
-
-/* =========================================
-   PART PRESIONADO
-   ========================================= */
-
 .date-part:active{
     transform:translateY(1px);
-
     color:#fff;
-
     border-color:#ff526c;
-
     background:
         linear-gradient(
             180deg,
@@ -323,12 +269,10 @@
             #d90024 45%,
             #7b0015
         );
-
     box-shadow:
         inset 0 2px 4px rgba(0,0,0,.8),
         0 1px 0 #050505;
 }
-
 
 /* =========================================
    EVENTS GRID
@@ -340,13 +284,10 @@
 
 .events-grid{
     display:grid;
-
     grid-template-columns:
         repeat(3,minmax(0,1fr));
-
     gap:22px;
 }
-
 
 /* =========================================
    EVENT CARD
@@ -357,7 +298,6 @@
     overflow:hidden;
 
     padding:22px;
-
     min-height:150px;
 
     border:1px solid #303030;
@@ -377,14 +317,13 @@
 
     cursor:pointer;
 
-    transition:
-        transform .25s ease,
-        border-color .25s ease,
-        box-shadow .25s ease;
-
     contain:layout paint;
-}
 
+    transition:
+        transform .16s ease,
+        border-color .16s ease,
+        box-shadow .16s ease;
+}
 
 /* =========================================
    TOP LIGHT RAY
@@ -392,7 +331,6 @@
 
 .event-card::before{
     content:"";
-
     position:absolute;
 
     top:0;
@@ -419,19 +357,12 @@
     opacity:0;
 
     transition:
-        left .55s ease,
-        opacity .12s ease;
+        left .42s ease,
+        opacity .08s ease;
 }
-
-.event-card:hover::before,
-.event-card:active::before{
-    left:140%;
-    opacity:1;
-}
-
 
 /* =========================================
-   CARD HOVER
+   DESKTOP HOVER
    ========================================= */
 
 @media(hover:hover){
@@ -448,11 +379,19 @@
             0 9px 18px rgba(0,0,0,.5);
     }
 
+    .event-card:hover::before{
+        left:140%;
+        opacity:1;
+    }
+
+    .event-card:hover img{
+        transform:scale(1.008);
+    }
+
 }
 
-
 /* =========================================
-   CARD ACTIVE / TOUCH
+   TOUCH PRESS
    ========================================= */
 
 .event-card:active{
@@ -468,6 +407,38 @@
         0 0 10px rgba(255,255,255,.12);
 }
 
+.event-card:active::before{
+    left:140%;
+    opacity:1;
+}
+
+/* =========================================
+   PERSISTENT TOUCH STATE
+   CONTROLLED BY JS
+   ========================================= */
+
+.event-card.touch-active{
+
+    transform:
+        translateY(-5px)
+        scale(1.015);
+
+    border-color:#aaa;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 10px 20px rgba(0,0,0,.55),
+        0 0 10px rgba(255,255,255,.12);
+}
+
+.event-card.touch-active::before{
+    left:140%;
+    opacity:1;
+
+    transition:
+        left .38s ease,
+        opacity .08s ease;
+}
 
 /* =========================================
    EVENT IMAGE
@@ -487,17 +458,13 @@
     border:0;
 
     transition:
-        transform .25s ease;
+        transform .16s ease;
 }
 
-@media(hover:hover){
-
-    .event-card:hover img{
-        transform:scale(1.008);
-    }
-
+.event-card:active img,
+.event-card.touch-active img{
+    transform:scale(1.012);
 }
-
 
 /* =========================================
    LOWER FUTURISTIC PANEL
@@ -505,7 +472,6 @@
 
 .event-info{
     position:relative;
-
     z-index:2;
 
     margin:0 -22px -22px;
@@ -529,10 +495,9 @@
         inset 0 -4px 0 rgba(0,0,0,.6);
 
     transition:
-        background .3s ease,
-        box-shadow .3s ease;
+        background .14s ease,
+        box-shadow .14s ease;
 }
-
 
 /* =========================================
    PANEL FLASH
@@ -564,21 +529,22 @@
     opacity:0;
 
     transition:
-        left .55s ease,
-        opacity .12s ease;
+        left .42s ease,
+        opacity .06s ease;
 }
 
-.event-card:active .event-info::before{
+.event-card:active .event-info::before,
+.event-card.touch-active .event-info::before{
     left:140%;
     opacity:1;
 }
 
-
 /* =========================================
-   Y2K METALLIC TOUCH
+   METALLIC TOUCH PANEL
    ========================================= */
 
-.event-card:active .event-info{
+.event-card:active .event-info,
+.event-card.touch-active .event-info{
 
     background:
         linear-gradient(
@@ -593,7 +559,6 @@
         inset 0 -5px 0 rgba(0,0,0,.72),
         0 0 12px rgba(255,255,255,.1);
 }
-
 
 /* =========================================
    TEXT
@@ -615,8 +580,8 @@
     text-transform:uppercase;
 
     transition:
-        color .25s ease,
-        text-shadow .25s ease;
+        color .14s ease,
+        text-shadow .14s ease;
 }
 
 .event-card h2{
@@ -654,16 +619,25 @@
     letter-spacing:1px;
 }
 
+/* =========================================
+   ACTIVE TEXT
+   ========================================= */
+
 .event-card:active .event-type,
 .event-card:active h2,
 .event-card:active .event-date,
-.event-card:active .event-brand{
+.event-card:active .event-brand,
+
+.event-card.touch-active .event-type,
+.event-card.touch-active h2,
+.event-card.touch-active .event-date,
+.event-card.touch-active .event-brand{
+
     color:#fff;
 
     text-shadow:
         0 0 5px rgba(255,255,255,.25);
 }
-
 
 /* =========================================
    PAGINATION
@@ -671,19 +645,14 @@
 
 #pagination{
     display:flex;
-
     justify-content:center;
     align-items:center;
-
     gap:8px;
-
     margin-top:30px;
 }
 
-
 /* =========================================
    TABLET
-   3 CARDS
    ========================================= */
 
 @media(max-width:1000px) and (min-width:651px){
@@ -695,10 +664,8 @@
 
 }
 
-
 /* =========================================
    MOBILE
-   2 CARDS
    ========================================= */
 
 @media(max-width:650px){
@@ -730,6 +697,7 @@
 
     .event-card{
         padding:14px;
+        min-height:0;
     }
 
     .event-card img{
@@ -743,7 +711,6 @@
     }
 
 }
-
 
 /* =========================================
    SMALL PHONES
@@ -783,9 +750,8 @@
 
 }
 
-
 /* =========================================
-   LOW MOTION
+   LOW POWER / REDUCED MOTION
    ========================================= */
 
 @media(prefers-reduced-motion:reduce){
@@ -804,6 +770,31 @@
     .event-card::before,
     .event-info::before{
         display:none;
+    }
+
+}
+
+/* =========================================
+   LOW POWER ANDROID
+   ========================================= */
+
+@media(max-width:650px) and (max-height:900px){
+
+    .event-card{
+        transition-duration:.12s;
+    }
+
+    .event-card img{
+        transition-duration:.12s;
+    }
+
+    .event-info{
+        transition-duration:.12s;
+    }
+
+    .event-card::before,
+    .event-info::before{
+        transition-duration:.32s;
     }
 
 }
