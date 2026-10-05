@@ -482,7 +482,7 @@ main {
     opacity: 0;
 
     transition:
-        left 0.35s ease,
+        left 1s ease,
         opacity 0.15s ease;
 }
 
