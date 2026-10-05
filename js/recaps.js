@@ -39,8 +39,9 @@ function getSeasonImage(type,number){
 
 const seasons={
 
-WEEKLY:[[1,40,"images/smackrawlivee.webp"],
-[41,50,"images/smackrawlivee.webp"]],
+WEEKLY:[[1,79,"images/smackraw2 (1).webp"],
+[100,100,"images/smackraw100.webp"],
+[101,999,"images/smackrawlivee.webp"]],
 
 NXT:[[1,40,"images/nxt202X.webp"]],
 
