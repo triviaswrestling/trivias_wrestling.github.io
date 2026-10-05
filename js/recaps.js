@@ -46,7 +46,7 @@ WEEKLY:[
 
 NXT:[],
 
-SPEED:[],
+SPEED:[1,55,"images/wewespeed.webp"],
 
 TNA:[],
 
