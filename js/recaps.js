@@ -19,7 +19,11 @@ if(typeof eventData!=="undefined"){
 Object.entries(eventData).forEach(([id,event])=>{
 
 if(event.type==="PLE"){
-events.push({id,...event,type:event.brand==="NXT"?"TAKEOVER":"PLE"});
+events.push({
+id,
+...event,
+type:event.brand==="NXT"?"TAKEOVER":"PLE"
+});
 }
 
 });
@@ -549,6 +553,86 @@ dateParts.appendChild(button);
 
 
 /* =========================================
+   TOUCH CARD STATE
+   ONLY EVENT CARDS
+   ========================================= */
+
+let activeTouchCard=null;
+
+function activateTouchCard(card){
+
+if(!card)return;
+
+if(activeTouchCard&&activeTouchCard!==card){
+activeTouchCard.classList.remove("touch-active");
+}
+
+card.classList.add("touch-active");
+
+activeTouchCard=card;
+
+}
+
+
+/* =========================================
+   TOUCH / POINTER DETECTION
+   ========================================= */
+
+if(eventsContainer){
+
+eventsContainer.addEventListener(
+"pointerdown",
+event=>{
+
+const card=event.target.closest(".event-card");
+
+if(card&&eventsContainer.contains(card)){
+activateTouchCard(card);
+return;
+}
+
+if(activeTouchCard){
+activeTouchCard.classList.remove("touch-active");
+activeTouchCard=null;
+}
+
+},
+{passive:true}
+);
+
+
+/* =========================================
+   FINGER SWIPE ACROSS CARDS
+   ========================================= */
+
+eventsContainer.addEventListener(
+"pointermove",
+event=>{
+
+if(event.pointerType!=="touch")return;
+
+const element=document.elementFromPoint(
+event.clientX,
+event.clientY
+);
+
+const card=
+element?
+element.closest(".event-card"):
+null;
+
+if(card&&eventsContainer.contains(card)){
+activateTouchCard(card);
+}
+
+},
+{passive:true}
+);
+
+}
+
+
+/* =========================================
    RENDER
    ========================================= */
 
@@ -574,6 +658,8 @@ eventsContainer.innerHTML=`
 <h2>NO EVENTS FOUND</h2>
 </div>
 `;
+
+activeTouchCard=null;
 
 renderDateParts(0);
 
@@ -648,6 +734,12 @@ ${event.brand||""}
 </div>
 `;
 
+
+/* =====================================
+   EVENT CLICK
+   ORIGINAL NAVIGATION
+   ===================================== */
+
 card.addEventListener(
 "click",
 ()=>{
@@ -661,6 +753,13 @@ window.location.href=
 eventsContainer.appendChild(card);
 
 });
+
+
+/* =========================================
+   RESET OLD CARD REFERENCE
+   ========================================= */
+
+activeTouchCard=null;
 
 
 /* =========================================
