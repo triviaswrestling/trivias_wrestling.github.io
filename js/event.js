@@ -377,6 +377,8 @@ type:brand,
 
 source:"outsiderData",
 
+image:show.image||"",
+
 results:
 convertOutsiderResults(
 matches,
@@ -391,7 +393,6 @@ brand
 return null;
 
 }
-
 
 /* =========================================
    OUTSIDER RESULT ADAPTER
