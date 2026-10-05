@@ -371,10 +371,6 @@ main {
    RESULTS
    ========================================= */
 
-/* =========================================
-   RESULTS
-   ========================================= */
-
 .results-section {
     width: 100%;
 }
@@ -891,38 +887,6 @@ main {
         padding: 0 14px;
     }
 
-    .event-header {
-    padding: 14px;
-
-    flex-direction: column;
-    align-items: stretch;
-
-    gap: 12px;
-
-    text-align: center;
-}
-
-.event-header-image {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-
-    object-fit: cover;
-}
-
-.event-header-info {
-    width: 100%;
-}
-
-.event-header h1 {
-    font-size: 20px;
-    letter-spacing: 1px;
-}
-
-.event-date {
-    margin-top: 7px;
-    font-size: 11px;
-}
-
     .result-card {
         padding: 18px;
     }
@@ -985,7 +949,6 @@ main {
         white-space: nowrap;
     }
 
-
     /* =====================================
        ELIMINATION CHAMBER TAG TEAM
        ===================================== */
@@ -1017,7 +980,6 @@ main {
 
 
 
-──────────────────────────────────────────────────────────────── 
 
 
 /* =========================================
