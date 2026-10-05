@@ -172,7 +172,7 @@ addPLE("backlash-tampa-2026","BACKLASH: TAMPA 2026","24/05/2026","BOOK","images/
 {type:"SINGLES",match:"THREE STAGES OF HELL MATCH",position:"MAIN EVENT",wrestler1:"Bo Dallas",wrestler2:"Finn Balor",score1:2,score2:0}
 ]);
 
-addPLE("wrestlemania-4-life","WRESTLEMANIA 4 LIFE","26/04/2026","ROAD","images/events/wrestlemania-4-life.jpg",[
+addPLE("wrestlemania-4-life","WRESTLEMANIA 4 LIFE","26/04/2026","ROAD","images/wm4life.webp",[
 {type:"SINGLES",position:"OPENER",championship:"United States Championship",wrestler1:"Bret Hart",wrestler2:"Trick Williams",score1:1,score2:4},
 {type:"BATTLE ROYALE",match:"ANDRE THE GIANT MEMORIAL BATTLE ROYAL MATCH",participants:["Axiom","Ludwig Kaiser","Rey Fenix","Shawn Spears","Batista","Rey Mysterio"],winner:"Axiom"},
 {type:"SINGLES",match:"UNSANCTIONED MATCH",championship:"NXT Championship",wrestler1:"Jacob Fatu",wrestler2:"Bron Breakker",score1:4,score2:6},
