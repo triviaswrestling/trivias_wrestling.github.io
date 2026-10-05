@@ -1,35 +1,13 @@
 /* =========================================
    RECAPS — Y2K FUTURISTIC
-   PERFORMANCE OPTIMIZED
-   ========================================= */
-
-*{
-    box-sizing:border-box;
-}
-
-html,
-body{
-    margin:0;
-    padding:0;
-    overflow-x:hidden;
-}
-
-input,
-select,
-textarea{
-    font-size:16px;
-}
-
-
-/* =========================================
-   RECAPS PAGE
+   PERFORMANCE SAFE
    ========================================= */
 
 .recaps-page{
     width:100%;
-    max-width:1200px;
+    max-width:1400px;
     margin:auto;
-    padding:30px 15px 50px;
+    padding:30px 20px 50px;
 }
 
 
@@ -84,7 +62,7 @@ textarea{
         );
 
     box-shadow:
-        0 0 6px rgba(255,23,68,.5);
+        0 0 6px rgba(255,23,68,.4);
 }
 
 
@@ -104,7 +82,7 @@ textarea{
 
     flex-wrap:wrap;
 
-    gap:8px;
+    gap:10px;
 }
 
 
@@ -119,29 +97,29 @@ textarea{
     border:1px solid #555;
     border-radius:5px;
 
-    padding:9px 14px;
+    padding:9px 15px;
 
     color:#ddd;
 
     background:
         linear-gradient(
             180deg,
-            #3a3a3a 0%,
+            #3a3a3a,
             #222 45%,
-            #111 100%
+            #111
         );
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.2),
+        inset 0 1px 0 rgba(255,255,255,.25),
         inset 0 -3px 0 rgba(0,0,0,.7),
         0 3px 0 #050505;
 
     cursor:pointer;
 
     transition:
-        transform .15s ease,
-        box-shadow .15s ease,
-        border-color .15s ease;
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease;
 }
 
 .recap-filter::after{
@@ -159,13 +137,13 @@ textarea{
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.18),
+            rgba(255,255,255,.2),
             transparent
         );
 
     transform:skewX(-18deg);
 
-    transition:left .3s ease;
+    transition:left .4s ease;
 }
 
 @media(hover:hover){
@@ -201,9 +179,9 @@ textarea{
     background:
         linear-gradient(
             180deg,
-            #ff526c 0%,
+            #ff526c,
             #d90024 45%,
-            #7b0015 100%
+            #7b0015
         );
 
     border-color:#ff526c;
@@ -225,7 +203,7 @@ textarea{
     justify-content:center;
     flex-wrap:wrap;
 
-    gap:8px;
+    gap:10px;
 
     margin-top:20px;
 }
@@ -234,7 +212,7 @@ textarea{
     position:relative;
     overflow:hidden;
 
-    padding:8px 13px;
+    padding:8px 14px;
 
     color:#ccc;
 
@@ -249,18 +227,18 @@ textarea{
         );
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.18),
+        inset 0 1px 0 rgba(255,255,255,.2),
         inset 0 -3px 0 rgba(0,0,0,.7),
         0 3px 0 #050505;
 
     cursor:pointer;
 
     transition:
-        transform .15s ease,
-        color .15s ease,
-        border-color .15s ease,
-        background .15s ease,
-        box-shadow .15s ease;
+        transform .22s ease,
+        color .22s ease,
+        border-color .22s ease,
+        background .22s ease,
+        box-shadow .22s ease;
 }
 
 .date-part::after{
@@ -284,7 +262,7 @@ textarea{
 
     transform:skewX(-18deg);
 
-    transition:left .3s ease;
+    transition:left .4s ease;
 
     pointer-events:none;
 }
@@ -308,8 +286,7 @@ textarea{
         box-shadow:
             inset 0 1px 0 rgba(255,255,255,.22),
             inset 0 -3px 0 rgba(0,0,0,.75),
-            0 4px 0 #050505,
-            0 0 8px rgba(255,23,68,.18);
+            0 4px 0 #050505;
     }
 
     .date-part:hover::after{
@@ -318,26 +295,28 @@ textarea{
 
 }
 
-.date-part:active{
-    transform:translateY(-1px);
 
+/* PART SELECCIONADO
+   Funciona sin tocar JS cuando
+   el navegador conserva el foco */
+
+.date-part:focus{
     color:#fff;
 
-    border-color:#ff3150;
+    border-color:#ff526c;
 
     background:
         linear-gradient(
             180deg,
-            #ff526c 0%,
+            #ff526c,
             #d90024 45%,
-            #7b0015 100%
+            #7b0015
         );
 
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,.4),
         inset 0 -4px 0 rgba(80,0,10,.8),
-        0 3px 0 #350009,
-        0 0 10px rgba(255,23,68,.28);
+        0 3px 0 #350009;
 }
 
 
@@ -353,9 +332,9 @@ textarea{
     display:grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+        repeat(3,minmax(0,1fr));
 
-    gap:14px;
+    gap:22px;
 }
 
 
@@ -367,9 +346,9 @@ textarea{
     position:relative;
     overflow:hidden;
 
-    padding:18px;
+    padding:22px;
 
-    min-height:140px;
+    min-height:150px;
 
     border:1px solid #303030;
     border-radius:6px;
@@ -377,30 +356,28 @@ textarea{
     background:
         linear-gradient(
             145deg,
-            #202020 0%,
+            #202020,
             #121212 55%,
-            #0a0a0a 100%
+            #0a0a0a
         );
 
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,.05),
-        0 5px 12px rgba(0,0,0,.35);
+        0 7px 15px rgba(0,0,0,.42);
 
     cursor:pointer;
 
     transition:
-        transform .16s ease,
-        border-color .16s ease,
-        box-shadow .16s ease;
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
 
-    content-visibility:auto;
     contain:layout paint;
-    contain-intrinsic-size:180px 140px;
 }
 
 
 /* =========================================
-   WWE NETWORK FLASH
+   TOP LIGHT RAY
    ========================================= */
 
 .event-card::before{
@@ -409,88 +386,67 @@ textarea{
     position:absolute;
 
     top:0;
-    left:-120%;
+    left:-100%;
 
-    width:65%;
-    height:3px;
+    width:55%;
+    height:2px;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.95),
             #fff,
-            rgba(255,255,255,.95),
             transparent
         );
 
     box-shadow:
-        0 0 8px rgba(255,255,255,.8),
-        0 0 16px rgba(255,255,255,.35);
+        0 0 7px rgba(255,255,255,.5);
 
     transform:skewX(-20deg);
 
+    pointer-events:none;
+
     opacity:0;
 
-    pointer-events:none;
+    transition:
+        left .55s ease,
+        opacity .12s ease;
 }
 
+.event-card:hover::before,
 .event-card:active::before{
     left:140%;
     opacity:1;
-
-    transition:
-        left .38s ease,
-        opacity .05s ease;
 }
 
 
 /* =========================================
-   TOUCH / PRESS
+   CARD HOVER / TOUCH
    ========================================= */
 
-.event-card:active{
-
+.event-card:hover{
     transform:
         translateY(-4px)
+        scale(1.01);
+
+    border-color:#555;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 9px 18px rgba(0,0,0,.5);
+}
+
+.event-card:active{
+    transform:
+        translateY(-5px)
         scale(1.015);
 
     border-color:#aaa;
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.15),
-        0 10px 22px rgba(0,0,0,.65),
-        0 0 12px rgba(255,255,255,.12);
-}
-
-
-/* =========================================
-   DESKTOP HOVER
-   ========================================= */
-
-@media(hover:hover){
-
-    .event-card:hover{
-        transform:
-            translateY(-3px)
-            scale(1.01);
-
-        border-color:#555;
-
-        box-shadow:
-            inset 0 1px 0 rgba(255,255,255,.08),
-            0 7px 14px rgba(0,0,0,.45);
-    }
-
-    .event-card:hover::before{
-        left:140%;
-        opacity:1;
-
-        transition:
-            left .38s ease,
-            opacity .05s ease;
-    }
-
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 10px 20px rgba(0,0,0,.55),
+        0 0 10px rgba(255,255,255,.12);
 }
 
 
@@ -501,25 +457,24 @@ textarea{
 .event-card img{
     display:block;
 
-    width:calc(100% + 36px);
+    width:calc(100% + 44px);
 
     aspect-ratio:16 / 9;
 
     object-fit:cover;
 
-    margin:-18px -18px 0;
+    margin:-22px -22px 0;
 
     border:0;
 
-    transition:transform .16s ease;
-
-    content-visibility:auto;
+    transition:
+        transform .25s ease;
 }
 
 @media(hover:hover){
 
     .event-card:hover img{
-        transform:scale(1.006);
+        transform:scale(1.008);
     }
 
 }
@@ -531,11 +486,12 @@ textarea{
 
 .event-info{
     position:relative;
+
     z-index:2;
 
-    margin:0 -18px -18px;
+    margin:0 -22px -22px;
 
-    padding:13px 18px 18px;
+    padding:15px 22px 22px;
 
     overflow:hidden;
 
@@ -544,9 +500,9 @@ textarea{
     background:
         linear-gradient(
             180deg,
-            #181818 0%,
+            #181818,
             #101010 55%,
-            #0b0b0b 100%
+            #0b0b0b
         );
 
     box-shadow:
@@ -554,8 +510,8 @@ textarea{
         inset 0 -4px 0 rgba(0,0,0,.6);
 
     transition:
-        background .16s ease,
-        box-shadow .16s ease;
+        background .3s ease,
+        box-shadow .3s ease;
 }
 
 
@@ -569,39 +525,38 @@ textarea{
     position:absolute;
 
     top:0;
-    left:-120%;
+    left:-100%;
 
-    width:60%;
+    width:45%;
     height:100%;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.28),
-            rgba(255,255,255,.12),
+            rgba(255,255,255,.18),
             transparent
         );
 
     transform:skewX(-18deg);
 
+    pointer-events:none;
+
     opacity:0;
 
-    pointer-events:none;
+    transition:
+        left .55s ease,
+        opacity .12s ease;
 }
 
 .event-card:active .event-info::before{
     left:140%;
     opacity:1;
-
-    transition:
-        left .42s ease,
-        opacity .05s ease;
 }
 
 
 /* =========================================
-   PANEL LIGHTS UP
+   Y2K TOUCH PANEL
    ========================================= */
 
 .event-card:active .event-info{
@@ -609,15 +564,15 @@ textarea{
     background:
         linear-gradient(
             180deg,
-            #4a4a4a 0%,
-            #292929 45%,
-            #111 100%
+            #34363a 0%,
+            #202225 48%,
+            #0d0e10 100%
         );
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.3),
-        inset 0 -5px 0 rgba(0,0,0,.75),
-        0 0 10px rgba(255,255,255,.08);
+        inset 0 1px 0 rgba(255,255,255,.28),
+        inset 0 -5px 0 rgba(0,0,0,.72),
+        0 0 12px rgba(255,255,255,.1);
 }
 
 
@@ -639,6 +594,10 @@ textarea{
     letter-spacing:1.5px;
 
     text-transform:uppercase;
+
+    transition:
+        color .25s ease,
+        text-shadow .25s ease;
 }
 
 .event-card h2{
@@ -649,7 +608,7 @@ textarea{
 
     color:#fff;
 
-    font-size:1rem;
+    font-size:1.05rem;
     line-height:1.2;
 }
 
@@ -659,7 +618,7 @@ textarea{
 
     color:#999;
 
-    font-size:.78rem;
+    font-size:.8rem;
 }
 
 .event-brand{
@@ -670,7 +629,7 @@ textarea{
 
     color:#aaa;
 
-    font-size:.72rem;
+    font-size:.75rem;
     font-weight:bold;
 
     letter-spacing:1px;
@@ -680,11 +639,10 @@ textarea{
 .event-card:active h2,
 .event-card:active .event-date,
 .event-card:active .event-brand{
-
     color:#fff;
 
     text-shadow:
-        0 0 5px rgba(255,255,255,.3);
+        0 0 5px rgba(255,255,255,.25);
 }
 
 
@@ -711,7 +669,8 @@ textarea{
 @media(max-width:1000px){
 
     .events-grid{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
     }
 
 }
@@ -742,14 +701,14 @@ textarea{
     }
 
     .events-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:10px;
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:12px;
     }
 
     .event-card{
         padding:14px;
-
-        contain-intrinsic-size:160px 120px;
     }
 
     .event-card img{
@@ -781,14 +740,14 @@ textarea{
     }
 
     .events-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:8px;
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:9px;
     }
 
     .event-card{
         padding:11px;
-
-        contain-intrinsic-size:140px 110px;
     }
 
     .event-card img{
@@ -815,8 +774,7 @@ textarea{
     .event-card,
     .event-card img,
     .event-info,
-    .event-type,
-    .event-card h2{
+    .event-type{
         transition:none;
     }
 
@@ -824,20 +782,6 @@ textarea{
     .date-part::after,
     .event-card::before,
     .event-info::before{
-        display:none;
-    }
-
-}
-
-
-/* =========================================
-   TOUCH DEVICES
-   ========================================= */
-
-@media(hover:none){
-
-    .recap-filter::after,
-    .date-part::after{
         display:none;
     }
 
