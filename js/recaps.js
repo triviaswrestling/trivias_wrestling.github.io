@@ -42,7 +42,7 @@ const seasons={
 WEEKLY:[[1,40,"images/smackrawlivee.webp"],
 [41,50,"images/smackrawlivee.webp"]],
 
-NXT:[],
+NXT:[[1,40,"images/nxt202X.webp"]],
 
 SPEED:[[1,55,"images/speeed.webp"]],
 
