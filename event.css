@@ -54,285 +54,277 @@ main {
     padding: 0 25px;
 }
 
-/* =========================================
+
+
+
+
+    
+    
+   
+ /* =========================================
    EVENT HEADER
-   WWE NETWORK + NETFLIX + Y2K FUTURISTIC
+   WWE NETWORK 2015 + NETFLIX + CHROME
    ========================================= */
 
-.event-header {
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    gap: 24px;
-
-    width: 100%;
-    padding: 14px;
-
-    margin-bottom: 30px;
+.event-header{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:24px;
+    width:100%;
+    padding:10px;
+    margin-bottom:30px;
 
     background:
         linear-gradient(
             180deg,
-            #3b3b3b 0%,
-            #242424 4%,
-            #111 18%,
-            #0b0b0b 50%,
-            #151515 82%,
-            #292929 96%,
-            #3d3d3d 100%
+            #eeeeee 0%,
+            #8d8d8d 1%,
+            #303030 5%,
+            #111 14%,
+            #050505 50%,
+            #111 86%,
+            #3a3a3a 95%,
+            #a0a0a0 99%,
+            #f5f5f5 100%
         );
 
-    border: 1px solid #555;
+    border:1px solid #777;
 
     box-shadow:
-        inset 0 1px 0 #777,
-        inset 0 -1px 0 #050505,
-        0 4px 12px rgba(0,0,0,.7);
+        inset 0 1px 0 #fff,
+        inset 0 -1px 0 #000,
+        0 5px 15px rgba(0,0,0,.85);
 
-    overflow: hidden;
+    overflow:hidden;
 }
 
 
 /* =========================================
-   TOP NETWORK STRIP
+   CROMO SUPERIOR
    ========================================= */
 
-.event-header:before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 3px;
+.event-header:before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
 
     background:
         linear-gradient(
             90deg,
-            #450008 0%,
-            #a00018 18%,
-            #ff304b 40%,
-            #d90024 58%,
-            #850010 82%,
-            #350006 100%
+            #555 0%,
+            #fff 12%,
+            #aaa 25%,
+            #fff 42%,
+            #666 58%,
+            #fff 76%,
+            #aaa 90%,
+            #fff 100%
         );
 
     box-shadow:
-        0 1px 0 #080808;
+        0 0 5px rgba(255,255,255,.75);
 
-    z-index: 5;
+    z-index:5;
 }
 
 
 /* =========================================
-   METALLIC BOTTOM REFLECTION
+   CROMO INFERIOR
    ========================================= */
 
-.event-header:after {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    height: 2px;
+.event-header:after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:2px;
 
     background:
         linear-gradient(
             90deg,
-            #171717,
-            #777,
-            #303030,
-            #777,
-            #171717
+            #222,
+            #888,
+            #fff,
+            #aaa,
+            #fff,
+            #888,
+            #222
         );
 
     box-shadow:
-        0 -1px 0 #050505;
+        0 -1px 3px rgba(255,255,255,.35);
 }
 
 
 /* =========================================
-   EVENT IMAGE
+   IMAGEN 16:9
    ========================================= */
 
-.event-header-image {
-    width: 250px;
+.event-header-image{
+    width:250px;
+    aspect-ratio:16 / 9;
 
-    aspect-ratio: 16 / 9;
+    object-fit:cover;
+    display:block;
+    flex-shrink:0;
 
-    object-fit: cover;
-
-    display: block;
-
-    flex-shrink: 0;
-
-    border: 0;
+    border:1px solid #aaa;
 
     box-shadow:
-        3px 3px 0 #050505;
+        0 0 0 1px #050505,
+        0 3px 9px rgba(0,0,0,.9);
 
-    position: relative;
-    z-index: 2;
+    position:relative;
+    z-index:2;
 }
 
 
 /* =========================================
-   FUTURISTIC INFORMATION VITRINE
+   INFORMACIÓN
    ========================================= */
 
-.event-header-info {
-    position: relative;
+.event-header-info{
+    position:relative;
 
-    min-width: 0;
-    flex: 1;
+    min-width:0;
+    flex:1;
 
-    padding: 16px 20px 17px;
+    padding:9px 15px 11px;
 
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.09) 0%,
-            rgba(255,255,255,.025) 18%,
-            rgba(0,0,0,.10) 55%,
-            rgba(0,0,0,.28) 100%
-        );
-
-    border-left: 1px solid #484848;
-    border-right: 1px solid #222;
-
-    box-shadow:
-        inset 1px 0 0 #111,
-        inset -1px 0 0 #444;
-
-    z-index: 2;
+    z-index:2;
 }
 
 
 /* =========================================
-   VITRINE TOP REFLECTION
+   REFLEJO FUTURISTA
    ========================================= */
 
-.event-header-info:before {
-    content: "";
+.event-header-info:before{
+    content:"";
 
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 1px;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:1px;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            #aaa,
             #fff,
             #aaa,
             transparent
         );
 
-    opacity: .45;
+    opacity:.8;
 }
 
 
 /* =========================================
-   EVENT TITLE
+   TÍTULO CROMADO
    ========================================= */
 
-.event-header h1 {
-    position: relative;
+.event-header h1{
+    position:relative;
 
-    display: inline-block;
+    margin:0;
+    padding:0 0 12px;
 
-    margin: 0;
+    font-size:34px;
+    font-weight:900;
 
-    padding: 0 0 9px;
+    letter-spacing:2.2px;
+    line-height:1;
 
-    color: #eee;
-
-    font-size: 34px;
-    font-weight: 900;
-
-    letter-spacing: 2.5px;
-    line-height: 1;
-
-    text-transform: uppercase;
+    text-transform:uppercase;
 
     background:
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #f0f0f0 17%,
-            #a8a8a8 43%,
-            #6f6f6f 50%,
-            #dcdcdc 61%,
-            #888 82%,
-            #eeeeee 100%
+            #ffffff 18%,
+            #d9d9d9 35%,
+            #777 49%,
+            #ffffff 61%,
+            #eeeeee 78%,
+            #999 100%
         );
 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
 
-    -webkit-text-stroke: .5px #111;
+    -webkit-text-stroke:.35px #fff;
 
     text-shadow:
-        1px 1px 0 #111,
-        2px 2px 0 #050505;
+        1px 1px 0 #000,
+        2px 2px 2px rgba(0,0,0,.85);
 }
 
 
 /* =========================================
-   TITLE RED LIGHT
+   ACENTO ROJO WWE
    ========================================= */
 
-.event-header h1:before {
-    content: "";
+.event-header h1:before{
+    content:"";
 
-    position: absolute;
+    position:absolute;
+    left:0;
+    bottom:0;
 
-    left: 0;
-    bottom: 0;
-
-    width: 75px;
-    height: 2px;
+    width:115px;
+    height:2px;
 
     background:
         linear-gradient(
             90deg,
             #d90024,
             #ff4058,
+            #fff,
             transparent
         );
 
     box-shadow:
-        0 1px 0 #090909;
+        0 0 6px rgba(217,0,36,.55);
 }
 
 
 /* =========================================
-   DATE
+   FECHA
    ========================================= */
 
-.event-date {
-    margin-top: 14px;
+.event-date{
+    display:inline-block;
 
-    color: #a7a7a7;
+    margin-top:12px;
 
-    font-size: 11px;
-    font-weight: 900;
+    padding:4px 9px;
 
-    letter-spacing: 1.8px;
+    color:#eee;
 
-    text-transform: uppercase;
+    font-size:10px;
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    line-height:1.2;
+    text-transform:uppercase;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.12),
+            rgba(255,255,255,.02)
+        );
+
+    border-left:2px solid #fff;
 
     text-shadow:
         1px 1px 0 #000;
@@ -340,15 +332,37 @@ main {
 
 
 /* =========================================
-   HIDDEN
+   DETALLE CROMADO
    ========================================= */
 
-.event-type {
-    display: none;
+.event-header-info:after{
+    content:"";
+
+    position:absolute;
+
+    right:0;
+    bottom:0;
+
+    width:55px;
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #777,
+            #fff
+        );
 }
 
-.event-brand {
-    display: none;
+
+/* =========================================
+   OCULTAR TIPO Y BRAND
+   ========================================= */
+
+.event-type,
+.event-brand{
+    display:none;
 }
 
 
@@ -356,63 +370,54 @@ main {
    MOBILE
    ========================================= */
 
-@media (max-width: 600px) {
+@media(max-width:600px){
 
-    .event-header {
-        padding: 10px;
+    .event-header{
+        padding:7px;
 
-        flex-direction: column;
+        flex-direction:column;
 
-        align-items: stretch;
+        align-items:stretch;
 
-        gap: 10px;
-
-        text-align: left;
+        gap:8px;
     }
 
-    .event-header-image {
-        width: 100%;
-
-        aspect-ratio: 16 / 9;
-
-        object-fit: cover;
+    .event-header-image{
+        width:100%;
+        aspect-ratio:16 / 9;
+        object-fit:cover;
     }
 
-    .event-header-info {
-        width: 100%;
-
-        padding: 13px 15px 14px;
+    .event-header-info{
+        width:100%;
+        padding:9px 8px 11px;
     }
 
-    .event-header h1 {
-        display: block;
-
-        width: 100%;
-
-        padding-bottom: 9px;
-
-        font-size: 23px;
-
-        letter-spacing: 1.5px;
-
-        line-height: 1.08;
+    .event-header h1{
+        font-size:23px;
+        letter-spacing:1.4px;
+        line-height:1.05;
+        padding-bottom:10px;
     }
 
-    .event-header h1:before {
-        width: 58px;
-        height: 2px;
+    .event-header h1:before{
+        width:85px;
     }
 
-    .event-date {
-        margin-top: 12px;
-
-        font-size: 10px;
-
-        letter-spacing: 1.4px;
+    .event-date{
+        margin-top:10px;
+        padding:4px 8px;
+        font-size:9px;
+        letter-spacing:1.3px;
     }
 
 }
-    
+
+
+
+
+
+
 
 /* =========================================
    RESULTS
