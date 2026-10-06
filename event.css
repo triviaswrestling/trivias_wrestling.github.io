@@ -86,6 +86,10 @@ main {
 
 
 
+──────────────────────────────────────────────────────────────── 
+
+
+
 
 /* =========================================
    EVENT HEADER
@@ -643,6 +647,8 @@ main {
     }
 }
 
+
+──────────────────────────────────────────────────────────────── 
 
 /* =========================================
    RESULTS
@@ -2653,3 +2659,519 @@ main{
 img,video,iframe,svg{max-width:100%;}
 .event-header,.event-header-info,.result-card,.match,.team,.chamber-teams,.chamber-team,.chronology-row{max-width:100%;}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}}
+
+
+/* =========================================================
+   MI WRESTLING — FINAL EVENT HEADER
+   RAW 2012/2013 GRAPHIC STYLE
+   METAL OSCURO + ROJO + FLASH PERIMETRAL
+   SOLO HEADER — MATCHES / SCORES / CHRONOLOGY INTACTOS
+   ========================================================= */
+
+.event-header{
+    position:relative;
+    display:flex;
+    flex-direction:row;
+    align-items:stretch;
+    width:100%;
+    max-width:100%;
+    height:225px;
+    min-height:225px;
+    margin-bottom:30px;
+    overflow:hidden;
+    isolation:isolate;
+
+    /* acero RAW oscuro: negro + grafito + reflejos fríos */
+    background:
+        linear-gradient(135deg,
+            rgba(255,255,255,.055) 0%,
+            transparent 9%,
+            rgba(255,255,255,.018) 17%,
+            transparent 25%,
+            rgba(255,255,255,.035) 39%,
+            transparent 48%,
+            rgba(0,0,0,.34) 63%,
+            rgba(255,255,255,.028) 76%,
+            transparent 87%),
+        linear-gradient(155deg,#242424 0%,#151515 28%,#0c0c0c 62%,#171717 100%);
+
+    border:1px solid #3a3a3a;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.13),
+        inset 0 -1px 0 rgba(0,0,0,.95),
+        inset 0 0 0 1px rgba(0,0,0,.72),
+        0 12px 28px rgba(0,0,0,.68);
+}
+
+/* placas diagonales / reflejos metálicos */
+.event-header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    background:
+        linear-gradient(128deg,
+            transparent 0 13%,
+            rgba(255,255,255,.035) 13.3%,
+            rgba(255,255,255,.09) 13.7%,
+            rgba(255,255,255,.018) 14.2%,
+            transparent 14.7% 32%),
+        linear-gradient(132deg,
+            transparent 0 39%,
+            rgba(217,0,36,.075) 39.3%,
+            rgba(255,45,65,.17) 39.7%,
+            rgba(217,0,36,.035) 40.2%,
+            transparent 40.7% 58%),
+        linear-gradient(126deg,
+            transparent 0 61%,
+            rgba(255,255,255,.045) 61.3%,
+            rgba(255,255,255,.11) 61.7%,
+            rgba(255,255,255,.02) 62.1%,
+            transparent 62.6% 78%),
+        linear-gradient(139deg,
+            transparent 0 78%,
+            rgba(217,0,36,.06) 78.3%,
+            rgba(255,45,65,.14) 78.7%,
+            transparent 79.2%),
+        linear-gradient(90deg,rgba(255,255,255,.025),transparent 22%,transparent 78%,rgba(255,255,255,.018));
+    opacity:.9;
+}
+
+/* luz interna; el borde animado va en el box-shadow */
+.event-header::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:20;
+    pointer-events:none;
+    padding:1px;
+    border-radius:0;
+    background:
+        conic-gradient(from 0deg,
+            transparent 0deg 310deg,
+            rgba(255,20,45,.12) 318deg,
+            #d90024 327deg,
+            #ff4a5f 334deg,
+            rgba(255,20,45,.14) 342deg,
+            transparent 350deg 360deg);
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite:exclude;
+    animation:eventHeaderFlash 3.8s linear infinite;
+    filter:drop-shadow(0 0 5px rgba(217,0,36,.62));
+}
+
+@keyframes eventHeaderFlash{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+/* ---------- IMAGEN ---------- */
+.event-header-image{
+    position:relative;
+    z-index:5;
+    display:block;
+    width:min(400px,42%);
+    height:225px;
+    flex:0 0 min(400px,42%);
+    aspect-ratio:16/9;
+    object-fit:cover;
+    margin:0;
+    border:0;
+    box-shadow:
+        inset -2px 0 0 rgba(255,255,255,.08),
+        10px 0 25px rgba(0,0,0,.62);
+}
+
+/* ---------- INFORMACIÓN DERECHA ---------- */
+.event-header-info{
+    position:relative;
+    z-index:7;
+    flex:1 1 auto;
+    min-width:0;
+    height:225px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:stretch;
+    gap:8px;
+    padding:18px 24px 19px 27px;
+    background:
+        linear-gradient(90deg,rgba(0,0,0,.30),transparent 16%,transparent 75%,rgba(0,0,0,.20)),
+        linear-gradient(135deg,rgba(255,255,255,.025),transparent 45%);
+}
+
+/* divisor industrial entre imagen y datos */
+.event-header-info::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:14px;
+    bottom:14px;
+    width:2px;
+    background:linear-gradient(180deg,
+        transparent,
+        rgba(255,255,255,.20) 16%,
+        rgba(217,0,36,.80) 45%,
+        rgba(255,70,85,.95) 50%,
+        rgba(217,0,36,.55) 55%,
+        rgba(255,255,255,.12) 84%,
+        transparent);
+    box-shadow:0 0 9px rgba(217,0,36,.30);
+}
+
+.event-header-info::after{
+    content:"";
+    position:absolute;
+    right:18px;
+    bottom:13px;
+    width:180px;
+    height:28px;
+    pointer-events:none;
+    background:
+        linear-gradient(135deg,
+            transparent 0 12%,
+            rgba(255,255,255,.08) 12.5% 13.5%,
+            transparent 14% 30%,
+            rgba(217,0,36,.16) 30.5% 32%,
+            transparent 32.5% 49%,
+            rgba(255,255,255,.055) 49.5% 51%,
+            transparent 51.5% 68%,
+            rgba(217,0,36,.10) 68.5% 70%,
+            transparent 70.5%);
+    opacity:.65;
+}
+
+/* ---------- TIPO DE EVENTO ---------- */
+.event-type{
+    position:relative;
+    z-index:12;
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    align-self:flex-start;
+    order:1;
+    width:auto !important;
+    max-width:100%;
+    height:27px !important;
+    min-height:27px !important;
+    margin:0 0 2px;
+    padding:0 12px !important;
+    color:#fff !important;
+    font-family:Arial,sans-serif;
+    font-size:9px !important;
+    font-weight:900;
+    letter-spacing:1.7px !important;
+    line-height:1;
+    text-transform:uppercase;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-shadow:0 1px 2px #000;
+    background:linear-gradient(180deg,#b50020 0%,#780014 100%) !important;
+    border:1px solid rgba(255,85,105,.55) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.15),
+        inset 0 -2px 0 rgba(0,0,0,.35),
+        0 3px 9px rgba(0,0,0,.35),
+        0 0 8px rgba(217,0,36,.16);
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+}
+
+.event-type::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(120deg,transparent 0 28%,rgba(255,255,255,.13) 29%,transparent 31% 100%);
+}
+
+.event-type:empty{display:none !important;}
+
+/* ---------- MARCA ---------- */
+.event-brand{
+    position:relative;
+    z-index:12;
+    display:block;
+    align-self:flex-end;
+    order:2;
+    width:fit-content;
+    max-width:55%;
+    margin:-31px 0 0;
+    padding:4px 9px;
+    color:#d7d7d7;
+    font-family:Arial,sans-serif;
+    font-size:8px;
+    font-weight:900;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+    background:rgba(0,0,0,.48);
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+}
+.event-brand:empty{display:none !important;}
+
+/* ---------- TÍTULO GRANDE METÁLICO ---------- */
+.event-header h1{
+    position:relative;
+    z-index:12;
+    order:3;
+    flex:0 1 auto;
+    width:100%;
+    min-height:92px;
+    height:auto;
+    margin:0;
+    padding:7px 15px 8px 0;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    color:transparent !important;
+    font-family:Arial Black,Arial,sans-serif;
+    font-size:clamp(31px,3.45vw,47px) !important;
+    font-weight:950;
+    letter-spacing:1.2px;
+    line-height:.98;
+    text-transform:uppercase;
+    text-shadow:none;
+    -webkit-background-clip:text;
+    background-clip:text;
+    background-image:linear-gradient(180deg,
+        #ffffff 0%,
+        #dfe2e4 17%,
+        #92979a 43%,
+        #f4f5f5 51%,
+        #74797d 69%,
+        #c9cdcf 83%,
+        #5f6468 100%);
+    -webkit-text-fill-color:transparent;
+    border:0 !important;
+    box-shadow:none !important;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+}
+
+.event-header h1::before{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:72%;
+    height:3px;
+    background:linear-gradient(90deg,#d90024,#ff4a5f 45%,transparent);
+    opacity:.85;
+    pointer-events:none;
+}
+
+.event-header h1::after{
+    content:"";
+    position:absolute;
+    right:0;
+    top:5%;
+    width:38%;
+    height:90%;
+    pointer-events:none;
+    background:linear-gradient(125deg,
+        transparent 0 26%,
+        rgba(255,255,255,.055) 27% 28.5%,
+        transparent 29% 49%,
+        rgba(217,0,36,.11) 50% 52%,
+        transparent 53% 73%,
+        rgba(255,255,255,.035) 74% 75.5%,
+        transparent 76%);
+}
+
+/* ---------- FECHA METÁLICA ---------- */
+.event-date{
+    position:relative;
+    z-index:12;
+    order:4;
+    display:flex;
+    align-items:center;
+    width:fit-content !important;
+    max-width:100%;
+    height:27px !important;
+    min-height:27px !important;
+    margin:0;
+    padding:0 10px !important;
+    color:transparent !important;
+    font-family:Arial,sans-serif;
+    font-size:10px !important;
+    font-weight:900;
+    letter-spacing:1.6px !important;
+    line-height:1;
+    text-transform:uppercase;
+    text-shadow:none;
+    -webkit-background-clip:text;
+    background-clip:text;
+    background-image:linear-gradient(180deg,#f4f4f4,#9da2a5 48%,#d7d9da 51%,#707579);
+    -webkit-text-fill-color:transparent;
+    background-color:transparent !important;
+    border:0 !important;
+    border-left:3px solid #d90024 !important;
+    box-shadow:none !important;
+}
+
+.event-date::before{display:none !important;}
+.event-date::after{display:none !important;}
+
+/* =========================================================
+   MOBILE — TIPO ROJO ARRIBA + IMAGEN + DATOS
+   MISMA ESTÉTICA, SOLO REORDENADA
+   ========================================================= */
+@media(max-width:600px){
+    .event-header{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        max-width:100%;
+        height:auto;
+        min-height:0;
+        margin-bottom:22px;
+        overflow:hidden;
+    }
+
+    .event-header::after{
+        z-index:30;
+        padding:1px;
+    }
+
+    .event-header-image{
+        order:1;
+        width:100%;
+        max-width:100%;
+        height:auto;
+        flex:0 0 auto;
+        aspect-ratio:16/9;
+        object-fit:cover;
+        margin:0;
+        box-shadow:
+            inset 0 -2px 0 rgba(0,0,0,.8),
+            0 8px 18px rgba(0,0,0,.62);
+    }
+
+    .event-header-info{
+        order:2;
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-start;
+        align-items:stretch;
+        width:100%;
+        height:auto;
+        min-height:0;
+        padding:13px 14px 16px 16px;
+        gap:7px;
+        background:
+            linear-gradient(135deg,rgba(255,255,255,.025),transparent 35%),
+            linear-gradient(90deg,rgba(0,0,0,.34),transparent 65%,rgba(0,0,0,.22));
+    }
+
+    .event-header-info::before{
+        left:0;
+        top:0;
+        bottom:0;
+        width:2px;
+        background:linear-gradient(180deg,transparent,#d90024 22%,#ff4a5f 50%,#d90024 78%,transparent);
+    }
+
+    .event-header-info::after{
+        right:8px;
+        bottom:8px;
+        width:110px;
+        height:22px;
+    }
+
+    .event-type{
+        order:1;
+        align-self:flex-start;
+        width:auto !important;
+        height:29px !important;
+        min-height:29px !important;
+        margin:0 0 1px;
+        padding:0 10px !important;
+        font-size:8px !important;
+        letter-spacing:1.25px !important;
+    }
+
+    /* En móvil el type debe estar arriba de la imagen.
+       display:contents permite moverlo fuera del info. */
+    .event-header-info{display:contents;}
+
+    .event-type{order:0;}
+    .event-header-image{order:1;}
+    .event-header h1{order:2;}
+    .event-date{order:3;}
+    .event-brand{order:4;}
+
+    .event-type{
+        position:relative;
+        align-self:flex-start;
+        margin:0 0 0 0;
+        padding:0 11px !important;
+        z-index:40;
+    }
+
+    .event-header h1{
+        width:100%;
+        min-height:74px;
+        height:auto;
+        margin:0;
+        padding:14px 13px 11px 15px;
+        font-size:clamp(24px,7.4vw,34px) !important;
+        letter-spacing:1px;
+        line-height:.98;
+        background-image:linear-gradient(180deg,
+            #ffffff 0%,
+            #dfe2e4 18%,
+            #909598 44%,
+            #f4f5f5 52%,
+            #73787b 72%,
+            #c5c8ca 86%,
+            #5d6265 100%);
+        border-top:1px solid rgba(255,255,255,.07) !important;
+        border-bottom:1px solid rgba(217,0,36,.35) !important;
+    }
+
+    .event-header h1::before{width:78%;height:2px;}
+
+    .event-date{
+        width:fit-content !important;
+        height:24px !important;
+        min-height:24px !important;
+        margin:0 0 0 15px;
+        padding:0 8px !important;
+        font-size:8px !important;
+        letter-spacing:1.05px !important;
+    }
+
+    .event-brand{
+        align-self:flex-end;
+        margin:-29px 12px 0 0;
+        font-size:7px;
+    }
+}
+
+@media(max-width:380px){
+    .event-type{
+        height:27px !important;
+        min-height:27px !important;
+        font-size:7px !important;
+    }
+
+    .event-header h1{
+        min-height:66px;
+        padding:12px 11px 10px 13px;
+        font-size:clamp(21px,7.2vw,28px) !important;
+    }
+
+    .event-date{
+        font-size:7px !important;
+        margin-left:13px;
+    }
+}
