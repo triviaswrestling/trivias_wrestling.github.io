@@ -91,8 +91,6 @@ main {
 
 
 /* =========================================
-
-/* =========================================
    EVENT HEADER
    DARK RED HOLOGRAPHIC / Y2K
    UNA SOLA SUPERFICIE
@@ -100,12 +98,13 @@ main {
 
 .event-header{
     position:relative;
+
     display:flex;
     align-items:stretch;
 
     width:100%;
-    height:auto;
     min-height:180px;
+    height:auto;
 
     margin-bottom:30px;
     overflow:hidden;
@@ -148,6 +147,8 @@ main {
 
     background:
 
+        /* RAYO ROJO PRINCIPAL */
+
         linear-gradient(
             126deg,
             transparent 0 17%,
@@ -158,6 +159,8 @@ main {
             transparent 18.5% 43%
         ),
 
+        /* FLASH FINO */
+
         linear-gradient(
             132deg,
             transparent 0 30%,
@@ -166,6 +169,8 @@ main {
             rgba(255,255,255,.025) 30.7%,
             transparent 31% 100%
         ),
+
+        /* ROJO CENTRAL */
 
         linear-gradient(
             139deg,
@@ -176,6 +181,8 @@ main {
             transparent 50.3% 100%
         ),
 
+        /* FLASH BLANCO */
+
         linear-gradient(
             118deg,
             transparent 0 62%,
@@ -184,6 +191,8 @@ main {
             rgba(255,255,255,.018) 62.7%,
             transparent 63% 100%
         ),
+
+        /* ROJO INFERIOR */
 
         linear-gradient(
             134deg,
@@ -260,9 +269,7 @@ main {
 
 /* =========================================
    ZONA DERECHA
-   EVENT TYPE
-   TITULO
-   FECHA
+   TYPE → TITULO → FECHA
    ========================================= */
 
 .event-header-info{
@@ -272,6 +279,7 @@ main {
 
     flex:1;
     min-width:0;
+
     min-height:180px;
     height:auto;
 
@@ -279,6 +287,7 @@ main {
     flex-direction:column;
 
     justify-content:flex-start;
+    align-items:stretch;
 
     padding:0;
 
@@ -286,7 +295,9 @@ main {
 }
 
 
-/* LÍNEA DE LUZ MUY FINA */
+/* =========================================
+   LÍNEA DE LUZ MUY FINA
+   ========================================= */
 
 .event-header-info::before{
     content:"";
@@ -314,7 +325,9 @@ main {
 }
 
 
-/* PEQUEÑO DETALLE FUTURISTA */
+/* =========================================
+   PEQUEÑO DETALLE FUTURISTA
+   ========================================= */
 
 .event-header-info::after{
     content:"";
@@ -363,8 +376,10 @@ main {
     align-items:center;
 
     width:100%;
-    min-height:29px;
-    height:29px;
+    min-height:30px;
+    height:30px;
+
+    flex:0 0 auto;
 
     margin:0;
     padding:0 14px;
@@ -372,6 +387,7 @@ main {
     color:#e7e7e7;
 
     font-family:Arial,sans-serif;
+
     font-size:11px;
     font-weight:900;
 
@@ -393,6 +409,7 @@ main {
         );
 
     border:0;
+
     border-bottom:1px solid rgba(255,255,255,.075);
 }
 
@@ -400,7 +417,7 @@ main {
 /* =========================================
    NOMBRE DEL EVENTO
    PROTAGONISTA
-   PUEDE CRECER EN VARIOS RENGLONES
+   CRECE LIBREMENTE
    ========================================= */
 
 .event-header h1{
@@ -414,14 +431,15 @@ main {
     align-items:center;
 
     width:100%;
-
     min-width:0;
-    min-height:80px;
+
+    min-height:120px;
     height:auto;
-    flex:1 1 auto;
+
+    flex:0 0 auto;
 
     margin:0;
-    padding:14px 20px;
+    padding:20px;
 
     color:#fff;
 
@@ -436,8 +454,10 @@ main {
     text-transform:uppercase;
 
     white-space:normal;
+
     overflow:visible;
-    overflow-wrap:anywhere;
+
+    overflow-wrap:break-word;
     word-break:normal;
 
     text-shadow:
@@ -459,7 +479,9 @@ main {
 }
 
 
-/* FLASH SOBRE EL NOMBRE */
+/* =========================================
+   FLASH SOBRE EL NOMBRE
+   ========================================= */
 
 .event-header h1::after{
     content:"";
@@ -504,11 +526,14 @@ main {
     align-items:center;
 
     width:100%;
-    min-height:34px;
-    height:34px;
+
+    min-height:36px;
+    height:auto;
+
+    flex:0 0 auto;
 
     margin:0;
-    padding:0 14px;
+    padding:8px 14px;
 
     color:#fff;
 
@@ -536,14 +561,19 @@ main {
         );
 
     border:0;
+
     border-top:1px solid rgba(255,255,255,.075);
 
     white-space:normal;
+
     overflow:visible;
 }
 
 
-/* LABEL GENERADO POR CSS */
+/* =========================================
+   LABEL SHOW DATE:
+   GENERADO POR CSS
+   ========================================= */
 
 .event-date::before{
     content:"SHOW DATE:";
@@ -559,6 +589,7 @@ main {
     color:#d90024;
 
     font-family:Arial,sans-serif;
+
     font-size:11px;
     font-weight:900;
 
@@ -571,7 +602,9 @@ main {
 }
 
 
-/* FLASH DIAGONAL */
+/* =========================================
+   FLASH DIAGONAL DE LA FECHA
+   ========================================= */
 
 .event-date::after{
     content:"";
@@ -600,7 +633,7 @@ main {
 
 /* =========================================
    EVENT BRAND
-   OCULTO SOLO EN EL HEADER
+   SOLO SE OCULTA DEL HEADER
    ========================================= */
 
 .event-brand{
@@ -610,6 +643,8 @@ main {
 
 /* =========================================
    MOBILE
+   ORDEN REAL:
+   TYPE → IMAGEN → TITULO → FECHA
    ========================================= */
 
 @media(max-width:700px){
@@ -626,6 +661,14 @@ main {
     }
 
 
+    /*
+
+       Sacamos los hijos del contenedor
+       para que el orden pueda aplicarse
+       directamente dentro del header.
+
+    */
+
     .event-header-info{
         display:contents;
     }
@@ -637,14 +680,22 @@ main {
     }
 
 
-    /* EVENT TYPE ARRIBA */
+    /* =====================================
+       EVENT TYPE
+       PRIMERO
+       ===================================== */
 
     .event-type{
         order:1;
 
+        display:flex;
+
         width:100%;
+
         min-height:31px;
         height:31px;
+
+        flex:0 0 auto;
 
         padding:0 13px;
 
@@ -655,7 +706,10 @@ main {
     }
 
 
-    /* IMAGEN 16:9 */
+    /* =====================================
+       IMAGEN
+       SEGUNDO
+       ===================================== */
 
     .event-header-image{
         order:2;
@@ -676,15 +730,24 @@ main {
     }
 
 
-    /* NOMBRE */
+    /* =====================================
+       TITULO
+       TERCERO
+
+       CRECE TODO LO NECESARIO
+       ===================================== */
 
     .event-header h1{
         order:3;
 
+        display:flex;
+        align-items:center;
+
         width:100%;
 
-        min-height:62px;
+        min-height:68px;
         height:auto;
+
         flex:0 0 auto;
 
         margin:0;
@@ -696,8 +759,10 @@ main {
         line-height:1.08;
 
         white-space:normal;
+
         overflow:visible;
-        overflow-wrap:anywhere;
+
+        overflow-wrap:break-word;
         word-break:normal;
 
         border:0;
@@ -712,14 +777,23 @@ main {
     }
 
 
-    /* FECHA */
+    /* =====================================
+       FECHA
+       CUARTO
+       ===================================== */
 
     .event-date{
         order:4;
 
+        display:flex;
+        align-items:center;
+
         width:100%;
-        min-height:38px;
+
+        min-height:40px;
         height:auto;
+
+        flex:0 0 auto;
 
         padding:9px 13px;
 
@@ -728,9 +802,11 @@ main {
         line-height:1.1;
 
         white-space:normal;
+
         overflow:visible;
 
         border:0;
+
         border-top:1px solid rgba(255,255,255,.07);
     }
 
