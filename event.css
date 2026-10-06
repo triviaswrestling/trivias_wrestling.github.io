@@ -91,6 +91,8 @@ main {
 
 
 /* =========================================
+
+/* =========================================
    EVENT HEADER
    DARK RED HOLOGRAPHIC / Y2K
    UNA SOLA SUPERFICIE
@@ -102,7 +104,7 @@ main {
     align-items:stretch;
 
     width:100%;
-    height:180px;
+    height:auto;
     min-height:180px;
 
     margin-bottom:30px;
@@ -146,7 +148,6 @@ main {
 
     background:
 
-        /* RAYO ROJO PRINCIPAL */
         linear-gradient(
             126deg,
             transparent 0 17%,
@@ -157,7 +158,6 @@ main {
             transparent 18.5% 43%
         ),
 
-        /* FLASH FINO */
         linear-gradient(
             132deg,
             transparent 0 30%,
@@ -167,7 +167,6 @@ main {
             transparent 31% 100%
         ),
 
-        /* ROJO CENTRAL */
         linear-gradient(
             139deg,
             transparent 0 49%,
@@ -177,7 +176,6 @@ main {
             transparent 50.3% 100%
         ),
 
-        /* FLASH BLANCO */
         linear-gradient(
             118deg,
             transparent 0 62%,
@@ -187,7 +185,6 @@ main {
             transparent 63% 100%
         ),
 
-        /* ROJO INFERIOR */
         linear-gradient(
             134deg,
             transparent 0 77%,
@@ -263,7 +260,9 @@ main {
 
 /* =========================================
    ZONA DERECHA
-   SIN ESPACIOS
+   EVENT TYPE
+   TITULO
+   FECHA
    ========================================= */
 
 .event-header-info{
@@ -273,14 +272,15 @@ main {
 
     flex:1;
     min-width:0;
-    height:180px;
+    min-height:180px;
+    height:auto;
 
     display:flex;
     flex-direction:column;
 
-    justify-content:space-between;
+    justify-content:flex-start;
 
-    padding:9px 22px 11px 24px;
+    padding:0;
 
     background:transparent;
 }
@@ -348,33 +348,35 @@ main {
 
 
 /* =========================================
-   DATOS SUPERIORES
-   VIDRIO ROJO
+   EVENT TYPE
+   BARRA SUPERIOR
    ========================================= */
 
-.event-date{
+.event-type{
     position:relative;
 
     z-index:10;
+
+    order:1;
 
     display:flex;
     align-items:center;
 
     width:100%;
-    height:27px;
+    min-height:29px;
+    height:29px;
 
     margin:0;
-    padding:0 11px;
+    padding:0 14px;
 
     color:#e7e7e7;
 
     font-family:Arial,sans-serif;
-
-    font-size:10px;
+    font-size:11px;
     font-weight:900;
 
-    letter-spacing:1.8px;
     line-height:1;
+    letter-spacing:1.8px;
 
     text-transform:uppercase;
 
@@ -384,71 +386,21 @@ main {
     background:
         linear-gradient(
             90deg,
-            rgba(217,0,36,.25),
-            rgba(217,0,36,.10) 42%,
-            rgba(217,0,36,.025) 75%,
+            rgba(217,0,36,.30),
+            rgba(217,0,36,.12) 45%,
+            rgba(255,255,255,.025) 78%,
             transparent
         );
 
     border:0;
-
     border-bottom:1px solid rgba(255,255,255,.075);
-}
-
-
-/* REFLEJO DEL VIDRIO */
-
-.event-date::before{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    top:0;
-
-    width:38%;
-    height:1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.48),
-            rgba(255,255,255,.10),
-            transparent
-        );
-}
-
-
-/* FLASH DIAGONAL */
-
-.event-date::after{
-    content:"";
-
-    position:absolute;
-
-    right:5px;
-    top:0;
-    bottom:0;
-
-    width:70px;
-
-    pointer-events:none;
-
-    background:
-        linear-gradient(
-            125deg,
-            transparent 0 30%,
-            rgba(255,255,255,.07) 31% 33%,
-            transparent 34% 53%,
-            rgba(255,45,65,.10) 54% 57%,
-            transparent 58%
-        );
 }
 
 
 /* =========================================
    NOMBRE DEL EVENTO
    PROTAGONISTA
+   PUEDE CRECER EN VARIOS RENGLONES
    ========================================= */
 
 .event-header h1{
@@ -456,18 +408,20 @@ main {
 
     z-index:10;
 
+    order:2;
+
     display:flex;
     align-items:center;
 
     width:100%;
 
+    min-width:0;
     min-height:80px;
-    height:80px;
+    height:auto;
+    flex:1 1 auto;
 
     margin:0;
-    padding:0 20px;
-
-    overflow:hidden;
+    padding:14px 20px;
 
     color:#fff;
 
@@ -476,16 +430,19 @@ main {
     font-size:36px;
     font-weight:900;
 
-    line-height:1;
+    line-height:1.08;
     letter-spacing:1.8px;
 
     text-transform:uppercase;
 
+    white-space:normal;
+    overflow:visible;
+    overflow-wrap:anywhere;
+    word-break:normal;
+
     text-shadow:
         0 2px 2px #000,
         0 0 12px rgba(255,255,255,.06);
-
-    /* VIDRIO ROJO TRANSPARENTE */
 
     background:
         linear-gradient(
@@ -498,7 +455,6 @@ main {
 
     border:0;
 
-    border-top:1px solid rgba(255,255,255,.10);
     border-bottom:1px solid rgba(255,55,75,.32);
 }
 
@@ -533,12 +489,122 @@ main {
 
 
 /* =========================================
-   ELEMENTOS ANTIGUOS
+   FECHA
+   SHOW DATE:
    ========================================= */
 
-.event-type,
+.event-date{
+    position:relative;
+
+    z-index:10;
+
+    order:3;
+
+    display:flex;
+    align-items:center;
+
+    width:100%;
+    min-height:34px;
+    height:34px;
+
+    margin:0;
+    padding:0 14px;
+
+    color:#fff;
+
+    font-family:Arial,sans-serif;
+
+    font-size:19px;
+    font-weight:900;
+
+    line-height:1.1;
+    letter-spacing:1.35px;
+
+    text-transform:uppercase;
+
+    text-shadow:
+        0 2px 2px #000,
+        0 0 10px rgba(255,255,255,.05);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(217,0,36,.18),
+            rgba(217,0,36,.075) 42%,
+            rgba(255,255,255,.018) 70%,
+            transparent
+        );
+
+    border:0;
+    border-top:1px solid rgba(255,255,255,.075);
+
+    white-space:normal;
+    overflow:visible;
+}
+
+
+/* LABEL GENERADO POR CSS */
+
+.event-date::before{
+    content:"SHOW DATE:";
+
+    position:relative;
+
+    display:inline-block;
+
+    flex:0 0 auto;
+
+    margin-right:12px;
+
+    color:#d90024;
+
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    font-weight:900;
+
+    letter-spacing:1.8px;
+    line-height:1;
+
+    text-shadow:
+        0 1px 2px #000,
+        0 0 6px rgba(217,0,36,.22);
+}
+
+
+/* FLASH DIAGONAL */
+
+.event-date::after{
+    content:"";
+
+    position:absolute;
+
+    right:5px;
+    top:0;
+    bottom:0;
+
+    width:70px;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            125deg,
+            transparent 0 30%,
+            rgba(255,255,255,.07) 31% 33%,
+            transparent 34% 53%,
+            rgba(255,45,65,.10) 54% 57%,
+            transparent 58%
+        );
+}
+
+
+/* =========================================
+   EVENT BRAND
+   OCULTO SOLO EN EL HEADER
+   ========================================= */
+
 .event-brand{
-    display:none;
+    display:none !important;
 }
 
 
@@ -571,26 +637,25 @@ main {
     }
 
 
-    /* DATOS ARRIBA */
+    /* EVENT TYPE ARRIBA */
 
-    .event-date{
+    .event-type{
         order:1;
 
         width:100%;
-        height:30px;
+        min-height:31px;
+        height:31px;
 
-        margin:0;
-        padding:0 11px;
+        padding:0 13px;
 
-        font-size:9px;
-        letter-spacing:1.25px;
+        font-size:10px;
+        letter-spacing:1.45px;
 
-        border:0;
-        border-bottom:1px solid rgba(255,255,255,.07);
+        border-bottom:1px solid rgba(255,255,255,.075);
     }
 
 
-    /* IMAGEN */
+    /* IMAGEN 16:9 */
 
     .event-header-image{
         order:2;
@@ -620,6 +685,7 @@ main {
 
         min-height:62px;
         height:auto;
+        flex:0 0 auto;
 
         margin:0;
 
@@ -627,7 +693,12 @@ main {
 
         font-size:24px;
         letter-spacing:1.15px;
-        line-height:1.05;
+        line-height:1.08;
+
+        white-space:normal;
+        overflow:visible;
+        overflow-wrap:anywhere;
+        word-break:normal;
 
         border:0;
 
@@ -641,10 +712,46 @@ main {
     }
 
 
+    /* FECHA */
+
+    .event-date{
+        order:4;
+
+        width:100%;
+        min-height:38px;
+        height:auto;
+
+        padding:9px 13px;
+
+        font-size:18px;
+        letter-spacing:1.05px;
+        line-height:1.1;
+
+        white-space:normal;
+        overflow:visible;
+
+        border:0;
+        border-top:1px solid rgba(255,255,255,.07);
+    }
+
+
+    .event-date::before{
+        margin-right:9px;
+
+        font-size:9px;
+        letter-spacing:1.35px;
+    }
+
+
     .event-date::after{
         width:55px;
     }
 }
+
+
+
+
+
 
 
 
