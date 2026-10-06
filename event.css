@@ -159,8 +159,8 @@ main{
 
 
 /* =========================================================
-   EVENT HEADER
-   BROADCAST / SPORTS NETWORK STYLE
+   MI WRESTLING — EVENT HEADER
+   FUTURISTIC BROADCAST / GAMER
    ========================================================= */
 
 .event-header{
@@ -168,39 +168,114 @@ main{
     isolation:isolate;
 
     display:flex;
+    flex-wrap:wrap;
     align-items:stretch;
 
     width:100%;
     max-width:100%;
     min-width:0;
-
-    min-height:225px;
+    min-height:256px;
 
     margin-bottom:30px;
 
     overflow:hidden;
 
     background:
+        radial-gradient(
+            ellipse at 18% 70%,
+            rgba(217,0,36,.24),
+            transparent 42%
+        ),
+        radial-gradient(
+            ellipse at 78% 35%,
+            rgba(190,190,190,.13),
+            transparent 38%
+        ),
         linear-gradient(
             115deg,
-            rgba(8,8,8,.96) 0%,
-            rgba(25,25,25,.72) 42%,
-            rgba(12,12,12,.92) 100%
+            #080808 0%,
+            #171717 42%,
+            #2a2527 63%,
+            #10090b 100%
         );
 
-    border:1px solid rgba(255,255,255,.24);
+    border:1px solid rgba(255,255,255,.22);
 
     box-shadow:
         0 0 0 1px rgba(0,0,0,.9),
-        0 12px 30px rgba(0,0,0,.72),
-        inset 0 1px 0 rgba(255,255,255,.13);
+        0 14px 35px rgba(0,0,0,.75),
+        inset 0 1px 0 rgba(255,255,255,.12);
 
-    backdrop-filter:blur(7px);
-    -webkit-backdrop-filter:blur(7px);
+    backdrop-filter:blur(5px);
+    -webkit-backdrop-filter:blur(5px);
 }
 
 
-/* Línea superior */
+/* =========================================================
+   HUMO / DEGRADADO ANIMADO
+   ========================================================= */
+
+.event-header:after{
+    content:"";
+
+    position:absolute;
+
+    inset:-45%;
+
+    z-index:1;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            ellipse at 18% 55%,
+            rgba(217,0,36,.24) 0%,
+            rgba(217,0,36,.08) 23%,
+            transparent 48%
+        ),
+        radial-gradient(
+            ellipse at 72% 35%,
+            rgba(255,255,255,.09) 0%,
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 55% 90%,
+            rgba(110,0,20,.20) 0%,
+            transparent 45%
+        );
+
+    filter:blur(24px);
+
+    opacity:.85;
+
+    transform:translate3d(-3%,0,0) scale(1.05);
+
+    animation:
+        broadcastSmoke 12s ease-in-out infinite alternate;
+}
+
+@keyframes broadcastSmoke{
+
+    0%{
+        transform:translate3d(-4%,1%,0) scale(1.05);
+        opacity:.62;
+    }
+
+    50%{
+        transform:translate3d(3%,-2%,0) scale(1.09);
+        opacity:.82;
+    }
+
+    100%{
+        transform:translate3d(6%,2%,0) scale(1.05);
+        opacity:.68;
+    }
+}
+
+
+/* =========================================================
+   BARRA SUPERIOR
+   ========================================================= */
 
 .event-header:before{
     content:"";
@@ -211,60 +286,36 @@ main{
     left:0;
     right:0;
 
-    height:4px;
+    height:32px;
 
-    z-index:20;
+    z-index:30;
 
     background:
         linear-gradient(
             90deg,
-            #d90024 0%,
-            #ff4a5f 18%,
-            #fff 34%,
-            #777 50%,
-            #fff 66%,
-            #ff4a5f 82%,
-            #d90024 100%
+            rgba(35,0,5,.98),
+            rgba(217,0,36,.92) 23%,
+            rgba(110,110,110,.95) 50%,
+            rgba(217,0,36,.92) 77%,
+            rgba(35,0,5,.98)
         );
+
+    border-bottom:1px solid rgba(255,255,255,.28);
 
     box-shadow:
-        0 0 12px rgba(217,0,36,.65);
-}
-
-
-/* Línea inferior */
-
-.event-header:after{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    right:0;
-    bottom:0;
-
-    height:3px;
-
-    z-index:20;
-
-    background:
-        linear-gradient(
-            90deg,
-            #d90024 0 20%,
-            transparent 20% 80%,
-            #d90024 80% 100%
-        );
+        0 2px 12px rgba(0,0,0,.65),
+        0 0 15px rgba(217,0,36,.22);
 }
 
 
 /* =========================================================
-   IMAGEN 16:9
+   IMAGEN
    ========================================================= */
 
 .event-header-image{
     position:relative;
 
-    z-index:5;
+    z-index:10;
 
     display:block;
 
@@ -277,34 +328,35 @@ main{
 
     object-fit:cover;
 
+    margin-top:32px;
+
     border:0;
 
-    margin:0;
+    background:transparent;
 
-    background:#050505;
-
-    outline:1px solid rgba(255,255,255,.12);
+    outline:1px solid rgba(255,255,255,.10);
 
     outline-offset:-1px;
 
     box-shadow:
-        10px 0 25px rgba(0,0,0,.75);
+        12px 0 28px rgba(0,0,0,.55);
 }
 
 
 /* =========================================================
-   INFORMACIÓN DEL EVENTO
+   INFORMACIÓN
    ========================================================= */
 
 .event-header-info{
     position:relative;
 
-    z-index:6;
+    z-index:10;
 
-    flex:1 1 auto;
+    flex:1 1 0;
 
     width:auto;
     min-width:0;
+
     min-height:225px;
 
     display:flex;
@@ -313,26 +365,26 @@ main{
 
     justify-content:center;
 
-    padding:22px 30px 22px 36px;
+    padding:40px 32px 25px 38px;
 
     overflow:hidden;
 
     background:
         linear-gradient(
-            115deg,
-            rgba(80,0,12,.34) 0%,
-            rgba(20,20,20,.38) 45%,
-            rgba(5,5,5,.78) 100%
+            105deg,
+            rgba(30,5,9,.18),
+            rgba(35,35,35,.18) 48%,
+            rgba(5,5,5,.48) 100%
         );
 
-    border-left:1px solid rgba(255,255,255,.12);
+    border-left:1px solid rgba(255,255,255,.13);
 
     box-shadow:
-        inset 1px 0 0 rgba(255,255,255,.04);
+        inset 1px 0 0 rgba(255,255,255,.035);
 }
 
 
-/* Línea vertical */
+/* Línea lateral rubí */
 
 .event-header-info:before{
     content:"";
@@ -340,7 +392,7 @@ main{
     position:absolute;
 
     left:0;
-    top:18px;
+    top:47px;
     bottom:18px;
 
     width:3px;
@@ -356,40 +408,7 @@ main{
         );
 
     box-shadow:
-        0 0 10px rgba(217,0,36,.55);
-}
-
-
-/* Decoración diagonal */
-
-.event-header-info:after{
-    content:"";
-
-    position:absolute;
-
-    right:-15px;
-    bottom:14px;
-
-    width:180px;
-    height:55px;
-
-    opacity:.7;
-
-    pointer-events:none;
-
-    background:
-        linear-gradient(
-            135deg,
-            transparent 0 14%,
-            rgba(255,255,255,.32) 14.5% 15.5%,
-            transparent 16% 28%,
-            rgba(217,0,36,.75) 28.5% 30%,
-            transparent 30.5% 43%,
-            rgba(255,255,255,.20) 43.5% 45%,
-            transparent 45.5% 59%,
-            rgba(217,0,36,.5) 59.5% 61%,
-            transparent 61.5% 100%
-        );
+        0 0 10px rgba(217,0,36,.6);
 }
 
 
@@ -398,52 +417,103 @@ main{
    ========================================================= */
 
 .event-type{
-    position:relative;
+    position:absolute;
 
-    z-index:4;
+    top:0;
+    left:50%;
 
-    display:block;
+    transform:translateX(-50%);
 
-    width:fit-content;
-    max-width:100%;
+    z-index:40;
 
-    margin:0 0 10px;
+    display:flex;
 
-    padding:5px 12px 5px 13px;
+    align-items:center;
+    justify-content:center;
+
+    width:auto;
+    max-width:85%;
+
+    height:32px;
+
+    margin:0;
+
+    padding:0 24px;
 
     color:#fff;
 
     font-size:9px;
     font-weight:900;
 
-    line-height:1.2;
+    letter-spacing:2.4px;
 
-    letter-spacing:1.8px;
+    line-height:1;
+
+    text-align:center;
+
+    text-transform:uppercase;
+
+    white-space:nowrap;
+
+    background:transparent;
+
+    border:0;
+
+    box-shadow:none;
+}
+
+.event-header .event-type:before{
+    content:"EVENT TYPE  /  ";
+
+    opacity:.68;
+}
+
+
+/* =========================================================
+   BRAND
+   SI JS LO GENERA, SE USA COMO BADGE
+   ========================================================= */
+
+.event-brand{
+    position:absolute;
+
+    top:43px;
+    right:25px;
+
+    z-index:25;
+
+    display:block;
+
+    width:fit-content;
+    max-width:35%;
+
+    padding:5px 9px;
+
+    color:#fff;
+
+    font-size:8px;
+    font-weight:900;
+
+    letter-spacing:1.5px;
 
     text-transform:uppercase;
 
     background:
         linear-gradient(
             90deg,
-            rgba(217,0,36,.9),
-            rgba(120,0,15,.55)
+            rgba(20,20,20,.72),
+            rgba(80,80,80,.35)
         );
 
-    border:1px solid rgba(255,255,255,.22);
+    border:1px solid rgba(255,255,255,.25);
 
-    border-left:3px solid #ff4a5f;
+    border-right:2px solid #d90024;
 
     box-shadow:
-        0 0 12px rgba(217,0,36,.22),
-        inset 0 1px 0 rgba(255,255,255,.14);
-}
+        0 3px 10px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.1);
 
-.event-header .event-type:before{
-    content:"EVENT TYPE  /  ";
-
-    color:#fff;
-
-    opacity:.7;
+    overflow:hidden;
 }
 
 
@@ -454,54 +524,52 @@ main{
 .event-header h1{
     position:relative;
 
-    z-index:5;
+    z-index:20;
 
     display:block;
 
     width:fit-content;
     max-width:100%;
 
-    margin:0 0 10px;
+    margin:0 0 14px;
 
-    padding:10px 22px 10px 18px;
+    padding:9px 20px 10px 16px;
 
     color:#fff;
 
     font-family:Arial,sans-serif;
 
-    font-size:30px;
+    font-size:36px;
     font-weight:900;
 
-    line-height:1.05;
+    line-height:1.03;
 
     letter-spacing:1.5px;
 
     text-transform:uppercase;
 
     text-shadow:
-        0 2px 2px #000,
-        0 0 8px rgba(255,255,255,.12);
+        0 2px 3px #000,
+        0 0 12px rgba(255,255,255,.12);
 
     background:
         linear-gradient(
             180deg,
-            #f2f2f2 0%,
-            #c8c8c8 18%,
-            #707070 50%,
-            #d8d8d8 82%,
-            #858585 100%
+            rgba(242,242,242,.96) 0%,
+            rgba(174,174,174,.95) 42%,
+            rgba(105,105,105,.96) 52%,
+            rgba(220,220,220,.96) 100%
         );
 
-    border:1px solid #fff;
+    border:1px solid rgba(255,255,255,.88);
 
-    border-right:4px solid #666;
-    border-bottom:3px solid #444;
+    border-right:4px solid #5b5b5b;
+    border-bottom:3px solid #383838;
 
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,.9),
-        inset 0 -2px 0 rgba(0,0,0,.28),
-        5px 5px 0 rgba(0,0,0,.55),
-        0 0 14px rgba(255,255,255,.08);
+        inset 0 -2px 0 rgba(0,0,0,.25),
+        5px 5px 0 rgba(0,0,0,.42);
 
     clip-path:
         polygon(
@@ -536,8 +604,7 @@ main{
         );
 
     box-shadow:
-        1px 0 0 rgba(255,255,255,.6),
-        0 0 8px rgba(217,0,36,.45);
+        0 0 9px rgba(217,0,36,.55);
 }
 
 .event-header h1:after{
@@ -545,7 +612,7 @@ main{
 
     position:absolute;
 
-    left:9px;
+    left:10px;
     right:20px;
     top:2px;
 
@@ -553,7 +620,7 @@ main{
 
     background:#fff;
 
-    opacity:.8;
+    opacity:.7;
 }
 
 
@@ -565,7 +632,7 @@ main{
 .event-date{
     position:relative;
 
-    z-index:5;
+    z-index:20;
 
     display:block;
 
@@ -574,11 +641,11 @@ main{
 
     margin:0;
 
-    padding:7px 17px;
+    padding:8px 17px;
 
     color:#fff;
 
-    font-size:10px;
+    font-size:12px;
     font-weight:900;
 
     line-height:1.2;
@@ -588,24 +655,23 @@ main{
     text-transform:uppercase;
 
     text-shadow:
-        0 1px 1px #000;
+        0 1px 2px #000;
 
     background:
         linear-gradient(
             180deg,
-            #d9d9d9 0%,
-            #777 48%,
-            #bdbdbd 100%
+            rgba(175,175,175,.92),
+            rgba(70,70,70,.95)
         );
 
-    border:1px solid #eee;
+    border:1px solid rgba(255,255,255,.65);
 
     border-right:3px solid #555;
-    border-bottom:2px solid #444;
+    border-bottom:2px solid #333;
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.75),
-        3px 3px 0 rgba(0,0,0,.5);
+        inset 0 1px 0 rgba(255,255,255,.65),
+        3px 3px 0 rgba(0,0,0,.4);
 
     clip-path:
         polygon(
@@ -622,9 +688,9 @@ main{
 
 #event-date:before,
 .event-date:before{
-    content:"MATCH DATE  /  ";
+    content:"SHOW DATE:  ";
 
-    opacity:.82;
+    opacity:.78;
 }
 
 #event-date:after,
@@ -642,11 +708,183 @@ main{
     background:#d90024;
 
     box-shadow:
-        0 0 6px rgba(217,0,36,.5);
+        0 0 7px rgba(217,0,36,.55);
 }
 
-.event-brand{
-    display:none;
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:600px){
+
+    .event-header{
+        display:flex;
+
+        flex-direction:column;
+        flex-wrap:nowrap;
+
+        min-height:0;
+
+        margin-bottom:22px;
+    }
+
+    .event-header-image{
+        width:100%;
+        max-width:100%;
+
+        height:auto;
+
+        flex:0 0 auto;
+
+        aspect-ratio:16 / 9;
+
+        margin-top:32px;
+
+        object-fit:cover;
+    }
+
+    .event-header-info{
+        width:100%;
+        max-width:100%;
+
+        min-width:0;
+        min-height:0;
+
+        padding:19px 15px 21px 19px;
+
+        border-left:0;
+        border-top:1px solid rgba(255,255,255,.12);
+
+        justify-content:center;
+    }
+
+    .event-header-info:before{
+        left:0;
+        right:0;
+
+        top:0;
+        bottom:auto;
+
+        width:auto;
+        height:3px;
+
+        background:
+            linear-gradient(
+                90deg,
+                transparent,
+                #d90024 20%,
+                #ff4a5f 50%,
+                #d90024 80%,
+                transparent
+            );
+    }
+
+    .event-type{
+        width:auto;
+
+        max-width:90%;
+
+        height:32px;
+
+        padding:0 12px;
+
+        font-size:8px;
+
+        letter-spacing:1.6px;
+    }
+
+    .event-brand{
+        position:relative;
+
+        top:auto;
+        right:auto;
+
+        align-self:flex-end;
+
+        max-width:55%;
+
+        margin:0 0 8px;
+
+        padding:4px 8px;
+
+        font-size:7px;
+
+        letter-spacing:1.2px;
+    }
+
+    .event-header h1{
+        width:100%;
+        max-width:100%;
+
+        margin-bottom:9px;
+
+        padding:9px 13px;
+
+        font-size:25px;
+
+        line-height:1.06;
+
+        letter-spacing:1px;
+    }
+
+    #event-date,
+    .event-date{
+        max-width:100%;
+
+        padding:7px 11px;
+
+        font-size:9px;
+
+        letter-spacing:1px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE MUY ANGOSTO
+   ========================================================= */
+
+@media(max-width:380px){
+
+    .event-header-info{
+        padding:16px 11px 18px 15px;
+    }
+
+    .event-header h1{
+        font-size:21px;
+
+        padding:8px 11px;
+    }
+
+    .event-type{
+        font-size:7px;
+
+        letter-spacing:1px;
+    }
+
+    .event-brand{
+        font-size:6.5px;
+    }
+
+    #event-date,
+    .event-date{
+        font-size:8px;
+
+        letter-spacing:.8px;
+    }
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+   ========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    .event-header:after{
+        animation:none;
+    }
 }
 
 
