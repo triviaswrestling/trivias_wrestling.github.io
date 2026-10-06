@@ -9,7 +9,37 @@ body {
 }
 
 body {
-    background: #0b0b0b;
+    background:
+        linear-gradient(
+            126deg,
+            transparent 0 18%,
+            rgba(217,0,36,.10) 18.4%,
+            rgba(255,35,60,.16) 18.8%,
+            rgba(217,0,36,.045) 19.2%,
+            transparent 19.7% 43%
+        ),
+        linear-gradient(
+            139deg,
+            transparent 0 42%,
+            rgba(217,0,36,.055) 42.4%,
+            rgba(255,40,65,.11) 42.8%,
+            rgba(217,0,36,.035) 43.2%,
+            transparent 43.7% 100%
+        ),
+        linear-gradient(
+            118deg,
+            transparent 0 65%,
+            rgba(255,255,255,.025) 65.4%,
+            rgba(255,255,255,.055) 65.7%,
+            transparent 66.1% 100%
+        ),
+        linear-gradient(
+            145deg,
+            #111 0%,
+            #090909 48%,
+            #050505 100%
+        );
+    background-attachment: fixed;
     color: #fff;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
@@ -23,7 +53,7 @@ body {
 header {
     width: 100%;
     height: 70px;
-    background: #111;
+    background: rgba(17,17,17,.88);
     border-bottom: 1px solid #292929;
     display: flex;
     align-items: center;
@@ -641,12 +671,20 @@ main {
 
 .result-card {
     position: relative;
-    background: #111;
-    border: 1px solid #292929;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(25,25,25,.84),
+            rgba(9,9,9,.74)
+        );
+    border: 1px solid rgba(255,255,255,.055);
     padding: 22px;
     margin-bottom: 14px;
     transition: .2s;
     --brand: #d4a72c;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.035),
+        0 8px 20px rgba(0,0,0,.48);
 }
 
 
@@ -944,7 +982,7 @@ main {
     font-weight: bold;
     letter-spacing: .5px;
     line-height: 15px;
-    background: #0c0c0c;
+    background: rgba(12,12,12,.82);
     border: 1px solid #292929;
 }
 
@@ -1001,7 +1039,7 @@ main {
     justify-content: center;
     gap: 9px;
     white-space: nowrap;
-    background: #090909;
+    background: rgba(9,9,9,.88);
     border: 1px solid var(--brand);
     border-top: 2px solid var(--brand);
     color: var(--brand);
@@ -1031,7 +1069,7 @@ main {
     width: fit-content;
     margin: 5px auto 20px;
     padding: 8px 16px;
-    background: #17140d;
+    background: rgba(23,20,13,.88);
     border: 1px solid #b89b5e;
     color: #fff;
     font-size: 12px;
