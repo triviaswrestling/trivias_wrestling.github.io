@@ -87,6 +87,9 @@ main {
 
 
 
+
+
+
 /* =========================================
    EVENT HEADER
    DARK RED HOLOGRAPHIC / Y2K
@@ -642,6 +645,7 @@ main {
         width:55px;
     }
 }
+
 
 
 /* =========================================
@@ -2658,8 +2662,8 @@ img,video,iframe,svg{max-width:100%;}
 /* =========================================================
    MI WRESTLING — FINAL EVENT HEADER
    RAW 2012/2013 GRAPHIC STYLE
-   METAL OSCURO + ROJO + FLASH PERIMETRAL
-   SOLO HEADER — MATCHES / SCORES / CHRONOLOGY INTACTOS
+   METAL OSCURO + ROJO
+   SIN ANIMACIÓN CIRCULAR — HEADER ESTÁTICO
    ========================================================= */
 
 .event-header{
@@ -2674,30 +2678,40 @@ img,video,iframe,svg{max-width:100%;}
     margin-bottom:30px;
     overflow:hidden;
     isolation:isolate;
-
-    /* acero RAW oscuro: negro + grafito + reflejos fríos */
     background:
-        linear-gradient(135deg,
-            rgba(255,255,255,.055) 0%,
-            transparent 9%,
-            rgba(255,255,255,.018) 17%,
-            transparent 25%,
-            rgba(255,255,255,.035) 39%,
-            transparent 48%,
-            rgba(0,0,0,.34) 63%,
-            rgba(255,255,255,.028) 76%,
-            transparent 87%),
+        linear-gradient(128deg,
+            transparent 0 12%,
+            rgba(255,255,255,.035) 12.4%,
+            rgba(255,255,255,.085) 12.8%,
+            rgba(255,255,255,.018) 13.3%,
+            transparent 13.8% 31%),
+        linear-gradient(132deg,
+            transparent 0 38%,
+            rgba(217,0,36,.07) 38.4%,
+            rgba(255,45,65,.16) 38.8%,
+            rgba(217,0,36,.035) 39.3%,
+            transparent 39.8% 57%),
+        linear-gradient(126deg,
+            transparent 0 60%,
+            rgba(255,255,255,.04) 60.4%,
+            rgba(255,255,255,.095) 60.8%,
+            rgba(255,255,255,.018) 61.3%,
+            transparent 61.8% 77%),
+        linear-gradient(139deg,
+            transparent 0 77%,
+            rgba(217,0,36,.06) 77.4%,
+            rgba(255,45,65,.13) 77.8%,
+            transparent 78.4%),
         linear-gradient(155deg,#242424 0%,#151515 28%,#0c0c0c 62%,#171717 100%);
-
     border:1px solid #3a3a3a;
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.13),
+        inset 0 1px 0 rgba(255,255,255,.12),
         inset 0 -1px 0 rgba(0,0,0,.95),
         inset 0 0 0 1px rgba(0,0,0,.72),
-        0 12px 28px rgba(0,0,0,.68);
+        0 10px 24px rgba(0,0,0,.62);
 }
 
-/* placas diagonales / reflejos metálicos */
+/* Reflejos estáticos. NO gira, NO recorre el cuadro. */
 .event-header::before{
     content:"";
     position:absolute;
@@ -2705,68 +2719,41 @@ img,video,iframe,svg{max-width:100%;}
     z-index:1;
     pointer-events:none;
     background:
-        linear-gradient(128deg,
-            transparent 0 13%,
-            rgba(255,255,255,.035) 13.3%,
-            rgba(255,255,255,.09) 13.7%,
-            rgba(255,255,255,.018) 14.2%,
-            transparent 14.7% 32%),
-        linear-gradient(132deg,
-            transparent 0 39%,
-            rgba(217,0,36,.075) 39.3%,
-            rgba(255,45,65,.17) 39.7%,
-            rgba(217,0,36,.035) 40.2%,
-            transparent 40.7% 58%),
-        linear-gradient(126deg,
-            transparent 0 61%,
-            rgba(255,255,255,.045) 61.3%,
-            rgba(255,255,255,.11) 61.7%,
-            rgba(255,255,255,.02) 62.1%,
-            transparent 62.6% 78%),
-        linear-gradient(139deg,
-            transparent 0 78%,
-            rgba(217,0,36,.06) 78.3%,
-            rgba(255,45,65,.14) 78.7%,
-            transparent 79.2%),
-        linear-gradient(90deg,rgba(255,255,255,.025),transparent 22%,transparent 78%,rgba(255,255,255,.018));
-    opacity:.9;
+        linear-gradient(105deg,
+            transparent 0 26%,
+            rgba(255,255,255,.025) 26.4%,
+            rgba(255,255,255,.06) 26.8%,
+            transparent 27.3% 48%),
+        linear-gradient(117deg,
+            transparent 0 51%,
+            rgba(217,0,36,.035) 51.4%,
+            rgba(255,40,60,.095) 51.8%,
+            transparent 52.3% 70%),
+        linear-gradient(90deg,
+            rgba(255,255,255,.018),
+            transparent 22%,
+            transparent 78%,
+            rgba(255,255,255,.014));
 }
 
-/* luz interna; el borde animado va en el box-shadow */
+/* Borde limpio y fijo. Sin conic-gradient ni keyframes. */
 .event-header::after{
     content:"";
     position:absolute;
     inset:0;
     z-index:20;
     pointer-events:none;
-    padding:1px;
-    border-radius:0;
-    background:
-        conic-gradient(from 0deg,
-            transparent 0deg 310deg,
-            rgba(255,20,45,.12) 318deg,
-            #d90024 327deg,
-            #ff4a5f 334deg,
-            rgba(255,20,45,.14) 342deg,
-            transparent 350deg 360deg);
-    -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor;
-    mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-    mask-composite:exclude;
-    animation:eventHeaderFlash 3.8s linear infinite;
-    filter:drop-shadow(0 0 5px rgba(217,0,36,.62));
+    border:1px solid rgba(255,65,85,.24);
+    box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,.52),
+        inset 0 1px 0 rgba(255,255,255,.035);
+    background:transparent;
+    animation:none !important;
+    transform:none !important;
+    filter:none;
 }
 
-@keyframes eventHeaderFlash{
-    from{transform:rotate(0deg);}
-    to{transform:rotate(360deg);}
-}
-
-/* ---------- IMAGEN ---------- */
+/* ---------- IMAGEN 16:9 ---------- */
 .event-header-image{
     position:relative;
     z-index:5;
@@ -2780,7 +2767,7 @@ img,video,iframe,svg{max-width:100%;}
     border:0;
     box-shadow:
         inset -2px 0 0 rgba(255,255,255,.08),
-        10px 0 25px rgba(0,0,0,.62);
+        9px 0 18px rgba(0,0,0,.58);
 }
 
 /* ---------- INFORMACIÓN DERECHA ---------- */
@@ -2792,137 +2779,155 @@ img,video,iframe,svg{max-width:100%;}
     height:225px;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:stretch;
     align-items:stretch;
     gap:8px;
-    padding:18px 24px 19px 27px;
+    padding:13px 20px 14px 22px;
     background:
-        linear-gradient(90deg,rgba(0,0,0,.30),transparent 16%,transparent 75%,rgba(0,0,0,.20)),
-        linear-gradient(135deg,rgba(255,255,255,.025),transparent 45%);
+        linear-gradient(90deg,rgba(0,0,0,.24),transparent 18%,transparent 78%,rgba(0,0,0,.16)),
+        linear-gradient(135deg,rgba(255,255,255,.022),transparent 46%);
 }
 
-/* divisor industrial entre imagen y datos */
 .event-header-info::before{
     content:"";
     position:absolute;
     left:0;
-    top:14px;
-    bottom:14px;
+    top:12px;
+    bottom:12px;
     width:2px;
     background:linear-gradient(180deg,
         transparent,
-        rgba(255,255,255,.20) 16%,
-        rgba(217,0,36,.80) 45%,
-        rgba(255,70,85,.95) 50%,
-        rgba(217,0,36,.55) 55%,
-        rgba(255,255,255,.12) 84%,
+        rgba(255,255,255,.16) 16%,
+        rgba(217,0,36,.72) 42%,
+        rgba(255,70,85,.9) 50%,
+        rgba(217,0,36,.5) 58%,
+        rgba(255,255,255,.09) 84%,
         transparent);
-    box-shadow:0 0 9px rgba(217,0,36,.30);
 }
 
 .event-header-info::after{
     content:"";
     position:absolute;
-    right:18px;
-    bottom:13px;
-    width:180px;
-    height:28px;
+    right:3%;
+    bottom:8px;
+    width:42%;
+    height:18px;
     pointer-events:none;
     background:
         linear-gradient(135deg,
-            transparent 0 12%,
-            rgba(255,255,255,.08) 12.5% 13.5%,
-            transparent 14% 30%,
-            rgba(217,0,36,.16) 30.5% 32%,
-            transparent 32.5% 49%,
-            rgba(255,255,255,.055) 49.5% 51%,
-            transparent 51.5% 68%,
-            rgba(217,0,36,.10) 68.5% 70%,
-            transparent 70.5%);
-    opacity:.65;
+            transparent 0 10%,
+            rgba(255,255,255,.06) 10.5% 12%,
+            transparent 12.5% 29%,
+            rgba(217,0,36,.14) 29.5% 31%,
+            transparent 31.5% 48%,
+            rgba(255,255,255,.045) 48.5% 50%,
+            transparent 50.5% 67%,
+            rgba(217,0,36,.09) 67.5% 69%,
+            transparent 69.5%);
+    opacity:.7;
 }
 
-/* ---------- TIPO DE EVENTO ---------- */
-.event-type{
+/* ---------- BARRAS: OCUPAN TODO EL ANCHO RESTANTE ---------- */
+.event-type,
+.event-date{
     position:relative;
     z-index:12;
     display:flex !important;
     align-items:center;
-    justify-content:center;
-    align-self:flex-start;
-    order:1;
-    width:auto !important;
-    max-width:100%;
-    height:27px !important;
-    min-height:27px !important;
-    margin:0 0 2px;
-    padding:0 12px !important;
-    color:#fff !important;
-    font-family:Arial,sans-serif;
-    font-size:9px !important;
+    width:100% !important;
+    max-width:none;
+    color:#e2e4e5 !important;
+    font-family:Arial Black,Arial,sans-serif;
     font-weight:900;
-    letter-spacing:1.7px !important;
-    line-height:1;
     text-transform:uppercase;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
     text-shadow:0 1px 2px #000;
-    background:linear-gradient(180deg,#b50020 0%,#780014 100%) !important;
-    border:1px solid rgba(255,85,105,.55) !important;
+    overflow:hidden;
+    white-space:nowrap;
+    background:
+        linear-gradient(90deg,
+            rgba(217,0,36,.34),
+            rgba(105,105,105,.10) 48%,
+            rgba(255,255,255,.035) 74%,
+            rgba(0,0,0,.12));
+    border-top:1px solid rgba(255,255,255,.10);
+    border-bottom:1px solid rgba(217,0,36,.30);
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.15),
-        inset 0 -2px 0 rgba(0,0,0,.35),
-        0 3px 9px rgba(0,0,0,.35),
-        0 0 8px rgba(217,0,36,.16);
+        inset 0 1px 0 rgba(255,255,255,.035),
+        inset 0 -1px 0 rgba(0,0,0,.42);
     backdrop-filter:none;
     -webkit-backdrop-filter:none;
 }
 
-.event-type::after{
+.event-type{
+    order:1;
+    height:31px !important;
+    min-height:31px !important;
+    margin:0;
+    padding:0 12px !important;
+    justify-content:flex-start;
+    font-size:9px !important;
+    letter-spacing:1.55px !important;
+}
+
+.event-date{
+    order:3;
+    height:31px !important;
+    min-height:31px !important;
+    margin:0;
+    padding:0 12px !important;
+    justify-content:flex-start;
+    font-size:9px !important;
+    letter-spacing:1.35px !important;
+    color:#dfe1e2 !important;
+    border-left:0 !important;
+}
+
+/* SHOW DATE: siempre visible a la izquierda de la fecha */
+.event-date::before{
+    content:"SHOW DATE:";
+    display:inline-block !important;
+    position:static;
+    width:auto;
+    height:auto;
+    margin-right:9px;
+    flex:0 0 auto;
+    color:#ffffff;
+    font-family:Arial Black,Arial,sans-serif;
+    font-size:inherit;
+    font-weight:900;
+    letter-spacing:1.35px;
+    opacity:.95;
+}
+
+.event-type::after,
+.event-date::after{
     content:"";
     position:absolute;
     inset:0;
     pointer-events:none;
-    background:linear-gradient(120deg,transparent 0 28%,rgba(255,255,255,.13) 29%,transparent 31% 100%);
+    background:
+        linear-gradient(125deg,
+            transparent 0 25%,
+            rgba(255,255,255,.055) 25.5% 27%,
+            transparent 27.5% 58%,
+            rgba(217,0,36,.08) 58.5% 60%,
+            transparent 60.5%);
 }
 
 .event-type:empty{display:none !important;}
 
-/* ---------- MARCA ---------- */
-.event-brand{
-    position:relative;
-    z-index:12;
-    display:block;
-    align-self:flex-end;
-    order:2;
-    width:fit-content;
-    max-width:55%;
-    margin:-31px 0 0;
-    padding:4px 9px;
-    color:#d7d7d7;
-    font-family:Arial,sans-serif;
-    font-size:8px;
-    font-weight:900;
-    letter-spacing:1.3px;
-    text-transform:uppercase;
-    background:rgba(0,0,0,.48);
-    border:1px solid rgba(255,255,255,.14);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
-}
-.event-brand:empty{display:none !important;}
-
-/* ---------- TÍTULO GRANDE METÁLICO ---------- */
+/* ---------- TÍTULO ---------- */
 .event-header h1{
     position:relative;
     z-index:12;
-    order:3;
-    flex:0 1 auto;
+    order:2;
+    flex:1 1 auto;
     width:100%;
-    min-height:92px;
+    min-width:0;
+    min-height:0;
     height:auto;
     margin:0;
-    padding:7px 15px 8px 0;
+    padding:7px 15px 8px 12px;
     display:flex;
     align-items:center;
     overflow:hidden;
@@ -2945,6 +2950,7 @@ img,video,iframe,svg{max-width:100%;}
         #c9cdcf 83%,
         #5f6468 100%);
     -webkit-text-fill-color:transparent;
+    background-color:transparent;
     border:0 !important;
     box-shadow:none !important;
     backdrop-filter:none;
@@ -2956,10 +2962,10 @@ img,video,iframe,svg{max-width:100%;}
     position:absolute;
     left:0;
     bottom:0;
-    width:72%;
+    width:100%;
     height:3px;
-    background:linear-gradient(90deg,#d90024,#ff4a5f 45%,transparent);
-    opacity:.85;
+    background:linear-gradient(90deg,#d90024,#ff4a5f 38%,rgba(255,255,255,.22) 72%,transparent);
+    opacity:.8;
     pointer-events:none;
 }
 
@@ -2968,61 +2974,86 @@ img,video,iframe,svg{max-width:100%;}
     position:absolute;
     right:0;
     top:5%;
-    width:38%;
+    width:42%;
     height:90%;
     pointer-events:none;
     background:linear-gradient(125deg,
-        transparent 0 26%,
-        rgba(255,255,255,.055) 27% 28.5%,
-        transparent 29% 49%,
-        rgba(217,0,36,.11) 50% 52%,
-        transparent 53% 73%,
-        rgba(255,255,255,.035) 74% 75.5%,
-        transparent 76%);
+        transparent 0 25%,
+        rgba(255,255,255,.05) 25.5% 27%,
+        transparent 27.5% 48%,
+        rgba(217,0,36,.10) 48.5% 50.5%,
+        transparent 51% 72%,
+        rgba(255,255,255,.035) 72.5% 74%,
+        transparent 74.5%);
 }
 
-/* ---------- FECHA METÁLICA ---------- */
-.event-date{
-    position:relative;
-    z-index:12;
-    order:4;
-    display:flex;
-    align-items:center;
-    width:fit-content !important;
-    max-width:100%;
-    height:27px !important;
-    min-height:27px !important;
-    margin:0;
-    padding:0 10px !important;
-    color:transparent !important;
-    font-family:Arial,sans-serif;
-    font-size:10px !important;
-    font-weight:900;
-    letter-spacing:1.6px !important;
-    line-height:1;
-    text-transform:uppercase;
-    text-shadow:none;
-    -webkit-background-clip:text;
-    background-clip:text;
-    background-image:linear-gradient(180deg,#f4f4f4,#9da2a5 48%,#d7d9da 51%,#707579);
-    -webkit-text-fill-color:transparent;
-    background-color:transparent !important;
-    border:0 !important;
-    border-left:3px solid #d90024 !important;
-    box-shadow:none !important;
-}
-
-.event-date::before{display:none !important;}
-.event-date::after{display:none !important;}
+/* BRAND ELIMINADO */
+.event-brand{display:none !important;}
 
 /* =========================================================
-   MOBILE — TIPO ROJO ARRIBA + IMAGEN + DATOS
-   MISMA ESTÉTICA, SOLO REORDENADA
+   MATCH CARDS — MISMA ESTÉTICA METÁLICA, MENOS CARGA
+   ========================================================= */
+.result-card{
+    background:
+        linear-gradient(128deg,
+            rgba(255,255,255,.025) 0%,
+            transparent 12%,
+            rgba(255,255,255,.012) 28%,
+            transparent 44%,
+            rgba(0,0,0,.22) 64%,
+            rgba(255,255,255,.015) 78%,
+            transparent 90%),
+        linear-gradient(155deg,#202020 0%,#151515 32%,#0b0b0b 68%,#151515 100%);
+    border:1px solid rgba(255,255,255,.07);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.035),
+        0 7px 16px rgba(0,0,0,.34);
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+}
+
+.wrestler span,
+.match-score,
+.match-championship{
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+}
+
+.wrestler span{
+    background:
+        linear-gradient(135deg,rgba(255,255,255,.025),transparent 45%),
+        rgba(8,8,8,.86);
+}
+
+.match-score{
+    background:
+        linear-gradient(135deg,rgba(255,255,255,.025),transparent 45%),
+        rgba(4,4,4,.88);
+}
+
+.match-championship{
+    background:
+        linear-gradient(135deg,rgba(255,255,255,.025),transparent 45%),
+        rgba(23,20,13,.88);
+}
+
+/* =========================================================
+   MOBILE — ORDEN EXACTO:
+   EVENT TYPE → 16:9 → EVENT NAME → SHOW DATE
    ========================================================= */
 @media(max-width:600px){
+    main{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        padding-left:10px;
+        padding-right:10px;
+    }
+
     .event-header{
         display:flex;
         flex-direction:column;
+        align-items:stretch;
         width:100%;
         max-width:100%;
         height:auto;
@@ -3031,13 +3062,31 @@ img,video,iframe,svg{max-width:100%;}
         overflow:hidden;
     }
 
-    .event-header::after{
-        z-index:30;
-        padding:1px;
+    /* Sacamos los hijos del contenedor info para poder ordenar todo */
+    .event-header-info{display:contents;}
+    .event-header-info::before,
+    .event-header-info::after{display:none;}
+
+    /* 1 — EVENT TYPE: barra completa */
+    .event-type{
+        order:1;
+        width:100% !important;
+        height:30px !important;
+        min-height:30px !important;
+        padding:0 10px !important;
+        justify-content:flex-start;
+        font-size:8px !important;
+        letter-spacing:1.25px !important;
+        background:
+            linear-gradient(90deg,#a9001e 0%,#7b0014 58%,#4e000c 100%);
+        border:0 !important;
+        border-bottom:1px solid rgba(255,85,105,.42) !important;
+        box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
     }
 
+    /* 2 — LOGO 16:9 */
     .event-header-image{
-        order:1;
+        order:2;
         width:100%;
         max-width:100%;
         height:auto;
@@ -3046,78 +3095,19 @@ img,video,iframe,svg{max-width:100%;}
         object-fit:cover;
         margin:0;
         box-shadow:
-            inset 0 -2px 0 rgba(0,0,0,.8),
-            0 8px 18px rgba(0,0,0,.62);
+            inset 0 -2px 0 rgba(0,0,0,.75),
+            0 6px 15px rgba(0,0,0,.52);
     }
 
-    .event-header-info{
-        order:2;
-        display:flex;
-        flex-direction:column;
-        justify-content:flex-start;
-        align-items:stretch;
-        width:100%;
-        height:auto;
-        min-height:0;
-        padding:13px 14px 16px 16px;
-        gap:7px;
-        background:
-            linear-gradient(135deg,rgba(255,255,255,.025),transparent 35%),
-            linear-gradient(90deg,rgba(0,0,0,.34),transparent 65%,rgba(0,0,0,.22));
-    }
-
-    .event-header-info::before{
-        left:0;
-        top:0;
-        bottom:0;
-        width:2px;
-        background:linear-gradient(180deg,transparent,#d90024 22%,#ff4a5f 50%,#d90024 78%,transparent);
-    }
-
-    .event-header-info::after{
-        right:8px;
-        bottom:8px;
-        width:110px;
-        height:22px;
-    }
-
-    .event-type{
-        order:1;
-        align-self:flex-start;
-        width:auto !important;
-        height:29px !important;
-        min-height:29px !important;
-        margin:0 0 1px;
-        padding:0 10px !important;
-        font-size:8px !important;
-        letter-spacing:1.25px !important;
-    }
-
-    /* En móvil el type debe estar arriba de la imagen.
-       display:contents permite moverlo fuera del info. */
-    .event-header-info{display:contents;}
-
-    .event-type{order:0;}
-    .event-header-image{order:1;}
-    .event-header h1{order:2;}
-    .event-date{order:3;}
-    .event-brand{order:4;}
-
-    .event-type{
-        position:relative;
-        align-self:flex-start;
-        margin:0 0 0 0;
-        padding:0 11px !important;
-        z-index:40;
-    }
-
+    /* 3 — NOMBRE: barra completa */
     .event-header h1{
+        order:3;
         width:100%;
-        min-height:74px;
+        min-height:68px;
         height:auto;
         margin:0;
-        padding:14px 13px 11px 15px;
-        font-size:clamp(24px,7.4vw,34px) !important;
+        padding:12px 12px 11px;
+        font-size:clamp(23px,7.4vw,34px) !important;
         letter-spacing:1px;
         line-height:.98;
         background-image:linear-gradient(180deg,
@@ -3129,43 +3119,70 @@ img,video,iframe,svg{max-width:100%;}
             #c5c8ca 86%,
             #5d6265 100%);
         border-top:1px solid rgba(255,255,255,.07) !important;
-        border-bottom:1px solid rgba(217,0,36,.35) !important;
+        border-bottom:1px solid rgba(217,0,36,.38) !important;
     }
 
-    .event-header h1::before{width:78%;height:2px;}
+    .event-header h1::before{
+        width:100%;
+        height:2px;
+    }
 
+    /* 4 — SHOW DATE: barra completa */
     .event-date{
-        width:fit-content !important;
-        height:24px !important;
-        min-height:24px !important;
-        margin:0 0 0 15px;
-        padding:0 8px !important;
+        order:4;
+        width:100% !important;
+        height:30px !important;
+        min-height:30px !important;
+        margin:0;
+        padding:0 10px !important;
+        justify-content:flex-start;
         font-size:8px !important;
-        letter-spacing:1.05px !important;
+        letter-spacing:1px !important;
+        color:#dfe1e2 !important;
+        border:0 !important;
+        border-top:1px solid rgba(255,255,255,.055) !important;
+        border-bottom:1px solid rgba(217,0,36,.28) !important;
+        background:
+            linear-gradient(90deg,
+                rgba(217,0,36,.27),
+                rgba(100,100,100,.08) 52%,
+                rgba(0,0,0,.12));
     }
 
-    .event-brand{
-        align-self:flex-end;
-        margin:-29px 12px 0 0;
-        font-size:7px;
+    .event-date::before{
+        margin-right:8px;
+        font-size:inherit;
+        letter-spacing:1px;
     }
+
+    .event-brand{display:none !important;}
 }
 
 @media(max-width:380px){
+    main{padding-left:7px;padding-right:7px;}
+
     .event-type{
-        height:27px !important;
-        min-height:27px !important;
+        height:28px !important;
+        min-height:28px !important;
         font-size:7px !important;
     }
 
     .event-header h1{
-        min-height:66px;
-        padding:12px 11px 10px 13px;
-        font-size:clamp(21px,7.2vw,28px) !important;
+        min-height:64px;
+        padding:11px 10px;
+        font-size:clamp(20px,7.2vw,28px) !important;
     }
 
     .event-date{
+        height:28px !important;
+        min-height:28px !important;
         font-size:7px !important;
-        margin-left:13px;
     }
+}
+
+/* Elimina cualquier resto de la animación circular antigua */
+.event-header,
+.event-header::before,
+.event-header::after{
+    animation:none !important;
 }
