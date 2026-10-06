@@ -8,120 +8,68 @@ body {
     padding: 0;
 }
 
-html {
-    width: 100%;
+body {
+    background:
+        linear-gradient(
+            126deg,
+            transparent 0 18%,
+            rgba(217,0,36,.10) 18.4%,
+            rgba(255,35,60,.16) 18.8%,
+            rgba(217,0,36,.045) 19.2%,
+            transparent 19.7% 43%
+        ),
+        linear-gradient(
+            139deg,
+            transparent 0 42%,
+            rgba(217,0,36,.055) 42.4%,
+            rgba(255,40,65,.11) 42.8%,
+            rgba(217,0,36,.035) 43.2%,
+            transparent 43.7% 100%
+        ),
+        linear-gradient(
+            118deg,
+            transparent 0 65%,
+            rgba(255,255,255,.025) 65.4%,
+            rgba(255,255,255,.055) 65.7%,
+            transparent 66.1% 100%
+        ),
+        linear-gradient(
+            145deg,
+            #111 0%,
+            #090909 48%,
+            #050505 100%
+        );
+    background-attachment: fixed;
+    color: #fff;
+    font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
 
-body {
-    position: relative;
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+header {
     width: 100%;
-    min-height: 100vh;
-
-    background:#050505;
-    color:#fff;
-
-    font-family:Arial,sans-serif;
-
-    overflow-x:hidden;
+    height: 70px;
+    background: rgba(17,17,17,.88);
+    border-bottom: 1px solid #292929;
+    display: flex;
+    align-items: center;
+    padding: 0 35px;
 }
 
-
-/* =========================================
-   FONDO GENERAL
-   UNA SOLA CAPA GLOBAL DE RAYOS
-   ========================================= */
-
-body:before{
-    content:"";
-
-    position:fixed;
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    pointer-events:none;
-
-    z-index:0;
-
-    background:
-        linear-gradient(
-            118deg,
-            transparent 0 11%,
-            rgba(217,0,36,.075) 11.2%,
-            transparent 11.8% 28%,
-            rgba(255,255,255,.018) 28.2%,
-            transparent 28.7% 46%,
-            rgba(217,0,36,.14) 46.2%,
-            transparent 46.9% 64%,
-            rgba(255,255,255,.022) 64.2%,
-            transparent 64.8% 80%,
-            rgba(217,0,36,.09) 80.2%,
-            transparent 80.9% 100%
-        ),
-        linear-gradient(
-            122deg,
-            transparent 0 19%,
-            rgba(217,0,36,.055) 19.2%,
-            transparent 19.8% 38%,
-            rgba(255,255,255,.018) 38.2%,
-            transparent 38.8% 57%,
-            rgba(217,0,36,.105) 57.2%,
-            transparent 57.9% 74%,
-            rgba(255,255,255,.018) 74.2%,
-            transparent 74.8% 88%,
-            rgba(217,0,36,.075) 88.2%,
-            transparent 88.9% 100%
-        ),
-        linear-gradient(
-            180deg,
-            #070707 0%,
-            #0b0b0b 48%,
-            #050505 100%
-        );
-
-    background-repeat:no-repeat;
-    background-size:100% 100%;
+.back-button {
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-
-/* =========================================
-   HEADER GENERAL
-   ========================================= */
-
-header{
-    position:relative;
-    z-index:10;
-
-    width:100%;
-    height:70px;
-
-    background:rgba(9,9,9,.92);
-
-    border-bottom:1px solid #292929;
-
-    display:flex;
-    align-items:center;
-
-    padding:0 35px;
-
-    box-shadow:
-        0 4px 18px rgba(0,0,0,.45);
-}
-
-.back-button{
-    color:#fff;
-    text-decoration:none;
-
-    font-size:13px;
-    font-weight:bold;
-
-    letter-spacing:1px;
-}
-
-.back-button:hover{
-    opacity:.6;
+.back-button:hover {
+    opacity: .6;
 }
 
 
@@ -129,107 +77,160 @@ header{
    MAIN
    ========================================= */
 
-main{
-    position:relative;
-    z-index:2;
-
-    width:100%;
-    max-width:1100px;
-
-    margin:40px auto;
-
-    padding:0 25px;
-
-    overflow-x:clip;
+main {
+    width: 100%;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 25px;
 }
+
+
+
+
+
 
 
 /* =========================================
    EVENT HEADER
-   UN SOLO RECTÁNGULO DE VIDRIO
+   DARK RED HOLOGRAPHIC / Y2K
+   UNA SOLA SUPERFICIE
    ========================================= */
 
 .event-header{
     position:relative;
-
     display:flex;
     align-items:stretch;
 
     width:100%;
-    max-width:100%;
-    height:auto;
-    min-height:0;
+    height:180px;
+    min-height:180px;
 
     margin-bottom:30px;
-
-    background:rgba(12,12,12,.10);
-
-    border:1px solid rgba(255,255,255,.16);
-
     overflow:hidden;
 
-    box-shadow:
-        0 8px 24px rgba(0,0,0,.65),
-        inset 0 1px 0 rgba(255,255,255,.07);
+    background:
+        radial-gradient(
+            ellipse at 78% 48%,
+            rgba(90,0,12,.20),
+            transparent 48%
+        ),
+        linear-gradient(
+            145deg,
+            #181818 0%,
+            #111111 42%,
+            #0d0d0d 72%,
+            #090909 100%
+        );
 
-    backdrop-filter:blur(5px);
-    -webkit-backdrop-filter:blur(5px);
+    border:1px solid #292929;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.055),
+        inset 0 -12px 22px rgba(0,0,0,.55),
+        0 8px 20px rgba(0,0,0,.65);
 }
 
 
 /* =========================================
-   NO SE GENERAN RAYOS NUEVOS AQUÍ
+   RAYOS QUE CRUZAN TODO EL CUADRO
    ========================================= */
 
-.event-header:before{
+.event-header::before{
+    content:"";
+
+    position:absolute;
+    inset:-25%;
+
+    z-index:2;
+    pointer-events:none;
+
+    background:
+
+        /* RAYO ROJO PRINCIPAL */
+        linear-gradient(
+            126deg,
+            transparent 0 17%,
+            rgba(217,0,36,.025) 17.2%,
+            rgba(217,0,36,.13) 17.55%,
+            rgba(255,45,70,.23) 17.8%,
+            rgba(217,0,36,.07) 18.1%,
+            transparent 18.5% 43%
+        ),
+
+        /* FLASH FINO */
+        linear-gradient(
+            132deg,
+            transparent 0 30%,
+            rgba(255,255,255,.025) 30.2%,
+            rgba(255,255,255,.11) 30.45%,
+            rgba(255,255,255,.025) 30.7%,
+            transparent 31% 100%
+        ),
+
+        /* ROJO CENTRAL */
+        linear-gradient(
+            139deg,
+            transparent 0 49%,
+            rgba(217,0,36,.035) 49.2%,
+            rgba(255,40,65,.16) 49.55%,
+            rgba(217,0,36,.055) 49.9%,
+            transparent 50.3% 100%
+        ),
+
+        /* FLASH BLANCO */
+        linear-gradient(
+            118deg,
+            transparent 0 62%,
+            rgba(255,255,255,.025) 62.2%,
+            rgba(255,255,255,.075) 62.45%,
+            rgba(255,255,255,.018) 62.7%,
+            transparent 63% 100%
+        ),
+
+        /* ROJO INFERIOR */
+        linear-gradient(
+            134deg,
+            transparent 0 77%,
+            rgba(217,0,36,.035) 77.2%,
+            rgba(255,45,68,.14) 77.5%,
+            rgba(217,0,36,.04) 77.9%,
+            transparent 78.3%
+        );
+
+    opacity:.95;
+}
+
+
+/* =========================================
+   BRILLO GENERAL / REFLEJO
+   ========================================= */
+
+.event-header::after{
     content:"";
 
     position:absolute;
     inset:0;
 
+    z-index:3;
     pointer-events:none;
 
-    z-index:1;
-
     background:
         linear-gradient(
-            180deg,
-            rgba(255,255,255,.025),
-            transparent 25%,
-            transparent 75%,
-            rgba(255,255,255,.018)
-        );
-}
-
-
-/* =========================================
-   LÍNEA INFERIOR
-   ========================================= */
-
-.event-header:after{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    right:0;
-    bottom:0;
-
-    height:2px;
-
-    background:
+            105deg,
+            transparent 0 43%,
+            rgba(255,255,255,.018) 43.3%,
+            transparent 43.8% 100%
+        ),
         linear-gradient(
             90deg,
-            #d90024 0 18%,
-            #fff 18.3% 34%,
-            #555 34.3% 66%,
-            #fff 66.3% 82%,
-            #d90024 82.3% 100%
+            transparent,
+            rgba(217,0,36,.025) 48%,
+            rgba(255,255,255,.012) 60%,
+            transparent
         );
 
-    opacity:.75;
-
-    z-index:6;
+    box-shadow:
+        inset 0 -2px 0 rgba(217,0,36,.48);
 }
 
 
@@ -239,394 +240,426 @@ main{
 
 .event-header-image{
     position:relative;
-    z-index:3;
 
-    width:300px;
-    height:168.75px;
-
-    aspect-ratio:16/9;
-
-    object-fit:cover;
+    z-index:5;
 
     display:block;
 
-    flex:0 0 300px;
+    width:320px;
+    height:180px;
 
-    border:0;
+    flex:0 0 320px;
+
+    aspect-ratio:16 / 9;
+    object-fit:cover;
+
     margin:0;
+    border:0;
 
     box-shadow:
-        8px 0 18px rgba(0,0,0,.65);
+        7px 0 18px rgba(0,0,0,.62);
 }
 
 
 /* =========================================
-   INFORMACIÓN DEL EVENTO
-   VIDRIO ROJO TRANSLÚCIDO
+   ZONA DERECHA
+   SIN ESPACIOS
    ========================================= */
 
 .event-header-info{
     position:relative;
-    z-index:3;
 
-    flex:1 1 auto;
+    z-index:6;
 
+    flex:1;
     min-width:0;
-    min-height:168.75px;
+    height:180px;
 
     display:flex;
     flex-direction:column;
-    justify-content:center;
 
-    padding:18px 28px 18px 34px;
+    justify-content:space-between;
 
-    background:rgba(120,0,15,.13);
+    padding:9px 22px 11px 24px;
 
-    border-left:1px solid rgba(255,255,255,.08);
-
-    backdrop-filter:blur(4px);
-    -webkit-backdrop-filter:blur(4px);
+    background:transparent;
 }
 
 
-/* =========================================
-   SEPARADOR IMAGEN / DATOS
-   ========================================= */
+/* LÍNEA DE LUZ MUY FINA */
 
-.event-header-info:before{
+.event-header-info::before{
     content:"";
 
     position:absolute;
 
     left:0;
-    top:20px;
-    bottom:20px;
+    top:8px;
+    bottom:8px;
 
-    width:2px;
+    width:1px;
 
     background:
         linear-gradient(
             180deg,
             transparent,
-            #d90024 20%,
-            #fff 50%,
-            #d90024 80%,
-            transparent
+            rgba(217,0,36,.45) 20%,
+            rgba(255,55,75,.80) 48%,
+            rgba(255,255,255,.28) 50%,
+            rgba(217,0,36,.55) 53%,
+            transparent 82%
         );
 
-    opacity:.8;
+    opacity:.75;
+}
+
+
+/* PEQUEÑO DETALLE FUTURISTA */
+
+.event-header-info::after{
+    content:"";
+
+    position:absolute;
+
+    right:18px;
+    bottom:8px;
+
+    width:125px;
+    height:11px;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0 8%,
+            rgba(255,255,255,.20) 8.5% 10%,
+            transparent 10.5% 26%,
+            rgba(217,0,36,.48) 26.5% 28%,
+            transparent 28.5% 45%,
+            rgba(255,255,255,.12) 45.5% 47%,
+            transparent 47.5% 64%,
+            rgba(217,0,36,.35) 64.5% 66%,
+            transparent 66.5%
+        );
+
+    opacity:.55;
 }
 
 
 /* =========================================
-   EVENT TYPE
+   DATOS SUPERIORES
+   VIDRIO ROJO
    ========================================= */
 
-.event-type{
+.event-date{
     position:relative;
 
-    display:block;
+    z-index:10;
 
-    width:fit-content;
-    max-width:100%;
+    display:flex;
+    align-items:center;
 
-    margin:0 0 9px 0;
+    width:100%;
+    height:27px;
 
-    padding:5px 12px 5px 13px;
+    margin:0;
+    padding:0 11px;
 
-    color:#fff;
+    color:#e7e7e7;
 
-    font-size:9px;
+    font-family:Arial,sans-serif;
+
+    font-size:10px;
     font-weight:900;
 
-    line-height:1.2;
-
     letter-spacing:1.8px;
+    line-height:1;
 
     text-transform:uppercase;
 
-    background:rgba(217,0,36,.48);
+    text-shadow:
+        0 1px 2px #000;
 
-    border-left:3px solid #ff4a5f;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(217,0,36,.25),
+            rgba(217,0,36,.10) 42%,
+            rgba(217,0,36,.025) 75%,
+            transparent
+        );
 
-    border-top:1px solid rgba(255,255,255,.14);
-    border-right:1px solid rgba(255,255,255,.08);
-    border-bottom:1px solid rgba(255,255,255,.08);
+    border:0;
 
-    box-shadow:
-        0 0 10px rgba(217,0,36,.13),
-        inset 0 1px 0 rgba(255,255,255,.1);
+    border-bottom:1px solid rgba(255,255,255,.075);
 }
 
-.event-header .event-type:before{
-    content:"EVENT TYPE: ";
 
-    color:#fff;
+/* REFLEJO DEL VIDRIO */
 
-    opacity:.72;
+.event-date::before{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:38%;
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.48),
+            rgba(255,255,255,.10),
+            transparent
+        );
+}
+
+
+/* FLASH DIAGONAL */
+
+.event-date::after{
+    content:"";
+
+    position:absolute;
+
+    right:5px;
+    top:0;
+    bottom:0;
+
+    width:70px;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            125deg,
+            transparent 0 30%,
+            rgba(255,255,255,.07) 31% 33%,
+            transparent 34% 53%,
+            rgba(255,45,65,.10) 54% 57%,
+            transparent 58%
+        );
 }
 
 
 /* =========================================
-   TÍTULO DEL EVENTO
+   NOMBRE DEL EVENTO
+   PROTAGONISTA
    ========================================= */
 
 .event-header h1{
     position:relative;
 
-    display:block;
+    z-index:10;
 
-    width:fit-content;
-    max-width:100%;
+    display:flex;
+    align-items:center;
 
-    margin:0 0 10px 0;
+    width:100%;
 
-    padding:10px 20px 10px 18px;
+    min-height:80px;
+    height:80px;
+
+    margin:0;
+    padding:0 20px;
+
+    overflow:hidden;
 
     color:#fff;
 
     font-family:Arial,sans-serif;
 
-    font-size:30px;
+    font-size:36px;
     font-weight:900;
 
-    line-height:1.05;
-
-    letter-spacing:1.5px;
-
-    text-transform:uppercase;
-
-    text-shadow:
-        0 1px 1px #000;
-
-    background:
-        linear-gradient(
-            180deg,
-            #e9e9e9 0%,
-            #bdbdbd 16%,
-            #777 48%,
-            #cfcfcf 82%,
-            #8b8b8b 100%
-        );
-
-    border:1px solid #f5f5f5;
-
-    border-right:4px solid #777;
-    border-bottom:3px solid #555;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.85),
-        inset 0 -2px 0 rgba(0,0,0,.25),
-        4px 4px 0 rgba(0,0,0,.55);
-
-    clip-path:
-        polygon(
-            0 0,
-            calc(100% - 12px) 0,
-            100% 12px,
-            100% 100%,
-            12px 100%,
-            0 calc(100% - 12px)
-        );
-}
-
-
-/* =========================================
-   BORDE ROJO DEL TÍTULO
-   ========================================= */
-
-.event-header h1:before{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    top:0;
-    bottom:0;
-
-    width:5px;
-
-    background:#d90024;
-
-    box-shadow:
-        1px 0 0 rgba(255,255,255,.5);
-}
-
-
-/* =========================================
-   BRILLO DEL TÍTULO
-   ========================================= */
-
-.event-header h1:after{
-    content:"";
-
-    position:absolute;
-
-    left:8px;
-    right:18px;
-    top:2px;
-
-    height:1px;
-
-    background:rgba(255,255,255,.8);
-
-    opacity:.7;
-}
-
-
-/* =========================================
-   FECHA
-   ========================================= */
-
-#event-date,
-.event-date{
-    position:relative;
-
-    display:block;
-
-    width:fit-content;
-    max-width:100%;
-
-    margin:0;
-
-    padding:7px 17px;
-
-    color:#fff;
-
-    font-size:10px;
-    font-weight:900;
-
-    line-height:1.2;
-
+    line-height:1;
     letter-spacing:1.8px;
 
     text-transform:uppercase;
 
     text-shadow:
-        0 1px 1px #000;
+        0 2px 2px #000,
+        0 0 12px rgba(255,255,255,.06);
+
+    /* VIDRIO ROJO TRANSPARENTE */
 
     background:
         linear-gradient(
-            180deg,
-            #d9d9d9 0%,
-            #999 35%,
-            #666 55%,
-            #bdbdbd 100%
+            90deg,
+            rgba(217,0,36,.25),
+            rgba(217,0,36,.10) 38%,
+            rgba(255,255,255,.018) 65%,
+            transparent 100%
         );
 
-    border:1px solid #eee;
+    border:0;
 
-    border-right:3px solid #666;
-    border-bottom:2px solid #4b4b4b;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.75),
-        inset 0 -1px 0 rgba(0,0,0,.3),
-        3px 3px 0 rgba(0,0,0,.5);
-
-    clip-path:
-        polygon(
-            0 0,
-            calc(100% - 7px) 0,
-            100% 7px,
-            100% 100%,
-            7px 100%,
-            0 calc(100% - 7px)
-        );
+    border-top:1px solid rgba(255,255,255,.10);
+    border-bottom:1px solid rgba(255,55,75,.32);
 }
 
 
-/* =========================================
-   LABEL MATCH DATE
-   ========================================= */
+/* FLASH SOBRE EL NOMBRE */
 
-#event-date:before,
-.event-date:before{
-    content:"MATCH DATE: ";
-
-    color:#fff;
-
-    opacity:.82;
-}
-
-
-/* =========================================
-   MARCA ROJA DE LA FECHA
-   ========================================= */
-
-#event-date:after,
-.event-date:after{
+.event-header h1::after{
     content:"";
 
     position:absolute;
 
-    left:0;
+    right:0;
     top:0;
-    bottom:0;
 
-    width:3px;
+    width:230px;
+    height:100%;
 
-    background:#d90024;
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0 21%,
+            rgba(255,255,255,.075) 21.5% 23%,
+            transparent 23.5% 39%,
+            rgba(217,0,36,.17) 39.5% 41%,
+            transparent 41.5% 57%,
+            rgba(255,255,255,.04) 57.5% 59%,
+            transparent 59.5%
+        );
 }
 
 
 /* =========================================
-   BRAND
+   ELEMENTOS ANTIGUOS
    ========================================= */
 
+.event-type,
 .event-brand{
     display:none;
 }
 
 
 /* =========================================
-   GRÁFICA INFERIOR
+   MOBILE
    ========================================= */
 
-.event-header-info:after{
-    content:"";
+@media(max-width:700px){
 
-    position:absolute;
+    .event-header{
+        display:flex;
+        flex-direction:column;
 
-    right:25px;
-    bottom:20px;
+        width:100%;
+        height:auto;
+        min-height:0;
 
-    width:105px;
-    height:14px;
+        margin-bottom:24px;
+    }
 
-    background:
-        linear-gradient(
-            135deg,
-            transparent 0 12%,
-            rgba(255,255,255,.4) 12.5% 13.5%,
-            transparent 14% 30%,
-            rgba(217,0,36,.65) 30.5% 32%,
-            transparent 32.5% 48%,
-            rgba(255,255,255,.3) 48.5% 50%,
-            transparent 50.5% 67%,
-            rgba(217,0,36,.45) 67.5% 69%,
-            transparent 69.5%
-        );
 
-    opacity:.65;
+    .event-header-info{
+        display:contents;
+    }
+
+
+    .event-header-info::before,
+    .event-header-info::after{
+        display:none;
+    }
+
+
+    /* DATOS ARRIBA */
+
+    .event-date{
+        order:1;
+
+        width:100%;
+        height:30px;
+
+        margin:0;
+        padding:0 11px;
+
+        font-size:9px;
+        letter-spacing:1.25px;
+
+        border:0;
+        border-bottom:1px solid rgba(255,255,255,.07);
+    }
+
+
+    /* IMAGEN */
+
+    .event-header-image{
+        order:2;
+
+        width:100%;
+        height:auto;
+
+        flex:0 0 auto;
+
+        aspect-ratio:16 / 9;
+
+        object-fit:cover;
+
+        margin:0;
+
+        box-shadow:
+            0 6px 18px rgba(0,0,0,.65);
+    }
+
+
+    /* NOMBRE */
+
+    .event-header h1{
+        order:3;
+
+        width:100%;
+
+        min-height:62px;
+        height:auto;
+
+        margin:0;
+
+        padding:15px;
+
+        font-size:24px;
+        letter-spacing:1.15px;
+        line-height:1.05;
+
+        border:0;
+
+        border-top:1px solid rgba(255,255,255,.08);
+        border-bottom:1px solid rgba(255,55,75,.35);
+    }
+
+
+    .event-header h1::after{
+        width:135px;
+    }
+
+
+    .event-date::after{
+        width:55px;
+    }
 }
+
 
 
 /* =========================================
    RESULTS
    ========================================= */
 
-.results-section{
-    width:100%;
-    max-width:100%;
+.results-section {
+    width: 100%;
 }
 
-.results-section > h2{
-    margin:0 0 18px;
-
-    font-size:16px;
-
-    letter-spacing:2px;
+.results-section > h2 {
+    margin: 0 0 18px;
+    font-size: 16px;
+    letter-spacing: 2px;
 }
 
 
@@ -634,98 +667,112 @@ main{
    RESULT CARD
    ========================================= */
 
-.result-card{
-    position:relative;
-
-    width:100%;
-    max-width:100%;
-
-    background:rgba(10,10,10,.10);
-
-    border:1px solid rgba(255,255,255,.15);
-
-    padding:22px;
-
-    margin-bottom:14px;
-
-    transition:
-        transform .2s ease,
-        border-color .2s ease,
-        box-shadow .2s ease;
-
-    --brand:#d4a72c;
-
+.result-card {
+    position: relative;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(25,25,25,.84),
+            rgba(9,9,9,.74)
+        );
+    border: 1px solid rgba(255,255,255,.055);
+    padding: 22px;
+    margin-bottom: 14px;
+    transition: .2s;
+    --brand: #d4a72c;
     box-shadow:
-        0 5px 18px rgba(0,0,0,.42),
-        inset 0 1px 0 rgba(255,255,255,.045);
-
-    backdrop-filter:blur(5px);
-    -webkit-backdrop-filter:blur(5px);
+        inset 0 1px 0 rgba(255,255,255,.035),
+        0 8px 20px rgba(0,0,0,.48);
 }
 
 
 /* =========================================
-   BRANDS
+   PLE
    ========================================= */
 
-.result-card.brand-ple{
-    --brand:#d4a72c;
+.result-card.brand-ple {
+    --brand: #d4a72c;
 }
 
-.result-card.brand-raw{
-    --brand:#d90024;
+
+/* =========================================
+   RAW
+   ========================================= */
+
+.result-card.brand-raw {
+    --brand: #d90024;
 }
 
-.result-card.brand-smackdown{
-    --brand:#2588ff;
+
+/* =========================================
+   SMACKDOWN
+   ========================================= */
+
+.result-card.brand-smackdown {
+    --brand: #2588ff;
 }
 
-.result-card.brand-nxt{
-    --brand:#bfc3c7;
+
+/* =========================================
+   NXT
+   ========================================= */
+
+.result-card.brand-nxt {
+    --brand: #bfc3c7;
 }
 
-.result-card.brand-speed{
-    --brand:#20c878;
+
+/* =========================================
+   SPEED
+   ========================================= */
+
+.result-card.brand-speed {
+    --brand: #20c878;
 }
 
-.result-card.brand-speed:before{
-    background:
-        linear-gradient(
-            90deg,
-            #20c878 0%,
-            #20c878 50%,
-            #55d9ff 100%
-        );
+.result-card.brand-speed:before {
+    background: linear-gradient(
+        90deg,
+        #20c878 0%,
+        #20c878 50%,
+        #55d9ff 100%
+    );
 
     box-shadow:
         0 0 10px #20c878,
         0 0 10px #55d9ff;
 }
 
-.result-card.brand-speed .result-score{
-    background:
-        linear-gradient(
-            90deg,
-            #20c878,
-            #55d9ff
-        );
 
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+/* SCORE SPEED */
 
-    background-clip:text;
+.result-card.brand-speed .result-score {
+    background: linear-gradient(
+        90deg,
+        #20c878,
+        #55d9ff
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.result-card.brand-aaa{
-    --brand:#20c878;
+
+/* =========================================
+   AAA
+   ========================================= */
+
+.result-card.brand-aaa {
+    --brand: #20c878;
 }
 
-.result-card.brand-aaa:before{
+.result-card.brand-aaa:before {
     background:
         linear-gradient(
             90deg,
             #20c878 0%,
-            #fff 50%,
+            #ffffff 50%,
             #d90024 100%
         );
 
@@ -734,29 +781,41 @@ main{
         0 0 10px #d90024;
 }
 
-.result-card.brand-aew{
-    --brand:#e8e2d6;
+
+/* =========================================
+   AEW
+   BLANCO + DORADO CHAMPAGNE
+   ========================================= */
+
+.result-card.brand-aew {
+    --brand: #e8e2d6;
 }
 
-.result-card.brand-aew:before{
+.result-card.brand-aew:before {
     background:
         linear-gradient(
             90deg,
-            #fff 0%,
+            #ffffff 0%,
             #e8d6b0 50%,
-            #fff 100%
+            #ffffff 100%
         );
 
     box-shadow:
-        0 0 10px #fff,
+        0 0 10px #ffffff,
         0 0 10px #e8d6b0;
 }
 
-.result-card.brand-tna{
-    --brand:#d90024;
+
+/* =========================================
+   TNA
+   ROJO + AMARILLO
+   ========================================= */
+
+.result-card.brand-tna {
+    --brand: #d90024;
 }
 
-.result-card.brand-tna:before{
+.result-card.brand-tna:before {
     background:
         linear-gradient(
             90deg,
@@ -770,43 +829,37 @@ main{
         0 0 10px #ffd400;
 }
 
-.result-card.brand-cmll{
-    --brand:#285e8e;
+
+/* =========================================
+   CMLL
+   ========================================= */
+
+.result-card.brand-cmll {
+    --brand: #285e8e;
 }
 
 
 /* =========================================
-   BARRA SUPERIOR
+   CARD TOP LINE
    ========================================= */
 
-.result-card:before{
-    content:"";
-
-    display:block;
-
-    height:3px;
-
-    margin:-22px -22px 20px;
-
-    background:var(--brand);
-
-    box-shadow:
-        0 0 10px var(--brand);
+.result-card:before {
+    content: "";
+    display: block;
+    height: 3px;
+    margin: -22px -22px 20px;
+    background: var(--brand);
+    box-shadow: 0 0 10px var(--brand);
 }
 
 
 /* =========================================
-   HOVER
+   CARD HOVER
    ========================================= */
 
-.result-card:hover{
-    border-color:rgba(255,255,255,.25);
-
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 8px 22px rgba(0,0,0,.55),
-        inset 0 1px 0 rgba(255,255,255,.06);
+.result-card:hover {
+    border-color: #444;
+    transform: translateY(-2px);
 }
 
 
@@ -814,20 +867,13 @@ main{
    MATCH NAME
    ========================================= */
 
-.match-name{
-    position:relative;
-    z-index:4;
-
-    text-align:center;
-
-    color:#888;
-
-    font-size:11px;
-    font-weight:bold;
-
-    letter-spacing:2px;
-
-    margin-bottom:12px;
+.match-name {
+    text-align: center;
+    color: #888;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
 }
 
 
@@ -835,20 +881,12 @@ main{
    MATCH
    ========================================= */
 
-.match{
-    position:relative;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:45px;
-
-    margin-top:20px;
-
-    min-width:0;
-    max-width:100%;
+.match {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+    margin-top: 20px;
 }
 
 
@@ -856,148 +894,115 @@ main{
    TEAM
    ========================================= */
 
-.team{
-    display:flex;
-
-    justify-content:center;
-    align-items:flex-start;
-
-    gap:15px;
-
-    flex-wrap:wrap;
-
-    max-width:430px;
-    min-width:0;
+.team {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-width: 430px;
 }
 
 
 /* =========================================
-   WRESTLER
+   WRESTLER CARD
    ========================================= */
 
-.wrestler{
-    width:125px;
-
-    text-align:center;
-
-    position:relative;
-
-    padding-top:5px;
-
-    border:1px solid transparent !important;
-
-    box-shadow:none !important;
-
-    transition:.25s;
+.wrestler {
+    width: 125px;
+    text-align: center;
+    position: relative;
+    padding-top: 5px;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    transition: .25s;
 }
 
-.wrestler:before{
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:12.5px;
-    right:12.5px;
-
-    height:3px;
-
-    background:var(--brand) !important;
-
-    box-shadow:
-        0 0 8px var(--brand) !important;
+.wrestler:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12.5px;
+    right: 12.5px;
+    height: 3px;
+    background: var(--brand) !important;
+    box-shadow: 0 0 8px var(--brand) !important;
 }
 
-.wrestler img{
-    width:100px;
-    height:100px;
-
-    object-fit:cover;
-
-    display:block;
-
-    margin:0 auto 10px;
-
-    border:none !important;
-
-    box-shadow:none !important;
-
-    transition:.25s;
+.wrestler img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 10px;
+    border: none !important;
+    box-shadow: none !important;
+    transition: .25s;
 }
 
-.wrestler:hover img{
-    transform:scale(1.04);
-
-    box-shadow:none !important;
+.wrestler:hover img {
+    transform: scale(1.04);
+    box-shadow: none !important;
 }
+
+
+/* =========================================
+   WRESTLER ACTIVE / FOCUS
+   ========================================= */
 
 .wrestler:focus,
 .wrestler:focus-within,
-.wrestler:active{
-    border-color:var(--brand) !important;
-
-    box-shadow:
-        0 0 12px var(--brand) !important;
+.wrestler:active {
+    border-color: var(--brand) !important;
+    box-shadow: 0 0 12px var(--brand) !important;
 }
 
 .wrestler:focus img,
 .wrestler:focus-within img,
-.wrestler:active img{
-    border:none !important;
-
-    box-shadow:none !important;
+.wrestler:active img {
+    border: none !important;
+    box-shadow: none !important;
 }
 
 
 /* =========================================
-   NOMBRE DEL WRESTLER
+   WRESTLER NAME
    ========================================= */
 
-.wrestler span{
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    min-height:34px;
-
-    padding:5px 6px;
-
-    color:#fff;
-
-    font-size:11px;
-    font-weight:bold;
-
-    letter-spacing:.5px;
-
-    line-height:15px;
-
-    background:#0c0c0c;
-
-    border:1px solid #292929;
+.wrestler span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 5px 6px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    line-height: 15px;
+    background: rgba(12,12,12,.82);
+    border: 1px solid #292929;
 }
 
 
 /* =========================================
-   LINKS
+   WRESTLER LINKS
    ========================================= */
 
 .match a,
-.wrestler-link{
-    color:#fff;
-
-    text-decoration:none;
+.wrestler-link {
+    color: #fff;
+    text-decoration: none;
 }
 
 .match a:visited,
-.wrestler-link:visited{
-    color:#fff;
+.wrestler-link:visited {
+    color: #fff;
 }
 
 .match a:hover,
-.wrestler-link:hover{
-    color:#fff;
+.wrestler-link:hover {
+    color: #fff;
 }
 
 
@@ -1005,24 +1010,17 @@ main{
    VS
    ========================================= */
 
-.vs{
-    min-width:92px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:12px;
-
-    color:#777;
-
-    font-size:12px;
-    font-weight:900;
-
-    letter-spacing:2px;
+.vs {
+    min-width: 92px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #777;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
 }
 
 
@@ -1030,51 +1028,33 @@ main{
    SCORE
    ========================================= */
 
-.match-score{
-    min-width:92px;
-    height:46px;
-
-    padding:8px 12px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:9px;
-
-    white-space:nowrap;
-
-    background:rgba(9,9,9,.70);
-
-    border:1px solid var(--brand);
-
-    border-top:2px solid var(--brand);
-
-    color:var(--brand);
-
-    font-size:25px;
-    font-weight:900;
-
-    line-height:1;
-
-    letter-spacing:1px;
-
-    text-shadow:
-        0 0 7px var(--brand);
-
+.match-score {
+    min-width: 92px;
+    height: 46px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    white-space: nowrap;
+    background: rgba(9,9,9,.88);
+    border: 1px solid var(--brand);
+    border-top: 2px solid var(--brand);
+    color: var(--brand);
+    font-size: 25px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-shadow: 0 0 7px var(--brand);
     box-shadow:
         0 0 0 1px var(--brand),
         0 0 12px var(--brand);
-
-    animation:
-        score .55s ease-out both;
+    animation: score .55s ease-out both;
 }
 
-.match-score span{
-    display:inline-block;
-
-    white-space:nowrap;
+.match-score span {
+    display: inline-block;
+    white-space: nowrap;
 }
 
 
@@ -1082,33 +1062,20 @@ main{
    CHAMPIONSHIP
    ========================================= */
 
-.match-championship{
-    display:block;
-
-    width:fit-content;
-    max-width:100%;
-
-    margin:5px auto 20px;
-
-    padding:8px 16px;
-
-    background:#17140d;
-
-    border:1px solid #b89b5e;
-
-    color:#fff;
-
-    font-size:12px;
-    font-weight:900;
-
-    letter-spacing:1.5px;
-
-    text-transform:uppercase;
-
-    text-align:center;
-
-    box-shadow:
-        0 0 8px rgba(184,155,94,.22);
+.match-championship {
+    display: block;
+    width: fit-content;
+    margin: 5px auto 20px;
+    padding: 8px 16px;
+    background: rgba(23,20,13,.88);
+    border: 1px solid #b89b5e;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(184,155,94,.22);
 }
 
 
@@ -1116,26 +1083,19 @@ main{
    WINNER
    ========================================= */
 
-.match-winner{
-    margin-top:22px;
-
-    padding-top:13px;
-
-    border-top:1px solid rgba(255,255,255,.12);
-
-    color:#777;
-
-    font-size:11px;
-
-    letter-spacing:1px;
-
-    text-align:center;
+.match-winner {
+    margin-top: 22px;
+    padding-top: 13px;
+    border-top: 1px solid #292929;
+    color: #777;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-align: center;
 }
 
-.match-winner strong{
-    color:#fff;
-
-    margin-left:5px;
+.match-winner strong {
+    color: #fff;
+    margin-left: 5px;
 }
 
 
@@ -1143,74 +1103,177 @@ main{
    SCORE ANIMATION
    ========================================= */
 
-@keyframes score{
+@keyframes score {
 
-    0%{
-        opacity:0;
-        transform:scale(.75);
-        filter:blur(4px);
+    0% {
+        opacity: 0;
+        transform: scale(.75);
+        filter: blur(4px);
     }
 
-    60%{
-        opacity:1;
-        transform:scale(1.08);
-        filter:blur(0);
+    60% {
+        opacity: 1;
+        transform: scale(1.08);
+        filter: blur(0);
     }
 
-    100%{
-        opacity:1;
-        transform:scale(1);
+    100% {
+        opacity: 1;
+        transform: scale(1);
     }
+
 }
 
 
 /* =========================================
-   CHAMBER
+   ELIMINATION CHAMBER TAG TEAM
    ========================================= */
 
-.chamber-teams{
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:25px 15px;
-
-    margin-top:20px;
+.chamber-teams {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px 15px;
+    margin-top: 20px;
 }
 
-.chamber-team{
-    display:flex;
-
-    flex-direction:row;
-
-    justify-content:center;
-    align-items:flex-start;
-
-    gap:8px;
-
-    min-width:0;
+.chamber-team {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    min-width: 0;
 }
 
-.chamber-team-number{
-    display:none;
+.chamber-team-number {
+    display: none;
 }
 
-.chamber-team .wrestler{
-    width:125px;
-
-    flex:0 0 125px;
+.chamber-team .wrestler {
+    width: 125px;
+    flex: 0 0 125px;
 }
 
-.chamber-team .wrestler img{
-    width:100px;
-    height:100px;
+.chamber-team .wrestler img {
+    width: 100px;
+    height: 100px;
 }
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    header {
+        height: 60px;
+        padding: 0 18px;
+    }
+
+    main {
+        margin: 25px auto;
+        padding: 0 14px;
+    }
+
+    .result-card {
+        padding: 18px;
+    }
+
+    .result-card:before {
+        margin: -18px -18px 18px;
+    }
+
+    .match {
+        width: 90%;
+        margin: 20px auto 0;
+        gap: 8px;
+    }
+
+    .team {
+        flex: 1 1 0;
+        width: 0;
+        max-width: none;
+        gap: 8px;
+    }
+
+    .team .wrestler {
+        width: 100%;
+        max-width: 100px;
+        padding-top: 4px;
+    }
+
+    .team .wrestler:before {
+        left: 5px;
+        right: 5px;
+    }
+
+    .team .wrestler img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .team .wrestler span {
+        font-size: 9px;
+        min-height: 36px;
+        line-height: 13px;
+    }
+
+    .vs {
+        flex: 0 0 64px;
+        min-width: 64px;
+        gap: 9px;
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .match-score {
+        min-width: 76px;
+        width: 76px;
+        height: 42px;
+        padding: 7px 5px;
+        gap: 5px;
+        font-size: 21px;
+        letter-spacing: 0;
+        white-space: nowrap;
+    }
+
+    /* =====================================
+       ELIMINATION CHAMBER TAG TEAM
+       ===================================== */
+
+    .chamber-teams {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px 8px;
+    }
+
+    .chamber-team {
+        flex-direction: row;
+        gap: 5px;
+    }
+
+    .chamber-team .wrestler {
+        width: 90px;
+        flex: 0 0 90px;
+    }
+
+    .chamber-team .wrestler img {
+        width: 70px;
+        height: 70px;
+    }
+
+}
+
+
+
+
+
+
 
 
 /* =========================================
    EVENT CHRONOLOGY
    COMPACTO / WCW NITRO + CHROMA
-   NO TOCAR
    ========================================= */
 
 #event-chronology{
@@ -1233,6 +1296,8 @@ main{
     text-align:center;
     text-transform:uppercase;
 }
+
+/* BARRA DE SECCIÓN */
 
 .chronology-block h3:after{
     content:"";
@@ -1267,6 +1332,10 @@ main{
 }
 
 
+/* =========================================
+   FILA
+   ========================================= */
+
 .chronology-row{
     width:100%;
     display:grid;
@@ -1290,6 +1359,10 @@ main{
     color:#fff;
 }
 
+
+/* =========================================
+   CARD
+   ========================================= */
 
 .chronology-card{
     position:relative;
@@ -1319,6 +1392,11 @@ main{
 }
 
 
+/* =========================================
+   BARRA GORDA SUPERIOR
+   ESTÁTICA NORMALMENTE
+   ========================================= */
+
 .chronology-card:before{
     content:"";
 
@@ -1344,11 +1422,22 @@ main{
     z-index:3;
 }
 
+
+/* =========================================
+   BARRA GORDA
+   SOLO SE ANIMA AL TOCAR / HOVER
+   ========================================= */
+
 .chronology-link:hover .chronology-card:before,
 .chronology-link:active .chronology-card:before{
     animation:chronoBar .8s linear;
 }
 
+
+/* =========================================
+   CHROMA
+   TIPO GOOGLE CHROME
+   ========================================= */
 
 .chronology-card:after{
     content:"";
@@ -1378,12 +1467,18 @@ main{
     z-index:5;
 }
 
+
+/* PC */
+
 .chronology-link:hover .chronology-card:after{
     left:140%;
 
     transition:
         left .65s cubic-bezier(.22,.61,.36,1);
 }
+
+
+/* CELULAR */
 
 .chronology-link:active .chronology-card:after{
     left:140%;
@@ -1392,6 +1487,10 @@ main{
         left .65s cubic-bezier(.22,.61,.36,1);
 }
 
+
+/* =========================================
+   HOVER CARD
+   ========================================= */
 
 .chronology-link:hover .chronology-card{
     transform:translateY(-2px);
@@ -1411,6 +1510,10 @@ main{
         0 4px 12px rgba(0,0,0,.8);
 }
 
+
+/* =========================================
+   IMAGEN
+   ========================================= */
 
 .chronology-image{
     position:relative;
@@ -1434,12 +1537,18 @@ main{
         box-shadow .15s ease;
 }
 
+
+/* PC */
+
 .chronology-link:hover .chronology-image{
     border-color:#C7CBD1;
 
     box-shadow:
         0 0 8px rgba(199,203,209,.25);
 }
+
+
+/* CELULAR */
 
 .chronology-link:active .chronology-image{
     border-color:#C7CBD1;
@@ -1448,6 +1557,10 @@ main{
         0 0 8px rgba(199,203,209,.25);
 }
 
+
+/* =========================================
+   TEXTO
+   ========================================= */
 
 .chronology-title{
     position:relative;
@@ -1478,6 +1591,10 @@ main{
     letter-spacing:.3px;
 }
 
+
+/* =========================================
+   CARD ACTUAL
+   ========================================= */
 
 .chronology-current{
     position:relative;
@@ -1512,6 +1629,9 @@ main{
         0 4px 14px rgba(0,0,0,.85);
 }
 
+
+/* BARRA DE LA CARD ACTUAL */
+
 .chronology-current .chronology-card:before{
     height:4px;
 
@@ -1523,18 +1643,27 @@ main{
         #2E86AB,
         #2E7D4F,
         #E6E6E6,
-        #C7CBD1,
         #C1121F
     );
 
     background-size:300% 100%;
+
+    /* NO SE ANIMA SOLA */
 }
+
+
+/* AL TOCAR / HOVER LA CARD ACTUAL,
+   TAMBIÉN SE MUEVE SU BARRA GORDA */
 
 .chronology-current .chronology-card:hover:before,
 .chronology-current .chronology-card:active:before{
     animation:chronoBar .8s linear;
 }
 
+
+/* =========================================
+   ANIMACIÓN DEL BORDE ACTUAL
+   ========================================= */
 
 @keyframes chronoCurrent{
 
@@ -1558,6 +1687,10 @@ main{
 }
 
 
+/* =========================================
+   ACTUAL - IMAGEN
+   ========================================= */
+
 .chronology-current .chronology-image{
     border-color:#C7CBD1;
 
@@ -1565,10 +1698,19 @@ main{
         0 0 10px rgba(199,203,209,.25);
 }
 
+
+/* =========================================
+   ACTUAL - TEXTO
+   ========================================= */
+
 .chronology-current .chronology-title{
     color:#fff;
 }
 
+
+/* =========================================
+   CARD VACÍA
+   ========================================= */
 
 .chronology-empty{
     color:#444;
@@ -1591,263 +1733,6 @@ main{
    ========================================= */
 
 @media(max-width:600px){
-
-    header{
-        height:60px;
-        padding:0 15px;
-    }
-
-    main{
-        width:100%;
-        max-width:none;
-
-        margin:25px auto;
-
-        padding:0 10px;
-
-        overflow-x:clip;
-    }
-
-
-    .event-header{
-        display:flex;
-        flex-direction:column;
-
-        width:100%;
-        max-width:100%;
-
-        margin-bottom:22px;
-    }
-
-    .event-header-image{
-        width:100%;
-        height:auto;
-
-        aspect-ratio:16/9;
-
-        flex:0 0 auto;
-
-        object-fit:cover;
-
-        box-shadow:
-            0 5px 15px rgba(0,0,0,.55);
-    }
-
-    .event-header-info{
-        width:100%;
-        max-width:100%;
-
-        min-height:0;
-
-        padding:15px 14px 18px 18px;
-
-        border-left:0;
-
-        border-top:1px solid rgba(255,255,255,.08);
-    }
-
-    .event-header-info:before{
-        left:0;
-        right:0;
-
-        top:0;
-        bottom:auto;
-
-        width:auto;
-        height:2px;
-
-        background:
-            linear-gradient(
-                90deg,
-                transparent,
-                #d90024 20%,
-                #fff 50%,
-                #d90024 80%,
-                transparent
-            );
-    }
-
-    .event-type{
-        max-width:100%;
-
-        margin-bottom:7px;
-
-        padding:5px 9px;
-
-        font-size:8px;
-
-        letter-spacing:1.3px;
-    }
-
-    .event-header h1{
-        width:100%;
-        max-width:100%;
-
-        margin-bottom:8px;
-
-        padding:9px 14px;
-
-        font-size:21px;
-
-        letter-spacing:1px;
-
-        line-height:1.08;
-    }
-
-    #event-date,
-    .event-date{
-        max-width:100%;
-
-        padding:6px 11px;
-
-        font-size:8px;
-
-        letter-spacing:1.1px;
-    }
-
-    .event-header-info:after{
-        right:12px;
-        bottom:9px;
-
-        width:75px;
-        height:10px;
-    }
-
-
-    .results-section > h2{
-        margin-bottom:13px;
-
-        font-size:13px;
-
-        letter-spacing:1.5px;
-    }
-
-    .result-card{
-        width:100%;
-        max-width:100%;
-
-        padding:15px;
-
-        margin-bottom:12px;
-
-        background:rgba(10,10,10,.10);
-
-        backdrop-filter:blur(5px);
-        -webkit-backdrop-filter:blur(5px);
-    }
-
-    .result-card:before{
-        margin:-15px -15px 15px;
-    }
-
-
-    .match{
-        gap:8px;
-
-        margin-top:15px;
-
-        width:100%;
-        max-width:100%;
-    }
-
-    .team{
-        max-width:calc(50% - 35px);
-
-        gap:7px;
-    }
-
-    .wrestler{
-        width:90px;
-    }
-
-    .wrestler:before{
-        left:7px;
-        right:7px;
-    }
-
-    .wrestler img{
-        width:75px;
-        height:75px;
-
-        margin-bottom:7px;
-    }
-
-    .wrestler span{
-        min-height:30px;
-
-        padding:4px;
-
-        font-size:9px;
-
-        line-height:12px;
-    }
-
-    .vs{
-        min-width:48px;
-
-        gap:7px;
-
-        font-size:9px;
-
-        letter-spacing:1px;
-    }
-
-    .match-score{
-        min-width:58px;
-
-        height:38px;
-
-        padding:6px 7px;
-
-        gap:5px;
-
-        font-size:18px;
-    }
-
-    .match-championship{
-        max-width:100%;
-
-        margin:4px auto 14px;
-
-        padding:6px 9px;
-
-        font-size:9px;
-
-        letter-spacing:1px;
-    }
-
-    .match-winner{
-        margin-top:15px;
-
-        padding-top:9px;
-
-        font-size:9px;
-    }
-
-
-    .chamber-teams{
-        grid-template-columns:repeat(2,1fr);
-
-        gap:15px 8px;
-
-        margin-top:15px;
-    }
-
-    .chamber-team{
-        gap:5px;
-    }
-
-    .chamber-team .wrestler{
-        width:90px;
-
-        flex:0 0 90px;
-    }
-
-    .chamber-team .wrestler img{
-        width:75px;
-        height:75px;
-    }
-
 
     #event-chronology{
         margin-top:25px;
@@ -1884,7 +1769,6 @@ main{
     .chronology-image{
         width:42px;
         height:42px;
-
         margin-bottom:5px;
     }
 
@@ -1896,22 +1780,1023 @@ main{
 
     .chronology-date{
         margin-top:3px;
-
         font-size:6px;
         line-height:8px;
     }
 }
 
 
-/* =========================================
+/* =========================================================
+   FINAL VISUAL FIX
+   BODY + EVENT HEADER + GLASS CARDS
+   NO CAMBIO DE CRONOLOGÍA NI COLORES DE MARCA
+   ========================================================= */
+
+/* ---------- PAGE BACKGROUND ---------- */
+
+html{
+    min-height:100%;
+    background:#050505;
+}
+
+body{
+    min-height:100vh;
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+
+    background:
+        linear-gradient(
+            126deg,
+            transparent 0 16%,
+            rgba(217,0,36,.11) 16.35%,
+            rgba(255,35,60,.18) 16.75%,
+            rgba(217,0,36,.045) 17.15%,
+            transparent 17.6% 39%
+        ),
+        linear-gradient(
+            137deg,
+            transparent 0 34%,
+            rgba(217,0,36,.045) 34.35%,
+            rgba(255,40,65,.12) 34.7%,
+            rgba(217,0,36,.035) 35.05%,
+            transparent 35.5% 63%
+        ),
+        linear-gradient(
+            145deg,
+            transparent 0 56%,
+            rgba(255,255,255,.018) 56.3%,
+            rgba(255,45,65,.075) 56.7%,
+            rgba(217,0,36,.025) 57.1%,
+            transparent 57.6% 100%
+        ),
+        linear-gradient(
+            119deg,
+            transparent 0 72%,
+            rgba(255,255,255,.025) 72.35%,
+            rgba(255,55,75,.075) 72.7%,
+            transparent 73.15% 100%
+        ),
+        linear-gradient(145deg,#0b0b0b 0%,#070707 55%,#030303 100%);
+
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+}
+
+/* El contenido nunca genera un ancho fantasma */
+header,
+main,
+.results-section,
+#event-chronology{
+    max-width:100%;
+    width:100%;
+}
+
+main{
+    overflow:visible;
+}
+
+/* ---------- HEADER DEL EVENTO ---------- */
+
+.event-header{
+    width:100%;
+    max-width:100%;
+    height:180px;
+    min-height:180px;
+    margin-bottom:30px;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(16,16,16,.96),
+            rgba(5,5,5,.90)
+        );
+
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.035),
+        0 10px 24px rgba(0,0,0,.60);
+}
+
+/* Rayos SOLO diagonales, sin línea roja horizontal inferior */
+.event-header::before{
+    inset:-35%;
+    background:
+        linear-gradient(
+            126deg,
+            transparent 0 16%,
+            rgba(217,0,36,.035) 16.4%,
+            rgba(255,35,60,.20) 16.8%,
+            rgba(217,0,36,.065) 17.2%,
+            transparent 17.7% 38%
+        ),
+        linear-gradient(
+            139deg,
+            transparent 0 39%,
+            rgba(217,0,36,.025) 39.35%,
+            rgba(255,40,65,.14) 39.75%,
+            rgba(217,0,36,.045) 40.15%,
+            transparent 40.6% 61%
+        ),
+        linear-gradient(
+            118deg,
+            transparent 0 59%,
+            rgba(255,255,255,.018) 59.3%,
+            rgba(255,255,255,.075) 59.65%,
+            transparent 60.05% 100%
+        ),
+        linear-gradient(
+            134deg,
+            transparent 0 77%,
+            rgba(217,0,36,.025) 77.3%,
+            rgba(255,45,68,.13) 77.7%,
+            transparent 78.15% 100%
+        );
+    opacity:.95;
+}
+
+.event-header::after{
+    background:
+        linear-gradient(
+            105deg,
+            transparent 0 28%,
+            rgba(255,255,255,.025) 28.4%,
+            transparent 28.9% 100%
+        ),
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(217,0,36,.025) 48%,
+            rgba(255,255,255,.008) 62%,
+            transparent
+        );
+
+    /* elimina la antigua línea roja horizontal */
+    box-shadow:none;
+}
+
+/* ---------- IMAGEN 16:9 EN PC ---------- */
+
+.event-header-image{
+    width:320px;
+    height:180px;
+    flex:0 0 320px;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    margin:0;
+    box-shadow:7px 0 20px rgba(0,0,0,.72);
+}
+
+/* ---------- ZONA DERECHA ---------- */
+
+.event-header-info{
+    flex:1 1 auto;
+    min-width:0;
+    height:180px;
+    padding:10px 16px 10px 18px;
+    gap:8px;
+    justify-content:flex-start;
+    background:transparent;
+}
+
+/* ---------- DATOS: TIPO + FECHA ---------- */
+
+/* El tipo estaba oculto: ahora sí se muestra */
+.event-type,
+.event-date{
+    position:relative;
+    z-index:10;
+    display:flex;
+    align-items:center;
+    height:32px;
+    min-height:32px;
+    margin:0;
+    color:#fff;
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    font-weight:900;
+    line-height:1;
+    letter-spacing:1.45px;
+    text-transform:uppercase;
+    text-shadow:0 1px 3px #000;
+
+    /* vidrio rojo REAL: rojo en toda la barra, pero translúcido */
+    background:
+        linear-gradient(
+            110deg,
+            rgba(217,0,36,.52),
+            rgba(160,0,24,.36) 52%,
+            rgba(217,0,36,.46)
+        );
+
+    border-top:1px solid rgba(255,90,110,.38);
+    border-bottom:1px solid rgba(255,55,75,.28);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        inset 0 -1px 0 rgba(0,0,0,.30),
+        0 4px 12px rgba(0,0,0,.24);
+    backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px);
+}
+
+/* Una sola barra visual */
+.event-type{
+    order:1;
+    width:50%;
+    padding:0 11px;
+    border-left:1px solid rgba(255,70,90,.38);
+    border-right:0;
+}
+
+.event-date{
+    order:2;
+    width:50%;
+    padding:0 11px;
+    border-left:1px solid rgba(255,255,255,.12);
+    border-right:1px solid rgba(255,70,90,.38);
+}
+
+/* reflejo diagonal del vidrio */
+.event-type::after,
+.event-date::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            125deg,
+            transparent 0 28%,
+            rgba(255,255,255,.10) 28.5% 30%,
+            transparent 30.6% 58%,
+            rgba(255,70,90,.10) 58.5% 60%,
+            transparent 60.6% 100%
+        );
+}
+
+/* evita la antigua decoración que hacía parecer la fecha distinta */
+.event-date::before{
+    display:none;
+}
+
+/* ---------- TÍTULO ---------- */
+
+.event-header h1{
+    order:3;
+    flex:1 1 auto;
+    min-height:0;
+    height:auto;
+    width:100%;
+    margin:0;
+    padding:12px 18px;
+
+    display:flex;
+    align-items:center;
+
+    font-family:Arial,sans-serif;
+    font-size:36px;
+    font-weight:900;
+    letter-spacing:2px;
+    line-height:1.05;
+
+    /* vidrio rojo completo */
+    background:
+        linear-gradient(
+            110deg,
+            rgba(217,0,36,.56),
+            rgba(170,0,25,.38) 48%,
+            rgba(217,0,36,.50)
+        );
+
+    border:1px solid rgba(255,65,85,.34);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.10),
+        inset 0 -1px 0 rgba(0,0,0,.34),
+        0 6px 16px rgba(0,0,0,.28);
+
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+}
+
+.event-header h1::after{
+    right:0;
+    width:42%;
+    height:100%;
+    background:
+        linear-gradient(
+            125deg,
+            transparent 0 24%,
+            rgba(255,255,255,.11) 24.5% 26%,
+            transparent 26.5% 48%,
+            rgba(255,65,85,.16) 48.5% 50.5%,
+            transparent 51% 72%,
+            rgba(255,255,255,.045) 72.5% 74%,
+            transparent 74.5%
+        );
+}
+
+/* ---------- CARDS: DEJAN VER EL BODY ---------- */
+
+.result-card{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22,22,22,.62),
+            rgba(5,5,5,.46)
+        );
+    border:1px solid rgba(255,255,255,.075);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.035),
+        0 8px 20px rgba(0,0,0,.42);
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+}
+
+.wrestler span{
+    background:rgba(8,8,8,.62);
+    border-color:rgba(255,255,255,.10);
+    backdrop-filter:blur(3px);
+    -webkit-backdrop-filter:blur(3px);
+}
+
+.match-score{
+    background:rgba(4,4,4,.60);
+    backdrop-filter:blur(3px);
+    -webkit-backdrop-filter:blur(3px);
+}
+
+.match-championship{
+    background:rgba(23,20,13,.64);
+    backdrop-filter:blur(3px);
+    -webkit-backdrop-filter:blur(3px);
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:700px){
+
+    body{
+        min-height:100vh;
+        background-attachment:scroll;
+        background-size:100% 100%;
+    }
+
+    main{
+        width:100%;
+        max-width:100%;
+        margin:25px auto;
+        padding:0 14px;
+    }
+
+    .event-header{
+        width:100%;
+        height:auto;
+        min-height:0;
+        margin-bottom:24px;
+        overflow:hidden;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(13,13,13,.94),
+                rgba(4,4,4,.88)
+            );
+    }
+
+    /* En móvil el info deja de ser caja independiente */
+    .event-header-info{
+        display:contents;
+    }
+
+    .event-header-info::before,
+    .event-header-info::after{
+        display:none;
+    }
+
+    /* barra única de datos: TIPO | FECHA */
+    .event-type,
+    .event-date{
+        order:1;
+        width:50%;
+        height:32px;
+        min-height:32px;
+        padding:0 9px;
+        font-size:8px;
+        letter-spacing:1px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        border-top:0;
+        border-bottom:1px solid rgba(255,70,90,.30);
+    }
+
+    .event-type{
+        border-left:0;
+        border-right:1px solid rgba(255,255,255,.13);
+    }
+
+    .event-date{
+        border-right:0;
+        border-left:0;
+    }
+
+    /* ambos se comportan como una sola fila */
+    .event-type::after,
+    .event-date::after{
+        display:block;
+    }
+
+    /* imagen 16:9, sin deformarse */
+    .event-header-image{
+        order:2;
+        display:block;
+        width:100%;
+        height:auto;
+        min-height:0;
+        flex:0 0 auto;
+        aspect-ratio:16/9;
+        object-fit:cover;
+        margin:0;
+        box-shadow:
+            0 7px 18px rgba(0,0,0,.70);
+    }
+
+    /* título abajo, vidrio rojo completo */
+    .event-header h1{
+        order:3;
+        width:100%;
+        min-height:62px;
+        height:auto;
+        margin:0;
+        padding:14px 13px;
+
+        font-size:24px;
+        letter-spacing:1.15px;
+        line-height:1.05;
+
+        border-left:0;
+        border-right:0;
+        border-bottom:1px solid rgba(255,65,85,.34);
+    }
+
+    .event-header h1::after{
+        width:100%;
+    }
+
+    /* cards siguen siendo translúcidas y nunca fuerzan ancho */
+    .result-card,
+    .chronology-card{
+        max-width:100%;
+        min-width:0;
+    }
+
+    .result-card{
+        overflow:hidden;
+    }
+}
+
+/* ---------- PANTALLAS MUY ANGOSTAS ---------- */
+
+@media(max-width:380px){
+    main{
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+    .event-type,
+    .event-date{
+        font-size:7px;
+        letter-spacing:.7px;
+        padding:0 6px;
+    }
+
+    .event-header h1{
+        font-size:21px;
+    }
+}
+
+/* =========================================================
+   2027 BROADCAST PACKAGE
+   EVENT HEADER + MOBILE MATCH LAYOUT
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   EVENT HEADER — TRANSMISIÓN DEPORTIVA 2027
+   --------------------------------------------------------- */
+
+.event-header{
+    position:relative;
+    display:flex;
+    align-items:stretch;
+
+    width:100%;
+    max-width:100%;
+    height:auto;
+    min-height:202.5px;
+
+    margin-bottom:30px;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(255,255,255,.035),
+            transparent 27%,
+            rgba(217,0,36,.045) 62%,
+            transparent 100%
+        ),
+        rgba(8,8,8,.48);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        0 10px 28px rgba(0,0,0,.62),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px);
+}
+
+/* Líneas diagonales de paquete deportivo: pocas y finas. */
+.event-header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            125deg,
+            transparent 0 48%,
+            rgba(255,255,255,.10) 48.25%,
+            transparent 48.55%
+        ),
+        linear-gradient(
+            125deg,
+            transparent 0 62%,
+            rgba(217,0,36,.24) 62.25%,
+            transparent 62.65%
+        );
+}
+
+/* Línea inferior de transmisión. */
+.event-header::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:7;
+    height:3px;
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d90024 0 17%,
+            #ffffff 17.4% 42%,
+            rgba(255,255,255,.22) 42.4% 72%,
+            #ffffff 72.4% 83%,
+            #d90024 83.4% 100%
+        );
+}
+
+/* Logo: grande, 16:9 real y sin deformación. */
+.event-header-image{
+    position:relative;
+    z-index:4;
+
+    display:block;
+    width:360px;
+    height:202.5px;
+    flex:0 0 360px;
+
+    aspect-ratio:16 / 9;
+    object-fit:cover;
+    margin:0;
+    border:0;
+
+    box-shadow:
+        8px 0 22px rgba(0,0,0,.68);
+}
+
+/* Zona de datos. */
+.event-header-info{
+    position:relative;
+    z-index:5;
+
+    flex:1 1 auto;
+    min-width:0;
+    min-height:202.5px;
+    height:auto;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+
+    padding:22px 34px 22px 34px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(217,0,36,.075),
+            rgba(217,0,36,.018) 45%,
+            transparent 100%
+        );
+
+    border-left:1px solid rgba(255,255,255,.10);
+}
+
+/* Separador vertical fino. */
+.event-header-info::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:18px;
+    bottom:18px;
+    width:2px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(217,0,36,.75) 25%,
+            rgba(255,255,255,.72) 50%,
+            rgba(217,0,36,.75) 75%,
+            transparent
+        );
+}
+
+/* Firma gráfica inferior derecha. */
+.event-header-info::after{
+    content:"";
+    position:absolute;
+    right:22px;
+    bottom:17px;
+    width:105px;
+    height:8px;
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            125deg,
+            transparent 0 12%,
+            rgba(255,255,255,.22) 12.5% 14%,
+            transparent 14.5% 34%,
+            rgba(217,0,36,.55) 34.5% 37%,
+            transparent 37.5% 57%,
+            rgba(255,255,255,.16) 57.5% 59.5%,
+            transparent 60%
+        );
+}
+
+/* EVENT TYPE: texto de broadcast, no una caja. */
+.event-type{
+    position:relative;
+    z-index:10;
+
+    display:block;
+    width:auto;
+    max-width:100%;
+
+    margin:0 0 10px;
+    padding:0 0 0 11px;
+
+    color:#d7d7d7;
+    font-size:9px;
+    font-weight:900;
+    line-height:1.2;
+    letter-spacing:2.2px;
+    text-transform:uppercase;
+
+    background:transparent;
+    border:0;
+    box-shadow:none;
+}
+
+.event-header .event-type::before{
+    content:"EVENT TYPE: ";
+    color:#ffffff;
+    opacity:.52;
+}
+
+.event-type::after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:1px;
+    bottom:1px;
+    width:3px;
+    background:#d90024;
+}
+
+/* Título: protagonista, limpio, sin caja pesada. */
+.event-header h1{
+    position:relative;
+    z-index:10;
+
+    display:block;
+    width:100%;
+    max-width:100%;
+
+    min-height:0;
+    height:auto;
+
+    margin:0 0 12px;
+    padding:0;
+
+    overflow:visible;
+
+    color:#f4f4f4;
+    font-family:Arial,sans-serif;
+    font-size:34px;
+    font-weight:900;
+    line-height:1.05;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+
+    text-shadow:
+        0 2px 2px #000,
+        0 0 14px rgba(255,255,255,.06);
+
+    background:transparent;
+    border:0;
+    box-shadow:none;
+    clip-path:none;
+}
+
+/* Pequeña línea roja debajo del título. */
+.event-header h1::before{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-7px;
+    width:68px;
+    height:3px;
+    background:#d90024;
+    box-shadow:8px 0 0 rgba(255,255,255,.38);
+}
+
+.event-header h1::after{
+    content:"";
+    position:absolute;
+    left:86px;
+    right:0;
+    bottom:-6px;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        rgba(255,255,255,.24),
+        rgba(255,255,255,.05) 55%,
+        transparent
+    );
+}
+
+/* Fecha: limpia, tipo información oficial de transmisión. */
+#event-date,
+.event-date{
+    position:relative;
+    z-index:10;
+
+    display:block;
+    width:auto;
+    max-width:100%;
+
+    margin:0;
+    padding:0 0 0 11px;
+
+    color:#c8c8c8;
+    font-size:9px;
+    font-weight:900;
+    line-height:1.3;
+    letter-spacing:1.8px;
+    text-transform:uppercase;
+    text-shadow:0 1px 2px #000;
+
+    background:transparent;
+    border:0;
+    box-shadow:none;
+    clip-path:none;
+}
+
+#event-date::before,
+.event-date::before{
+    content:"MATCH DATE: ";
+    color:#ffffff;
+    opacity:.48;
+}
+
+#event-date::after,
+.event-date::after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:1px;
+    bottom:1px;
+    width:3px;
+    background:#d90024;
+}
+
+/* Brand sigue disponible para JS, pero nunca se muestra. */
+.event-brand{
+    display:none !important;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE — MISMO LAYOUT DE COMBATE QUE PC
+   --------------------------------------------------------- */
+
+@media(max-width:600px){
+
+    /* Header 2027 */
+    .event-header{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        max-width:100%;
+        min-height:0;
+        height:auto;
+        margin-bottom:22px;
+    }
+
+    .event-header-image{
+        order:1;
+        width:100%;
+        height:auto;
+        min-height:0;
+        flex:0 0 auto;
+        aspect-ratio:16 / 9;
+        object-fit:cover;
+        box-shadow:0 7px 18px rgba(0,0,0,.65);
+    }
+
+    .event-header-info{
+        order:2;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:flex-start;
+        width:100%;
+        max-width:100%;
+        min-height:0;
+        height:auto;
+        padding:18px 16px 20px 18px;
+        border-left:0;
+        border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .event-header-info::before{
+        left:0;
+        right:0;
+        top:0;
+        bottom:auto;
+        width:auto;
+        height:2px;
+        background:linear-gradient(
+            90deg,
+            transparent,
+            #d90024 20%,
+            #ffffff 50%,
+            #d90024 80%,
+            transparent
+        );
+    }
+
+    .event-header-info::after{
+        right:12px;
+        bottom:10px;
+        width:75px;
+        height:7px;
+    }
+
+    .event-type{
+        margin-bottom:9px;
+        padding-left:9px;
+        font-size:8px;
+        letter-spacing:1.5px;
+    }
+
+    .event-header h1{
+        width:100%;
+        max-width:100%;
+        margin-bottom:12px;
+        padding:0;
+        font-size:23px;
+        letter-spacing:1px;
+        line-height:1.08;
+    }
+
+    .event-header h1::before{
+        bottom:-7px;
+        width:55px;
+    }
+
+    .event-header h1::after{
+        left:69px;
+        bottom:-6px;
+    }
+
+    #event-date,
+    .event-date{
+        max-width:100%;
+        padding-left:9px;
+        font-size:8px;
+        letter-spacing:1.15px;
+    }
+
+    /* =====================================================
+       IMPORTANTE:
+       los combates multi-participante conservan la lógica
+       horizontal de PC. Solo se reducen los wrestlers.
+       ===================================================== */
+
+    .match > .team:only-child{
+        flex:0 1 auto;
+        width:100%;
+        max-width:430px;
+        min-width:0;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    /* Royal Rumble / Battle Royal / Fatal 4-Way / etc. */
+    .match > .team:only-child .wrestler{
+        width:90px;
+        max-width:90px;
+        flex:0 0 90px;
+    }
+
+    .match > .team:only-child .wrestler img{
+        width:75px;
+        height:75px;
+    }
+
+    /* Los combates normales y por equipos conservan sus dos lados. */
+    .match > .team:not(:only-child){
+        flex:1 1 0;
+        width:0;
+        max-width:none;
+        min-width:0;
+        gap:7px;
+    }
+
+    .match{
+        width:100%;
+        max-width:100%;
+        gap:8px;
+        margin-top:15px;
+    }
+
+    .wrestler{
+        width:90px;
+    }
+
+    .wrestler img{
+        width:75px;
+        height:75px;
+        margin-bottom:7px;
+    }
+
+    .wrestler span{
+        min-height:30px;
+        padding:4px;
+        font-size:9px;
+        line-height:12px;
+    }
+
+    .vs{
+        min-width:48px;
+        flex:0 0 48px;
+        gap:7px;
+        font-size:9px;
+        letter-spacing:1px;
+    }
+
+    .match-score{
+        min-width:58px;
+        width:58px;
+        height:38px;
+        padding:6px 7px;
+        gap:5px;
+        font-size:18px;
+    }
+}
+
+
+/* ---------------------------------------------------------
    MOBILE MUY ANGOSTO
-   EVITA CUALQUIER OVERFLOW
-   ========================================= */
+   --------------------------------------------------------- */
 
 @media(max-width:380px){
 
     main{
-        padding:0 7px;
+        padding-left:7px;
+        padding-right:7px;
     }
 
     .event-header-info{
@@ -1919,39 +2804,39 @@ main{
         padding-right:10px;
     }
 
-    .event-header h1{
-        font-size:18px;
-
-        padding:8px 11px;
-    }
-
     .event-type{
         font-size:7px;
-
         letter-spacing:1px;
+    }
+
+    .event-header h1{
+        font-size:19px;
     }
 
     #event-date,
     .event-date{
         font-size:7px;
-
         letter-spacing:.8px;
     }
 
-    .result-card{
-        padding:11px;
+    /* Misma distribución que PC, pero más compacta. */
+    .match > .team:only-child{
+        max-width:430px;
     }
 
-    .result-card:before{
-        margin:-11px -11px 12px;
+    .match > .team:only-child .wrestler{
+        width:76px;
+        max-width:76px;
+        flex-basis:76px;
+    }
+
+    .match > .team:only-child .wrestler img{
+        width:64px;
+        height:64px;
     }
 
     .match{
         gap:3px;
-    }
-
-    .team{
-        max-width:calc(50% - 25px);
     }
 
     .wrestler{
@@ -1970,35 +2855,308 @@ main{
 
     .vs{
         min-width:38px;
-
+        flex-basis:38px;
         font-size:8px;
     }
 
     .match-score{
         min-width:48px;
-
+        width:48px;
         height:34px;
-
         padding:5px;
-
         font-size:15px;
     }
 }
+/* =========================================================
+   MI WRESTLING — 2027
+   RAYOS + GLASSMORPHISM LIVIANO
+   ========================================================= */
+
+/* =========================================================
+   FONDO — RAYOS ROJOS ESTÁTICOS
+   ========================================================= */
+
+html,
+body{
+    min-width:0;
+    max-width:100%;
+}
+
+body{
+    position:relative;
+    isolation:isolate;
+    overflow-x:hidden;
+
+    background:
+        /* RAYO ROJO 1 */
+        linear-gradient(
+            125deg,
+            transparent 0 11%,
+            rgba(217,0,36,.08) 11.2%,
+            rgba(255,35,60,.28) 11.6%,
+            rgba(217,0,36,.12) 12%,
+            transparent 12.4% 34%
+        ),
+
+        /* RAYO ROJO 2 */
+        linear-gradient(
+            132deg,
+            transparent 0 30%,
+            rgba(217,0,36,.06) 30.3%,
+            rgba(255,35,60,.22) 30.8%,
+            rgba(217,0,36,.08) 31.3%,
+            transparent 31.7% 57%
+        ),
+
+        /* REFLEJO PLATEADO */
+        linear-gradient(
+            124deg,
+            transparent 0 51%,
+            rgba(255,255,255,.025) 51.2%,
+            rgba(255,255,255,.08) 51.6%,
+            rgba(255,255,255,.025) 52%,
+            transparent 52.4% 76%
+        ),
+
+        /* RAYO INFERIOR */
+        linear-gradient(
+            137deg,
+            transparent 0 68%,
+            rgba(217,0,36,.04) 68.2%,
+            rgba(255,35,58,.18) 68.7%,
+            rgba(217,0,36,.07) 69.2%,
+            transparent 69.6% 100%
+        ),
+
+        /* BASE */
+        linear-gradient(
+            145deg,
+            #111 0%,
+            #090909 48%,
+            #050505 100%
+        );
+
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+}
 
 
-/* =========================================
-   REDUCE MOTION
-   ========================================= */
+/* =========================================================
+   EVITAR EXTENSIÓN LATERAL
+   ========================================================= */
 
-@media(prefers-reduced-motion:reduce){
+main,
+.results-section{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+}
 
-    *,
-    *::before,
-    *::after{
-        animation-duration:.01ms !important;
-        animation-iteration-count:1 !important;
-        transition-duration:.01ms !important;
+
+/* =========================================================
+   HEAD CARD — GLASS
+   ========================================================= */
+
+.event-header{
+    position:relative;
+    isolation:isolate;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(28,28,28,.55),
+            rgba(8,8,8,.40)
+        );
+
+    border:1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.12),
+        inset 0 -1px 0 rgba(217,0,36,.30),
+        0 8px 22px rgba(0,0,0,.58);
+
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+}
+
+
+/* Mantener los efectos propios del header,
+   pero sin tapar el fondo */
+
+.event-header::before{
+    z-index:1;
+    opacity:.65;
+}
+
+.event-header::after{
+    z-index:2;
+}
+
+.event-header-image{
+    z-index:5;
+}
+
+.event-header-info{
+    z-index:6;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(15,15,15,.36),
+            rgba(15,15,15,.18) 55%,
+            rgba(217,0,36,.04) 100%
+        );
+
+    backdrop-filter:blur(3px);
+    -webkit-backdrop-filter:blur(3px);
+}
+
+
+/* =========================================================
+   TEXTO DEL HEAD CARD
+   ========================================================= */
+
+.event-header h1{
+    color:#f5f5f5;
+
+    text-shadow:
+        0 2px 3px rgba(0,0,0,.95),
+        0 0 10px rgba(255,255,255,.05);
+}
+
+.event-date,
+#event-date{
+    color:#d0d0d0;
+}
+
+
+/* =========================================================
+   MATCH / RESULT CARD — GLASS REAL
+   ========================================================= */
+
+.result-card{
+    position:relative;
+    isolation:isolate;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(24,24,24,.46),
+            rgba(7,7,7,.28)
+        );
+
+    border:1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.09),
+        inset 0 -1px 0 rgba(217,0,36,.22),
+        0 8px 18px rgba(0,0,0,.46);
+
+    backdrop-filter:blur(5px);
+    -webkit-backdrop-filter:blur(5px);
+}
+
+
+/* =========================================================
+   REFLEJO DEL VIDRIO
+   ========================================================= */
+
+.result-card::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    z-index:0;
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            126deg,
+            transparent 0 25%,
+            rgba(255,255,255,.015) 25.4%,
+            rgba(255,255,255,.045) 25.8%,
+            transparent 26.3% 100%
+        );
+
+    opacity:.75;
+}
+
+
+/* El contenido queda encima del reflejo */
+
+.result-card > *{
+    position:relative;
+    z-index:1;
+}
+
+
+/* =========================================================
+   MATCH — SIN CAMBIAR TAMAÑOS DE LUCHADORES
+   ========================================================= */
+
+.match{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+}
+
+.team{
+    min-width:0;
+}
+
+
+/* =========================================================
+   MOBILE — MÁS LIVIANO PARA EL SAMSUNG
+   ========================================================= */
+
+@media(max-width:600px){
+
+    .event-header{
+        backdrop-filter:blur(3px);
+        -webkit-backdrop-filter:blur(3px);
+    }
+
+    .event-header-info{
+        backdrop-filter:blur(2px);
+        -webkit-backdrop-filter:blur(2px);
+    }
+
+    .result-card{
+        backdrop-filter:blur(4px);
+        -webkit-backdrop-filter:blur(4px);
+    }
+
+    .event-header,
+    .result-card{
+        max-width:100%;
     }
 }
 
-Los cambios reales respecto de tu base son mínimos y deliberados: "max-width:100%"/"min-width:0" en los contenedores que podían provocar el desborde y "overflow-x:clip" en "main". No eliminé ninguna sección funcional ni toqué la lógica visual de Chronology.
+
+/* =========================================================
+   PANTALLAS MUY ANGOSTAS
+   ========================================================= */
+
+@media(max-width:380px){
+
+    .event-header,
+    .result-card{
+        width:100%;
+        max-width:100%;
+    }
+}
+
+
+/* =========================================================
+   REDUCCIÓN DE MOVIMIENTO
+   ========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    .event-header,
+    .result-card{
+        backdrop-filter:none;
+        -webkit-backdrop-filter:none;
+    }
+}
