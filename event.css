@@ -9,37 +9,43 @@ body {
 }
 
 /* =========================================
-   BODY - LLUVIA DE RAYOS ROJOS DIAGONALES
+   BODY - RAYOS BRILLANTES Y EVIDENTES
    ========================================= */
 
 body {
     background:
-        /* Rayo diagonal rojo intenso 1 */
+        /* Rayo rojo principal 1 (muy intenso) */
         linear-gradient(
-            128deg,
-            transparent 0%, rgba(217,0,36,.25) 15%, rgba(255,35,60,.45) 18%, rgba(217,0,36,.15) 22%, transparent 35%
+            126deg,
+            transparent 0 17.5%,
+            rgba(217,0,36,.30) 18.2%,
+            rgba(255,35,60,.55) 18.6%,
+            rgba(217,0,36,.20) 19.0%,
+            transparent 19.8% 43%
         ),
-        /* Rayo diagonal rojo intenso 2 */
+        /* Rayo rojo secundario 2 */
         linear-gradient(
-            135deg,
-            transparent 30%, rgba(217,0,36,.30) 45%, rgba(255,40,65,.50) 48%, rgba(217,0,36,.20) 52%, transparent 65%
+            139deg,
+            transparent 0 41.5%,
+            rgba(217,0,36,.22) 42.2%,
+            rgba(255,40,65,.45) 42.6%,
+            rgba(217,0,36,.15) 43.0%,
+            transparent 43.8% 100%
         ),
-        /* Rayo diagonal rojo intenso 3 */
+        /* Destello blanco brillante cruzado */
         linear-gradient(
-            120deg,
-            transparent 60%, rgba(217,0,36,.28) 72%, rgba(255,50,75,.45) 75%, rgba(217,0,36,.15) 80%, transparent 95%
-        ),
-        /* Destellos de luz blanca cruzados */
-        linear-gradient(
-            115deg,
-            transparent 0 64%, rgba(255,255,255,.06) 65%, rgba(255,255,255,.18) 65.5%, transparent 67% 100%
+            118deg,
+            transparent 0 64.5%,
+            rgba(255,255,255,.08) 65.2%,
+            rgba(255,255,255,.22) 65.6%,
+            transparent 66.3% 100%
         ),
         /* Fondo base oscuro profundo */
         linear-gradient(
             145deg,
             #111 0%,
-            #080808 50%,
-            #030303 100%
+            #090909 48%,
+            #050505 100%
         );
     background-attachment: fixed;
     color: #fff;
@@ -90,7 +96,8 @@ main {
 
 
 /* =========================================
-   EVENT HEADER (CRISTALIZADO TRANSLÚCIDO)
+   EVENT HEADER
+   CRISTALIZADO OSCURECIDO POR DENTRO
    ========================================= */
 
 .event-header{
@@ -105,8 +112,8 @@ main {
     margin-bottom:30px;
     overflow:hidden;
 
-    /* EFECTO CRISTAL TRANSLÚCIDO */
-    background: rgba(15, 15, 15, 0.4);
+    /* CRISTALIZADO CON FONDO SUTILMENTE OSCURO */
+    background: rgba(15, 15, 15, 0.5);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 
@@ -221,7 +228,7 @@ main {
 
 
 /* =========================================
-   DATOS: EVENT DATE (AMARILLO)
+   DATOS: EVENT DATE (CON ETIQUETA SHOW DATE)
    ========================================= */
 
 .event-date{
@@ -236,8 +243,7 @@ main {
     margin:0;
     padding:0 11px;
 
-    /* FECHA EN AMARILLO */
-    color: #ffd400;
+    color:#ffffff;
 
     font-family:Arial,sans-serif;
     font-size:10px;
@@ -264,13 +270,13 @@ main {
 
 .event-date::before {
     content: "SHOW DATE: ";
-    color: #ffffff;
+    color: #ff353c;
     margin-right: 6px;
 }
 
 
 /* =========================================
-   DATOS: EVENT TYPE
+   DATOS: EVENT TYPE (CON ETIQUETA EVENT TYPE)
    ========================================= */
 
 .event-type {
@@ -363,6 +369,9 @@ main {
     border-bottom:1px solid rgba(255,55,75,.32);
 }
 
+
+/* ELEMENTO BRAND OCULTO SI YA NO SE USA APARTE */
+
 .event-brand{
     display:none;
 }
@@ -385,14 +394,17 @@ main {
         margin-bottom:24px;
     }
 
+
     .event-header-info{
         display:contents;
     }
+
 
     .event-header-info::before,
     .event-header-info::after{
         display:none;
     }
+
 
     .event-date,
     .event-type{
@@ -411,6 +423,7 @@ main {
         border-bottom:1px solid rgba(255,255,255,.07);
     }
 
+
     .event-header-image{
         order:2;
 
@@ -427,6 +440,7 @@ main {
         box-shadow:
             0 6px 18px rgba(0,0,0,.65);
     }
+
 
     .event-header h1{
         order:3;
@@ -467,13 +481,13 @@ main {
 
 
 /* =========================================
-   RESULT CARD (CRISTALIZADO TRANSLÚCIDO)
+   RESULT CARD
+   CRISTALIZADO OSCURECIDO POR DENTRO
    ========================================= */
 
 .result-card {
     position: relative;
-    /* EFECTO CRISTAL TRANSLÚCIDO */
-    background: rgba(15, 15, 15, 0.4);
+    background: rgba(15, 15, 15, 0.5);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgba(255,255,255,0.18);
@@ -488,24 +502,44 @@ main {
 
 
 /* =========================================
-   BRANDS
+   PLE
    ========================================= */
 
 .result-card.brand-ple {
     --brand: #d4a72c;
 }
 
+
+/* =========================================
+   RAW
+   ========================================= */
+
 .result-card.brand-raw {
     --brand: #d90024;
 }
+
+
+/* =========================================
+   SMACKDOWN
+   ========================================= */
 
 .result-card.brand-smackdown {
     --brand: #2588ff;
 }
 
+
+/* =========================================
+   NXT
+   ========================================= */
+
 .result-card.brand-nxt {
     --brand: #bfc3c7;
 }
+
+
+/* =========================================
+   SPEED
+   ========================================= */
 
 .result-card.brand-speed {
     --brand: #20c878;
@@ -518,42 +552,102 @@ main {
         #20c878 50%,
         #55d9ff 100%
     );
-    box-shadow: 0 0 10px #20c878, 0 0 10px #55d9ff;
+
+    box-shadow:
+        0 0 10px #20c878,
+        0 0 10px #55d9ff;
 }
 
+
+/* SCORE SPEED */
+
 .result-card.brand-speed .result-score {
-    background: linear-gradient(90deg, #20c878, #55d9ff);
+    background: linear-gradient(
+        90deg,
+        #20c878,
+        #55d9ff
+    );
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
+
+/* =========================================
+   AAA
+   ========================================= */
 
 .result-card.brand-aaa {
     --brand: #20c878;
 }
 
 .result-card.brand-aaa:before {
-    background: linear-gradient(90deg, #20c878 0%, #ffffff 50%, #d90024 100%);
-    box-shadow: 0 0 10px #20c878, 0 0 10px #d90024;
+    background:
+        linear-gradient(
+            90deg,
+            #20c878 0%,
+            #ffffff 50%,
+            #d90024 100%
+        );
+
+    box-shadow:
+        0 0 10px #20c878,
+        0 0 10px #d90024;
 }
+
+
+/* =========================================
+   AEW
+   BLANCO + DORADO CHAMPAGNE
+   ========================================= */
 
 .result-card.brand-aew {
     --brand: #e8e2d6;
 }
 
 .result-card.brand-aew:before {
-    background: linear-gradient(90deg, #ffffff 0%, #e8d6b0 50%, #ffffff 100%);
-    box-shadow: 0 0 10px #ffffff, 0 0 10px #e8d6b0;
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #e8d6b0 50%,
+            #ffffff 100%
+        );
+
+    box-shadow:
+        0 0 10px #ffffff,
+        0 0 10px #e8d6b0;
 }
+
+
+/* =========================================
+   TNA
+   ROJO + AMARILLO
+   ========================================= */
 
 .result-card.brand-tna {
     --brand: #d90024;
 }
 
 .result-card.brand-tna:before {
-    background: linear-gradient(90deg, #d90024 0%, #d90024 50%, #ffd400 100%);
-    box-shadow: 0 0 10px #d90024, 0 0 10px #ffd400;
+    background:
+        linear-gradient(
+            90deg,
+            #d90024 0%,
+            #d90024 50%,
+            #ffd400 100%
+        );
+
+    box-shadow:
+        0 0 10px #d90024,
+        0 0 10px #ffd400;
 }
+
+
+/* =========================================
+   CMLL
+   ========================================= */
 
 .result-card.brand-cmll {
     --brand: #285e8e;
@@ -573,8 +667,13 @@ main {
     box-shadow: 0 0 10px var(--brand);
 }
 
+
+/* =========================================
+   CARD HOVER
+   ========================================= */
+
 .result-card:hover {
-    border-color: rgba(255,255,255,0.4);
+    border-color: #444;
     transform: translateY(-2px);
 }
 
@@ -585,7 +684,7 @@ main {
 
 .match-name {
     text-align: center;
-    color: #aaa;
+    color: #888;
     font-size: 11px;
     font-weight: bold;
     letter-spacing: 2px;
@@ -605,6 +704,11 @@ main {
     margin-top: 20px;
 }
 
+
+/* =========================================
+   TEAM
+   ========================================= */
+
 .team {
     display: flex;
     justify-content: center;
@@ -616,7 +720,7 @@ main {
 
 
 /* =========================================
-   WRESTLER CARD (CRISTALIZADO TRANSLÚCIDO)
+   WRESTLER CARD (SÓLIDO, NO CRISTALIZADO)
    ========================================= */
 
 .wrestler {
@@ -624,10 +728,8 @@ main {
     text-align: center;
     position: relative;
     padding-top: 5px;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(12, 12, 12, 0.35);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
     transition: .25s;
 }
 
@@ -649,12 +751,19 @@ main {
     display: block;
     margin: 0 auto 10px;
     border: none !important;
+    box-shadow: none !important;
     transition: .25s;
 }
 
 .wrestler:hover img {
     transform: scale(1.04);
+    box-shadow: none !important;
 }
+
+
+/* =========================================
+   WRESTLER ACTIVE / FOCUS
+   ========================================= */
 
 .wrestler:focus,
 .wrestler:focus-within,
@@ -663,9 +772,16 @@ main {
     box-shadow: 0 0 12px var(--brand) !important;
 }
 
+.wrestler:focus img,
+.wrestler:focus-within img,
+.wrestler:active img {
+    border: none !important;
+    box-shadow: none !important;
+}
+
 
 /* =========================================
-   WRESTLER NAME (CRISTALIZADO TRANSLÚCIDO)
+   WRESTLER NAME (FONDO SÓLIDO)
    ========================================= */
 
 .wrestler span {
@@ -679,11 +795,14 @@ main {
     font-weight: bold;
     letter-spacing: .5px;
     line-height: 15px;
-    background: rgba(12, 12, 12, 0.55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-top: 1px solid rgba(255,255,255,0.12);
+    background: rgba(12,12,12,0.95);
+    border: 1px solid #292929;
 }
+
+
+/* =========================================
+   WRESTLER LINKS
+   ========================================= */
 
 .match a,
 .wrestler-link {
@@ -691,9 +810,19 @@ main {
     text-decoration: none;
 }
 
+.match a:visited,
+.wrestler-link:visited {
+    color: #fff;
+}
+
+.match a:hover,
+.wrestler-link:hover {
+    color: #fff;
+}
+
 
 /* =========================================
-   VS & SCORE (CRISTALIZADOS TRANSLÚCIDOS)
+   VS
    ========================================= */
 
 .vs {
@@ -703,11 +832,16 @@ main {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    color: #888;
+    color: #777;
     font-size: 12px;
     font-weight: 900;
     letter-spacing: 2px;
 }
+
+
+/* =========================================
+   SCORE
+   ========================================= */
 
 .match-score {
     min-width: 92px;
@@ -718,9 +852,7 @@ main {
     justify-content: center;
     gap: 9px;
     white-space: nowrap;
-    background: rgba(9, 9, 9, 0.55);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(9,9,9,.95);
     border: 1px solid var(--brand);
     border-top: 2px solid var(--brand);
     color: var(--brand);
@@ -742,7 +874,7 @@ main {
 
 
 /* =========================================
-   CHAMPIONSHIP (CRISTALIZADO TRANSLÚCIDO)
+   CHAMPIONSHIP (FONDO SÓLIDO, NO CRISTALIZADO)
    ========================================= */
 
 .match-championship {
@@ -750,17 +882,15 @@ main {
     width: fit-content;
     margin: 5px auto 20px;
     padding: 8px 16px;
-    background: rgba(23, 20, 13, 0.55);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(184, 155, 94, 0.4);
+    background: rgba(23,20,13,0.95);
+    border: 1px solid #b89b5e;
     color: #fff;
     font-size: 12px;
     font-weight: 900;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     text-align: center;
-    box-shadow: 0 0 10px rgba(184, 155, 94, 0.2);
+    box-shadow: 0 0 8px rgba(184,155,94,.22);
 }
 
 
@@ -771,8 +901,8 @@ main {
 .match-winner {
     margin-top: 22px;
     padding-top: 13px;
-    border-top: 1px solid rgba(255,255,255,0.12);
-    color: #888;
+    border-top: 1px solid #292929;
+    color: #777;
     font-size: 11px;
     letter-spacing: 1px;
     text-align: center;
@@ -789,20 +919,24 @@ main {
    ========================================= */
 
 @keyframes score {
+
     0% {
         opacity: 0;
         transform: scale(.75);
         filter: blur(4px);
     }
+
     60% {
         opacity: 1;
         transform: scale(1.08);
         filter: blur(0);
     }
+
     100% {
         opacity: 1;
         transform: scale(1);
     }
+
 }
 
 
@@ -846,6 +980,7 @@ main {
    ========================================= */
 
 @media (max-width: 600px) {
+
     header {
         height: 60px;
         padding: 0 18px;
@@ -937,6 +1072,7 @@ main {
         width: 70px;
         height: 70px;
     }
+
 }
 
 
@@ -974,16 +1110,32 @@ main {
 
     background:linear-gradient(
         90deg,
-        #C1121F, #1D4E89, #C7CBD1, #2E86AB, #2E7D4F, #E6E6E6, #C1121F
+        #C1121F,
+        #1D4E89,
+        #C7CBD1,
+        #2E86AB,
+        #2E7D4F,
+        #E6E6E6,
+        #C1121F
     );
+
     background-size:300% 100%;
     animation:chronoBar 5s linear infinite;
 }
 
 @keyframes chronoBar{
-    0%{ background-position:0% 50%; }
-    100%{ background-position:300% 50%; }
+    0%{
+        background-position:0% 50%;
+    }
+    100%{
+        background-position:300% 50%;
+    }
 }
+
+
+/* =========================================
+   FILA
+   ========================================= */
 
 .chronology-row{
     width:100%;
@@ -1004,60 +1156,155 @@ main {
     text-decoration:none;
 }
 
+.chronology-link:visited{
+    color:#fff;
+}
+
+
+/* =========================================
+   CARD
+   ========================================= */
+
 .chronology-card{
     position:relative;
     overflow:hidden;
+
     width:100%;
     min-height:115px;
     padding:8px;
 
-    /* CRISTALIZADO TRANSLÚCIDO EN CRONOLOGÍA */
-    background: rgba(13, 13, 13, 0.45);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.15);
+    background:#0d0d0d;
+    border:1px solid #333;
 
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
+
     text-align:center;
-    box-shadow: 0 2px 7px rgba(0,0,0,.65);
-    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+
+    box-shadow:
+        0 2px 7px rgba(0,0,0,.65);
+
+    transition:
+        transform .15s ease,
+        border-color .15s ease,
+        box-shadow .15s ease;
 }
 
 .chronology-card:before{
     content:"";
+
     position:absolute;
     top:0;
     left:0;
+
     width:100%;
     height:3px;
+
     background:linear-gradient(
         90deg,
-        #C1121F, #1D4E89, #C7CBD1, #2E86AB, #2E7D4F, #E6E6E6
+        #C1121F,
+        #1D4E89,
+        #C7CBD1,
+        #2E86AB,
+        #2E7D4F,
+        #E6E6E6
     );
+
     background-size:300% 100%;
+
     z-index:3;
 }
 
-.chronology-link:hover .chronology-card{
+.chronology-link:hover .chronology-card:before,
+.chronology-link:active .chronology-card:before{
+    animation:chronoBar .8s linear;
+}
+
+
+/* =========================================
+   CHROMA
+   ========================================= */
+
+.chronology-card:after{
+    content:"";
+
+    position:absolute;
+    top:-20%;
+    left:-130%;
+
+    width:70%;
+    height:140%;
+
+    background:linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(29,78,137,.12) 12%,
+        rgba(46,134,171,.30) 25%,
+        rgba(46,125,79,.30) 38%,
+        rgba(199,203,209,.32) 52%,
+        rgba(193,18,31,.32) 66%,
+        rgba(230,230,230,.22) 78%,
+        transparent 100%
+    );
+
+    transform:skewX(-22deg);
+
+    pointer-events:none;
+    z-index:5;
+}
+
+.chronology-link:hover .chronology-card:after,
+.chronology-link:active .chronology-card:after{
+    left:140%;
+    transition: left .65s cubic-bezier(.22,.61,.36,1);
+}
+
+.chronology-link:hover .chronology-card,
+.chronology-link:active .chronology-card{
     transform:translateY(-2px);
     border-color:#C7CBD1;
     box-shadow: 0 4px 12px rgba(0,0,0,.8);
 }
 
+
+/* =========================================
+   IMAGEN
+   ========================================= */
+
 .chronology-image{
     position:relative;
     z-index:4;
+
     width:58px;
     height:58px;
+
     object-fit:cover;
     display:block;
+
     margin-bottom:7px;
+
     border:1px solid #555;
-    box-shadow: 0 2px 6px rgba(0,0,0,.7);
+
+    box-shadow:
+        0 2px 6px rgba(0,0,0,.7);
+
+    transition:
+        border-color .15s ease,
+        box-shadow .15s ease;
 }
+
+.chronology-link:hover .chronology-image,
+.chronology-link:active .chronology-image{
+    border-color:#C7CBD1;
+    box-shadow: 0 0 8px rgba(199,203,209,.25);
+}
+
+
+/* =========================================
+   TEXTO
+   ========================================= */
 
 .chronology-title{
     position:relative;
@@ -1074,37 +1321,153 @@ main {
     position:relative;
     z-index:4;
     margin-top:4px;
-    color:#ffd400;
+    color:#C7CBD1;
     font-size:7px;
     line-height:9px;
     letter-spacing:.3px;
 }
 
+
+/* =========================================
+   CARD ACTUAL
+   ========================================= */
+
+.chronology-current{
+    position:relative;
+    z-index:6;
+}
+
+.chronology-current .chronology-card{
+    min-height:122px;
+    border:2px solid transparent;
+
+    background:
+        linear-gradient(#111,#111) padding-box,
+        linear-gradient(
+            135deg,
+            #C1121F,
+            #1D4E89,
+            #C7CBD1,
+            #2E86AB,
+            #2E7D4F,
+            #E6E6E6,
+            #C1121F
+        ) border-box;
+
+    background-size:auto,300% 300%;
+    animation: chronoCurrent 5s linear infinite;
+
+    box-shadow:
+        0 0 0 1px #111,
+        0 4px 14px rgba(0,0,0,.85);
+}
+
+.chronology-current .chronology-card:before{
+    height:4px;
+    background:linear-gradient(
+        90deg,
+        #C1121F,
+        #1D4E89,
+        #C7CBD1,
+        #2E86AB,
+        #2E7D4F,
+        #E6E6E6,
+        #C1121F
+    );
+    background-size:300% 100%;
+}
+
+.chronology-current .chronology-card:hover:before,
+.chronology-current .chronology-card:active:before{
+    animation:chronoBar .8s linear;
+}
+
+@keyframes chronoCurrent{
+    0%{
+        background-position: 0 0, 0% 50%;
+    }
+    50%{
+        background-position: 0 0, 100% 50%;
+    }
+    100%{
+        background-position: 0 0, 0% 50%;
+    }
+}
+
+.chronology-current .chronology-image{
+    border-color:#C7CBD1;
+    box-shadow: 0 0 10px rgba(199,203,209,.25);
+}
+
+.chronology-current .chronology-title{
+    color:#fff;
+}
+
+
+/* =========================================
+   CARD VACÍA
+   ========================================= */
+
+.chronology-empty{
+    color:#444;
+    border-color:#1A1A1A;
+    background:#090909;
+    box-shadow:none;
+}
+
+.chronology-empty:before,
+.chronology-empty:after{
+    display:none;
+}
+
+
+/* =========================================
+   MOBILE CHRONOLOGY
+   ========================================= */
+
 @media(max-width:600px){
+
     #event-chronology{
         margin-top:25px;
     }
+
     .chronology-block{
         margin-bottom:20px;
     }
+
+    .chronology-block h3{
+        margin-bottom:7px;
+        padding-bottom:5px;
+        font-size:9px;
+        letter-spacing:1.5px;
+    }
+
     .chronology-row{
         grid-template-columns: 1fr 1.08fr 1fr;
         gap:4px;
     }
+
     .chronology-card{
         min-height:92px;
         padding:5px 3px;
     }
+
+    .chronology-current .chronology-card{
+        min-height:98px;
+    }
+
     .chronology-image{
         width:42px;
         height:42px;
         margin-bottom:5px;
     }
+
     .chronology-title{
         font-size:7px;
         line-height:9px;
         letter-spacing:.2px;
     }
+
     .chronology-date{
         margin-top:3px;
         font-size:6px;
