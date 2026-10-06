@@ -59,339 +59,479 @@ main {
 
 
     
-/* EVENT HEADER */
+/* =========================================
+   EVENT HEADER
+   Y2K / WRESTLING NETWORK / HOLOGRAPHIC
+   ========================================= */
 
 .event-header{
-position:relative;
-display:flex;
-align-items:stretch;
-width:100%;
-height:180px;
-min-height:180px;
-margin-bottom:30px;
-background:#0d0d0d;
-border:1px solid #242424;
-overflow:hidden;
-box-shadow:
-0 8px 24px rgba(0,0,0,.65),
-inset 0 1px 0 rgba(255,255,255,.05);
+    position:relative;
+    display:flex;
+    align-items:stretch;
+    width:100%;
+    min-height:180px;
+    height:180px;
+    margin-bottom:30px;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #292929 0%,
+            #202020 24%,
+            #171717 55%,
+            #121212 78%,
+            #0d0d0d 100%
+        );
+
+    border:1px solid #383838;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.10),
+        inset 0 -1px 0 rgba(0,0,0,.9),
+        inset 0 -8px 18px rgba(0,0,0,.25),
+        0 8px 20px rgba(0,0,0,.55);
 }
 
-/* RAYOS / GRÁFICA INTEGRADA */
 
-.event-header:before{
-content:"";
-position:absolute;
-inset:0;
-background:
-linear-gradient(118deg,
-transparent 0 48%,
-rgba(255,255,255,.045) 48.2%,
-transparent 48.6%),
-linear-gradient(122deg,
-transparent 0 61%,
-rgba(217,0,36,.10) 61.2%,
-transparent 61.7%),
-linear-gradient(118deg,
-transparent 0 76%,
-rgba(255,255,255,.035) 76.2%,
-transparent 76.6%);
-pointer-events:none;
-z-index:1;
+/* LUCES / TEXTURA DEL CUADRO */
+
+.event-header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+
+    background:
+        linear-gradient(
+            125deg,
+            transparent 0 22%,
+            rgba(255,255,255,.035) 22.3%,
+            transparent 22.8% 47%,
+            rgba(217,0,36,.08) 47.3%,
+            transparent 48% 71%,
+            rgba(255,255,255,.025) 71.3%,
+            transparent 72%
+        ),
+        linear-gradient(
+            165deg,
+            transparent 0 58%,
+            rgba(217,0,36,.07) 58.3%,
+            transparent 59%
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025),
+            transparent 35%,
+            rgba(255,255,255,.015) 70%,
+            transparent
+        );
 }
+
 
 /* LÍNEA INFERIOR */
 
-.event-header:after{
-content:"";
-position:absolute;
-left:0;
-right:0;
-bottom:0;
-height:2px;
-background:
-linear-gradient(90deg,
-#d90024 0 18%,
-#fff 18.3% 34%,
-#555 34.3% 66%,
-#fff 66.3% 82%,
-#d90024 82.3% 100%);
-opacity:.75;
-z-index:6;
+.event-header::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:2px;
+    z-index:20;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            #7c0017 10%,
+            #d90024 25%,
+            #ff4a5f 42%,
+            #ffffff 50%,
+            #ff4a5f 58%,
+            #d90024 75%,
+            #7c0017 90%,
+            transparent 100%
+        );
+
+    opacity:.9;
 }
 
-/* IMAGEN 16:9 */
+
+/* =========================================
+   IMAGEN
+   ========================================= */
 
 .event-header-image{
-width:320px;
-height:180px;
-aspect-ratio:16/9;
-object-fit:cover;
-display:block;
-flex:0 0 320px;
-border:0;
-margin:0;
-position:relative;
-z-index:3;
-box-shadow:8px 0 18px rgba(0,0,0,.65);
+    position:relative;
+    z-index:4;
+
+    display:block;
+
+    width:320px;
+    height:180px;
+    flex:0 0 320px;
+
+    aspect-ratio:16 / 9;
+    object-fit:cover;
+
+    margin:0;
+    border:0;
+
+    box-shadow:
+        8px 0 18px rgba(0,0,0,.65);
 }
 
-/* INFORMACIÓN */
+
+/* =========================================
+   ZONA DERECHA
+   ========================================= */
 
 .event-header-info{
-position:relative;
-flex:1;
-min-width:0;
-height:180px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-padding:18px 28px 18px 34px;
-z-index:3;
-background:transparent;
+    position:relative;
+    z-index:5;
+
+    flex:1;
+    min-width:0;
+    height:180px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+
+    padding:14px 28px 18px 30px;
+
+    background:transparent;
 }
 
-/* SEPARADOR IMAGEN / INFORMACIÓN */
 
-.event-header-info:before{
-content:"";
-position:absolute;
-left:0;
-top:20px;
-bottom:20px;
-width:2px;
-background:
-linear-gradient(180deg,
-transparent,
-#d90024 20%,
-#fff 50%,
-#d90024 80%,
-transparent);
-opacity:.8;
+/* DIVISIÓN ROJA ENTRE IMAGEN Y TEXTO */
+
+.event-header-info::before{
+    content:"";
+    position:absolute;
+
+    left:0;
+    top:12px;
+    bottom:12px;
+
+    width:2px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            #d90024 20%,
+            #ff4a5f 45%,
+            #ffffff 50%,
+            #d90024 78%,
+            transparent
+        );
+
+    box-shadow:
+        0 0 8px rgba(217,0,36,.35);
 }
 
-/* PLACA PRINCIPAL TIPO ARCADE */
 
-.event-header h1{
-position:relative;
-display:block;
-width:max-content;
-max-width:100%;
-margin:0 0 11px 0;
-padding:11px 22px 11px 20px;
+/* DETALLE HOLOGRÁFICO INFERIOR */
 
-color:#fff;
-font-family:Arial,sans-serif;
-font-size:31px;
-font-weight:900;
-line-height:1;
-letter-spacing:1.5px;
-text-transform:uppercase;
+.event-header-info::after{
+    content:"";
+    position:absolute;
 
-text-shadow:
-0 1px 1px #000;
+    right:22px;
+    bottom:10px;
 
-background:
-linear-gradient(180deg,
-#e9e9e9 0%,
-#bdbdbd 16%,
-#777 48%,
-#cfcfcf 82%,
-#8b8b8b 100%);
+    width:135px;
+    height:14px;
 
-border:1px solid #f5f5f5;
-border-right:4px solid #777;
-border-bottom:3px solid #555;
+    pointer-events:none;
 
-box-shadow:
-inset 0 1px 0 rgba(255,255,255,.85),
-inset 0 -2px 0 rgba(0,0,0,.25),
-4px 4px 0 rgba(0,0,0,.55);
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0 8%,
+            rgba(255,255,255,.25) 8.5% 10%,
+            transparent 10.5% 25%,
+            rgba(217,0,36,.55) 25.5% 27%,
+            transparent 27.5% 43%,
+            rgba(255,255,255,.20) 43.5% 45%,
+            transparent 45.5% 61%,
+            rgba(217,0,36,.45) 61.5% 63%,
+            transparent 63.5% 79%,
+            rgba(255,255,255,.15) 79.5% 81%,
+            transparent 81.5%
+        );
 
-clip-path:polygon(
-0 0,
-calc(100% - 12px) 0,
-100% 12px,
-100% 100%,
-12px 100%,
-0 calc(100% - 12px)
-);
+    opacity:.7;
 }
 
-/* BORDE ROJO DEL BOTÓN */
 
-.event-header h1:before{
-content:"";
-position:absolute;
-left:0;
-top:0;
-bottom:0;
-width:5px;
-background:#d90024;
-box-shadow:1px 0 0 rgba(255,255,255,.5);
-}
-
-/* PEQUEÑO BRILLO DE LA PLACA */
-
-.event-header h1:after{
-content:"";
-position:absolute;
-left:8px;
-right:18px;
-top:2px;
-height:1px;
-background:rgba(255,255,255,.8);
-opacity:.7;
-}
-
-/* FECHA / SEGUNDO BOTÓN */
+/* =========================================
+   DATOS SUPERIORES
+   ========================================= */
 
 .event-date{
-position:relative;
-display:block;
-width:max-content;
-max-width:100%;
-margin:0;
-padding:7px 18px 7px 18px;
+    position:relative;
+    z-index:8;
 
-color:#fff;
-font-family:Arial,sans-serif;
-font-size:11px;
-font-weight:900;
-line-height:1.2;
-letter-spacing:2px;
-text-transform:uppercase;
+    display:flex;
+    align-items:center;
 
-text-shadow:
-0 1px 1px #000;
+    width:100%;
+    height:30px;
 
-background:
-linear-gradient(180deg,
-#d9d9d9 0%,
-#999 35%,
-#666 55%,
-#bdbdbd 100%);
+    margin:0 0 9px;
+    padding:0 13px;
 
-border:1px solid #eee;
-border-right:3px solid #666;
-border-bottom:2px solid #4b4b4b;
+    color:#d8d8d8;
 
-box-shadow:
-inset 0 1px 0 rgba(255,255,255,.75),
-inset 0 -1px 0 rgba(0,0,0,.3),
-3px 3px 0 rgba(0,0,0,.5);
+    font-family:Arial,sans-serif;
+    font-size:10px;
+    font-weight:900;
 
-clip-path:polygon(
-0 0,
-calc(100% - 7px) 0,
-100% 7px,
-100% 100%,
-7px 100%,
-0 calc(100% - 7px)
-);
+    letter-spacing:1.8px;
+    line-height:1;
+
+    text-transform:uppercase;
+    text-shadow:0 1px 2px #000;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.035) 35%,
+            rgba(217,0,36,.045) 70%,
+            transparent
+        );
+
+    border-top:1px solid rgba(255,255,255,.13);
+    border-bottom:1px solid rgba(255,255,255,.12);
+    border-left:3px solid #d90024;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.035),
+        inset 0 -5px 10px rgba(0,0,0,.16);
 }
 
-/* PEQUEÑA MARCA ROJA DE LA FECHA */
 
-.event-date:before{
-content:"";
-position:absolute;
-left:0;
-top:0;
-bottom:0;
-width:3px;
-background:#d90024;
+/* PEQUEÑO DESTELLO DEL DATO */
+
+.event-date::after{
+    content:"";
+
+    position:absolute;
+    right:8px;
+    top:0;
+    bottom:0;
+
+    width:65px;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0 30%,
+            rgba(255,255,255,.09) 31% 33%,
+            transparent 34% 55%,
+            rgba(217,0,36,.14) 56% 58%,
+            transparent 59%
+        );
+
+    pointer-events:none;
 }
 
-/* GRÁFICA INFERIOR */
 
-.event-header-info:after{
-content:"";
-position:absolute;
-right:25px;
-bottom:20px;
-width:105px;
-height:14px;
-background:
-linear-gradient(135deg,
-transparent 0 12%,
-rgba(255,255,255,.4) 12.5% 13.5%,
-transparent 14% 30%,
-rgba(217,0,36,.65) 30.5% 32%,
-transparent 32.5% 48%,
-rgba(255,255,255,.3) 48.5% 50%,
-transparent 50.5% 67%,
-rgba(217,0,36,.45) 67.5% 69%,
-transparent 69.5%);
-opacity:.65;
+/* =========================================
+   NOMBRE DEL EVENTO
+   ========================================= */
+
+.event-header h1{
+    position:relative;
+    z-index:8;
+
+    display:flex;
+    align-items:center;
+
+    width:100%;
+    min-height:64px;
+    height:64px;
+
+    margin:0;
+    padding:0 20px;
+
+    overflow:hidden;
+
+    color:#fff;
+
+    font-family:Arial,sans-serif;
+    font-size:31px;
+    font-weight:900;
+
+    line-height:1;
+    letter-spacing:1.7px;
+
+    text-transform:uppercase;
+    text-shadow:
+        0 1px 2px #000,
+        0 0 12px rgba(255,255,255,.08);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(217,0,36,.28) 0%,
+            rgba(217,0,36,.13) 25%,
+            rgba(255,255,255,.045) 52%,
+            rgba(255,255,255,.018) 76%,
+            transparent 100%
+        );
+
+    border-top:1px solid rgba(255,255,255,.20);
+    border-bottom:1px solid rgba(217,0,36,.65);
+    border-left:5px solid #d90024;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.045),
+        inset 0 -8px 14px rgba(0,0,0,.18);
 }
 
-/* OCULTAR DATOS REDUNDANTES */
+
+/* DISEÑO HOLOGRÁFICO DEL NOMBRE */
+
+.event-header h1::after{
+    content:"";
+
+    position:absolute;
+    right:0;
+    top:0;
+
+    width:180px;
+    height:100%;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0 24%,
+            rgba(255,255,255,.08) 24.5% 26%,
+            transparent 26.5% 42%,
+            rgba(217,0,36,.18) 42.5% 44%,
+            transparent 44.5% 61%,
+            rgba(255,255,255,.06) 61.5% 63%,
+            transparent 63.5%
+        );
+}
+
+
+/* =========================================
+   ELEMENTOS ANTIGUOS
+   ========================================= */
 
 .event-type,
 .event-brand{
-display:none;
+    display:none;
 }
 
 
-/* MOBILE */
+/* =========================================
+   MOBILE
+   ========================================= */
 
 @media(max-width:700px){
 
-.event-header{
-display:flex;
-flex-direction:column;
-width:100%;
-height:auto;
-min-height:0;
-margin-bottom:24px;
-}
+    .event-header{
+        display:flex;
+        flex-direction:column;
 
-.event-header-image{
-width:100%;
-height:auto;
-aspect-ratio:16/9;
-flex:0 0 auto;
-object-fit:cover;
-box-shadow:
-0 7px 18px rgba(0,0,0,.7);
-}
+        width:100%;
+        height:auto;
+        min-height:0;
 
-.event-header-info{
-width:100%;
-height:auto;
-min-height:125px;
-padding:20px 18px 23px 22px;
-background:transparent;
-}
+        margin-bottom:24px;
+    }
 
-.event-header-info:before{
-top:0;
-bottom:0;
-left:0;
-width:3px;
-}
 
-.event-header h1{
-font-size:24px;
-letter-spacing:1.2px;
-padding:10px 17px 10px 17px;
-margin-bottom:10px;
-}
+    /* DATOS ARRIBA */
 
-.event-date{
-font-size:9px;
-letter-spacing:1.7px;
-padding:6px 13px 6px 14px;
-}
+    .event-header-info{
+        display:contents;
+    }
 
-.event-header-info:after{
-right:14px;
-bottom:13px;
-width:80px;
-height:13px;
-}
 
+    .event-header-info::before,
+    .event-header-info::after{
+        display:none;
+    }
+
+
+    .event-date{
+        order:1;
+
+        width:100%;
+        height:31px;
+
+        margin:0;
+        padding:0 12px;
+
+        font-size:9px;
+        letter-spacing:1.4px;
+
+        border-left:3px solid #d90024;
+        border-top:0;
+    }
+
+
+    /* IMAGEN EN EL MEDIO */
+
+    .event-header-image{
+        order:2;
+
+        width:100%;
+        height:auto;
+
+        flex:0 0 auto;
+
+        aspect-ratio:16 / 9;
+        object-fit:cover;
+
+        margin:0;
+
+        box-shadow:
+            0 7px 18px rgba(0,0,0,.65);
+    }
+
+
+    /* NOMBRE ABAJO */
+
+    .event-header h1{
+        order:3;
+
+        width:100%;
+        min-height:58px;
+        height:auto;
+
+        margin:0;
+        padding:15px 15px;
+
+        font-size:22px;
+        letter-spacing:1.1px;
+        line-height:1.05;
+
+        border-left:0;
+        border-top:1px solid rgba(255,255,255,.16);
+        border-bottom:1px solid rgba(217,0,36,.7);
+    }
+
+
+    .event-header h1::after{
+        width:120px;
+    }
+
+
+    .event-date::after{
+        width:50px;
+    }
 }
 
 
