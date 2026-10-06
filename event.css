@@ -1,1 +1,2121 @@
+* {
+    box-sizing: border-box;
+}
 
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-width: 0;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   BODY - RAYOS BRILLANTES Y EVIDENTES
+   FONDO GLOBAL DE TODA LA PÁGINA
+   ========================================= */
+
+body {
+    background:
+        linear-gradient(
+            126deg,
+            transparent 0 17.5%,
+            rgba(217,0,36,.30) 18.2%,
+            rgba(255,35,60,.55) 18.6%,
+            rgba(217,0,36,.20) 19.0%,
+            transparent 19.8% 43%
+        ),
+        linear-gradient(
+            139deg,
+            transparent 0 41.5%,
+            rgba(217,0,36,.22) 42.2%,
+            rgba(255,40,65,.45) 42.6%,
+            rgba(217,0,36,.15) 43.0%,
+            transparent 43.8% 100%
+        ),
+        linear-gradient(
+            118deg,
+            transparent 0 64.5%,
+            rgba(255,255,255,.08) 65.2%,
+            rgba(255,255,255,.22) 65.6%,
+            transparent 66.3% 100%
+        ),
+        linear-gradient(
+            145deg,
+            #111 0%,
+            #090909 48%,
+            #050505 100%
+        );
+
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    color: #fff;
+
+    font-family: Arial, sans-serif;
+
+    overflow-x: hidden;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+header {
+    width: 100%;
+    height: 70px;
+
+    background: rgba(17,17,17,.88);
+
+    border-bottom: 1px solid #292929;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 35px;
+}
+
+.back-button {
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.back-button:hover {
+    opacity: .6;
+}
+
+
+/* =========================================
+   MAIN
+   ========================================= */
+
+main {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 40px auto;
+
+    padding: 0 25px;
+
+    min-width: 0;
+}
+
+
+/* =========================================
+   EVENT HEADER
+   UNA SOLA CARD
+   IMAGEN 16:9 + INFORMACIÓN
+   ========================================= */
+
+.event-header {
+    position: relative;
+
+    display: grid;
+
+    /*
+       38% imagen
+       62% información.
+       La imagen mantiene 16:9.
+    */
+    grid-template-columns:
+        minmax(250px, 38%)
+        minmax(0, 1fr);
+
+    align-items: stretch;
+
+    width: 100%;
+
+    height: auto;
+    min-height: 0;
+
+    margin-bottom: 30px;
+
+    overflow: hidden;
+
+    /*
+       Vidrio translúcido.
+       El fondo de rayos sigue siendo visible.
+    */
+    background: rgba(15,15,15,.30);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.15),
+        0 8px 25px rgba(0,0,0,.65);
+
+    min-width: 0;
+}
+
+
+/* =========================================
+   IMAGEN DEL EVENTO
+   16:9 REAL
+   ========================================= */
+
+.event-header-image {
+    position: relative;
+
+    z-index: 5;
+
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    min-width: 0;
+
+    aspect-ratio: 16 / 9;
+
+    object-fit: cover;
+
+    margin: 0;
+
+    border: 0;
+
+    align-self: start;
+
+    box-shadow:
+        7px 0 18px rgba(0,0,0,.62);
+}
+
+
+/* =========================================
+   ZONA DERECHA
+   GENERADA POR event.js
+   ========================================= */
+
+.event-header-info {
+    position: relative;
+
+    z-index: 6;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-self: stretch;
+
+    width: 100%;
+
+    min-width: 0;
+    min-height: 100%;
+
+    height: auto;
+
+    padding: 14px 22px 14px 24px;
+
+    /*
+       Rojo translúcido.
+       No tapa completamente los rayos.
+    */
+    background:
+        linear-gradient(
+            135deg,
+            rgba(120,0,18,.34) 0%,
+            rgba(75,0,12,.25) 45%,
+            rgba(35,0,7,.14) 100%
+        );
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   LÍNEA DE LUZ VERTICAL
+   ========================================= */
+
+.event-header-info::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 10px;
+    bottom: 10px;
+
+    width: 1px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(217,0,36,.45) 20%,
+            rgba(255,55,75,.80) 48%,
+            rgba(255,255,255,.28) 50%,
+            rgba(217,0,36,.55) 53%,
+            transparent 82%
+        );
+
+    opacity: .75;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   DETALLE FUTURISTA INFERIOR
+   ========================================= */
+
+.event-header-info::after {
+    content: "";
+
+    position: absolute;
+
+    right: 18px;
+    bottom: 8px;
+
+    width: 125px;
+    height: 11px;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0 8%,
+            rgba(255,255,255,.20) 8.5% 10%,
+            transparent 10.5% 26%,
+            rgba(217,0,36,.48) 26.5% 28%,
+            transparent 28.5% 45%,
+            rgba(255,255,255,.12) 45.5% 47%,
+            transparent 47.5% 64%,
+            rgba(217,0,36,.35) 64.5% 66%,
+            transparent 66.5%
+        );
+
+    opacity: .55;
+}
+
+
+/* =========================================
+   DATOS: EVENT TYPE
+   ========================================= */
+
+.event-type {
+    position: relative;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-width: 0;
+
+    height: 27px;
+
+    margin: 0;
+
+    padding: 0 11px;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.8px;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.9);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(217,0,36,.30),
+            rgba(217,0,36,.09) 42%,
+            rgba(217,0,36,.018) 75%,
+            transparent
+        );
+
+    border: 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.075);
+
+    overflow: hidden;
+}
+
+.event-type::before {
+    content: "EVENT TYPE: ";
+
+    flex: 0 0 auto;
+
+    color: #ff353c;
+
+    margin-right: 6px;
+}
+
+
+/* =========================================
+   NOMBRE DEL EVENTO
+   ========================================= */
+
+.event-header h1 {
+    position: relative;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 70px;
+
+    height: auto;
+
+    margin: 0;
+
+    padding: 12px 20px;
+
+    overflow-wrap: anywhere;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: clamp(25px, 3.2vw, 36px);
+
+    font-weight: 900;
+
+    line-height: 1.05;
+
+    letter-spacing: 1.8px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 3px 5px rgba(0,0,0,.9),
+        0 0 12px rgba(255,255,255,.3);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(217,0,36,.30),
+            rgba(217,0,36,.085) 38%,
+            rgba(255,255,255,.015) 65%,
+            transparent 100%
+        );
+
+    border: 0;
+
+    border-top:
+        1px solid rgba(255,255,255,.10);
+
+    border-bottom:
+        1px solid rgba(255,55,75,.32);
+}
+
+
+/* =========================================
+   DATOS: MATCH DATE
+   ========================================= */
+
+.event-date {
+    position: relative;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-width: 0;
+
+    height: 27px;
+
+    margin: 0;
+
+    padding: 0 11px;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.8px;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.9);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(217,0,36,.30),
+            rgba(217,0,36,.09) 42%,
+            rgba(217,0,36,.018) 75%,
+            transparent
+        );
+
+    border: 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.075);
+
+    overflow: hidden;
+}
+
+.event-date::before {
+    content: "MATCH DATE: ";
+
+    flex: 0 0 auto;
+
+    color: #ff353c;
+
+    margin-right: 6px;
+}
+
+
+/* =========================================
+   BRAND
+   EVENT.JS LO MANEJA PERO NO SE MUESTRA
+   ========================================= */
+
+.event-brand {
+    display: none;
+}
+
+
+/* =========================================
+   MOBILE EVENT HEADER
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .event-header {
+        display: flex;
+
+        flex-direction: column;
+
+        width: 100%;
+
+        height: auto;
+
+        min-height: 0;
+
+        margin-bottom: 24px;
+    }
+
+    .event-header-image {
+        order: 1;
+
+        width: 100%;
+
+        height: auto;
+
+        flex: 0 0 auto;
+
+        aspect-ratio: 16 / 9;
+
+        object-fit: cover;
+
+        margin: 0;
+
+        box-shadow:
+            0 6px 18px rgba(0,0,0,.65);
+    }
+
+    .event-header-info {
+        order: 2;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        width: 100%;
+
+        height: auto;
+
+        min-height: 0;
+
+        padding: 10px 12px 12px;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(120,0,18,.34),
+                rgba(60,0,10,.22)
+            );
+    }
+
+    .event-header-info::before,
+    .event-header-info::after {
+        display: none;
+    }
+
+    .event-type {
+        order: 1;
+
+        width: 100%;
+
+        height: 27px;
+
+        margin: 0;
+
+        padding: 0 9px;
+
+        font-size: 8px;
+
+        letter-spacing: 1.1px;
+    }
+
+    .event-header h1 {
+        order: 2;
+
+        width: 100%;
+
+        min-height: 58px;
+
+        height: auto;
+
+        margin: 0;
+
+        padding: 13px 10px;
+
+        font-size: clamp(20px, 7vw, 27px);
+
+        line-height: 1.05;
+
+        letter-spacing: 1px;
+
+        border-top:
+            1px solid rgba(255,255,255,.08);
+
+        border-bottom:
+            1px solid rgba(255,55,75,.35);
+    }
+
+    .event-date {
+        order: 3;
+
+        width: 100%;
+
+        height: 27px;
+
+        margin: 0;
+
+        padding: 0 9px;
+
+        font-size: 8px;
+
+        letter-spacing: 1.1px;
+
+        border-bottom: 0;
+    }
+}
+
+
+/* =========================================
+   RESULTS
+   ========================================= */
+
+.results-section {
+    width: 100%;
+
+    min-width: 0;
+}
+
+.results-section > h2 {
+    margin:
+        0 0 18px;
+
+    font-size: 16px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   RESULT CARD
+   GLASS TRANSLÚCIDO
+   ========================================= */
+
+.result-card {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 100%;
+
+    min-width: 0;
+
+    /*
+       Más transparente para que
+       los rayos sean visibles.
+    */
+    background:
+        rgba(15,15,15,.25);
+
+    backdrop-filter: blur(8px);
+
+    -webkit-backdrop-filter: blur(8px);
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    padding: 22px;
+
+    margin-bottom: 14px;
+
+    transition: .2s;
+
+    --brand: #d4a72c;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.10),
+        0 8px 25px rgba(0,0,0,.60);
+}
+
+
+/* =========================================
+   PLE
+   ========================================= */
+
+.result-card.brand-ple {
+    --brand: #d4a72c;
+}
+
+
+/* =========================================
+   RAW
+   ========================================= */
+
+.result-card.brand-raw {
+    --brand: #d90024;
+}
+
+
+/* =========================================
+   SMACKDOWN
+   ========================================= */
+
+.result-card.brand-smackdown {
+    --brand: #2588ff;
+}
+
+
+/* =========================================
+   NXT
+   ========================================= */
+
+.result-card.brand-nxt {
+    --brand: #bfc3c7;
+}
+
+
+/* =========================================
+   SPEED
+   ========================================= */
+
+.result-card.brand-speed {
+    --brand: #20c878;
+}
+
+.result-card.brand-speed:before {
+    background:
+        linear-gradient(
+            90deg,
+            #20c878 0%,
+            #20c878 50%,
+            #55d9ff 100%
+        );
+
+    box-shadow:
+        0 0 10px #20c878,
+        0 0 10px #55d9ff;
+}
+
+
+/* =========================================
+   SCORE SPEED
+   ========================================= */
+
+.result-card.brand-speed .result-score {
+    background:
+        linear-gradient(
+            90deg,
+            #20c878,
+            #55d9ff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+}
+
+
+/* =========================================
+   AAA
+   ========================================= */
+
+.result-card.brand-aaa {
+    --brand: #20c878;
+}
+
+.result-card.brand-aaa:before {
+    background:
+        linear-gradient(
+            90deg,
+            #20c878 0%,
+            #ffffff 50%,
+            #d90024 100%
+        );
+
+    box-shadow:
+        0 0 10px #20c878,
+        0 0 10px #d90024;
+}
+
+
+/* =========================================
+   AEW
+   ========================================= */
+
+.result-card.brand-aew {
+    --brand: #e8e2d6;
+}
+
+.result-card.brand-aew:before {
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #e8d6b0 50%,
+            #ffffff 100%
+        );
+
+    box-shadow:
+        0 0 10px #ffffff,
+        0 0 10px #e8d6b0;
+}
+
+
+/* =========================================
+   TNA
+   ========================================= */
+
+.result-card.brand-tna {
+    --brand: #d90024;
+}
+
+.result-card.brand-tna:before {
+    background:
+        linear-gradient(
+            90deg,
+            #d90024 0%,
+            #d90024 50%,
+            #ffd400 100%
+        );
+
+    box-shadow:
+        0 0 10px #d90024,
+        0 0 10px #ffd400;
+}
+
+
+/* =========================================
+   CMLL
+   ========================================= */
+
+.result-card.brand-cmll {
+    --brand: #285e8e;
+}
+
+
+/* =========================================
+   CARD TOP LINE
+   ========================================= */
+
+.result-card:before {
+    content: "";
+
+    display: block;
+
+    height: 3px;
+
+    margin:
+        -22px -22px 20px;
+
+    background:
+        var(--brand);
+
+    box-shadow:
+        0 0 10px var(--brand);
+}
+
+
+/* =========================================
+   CARD HOVER
+   ========================================= */
+
+.result-card:hover {
+    border-color: #444;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================
+   MATCH NAME
+   ========================================= */
+
+.match-name {
+    text-align: center;
+
+    color: #888;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================================
+   MATCH
+   ========================================= */
+
+.match {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 45px;
+
+    margin-top: 20px;
+
+    min-width: 0;
+}
+
+
+/* =========================================
+   TEAM
+   ========================================= */
+
+.team {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    max-width: 430px;
+
+    min-width: 0;
+}
+
+
+/* =========================================
+   WRESTLER CARD
+   ========================================= */
+
+.wrestler {
+    width: 125px;
+
+    text-align: center;
+
+    position: relative;
+
+    padding-top: 5px;
+
+    border:
+        1px solid transparent !important;
+
+    box-shadow:
+        none !important;
+
+    transition: .25s;
+}
+
+.wrestler:before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 12.5px;
+    right: 12.5px;
+
+    height: 3px;
+
+    background:
+        var(--brand) !important;
+
+    box-shadow:
+        0 0 8px var(--brand) !important;
+}
+
+.wrestler img {
+    width: 100px;
+    height: 100px;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin:
+        0 auto 10px;
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    transition: .25s;
+}
+
+.wrestler:hover img {
+    transform:
+        scale(1.04);
+
+    box-shadow:
+        none !important;
+}
+
+
+/* =========================================
+   WRESTLER ACTIVE / FOCUS
+   ========================================= */
+
+.wrestler:focus,
+.wrestler:focus-within,
+.wrestler:active {
+    border-color:
+        var(--brand) !important;
+
+    box-shadow:
+        0 0 12px var(--brand) !important;
+}
+
+.wrestler:focus img,
+.wrestler:focus-within img,
+.wrestler:active img {
+    border: none !important;
+
+    box-shadow:
+        none !important;
+}
+
+
+/* =========================================
+   WRESTLER NAME
+   ========================================= */
+
+.wrestler span {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 34px;
+
+    padding:
+        5px 6px;
+
+    color: #fff;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: .5px;
+
+    line-height: 15px;
+
+    background:
+        rgba(12,12,12,.88);
+
+    border:
+        1px solid #292929;
+}
+
+
+/* =========================================
+   WRESTLER LINKS
+   ========================================= */
+
+.match a,
+.wrestler-link {
+    color: #fff;
+
+    text-decoration: none;
+}
+
+.match a:visited,
+.wrestler-link:visited {
+    color: #fff;
+}
+
+.match a:hover,
+.wrestler-link:hover {
+    color: #fff;
+}
+
+
+/* =========================================
+   VS
+   ========================================= */
+
+.vs {
+    min-width: 92px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    color: #777;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    flex-shrink: 1;
+}
+
+
+/* =========================================
+   SCORE
+   ========================================= */
+
+.match-score {
+    min-width: 92px;
+
+    height: 46px;
+
+    padding:
+        8px 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    white-space: nowrap;
+
+    background:
+        rgba(9,9,9,.90);
+
+    border:
+        1px solid var(--brand);
+
+    border-top:
+        2px solid var(--brand);
+
+    color:
+        var(--brand);
+
+    font-size: 25px;
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 7px var(--brand);
+
+    box-shadow:
+        0 0 0 1px var(--brand),
+        0 0 12px var(--brand);
+
+    animation:
+        score .55s ease-out both;
+}
+
+.match-score span {
+    display: inline-block;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   CHAMPIONSHIP
+   ========================================= */
+
+.match-championship {
+    display: block;
+
+    width: fit-content;
+
+    max-width: 100%;
+
+    margin:
+        5px auto 20px;
+
+    padding:
+        8px 16px;
+
+    background:
+        rgba(23,20,13,.92);
+
+    border:
+        1px solid #b89b5e;
+
+    color: #fff;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 8px rgba(184,155,94,.22);
+}
+
+
+/* =========================================
+   WINNER
+   ========================================= */
+
+.match-winner {
+    margin-top: 22px;
+
+    padding-top: 13px;
+
+    border-top:
+        1px solid #292929;
+
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+.match-winner strong {
+    color: #fff;
+
+    margin-left: 5px;
+}
+
+
+/* =========================================
+   SCORE ANIMATION
+   ========================================= */
+
+@keyframes score {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(.75);
+
+        filter:
+            blur(4px);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            scale(1.08);
+
+        filter:
+            blur(0);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   ELIMINATION CHAMBER TAG TEAM
+   ========================================= */
+
+.chamber-teams {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        25px 15px;
+
+    margin-top: 20px;
+
+    min-width: 0;
+}
+
+.chamber-team {
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    min-width: 0;
+}
+
+.chamber-team-number {
+    display: none;
+}
+
+.chamber-team .wrestler {
+    width: 125px;
+
+    flex:
+        0 0 125px;
+}
+
+.chamber-team .wrestler img {
+    width: 100px;
+    height: 100px;
+}
+
+
+/* =========================================
+   MOBILE RESULTS
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    header {
+        height: 60px;
+
+        padding:
+            0 18px;
+    }
+
+    main {
+        width: 100%;
+
+        margin:
+            25px auto;
+
+        padding:
+            0 14px;
+    }
+
+    .result-card {
+        width: 100%;
+
+        max-width: 100%;
+
+        padding: 18px;
+
+        /*
+           A12:
+           blur más liviano.
+        */
+        backdrop-filter: blur(5px);
+
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    .result-card:before {
+        margin:
+            -18px -18px 18px;
+    }
+
+    .match {
+        width: 90%;
+
+        max-width: 100%;
+
+        margin:
+            20px auto 0;
+
+        gap: 8px;
+    }
+
+    .team {
+        flex:
+            1 1 0;
+
+        width: 0;
+
+        max-width: none;
+
+        gap: 8px;
+
+        min-width: 0;
+    }
+
+    .team .wrestler {
+        width: 100%;
+
+        max-width: 100px;
+
+        padding-top: 4px;
+    }
+
+    .team .wrestler:before {
+        left: 5px;
+        right: 5px;
+    }
+
+    .team .wrestler img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .team .wrestler span {
+        font-size: 9px;
+
+        min-height: 36px;
+
+        line-height: 13px;
+    }
+
+    .vs {
+        flex:
+            0 0 64px;
+
+        min-width: 64px;
+
+        gap: 9px;
+
+        font-size: 9px;
+
+        letter-spacing: 1px;
+    }
+
+    .match-score {
+        min-width: 76px;
+
+        width: 76px;
+
+        height: 42px;
+
+        padding:
+            7px 5px;
+
+        gap: 5px;
+
+        font-size: 21px;
+
+        letter-spacing: 0;
+
+        white-space: nowrap;
+    }
+
+    .chamber-teams {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap:
+            18px 8px;
+    }
+
+    .chamber-team {
+        flex-direction: row;
+
+        gap: 5px;
+    }
+
+    .chamber-team .wrestler {
+        width: 90px;
+
+        flex:
+            0 0 90px;
+    }
+
+    .chamber-team .wrestler img {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+
+/* =========================================
+   EVENT CHRONOLOGY
+   ========================================= */
+
+#event-chronology {
+    width: 100%;
+
+    margin-top: 35px;
+
+    min-width: 0;
+}
+
+.chronology-block {
+    width: 100%;
+
+    margin-bottom: 25px;
+
+    min-width: 0;
+}
+
+.chronology-block h3 {
+    margin:
+        0 0 10px;
+
+    padding-bottom: 7px;
+
+    color: #fff;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+
+    text-transform: uppercase;
+}
+
+.chronology-block h3:after {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+
+    height: 2px;
+
+    margin-top: 7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #C1121F,
+            #1D4E89,
+            #C7CBD1,
+            #2E86AB,
+            #2E7D4F,
+            #E6E6E6,
+            #C1121F
+        );
+
+    background-size:
+        300% 100%;
+
+    animation:
+        chronoBar 5s linear infinite;
+}
+
+@keyframes chronoBar {
+
+    0% {
+        background-position:
+            0% 50%;
+    }
+
+    100% {
+        background-position:
+            300% 50%;
+    }
+}
+
+
+/* =========================================
+   FILA
+   ========================================= */
+
+.chronology-row {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1.08fr 1fr;
+
+    gap: 8px;
+
+    align-items: stretch;
+
+    min-width: 0;
+}
+
+.chronology-column {
+    min-width: 0;
+
+    display: flex;
+}
+
+.chronology-link {
+    width: 100%;
+
+    min-width: 0;
+
+    color: #fff;
+
+    text-decoration: none;
+}
+
+.chronology-link:visited {
+    color: #fff;
+}
+
+
+/* =========================================
+   CARD
+   GLASS TRANSLÚCIDO
+   ========================================= */
+
+.chronology-card {
+    position: relative;
+
+    overflow: hidden;
+
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 115px;
+
+    padding: 8px;
+
+    background:
+        rgba(13,13,13,.38);
+
+    backdrop-filter: blur(7px);
+
+    -webkit-backdrop-filter: blur(7px);
+
+    border:
+        1px solid rgba(255,255,255,.16);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    box-shadow:
+        0 2px 7px rgba(0,0,0,.55);
+
+    transition:
+        transform .15s ease,
+        border-color .15s ease,
+        box-shadow .15s ease;
+}
+
+.chronology-card:before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #C1121F,
+            #1D4E89,
+            #C7CBD1,
+            #2E86AB,
+            #2E7D4F,
+            #E6E6E6
+        );
+
+    background-size:
+        300% 100%;
+
+    z-index: 3;
+}
+
+.chronology-link:hover .chronology-card:before,
+.chronology-link:active .chronology-card:before {
+    animation:
+        chronoBar .8s linear;
+}
+
+
+/* =========================================
+   CHROMA
+   ========================================= */
+
+.chronology-card:after {
+    content: "";
+
+    position: absolute;
+
+    top: -20%;
+    left: -130%;
+
+    width: 70%;
+    height: 140%;
+
+    background:
+        linear-gradient(
+            100deg,
+            transparent 0%,
+            rgba(29,78,137,.12) 12%,
+            rgba(46,134,171,.30) 25%,
+            rgba(46,125,79,.30) 38%,
+            rgba(199,203,209,.32) 52%,
+            rgba(193,18,31,.32) 66%,
+            rgba(230,230,230,.22) 78%,
+            transparent 100%
+        );
+
+    transform:
+        skewX(-22deg);
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+.chronology-link:hover .chronology-card:after,
+.chronology-link:active .chronology-card:after {
+    left: 140%;
+
+    transition:
+        left .65s cubic-bezier(.22,.61,.36,1);
+}
+
+.chronology-link:hover .chronology-card,
+.chronology-link:active .chronology-card {
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #C7CBD1;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.8);
+}
+
+
+/* =========================================
+   IMAGEN CHRONOLOGY
+   ========================================= */
+
+.chronology-image {
+    position: relative;
+
+    z-index: 4;
+
+    width: 58px;
+    height: 58px;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    border:
+        1px solid #555;
+
+    box-shadow:
+        0 2px 6px rgba(0,0,0,.7);
+
+    transition:
+        border-color .15s ease,
+        box-shadow .15s ease;
+}
+
+.chronology-link:hover .chronology-image,
+.chronology-link:active .chronology-image {
+    border-color:
+        #C7CBD1;
+
+    box-shadow:
+        0 0 8px rgba(199,203,209,.25);
+}
+
+
+/* =========================================
+   TEXTO
+   ========================================= */
+
+.chronology-title {
+    position: relative;
+
+    z-index: 4;
+
+    color: #fff;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    line-height: 12px;
+
+    letter-spacing: .4px;
+
+    text-transform: uppercase;
+}
+
+.chronology-date {
+    position: relative;
+
+    z-index: 4;
+
+    margin-top: 4px;
+
+    color: #C7CBD1;
+
+    font-size: 7px;
+
+    line-height: 9px;
+
+    letter-spacing: .3px;
+}
+
+
+/* =========================================
+   CARD ACTUAL
+   ========================================= */
+
+.chronology-current {
+    position: relative;
+
+    z-index: 6;
+}
+
+.chronology-current .chronology-card {
+    min-height: 122px;
+
+    border:
+        2px solid transparent;
+
+    background:
+        linear-gradient(
+            rgba(17,17,17,.40),
+            rgba(17,17,17,.40)
+        ) padding-box,
+
+        linear-gradient(
+            135deg,
+            #C1121F,
+            #1D4E89,
+            #C7CBD1,
+            #2E86AB,
+            #2E7D4F,
+            #E6E6E6,
+            #C1121F
+        ) border-box;
+
+    background-size:
+        auto,
+        300% 300%;
+
+    animation:
+        chronoCurrent 5s linear infinite;
+
+    box-shadow:
+        0 0 0 1px #111,
+        0 4px 14px rgba(0,0,0,.75);
+}
+
+.chronology-current .chronology-card:before {
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #C1121F,
+            #1D4E89,
+            #C7CBD1,
+            #2E86AB,
+            #2E7D4F,
+            #E6E6E6,
+            #C1121F
+        );
+
+    background-size:
+        300% 100%;
+}
+
+.chronology-current .chronology-card:hover:before,
+.chronology-current .chronology-card:active:before {
+    animation:
+        chronoBar .8s linear;
+}
+
+@keyframes chronoCurrent {
+
+    0% {
+        background-position:
+            0 0,
+            0% 50%;
+    }
+
+    50% {
+        background-position:
+            0 0,
+            100% 50%;
+    }
+
+    100% {
+        background-position:
+            0 0,
+            0% 50%;
+    }
+}
+
+.chronology-current .chronology-image {
+    border-color:
+        #C7CBD1;
+
+    box-shadow:
+        0 0 10px rgba(199,203,209,.25);
+}
+
+.chronology-current .chronology-title {
+    color: #fff;
+}
+
+
+/* =========================================
+   CARD VACÍA
+   ========================================= */
+
+.chronology-empty {
+    color: #444;
+
+    border-color:
+        #1A1A1A;
+
+    background:
+        rgba(9,9,9,.58);
+
+    box-shadow:
+        none;
+}
+
+.chronology-empty:before,
+.chronology-empty:after {
+    display: none;
+}
+
+
+/* =========================================
+   MOBILE CHRONOLOGY
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    #event-chronology {
+        margin-top: 25px;
+    }
+
+    .chronology-block {
+        margin-bottom: 20px;
+    }
+
+    .chronology-block h3 {
+        margin-bottom: 7px;
+
+        padding-bottom: 5px;
+
+        font-size: 9px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .chronology-row {
+        grid-template-columns:
+            1fr 1.08fr 1fr;
+
+        gap: 4px;
+    }
+
+    .chronology-card {
+        min-height: 92px;
+
+        padding:
+            5px 3px;
+
+        /*
+           A12:
+           vidrio más liviano.
+        */
+        backdrop-filter: blur(5px);
+
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    .chronology-current .chronology-card {
+        min-height: 98px;
+    }
+
+    .chronology-image {
+        width: 42px;
+        height: 42px;
+
+        margin-bottom: 5px;
+    }
+
+    .chronology-title {
+        font-size: 7px;
+
+        line-height: 9px;
+
+        letter-spacing: .2px;
+    }
+
+    .chronology-date {
+        margin-top: 3px;
+
+        font-size: 6px;
+
+        line-height: 8px;
+    }
+}
+
+
+/* =========================================
+   PROTECCIÓN GENERAL CONTRA OVERFLOW
+   ========================================= */
+
+.event-header,
+.event-header-info,
+.result-card,
+.results-section,
+.match,
+.team,
+.chamber-teams,
+#event-chronology,
+.chronology-block,
+.chronology-row,
+.chronology-column,
+.chronology-card {
+    max-width: 100%;
+    min-width: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* =========================================
+   SEGURIDAD EXTRA PARA PANTALLAS PEQUEÑAS
+   ========================================= */
+
+@media (max-width: 420px) {
+
+    main {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .event-header {
+        margin-bottom: 20px;
+    }
+
+    .event-header-info {
+        padding:
+            8px 9px 10px;
+    }
+
+    .event-type,
+    .event-date {
+        font-size: 7px;
+        letter-spacing: .9px;
+    }
+
+    .event-header h1 {
+        padding:
+            12px 8px;
+
+        font-size:
+            clamp(18px, 6.5vw, 23px);
+
+        letter-spacing: .8px;
+    }
+
+    .result-card {
+        padding: 14px;
+    }
+
+    .result-card:before {
+        margin:
+            -14px -14px 14px;
+    }
+}
