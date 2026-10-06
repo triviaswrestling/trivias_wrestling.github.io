@@ -6,6 +6,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    min-height: 100%;
 }
 
 body {
@@ -39,8 +40,10 @@ body {
             #090909 48%,
             #050505 100%
         );
-    background-attachment: fixed;
+    background-attachment: scroll;
+    background-color: #050505;
     color: #fff;
+    min-height: 100vh;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
@@ -86,7 +89,7 @@ main {
 
 
 
-──────────────────────────────────────────────────────────────── 
+ 
 
 
 
@@ -101,33 +104,20 @@ main {
     position:relative;
     display:flex;
     align-items:stretch;
-
     width:100%;
-    height:180px;
-    min-height:180px;
-
+    max-width:100%;
+    height:214px;
+    min-height:214px;
     margin-bottom:30px;
     overflow:hidden;
-
+    isolation:isolate;
     background:
-        radial-gradient(
-            ellipse at 78% 48%,
-            rgba(90,0,12,.20),
-            transparent 48%
-        ),
-        linear-gradient(
-            145deg,
-            #181818 0%,
-            #111111 42%,
-            #0d0d0d 72%,
-            #090909 100%
-        );
-
-    border:1px solid #292929;
-
+        radial-gradient(ellipse at 78% 48%,rgba(90,0,12,.18),transparent 48%),
+        linear-gradient(145deg,#151515 0%,#0d0d0d 55%,#050505 100%);
+    border:1px solid rgba(255,255,255,.055);
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.055),
-        inset 0 -12px 22px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.045),
+        inset 0 -12px 22px rgba(0,0,0,.60),
         0 8px 20px rgba(0,0,0,.65);
 }
 
@@ -230,8 +220,7 @@ main {
             transparent
         );
 
-    box-shadow:
-        inset 0 -2px 0 rgba(217,0,36,.48);
+    box-shadow:none;
 }
 
 
@@ -241,24 +230,17 @@ main {
 
 .event-header-image{
     position:relative;
-
     z-index:5;
-
     display:block;
-
-    width:320px;
-    height:180px;
-
-    flex:0 0 320px;
-
+    width:380px;
+    height:213.75px;
+    flex:0 0 380px;
     aspect-ratio:16 / 9;
     object-fit:cover;
-
     margin:0;
     border:0;
-
-    box-shadow:
-        7px 0 18px rgba(0,0,0,.62);
+    align-self:flex-start;
+    box-shadow:7px 0 18px rgba(0,0,0,.62);
 }
 
 
@@ -269,181 +251,101 @@ main {
 
 .event-header-info{
     position:relative;
-
     z-index:6;
-
-    flex:1;
+    flex:1 1 auto;
     min-width:0;
-    height:180px;
-
-    display:flex;
-    flex-direction:column;
-
-    justify-content:space-between;
-
-    padding:9px 22px 11px 24px;
-
+    height:100%;
+    display:grid;
+    grid-template-rows:42px 1fr;
+    padding:10px 18px 12px 20px;
     background:transparent;
 }
 
-
-/* LÍNEA DE LUZ MUY FINA */
-
 .event-header-info::before{
     content:"";
-
     position:absolute;
-
+    z-index:0;
     left:0;
-    top:8px;
-    bottom:8px;
-
-    width:1px;
-
+    right:0;
+    top:7px;
+    height:38px;
+    pointer-events:none;
     background:
-        linear-gradient(
-            180deg,
-            transparent,
-            rgba(217,0,36,.45) 20%,
-            rgba(255,55,75,.80) 48%,
-            rgba(255,255,255,.28) 50%,
-            rgba(217,0,36,.55) 53%,
-            transparent 82%
-        );
-
-    opacity:.75;
+        linear-gradient(105deg,rgba(255,55,75,.18),rgba(217,0,36,.34) 28%,rgba(145,0,24,.30) 58%,rgba(217,0,36,.24)),
+        linear-gradient(135deg,rgba(255,255,255,.07),transparent 32%,rgba(255,255,255,.025) 52%,transparent 70%);
+    border:1px solid rgba(255,75,95,.20);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.13),
+        inset 0 -1px 0 rgba(255,255,255,.04),
+        0 0 18px rgba(217,0,36,.10);
 }
-
-
-/* PEQUEÑO DETALLE FUTURISTA */
 
 .event-header-info::after{
     content:"";
-
     position:absolute;
-
-    right:18px;
-    bottom:8px;
-
+    z-index:1;
+    right:16px;
+    bottom:7px;
     width:125px;
     height:11px;
-
     pointer-events:none;
-
-    background:
-        linear-gradient(
-            135deg,
-            transparent 0 8%,
-            rgba(255,255,255,.20) 8.5% 10%,
-            transparent 10.5% 26%,
-            rgba(217,0,36,.48) 26.5% 28%,
-            transparent 28.5% 45%,
-            rgba(255,255,255,.12) 45.5% 47%,
-            transparent 47.5% 64%,
-            rgba(217,0,36,.35) 64.5% 66%,
-            transparent 66.5%
-        );
-
+    background:linear-gradient(135deg,transparent 0 8%,rgba(255,255,255,.20) 8.5% 10%,transparent 10.5% 26%,rgba(217,0,36,.48) 26.5% 28%,transparent 28.5% 45%,rgba(255,255,255,.12) 45.5% 47%,transparent 47.5% 64%,rgba(217,0,36,.35) 64.5% 66%,transparent 66.5%);
     opacity:.55;
 }
-
 
 /* =========================================
    DATOS SUPERIORES
    VIDRIO ROJO
    ========================================= */
 
-.event-date{
-    position:relative;
-
+.event-date,
+.event-type,
+.event-brand{
+    position:absolute;
     z-index:10;
-
+    top:7px;
+    height:38px;
+    margin:0;
     display:flex;
     align-items:center;
-
-    width:100%;
-    height:27px;
-
-    margin:0;
-    padding:0 11px;
-
-    color:#e7e7e7;
-
+    color:#fff;
     font-family:Arial,sans-serif;
-
-    font-size:10px;
+    font-size:11px;
     font-weight:900;
-
-    letter-spacing:1.8px;
     line-height:1;
-
+    letter-spacing:1.35px;
     text-transform:uppercase;
-
-    text-shadow:
-        0 1px 2px #000;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(217,0,36,.25),
-            rgba(217,0,36,.10) 42%,
-            rgba(217,0,36,.025) 75%,
-            transparent
-        );
-
+    text-shadow:0 1px 3px #000,0 0 8px rgba(255,255,255,.10);
+    white-space:nowrap;
+    background:transparent;
     border:0;
-
-    border-bottom:1px solid rgba(255,255,255,.075);
 }
 
+.event-type{left:12px;padding:0 10px;}
+.event-brand{left:50%;transform:translateX(-50%);padding:0 10px;color:#ffe6e9;}
+.event-date{right:12px;padding:0 10px;justify-content:flex-end;}
 
-/* REFLEJO DEL VIDRIO */
+.event-brand:empty{display:none;}
 
 .event-date::before{
     content:"";
-
-    position:absolute;
-
-    left:0;
-    top:0;
-
-    width:38%;
-    height:1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.48),
-            rgba(255,255,255,.10),
-            transparent
-        );
+    width:5px;
+    height:5px;
+    margin-right:8px;
+    border-radius:50%;
+    background:#ff4961;
+    box-shadow:0 0 8px #ff4961;
 }
-
-
-/* FLASH DIAGONAL */
 
 .event-date::after{
     content:"";
-
     position:absolute;
-
-    right:5px;
-    top:0;
-    bottom:0;
-
+    right:-6px;
+    top:8px;
     width:70px;
-
+    height:22px;
     pointer-events:none;
-
-    background:
-        linear-gradient(
-            125deg,
-            transparent 0 30%,
-            rgba(255,255,255,.07) 31% 33%,
-            transparent 34% 53%,
-            rgba(255,45,65,.10) 54% 57%,
-            transparent 58%
-        );
+    background:linear-gradient(125deg,transparent 0 30%,rgba(255,255,255,.09) 31% 33%,transparent 34% 53%,rgba(255,45,65,.12) 54% 57%,transparent 58%);
 }
 
 
@@ -462,8 +364,8 @@ main {
 
     width:100%;
 
-    min-height:80px;
-    height:80px;
+    min-height:0;
+    height:auto;
 
     margin:0;
     padding:0 20px;
@@ -489,13 +391,8 @@ main {
     /* VIDRIO ROJO TRANSPARENTE */
 
     background:
-        linear-gradient(
-            90deg,
-            rgba(217,0,36,.25),
-            rgba(217,0,36,.10) 38%,
-            rgba(255,255,255,.018) 65%,
-            transparent 100%
-        );
+        linear-gradient(105deg,rgba(217,0,36,.40),rgba(145,0,24,.30) 48%,rgba(217,0,36,.34)),
+        linear-gradient(135deg,rgba(255,255,255,.07),transparent 30%,rgba(255,255,255,.025) 55%,transparent 72%);
 
     border:0;
 
@@ -537,10 +434,7 @@ main {
    ELEMENTOS ANTIGUOS
    ========================================= */
 
-.event-type,
-.event-brand{
-    display:none;
-}
+
 
 
 /* =========================================
@@ -548,107 +442,18 @@ main {
    ========================================= */
 
 @media(max-width:700px){
-
-    .event-header{
-        display:flex;
-        flex-direction:column;
-
-        width:100%;
-        height:auto;
-        min-height:0;
-
-        margin-bottom:24px;
-    }
-
-
-    .event-header-info{
-        display:contents;
-    }
-
-
-    .event-header-info::before,
-    .event-header-info::after{
-        display:none;
-    }
-
-
-    /* DATOS ARRIBA */
-
-    .event-date{
-        order:1;
-
-        width:100%;
-        height:30px;
-
-        margin:0;
-        padding:0 11px;
-
-        font-size:9px;
-        letter-spacing:1.25px;
-
-        border:0;
-        border-bottom:1px solid rgba(255,255,255,.07);
-    }
-
-
-    /* IMAGEN */
-
-    .event-header-image{
-        order:2;
-
-        width:100%;
-        height:auto;
-
-        flex:0 0 auto;
-
-        aspect-ratio:16 / 9;
-
-        object-fit:cover;
-
-        margin:0;
-
-        box-shadow:
-            0 6px 18px rgba(0,0,0,.65);
-    }
-
-
-    /* NOMBRE */
-
-    .event-header h1{
-        order:3;
-
-        width:100%;
-
-        min-height:62px;
-        height:auto;
-
-        margin:0;
-
-        padding:15px;
-
-        font-size:24px;
-        letter-spacing:1.15px;
-        line-height:1.05;
-
-        border:0;
-
-        border-top:1px solid rgba(255,255,255,.08);
-        border-bottom:1px solid rgba(255,55,75,.35);
-    }
-
-
-    .event-header h1::after{
-        width:135px;
-    }
-
-
-    .event-date::after{
-        width:55px;
-    }
+    .event-header{display:flex;flex-direction:column;width:100%;max-width:100%;height:auto;min-height:0;margin-bottom:24px;padding-top:34px;}
+    .event-header::after{inset:0 0 auto 0;height:34px;z-index:3;background:linear-gradient(105deg,rgba(255,55,75,.20),rgba(217,0,36,.38) 30%,rgba(145,0,24,.32) 60%,rgba(217,0,36,.30)),linear-gradient(135deg,rgba(255,255,255,.08),transparent 32%,rgba(255,255,255,.025) 55%,transparent 72%);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 -1px 0 rgba(255,95,110,.18),0 0 14px rgba(217,0,36,.08);}
+    .event-header-info{display:contents;}
+    .event-header-info::before,.event-header-info::after{display:none;}
+    .event-type,.event-brand,.event-date{position:absolute;top:0;height:34px;font-size:8px;letter-spacing:1px;padding:0 6px;z-index:10;display:flex;align-items:center;}
+    .event-type{left:5px;}.event-brand{left:50%;transform:translateX(-50%);}.event-date{right:5px;}
+    .event-date::before{width:4px;height:4px;margin-right:5px;}.event-date::after{display:none;}
+    .event-header-image{order:2;width:100%;height:auto;flex:0 0 auto;aspect-ratio:16 / 9;object-fit:cover;margin:0;box-shadow:0 6px 18px rgba(0,0,0,.65);}
+    .event-header h1{order:3;width:100%;min-height:62px;height:auto;margin:0;padding:15px;font-size:24px;letter-spacing:1.15px;line-height:1.05;background:linear-gradient(105deg,rgba(217,0,36,.42),rgba(145,0,24,.31) 48%,rgba(217,0,36,.35)),linear-gradient(135deg,rgba(255,255,255,.07),transparent 30%,rgba(255,255,255,.025) 55%,transparent 72%);border:0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,55,75,.30);}
+    .event-header h1::after{width:135px;}
 }
 
-
-──────────────────────────────────────────────────────────────── 
 
 /* =========================================
    RESULTS
