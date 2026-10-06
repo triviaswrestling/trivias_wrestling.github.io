@@ -90,6 +90,9 @@ main {
 
 
 
+
+
+
 /* =========================================
    EVENT HEADER
    DARK RED HOLOGRAPHIC / Y2K
@@ -103,7 +106,7 @@ main {
     align-items:stretch;
 
     width:100%;
-    min-height:180px;
+    min-height:0;
     height:auto;
 
     margin-bottom:30px;
@@ -147,8 +150,6 @@ main {
 
     background:
 
-        /* RAYO ROJO PRINCIPAL */
-
         linear-gradient(
             126deg,
             transparent 0 17%,
@@ -159,8 +160,6 @@ main {
             transparent 18.5% 43%
         ),
 
-        /* FLASH FINO */
-
         linear-gradient(
             132deg,
             transparent 0 30%,
@@ -169,8 +168,6 @@ main {
             rgba(255,255,255,.025) 30.7%,
             transparent 31% 100%
         ),
-
-        /* ROJO CENTRAL */
 
         linear-gradient(
             139deg,
@@ -181,8 +178,6 @@ main {
             transparent 50.3% 100%
         ),
 
-        /* FLASH BLANCO */
-
         linear-gradient(
             118deg,
             transparent 0 62%,
@@ -191,8 +186,6 @@ main {
             rgba(255,255,255,.018) 62.7%,
             transparent 63% 100%
         ),
-
-        /* ROJO INFERIOR */
 
         linear-gradient(
             134deg,
@@ -242,6 +235,7 @@ main {
 
 /* =========================================
    IMAGEN 16:9
+   30% DEL ANCHO EN PC
    ========================================= */
 
 .event-header-image{
@@ -251,10 +245,10 @@ main {
 
     display:block;
 
-    width:320px;
-    height:180px;
+    width:30%;
+    height:auto;
 
-    flex:0 0 320px;
+    flex:0 0 30%;
 
     aspect-ratio:16 / 9;
     object-fit:cover;
@@ -269,6 +263,7 @@ main {
 
 /* =========================================
    ZONA DERECHA
+   70% DEL ANCHO
    TYPE → TITULO → FECHA
    ========================================= */
 
@@ -277,10 +272,11 @@ main {
 
     z-index:6;
 
+    width:70%;
     flex:1;
-    min-width:0;
 
-    min-height:180px;
+    min-width:0;
+    min-height:0;
     height:auto;
 
     display:flex;
@@ -362,7 +358,6 @@ main {
 
 /* =========================================
    EVENT TYPE
-   BARRA SUPERIOR
    ========================================= */
 
 .event-type{
@@ -376,6 +371,7 @@ main {
     align-items:center;
 
     width:100%;
+
     min-height:30px;
     height:30px;
 
@@ -416,8 +412,6 @@ main {
 
 /* =========================================
    NOMBRE DEL EVENTO
-   PROTAGONISTA
-   CRECE LIBREMENTE
    ========================================= */
 
 .event-header h1{
@@ -433,7 +427,7 @@ main {
     width:100%;
     min-width:0;
 
-    min-height:120px;
+    min-height:114px;
     height:auto;
 
     flex:0 0 auto;
@@ -512,7 +506,6 @@ main {
 
 /* =========================================
    FECHA
-   SHOW DATE:
    ========================================= */
 
 .event-date{
@@ -571,8 +564,7 @@ main {
 
 
 /* =========================================
-   LABEL SHOW DATE:
-   GENERADO POR CSS
+   SHOW DATE:
    ========================================= */
 
 .event-date::before{
@@ -633,7 +625,7 @@ main {
 
 /* =========================================
    EVENT BRAND
-   SOLO SE OCULTA DEL HEADER
+   SOLO HEADER
    ========================================= */
 
 .event-brand{
@@ -643,7 +635,6 @@ main {
 
 /* =========================================
    MOBILE
-   ORDEN REAL:
    TYPE → IMAGEN → TITULO → FECHA
    ========================================= */
 
@@ -661,14 +652,6 @@ main {
     }
 
 
-    /*
-
-       Sacamos los hijos del contenedor
-       para que el orden pueda aplicarse
-       directamente dentro del header.
-
-    */
-
     .event-header-info{
         display:contents;
     }
@@ -680,10 +663,7 @@ main {
     }
 
 
-    /* =====================================
-       EVENT TYPE
-       PRIMERO
-       ===================================== */
+    /* TYPE */
 
     .event-type{
         order:1;
@@ -706,10 +686,7 @@ main {
     }
 
 
-    /* =====================================
-       IMAGEN
-       SEGUNDO
-       ===================================== */
+    /* IMAGEN */
 
     .event-header-image{
         order:2;
@@ -730,12 +707,7 @@ main {
     }
 
 
-    /* =====================================
-       TITULO
-       TERCERO
-
-       CRECE TODO LO NECESARIO
-       ===================================== */
+    /* TITULO */
 
     .event-header h1{
         order:3;
@@ -751,7 +723,6 @@ main {
         flex:0 0 auto;
 
         margin:0;
-
         padding:15px;
 
         font-size:24px;
@@ -777,10 +748,7 @@ main {
     }
 
 
-    /* =====================================
-       FECHA
-       CUARTO
-       ===================================== */
+    /* FECHA */
 
     .event-date{
         order:4;
@@ -823,7 +791,7 @@ main {
         width:55px;
     }
 }
-
+            
 
 
 
