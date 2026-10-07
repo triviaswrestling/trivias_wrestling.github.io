@@ -1890,72 +1890,155 @@ grid-template-columns:repeat(2,minmax(0,82px));
 }
 
 /* =========================================================
-   MOBILE â€” 2 VS 2
-   SOLO cuando AMBOS equipos tienen exactamente 2 luchadores.
-   Cada equipo ocupa todo el ancho disponible hasta el VS.
-   Las 2 fichas de cada equipo se reparten 50/50 y mantienen 1:1.
-   NO modifica .vs ni .match-score.
+   MOBILE — SOLO 2 VS 2
+   2 fichas a la izquierda + VS + 2 fichas a la derecha
+
+   Cada TEAM utiliza TODO el ancho disponible de su lado.
+   Las 2 fichas ocupan 50% + 50%.
+   NO toca .vs
+   NO toca .match-score
+   NO afecta 1v1 ni otros formatos.
    ========================================================= */
 
 @media (max-width:768px){
 
-    /* 2 VS 2 exacto: 2 luchadores + VS + 2 luchadores */
+    /* Detectar EXCLUSIVAMENTE 2 VS 2 */
     .match:has(
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
         + .vs
         + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
     ){
+
+        /*
+         * El match conserva el ancho completo.
+         * El VS sigue exactamente con su tamaño actual.
+         */
+        width:100%;
+        max-width:100%;
+        min-width:0;
         gap:4px;
+        box-sizing:border-box;
     }
 
-    /* Cada lado ocupa exactamente la mitad del espacio que queda
-       despuÃ©s de descontar el VS y los gaps. */
+
+    /* =====================================================
+       CADA TEAM = TODO EL ESPACIO DISPONIBLE DE SU LADO
+       ===================================================== */
+
     .match:has(
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
         + .vs
         + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
     ) > .team{
+
         flex:1 1 0 !important;
-        width:0 !important;
+
+        /*
+         * Importante:
+         * no usamos 50%-30px ni 50%-26px.
+         * El flex calcula automáticamente:
+         *
+         * [ TEAM ] [ VS ] [ TEAM ]
+         *
+         * dejando exactamente el mismo espacio a ambos lados.
+         */
+        width:auto !important;
         max-width:none !important;
         min-width:0 !important;
 
+        /*
+         * Las dos fichas se pegan y ocupan TODO el team.
+         */
+        display:grid !important;
         grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-        gap:8px 5px;
+
+        column-gap:0 !important;
+        row-gap:8px;
+
+        justify-content:stretch !important;
+        justify-items:stretch !important;
+        align-items:start;
+
+        box-sizing:border-box;
     }
 
-    /* Las dos fichas se estiran hasta ocupar TODA la anchura
-       de su mitad. Se elimina el lÃ­mite de 82px. */
+
+    /* =====================================================
+       CADA FICHA = 50% EXACTO DEL TEAM
+       ===================================================== */
+
     .match:has(
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
         + .vs
         + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
-    ) > .team > .wrestler-link,
+    ) > .team > .wrestler-link{
+
+        display:block !important;
+
+        width:100% !important;
+        max-width:none !important;
+        min-width:0 !important;
+
+        justify-self:stretch !important;
+
+        box-sizing:border-box;
+    }
+
+
+    /* =====================================================
+       EL MARCO DE CADA LUCHADOR LLENA SU COLUMNA
+       ===================================================== */
+
     .match:has(
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
         + .vs
         + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
     ) > .team > .wrestler-link > .wrestler{
+
         width:100% !important;
         max-width:none !important;
         min-width:0 !important;
+
+        justify-self:stretch !important;
+
         box-sizing:border-box;
+
+        /*
+         * La ficha completa es cuadrada.
+         */
+        aspect-ratio:1 / 1;
     }
 
-    /* La imagen ocupa el ancho real de su ficha y la altura es
-       exactamente igual: nunca se deforma ni se recorta por ancho. */
+
+    /* =====================================================
+       IMAGEN 1:1 REAL
+       ===================================================== */
+
     .match:has(
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
         + .vs
         + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
     ) > .team > .wrestler-link > .wrestler img{
+
         display:block;
+
         width:100% !important;
-        height:auto !important;
+        height:100% !important;
+
         max-width:none !important;
         max-height:none !important;
+
         aspect-ratio:1 / 1;
-        object-fit:cover;
+
+        /*
+         * IMPORTANTE:
+         * contain evita que el luchador sea recortado.
+         * La imagen mantiene su proporción dentro de la ficha.
+         */
+        object-fit:contain;
+
+        margin:0 auto 7px;
+
         box-sizing:border-box;
     }
 }
