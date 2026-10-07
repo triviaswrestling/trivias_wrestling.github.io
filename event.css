@@ -1888,3 +1888,87 @@ grid-template-columns:repeat(2,minmax(0,82px));
         background-attachment:scroll;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   MOBILE — SOLO 2 VS 2
+   Ambos equipos deben tener EXACTAMENTE 2 .wrestler-link
+   ========================================================= */
+
+@media (max-width:768px){
+
+    /* Detecta exclusivamente:
+       2 luchadores + VS + 2 luchadores */
+    .match:has(
+        > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+        + .vs
+        + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+    ) > .team{
+
+        /*
+         * Elimina el límite artificial de 50%-30px.
+         * Los dos equipos comparten exactamente el espacio
+         * que queda a ambos lados del VS.
+         */
+        flex:1 1 0;
+        width:auto;
+        max-width:none;
+        min-width:0;
+
+        /*
+         * Las dos fichas se adaptan automáticamente al ancho
+         * real disponible del equipo.
+         */
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:8px 5px;
+    }
+
+    /* Las fichas del 2v2 ocupan exactamente su celda,
+       sin comprimirse horizontalmente. */
+    .match:has(
+        > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+        + .vs
+        + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+    ) > .team > .wrestler-link,
+    .match:has(
+        > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+        + .vs
+        + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+    ) > .team > .wrestler-link .wrestler{
+
+        width:100%;
+        max-width:82px;
+        min-width:0;
+    }
+
+    /*
+     * Imagen 1:1 adaptativa:
+     * - hasta 76px cuando hay espacio
+     * - se reduce automáticamente en móviles angostos
+     * - nunca se deforma
+     */
+    .match:has(
+        > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+        + .vs
+        + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+    ) > .team > .wrestler-link .wrestler img{
+
+        width:100%;
+        max-width:76px;
+        height:auto;
+        aspect-ratio:1 / 1;
+        object-fit:cover;
+    }
+}
