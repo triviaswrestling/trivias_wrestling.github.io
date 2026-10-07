@@ -627,83 +627,95 @@ main{overflow:visible;}
 
 
 /* =========================================================
-   MATCH SYSTEM â€” VERSION 9
-   Base visual del (7) + distribuciÃ³n responsive del (8)
+   MATCH SYSTEM â€” VERSION 9.1
+   Base visual del (7) + distribuciÃ³n del (8)
+   PC: SIEMPRE MÃXIMO 3 LUCHADORES POR FILA
+   MOBILE: RENDERS CONTENIDOS DENTRO DE LA MATCH CARD
    ========================================================= */
 
-.match-name{
-    text-align:center;
-    color:#888;
-    font-size:11px;
-    font-weight:bold;
-    letter-spacing:2px;
-    margin-bottom:12px;
-}
-
-/* Contenedor principal del combate */
 .match{
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:45px;
+    gap:34px;
     margin-top:20px;
     width:100%;
     min-width:0;
+    max-width:100%;
 }
 
-/* Cada lado del combate */
+/* Cada lado puede crecer, pero nunca rompe el ancho de la card. */
 .team{
     display:grid;
     justify-content:center;
     align-items:start;
     align-content:start;
-    gap:15px;
+    gap:14px 12px;
     flex:1 1 0;
     width:100%;
     min-width:0;
-    max-width:430px;
-}
-
-/* Fallback razonable para navegadores sin :has() */
-.team{
-    grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+    max-width:450px;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
 }
 
 /* 1 luchador */
 .team:not(:has(.wrestler:nth-child(2))){
-    grid-template-columns:1fr;
+    grid-template-columns:minmax(0,140px) !important;
 }
 
-/* 2 luchadores â†’ una sola fila */
+/* 2 luchadores */
 .team:has(.wrestler:nth-child(2)):not(:has(.wrestler:nth-child(3))){
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-columns:repeat(2,minmax(0,140px)) !important;
 }
 
-/* 3 luchadores â†’ una sola fila en PC */
+/* 3 luchadores: 3 horizontales, SIEMPRE en PC */
 .team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))){
-    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
 }
 
-/* 4 luchadores â†’ 2 Ã— 2 */
+/* 4: 2 + 2 */
 .team:has(.wrestler:nth-child(4)):not(:has(.wrestler:nth-child(5))){
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-columns:repeat(2,minmax(0,140px)) !important;
 }
 
-/* 5 luchadores â†’ 3 + 2 */
+/* 5: 3 + 2 */
 .team:has(.wrestler:nth-child(5)):not(:has(.wrestler:nth-child(6))){
-    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
 }
 
-/* 6 o mÃ¡s â†’ 3 por fila, evitando explosiones de ancho */
+/* 6 o mÃ¡s: MÃXIMO 3 por fila */
 .team:has(.wrestler:nth-child(6)){
-    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
 }
 
-/* Luchador */
+/* 3 vs 3: los seis luchadores deben poder convivir en UNA sola fila.
+   Se compactan solo estos equipos, sin cambiar los combates 1 vs 1/2 vs 2. */
+.team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))){
+    max-width:320px;
+}
+
+.team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))) .wrestler{
+    max-width:96px;
+}
+
+.team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))) .wrestler img{
+    width:92px;
+    height:92px;
+    max-width:92px;
+    max-height:92px;
+}
+
+/* MITB / Royal Rumble / multitudinarios: si el HTML usa un solo .team,
+   sigue siendo siempre 3 por fila como mÃ¡ximo. */
+.team:has(.wrestler:nth-child(4)){
+    max-width:450px;
+}
+
 .wrestler{
     width:100%;
     max-width:140px;
     min-width:0;
+    justify-self:center;
     text-align:center;
     position:relative;
     padding-top:5px;
@@ -716,8 +728,8 @@ main{overflow:visible;}
     content:"";
     position:absolute;
     top:0;
-    left:12.5px;
-    right:12.5px;
+    left:12px;
+    right:12px;
     height:3px;
     background:var(--brand) !important;
     box-shadow:0 0 8px var(--brand) !important;
@@ -737,9 +749,7 @@ main{overflow:visible;}
 }
 
 @media (hover:hover) and (pointer:fine){
-    .wrestler:hover img{
-        transform:scale(1.04);
-    }
+    .wrestler:hover img{transform:scale(1.04);}
 }
 
 .wrestler:focus,
@@ -769,25 +779,16 @@ main{overflow:visible;}
     line-height:15px;
     background:rgba(12,12,12,.82);
     border:1px solid #292929;
+    overflow-wrap:anywhere;
 }
 
 .match a,
-.wrestler-link{
-    color:#fff;
-    text-decoration:none;
-}
-
+.wrestler-link{color:#fff;text-decoration:none;}
 .match a:visited,
-.wrestler-link:visited{
-    color:#fff;
-}
-
+.wrestler-link:visited{color:#fff;}
 .match a:hover,
-.wrestler-link:hover{
-    color:#fff;
-}
+.wrestler-link:hover{color:#fff;}
 
-/* VS / SCORE */
 .vs{
     min-width:92px;
     flex:0 0 92px;
@@ -820,18 +821,12 @@ main{overflow:visible;}
     line-height:1;
     letter-spacing:1px;
     text-shadow:0 0 7px var(--brand);
-    box-shadow:
-        0 0 0 1px var(--brand),
-        0 0 12px var(--brand);
+    box-shadow:0 0 0 1px var(--brand),0 0 12px var(--brand);
     animation:score .55s ease-out both;
 }
 
-.match-score span{
-    display:inline-block;
-    white-space:nowrap;
-}
+.match-score span{display:inline-block;white-space:nowrap;}
 
-/* CHAMPIONSHIP */
 .match-championship{
     display:block;
     width:fit-content;
@@ -849,7 +844,6 @@ main{overflow:visible;}
     box-shadow:0 0 8px rgba(184,155,94,.22);
 }
 
-/* WINNER */
 .match-winner{
     margin-top:22px;
     padding-top:13px;
@@ -860,27 +854,12 @@ main{overflow:visible;}
     text-align:center;
 }
 
-.match-winner strong{
-    color:#fff;
-    margin-left:5px;
-}
+.match-winner strong{color:#fff;margin-left:5px;}
 
-/* SCORE ANIMATION */
 @keyframes score{
-    0%{
-        opacity:0;
-        transform:scale(.75);
-        filter:blur(4px);
-    }
-    60%{
-        opacity:1;
-        transform:scale(1.08);
-        filter:blur(0);
-    }
-    100%{
-        opacity:1;
-        transform:scale(1);
-    }
+    0%{opacity:0;transform:scale(.75);filter:blur(4px);}
+    60%{opacity:1;transform:scale(1.08);filter:blur(0);}
+    100%{opacity:1;transform:scale(1);}
 }
 
 /* =========================================================
@@ -904,9 +883,7 @@ main{overflow:visible;}
     min-width:0;
 }
 
-.chamber-team-number{
-    display:none;
-}
+.chamber-team-number{display:none;}
 
 .chamber-team .wrestler{
     width:140px;
@@ -921,83 +898,89 @@ main{overflow:visible;}
 }
 
 /* =========================================================
-   MATCH RESPONSIVE
+   MOBILE â€” MISMO TAMAÃ‘O VISUAL DEL (8), CONTENIDO EN LA CARD
    ========================================================= */
 
 @media(max-width:768px){
 
     .result-card{
-        /* conserva el metal del (7), pero evita trabajo extra */
-        background:
-            linear-gradient(
-                135deg,
-                #252525 0%,
-                #1b1b1b 25%,
-                #111111 52%,
-                #181818 76%,
-                #232323 100%
-            );
-        box-shadow:
-            inset 0 1px 0 rgba(255,255,255,.045),
-            inset 0 -8px 14px rgba(0,0,0,.16),
-            0 7px 16px rgba(0,0,0,.34);
+        background:linear-gradient(135deg,#252525 0%,#1b1b1b 25%,#111 52%,#181818 76%,#232323 100%);
+        box-shadow:inset 0 1px 0 rgba(255,255,255,.045),inset 0 -8px 14px rgba(0,0,0,.16),0 7px 16px rgba(0,0,0,.34);
         backdrop-filter:none;
         -webkit-backdrop-filter:none;
+        overflow:hidden;
     }
 
     .match{
         width:100%;
         max-width:100%;
         margin:20px auto 0;
-        gap:8px;
+        gap:6px;
+        overflow:visible;
     }
 
     .team{
         flex:1 1 0;
-        width:0;
-        max-width:none;
-        gap:8px;
+        width:auto;
+        max-width:calc(50% - 35px);
+        min-width:0;
+        gap:9px 5px;
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    }
+
+    .team:not(:has(.wrestler:nth-child(2))){
+        grid-template-columns:minmax(0,90px) !important;
+    }
+
+    .team:has(.wrestler:nth-child(2)):not(:has(.wrestler:nth-child(3))){
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    }
+
+    /* 3 luchadores: 2 + 1 por defecto; en mÃ³viles amplios pasa a 3 */
+    .team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))){
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    }
+
+    /* Multitudinarios: mÃ¡ximo 3 por fila y siempre se llena horizontalmente. */
+    .team:has(.wrestler:nth-child(4)){
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
     }
 
     .team .wrestler{
         width:100%;
-        max-width:100px;
+        max-width:90px;
+        min-width:0;
         padding-top:4px;
         justify-self:center;
     }
 
     .team .wrestler:before{
-        left:5px;
-        right:5px;
+        left:4px;
+        right:4px;
     }
 
+    /* TamaÃ±o recuperado del (8), pero con lÃ­mites para que nunca desborde */
     .team .wrestler img{
         width:90px;
         height:90px;
+        max-width:90px;
+        max-height:90px;
         margin-bottom:8px;
     }
 
     .team .wrestler span{
         font-size:9px;
-        min-height:36px;
-        line-height:13px;
-    }
-
-    /* En mÃ³vil, 4-way/fatal 4-way = 2 Ã— 2 */
-    .team:has(.wrestler:nth-child(4)){
-        grid-template-columns:repeat(2,minmax(0,1fr));
-    }
-
-    /* 3 integrantes: 2 + 1 en mÃ³viles estrechos; se vuelve 3 horizontales
-       automÃ¡ticamente a partir de 680px. */
-    .team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))){
-        grid-template-columns:repeat(2,minmax(0,1fr));
+        min-height:34px;
+        line-height:12px;
+        padding:4px 4px;
+        overflow-wrap:anywhere;
     }
 
     .vs{
         flex:0 0 64px;
         min-width:64px;
-        gap:9px;
+        max-width:64px;
+        gap:8px;
         font-size:9px;
         letter-spacing:1px;
     }
@@ -1005,106 +988,160 @@ main{overflow:visible;}
     .match-score{
         min-width:76px;
         width:76px;
+        max-width:76px;
         height:42px;
-        padding:7px 5px;
-        gap:5px;
+        padding:7px 4px;
+        gap:4px;
         font-size:21px;
         letter-spacing:0;
         white-space:nowrap;
     }
 
-    /* Chamber = 2 equipos por fila en mobile */
+    /* Chamber = 2 equipos por fila */
     .chamber-teams{
         grid-template-columns:repeat(2,minmax(0,1fr));
         gap:18px 8px;
     }
 
-    .chamber-team{
-        gap:5px;
-    }
+    .chamber-team{gap:4px;}
 
     .chamber-team .wrestler{
         width:90px;
         flex:0 1 90px;
+        max-width:90px;
     }
 
     .chamber-team .wrestler img{
         width:70px;
         height:70px;
+        max-width:70px;
+        max-height:70px;
+    }
+
+    /* Multitudinarios: si hay mÃ¡s de 3 integrantes, el marcador baja
+       a una segunda lÃ­nea para liberar el ancho de los luchadores. */
+    .match:has(.team .wrestler:nth-child(4)){
+        flex-wrap:wrap;
+        align-items:flex-start;
+        row-gap:14px;
+    }
+
+    .match:has(.team .wrestler:nth-child(4)) .team{
+        max-width:100%;
+    }
+
+    .match:has(.team .wrestler:nth-child(4)) .team .wrestler{
+        max-width:90px;
+    }
+
+    .match:has(.team .wrestler:nth-child(4)) .team .wrestler img{
+        width:82px;
+        height:82px;
+        max-width:82px;
+        max-height:82px;
+    }
+
+    /* En multitudinarios el marcador baja y deja libre el ancho completo. */
+    .match:has(.team .wrestler:nth-child(4)) .vs{
+        order:3;
+        flex:0 0 100%;
+        width:100%;
+        max-width:100%;
+        min-width:100%;
+        flex-direction:row;
+        justify-content:center;
+        gap:10px;
+        margin-top:2px;
     }
 }
 
-/* Mobile mÃ¡s ancho: 3 integrantes realmente horizontales */
+/* MÃ³vil ancho: cuando realmente hay espacio, 3 horizontales. */
 @media (min-width:680px) and (max-width:768px){
 
     .team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))){
-        grid-template-columns:repeat(3,minmax(0,1fr));
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
     }
 
-    .team:has(.wrestler:nth-child(5)){
-        grid-template-columns:repeat(3,minmax(0,1fr));
+    .team:has(.wrestler:nth-child(4)){
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    }
+
+    .team .wrestler,
+    .team .wrestler img{
+        max-width:90px;
     }
 }
 
-/* TelÃ©fonos muy estrechos: reducir un poco el bloque central,
-   no los renders del luchador innecesariamente. */
+/* TelÃ©fonos muy estrechos: conserva el layout del (8),
+   pero reduce solo lo necesario para evitar cualquier overflow. */
 @media(max-width:380px){
 
-    .match{
-        gap:4px;
-    }
+    .match{gap:3px;}
 
     .team{
-        gap:5px;
+        max-width:calc(50% - 31px);
+        gap:7px 3px;
     }
 
-    .team .wrestler{
-        max-width:88px;
-    }
+    .team .wrestler{max-width:82px;}
 
     .team .wrestler img{
         width:78px;
         height:78px;
+        max-width:78px;
+        max-height:78px;
     }
 
     .team .wrestler span{
         font-size:8px;
-        line-height:12px;
-        padding:4px 4px;
+        line-height:11px;
+        padding:4px 3px;
     }
 
     .vs{
         flex-basis:58px;
         min-width:58px;
+        max-width:58px;
         font-size:8px;
-        letter-spacing:.7px;
     }
 
     .match-score{
         min-width:68px;
         width:68px;
+        max-width:68px;
         height:39px;
         font-size:19px;
-        padding:6px 4px;
+        padding:6px 3px;
     }
 
-    .chamber-teams{
-        gap:14px 5px;
-    }
-
-    .chamber-team{
-        gap:3px;
-    }
+    .chamber-teams{gap:14px 5px;}
+    .chamber-team{gap:3px;}
 
     .chamber-team .wrestler{
         width:76px;
         flex-basis:76px;
+        max-width:76px;
     }
 
     .chamber-team .wrestler img{
         width:60px;
         height:60px;
+        max-width:60px;
+        max-height:60px;
     }
+}
+
+/* =========================================================
+   PERFORMANCE GUARDS
+   ========================================================= */
+
+@media (hover:none), (pointer:coarse){
+    .result-card:hover{transform:none;}
+    .wrestler:hover img{transform:none;}
+}
+
+@media(max-width:768px){
+    body{background-attachment:scroll;}
 }
 
 
