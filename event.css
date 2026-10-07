@@ -905,6 +905,17 @@ main{overflow:visible;}
 
 /* =========================================================
    MOBILE
+   MISMA LÓGICA DE DISTRIBUCIÓN QUE PC
+
+   1 VS 1  = conserva el tamaño anterior
+   2 VS 2  = 2 + VS + 2
+   3 VS 3  = 3 + VS + 3
+   4 VS 4  = 3+1 + VS + 3+1
+   5 VS 5  = 3+2 + VS + 3+2
+   6+      = máximo 3 por fila
+
+   IMPORTANTE:
+   Los hijos reales de .team son .wrestler-link.
    ========================================================= */
 
 @media(max-width:768px){
@@ -917,56 +928,67 @@ main{overflow:visible;}
         overflow:hidden;
     }
 
+    /* =========================================
+       CONTENEDOR DEL MATCH
+       ========================================= */
+
     .match{
         width:100%;
         max-width:100%;
         margin:20px auto 0;
         gap:4px;
         overflow:visible;
+        align-items:center;
+        justify-content:center;
     }
+
+    /* =========================================
+       EQUIPO
+       Cada lado conserva aproximadamente la mitad
+       de la card, igual que PC.
+       ========================================= */
 
     .team{
         flex:1 1 0;
         width:100%;
-        max-width:calc(50% - 34px);
+        max-width:calc(50% - 30px);
         min-width:0;
         gap:8px 3px;
         grid-template-columns:repeat(3,minmax(0,1fr));
     }
 
-    /* 1 / 2 / 3 / 4 / 5 / 6+ usando el ANCHOR real */
+    /* =========================================
+       CANTIDAD DE LUCHADORES
+       ========================================= */
+
+    /* 1 = una sola columna */
     .team:not(:has(> .wrestler-link:nth-child(2))){
         grid-template-columns:minmax(0,1fr) !important;
     }
 
+    /* 2 = dos columnas */
     .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))){
         grid-template-columns:repeat(2,minmax(0,1fr)) !important;
     }
 
+    /* 3+ = SIEMPRE 3 HORIZONTALES POR FILA */
     .team:has(> .wrestler-link:nth-child(3)){
         grid-template-columns:repeat(3,minmax(0,1fr)) !important;
     }
 
-    .team > .wrestler-link{
+    /* =========================================
+       1 VS 1
+       SE MANTIENE COMO ANTES
+       ========================================= */
+
+    .team:not(:has(> .wrestler-link:nth-child(2))) > .wrestler-link,
+    .team:not(:has(> .wrestler-link:nth-child(2))) .wrestler{
         width:100%;
         max-width:90px;
         min-width:0;
     }
 
-    .team .wrestler{
-        width:100%;
-        max-width:90px;
-        min-width:0;
-        padding-top:4px;
-        justify-self:center;
-    }
-
-    .team .wrestler:before{
-        left:3px;
-        right:3px;
-    }
-
-    .team .wrestler img{
+    .team:not(:has(> .wrestler-link:nth-child(2))) .wrestler img{
         width:82px;
         height:82px;
         max-width:82px;
@@ -974,43 +996,81 @@ main{overflow:visible;}
         margin-bottom:7px;
     }
 
-    .team .wrestler span{
-        font-size:8.5px;
-        min-height:32px;
-        line-height:11px;
-        padding:4px 3px;
+    /* =========================================
+       2+ LUCHADORES POR EQUIPO
+       EL TAMAÑO BAJA PARA QUE ENTRE LA FILA,
+       PERO LA ESTRUCTURA SIGUE SIENDO 3 POR FILA.
+       ========================================= */
+
+    .team:has(> .wrestler-link:nth-child(2)) > .wrestler-link,
+    .team:has(> .wrestler-link:nth-child(2)) .wrestler{
+        width:100%;
+        max-width:48px;
+        min-width:0;
+    }
+
+    .team:has(> .wrestler-link:nth-child(2)) .wrestler{
+        padding-top:4px;
+        justify-self:center;
+    }
+
+    .team:has(> .wrestler-link:nth-child(2)) .wrestler img{
+        width:46px;
+        height:46px;
+        max-width:46px;
+        max-height:46px;
+        margin-bottom:5px;
+    }
+
+    .team:has(> .wrestler-link:nth-child(2)) .wrestler span{
+        font-size:7px;
+        min-height:25px;
+        line-height:9px;
+        padding:3px 2px;
         overflow-wrap:anywhere;
     }
 
+    .team .wrestler:before{
+        left:2px;
+        right:2px;
+    }
+
+    /* =========================================
+       VS
+       ========================================= */
+
     .vs{
-        flex:0 0 64px;
-        min-width:64px;
-        max-width:64px;
-        gap:8px;
-        font-size:9px;
+        flex:0 0 58px;
+        min-width:58px;
+        max-width:58px;
+        gap:7px;
+        font-size:8px;
         letter-spacing:1px;
     }
 
+    /* =========================================
+       MARCADOR
+       ========================================= */
+
     .match-score{
-        min-width:74px;
-        width:74px;
-        max-width:74px;
-        height:42px;
-        padding:7px 3px;
+        min-width:70px;
+        width:70px;
+        max-width:70px;
+        height:40px;
+        padding:6px 3px;
         gap:3px;
-        font-size:20px;
+        font-size:19px;
         letter-spacing:0;
         white-space:nowrap;
     }
 
-    /* =====================================================
-       MULTI-PARTICIPANT: UN SOLO EQUIPO
-       Triple Threat / Fatal 4-Way / 5-Way / 6-Way / etc.
+    /* =========================================
+       MULTI-PARTICIPANTE
+       TRIPLE / FATAL 4 / 5-WAY / 6-WAY / ETC.
 
-       La fila ocupa TODO el ancho de la card. Así 3 o más
-       luchadores tienen espacio REAL para quedar horizontales.
-       El marcador baja debajo de la fila.
-       ===================================================== */
+       Un solo .team ocupa todo el ancho.
+       3+ participantes siguen siendo 3 por fila.
+       ========================================= */
 
     .match > .team:first-child:not(:has(~ .team)){
         flex:1 1 100%;
@@ -1018,25 +1078,22 @@ main{overflow:visible;}
         max-width:100%;
     }
 
-    .match > .team:first-child:not(:has(~ .team)) > .wrestler-link{
-        max-width:90px;
-    }
-
+    .match > .team:first-child:not(:has(~ .team)) > .wrestler-link,
     .match > .team:first-child:not(:has(~ .team)) .wrestler{
-        max-width:90px;
+        max-width:48px;
     }
 
     .match > .team:first-child:not(:has(~ .team)) .wrestler img{
-        width:82px;
-        height:82px;
-        max-width:82px;
-        max-height:82px;
+        width:46px;
+        height:46px;
+        max-width:46px;
+        max-height:46px;
     }
 
-    .match:has(> .team:first-child:not(:has(~ .team))) {
+    .match:has(> .team:first-child:not(:has(~ .team))){
         flex-wrap:wrap;
         align-items:flex-start;
-        row-gap:12px;
+        row-gap:10px;
     }
 
     .match:has(> .team:first-child:not(:has(~ .team))) > .vs{
@@ -1051,45 +1108,22 @@ main{overflow:visible;}
         margin-top:2px;
     }
 
-    /* =====================================================
+    /* =========================================
        2 EQUIPOS
-       En móvil se mantienen como dos bloques, pero cada equipo
-       conserva sus 3 por fila. Esto evita que 3 integrantes
-       terminen uno debajo del otro.
-       ===================================================== */
+       NUNCA SE APILAN UNO ARRIBA DEL OTRO.
+       Cada lado conserva su propia grilla.
+       ========================================= */
 
     .match > .team + .vs + .team{
         flex:1 1 0;
-        width:calc(50% - 34px);
-        max-width:calc(50% - 34px);
+        width:calc(50% - 30px);
+        max-width:calc(50% - 30px);
     }
 
-    /* Para equipos de 3+ en móvil, si no entran cómodamente
-       lado a lado, cada equipo usa una fila horizontal propia. */
-    .match:has(> .team:nth-of-type(3)){
-        flex-wrap:wrap;
-        align-items:flex-start;
-        row-gap:12px;
-    }
+    /* =========================================
+       CHAMBER
+       ========================================= */
 
-    .match:has(> .team:nth-of-type(3)) > .team{
-        flex:1 1 100%;
-        width:100%;
-        max-width:100%;
-    }
-
-    .match:has(> .team:nth-of-type(3)) > .vs{
-        order:3;
-        flex:0 0 100%;
-        width:100%;
-        max-width:100%;
-        min-width:100%;
-        flex-direction:row;
-        justify-content:center;
-        gap:10px;
-    }
-
-    /* Chamber = 2 equipos por fila */
     .chamber-teams{
         grid-template-columns:repeat(2,minmax(0,1fr));
         gap:18px 8px;
@@ -1112,7 +1146,7 @@ main{overflow:visible;}
 }
 
 /* =========================================================
-   MÓVIL ANCHO
+   MÓVIL ANCHO + TELÉFONOS MUY ESTRECHOS
    ========================================================= */
 
 @media (min-width:680px) and (max-width:768px){
@@ -1120,67 +1154,71 @@ main{overflow:visible;}
     .team:has(> .wrestler-link:nth-child(3)){
         grid-template-columns:repeat(3,minmax(0,1fr)) !important;
     }
-
-    .team > .wrestler-link,
-    .team .wrestler{
-        max-width:90px;
-    }
-
-    .team .wrestler img{
-        width:82px;
-        height:82px;
-        max-width:82px;
-        max-height:82px;
-    }
 }
-
-/* =========================================================
-   TELÉFONOS MUY ESTRECHOS
-   ========================================================= */
 
 @media(max-width:380px){
 
     .match{gap:2px;}
 
     .team{
-        max-width:calc(50% - 30px);
+        max-width:calc(50% - 26px);
         gap:7px 2px;
     }
 
-    /* Un equipo / multi-participant sigue ocupando toda la fila. */
-    .match > .team:first-child:not(:has(~ .team)){
-        max-width:100%;
+    .match > .team + .vs + .team{
+        width:calc(50% - 26px);
+        max-width:calc(50% - 26px);
     }
 
-    .team > .wrestler-link,
-    .team .wrestler{max-width:80px;}
+    /* 1 VS 1 conserva una medida cómoda */
+    .team:not(:has(> .wrestler-link:nth-child(2))) > .wrestler-link,
+    .team:not(:has(> .wrestler-link:nth-child(2))) .wrestler{
+        max-width:80px;
+    }
 
-    .team .wrestler img{
+    .team:not(:has(> .wrestler-link:nth-child(2))) .wrestler img{
         width:70px;
         height:70px;
         max-width:70px;
         max-height:70px;
     }
 
-    .team .wrestler span{
-        font-size:7.5px;
-        line-height:10px;
-        padding:3px 2px;
+    /* 2+ = 3 por fila, reducidos para evitar cortes */
+    .team:has(> .wrestler-link:nth-child(2)) > .wrestler-link,
+    .team:has(> .wrestler-link:nth-child(2)) .wrestler,
+    .match > .team:first-child:not(:has(~ .team)) > .wrestler-link,
+    .match > .team:first-child:not(:has(~ .team)) .wrestler{
+        max-width:40px;
+    }
+
+    .team:has(> .wrestler-link:nth-child(2)) .wrestler img,
+    .match > .team:first-child:not(:has(~ .team)) .wrestler img{
+        width:38px;
+        height:38px;
+        max-width:38px;
+        max-height:38px;
+    }
+
+    .team:has(> .wrestler-link:nth-child(2)) .wrestler span{
+        font-size:6.5px;
+        line-height:8px;
+        min-height:23px;
+        padding:3px 1px;
     }
 
     .vs{
-        flex-basis:58px;
-        min-width:58px;
-        max-width:58px;
-        font-size:8px;
+        flex-basis:54px;
+        min-width:54px;
+        max-width:54px;
+        font-size:7px;
     }
 
     .match-score{
-        min-width:68px;
-        width:68px;
-        max-width:68px;
-        height:39px;
-        font-size:19px;
+        min-width:66px;
+        width:66px;
+        max-width:66px;
+        height:38px;
+        font-size:18px;
         padding:6px 3px;
     }
 
