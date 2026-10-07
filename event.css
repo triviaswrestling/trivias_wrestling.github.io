@@ -934,12 +934,12 @@ main{overflow:visible;}
        ========================================= */
 
     .team{
-     flex:0 0 auto;
-    width:auto;
-    max-width:none;
-    min-width:0;
-    gap:8px 0;
-    grid-template-columns:repeat(2,82px);
+flex:1 1 0;
+width:100%;
+max-width:calc(50% - 30px);
+min-width:0;
+gap:8px 5px;
+grid-template-columns:repeat(2,minmax(0,82px));
 }
 
     /* 1 = conserva el tamaño base del 1 vs 1 */
