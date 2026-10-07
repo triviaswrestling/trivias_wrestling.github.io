@@ -72,7 +72,7 @@ main{overflow:visible;}
     overflow:hidden;
     isolation:isolate;
 
-    /* acero RAW oscuro: negro + grafito + reflejos frÃ­os */
+    /* acero RAW oscuro: negro + grafito + reflejos frÃƒÂ­os */
     background:
         linear-gradient(135deg,
             rgba(255,255,255,.055) 0%,
@@ -94,7 +94,7 @@ main{overflow:visible;}
         0 12px 28px rgba(0,0,0,.68);
 }
 
-/* placas diagonales / reflejos metÃ¡licos */
+/* placas diagonales / reflejos metÃƒÂ¡licos */
 .event-header::before{
     content:"";
     position:absolute;
@@ -129,7 +129,7 @@ main{overflow:visible;}
     opacity:.9;
 }
 
-/* borde animado eliminado: se conservan los reflejos metÃ¡licos */
+/* borde animado eliminado: se conservan los reflejos metÃƒÂ¡licos */
 .event-header::after{display:none !important;}
 
 /* ---------- IMAGEN ---------- */
@@ -149,7 +149,7 @@ main{overflow:visible;}
         10px 0 25px rgba(0,0,0,.62);
 }
 
-/* ---------- INFORMACIÃ“N DERECHA ---------- */
+/* ---------- INFORMACIÃƒâ€œN DERECHA ---------- */
 .event-header-info{
     position:relative;
     z-index:7;
@@ -263,7 +263,7 @@ main{overflow:visible;}
 #event-brand,
 .event-brand{display:none !important;}
 
-/* ---------- TÃTULO GRANDE METÃLICO ---------- */
+/* ---------- TÃƒÂTULO GRANDE METÃƒÂLICO ---------- */
 .event-header h1{
     position:relative;
     z-index:12;
@@ -408,8 +408,8 @@ main{overflow:visible;}
 }
 
 /* =========================================================
-   MOBILE â€” TIPO ROJO ARRIBA + IMAGEN + DATOS
-   MISMA ESTÃ‰TICA, SOLO REORDENADA
+   MOBILE Ã¢â‚¬â€ TIPO ROJO ARRIBA + IMAGEN + DATOS
+   MISMA ESTÃƒâ€°TICA, SOLO REORDENADA
    ========================================================= */
 
 .result-card {
@@ -627,89 +627,73 @@ main{overflow:visible;}
 
 
 /* =========================================================
-   MATCH SYSTEM â€” VERSION 9.1
-   Base visual del (7) + distribuciÃ³n del (8)
-   PC: SIEMPRE MÃXIMO 3 LUCHADORES POR FILA
-   MOBILE: RENDERS CONTENIDOS DENTRO DE LA MATCH CARD
+   MATCH SYSTEM â€” DISTRIBUCIÃ“N DEFINITIVA
+   PC:
+   1 vs 1 = 1 | VS | 1
+   2 vs 2 = 2 | VS | 2
+   3 vs 3 = 3 | VS | 3, TODO EN UNA MISMA FILA
+   4 vs 4 = 3+1 | VS | 3+1
+   5 vs 5 = 3+2 | VS | 3+2
+   MULTITUDINARIOS / MITB / ROYAL RUMBLE = MÃXIMO 3 POR FILA
+   MOBILE: MISMA LÃ“GICA; NUNCA SE FUERZA 1 POR FILA
    ========================================================= */
 
 .match{
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:34px;
+    gap:28px;
     margin-top:20px;
     width:100%;
     min-width:0;
     max-width:100%;
 }
 
-/* Cada lado puede crecer, pero nunca rompe el ancho de la card. */
 .team{
     display:grid;
     justify-content:center;
     align-items:start;
     align-content:start;
-    gap:14px 12px;
+    gap:14px 10px;
     flex:1 1 0;
     width:100%;
     min-width:0;
-    max-width:450px;
-    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    max-width:430px;
+    grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
-/* 1 luchador */
+/* 1 */
 .team:not(:has(.wrestler:nth-child(2))){
-    grid-template-columns:minmax(0,140px) !important;
+    grid-template-columns:minmax(0,140px);
 }
 
-/* 2 luchadores */
+/* 2: ambos horizontales */
 .team:has(.wrestler:nth-child(2)):not(:has(.wrestler:nth-child(3))){
-    grid-template-columns:repeat(2,minmax(0,140px)) !important;
+    grid-template-columns:repeat(2,minmax(0,140px));
 }
 
-/* 3 luchadores: 3 horizontales, SIEMPRE en PC */
+/* 3: tres horizontales */
 .team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))){
-    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
-/* 4: 2 + 2 */
+/* 4: 3 arriba + 1 abajo */
 .team:has(.wrestler:nth-child(4)):not(:has(.wrestler:nth-child(5))){
-    grid-template-columns:repeat(2,minmax(0,140px)) !important;
+    grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
-/* 5: 3 + 2 */
+/* 5: 3 arriba + 2 abajo */
 .team:has(.wrestler:nth-child(5)):not(:has(.wrestler:nth-child(6))){
-    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
-/* 6 o mÃ¡s: MÃXIMO 3 por fila */
+/* 6 o mÃ¡s: 3 + 3 + 3... */
 .team:has(.wrestler:nth-child(6)){
-    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
-/* 3 vs 3: los seis luchadores deben poder convivir en UNA sola fila.
-   Se compactan solo estos equipos, sin cambiar los combates 1 vs 1/2 vs 2. */
-.team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))){
-    max-width:320px;
-}
-
-.team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))) .wrestler{
-    max-width:96px;
-}
-
-.team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))) .wrestler img{
-    width:92px;
-    height:92px;
-    max-width:92px;
-    max-height:92px;
-}
-
-/* MITB / Royal Rumble / multitudinarios: si el HTML usa un solo .team,
-   sigue siendo siempre 3 por fila como mÃ¡ximo. */
-.team:has(.wrestler:nth-child(4)){
-    max-width:450px;
-}
+/* El orden natural de CSS Grid llena la fila horizontal antes de bajar. */
+.team .wrestler{grid-column:auto;}
 
 .wrestler{
     width:100%;
@@ -898,7 +882,7 @@ main{overflow:visible;}
 }
 
 /* =========================================================
-   MOBILE â€” MISMO TAMAÃ‘O VISUAL DEL (8), CONTENIDO EN LA CARD
+   MOBILE Ã¢â‚¬â€ MISMO TAMAÃƒâ€˜O VISUAL DEL (8), CONTENIDO EN LA CARD
    ========================================================= */
 
 @media(max-width:768px){
@@ -915,34 +899,43 @@ main{overflow:visible;}
         width:100%;
         max-width:100%;
         margin:20px auto 0;
-        gap:6px;
+        gap:4px;
         overflow:visible;
     }
 
     .team{
         flex:1 1 0;
-        width:auto;
-        max-width:calc(50% - 35px);
+        width:100%;
+        max-width:calc(50% - 34px);
         min-width:0;
-        gap:9px 5px;
-        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+        gap:8px 3px;
     }
 
+    /* Mismo orden que PC: 1 / 2 / 3 horizontales */
     .team:not(:has(.wrestler:nth-child(2))){
-        grid-template-columns:minmax(0,90px) !important;
+        grid-template-columns:minmax(0,1fr) !important;
     }
 
     .team:has(.wrestler:nth-child(2)):not(:has(.wrestler:nth-child(3))){
         grid-template-columns:repeat(2,minmax(0,1fr)) !important;
     }
 
-    /* 3 luchadores: 2 + 1 por defecto; en mÃ³viles amplios pasa a 3 */
     .team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))){
-        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
     }
 
-    /* Multitudinarios: mÃ¡ximo 3 por fila y siempre se llena horizontalmente. */
-    .team:has(.wrestler:nth-child(4)){
+    /* 4 = 3 arriba + 1 abajo */
+    .team:has(.wrestler:nth-child(4)):not(:has(.wrestler:nth-child(5))){
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    }
+
+    /* 5 = 3 arriba + 2 abajo */
+    .team:has(.wrestler:nth-child(5)):not(:has(.wrestler:nth-child(6))){
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    }
+
+    /* 6+ = 3 por fila, llenando horizontalmente */
+    .team:has(.wrestler:nth-child(6)){
         grid-template-columns:repeat(3,minmax(0,1fr)) !important;
     }
 
@@ -955,24 +948,24 @@ main{overflow:visible;}
     }
 
     .team .wrestler:before{
-        left:4px;
-        right:4px;
+        left:3px;
+        right:3px;
     }
 
-    /* TamaÃ±o recuperado del (8), pero con lÃ­mites para que nunca desborde */
+    /* 3 por fila incluso en mÃ³vil: el tamaÃ±o baja, nunca la cantidad por fila. */
     .team .wrestler img{
-        width:90px;
-        height:90px;
-        max-width:90px;
-        max-height:90px;
-        margin-bottom:8px;
+        width:82px;
+        height:82px;
+        max-width:82px;
+        max-height:82px;
+        margin-bottom:7px;
     }
 
     .team .wrestler span{
-        font-size:9px;
-        min-height:34px;
-        line-height:12px;
-        padding:4px 4px;
+        font-size:8.5px;
+        min-height:32px;
+        line-height:11px;
+        padding:4px 3px;
         overflow-wrap:anywhere;
     }
 
@@ -986,15 +979,52 @@ main{overflow:visible;}
     }
 
     .match-score{
-        min-width:76px;
-        width:76px;
-        max-width:76px;
+        min-width:74px;
+        width:74px;
+        max-width:74px;
         height:42px;
-        padding:7px 4px;
-        gap:4px;
-        font-size:21px;
+        padding:7px 3px;
+        gap:3px;
+        font-size:20px;
         letter-spacing:0;
         white-space:nowrap;
+    }
+
+    /* Multitudinarios: el marcador baja para que los luchadores tengan
+       todo el ancho de la card. Los equipos siguen usando 3 por fila. */
+    .match:has(.team .wrestler:nth-child(4)){
+        flex-wrap:wrap;
+        align-items:flex-start;
+        row-gap:12px;
+    }
+
+    .match:has(.team .wrestler:nth-child(4)) .team{
+        flex:1 1 100%;
+        width:100%;
+        max-width:100%;
+    }
+
+    .match:has(.team .wrestler:nth-child(4)) .team .wrestler{
+        max-width:90px;
+    }
+
+    .match:has(.team .wrestler:nth-child(4)) .team .wrestler img{
+        width:82px;
+        height:82px;
+        max-width:82px;
+        max-height:82px;
+    }
+
+    .match:has(.team .wrestler:nth-child(4)) .vs{
+        order:3;
+        flex:0 0 100%;
+        width:100%;
+        max-width:100%;
+        min-width:100%;
+        flex-direction:row;
+        justify-content:center;
+        gap:10px;
+        margin-top:2px;
     }
 
     /* Chamber = 2 equipos por fila */
@@ -1018,8 +1048,8 @@ main{overflow:visible;}
         max-height:70px;
     }
 
-    /* Multitudinarios: si hay mÃ¡s de 3 integrantes, el marcador baja
-       a una segunda lÃ­nea para liberar el ancho de los luchadores. */
+    /* Multitudinarios: si hay mÃƒÂ¡s de 3 integrantes, el marcador baja
+       a una segunda lÃƒÂ­nea para liberar el ancho de los luchadores. */
     .match:has(.team .wrestler:nth-child(4)){
         flex-wrap:wrap;
         align-items:flex-start;
@@ -1055,7 +1085,7 @@ main{overflow:visible;}
     }
 }
 
-/* MÃ³vil ancho: cuando realmente hay espacio, 3 horizontales. */
+/* MÃƒÂ³vil ancho: cuando realmente hay espacio, 3 horizontales. */
 @media (min-width:680px) and (max-width:768px){
 
     .team:has(.wrestler:nth-child(3)):not(:has(.wrestler:nth-child(4))){
@@ -1072,30 +1102,30 @@ main{overflow:visible;}
     }
 }
 
-/* TelÃ©fonos muy estrechos: conserva el layout del (8),
+/* TelÃƒÂ©fonos muy estrechos: conserva el layout del (8),
    pero reduce solo lo necesario para evitar cualquier overflow. */
 @media(max-width:380px){
 
-    .match{gap:3px;}
+    .match{gap:2px;}
 
     .team{
-        max-width:calc(50% - 31px);
-        gap:7px 3px;
+        max-width:calc(50% - 30px);
+        gap:7px 2px;
     }
 
-    .team .wrestler{max-width:82px;}
+    .team .wrestler{max-width:80px;}
 
     .team .wrestler img{
-        width:78px;
-        height:78px;
-        max-width:78px;
-        max-height:78px;
+        width:70px;
+        height:70px;
+        max-width:70px;
+        max-height:70px;
     }
 
     .team .wrestler span{
-        font-size:8px;
-        line-height:11px;
-        padding:4px 3px;
+        font-size:7.5px;
+        line-height:10px;
+        padding:3px 2px;
     }
 
     .vs{
@@ -1172,7 +1202,7 @@ main{overflow:visible;}
     text-transform:uppercase;
 }
 
-/* BARRA DE SECCIÃ“N */
+/* BARRA DE SECCIÃƒâ€œN */
 
 .chronology-block h3:after{
     content:"";
@@ -1269,7 +1299,7 @@ main{overflow:visible;}
 
 /* =========================================
    BARRA GORDA SUPERIOR
-   ESTÃTICA NORMALMENTE
+   ESTÃƒÂTICA NORMALMENTE
    ========================================= */
 
 .chronology-card:before{
@@ -1528,7 +1558,7 @@ main{overflow:visible;}
 
 
 /* AL TOCAR / HOVER LA CARD ACTUAL,
-   TAMBIÃ‰N SE MUEVE SU BARRA GORDA */
+   TAMBIÃƒâ€°N SE MUEVE SU BARRA GORDA */
 
 .chronology-current .chronology-card:hover:before,
 .chronology-current .chronology-card:active:before{
@@ -1537,7 +1567,7 @@ main{overflow:visible;}
 
 
 /* =========================================
-   ANIMACIÃ“N DEL BORDE ACTUAL
+   ANIMACIÃƒâ€œN DEL BORDE ACTUAL
    ========================================= */
 
 @keyframes chronoCurrent{
@@ -1584,7 +1614,7 @@ main{overflow:visible;}
 
 
 /* =========================================
-   CARD VACÃA
+   CARD VACÃƒÂA
    ========================================= */
 
 .chronology-empty{
@@ -1661,7 +1691,7 @@ main{overflow:visible;}
         display:none;
     }
 
-    /* TYPE â€” 1Â° */
+    /* TYPE Ã¢â‚¬â€ 1Ã‚Â° */
     .event-type{
         order:0;
         display:flex !important;
@@ -1680,7 +1710,7 @@ main{overflow:visible;}
         border-right:0 !important;
     }
 
-    /* IMAGE â€” 2Â° / REAL 16:9 */
+    /* IMAGE Ã¢â‚¬â€ 2Ã‚Â° / REAL 16:9 */
     .event-header-image{
         order:1;
         width:100%;
@@ -1695,7 +1725,7 @@ main{overflow:visible;}
             0 5px 12px rgba(0,0,0,.48);
     }
 
-    /* TITLE â€” 3Â° */
+    /* TITLE Ã¢â‚¬â€ 3Ã‚Â° */
     .event-header h1{
         order:2;
         grid-row:auto;
@@ -1720,7 +1750,7 @@ main{overflow:visible;}
         height:2px;
     }
 
-    /* SHOW DATE â€” 4Â° */
+    /* SHOW DATE Ã¢â‚¬â€ 4Ã‚Â° */
     #event-date,
 .event-date{
         order:3;
@@ -1833,7 +1863,7 @@ main{overflow:visible;}
 
 
 /* =========================================================
-   PERFORMANCE GUARD â€” NO CAMBIO VISUAL EN PC
+   PERFORMANCE GUARD Ã¢â‚¬â€ NO CAMBIO VISUAL EN PC
    ========================================================= */
 
 /* Los hover transformados solo tienen sentido con puntero real. */
@@ -1848,7 +1878,7 @@ main{overflow:visible;}
 }
 
 /* El fondo fijo del (7) ya se desactiva en mobile.
-   Se mantiene exactamente esa decisiÃ³n para evitar coste en GPU. */
+   Se mantiene exactamente esa decisiÃƒÂ³n para evitar coste en GPU. */
 @media(max-width:768px){
     body{
         background-attachment:scroll;
