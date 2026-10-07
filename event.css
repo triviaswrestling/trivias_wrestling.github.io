@@ -1892,44 +1892,36 @@ grid-template-columns:repeat(2,minmax(0,82px));
 /* =========================================================
    MOBILE — 2 VS 2 DEFINITIVO
    =========================================================
-   SOLO afecta:
-   
-   [LUCHADOR][LUCHADOR] | VS | [LUCHADOR][LUCHADOR]
+   SOLO afecta TAG TEAM 2 VS 2 en MOBILE.
 
-   NO toca:
-   - 1 VS 1
-   - .vs
-   - .match-score
-   - PC
-   - 3 VS 3
-   - 4 VS 4
-   - 5 VS 5
-   - 6+
-   - Chamber
+   OBJETIVO:
+   - Las 4 fichas siguen en una sola fila:
+     [LUCHADOR][LUCHADOR] | VS | [LUCHADOR][LUCHADOR]
+   - Las fichas se ensanchan apenas respecto al estado anterior.
+   - La imagen de cada luchador queda SIEMPRE 1:1.
+   - El nombre conserva su bloque inferior.
+   - NO modifica 1 VS 1.
+   - NO modifica 3 VS 3 / 4 VS 4 / 5 VS 5 / 6+.
+   - NO modifica Chamber.
+   - NO modifica PC.
    ========================================================= */
 
-@media (max-width:768px){
+@media(max-width:768px){
 
     /* =====================================================
-       DETECCIÓN EXACTA DE 2 VS 2
+       DETECCIÓN EXACTA DE CADA TEAM DE 2 LUCHADORES
        ===================================================== */
 
     .match > .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))),
 
     .match > .vs ~ .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))){
 
-        /*
-         * Cada TEAM ocupa todo el espacio que le corresponde.
-         */
         flex:1 1 0 !important;
 
         width:0 !important;
         max-width:none !important;
         min-width:0 !important;
 
-        /*
-         * Las dos fichas llenan completamente el TEAM.
-         */
         display:grid !important;
 
         grid-template-columns:
@@ -1941,7 +1933,6 @@ grid-template-columns:repeat(2,minmax(0,82px));
 
         justify-content:stretch !important;
         justify-items:stretch !important;
-
         align-items:start;
 
         box-sizing:border-box;
@@ -1949,7 +1940,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
 
 
     /* =====================================================
-       CADA LINK = COLUMNA COMPLETA
+       CADA LINK OCUPA SU COLUMNA
        ===================================================== */
 
     .match > .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))) > .wrestler-link{
@@ -1957,7 +1948,6 @@ grid-template-columns:repeat(2,minmax(0,82px));
         display:block !important;
 
         width:100% !important;
-
         max-width:none !important;
         min-width:0 !important;
 
@@ -1968,24 +1958,30 @@ grid-template-columns:repeat(2,minmax(0,82px));
 
 
     /* =====================================================
-       FICHA = ANCHO COMPLETO DE SU COLUMNA
+       FICHA 2 VS 2
+       +6px DE ANCHO VISUAL.
+
+       Esto es lo que corrige el detalle de la imagen:
+       la ficha queda un poquito más ancha y reduce el
+       espacio entre las dos fichas de cada equipo, sin
+       tocar la distribución general del MATCH.
        ===================================================== */
 
     .match > .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))) > .wrestler-link > .wrestler{
 
-        width:100% !important;
+        width:calc(100% + 6px) !important;
 
         max-width:none !important;
         min-width:0 !important;
 
-        justify-self:stretch !important;
+        justify-self:center !important;
 
         box-sizing:border-box;
     }
 
 
     /* =====================================================
-       IMAGEN — SIEMPRE CUADRADA
+       IMAGEN 1:1
        ===================================================== */
 
     .match > .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))) > .wrestler-link > .wrestler > img{
@@ -1993,15 +1989,6 @@ grid-template-columns:repeat(2,minmax(0,82px));
         display:block !important;
 
         width:100% !important;
-
-        /*
-         * El alto sale del ancho.
-         * Por lo tanto:
-         *
-         * 100px ancho = 100px alto
-         * 120px ancho = 120px alto
-         * 135px ancho = 135px alto
-         */
         height:auto !important;
 
         aspect-ratio:1 / 1 !important;
@@ -2009,9 +1996,6 @@ grid-template-columns:repeat(2,minmax(0,82px));
         max-width:none !important;
         max-height:none !important;
 
-        /*
-         * No deformar ni forzar una altura diferente.
-         */
         object-fit:cover;
 
         margin-left:auto;
@@ -2024,12 +2008,10 @@ grid-template-columns:repeat(2,minmax(0,82px));
 
 /* =========================================================
    2 VS 2 — TELÉFONOS MUY ESTRECHOS
-   =========================================================
-   NO ponemos 72px, 76px, 82px, etc.
-   El tamaño sigue saliendo del espacio REAL disponible.
+   MISMA CORRECCIÓN: +6px DE ANCHO
    ========================================================= */
 
-@media (max-width:380px){
+@media(max-width:380px){
 
     .match > .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))),
 
@@ -2049,12 +2031,22 @@ grid-template-columns:repeat(2,minmax(0,82px));
     }
 
 
-    .match > .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))) > .wrestler-link,
-    .match > .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))) > .wrestler-link > .wrestler{
+    .match > .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))) > .wrestler-link{
 
         width:100% !important;
         max-width:none !important;
         min-width:0 !important;
+    }
+
+
+    .match > .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))) > .wrestler-link > .wrestler{
+
+        width:calc(100% + 6px) !important;
+
+        max-width:none !important;
+        min-width:0 !important;
+
+        justify-self:center !important;
     }
 
 
