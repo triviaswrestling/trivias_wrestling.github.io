@@ -2063,3 +2063,62 @@ grid-template-columns:repeat(2,minmax(0,82px));
         object-fit:cover;
     }
 }
+
+
+/* =========================================================
+   CORRECCIÓN FINAL — 2 VS 2 MOBILE
+   EVITAR QUE LAS FICHAS TAPEN EL MARCADOR
+   =========================================================
+   Las 4 fichas conservan el ancho conseguido arriba, pero
+   cada equipo se desplaza hacia SU propio borde:
+
+   IZQUIERDA  ←  [CARD][CARD] | MARCADOR | [CARD][CARD]  →
+                                      DERECHA
+
+   Esto NO mueve ni modifica el marcador.
+   ========================================================= */
+
+@media(max-width:768px){
+
+    /* Equipo izquierdo: empuja las fichas hacia afuera */
+    .match > .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))):first-child
+    > .wrestler-link
+    > .wrestler{
+
+        position:relative;
+        left:-6px !important;
+    }
+
+
+    /* Equipo derecho: empuja las fichas hacia afuera */
+    .match > .team + .vs + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+    > .wrestler-link
+    > .wrestler{
+
+        position:relative;
+        left:6px !important;
+    }
+}
+
+
+/* =========================================================
+   TELÉFONOS MUY ESTRECHOS
+   ========================================================= */
+
+@media(max-width:380px){
+
+    .match > .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3))):first-child
+    > .wrestler-link
+    > .wrestler{
+
+        left:-5px !important;
+    }
+
+
+    .match > .team + .vs + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+    > .wrestler-link
+    > .wrestler{
+
+        left:5px !important;
+    }
+}
