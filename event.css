@@ -934,7 +934,7 @@ main{overflow:visible;}
        ========================================= */
 
     .team{
-    flex:0 0 auto;
+     flex:0 0 auto;
     width:auto;
     max-width:none;
     min-width:0;
