@@ -72,7 +72,7 @@ main{overflow:visible;}
     overflow:hidden;
     isolation:isolate;
 
-    /* acero RAW oscuro: negro + grafito + reflejos frÃƒÂ­os */
+    /* acero RAW oscuro: negro + grafito + reflejos frÃƒÆ’Ã‚Â­os */
     background:
         linear-gradient(135deg,
             rgba(255,255,255,.055) 0%,
@@ -94,7 +94,7 @@ main{overflow:visible;}
         0 12px 28px rgba(0,0,0,.68);
 }
 
-/* placas diagonales / reflejos metÃƒÂ¡licos */
+/* placas diagonales / reflejos metÃƒÆ’Ã‚Â¡licos */
 .event-header::before{
     content:"";
     position:absolute;
@@ -129,7 +129,7 @@ main{overflow:visible;}
     opacity:.9;
 }
 
-/* borde animado eliminado: se conservan los reflejos metÃƒÂ¡licos */
+/* borde animado eliminado: se conservan los reflejos metÃƒÆ’Ã‚Â¡licos */
 .event-header::after{display:none !important;}
 
 /* ---------- IMAGEN ---------- */
@@ -149,7 +149,7 @@ main{overflow:visible;}
         10px 0 25px rgba(0,0,0,.62);
 }
 
-/* ---------- INFORMACIÃƒâ€œN DERECHA ---------- */
+/* ---------- INFORMACIÃƒÆ’Ã¢â‚¬Å“N DERECHA ---------- */
 .event-header-info{
     position:relative;
     z-index:7;
@@ -263,7 +263,7 @@ main{overflow:visible;}
 #event-brand,
 .event-brand{display:none !important;}
 
-/* ---------- TÃƒÂTULO GRANDE METÃƒÂLICO ---------- */
+/* ---------- TÃƒÆ’Ã‚ÂTULO GRANDE METÃƒÆ’Ã‚ÂLICO ---------- */
 .event-header h1{
     position:relative;
     z-index:12;
@@ -408,8 +408,8 @@ main{overflow:visible;}
 }
 
 /* =========================================================
-   MOBILE Ã¢â‚¬â€ TIPO ROJO ARRIBA + IMAGEN + DATOS
-   MISMA ESTÃƒâ€°TICA, SOLO REORDENADA
+   MOBILE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â TIPO ROJO ARRIBA + IMAGEN + DATOS
+   MISMA ESTÃƒÆ’Ã¢â‚¬Â°TICA, SOLO REORDENADA
    ========================================================= */
 
 .result-card {
@@ -627,12 +627,12 @@ main{overflow:visible;}
 
 
 /* =========================================================
-   MATCH SYSTEM — FILAS HORIZONTALES REALES
+   MATCH SYSTEM â€” FILAS HORIZONTALES REALES
 
    IMPORTANTE:
    .team NO contiene directamente .wrestler.
    Contiene <a class="wrestler-link"> y dentro de ese enlace
-   está el <div class="wrestler">.
+   estÃ¡ el <div class="wrestler">.
 
    Por eso las reglas anteriores que buscaban
    .wrestler:nth-child(2/3/4...) NO detectaban correctamente
@@ -890,14 +890,14 @@ main{overflow:visible;}
 
 /* =========================================================
    MOBILE
-   MISMA LÓGICA DE DISTRIBUCIÓN QUE PC
+   MISMA LÃ“GICA DE DISTRIBUCIÃ“N QUE PC
 
-   1 VS 1  = conserva el tamaño anterior
+   1 VS 1  = conserva el tamaÃ±o anterior
    2 VS 2  = 2 + VS + 2
    3 VS 3  = 3 + VS + 3
    4 VS 4  = 3+1 + VS + 3+1
    5 VS 5  = 3+2 + VS + 3+2
-   6+      = máximo 3 por fila
+   6+      = mÃ¡ximo 3 por fila
 
    IMPORTANTE:
    Los hijos reales de .team son .wrestler-link.
@@ -942,7 +942,7 @@ gap:8px 5px;
 grid-template-columns:repeat(2,minmax(0,82px));
 }
 
-    /* 1 = conserva el tamaño base del 1 vs 1 */
+    /* 1 = conserva el tamaÃ±o base del 1 vs 1 */
     .team:not(:has(> .wrestler-link:nth-child(2))){
         grid-template-columns:minmax(0,82px) !important;
     }
@@ -960,7 +960,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
     }
 
     /* =========================================================
-       FICHAS MOBILE — MISMA BASE VISUAL QUE 1 VS 1
+       FICHAS MOBILE â€” MISMA BASE VISUAL QUE 1 VS 1
        ========================================================= */
 
     .team > .wrestler-link,
@@ -1039,7 +1039,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
 
     /* =========================================================
        DOS EQUIPOS
-       2v2 mantiene el mismo tamaño visual del 1v1.
+       2v2 mantiene el mismo tamaÃ±o visual del 1v1.
        En 3v3/4v4/5v5 solo se reduce APENAS si el ancho
        de la pantalla lo exige.
        ========================================================= */
@@ -1050,7 +1050,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
         max-width:calc(50% - 30px);
     }
 
-    /* En pantallas normales de móvil: 76px de imagen. */
+    /* En pantallas normales de mÃ³vil: 76px de imagen. */
     .match > .team + .vs + .team .wrestler img{
         width:76px;
         height:76px;
@@ -1110,7 +1110,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
 }
 
 /* =========================================================
-   MÓVIL ANCHO + TELÉFONOS MUY ESTRECHOS
+   MÃ“VIL ANCHO + TELÃ‰FONOS MUY ESTRECHOS
    ========================================================= */
 
 
@@ -1128,7 +1128,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
         max-width:calc(50% - 26px);
     }
 
-    /* 1v1: apenas un poco más chico que el móvil normal */
+    /* 1v1: apenas un poco mÃ¡s chico que el mÃ³vil normal */
     .team:not(:has(> .wrestler-link:nth-child(2))) > .wrestler-link,
     .team:not(:has(> .wrestler-link:nth-child(2))) .wrestler{
         max-width:76px;
@@ -1141,7 +1141,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
         max-height:70px;
     }
 
-    /* 2-5: siguen siendo 2 por fila; reducción mínima */
+    /* 2-5: siguen siendo 2 por fila; reducciÃ³n mÃ­nima */
     .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(6))) > .wrestler-link,
     .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(6))) .wrestler,
     .match > .team:first-child:not(:has(~ .team)) > .wrestler-link,
@@ -1206,7 +1206,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
     text-transform:uppercase;
 }
 
-/* BARRA DE SECCIÃƒâ€œN */
+/* BARRA DE SECCIÃƒÆ’Ã¢â‚¬Å“N */
 
 .chronology-block h3:after{
     content:"";
@@ -1303,7 +1303,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
 
 /* =========================================
    BARRA GORDA SUPERIOR
-   ESTÃƒÂTICA NORMALMENTE
+   ESTÃƒÆ’Ã‚ÂTICA NORMALMENTE
    ========================================= */
 
 .chronology-card:before{
@@ -1562,7 +1562,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
 
 
 /* AL TOCAR / HOVER LA CARD ACTUAL,
-   TAMBIÃƒâ€°N SE MUEVE SU BARRA GORDA */
+   TAMBIÃƒÆ’Ã¢â‚¬Â°N SE MUEVE SU BARRA GORDA */
 
 .chronology-current .chronology-card:hover:before,
 .chronology-current .chronology-card:active:before{
@@ -1571,7 +1571,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
 
 
 /* =========================================
-   ANIMACIÃƒâ€œN DEL BORDE ACTUAL
+   ANIMACIÃƒÆ’Ã¢â‚¬Å“N DEL BORDE ACTUAL
    ========================================= */
 
 @keyframes chronoCurrent{
@@ -1618,7 +1618,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
 
 
 /* =========================================
-   CARD VACÃƒÂA
+   CARD VACÃƒÆ’Ã‚ÂA
    ========================================= */
 
 .chronology-empty{
@@ -1695,7 +1695,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
         display:none;
     }
 
-    /* TYPE Ã¢â‚¬â€ 1Ã‚Â° */
+    /* TYPE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 1Ãƒâ€šÃ‚Â° */
     .event-type{
         order:0;
         display:flex !important;
@@ -1714,7 +1714,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
         border-right:0 !important;
     }
 
-    /* IMAGE Ã¢â‚¬â€ 2Ã‚Â° / REAL 16:9 */
+    /* IMAGE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 2Ãƒâ€šÃ‚Â° / REAL 16:9 */
     .event-header-image{
         order:1;
         width:100%;
@@ -1729,7 +1729,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
             0 5px 12px rgba(0,0,0,.48);
     }
 
-    /* TITLE Ã¢â‚¬â€ 3Ã‚Â° */
+    /* TITLE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 3Ãƒâ€šÃ‚Â° */
     .event-header h1{
         order:2;
         grid-row:auto;
@@ -1754,7 +1754,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
         height:2px;
     }
 
-    /* SHOW DATE Ã¢â‚¬â€ 4Ã‚Â° */
+    /* SHOW DATE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 4Ãƒâ€šÃ‚Â° */
     #event-date,
 .event-date{
         order:3;
@@ -1867,7 +1867,7 @@ grid-template-columns:repeat(2,minmax(0,82px));
 
 
 /* =========================================================
-   PERFORMANCE GUARD Ã¢â‚¬â€ NO CAMBIO VISUAL EN PC
+   PERFORMANCE GUARD ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â NO CAMBIO VISUAL EN PC
    ========================================================= */
 
 /* Los hover transformados solo tienen sentido con puntero real. */
@@ -1882,61 +1882,50 @@ grid-template-columns:repeat(2,minmax(0,82px));
 }
 
 /* El fondo fijo del (7) ya se desactiva en mobile.
-   Se mantiene exactamente esa decisiÃƒÂ³n para evitar coste en GPU. */
+   Se mantiene exactamente esa decisiÃƒÆ’Ã‚Â³n para evitar coste en GPU. */
 @media(max-width:768px){
     body{
         background-attachment:scroll;
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* =========================================================
-   MOBILE — SOLO 2 VS 2
-   Ambos equipos deben tener EXACTAMENTE 2 .wrestler-link
+   MOBILE â€” 2 VS 2
+   SOLO cuando AMBOS equipos tienen exactamente 2 luchadores.
+   Cada equipo ocupa todo el ancho disponible hasta el VS.
+   Las 2 fichas de cada equipo se reparten 50/50 y mantienen 1:1.
+   NO modifica .vs ni .match-score.
    ========================================================= */
 
 @media (max-width:768px){
 
-    /* Detecta exclusivamente:
-       2 luchadores + VS + 2 luchadores */
+    /* 2 VS 2 exacto: 2 luchadores + VS + 2 luchadores */
+    .match:has(
+        > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+        + .vs
+        + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+    ){
+        gap:4px;
+    }
+
+    /* Cada lado ocupa exactamente la mitad del espacio que queda
+       despuÃ©s de descontar el VS y los gaps. */
     .match:has(
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
         + .vs
         + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
     ) > .team{
+        flex:1 1 0 !important;
+        width:0 !important;
+        max-width:none !important;
+        min-width:0 !important;
 
-        /*
-         * Elimina el límite artificial de 50%-30px.
-         * Los dos equipos comparten exactamente el espacio
-         * que queda a ambos lados del VS.
-         */
-        flex:1 1 0;
-        width:auto;
-        max-width:none;
-        min-width:0;
-
-        /*
-         * Las dos fichas se adaptan automáticamente al ancho
-         * real disponible del equipo.
-         */
-        grid-template-columns:repeat(2,minmax(0,1fr));
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
         gap:8px 5px;
     }
 
-    /* Las fichas del 2v2 ocupan exactamente su celda,
-       sin comprimirse horizontalmente. */
+    /* Las dos fichas se estiran hasta ocupar TODA la anchura
+       de su mitad. Se elimina el lÃ­mite de 82px. */
     .match:has(
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
         + .vs
@@ -1946,29 +1935,27 @@ grid-template-columns:repeat(2,minmax(0,82px));
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
         + .vs
         + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
-    ) > .team > .wrestler-link .wrestler{
-
-        width:100%;
-        max-width:82px;
-        min-width:0;
+    ) > .team > .wrestler-link > .wrestler{
+        width:100% !important;
+        max-width:none !important;
+        min-width:0 !important;
+        box-sizing:border-box;
     }
 
-    /*
-     * Imagen 1:1 adaptativa:
-     * - hasta 76px cuando hay espacio
-     * - se reduce automáticamente en móviles angostos
-     * - nunca se deforma
-     */
+    /* La imagen ocupa el ancho real de su ficha y la altura es
+       exactamente igual: nunca se deforma ni se recorta por ancho. */
     .match:has(
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
         + .vs
         + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
-    ) > .team > .wrestler-link .wrestler img{
-
-        width:100%;
-        max-width:76px;
-        height:auto;
+    ) > .team > .wrestler-link > .wrestler img{
+        display:block;
+        width:100% !important;
+        height:auto !important;
+        max-width:none !important;
+        max-height:none !important;
         aspect-ratio:1 / 1;
         object-fit:cover;
+        box-sizing:border-box;
     }
 }
