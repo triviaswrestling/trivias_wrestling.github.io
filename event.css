@@ -1890,19 +1890,32 @@ grid-template-columns:repeat(2,minmax(0,82px));
 }
 
 /* =========================================================
-   MOBILE — SOLO 2 VS 2
-   2 fichas a la izquierda + VS + 2 fichas a la derecha
+   MOBILE — 2 VS 2 PROFESIONAL
+   =========================================================
+   SOLO:
+   2 luchadores + VS + 2 luchadores
 
-   Cada TEAM utiliza TODO el ancho disponible de su lado.
-   Las 2 fichas ocupan 50% + 50%.
-   NO toca .vs
-   NO toca .match-score
-   NO afecta 1v1 ni otros formatos.
+   El match se extiende hasta los bordes de la result-card.
+   Cada TEAM ocupa exactamente el espacio disponible
+   a cada lado del VS.
+
+   NO modifica:
+   - 1 VS 1
+   - .vs
+   - .match-score
+   - 3 VS 3
+   - 4 VS 4
+   - 5 VS 5
+   - 6+
+   - Chamber
    ========================================================= */
 
 @media (max-width:768px){
 
-    /* Detectar EXCLUSIVAMENTE 2 VS 2 */
+    /* =========================================
+       DETECTOR EXCLUSIVO DE 2 VS 2
+       ========================================= */
+
     .match:has(
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
         + .vs
@@ -1910,20 +1923,32 @@ grid-template-columns:repeat(2,minmax(0,82px));
     ){
 
         /*
-         * El match conserva el ancho completo.
-         * El VS sigue exactamente con su tamaño actual.
+         * .result-card tiene padding:22px.
+         *
+         * Sacamos SOLO este 2v2 de ese padding
+         * para aprovechar prácticamente todo el ancho
+         * de la tarjeta.
          */
-        width:100%;
-        max-width:100%;
-        min-width:0;
-        gap:4px;
+        width:calc(100% + 44px) !important;
+        max-width:none !important;
+
+        margin-left:-22px !important;
+        margin-right:-22px !important;
+
         box-sizing:border-box;
+
+        /*
+         * El VS mantiene su tamaño actual.
+         * Los teams se reparten automáticamente
+         * TODO el espacio restante.
+         */
+        gap:4px;
     }
 
 
-    /* =====================================================
-       CADA TEAM = TODO EL ESPACIO DISPONIBLE DE SU LADO
-       ===================================================== */
+    /* =========================================
+       TEAM IZQUIERDO + TEAM DERECHO
+       ========================================= */
 
     .match:has(
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
@@ -1931,28 +1956,31 @@ grid-template-columns:repeat(2,minmax(0,82px));
         + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
     ) > .team{
 
+        /*
+         * Esto es lo importante:
+         *
+         * VS = 58px
+         * gap = 4px + 4px
+         *
+         * Todo el resto se divide 50% / 50%
+         */
         flex:1 1 0 !important;
 
-        /*
-         * Importante:
-         * no usamos 50%-30px ni 50%-26px.
-         * El flex calcula automáticamente:
-         *
-         * [ TEAM ] [ VS ] [ TEAM ]
-         *
-         * dejando exactamente el mismo espacio a ambos lados.
-         */
-        width:auto !important;
+        width:0 !important;
         max-width:none !important;
         min-width:0 !important;
 
-        /*
-         * Las dos fichas se pegan y ocupan TODO el team.
-         */
         display:grid !important;
+
+        /*
+         * EXACTAMENTE dos fichas por equipo.
+         */
         grid-template-columns:repeat(2,minmax(0,1fr)) !important;
 
-        column-gap:0 !important;
+        /*
+         * Las fichas aprovechan todo el ancho.
+         */
+        column-gap:4px !important;
         row-gap:8px;
 
         justify-content:stretch !important;
@@ -1963,9 +1991,9 @@ grid-template-columns:repeat(2,minmax(0,82px));
     }
 
 
-    /* =====================================================
-       CADA FICHA = 50% EXACTO DEL TEAM
-       ===================================================== */
+    /* =========================================
+       CADA LINK OCUPA SU COLUMNA COMPLETA
+       ========================================= */
 
     .match:has(
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
@@ -1973,8 +2001,28 @@ grid-template-columns:repeat(2,minmax(0,82px));
         + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
     ) > .team > .wrestler-link{
 
+        width:100% !important;
+        max-width:none !important;
+        min-width:0 !important;
+
         display:block !important;
 
+        justify-self:stretch !important;
+
+        box-sizing:border-box;
+    }
+
+
+    /* =========================================
+       FICHA
+       ========================================= */
+
+    .match:has(
+        > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+        + .vs
+        + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+    ) > .team > .wrestler-link .wrestler{
+
         width:100% !important;
         max-width:none !important;
         min-width:0 !important;
@@ -1985,60 +2033,75 @@ grid-template-columns:repeat(2,minmax(0,82px));
     }
 
 
-    /* =====================================================
-       EL MARCO DE CADA LUCHADOR LLENA SU COLUMNA
-       ===================================================== */
+    /* =========================================
+       IMAGEN — CUADRADA 1:1
+       ========================================= */
 
     .match:has(
         > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
         + .vs
         + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
-    ) > .team > .wrestler-link > .wrestler{
-
-        width:100% !important;
-        max-width:none !important;
-        min-width:0 !important;
-
-        justify-self:stretch !important;
-
-        box-sizing:border-box;
-
-        /*
-         * La ficha completa es cuadrada.
-         */
-        aspect-ratio:1 / 1;
-    }
-
-
-    /* =====================================================
-       IMAGEN 1:1 REAL
-       ===================================================== */
-
-    .match:has(
-        > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
-        + .vs
-        + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
-    ) > .team > .wrestler-link > .wrestler img{
+    ) > .team > .wrestler-link .wrestler img{
 
         display:block;
 
         width:100% !important;
-        height:100% !important;
+        height:auto !important;
 
         max-width:none !important;
         max-height:none !important;
 
         aspect-ratio:1 / 1;
 
+        object-fit:cover;
+
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
+
+
+/* =========================================================
+   TELÉFONOS MUY ESTRECHOS
+   =========================================================
+   NO reducimos las fichas artificialmente.
+   El mismo cálculo de 50% por lado continúa funcionando.
+   ========================================================= */
+
+@media (max-width:380px){
+
+    .match:has(
+        > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+        + .vs
+        + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+    ){
+
         /*
-         * IMPORTANTE:
-         * contain evita que el luchador sea recortado.
-         * La imagen mantiene su proporción dentro de la ficha.
+         * El padding de .result-card sigue siendo 22px,
+         * por lo tanto mantenemos exactamente el mismo
+         * aprovechamiento horizontal.
          */
-        object-fit:contain;
+        width:calc(100% + 44px) !important;
 
-        margin:0 auto 7px;
+        margin-left:-22px !important;
+        margin-right:-22px !important;
 
-        box-sizing:border-box;
+        gap:2px;
+    }
+
+    .match:has(
+        > .team:first-child:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+        + .vs
+        + .team:has(> .wrestler-link:nth-child(2)):not(:has(> .wrestler-link:nth-child(3)))
+    ) > .team{
+
+        flex:1 1 0 !important;
+
+        width:0 !important;
+        max-width:none !important;
+
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+
+        column-gap:3px !important;
     }
 }
