@@ -62,8 +62,8 @@ main{overflow:visible;}
 .event-header{
     position:relative;
     display:grid;
-    grid-template-columns:30% 70%;
-    align-items:stretch;
+    grid-template-columns:32% 68%;
+    align-items:start;
     width:100%;
     max-width:100%;
     height:auto;
@@ -129,39 +129,8 @@ main{overflow:visible;}
     opacity:.9;
 }
 
-/* luz interna; el borde animado va en el box-shadow */
-.event-header::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    z-index:20;
-    pointer-events:none;
-    padding:1px;
-    border-radius:0;
-    background:
-        conic-gradient(from 0deg,
-            transparent 0deg 310deg,
-            rgba(255,20,45,.12) 318deg,
-            #d90024 327deg,
-            #ff4a5f 334deg,
-            rgba(255,20,45,.14) 342deg,
-            transparent 350deg 360deg);
-    -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor;
-    mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-    mask-composite:exclude;
-    animation:eventHeaderFlash 3.8s linear infinite;
-    filter:drop-shadow(0 0 5px rgba(217,0,36,.62));
-}
-
-@keyframes eventHeaderFlash{
-    from{transform:rotate(0deg);}
-    to{transform:rotate(360deg);}
-}
+/* borde animado eliminado: se conservan los reflejos metálicos */
+.event-header::after{display:none !important;}
 
 /* ---------- IMAGEN ---------- */
 .event-header-image{
@@ -171,6 +140,7 @@ main{overflow:visible;}
     width:100%;
     height:auto;
     aspect-ratio:16/9;
+    align-self:start;
     object-fit:cover;
     margin:0;
     border:0;
@@ -184,7 +154,7 @@ main{overflow:visible;}
     position:relative;
     z-index:7;
     min-width:0;
-    min-height:100%;
+    min-height:0;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -314,7 +284,7 @@ main{overflow:visible;}
     order:3;
     flex:0 1 auto;
     width:100%;
-    min-height:92px;
+    min-height:58px;
     height:auto;
     margin:0;
     padding:7px 15px 8px 0;
@@ -407,7 +377,16 @@ main{overflow:visible;}
     box-shadow:none !important;
 }
 
-.event-date::before{display:none !important;}
+.event-date::before{
+    content:"SHOW DATE:";
+    display:inline-block !important;
+    margin-right:8px;
+    color:#d90024;
+    font-weight:950;
+    letter-spacing:1.2px;
+    -webkit-text-fill-color:#d90024;
+}
+
 .event-date::after{display:none !important;}
 
 /* =========================================================
@@ -657,7 +636,7 @@ main{overflow:visible;}
    ========================================= */
 
 .wrestler {
-    width: 125px;
+    width: 140px;
     text-align: center;
     position: relative;
     padding-top: 5px;
@@ -678,8 +657,8 @@ main{overflow:visible;}
 }
 
 .wrestler img {
-    width: 100px;
-    height: 100px;
+    width: 112px;
+    height: 112px;
     object-fit: cover;
     display: block;
     margin: 0 auto 10px;
@@ -898,13 +877,13 @@ main{overflow:visible;}
 }
 
 .chamber-team .wrestler {
-    width: 125px;
-    flex: 0 0 125px;
+    width: 140px;
+    flex: 0 0 140px;
 }
 
 .chamber-team .wrestler img {
-    width: 100px;
-    height: 100px;
+    width: 112px;
+    height: 112px;
 }
 
 
@@ -1162,7 +1141,7 @@ main{overflow:visible;}
     position:relative;
     z-index:4;
 
-    width:58px;
+    width:150px;
     height:58px;
 
     object-fit:cover;
@@ -1453,9 +1432,16 @@ main{
 
 /* ---------- GLASS / CHAMPIONSHIP ---------- */
 .result-card{
-    background:linear-gradient(135deg,rgba(22,22,22,.62),rgba(5,5,5,.46));
-    border-color:rgba(255,255,255,.075);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 8px 20px rgba(0,0,0,.42);
+    background:
+        radial-gradient(circle at 50% -15%,rgba(255,255,255,.075),transparent 38%),
+        linear-gradient(155deg,rgba(52,52,52,.58) 0%,rgba(23,23,23,.68) 34%,rgba(7,7,7,.82) 72%,rgba(2,2,2,.92) 100%);
+    border-color:rgba(255,255,255,.09);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.09),
+        inset 0 -14px 24px rgba(0,0,0,.34),
+        inset 8px 0 20px rgba(255,255,255,.018),
+        inset -8px 0 20px rgba(0,0,0,.28),
+        0 10px 24px rgba(0,0,0,.55);
     backdrop-filter:blur(4px);
     -webkit-backdrop-filter:blur(4px);
 }
@@ -1538,10 +1524,10 @@ main{
         justify-items:center;
         align-items:start;
         align-content:center;
-        gap:7px;
+        gap:8px;
 
         width:100%;
-        max-width:150px;
+        max-width:182px;
         min-width:0;
 
         flex:1 1 0;
@@ -1566,8 +1552,8 @@ main{
        ===================================================== */
 
     .wrestler{
-        width:min(72px,100%);
-        max-width:72px;
+        width:min(88px,100%);
+        max-width:88px;
         min-width:0;
         flex:0 0 auto;
         padding-top:5px;
@@ -1579,17 +1565,17 @@ main{
     }
 
     .wrestler img{
-        width:min(62px,100%);
+        width:min(76px,100%);
         height:auto;
         aspect-ratio:1/1;
-        margin-bottom:5px;
+        margin-bottom:6px;
     }
 
     .wrestler span{
         width:100%;
-        min-height:28px;
-        padding:3px 2px;
-        font-size:8px;
+        min-height:31px;
+        padding:4px 3px;
+        font-size:8.5px;
         line-height:10px;
         overflow-wrap:anywhere;
     }
@@ -1599,9 +1585,9 @@ main{
        ===================================================== */
 
     .vs{
-        min-width:42px;
-        flex:0 0 42px;
-        gap:6px;
+        min-width:58px;
+        flex:0 0 58px;
+        gap:7px;
         font-size:8px;
         letter-spacing:1px;
     }
@@ -1611,11 +1597,11 @@ main{
        ===================================================== */
 
     .match-score{
-        min-width:58px;
-        height:38px;
-        padding:6px 7px;
-        gap:5px;
-        font-size:18px;
+        min-width:72px;
+        height:46px;
+        padding:7px 9px;
+        gap:6px;
+        font-size:21px;
     }
 
     .match-championship{
@@ -1653,14 +1639,14 @@ main{
     }
 
     .chamber-team .wrestler{
-        width:72px;
-        max-width:72px;
-        flex:0 0 72px;
+        width:88px;
+        max-width:88px;
+        flex:0 0 88px;
     }
 
     .chamber-team .wrestler img{
-        width:62px;
-        height:62px;
+        width:76px;
+        height:76px;
     }
 
     /* =====================================================
@@ -1694,46 +1680,46 @@ main{
     .match{gap:3px;}
 
     .team{
-        max-width:125px;
-        gap:5px;
+        max-width:150px;
+        gap:6px;
     }
 
     .wrestler{
-        width:min(58px,100%);
-        max-width:58px;
+        width:min(72px,100%);
+        max-width:72px;
     }
 
     .wrestler:before{left:3px;right:3px;}
 
     .wrestler img{
-        width:50px;
-        height:50px;
+        width:62px;
+        height:62px;
     }
 
     .wrestler span{
-        min-height:25px;
-        padding:2px;
-        font-size:7px;
+        min-height:27px;
+        padding:3px 2px;
+        font-size:7.5px;
         line-height:9px;
     }
 
     .vs{
-        min-width:34px;
-        flex:0 0 34px;
+        min-width:46px;
+        flex:0 0 46px;
         font-size:7px;
     }
 
     .match-score{
-        min-width:46px;
-        height:33px;
-        padding:5px;
-        font-size:14px;
+        min-width:58px;
+        height:38px;
+        padding:6px;
+        font-size:17px;
     }
 
     .chamber-teams{gap:10px 5px;}
     .chamber-team{gap:3px;}
-    .chamber-team .wrestler{width:62px;flex:0 0 62px;}
-    .chamber-team .wrestler img{width:52px;height:52px;}
+    .chamber-team .wrestler{width:72px;flex:0 0 72px;}
+    .chamber-team .wrestler img{width:62px;height:62px;}
 }
 
 /* =========================================================
@@ -1836,6 +1822,15 @@ img,video,iframe,svg{max-width:100%;}
         padding:0 8px !important;
         font-size:8px !important;
         letter-spacing:1.05px !important;
+    }
+
+    .event-date::before{
+        display:inline-block !important;
+        margin-right:7px;
+        color:#d90024;
+        -webkit-text-fill-color:#d90024;
+        font-size:7px;
+        letter-spacing:.9px;
     }
 
     .event-brand{display:none !important;}
