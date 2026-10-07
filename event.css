@@ -62,7 +62,7 @@ main{overflow:visible;}
 .event-header{
     position:relative;
     display:grid;
-    grid-template-columns:32% 68%;
+    grid-template-columns:30% 70%;
     align-items:stretch;
     width:100%;
     max-width:100%;
@@ -129,8 +129,39 @@ main{overflow:visible;}
     opacity:.9;
 }
 
-/* borde animado eliminado: se conservan los reflejos metálicos */
-.event-header::after{display:none !important;}
+/* luz interna; el borde animado va en el box-shadow */
+.event-header::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:20;
+    pointer-events:none;
+    padding:1px;
+    border-radius:0;
+    background:
+        conic-gradient(from 0deg,
+            transparent 0deg 310deg,
+            rgba(255,20,45,.12) 318deg,
+            #d90024 327deg,
+            #ff4a5f 334deg,
+            rgba(255,20,45,.14) 342deg,
+            transparent 350deg 360deg);
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite:exclude;
+    animation:eventHeaderFlash 3.8s linear infinite;
+    filter:drop-shadow(0 0 5px rgba(217,0,36,.62));
+}
+
+@keyframes eventHeaderFlash{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
 
 /* ---------- IMAGEN ---------- */
 .event-header-image{
@@ -140,7 +171,6 @@ main{overflow:visible;}
     width:100%;
     height:auto;
     aspect-ratio:16/9;
-    align-self:start;
     object-fit:cover;
     margin:0;
     border:0;
@@ -154,16 +184,13 @@ main{overflow:visible;}
     position:relative;
     z-index:7;
     min-width:0;
-    min-height:0;
-    height:100%;
-    display:grid;
-    grid-template-columns:1fr;
-    grid-template-rows:repeat(3,minmax(0,1fr));
-    align-content:stretch;
-    justify-items:stretch;
-    align-items:center;
-    gap:0;
-    padding:0 24px 0 27px;
+    min-height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:stretch;
+    gap:8px;
+    padding:18px 24px 19px 27px;
     background:
         linear-gradient(90deg,rgba(0,0,0,.30),transparent 16%,transparent 75%,rgba(0,0,0,.20)),
         linear-gradient(135deg,rgba(255,255,255,.025),transparent 45%);
@@ -217,10 +244,8 @@ main{overflow:visible;}
     display:flex !important;
     align-items:center;
     justify-content:center;
-    align-self:center;
+    align-self:flex-start;
     order:1;
-    grid-row:1;
-    justify-self:start;
     width:auto !important;
     max-width:100%;
     height:27px !important;
@@ -260,21 +285,39 @@ main{overflow:visible;}
 .event-type:empty{display:none !important;}
 
 /* ---------- MARCA ---------- */
-#event-brand,
-.event-brand{display:none !important;}
+.event-brand{
+    display:none !important;
+    position:relative;
+    z-index:12;
+    align-self:flex-end;
+    order:2;
+    width:fit-content;
+    max-width:55%;
+    margin:-31px 0 0;
+    padding:4px 9px;
+    color:#d7d7d7;
+    font-family:Arial,sans-serif;
+    font-size:8px;
+    font-weight:900;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+    background:rgba(0,0,0,.48);
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+}
+.event-brand:empty{display:none !important;}
 
 /* ---------- TÍTULO GRANDE METÁLICO ---------- */
 .event-header h1{
     position:relative;
     z-index:12;
-    order:2;
-    grid-row:2;
+    order:3;
     flex:0 1 auto;
     width:100%;
-    min-height:0;
+    min-height:92px;
     height:auto;
     margin:0;
-    padding:8px 15px 8px 0;
+    padding:7px 15px 8px 0;
     display:flex;
     align-items:center;
     overflow:visible;
@@ -333,79 +376,39 @@ main{overflow:visible;}
         transparent 76%);
 }
 
-/* ---------- SHOW DATE ---------- */
-#event-date,
+/* ---------- FECHA METÁLICA ---------- */
 .event-date{
     position:relative;
     z-index:12;
-    order:3;
-    grid-row:3;
-    justify-self:start;
-    align-self:center;
+    order:4;
     display:flex;
     align-items:center;
-
-    width:max-content !important;
+    width:fit-content !important;
     max-width:100%;
-    min-height:30px !important;
-    height:30px !important;
-
+    height:27px !important;
+    min-height:27px !important;
     margin:0;
-    padding:0 12px !important;
-
-    color:#e8e9ea !important;
+    padding:0 10px !important;
+    color:transparent !important;
     font-family:Arial,sans-serif;
     font-size:10px !important;
     font-weight:900;
-    letter-spacing:1.45px !important;
+    letter-spacing:1.6px !important;
     line-height:1;
     text-transform:uppercase;
-    text-shadow:0 1px 2px #000;
-
-    background:
-        linear-gradient(135deg,
-            #292929 0%,
-            #202020 25%,
-            #111111 55%,
-            #252525 78%,
-            #303030 100%) !important;
-
-    border:1px solid #4a4a4a !important;
+    text-shadow:none;
+    -webkit-background-clip:text;
+    background-clip:text;
+    background-image:linear-gradient(180deg,#f4f4f4,#9da2a5 48%,#d7d9da 51%,#707579);
+    -webkit-text-fill-color:transparent;
+    background-color:transparent !important;
+    border:0 !important;
     border-left:3px solid #d90024 !important;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.12),
-        inset 0 -1px 0 rgba(0,0,0,.7),
-        0 2px 6px rgba(0,0,0,.42);
-
-    -webkit-text-fill-color:#e8e9ea;
+    box-shadow:none !important;
 }
 
-#event-date::before,
-.event-date::before{
-    content:"SHOW DATE:";
-    display:inline-block !important;
-    margin-right:9px;
-    padding-right:9px;
-    color:#ff4a5f !important;
-    -webkit-text-fill-color:#ff4a5f !important;
-    font-size:9px;
-    font-weight:950;
-    letter-spacing:1.15px;
-    border-right:1px solid #4b4b4b;
-}
-
-#event-date::after,
-.event-date::after{
-    content:"";
-    position:absolute;
-    left:5px;
-    right:5px;
-    bottom:3px;
-    height:1px;
-    background:linear-gradient(90deg,#d90024,#ff4a5f 45%,transparent);
-    pointer-events:none;
-}
+.event-date::before{display:none !important;}
+.event-date::after{display:none !important;}
 
 /* =========================================================
    MOBILE — TIPO ROJO ARRIBA + IMAGEN + DATOS
@@ -413,25 +416,21 @@ main{overflow:visible;}
    ========================================================= */
 
 .result-card {
-    position:relative;
+    position: relative;
     background:
         linear-gradient(
             135deg,
-            #262626 0%,
-            #1b1b1b 24%,
-            #101010 52%,
-            #171717 76%,
-            #242424 100%
+            rgba(25,25,25,.84),
+            rgba(9,9,9,.74)
         );
-    border:1px solid #292929;
-    padding:22px;
-    margin-bottom:14px;
-    transition:.2s;
-    --brand:#d4a72c;
+    border: 1px solid rgba(255,255,255,.055);
+    padding: 22px;
+    margin-bottom: 14px;
+    transition: .2s;
+    --brand: #d4a72c;
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.055),
-        inset 0 -10px 18px rgba(0,0,0,.18),
-        0 8px 20px rgba(0,0,0,.40);
+        inset 0 1px 0 rgba(255,255,255,.035),
+        0 8px 20px rgba(0,0,0,.48);
 }
 
 
@@ -658,7 +657,7 @@ main{overflow:visible;}
    ========================================= */
 
 .wrestler {
-    width: 140px;
+    width: 125px;
     text-align: center;
     position: relative;
     padding-top: 5px;
@@ -679,8 +678,8 @@ main{overflow:visible;}
 }
 
 .wrestler img {
-    width: 112px;
-    height: 112px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     display: block;
     margin: 0 auto 10px;
@@ -899,13 +898,13 @@ main{overflow:visible;}
 }
 
 .chamber-team .wrestler {
-    width: 140px;
-    flex: 0 0 140px;
+    width: 125px;
+    flex: 0 0 125px;
 }
 
 .chamber-team .wrestler img {
-    width: 112px;
-    height: 112px;
+    width: 100px;
+    height: 100px;
 }
 
 
@@ -1377,36 +1376,437 @@ main{overflow:visible;}
    ========================================= */
 
 
-
-
 /* =========================================================
-   RESPONSIVE
-   PC: IMAGE 16:9 | TYPE / TITLE / SHOW DATE
-   MOBILE: TYPE / IMAGE 16:9 / TITLE / SHOW DATE
+   FINAL VISUAL FIX
+   BODY + EVENT HEADER + GLASS CARDS
+   NO CAMBIO DE CRONOLOGÍA NI COLORES DE MARCA
    ========================================================= */
 
-@media(max-width:768px){
+/* ---------- PAGE BACKGROUND ---------- */
 
-    body{
-        background-attachment:scroll;
-        background-size:100% 100%;
+html{
+    min-height:100%;
+    background:#050505;
+}
+
+body{
+    min-height:100vh;
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+
+    background:
+        linear-gradient(
+            126deg,
+            transparent 0 16%,
+            rgba(217,0,36,.11) 16.35%,
+            rgba(255,35,60,.18) 16.75%,
+            rgba(217,0,36,.045) 17.15%,
+            transparent 17.6% 39%
+        ),
+        linear-gradient(
+            137deg,
+            transparent 0 34%,
+            rgba(217,0,36,.045) 34.35%,
+            rgba(255,40,65,.12) 34.7%,
+            rgba(217,0,36,.035) 35.05%,
+            transparent 35.5% 63%
+        ),
+        linear-gradient(
+            145deg,
+            transparent 0 56%,
+            rgba(255,255,255,.018) 56.3%,
+            rgba(255,45,65,.075) 56.7%,
+            rgba(217,0,36,.025) 57.1%,
+            transparent 57.6% 100%
+        ),
+        linear-gradient(
+            119deg,
+            transparent 0 72%,
+            rgba(255,255,255,.025) 72.35%,
+            rgba(255,55,75,.075) 72.7%,
+            transparent 73.15% 100%
+        ),
+        linear-gradient(145deg,#0b0b0b 0%,#070707 55%,#030303 100%);
+
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+}
+
+/* El contenido nunca genera un ancho fantasma */
+header,
+main,
+.results-section,
+#event-chronology{
+    max-width:100%;
+    width:100%;
+}
+
+main{
+    overflow:visible;
+}
+
+/* ---------- HEADER DEL EVENTO ---------- */
+
+
+
+/* ---------- GLASS / CHAMPIONSHIP ---------- */
+.result-card{
+    background:linear-gradient(135deg,rgba(22,22,22,.62),rgba(5,5,5,.46));
+    border-color:rgba(255,255,255,.075);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 8px 20px rgba(0,0,0,.42);
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+}
+
+.wrestler span{
+    background:rgba(8,8,8,.62);
+    border-color:rgba(255,255,255,.10);
+    backdrop-filter:blur(3px);
+    -webkit-backdrop-filter:blur(3px);
+}
+
+.match-score{
+    background:rgba(4,4,4,.60);
+    backdrop-filter:blur(3px);
+    -webkit-backdrop-filter:blur(3px);
+}
+
+.match-championship{
+    background:rgba(23,20,13,.64);
+    backdrop-filter:blur(3px);
+    -webkit-backdrop-filter:blur(3px);
+}
+
+
+    /* =====================================================
+       RESULTADOS
+       ===================================================== */
+
+    .results-section>h2{
+        margin-bottom:13px;
+        font-size:13px;
+        letter-spacing:1.5px;
     }
 
-    header{
-        height:60px;
-        padding:0 15px;
-    }
-
-    main{
+    .result-card{
         width:100%;
         max-width:100%;
         min-width:0;
-        margin:25px auto;
-        padding:0 10px;
-        overflow-x:clip;
+        padding:15px;
+        margin-bottom:12px;
+        background:rgba(10,10,10,.10);
+        backdrop-filter:none;
+        -webkit-backdrop-filter:none;
     }
 
-    /* ---------- EVENT HEADER ---------- */
+    .result-card:before{margin:-15px -15px 15px;}
+
+    /* =====================================================
+       MATCH
+       EL VS SIEMPRE QUEDA ENTRE LOS DOS EQUIPOS
+       ===================================================== */
+
+    .match{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+        margin-top:15px;
+        width:100%;
+        max-width:100%;
+        min-width:0;
+    }
+
+    /* =====================================================
+       EQUIPO
+       GRID SOLO PARA CONSERVAR LAS FORMACIONES
+
+       1 integrante = 1
+       2 integrantes = 2
+       3 integrantes = 1 + 2
+       4 integrantes = 2 + 2
+       5 integrantes = 1 + 2 + 2
+       6 integrantes = 2 + 2 + 2
+       ===================================================== */
+
+    .team{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        align-items:flex-start;
+        align-content:flex-start;
+        gap:7px;
+
+        width:100%;
+        max-width:150px;
+        min-width:0;
+
+        flex:1 1 0;
+    }
+
+    /* 1v1: un solo luchador centrado */
+    .team:has(.wrestler:only-child){
+        flex-wrap:nowrap;
+    }
+
+    /* 3+ integrantes: 3 por fila horizontal.
+       Se aplica solamente a las multitudinarias. */
+    .team:has(.wrestler:nth-child(3)){
+        max-width:180px;
+    }
+
+    .team:has(.wrestler:nth-child(3)) .wrestler{
+        flex:0 0 52px;
+        width:52px;
+        max-width:52px;
+    }
+
+    /* Fatal 4-Way: 2 por fila = 2 x 2 */
+    .team:has(.wrestler:nth-child(4)){
+        max-width:150px;
+    }
+
+    .team:has(.wrestler:nth-child(4)) .wrestler{
+        flex:0 0 68px;
+        width:68px;
+        max-width:68px;
+    }
+
+    /* =====================================================
+       WRESTLER
+       TAMAÑO ADAPTATIVO PARA QUE 2 ENTREN EN CADA FILA
+       ===================================================== */
+
+    .wrestler{
+        width:min(72px,100%);
+        max-width:72px;
+        min-width:0;
+        flex:0 0 auto;
+        padding-top:5px;
+    }
+
+    .wrestler:before{
+        left:4px;
+        right:4px;
+    }
+
+    .team:has(.wrestler:nth-child(3)) .wrestler img{
+        width:46px;
+        height:46px;
+    }
+
+    .team:has(.wrestler:nth-child(4)) .wrestler img{
+        width:58px;
+        height:58px;
+    }
+
+
+    .wrestler img{
+        width:min(62px,100%);
+        height:auto;
+        aspect-ratio:1/1;
+        margin-bottom:5px;
+    }
+
+    .wrestler span{
+        width:100%;
+        min-height:28px;
+        padding:3px 2px;
+        font-size:8px;
+        line-height:10px;
+        overflow-wrap:anywhere;
+    }
+
+    /* =====================================================
+       VS
+       ===================================================== */
+
+    .vs{
+        min-width:42px;
+        flex:0 0 42px;
+        gap:6px;
+        font-size:8px;
+        letter-spacing:1px;
+    }
+
+    /* =====================================================
+       SCORE
+       ===================================================== */
+
+    .match-score{
+        min-width:58px;
+        height:38px;
+        padding:6px 7px;
+        gap:5px;
+        font-size:18px;
+    }
+
+    .match-championship{
+        max-width:100%;
+        margin:4px auto 14px;
+        padding:6px 9px;
+        font-size:9px;
+        letter-spacing:1px;
+    }
+
+    .match-winner{
+        margin-top:15px;
+        padding-top:9px;
+        font-size:9px;
+    }
+
+    /* =====================================================
+       CHAMBER
+       ===================================================== */
+
+    .chamber-teams{
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:15px 8px;
+        margin-top:15px;
+    }
+
+    .chamber-team{
+        display:flex;
+        justify-content:center;
+        align-items:flex-start;
+        gap:5px;
+        min-width:0;
+        flex-wrap:wrap;
+    }
+
+    .chamber-team .wrestler{
+        width:72px;
+        max-width:72px;
+        flex:0 0 72px;
+    }
+
+    .chamber-team .wrestler img{
+        width:62px;
+        height:62px;
+    }
+
+    /* =====================================================
+       CHRONOLOGY — INTACTA
+       ===================================================== */
+
+    #event-chronology{width:100%;margin-top:25px;}
+    .chronology-block{width:100%;margin-bottom:20px;}
+    .chronology-block h3{margin-bottom:7px;padding-bottom:5px;font-size:9px;letter-spacing:1.5px;}
+    .chronology-row{width:100%;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr) minmax(0,1fr);gap:4px;}
+    .chronology-card{min-height:92px;padding:5px 3px;}
+    .chronology-current .chronology-card{min-height:98px;}
+    .chronology-image{width:42px;height:42px;margin-bottom:5px;}
+    .chronology-title{font-size:7px;line-height:9px;letter-spacing:.2px;}
+    .chronology-date{margin-top:3px;font-size:6px;line-height:8px;}
+}
+
+@media(max-width:380px){
+
+    main{padding:0 7px;}
+
+    .event-header-info{padding:15px 11px 18px 15px;}
+    .event-header h1{font-size:18px;padding:8px 11px;}
+    .event-type{font-size:7px;letter-spacing:1px;}
+    .event-brand{font-size:6.5px;}
+    #event-date,.event-date{font-size:7px;letter-spacing:.8px;}
+
+    .result-card{padding:11px;}
+    .result-card:before{margin:-11px -11px 12px;}
+
+    .match{gap:3px;}
+
+    .team{
+        max-width:125px;
+        gap:5px;
+    }
+
+    .team:has(.wrestler:nth-child(3)){
+        max-width:165px;
+    }
+
+    .team:has(.wrestler:nth-child(3)) .wrestler{
+        flex-basis:48px;
+        width:48px;
+        max-width:48px;
+    }
+
+    .team:has(.wrestler:nth-child(3)) .wrestler img{
+        width:42px;
+        height:42px;
+    }
+
+    .team:has(.wrestler:nth-child(4)){
+        max-width:125px;
+    }
+
+    .team:has(.wrestler:nth-child(4)) .wrestler{
+        flex-basis:58px;
+        width:58px;
+        max-width:58px;
+    }
+
+    .team:has(.wrestler:nth-child(4)) .wrestler img{
+        width:50px;
+        height:50px;
+    }
+
+    .wrestler{
+        width:min(58px,100%);
+        max-width:58px;
+    }
+
+    .wrestler:before{left:3px;right:3px;}
+
+    .wrestler img{
+        width:50px;
+        height:50px;
+    }
+
+    .wrestler span{
+        min-height:25px;
+        padding:2px;
+        font-size:7px;
+        line-height:9px;
+    }
+
+    .vs{
+        min-width:34px;
+        flex:0 0 34px;
+        font-size:7px;
+    }
+
+    .match-score{
+        min-width:46px;
+        height:33px;
+        padding:5px;
+        font-size:14px;
+    }
+
+    .chamber-teams{gap:10px 5px;}
+    .chamber-team{gap:3px;}
+    .chamber-team .wrestler{width:62px;flex:0 0 62px;}
+    .chamber-team .wrestler img{width:52px;height:52px;}
+}
+
+/* =========================================================
+   OVERFLOW / MOTION
+   ========================================================= */
+img,video,iframe,svg{max-width:100%;}
+.event-header,.event-header-info,.result-card,.match,.team,.chamber-teams,.chamber-team,.chronology-row{max-width:100%;}
+
+
+
+/* =========================================================
+   MOBILE — TYPE → IMAGE → TITLE → DATE
+   ========================================================= */
+@media(max-width:600px){
+    body{background-attachment:scroll;background-size:100% 100%;}
+    header{height:60px;padding:0 15px;}
+    main{width:100%;max-width:100%;min-width:0;margin:25px auto;padding:0 10px;overflow-x:clip;}
 
     .event-header{
         display:flex;
@@ -1430,7 +1830,6 @@ main{overflow:visible;}
         display:none;
     }
 
-    /* TYPE — 1° */
     .event-type{
         order:0;
         display:flex !important;
@@ -1449,7 +1848,6 @@ main{overflow:visible;}
         border-right:0 !important;
     }
 
-    /* IMAGE — 2° / REAL 16:9 */
     .event-header-image{
         order:1;
         width:100%;
@@ -1459,15 +1857,11 @@ main{overflow:visible;}
         aspect-ratio:16/9;
         object-fit:cover;
         margin:0;
-        box-shadow:
-            inset 0 -2px 0 rgba(0,0,0,.8),
-            0 5px 12px rgba(0,0,0,.48);
+        box-shadow:inset 0 -2px 0 rgba(0,0,0,.8),0 8px 18px rgba(0,0,0,.62);
     }
 
-    /* TITLE — 3° */
     .event-header h1{
         order:2;
-        grid-row:auto;
         width:100%;
         max-width:100%;
         min-height:74px;
@@ -1484,118 +1878,30 @@ main{overflow:visible;}
         border-bottom:1px solid rgba(217,0,36,.35) !important;
     }
 
-    .event-header h1::before{
-        width:78%;
-        height:2px;
-    }
+    .event-header h1::before{width:78%;height:2px;}
 
-    /* SHOW DATE — 4° */
-    #event-date,
-.event-date{
+    .event-date{
         order:3;
-        grid-row:auto;
         display:flex;
         align-items:center;
-        justify-content:flex-start;
-        width:calc(100% - 26px) !important;
-        max-width:none;
-        height:30px !important;
-        min-height:30px !important;
-        margin:8px 13px 10px !important;
-        padding:0 9px !important;
+        width:fit-content !important;
+        max-width:100%;
+        height:24px !important;
+        min-height:24px !important;
+        margin:0 0 0 15px;
+        padding:0 8px !important;
         font-size:8px !important;
-        letter-spacing:1px !important;
+        letter-spacing:1.05px !important;
     }
 
-    #event-date::before,
-.event-date::before{
-        display:inline-block !important;
-        margin-right:7px;
-        padding-right:7px;
-        font-size:7px;
-        letter-spacing:.9px;
-    }
-
-    #event-brand,
-    .event-brand{
-        display:none !important;
-    }
-
-    /* ---------- MATCH FILL ONLY ----------
-       Lightweight metallic fill, without changing dimensions,
-       animations, wrestler cards, score or championship. */
-    .result-card{
-        background:
-            linear-gradient(
-                135deg,
-                #252525 0%,
-                #1b1b1b 25%,
-                #111111 52%,
-                #181818 76%,
-                #232323 100%
-            );
-        box-shadow:
-            inset 0 1px 0 rgba(255,255,255,.045),
-            inset 0 -8px 14px rgba(0,0,0,.16),
-            0 7px 16px rgba(0,0,0,.34);
-        backdrop-filter:none;
-        -webkit-backdrop-filter:none;
-    }
+    .event-brand{display:none !important;}
 }
 
 @media(max-width:380px){
-
-    main{
-        padding:0 7px;
-    }
-
-    .event-type{
-        height:27px !important;
-        min-height:27px !important;
-        font-size:7px !important;
-        letter-spacing:1px !important;
-    }
-
-    .event-header h1{
-        min-height:66px;
-        padding:12px 11px 10px 13px;
-        font-size:clamp(21px,7.2vw,28px) !important;
-    }
-
-    #event-date,
-.event-date{
-        width:calc(100% - 22px) !important;
-        height:28px !important;
-        min-height:28px !important;
-        margin:7px 11px 9px !important;
-        font-size:7px !important;
-    }
-
-    #event-date::before,
-.event-date::before{
-        font-size:6.5px;
-        margin-right:6px;
-        padding-right:6px;
-    }
-
-    .result-card{
-        background:
-            linear-gradient(
-                135deg,
-                #232323 0%,
-                #191919 30%,
-                #111111 55%,
-                #202020 100%
-            );
-    }
+    main{padding:0 7px;}
+    .event-type{height:27px !important;min-height:27px !important;font-size:7px !important;letter-spacing:1px !important;}
+    .event-header h1{min-height:66px;padding:12px 11px 10px 13px;font-size:clamp(21px,7.2vw,28px) !important;}
+    .event-date{font-size:7px !important;margin-left:13px;}
 }
 
-@media(prefers-reduced-motion:reduce){
-    *,
-    *::before,
-    *::after{
-        animation-duration:.01ms !important;
-        animation-iteration-count:1 !important;
-        transition-duration:.01ms !important;
-    }
-}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}}
