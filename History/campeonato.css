@@ -16,7 +16,7 @@ body {
 body {
     margin: 0;
 
-    background: #080808;
+    background: #080506;
     color: #ffffff;
 
     font-family: Arial, Helvetica, sans-serif;
@@ -40,9 +40,9 @@ body {
 
     padding: 0 30px;
 
-    background: #050505;
+    background: #080405;
 
-    border-bottom: 2px solid #d90024;
+    border-bottom: 2px solid #f21f2b;
 
     box-shadow:
         0 4px 18px rgba(0, 0, 0, 0.9);
@@ -82,7 +82,7 @@ body {
 .navbar nav a {
     position: relative;
 
-    color: #d0d0d0;
+    color: #e2d7d9;
 
     font-size: 12px;
     font-weight: 900;
@@ -107,7 +107,7 @@ body {
     width: 0;
     height: 2px;
 
-    background: #d90024;
+    background: #f21f2b;
 
     transition:
         width 0.2s ease;
@@ -123,7 +123,7 @@ body {
 
 
 /* =========================================
-   BOTÓN MOBILE
+   BOTÃ“N MOBILE
    ========================================= */
 
 .navbar .menu {
@@ -207,7 +207,7 @@ body {
 
     margin-bottom: 14px;
 
-    color: #d90024;
+    color: #f21f2b;
 
     font-size: 11px;
     font-weight: 900;
@@ -219,7 +219,7 @@ body {
 
 
 /* =========================================
-   TÍTULO
+   TÃTULO
    ========================================= */
 
 .campeonato-header h1 {
@@ -247,7 +247,7 @@ body {
 
 
 /* =========================================
-   LÍNEA ROJA
+   LÃNEA ROJA
    ========================================= */
 
 .header-line {
@@ -257,7 +257,7 @@ body {
 
     margin-top: 28px;
 
-    background: #d90024;
+    background: #f21f2b;
 }
 
 
@@ -287,9 +287,9 @@ body {
 
     padding: 7px 12px;
 
-    background: #181818;
+    background: #211216;
 
-    border-left: 3px solid #d90024;
+    border-left: 3px solid #f21f2b;
 
     color: #ffffff;
 
@@ -332,9 +332,9 @@ body {
 
     margin-bottom: 55px;
 
-    background: #202020;
+    background: #171014;
 
-    border: 1px solid #202020;
+    border: 1px solid #171014;
 
     overflow: hidden;
 
@@ -344,7 +344,7 @@ body {
 
 
 /* =========================================
-   FOTO DEL CAMPEÓN
+   FOTO DEL CAMPEÃ“N
    ========================================= */
 
 .reign-image {
@@ -356,7 +356,7 @@ body {
 
     overflow: hidden;
 
-    background: #202020;
+    background: #171014;
 }
 
 .reign-image img {
@@ -385,7 +385,7 @@ body {
 
     padding: 12px 17px;
 
-    background: #d90024;
+    background: #f21f2b;
 
     color: #ffffff;
 
@@ -427,7 +427,7 @@ body {
 
     margin-bottom: 16px;
 
-    color: #d90024;
+    color: #f21f2b;
 
     font-size: 11px;
 
@@ -446,8 +446,8 @@ body {
 .reign-content h3 {
     margin: 0 0 12px;
     padding: 15px 18px;
-    background: #181818;
-    border-left: 4px solid #d90024;
+    background: #211216;
+    border-left: 4px solid #f21f2b;
     color: #ffffff;
     font-size: clamp(32px, 4vw, 55px);
     font-weight: 900;
@@ -458,7 +458,7 @@ body {
 
 
 /* =========================================
-   DESCRIPCIÓN
+   DESCRIPCIÃ“N
    ========================================= */
 
 .reign-description {
@@ -472,7 +472,7 @@ body {
 
 
 /* =========================================
-   DÍAS
+   DÃAS
    ========================================= */
 
 .reign-days {
@@ -486,9 +486,9 @@ body {
 
     margin-top: auto;
 
-    background: #202020;
+    background: #171014;
 
-    border-top: 3px solid #d90024;
+    border-top: 3px solid #f21f2b;
 
     border-left: none;
 
@@ -511,7 +511,7 @@ body {
 }
 
 .former-days strong {
-    color: #d90024;
+    color: #f21f2b;
 
     font-size: 48px;
 
@@ -559,7 +559,7 @@ body {
 }
 
 .days-count strong {
-    color: #d90024;
+    color: #f21f2b;
 
     font-size: 48px;
 
@@ -598,9 +598,9 @@ body {
 
     padding: 0 20px;
 
-    background: #292929;
+    background: #28151a;
 
-    color: #d0d0d0;
+    color: #e2d7d9;
 
     font-size: 9px;
 
@@ -650,9 +650,9 @@ body {
 
         padding: 8px 0;
 
-        background: #090909;
+        background: #090506;
 
-        border-bottom: 2px solid #d90024;
+        border-bottom: 2px solid #f21f2b;
 
         box-shadow:
             0 10px 25px rgba(0, 0, 0, 0.95);
@@ -669,7 +669,7 @@ body {
 
         text-align: center;
 
-        border-bottom: 1px solid #202020;
+        border-bottom: 1px solid #171014;
     }
 
     .navbar nav a:last-child {
@@ -683,7 +683,7 @@ body {
     .navbar nav a:hover {
         background: #151515;
 
-        color: #d90024;
+        color: #f21f2b;
     }
 
 
@@ -793,9 +793,9 @@ body {
     margin-bottom: 35px;
     padding: 14px 18px;
 
-    background: #181818;
+    background: #211216;
 
-    border-left: 4px solid #d90024;
+    border-left: 4px solid #f21f2b;
 }
 
 .history-heading h2 {
@@ -811,7 +811,7 @@ body {
     .reign {
         margin-bottom: 42px;
 
-        border: 1px solid #252525;
+        border: 1px solid #392126;
     }
 
 
@@ -859,16 +859,16 @@ body {
     align-items: center;
     justify-content: flex-start;
 
-    background: #202020;
+    background: #171014;
 
-    color: #d90024;
+    color: #f21f2b;
 
     font-size: 10px;
     font-weight: 900;
     letter-spacing: 4px;
 }
    /* =========================================
-   NOMBRE — MOBILE
+   NOMBRE â€” MOBILE
    ========================================= */
 
 .reign-content h3 {
@@ -876,9 +876,9 @@ body {
 
     padding: 12px 14px;
 
-    background: #181818;
+    background: #211216;
 
-    border-left: 4px solid #d90024;
+    border-left: 4px solid #f21f2b;
 
     color: #ffffff;
 
@@ -894,7 +894,7 @@ body {
 }
 
 
-    /* DESCRIPCIÓN */
+    /* DESCRIPCIÃ“N */
 
     .reign-description {
         margin: 0;
@@ -911,12 +911,12 @@ body {
     }
 
 
-    /* DÍAS */
+    /* DÃAS */
 
     .reign-days {
         min-height: 82px;
 
-        border-top: 3px solid #d90024;
+        border-top: 3px solid #f21f2b;
     }
 
 
@@ -968,7 +968,7 @@ body {
 
 
 /* =========================================
-   MOBILE MUY PEQUEÑO
+   MOBILE MUY PEQUEÃ‘O
    ========================================= */
 
 @media (max-width: 380px) {
@@ -1059,4 +1059,186 @@ body {
 
 .gold-championship .days-count strong {
     color: #d4af37;
+}
+
+
+/* ==========================================================
+   SUPER CARD VISUAL THEME â€” mantiene intactos layout y medidas
+   ========================================================== */
+
+:root {
+    --sc-red: #f21f2b;
+    --sc-red-hot: #ff4149;
+    --sc-red-deep: #650710;
+    --sc-black: #080506;
+    --sc-panel: #140b0e;
+    --sc-line: rgba(255, 75, 84, .42);
+    --sc-silver: #e7e3e5;
+}
+
+html {
+    background: var(--sc-black);
+}
+
+body {
+    background-color: var(--sc-black);
+    background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(183, 10, 24, .34), transparent 54%),
+        radial-gradient(circle, rgba(0, 0, 0, .94) 0 3px, transparent 3.7px);
+    background-size: auto, 14px 14px;
+    background-position: center top, center top;
+    color: #fff;
+}
+
+.navbar {
+    background: linear-gradient(180deg, rgba(39,8,13,.97), rgba(5,4,5,.99));
+    border-bottom: 2px solid var(--sc-red);
+    box-shadow: 0 3px 0 rgba(255,255,255,.035), 0 8px 28px rgba(0,0,0,.9), 0 0 22px rgba(242,31,43,.13);
+}
+
+.navbar nav a::after {
+    background: linear-gradient(90deg, #a80715, #ff555b, #a80715);
+    box-shadow: 0 0 9px rgba(242,31,43,.55);
+}
+
+.campeonato-header {
+    background-color: #17070a;
+    background-image:
+        linear-gradient(90deg, rgba(0,0,0,.72), rgba(28,0,5,.34) 50%, rgba(0,0,0,.78)),
+        linear-gradient(0deg, rgba(0,0,0,.87), rgba(0,0,0,.1) 52%, rgba(0,0,0,.5)),
+        radial-gradient(ellipse at 50% 40%, rgba(244,29,42,.5), transparent 58%),
+        radial-gradient(circle, rgba(0,0,0,.84) 0 3px, transparent 3.8px),
+        url("wwwi.jpg");
+    background-size: auto, auto, auto, 14px 14px, cover;
+    background-position: center, center, center, center, center;
+    border-bottom: 1px solid rgba(255,65,73,.3);
+}
+
+.campeonato-label {
+    color: #ff454d;
+    text-shadow: 0 0 14px rgba(242,31,43,.45);
+}
+
+.campeonato-header h1 {
+    -webkit-text-stroke: .5px rgba(20,10,12,.75);
+    text-shadow: 0 2px 0 #8c8587, 0 4px 0 #282124, 0 8px 16px #000, 0 0 28px rgba(242,31,43,.2);
+}
+
+.header-line {
+    background: linear-gradient(90deg, #7c0812, #ff3d46, #a10b17);
+    box-shadow: 0 0 14px rgba(242,31,43,.5);
+}
+
+.campeonato-container {
+    position: relative;
+    isolation: isolate;
+}
+
+.campeonato-container::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0 -6vw;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(106,5,16,.22), transparent 62%),
+        radial-gradient(circle, rgba(0,0,0,.9) 0 2px, transparent 2.8px);
+    background-size: auto, 14px 14px;
+    pointer-events: none;
+}
+
+.history-heading span {
+    background: linear-gradient(135deg, #351017, #12090b);
+    border-left-color: var(--sc-red);
+    box-shadow: inset 0 1px rgba(255,255,255,.05);
+}
+
+.history-heading h2 {
+    text-shadow: 0 2px 0 #292124, 0 5px 14px rgba(0,0,0,.8);
+}
+
+.reign {
+    background: #10090b;
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 18px 45px rgba(0,0,0,.68), 0 0 0 1px rgba(242,31,43,.06), inset 0 1px rgba(255,255,255,.04);
+}
+
+.reign-image {
+    background: #19090d;
+}
+
+.reign-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(242,31,43,.12), transparent 42%, rgba(0,0,0,.22));
+    box-shadow: inset 0 0 45px rgba(0,0,0,.32);
+}
+
+.reign-image img {
+    filter: contrast(1.07) saturate(1.06);
+}
+
+.current-badge {
+    background: linear-gradient(180deg, #ff424b, #a80715);
+    border: 1px solid rgba(255,255,255,.36);
+    box-shadow: 0 5px 15px rgba(0,0,0,.55), inset 0 1px rgba(255,255,255,.25), 0 0 18px rgba(242,31,43,.25);
+}
+
+.reign-content {
+    background: linear-gradient(145deg, rgba(35,10,15,.98), rgba(10,7,8,.99) 70%);
+}
+
+.reign-number {
+    color: #ff454d;
+    text-shadow: 0 0 12px rgba(242,31,43,.25);
+}
+
+.reign-content h3 {
+    background: linear-gradient(110deg, #321017, #170b0e 70%);
+    border-left-color: var(--sc-red);
+    box-shadow: inset 0 1px rgba(255,255,255,.05), 0 5px 16px rgba(0,0,0,.22);
+    text-shadow: 0 2px 4px #000;
+}
+
+.reign-description {
+    background: linear-gradient(135deg, #f0e9ea, #cfc4c7);
+    color: #24191c;
+    box-shadow: inset 0 1px rgba(255,255,255,.75), 0 5px 16px rgba(0,0,0,.2);
+}
+
+.reign-days {
+    background: linear-gradient(180deg, #211014, #10090b);
+    border-top-color: var(--sc-red);
+    box-shadow: inset 0 1px rgba(255,255,255,.05);
+}
+
+.former-days strong,
+.days-count strong {
+    color: #ff3d46;
+    text-shadow: 0 0 18px rgba(242,31,43,.18);
+}
+
+.current-status {
+    background: linear-gradient(180deg, #351017, #1b0c10);
+    color: #f0dfe2;
+    border-left: 1px solid rgba(255,255,255,.08);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .current-badge {
+        animation: supercard-badge-glint 4.8s ease-in-out infinite;
+    }
+    .reign {
+        transition: border-color .3s ease, box-shadow .3s ease;
+    }
+    .reign:hover {
+        border-color: rgba(255,65,73,.4);
+        box-shadow: 0 20px 48px rgba(0,0,0,.75), 0 0 24px rgba(242,31,43,.09);
+    }
+}
+
+@keyframes supercard-badge-glint {
+    0%, 72%, 100% { filter: brightness(1); }
+    82% { filter: brightness(1.22); }
 }
