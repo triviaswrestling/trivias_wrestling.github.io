@@ -1013,441 +1013,253 @@ main.tournaments-page {
 
 
 
-/* ==========================================================
-   MI WRESTLING — SUPERCARD 2014 GOLD
-   FONDO PREMIUM
-   Basado directamente en la construcción visual de Torneoroad
-   Negro + dorado + brillo + polvo + halftone
+/* =========================================================
+   SUPERCARD 2014 GOLD — PERFORMANCE OPTIMIZED
+   Mantiene la estética, reduce el costo de renderizado
    PEGAR AL FINAL DE torneos.css
-   ========================================================== */
-
-
-/* ==========================================================
-   BASE
-   ========================================================== */
+   ========================================================= */
 
 html,
 body{
-    background:#030303 !important;
+    background:#050505 !important;
 }
 
 body{
     position:relative;
-    min-height:100vh;
+    isolation:isolate;
+    overflow-x:hidden;
 
-    background-image:
-
-        /* ==============================================
-           BRILLO PRINCIPAL
-           Equivalente al rojo central de Torneoroad
-           ============================================== */
-
+    /* UNA composición principal */
+    background:
+        /* brillo dorado principal */
         radial-gradient(
-            circle at 50% 8%,
-            rgba(225,170,20,.34) 0%,
-            rgba(150,105,5,.18) 24%,
-            transparent 52%
+            ellipse 75% 42% at 50% 8%,
+            rgba(225,175,45,.30) 0%,
+            rgba(145,95,10,.16) 30%,
+            transparent 68%
         ),
 
-        /* ==============================================
-           BRILLO SUPERIOR SECUNDARIO
-           ============================================== */
-
+        /* brillo superior */
         radial-gradient(
-            circle at 50% 0%,
-            rgba(255,220,90,.13) 0%,
-            transparent 38%
+            ellipse 55% 28% at 50% 0%,
+            rgba(255,215,90,.14) 0%,
+            transparent 70%
         ),
 
-        /* ==============================================
-           BRILLO LATERAL IZQUIERDO
-           ============================================== */
-
+        /* luz lateral muy suave */
         radial-gradient(
-            ellipse at 0% 38%,
-            rgba(190,135,15,.075) 0%,
-            transparent 52%
-        ),
-
-        /* ==============================================
-           BRILLO LATERAL DERECHO
-           ============================================== */
-
-        radial-gradient(
-            ellipse at 100% 58%,
-            rgba(150,105,5,.055) 0%,
-            transparent 52%
-        ),
-
-        /* ==============================================
-           POLVO / HALFTONE PRINCIPAL
-           ============================================== */
-
-        radial-gradient(
-            circle,
-            rgba(220,175,55,.34) 0 1.3px,
-            transparent 1.8px
-        ),
-
-        /* ==============================================
-           SEGUNDA TRAMA MÁS FINA
-           ============================================== */
-
-        radial-gradient(
-            circle,
-            rgba(255,225,125,.13) 0 .7px,
-            transparent 1.5px
-        ),
-
-        /* ==============================================
-           PANEL / TRAMA MUY SUTIL
-           ============================================== */
-
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.018) 25%,
-            transparent 25%,
-            transparent 50%,
-            rgba(255,255,255,.010) 50%,
-            rgba(255,255,255,.010) 75%,
+            ellipse 35% 55% at 0% 35%,
+            rgba(170,115,20,.10) 0%,
             transparent 75%
         ),
 
-        /* ==============================================
-           NEGRO METÁLICO
-           ============================================== */
+        radial-gradient(
+            ellipse 35% 55% at 100% 35%,
+            rgba(170,115,20,.08) 0%,
+            transparent 75%
+        ),
 
+        /* polvo / halftone dorado */
+        radial-gradient(
+            circle,
+            rgba(235,190,65,.25) 0 1.2px,
+            transparent 1.6px
+        ),
+
+        /* negro metálico */
         linear-gradient(
             180deg,
-            #170f02 0%,
-            #0c0a06 25%,
-            #070706 47%,
-            #030303 74%,
-            #010101 100%
-        ) !important;
-
-
-    background-size:
-        auto,
-        auto,
-        auto,
-        auto,
-        12px 12px,
-        23px 23px,
-        90px 90px,
-        auto !important;
-
-
-    background-position:
-        center,
-        center,
-        left center,
-        right center,
-        center,
-        7px 4px,
-        center,
-        center !important;
-
-
-    background-repeat:
-        no-repeat,
-        no-repeat,
-        no-repeat,
-        no-repeat,
-        repeat,
-        repeat,
-        repeat,
-        no-repeat !important;
-
-
-    background-attachment:fixed !important;
-
-    color:#fff;
-}
-
-
-/* ==========================================================
-   VIÑETA PREMIUM
-   Igual filosofía que Torneoroad:
-   centro iluminado / bordes negros.
-   ========================================================== */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-
-    pointer-events:none;
-    z-index:-1;
-
-    background:
-
-        /* Luz central */
-        radial-gradient(
-            ellipse at 50% 16%,
-            transparent 0%,
-            rgba(0,0,0,.04) 32%,
-            rgba(0,0,0,.24) 60%,
-            rgba(0,0,0,.72) 100%
-        ),
-
-        /* Línea de brillo superior */
-        linear-gradient(
-            180deg,
-            rgba(255,215,80,.055) 0%,
-            transparent 18%
-        );
-
-    box-shadow:
-        inset 0 0 140px rgba(0,0,0,.82);
-}
-
-
-/* ==========================================================
-   POLVO DORADO DIFUSO
-   No es otra trama uniforme:
-   crea pequeñas zonas de concentración.
-   ========================================================== */
-
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-
-    pointer-events:none;
-    z-index:-1;
-
-    background:
-
-        radial-gradient(
-            circle at 17% 28%,
-            rgba(255,215,80,.10) 0 1px,
-            transparent 2px
-        ),
-
-        radial-gradient(
-            circle at 82% 34%,
-            rgba(255,225,120,.075) 0 1px,
-            transparent 2px
-        ),
-
-        radial-gradient(
-            circle at 34% 62%,
-            rgba(212,175,55,.055) 0 1px,
-            transparent 2px
-        ),
-
-        radial-gradient(
-            circle at 72% 70%,
-            rgba(212,175,55,.045) 0 1px,
-            transparent 2px
+            #160f02 0%,
+            #0b0905 28%,
+            #070707 58%,
+            #040404 100%
         );
 
     background-size:
-        150px 150px,
-        190px 190px,
-        210px 210px,
-        240px 240px;
+        auto,
+        auto,
+        auto,
+        auto,
+        13px 13px,
+        auto;
 
     background-position:
-        center,
-        center,
-        center,
+        center top,
+        center top,
+        left top,
+        right top,
+        0 0,
         center;
 
     background-repeat:
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
         repeat,
-        repeat,
-        repeat,
-        repeat;
+        no-repeat;
 
-    opacity:.72;
+    /* IMPORTANTE: nunca fixed */
+    background-attachment:scroll;
 }
 
 
-/* ==========================================================
+/* =========================================================
+   VIÑETA + BRILLO SUPERIOR
+   Una sola capa adicional
+   ========================================================= */
+
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            ellipse 75% 55% at 50% 12%,
+            transparent 0%,
+            rgba(0,0,0,.08) 42%,
+            rgba(0,0,0,.38) 78%,
+            rgba(0,0,0,.68) 100%
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(255,210,75,.12) 0,
+            rgba(255,210,75,0) 3px,
+            transparent 100%
+        );
+}
+
+
+/* =========================================================
+   POLVO DORADO — CAPA LIGERA
+   ========================================================= */
+
+body::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    height:100%;
+
+    z-index:-1;
+    pointer-events:none;
+
+    background-image:
+        radial-gradient(
+            circle at 12% 18%,
+            rgba(255,210,80,.24) 0 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle at 82% 27%,
+            rgba(255,215,90,.18) 0 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle at 25% 67%,
+            rgba(220,170,45,.15) 0 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle at 74% 76%,
+            rgba(240,190,55,.13) 0 1px,
+            transparent 1.5px
+        );
+
+    background-size:
+        180px 180px,
+        230px 230px,
+        210px 210px,
+        260px 260px;
+
+    background-position:
+        0 0,
+        35px 60px,
+        90px 20px,
+        20px 110px;
+
+    background-repeat:repeat;
+}
+
+
+/* =========================================================
    CONTENEDORES TRANSPARENTES
-   El fondo tiene que atravesar toda la página.
-   ========================================================== */
+   El fondo se ve detrás sin crear otra composición
+   ========================================================= */
 
 main.tournaments-page,
 .tournaments-page,
 #games-home,
 #games-directory{
     background:transparent !important;
-    background-color:transparent !important;
 }
 
 
-/* ==========================================================
-   LAS CARDS NO SE TOCAN
-   ========================================================== */
+/* =========================================================
+   MOBILE — MISMA ESTÉTICA, MENOS PINTADO
+   ========================================================= */
 
-.tournament-card,
-.tournament-card:hover{
-    isolation:isolate;
-}
-
-
-/* ==========================================================
-   MOBILE
-   Misma estética, menos carga.
-   ========================================================== */
-
-@media(max-width:700px){
-
-    html,
-    body{
-        background:#030303 !important;
-    }
+@media (max-width:700px){
 
     body{
-
-        background-image:
-
-            /* brillo central */
-            radial-gradient(
-                circle at 50% 7%,
-                rgba(225,170,20,.29) 0%,
-                rgba(150,105,5,.15) 25%,
-                transparent 55%
-            ),
-
-            /* brillo superior */
-            radial-gradient(
-                circle at 50% 0%,
-                rgba(255,220,90,.10) 0%,
-                transparent 40%
-            ),
-
-            /* brillo lateral */
-            radial-gradient(
-                ellipse at 0% 38%,
-                rgba(190,135,15,.055),
-                transparent 55%
-            ),
-
-            /* halftone */
-            radial-gradient(
-                circle,
-                rgba(220,175,55,.30) 0 1px,
-                transparent 1.6px
-            ),
-
-            /* polvo fino */
-            radial-gradient(
-                circle,
-                rgba(255,225,125,.11) 0 .6px,
-                transparent 1.3px
-            ),
-
-            /* panel */
-            linear-gradient(
-                135deg,
-                rgba(255,255,255,.014) 25%,
-                transparent 25%,
-                transparent 50%,
-                rgba(255,255,255,.008) 50%,
-                rgba(255,255,255,.008) 75%,
-                transparent 75%
-            ),
-
-            /* base */
-            linear-gradient(
-                180deg,
-                #130d02 0%,
-                #0a0906 28%,
-                #050505 55%,
-                #020202 100%
-            ) !important;
-
-
         background-size:
             auto,
             auto,
             auto,
-            10px 10px,
-            20px 20px,
-            75px 75px,
-            auto !important;
-
-
-        background-position:
-            center,
-            center,
-            left center,
-            center,
-            4px 3px,
-            center,
-            center !important;
-
-
-        background-repeat:
-            no-repeat,
-            no-repeat,
-            no-repeat,
-            repeat,
-            repeat,
-            repeat,
-            no-repeat !important;
-
-
-        /* CLAVE PARA ANDROID */
-        background-attachment:scroll !important;
+            auto,
+            11px 11px,
+            auto;
     }
-
 
     body::before{
-        position:absolute;
-
         background:
             radial-gradient(
-                ellipse at 50% 15%,
+                ellipse 90% 48% at 50% 10%,
                 transparent 0%,
-                rgba(0,0,0,.06) 35%,
-                rgba(0,0,0,.28) 65%,
-                rgba(0,0,0,.76) 100%
+                rgba(0,0,0,.12) 48%,
+                rgba(0,0,0,.48) 82%,
+                rgba(0,0,0,.64) 100%
             ),
-
             linear-gradient(
                 180deg,
-                rgba(255,215,80,.04),
-                transparent 20%
+                rgba(255,210,75,.10) 0,
+                rgba(255,210,75,0) 3px,
+                transparent 100%
             );
-
-        box-shadow:
-            inset 0 0 80px rgba(0,0,0,.75);
     }
-
 
     body::after{
-        position:absolute;
-        opacity:.58;
-    }
-
-
-    main.tournaments-page,
-    .tournaments-page,
-    #games-home,
-    #games-directory{
-        background:transparent !important;
-        background-color:transparent !important;
+        background-size:
+            150px 150px,
+            190px 190px,
+            175px 175px,
+            210px 210px;
     }
 }
 
 
-/* ==========================================================
-   REDUCED MOTION
-   ========================================================== */
+/* =========================================================
+   MOBILE CHICO — SAMSUNG / ANDROID ECONÓMICO
+   ========================================================= */
 
-@media(prefers-reduced-motion:reduce){
+@media (max-width:420px){
 
     body{
-        background-attachment:scroll !important;
+        background-size:
+            auto,
+            auto,
+            auto,
+            auto,
+            10px 10px,
+            auto;
     }
 
-    body::before,
     body::after{
-        position:absolute;
+        opacity:.72;
     }
-}
+                 }
