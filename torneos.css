@@ -837,3 +837,86 @@ body {
         transition: none !important;
     }
 }
+
+
+/* ==========================================================
+   SUPERCARD HALFTONE BACKGROUND â€” CHROMATIC EDITION
+   Reproduce el fondo de la primera referencia:
+   puntos negros uniformes, centro iluminado y bordes oscuros,
+   pero con reflejos cromÃ¡ticos rojo/dorado/blanco/azul.
+   ========================================================== */
+
+html,
+body {
+    background-color: #050407;
+}
+
+body {
+    background-image:
+        /* viÃ±eta negra fuerte en los bordes */
+        radial-gradient(ellipse at 50% 48%,
+            transparent 0%,
+            rgba(0, 0, 0, .08) 42%,
+            rgba(0, 0, 0, .72) 100%),
+        /* halo cromÃ¡tico central, difuminado como el original */
+        radial-gradient(ellipse at 50% 43%,
+            rgba(255, 255, 255, .42) 0%,
+            rgba(244, 201, 79, .42) 13%,
+            rgba(243, 38, 50, .58) 29%,
+            rgba(23, 105, 232, .32) 45%,
+            rgba(121, 11, 22, .22) 60%,
+            transparent 76%),
+        /* puntos negros sobre la luz, como el fondo SuperCard */
+        radial-gradient(circle,
+            rgba(0, 0, 0, .91) 0 3px,
+            transparent 3.8px),
+        /* base casi negra */
+        linear-gradient(180deg, #080609 0%, #16070c 48%, #050407 100%);
+    background-size: auto, auto, 14px 14px, auto;
+    background-position: center, center, center, center;
+    background-attachment: fixed;
+    background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+    color: #fff;
+}
+
+/* Evita que el fondo secundario de la pÃ¡gina tape el halo del body. */
+.games-page {
+    background-color: transparent;
+    background-image:
+        radial-gradient(ellipse at 50% 42%,
+            rgba(255, 255, 255, .07) 0%,
+            rgba(244, 201, 79, .10) 17%,
+            rgba(243, 38, 50, .12) 35%,
+            rgba(23, 105, 232, .08) 53%,
+            transparent 72%),
+        radial-gradient(circle,
+            rgba(0, 0, 0, .80) 0 2.7px,
+            transparent 3.5px);
+    background-size: auto, 14px 14px;
+    background-position: center, center;
+}
+
+/* En pantallas chicas conserva el mismo patrÃ³n, sin fijar el fondo. */
+@media (max-width: 700px) {
+    body {
+        background-attachment: scroll;
+        background-image:
+            radial-gradient(ellipse at 50% 42%,
+                transparent 0%,
+                rgba(0, 0, 0, .12) 42%,
+                rgba(0, 0, 0, .76) 100%),
+            radial-gradient(ellipse at 50% 43%,
+                rgba(255, 255, 255, .34) 0%,
+                rgba(244, 201, 79, .36) 13%,
+                rgba(243, 38, 50, .52) 29%,
+                rgba(23, 105, 232, .28) 45%,
+                rgba(121, 11, 22, .20) 60%,
+                transparent 76%),
+            radial-gradient(circle,
+                rgba(0, 0, 0, .91) 0 2.5px,
+                transparent 3.3px),
+            linear-gradient(180deg, #080609 0%, #16070c 48%, #050407 100%);
+        background-size: auto, auto, 12px 12px, auto;
+        background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+    }
+}
