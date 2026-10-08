@@ -506,9 +506,9 @@
 
 
 /* ==========================================================
-   MI WRESTLING â€” WWE SUPERCARD EPIC CHROMATIC THEME
-   EstÃ©tica inspirada en el logo SuperCard y las cartas Legendary:
-   halftone, placas metÃ¡licas, rojo/dorado/blanco/azul y brillo ligero.
+   MI WRESTLING — WWE SUPERCARD EPIC CHROMATIC THEME
+   Estética inspirada en el logo SuperCard y las cartas Legendary:
+   halftone, placas metálicas, rojo/dorado/blanco/azul y brillo ligero.
    Mantiene la estructura y los efectos funcionales originales.
    ========================================================== */
 
@@ -574,7 +574,7 @@ body {
     text-shadow: 0 1px 5px #000;
 }
 
-/* Separadores con filo cromÃ¡tico fino. */
+/* Separadores con filo cromático fino. */
 .division-divider {
     border-bottom: 2px solid transparent;
     border-image: var(--sc-chrome) 1;
@@ -591,7 +591,7 @@ body {
     color: #e7dfe4;
 }
 
-/* Tres columnas en todos los tamaÃ±os, con tarjetas cuadradas. */
+/* Tres columnas en todos los tamaños, con tarjetas cuadradas. */
 .tournaments-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(8px, 1.35vw, 18px);
@@ -759,7 +759,7 @@ body {
     opacity: 1;
 }
 
-/* Buscador: la misma paleta cromÃ¡tica, integrada con el tema. */
+/* Buscador: la misma paleta cromática, integrada con el tema. */
 #home-tournament-search,
 #home-tournament-search:focus {
     background:
@@ -790,7 +790,7 @@ body {
     }
 }
 
-/* MÃ³vil: tres tarjetas cuadradas, sin desbordar la pantalla. */
+/* Móvil: tres tarjetas cuadradas, sin desbordar la pantalla. */
 @media (max-width: 600px) {
     .tournaments-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -839,8 +839,8 @@ body {
 }
 
 /* ==========================================================
-   SUPERCARD 2014 GOLD â€” FINAL PERFORMANCE EDITION
-   Misma estÃ©tica premium: oro + negro + halftone + polvo.
+   SUPERCARD 2014 GOLD — FINAL PERFORMANCE EDITION
+   Misma estética premium: oro + negro + halftone + polvo.
    Optimizado para PC + Android.
    ========================================================== */
 
@@ -889,7 +889,7 @@ body{
             rgba(235,190,55,.23) 0 1.15px,
             transparent 1.65px
         ),
-        /* BASE NEGRA METÃLICA */
+        /* BASE NEGRA METÁLICA */
         linear-gradient(
             180deg,
             #171004 0%,
@@ -927,7 +927,7 @@ body{
 }
 
 /* ==========================================================
-   VIÃ‘ETA + FILO DE LUZ
+   VIÑETA + FILO DE LUZ
    Una sola capa adicional y sin blur/filter.
    ========================================================== */
 
@@ -956,7 +956,7 @@ body::before{
 
 /* ==========================================================
    POLVO DORADO
-   Dos patrones pequeÃ±os en lugar de cuatro capas gigantes.
+   Dos patrones pequeños en lugar de cuatro capas gigantes.
    ========================================================== */
 
 body::after{
@@ -1007,7 +1007,7 @@ main.tournaments-page,
 }
 
 /* ==========================================================
-   MOBILE â€” MISMA ESTÃ‰TICA, MENOR COSTO
+   MOBILE — MISMA ESTÉTICA, MENOR COSTO
    ========================================================== */
 
 @media (max-width:700px){
@@ -1048,7 +1048,7 @@ main.tournaments-page,
 }
 
 /* ==========================================================
-   MOBILE PEQUEÃ‘O
+   MOBILE PEQUEÑO
    ========================================================== */
 
 @media (max-width:420px){
@@ -1097,7 +1097,7 @@ main.tournaments-page,
 
 
 
-/*===== SUPERCARD 2014 GOLD BODY â€” FIX FONDO GLOBAL =====*/
+/*===== SUPERCARD 2014 GOLD BODY — FIX FONDO GLOBAL =====*/
 
 /* El HTML no debe pintar una capa negra opaca encima del fondo del body. */
 html {
@@ -1175,7 +1175,7 @@ body {
     background-attachment: scroll;
 }
 
-/* ViÃ±eta y filo de luz: quedan por encima del fondo, detrÃ¡s del contenido. */
+/* Viñeta y filo de luz: quedan por encima del fondo, detrás del contenido. */
 body::before {
     content: "";
     position: fixed;
@@ -1198,7 +1198,7 @@ body::before {
     box-shadow: inset 0 0 140px rgba(0, 0, 0, .82);
 }
 
-/* PartÃ­culas doradas discretas. */
+/* Partículas doradas discretas. */
 body::after {
     content: "";
     position: fixed;
@@ -1265,3 +1265,73 @@ body > * {
 }
 
 /*===== FIN FIX FONDO GLOBAL =====*/
+
+
+/* ==========================================================
+   FIX FINAL — FONDO DORADO CON EL MISMO HALFTONE DE TORNEOROAD
+   Solo modifica el fondo global; conserva tarjetas, animaciones,
+   buscador, divisiones y responsive existentes.
+   ========================================================== */
+
+html {
+    min-height: 100%;
+    background: #030303 !important;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #fff;
+    background-color: #030303 !important;
+    background-image:
+        /* Halo dorado superior, con sombra más marcada al centro */
+        radial-gradient(
+            ellipse at 50% 28%,
+            rgba(184, 139, 24, .34) 0%,
+            rgba(115, 82, 10, .19) 35%,
+            transparent 57%
+        ),
+        /* Puntos oscuros: mismo patrón y separación que TorneoRoad */
+        radial-gradient(
+            circle,
+            rgba(0, 0, 0, .78) 0 3px,
+            transparent 3.8px
+        ),
+        /* Degradado negro-dorado que se oscurece hacia abajo */
+        linear-gradient(
+            180deg,
+            #211802 0%,
+            #100d05 52%,
+            #030303 100%
+        ) !important;
+    background-size: auto, 14px 14px, auto;
+    background-position: center top, 0 0, center top;
+    background-repeat: no-repeat, repeat, no-repeat;
+    background-attachment: scroll !important;
+}
+
+/* Evita que las capas de fondos anteriores dupliquen puntos o brillos. */
+body::before,
+body::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* El contenedor no debe pintar otro patrón encima del body. */
+.games-page,
+main.tournaments-page,
+.tournaments-page,
+#games-home,
+#games-directory,
+.tournaments-page .games-page {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Sin cambios de densidad del patrón en móvil: mantiene el mismo aspecto. */
+@media (max-width: 700px) {
+    body {
+        background-size: auto, 14px 14px, auto;
+        background-attachment: scroll !important;
+    }
+}
