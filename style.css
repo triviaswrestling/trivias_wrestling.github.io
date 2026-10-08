@@ -941,3 +941,480 @@ main > h1 {
         color: #d90024;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   SUPERCARD 2014 — MODAL
+   ========================================= */
+
+.modal {
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(220, 0, 30, 0.28),
+            rgba(0, 0, 0, 0.94) 70%
+        );
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+
+/* =========================================
+   SUPERCARD — CARD
+   ========================================= */
+
+.modal-content {
+    width: 80%;
+    max-width: 540px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(220, 0, 30, 0.28),
+            transparent 42%
+        ),
+        #101010;
+
+    border: 2px solid #333;
+
+    border-top: 4px solid #d90024;
+
+    border-radius: 3px;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.9),
+        0 0 20px rgba(217,0,36,.25),
+        inset 0 0 25px rgba(255,255,255,.025);
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   HALFTONE — ESTILO SUPERCARD
+   ========================================= */
+
+.modal-content::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.13) 1.5px,
+            transparent 1.7px
+        );
+
+    background-size: 12px 12px;
+
+    opacity: .16;
+
+    mix-blend-mode: screen;
+
+    z-index: 0;
+}
+
+
+/* =========================================
+   FRANJA SUPERIOR
+   ========================================= */
+
+.modal-content::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #700010,
+            #d90024 35%,
+            #ff334d 50%,
+            #d90024 65%,
+            #700010
+        );
+
+    box-shadow:
+        0 0 8px rgba(217,0,36,.65);
+
+    z-index: 5;
+}
+
+
+/* =========================================
+   TODO EL CONTENIDO SOBRE EL HALFTONE
+   ========================================= */
+
+.modal-content h2,
+.modal-content h3,
+.modal-content > p,
+.modal-content ul,
+.close-button {
+    position: relative;
+    z-index: 3;
+}
+
+
+/* =========================================
+   CATEGORÍA
+   ========================================= */
+
+.modal-content h3 {
+    top: auto;
+    left: auto;
+
+    margin: 0;
+
+    padding: 15px 24px 5px;
+
+    color: #bdbdbd;
+
+    font-size: 8px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   NOMBRE
+   ========================================= */
+
+.modal-content h2 {
+    margin: 0;
+
+    padding: 4px 24px 14px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.06),
+            rgba(255,255,255,.015)
+        );
+
+    color: #ffffff;
+
+    font-size: 29px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 2px 2px #000,
+        0 0 8px rgba(255,255,255,.12);
+
+    border-bottom: 1px solid #555;
+}
+
+
+/* =========================================
+   DETALLE METÁLICO DEL NOMBRE
+   ========================================= */
+
+.modal-content h2::after {
+    content: "";
+
+    display: block;
+
+    width: 75px;
+    height: 2px;
+
+    margin-top: 9px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d90024,
+            #ffffff,
+            transparent
+        );
+
+    box-shadow:
+        0 0 5px rgba(217,0,36,.45);
+}
+
+
+/* =========================================
+   DIVISIÓN
+   ========================================= */
+
+.modal-content > p {
+    margin: 0;
+
+    padding: 9px 24px 11px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #191919,
+            #242424,
+            #191919
+        );
+
+    color: #bdbdbd;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid #3b3b3b;
+}
+
+
+/* =========================================
+   ACHIEVEMENTS
+   ========================================= */
+
+.modal-content ul {
+    margin: 0;
+
+    padding:
+        18px
+        24px
+        22px
+        42px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.025),
+            rgba(0,0,0,.18)
+        );
+}
+
+
+/* =========================================
+   ACHIEVEMENT ITEM
+   ========================================= */
+
+.modal-content li {
+    color: #dedede;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    line-height: 1.6;
+
+    text-shadow:
+        0 1px 1px #000;
+}
+
+.modal-content li::marker {
+    color: #d90024;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   CLOSE BUTTON — TIPO CARD
+   ========================================= */
+
+.close-button {
+    top: 10px;
+    right: 10px;
+
+    width: 30px;
+    height: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ef1737,
+            #a5001b
+        );
+
+    border: 1px solid #ff4a5f;
+
+    color: #ffffff;
+
+    font-size: 19px;
+    font-weight: 900;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.7),
+        inset 0 1px 0 rgba(255,255,255,.2);
+
+    transition:
+        transform .15s ease,
+        background .15s ease,
+        box-shadow .15s ease;
+}
+
+.close-button:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #ff304d,
+            #c00022
+        );
+
+    box-shadow:
+        0 0 10px rgba(217,0,36,.5);
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .modal-content {
+        width: 90%;
+        max-width: 430px;
+
+        border-width: 1px;
+        border-top-width: 3px;
+
+        box-shadow:
+            0 8px 25px rgba(0,0,0,.9),
+            0 0 12px rgba(217,0,36,.2);
+    }
+
+    .modal-content h3 {
+        padding:
+            13px
+            18px
+            4px;
+
+        font-size: 7px;
+        letter-spacing: 2.5px;
+    }
+
+    .modal-content h2 {
+        padding:
+            3px
+            18px
+            12px;
+
+        font-size: 23px;
+        letter-spacing: 1px;
+    }
+
+    .modal-content > p {
+        padding:
+            8px
+            18px
+            10px;
+
+        font-size: 8px;
+    }
+
+    .modal-content ul {
+        padding:
+            16px
+            18px
+            20px
+            34px;
+    }
+
+    .modal-content li {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .close-button {
+        top: 8px;
+        right: 8px;
+
+        width: 28px;
+        height: 28px;
+
+        font-size: 18px;
+    }
+}
+
+
+/* =========================================
+   MOBILE MUY PEQUEÑO
+   ========================================= */
+
+@media (max-width: 380px) {
+
+    .modal-content {
+        width: 92%;
+    }
+
+    .modal-content h2 {
+        font-size: 20px;
+    }
+
+    .modal-content li {
+        font-size: 10px;
+    }
+    }
