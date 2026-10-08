@@ -1097,60 +1097,10 @@ main.tournaments-page,
 
 
 
-/*===== SUPERCARD GOLD — MISMA LÓGICA QUE TORNEOROAD =====*/
-html,body{background:#050505!important}
-
-body{
-position:relative;
-isolation:isolate;
-overflow-x:hidden;
-min-height:100vh;
-background:
-radial-gradient(circle at 50% 8%,rgba(225,170,20,.42) 0%,rgba(145,105,10,.20) 24%,transparent 52%),
-radial-gradient(circle at 50% 0%,rgba(255,220,90,.12) 0%,transparent 38%),
-radial-gradient(circle,rgba(190,140,20,.42) 0 1.5px,transparent 1.8px),
-linear-gradient(180deg,#180f02 0%,#090806 42%,#050505 100%)!important;
-background-size:auto,auto,12px 12px,auto;
-background-position:center,center,0 0,center;
-background-repeat:no-repeat,no-repeat,repeat,no-repeat;
-color:#fff;
-}
-
-body::before{
-content:"";
-position:absolute;
-inset:0;
-z-index:-1;
-pointer-events:none;
-background:
-radial-gradient(ellipse at 50% 18%,transparent 0%,rgba(0,0,0,.08) 48%,rgba(0,0,0,.62) 100%);
-}
-
-main.tournaments-page,
-.tournaments-page,
-#games-home,
-#games-directory{
-background:transparent!important;
-background-color:transparent!important;
-}
-
-@media(max-width:700px){
-html,body{background:#050505!important}
-
-body{
-background:
-radial-gradient(circle at 50% 8%,rgba(225,170,20,.34) 0%,rgba(145,105,10,.16) 25%,transparent 55%),
-radial-gradient(circle,rgba(190,140,20,.34) 0 1.2px,transparent 1.6px),
-linear-gradient(180deg,#130d02 0%,#090806 42%,#030303 100%)!important;
-background-size:auto,10px 10px,auto;
-background-position:center,0 0,center;
-background-repeat:no-repeat,repeat,no-repeat;
-}
-
-body::before{
-position:absolute;
-background:
-radial-gradient(ellipse at 50% 18%,transparent 0%,rgba(0,0,0,.08) 48%,rgba(0,0,0,.68) 100%);
-}
-}
+/*===== SUPERCARD 2014 GOLD BODY =====*/
+html,body{background:#030303!important}body{position:relative;isolation:isolate;min-height:100vh;overflow-x:hidden;color:#fff;background-image:radial-gradient(circle at 50% 8%,rgba(225,170,20,.42) 0%,rgba(145,105,10,.20) 24%,transparent 52%),radial-gradient(circle at 50% 0%,rgba(255,220,90,.12) 0%,transparent 38%),radial-gradient(circle,rgba(220,175,55,.34) 0 1.3px,transparent 1.8px),radial-gradient(circle,rgba(255,225,125,.13) 0 .7px,transparent 1.5px),linear-gradient(135deg,rgba(255,255,255,.018) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.010) 50%,rgba(255,255,255,.010) 75%,transparent 75%),linear-gradient(180deg,#170f02 0%,#0c0a06 25%,#070706 47%,#030303 74%,#010101 100%)!important;background-size:auto,auto,12px 12px,23px 23px,90px 90px,auto;background-position:center,center,0 0,7px 4px,center,center;background-repeat:no-repeat,no-repeat,repeat,repeat,repeat,no-repeat;background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 16%,transparent 0%,rgba(0,0,0,.04) 32%,rgba(0,0,0,.24) 60%,rgba(0,0,0,.72) 100%),linear-gradient(180deg,rgba(255,215,80,.055) 0%,transparent 18%);box-shadow:inset 0 0 140px rgba(0,0,0,.82)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 17% 28%,rgba(255,215,80,.10) 0 1px,transparent 2px),radial-gradient(circle at 82% 34%,rgba(255,225,120,.075) 0 1px,transparent 2px),radial-gradient(circle at 34% 62%,rgba(212,175,55,.055) 0 1px,transparent 2px),radial-gradient(circle at 72% 70%,rgba(212,175,55,.045) 0 1px,transparent 2px);background-size:150px 150px,190px 190px,210px 210px,240px 240px;background-repeat:repeat;opacity:.72}
+@media(max-width:700px){body{background-image:radial-gradient(circle at 50% 7%,rgba(225,170,20,.29) 0%,rgba(150,105,5,.15) 25%,transparent 55%),radial-gradient(circle at 50% 0%,rgba(255,220,90,.10) 0%,transparent 40%),radial-gradient(circle,rgba(220,175,55,.30) 0 1px,transparent 1.6px),radial-gradient(circle,rgba(255,225,125,.11) 0 .6px,transparent 1.3px),linear-gradient(135deg,rgba(255,255,255,.014) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.008) 50%,rgba(255,255,255,.008) 75%,transparent 75%),linear-gradient(180deg,#130d02 0%,#0a0906 28%,#050505 55%,#020202 100%)!important;background-size:auto,auto,10px 10px,20px 20px,75px 75px,auto;background-position:center,center,0 0,4px 3px,center,center;background-repeat:no-repeat,no-repeat,repeat,repeat,repeat,no-repeat;background-attachment:scroll!important}body::before{position:absolute;box-shadow:inset 0 0 80px rgba(0,0,0,.75)}body::after{position:absolute;opacity:.58}}
+@media(prefers-reduced-motion:reduce){body{background-attachment:scroll!important}body::before,body::after{position:absolute}}
 /*===== FIN =====*/
