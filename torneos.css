@@ -506,9 +506,9 @@
 
 
 /* ==========================================================
-   MI WRESTLING â€” WWE SUPERCARD EPIC CHROMATIC THEME
-   EstÃ©tica inspirada en el logo SuperCard y las cartas Legendary:
-   halftone, placas metÃ¡licas, rojo/dorado/blanco/azul y brillo ligero.
+   MI WRESTLING — WWE SUPERCARD EPIC CHROMATIC THEME
+   Estética inspirada en el logo SuperCard y las cartas Legendary:
+   halftone, placas metálicas, rojo/dorado/blanco/azul y brillo ligero.
    Mantiene la estructura y los efectos funcionales originales.
    ========================================================== */
 
@@ -574,7 +574,7 @@ body {
     text-shadow: 0 1px 5px #000;
 }
 
-/* Separadores con filo cromÃ¡tico fino. */
+/* Separadores con filo cromático fino. */
 .division-divider {
     border-bottom: 2px solid transparent;
     border-image: var(--sc-chrome) 1;
@@ -591,7 +591,7 @@ body {
     color: #e7dfe4;
 }
 
-/* Tres columnas en todos los tamaÃ±os, con tarjetas cuadradas. */
+/* Tres columnas en todos los tamaños, con tarjetas cuadradas. */
 .tournaments-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(8px, 1.35vw, 18px);
@@ -759,7 +759,7 @@ body {
     opacity: 1;
 }
 
-/* Buscador: la misma paleta cromÃ¡tica, integrada con el tema. */
+/* Buscador: la misma paleta cromática, integrada con el tema. */
 #home-tournament-search,
 #home-tournament-search:focus {
     background:
@@ -790,7 +790,7 @@ body {
     }
 }
 
-/* MÃ³vil: tres tarjetas cuadradas, sin desbordar la pantalla. */
+/* Móvil: tres tarjetas cuadradas, sin desbordar la pantalla. */
 @media (max-width: 600px) {
     .tournaments-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -840,83 +840,110 @@ body {
 
 
 /* ==========================================================
-   SUPERCARD HALFTONE BACKGROUND â€” CHROMATIC EDITION
-   Reproduce el fondo de la primera referencia:
-   puntos negros uniformes, centro iluminado y bordes oscuros,
-   pero con reflejos cromÃ¡ticos rojo/dorado/blanco/azul.
+   SUPERCARD HALFTONE BACKGROUND — GOLD EDITION
+   Fondo general de la página inspirado en la carta Legendary
+   de Dusty Rhodes: dorado, halftone y viñeta oscura.
+   Las tournament-card mantienen intacto su diseño actual.
    ========================================================== */
 
 html,
 body {
-    background-color: #050407;
+    min-height: 100%;
+    background-color: #765300;
 }
 
 body {
     background-image:
-        /* viÃ±eta negra fuerte en los bordes */
-        radial-gradient(ellipse at 50% 48%,
+        /* Viñeta: bordes oscuros y centro limpio */
+        radial-gradient(
+            ellipse at 50% 42%,
             transparent 0%,
-            rgba(0, 0, 0, .08) 42%,
-            rgba(0, 0, 0, .72) 100%),
-        /* halo cromÃ¡tico central, difuminado como el original */
-        radial-gradient(ellipse at 50% 43%,
-            rgba(255, 255, 255, .42) 0%,
-            rgba(244, 201, 79, .42) 13%,
-            rgba(243, 38, 50, .58) 29%,
-            rgba(23, 105, 232, .32) 45%,
-            rgba(121, 11, 22, .22) 60%,
-            transparent 76%),
-        /* puntos negros sobre la luz, como el fondo SuperCard */
-        radial-gradient(circle,
-            rgba(0, 0, 0, .91) 0 3px,
-            transparent 3.8px),
-        /* base casi negra */
-        linear-gradient(180deg, #080609 0%, #16070c 48%, #050407 100%);
-    background-size: auto, auto, 14px 14px, auto;
+            rgba(45, 28, 0, .10) 42%,
+            rgba(35, 22, 0, .62) 100%
+        ),
+        /* Halo dorado central */
+        radial-gradient(
+            ellipse at 50% 40%,
+            rgba(255, 239, 139, .88) 0%,
+            rgba(235, 197, 72, .82) 18%,
+            rgba(194, 145, 29, .68) 38%,
+            rgba(132, 91, 8, .48) 58%,
+            transparent 78%
+        ),
+        /* Halftone oscuro */
+        radial-gradient(
+            circle,
+            rgba(63, 42, 0, .72) 0 2.4px,
+            transparent 3.1px
+        ),
+        /* Base dorada */
+        linear-gradient(
+            180deg,
+            #e2c24e 0%,
+            #c99d27 38%,
+            #9a6d0d 68%,
+            #604100 100%
+        );
+
+    background-size: auto, auto, 13px 13px, auto;
     background-position: center, center, center, center;
     background-attachment: fixed;
     background-repeat: no-repeat, no-repeat, repeat, no-repeat;
     color: #fff;
 }
 
-/* Evita que el fondo secundario de la pÃ¡gina tape el halo del body. */
+/* El contenedor de la página deja ver el fondo del body. */
 .games-page {
+    background: transparent;
     background-color: transparent;
-    background-image:
-        radial-gradient(ellipse at 50% 42%,
-            rgba(255, 255, 255, .07) 0%,
-            rgba(244, 201, 79, .10) 17%,
-            rgba(243, 38, 50, .12) 35%,
-            rgba(23, 105, 232, .08) 53%,
-            transparent 72%),
-        radial-gradient(circle,
-            rgba(0, 0, 0, .80) 0 2.7px,
-            transparent 3.5px);
-    background-size: auto, 14px 14px;
-    background-position: center, center;
 }
 
-/* En pantallas chicas conserva el mismo patrÃ³n, sin fijar el fondo. */
+/* Mobile: conserva el mismo aspecto, sin fixed para evitar saltos al scroll. */
 @media (max-width: 700px) {
+
     body {
         background-attachment: scroll;
         background-image:
-            radial-gradient(ellipse at 50% 42%,
+            radial-gradient(
+                ellipse at 50% 42%,
                 transparent 0%,
-                rgba(0, 0, 0, .12) 42%,
-                rgba(0, 0, 0, .76) 100%),
-            radial-gradient(ellipse at 50% 43%,
-                rgba(255, 255, 255, .34) 0%,
-                rgba(244, 201, 79, .36) 13%,
-                rgba(243, 38, 50, .52) 29%,
-                rgba(23, 105, 232, .28) 45%,
-                rgba(121, 11, 22, .20) 60%,
-                transparent 76%),
-            radial-gradient(circle,
-                rgba(0, 0, 0, .91) 0 2.5px,
-                transparent 3.3px),
-            linear-gradient(180deg, #080609 0%, #16070c 48%, #050407 100%);
-        background-size: auto, auto, 12px 12px, auto;
+                rgba(45, 28, 0, .12) 42%,
+                rgba(35, 22, 0, .68) 100%
+            ),
+            radial-gradient(
+                ellipse at 50% 40%,
+                rgba(255, 239, 139, .78) 0%,
+                rgba(235, 197, 72, .74) 18%,
+                rgba(194, 145, 29, .62) 38%,
+                rgba(132, 91, 8, .46) 58%,
+                transparent 78%
+            ),
+            radial-gradient(
+                circle,
+                rgba(63, 42, 0, .72) 0 2px,
+                transparent 2.8px
+            ),
+            linear-gradient(
+                180deg,
+                #e2c24e 0%,
+                #c99d27 38%,
+                #9a6d0d 68%,
+                #604100 100%
+            );
+
+        background-size: auto, auto, 11px 11px, auto;
+        background-position: center, center, center, center;
         background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+    }
+
+    .games-page {
+        background: transparent;
+        background-color: transparent;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        background-attachment: scroll;
     }
 }
