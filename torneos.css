@@ -1000,3 +1000,124 @@ main.tournaments-page {
         background-color: transparent !important;
     }
 }
+
+
+/* ==========================================================
+   MI WRESTLING — FONDO TORNEOROAD GOLD
+   PEGAR AL FINAL DE torneos.css
+   Misma construcción del fondo de Torneoroad,
+   pero versión negra + dorado + halftone.
+   ========================================================== */
+
+html,
+body {
+    background-color: #050505 !important;
+}
+
+body {
+    background-image:
+        radial-gradient(
+            ellipse at 50% 28%,
+            rgba(244, 201, 79, .28),
+            transparent 54%
+        ),
+        radial-gradient(
+            circle,
+            rgba(244, 201, 79, .42) 0 2px,
+            transparent 3.2px
+        ),
+        linear-gradient(
+            180deg,
+            #171207 0%,
+            #090806 52%,
+            #020202 100%
+        ) !important;
+
+    background-size: auto, 14px 14px, auto !important;
+    background-position: center, center, center !important;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat, repeat, no-repeat !important;
+    color: #fff;
+}
+
+/* Tu HTML real usa .tournaments-page. */
+main.tournaments-page {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+.tournaments-page,
+#games-home,
+#games-directory {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Halo dorado adicional, exactamente sobre la zona de Games,
+   sin pintar las tarjetas. */
+.tournaments-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(255, 221, 91, .13),
+            transparent 58%
+        );
+}
+
+/* Las cards siguen siendo negras/cromáticas. */
+.tournament-card,
+.tournament-card:hover {
+    isolation: isolate;
+}
+
+/* Mobile: mismo efecto, sin fixed para evitar saltos al hacer scroll. */
+@media (max-width: 700px) {
+    html,
+    body {
+        background-color: #050505 !important;
+    }
+
+    body {
+        background-image:
+            radial-gradient(
+                ellipse at 50% 22%,
+                rgba(244, 201, 79, .25),
+                transparent 58%
+            ),
+            radial-gradient(
+                circle,
+                rgba(244, 201, 79, .40) 0 1.8px,
+                transparent 3px
+            ),
+            linear-gradient(
+                180deg,
+                #171207 0%,
+                #090806 52%,
+                #020202 100%
+            ) !important;
+
+        background-size: auto, 12px 12px, auto !important;
+        background-position: center, center, center !important;
+        background-attachment: scroll !important;
+        background-repeat: no-repeat, repeat, no-repeat !important;
+    }
+
+    main.tournaments-page,
+    .tournaments-page,
+    #games-home,
+    #games-directory {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        background-attachment: scroll !important;
+    }
+}
