@@ -838,189 +838,15 @@ body {
     }
 }
 
-
 /* ==========================================================
-   SUPERCARD HALFTONE BACKGROUND — GOLD EDITION
-   Fondo general de la página inspirado en la carta Legendary
-   de Dusty Rhodes: dorado, halftone y viñeta oscura.
-   Las tournament-card mantienen intacto su diseño actual.
+   SUPERCARD 2014 GOLD — FINAL PERFORMANCE EDITION
+   Misma estética premium: oro + negro + halftone + polvo.
+   Optimizado para PC + Android.
    ========================================================== */
-
-html,
-body {
-    min-height: 100%;
-    background-color: #765300;
-}
-
-body {
-    background-image:
-        /* Viñeta: bordes oscuros y centro limpio */
-        radial-gradient(
-            ellipse at 50% 42%,
-            transparent 0%,
-            rgba(45, 28, 0, .10) 42%,
-            rgba(35, 22, 0, .62) 100%
-        ),
-        /* Halo dorado central */
-        radial-gradient(
-            ellipse at 50% 40%,
-            rgba(255, 239, 139, .88) 0%,
-            rgba(235, 197, 72, .82) 18%,
-            rgba(194, 145, 29, .68) 38%,
-            rgba(132, 91, 8, .48) 58%,
-            transparent 78%
-        ),
-        /* Halftone oscuro */
-        radial-gradient(
-            circle,
-            rgba(63, 42, 0, .72) 0 2.4px,
-            transparent 3.1px
-        ),
-        /* Base dorada */
-        linear-gradient(
-            180deg,
-            #e2c24e 0%,
-            #c99d27 38%,
-            #9a6d0d 68%,
-            #604100 100%
-        );
-
-    background-size: auto, auto, 13px 13px, auto;
-    background-position: center, center, center, center;
-    background-attachment: fixed;
-    background-repeat: no-repeat, no-repeat, repeat, no-repeat;
-    color: #fff;
-}
-
-/* El contenedor de la página deja ver el fondo del body. */
-.games-page {
-    background: transparent;
-    background-color: transparent;
-}
-
-/* Mobile: conserva el mismo aspecto, sin fixed para evitar saltos al scroll. */
-@media (max-width: 700px) {
-
-    body {
-        background-attachment: scroll;
-        background-image:
-            radial-gradient(
-                ellipse at 50% 42%,
-                transparent 0%,
-                rgba(45, 28, 0, .12) 42%,
-                rgba(35, 22, 0, .68) 100%
-            ),
-            radial-gradient(
-                ellipse at 50% 40%,
-                rgba(255, 239, 139, .78) 0%,
-                rgba(235, 197, 72, .74) 18%,
-                rgba(194, 145, 29, .62) 38%,
-                rgba(132, 91, 8, .46) 58%,
-                transparent 78%
-            ),
-            radial-gradient(
-                circle,
-                rgba(63, 42, 0, .72) 0 2px,
-                transparent 2.8px
-            ),
-            linear-gradient(
-                180deg,
-                #e2c24e 0%,
-                #c99d27 38%,
-                #9a6d0d 68%,
-                #604100 100%
-            );
-
-        background-size: auto, auto, 11px 11px, auto;
-        background-position: center, center, center, center;
-        background-repeat: no-repeat, no-repeat, repeat, no-repeat;
-    }
-
-    .games-page {
-        background: transparent;
-        background-color: transparent;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    body {
-        background-attachment: scroll;
-    }
-}
-
-/* ==========================================================
-   FIX — PÁGINA REAL DE TORNEOS
-   El HTML usa .tournaments-page, no .games-page.
-   También anulamos el background negro de style.css sobre <main>.
-   ========================================================== */
-
-html,
-body {
-    min-height: 100%;
-}
-
-body {
-    background-color: #765300;
-}
-
-main.tournaments-page {
-    background: transparent !important;
-    background-color: transparent !important;
-}
-
-/* Contenedores internos: dejan visible el fondo dorado del body. */
-.tournaments-page,
-.tournaments-page #games-home,
-.tournaments-page #games-directory,
-.tournaments-page .games-page {
-    background: transparent !important;
-    background-color: transparent !important;
-}
-
-/* Evita que el fondo negro de otros estilos vuelva a cubrir la página. */
-.tournaments-page::before,
-.tournaments-page::after {
-    pointer-events: none;
-}
-
-/* ==========================================================
-   MOBILE — MISMO FONDO, MISMA ESCALA VISUAL
-   ========================================================== */
-
-@media (max-width: 700px) {
-    main.tournaments-page {
-        background: transparent !important;
-        background-color: transparent !important;
-    }
-
-    .tournaments-page,
-    .tournaments-page #games-home,
-    .tournaments-page #games-directory {
-        background: transparent !important;
-        background-color: transparent !important;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* =========================================================
-   SUPERCARD 2014 GOLD — PERFORMANCE OPTIMIZED
-   Mantiene la estética, reduce el costo de renderizado
-   PEGAR AL FINAL DE torneos.css
-   ========================================================= */
 
 html,
 body{
+    min-height:100%;
     background:#050505 !important;
 }
 
@@ -1028,50 +854,47 @@ body{
     position:relative;
     isolation:isolate;
     overflow-x:hidden;
+    color:#fff;
 
-    /* UNA composición principal */
-    background:
-        /* brillo dorado principal */
+    background-image:
+        /* HALO PRINCIPAL */
         radial-gradient(
-            ellipse 75% 42% at 50% 8%,
-            rgba(225,175,45,.30) 0%,
-            rgba(145,95,10,.16) 30%,
-            transparent 68%
+            ellipse 78% 46% at 50% 8%,
+            rgba(235,194,65,.34) 0%,
+            rgba(181,127,18,.20) 30%,
+            rgba(100,66,5,.08) 54%,
+            transparent 74%
         ),
-
-        /* brillo superior */
+        /* BRILLO SUPERIOR */
         radial-gradient(
-            ellipse 55% 28% at 50% 0%,
-            rgba(255,215,90,.14) 0%,
-            transparent 70%
+            ellipse 52% 28% at 50% 0%,
+            rgba(255,224,105,.17) 0%,
+            rgba(230,180,40,.07) 38%,
+            transparent 72%
         ),
-
-        /* luz lateral muy suave */
+        /* LUZ LATERAL */
         radial-gradient(
-            ellipse 35% 55% at 0% 35%,
-            rgba(170,115,20,.10) 0%,
-            transparent 75%
+            ellipse 42% 60% at 0% 30%,
+            rgba(175,120,15,.10),
+            transparent 72%
         ),
-
         radial-gradient(
-            ellipse 35% 55% at 100% 35%,
-            rgba(170,115,20,.08) 0%,
-            transparent 75%
+            ellipse 42% 60% at 100% 30%,
+            rgba(175,120,15,.08),
+            transparent 72%
         ),
-
-        /* polvo / halftone dorado */
+        /* HALFTONE */
         radial-gradient(
             circle,
-            rgba(235,190,65,.25) 0 1.2px,
-            transparent 1.6px
+            rgba(235,190,55,.23) 0 1.15px,
+            transparent 1.65px
         ),
-
-        /* negro metálico */
+        /* BASE NEGRA METÁLICA */
         linear-gradient(
             180deg,
-            #160f02 0%,
-            #0b0905 28%,
-            #070707 58%,
+            #171004 0%,
+            #0d0a05 25%,
+            #080706 58%,
             #040404 100%
         );
 
@@ -1099,15 +922,14 @@ body{
         repeat,
         no-repeat;
 
-    /* IMPORTANTE: nunca fixed */
+    /* Nunca fixed: evita repaints pesados durante scroll. */
     background-attachment:scroll;
 }
 
-
-/* =========================================================
-   VIÑETA + BRILLO SUPERIOR
-   Una sola capa adicional
-   ========================================================= */
+/* ==========================================================
+   VIÑETA + FILO DE LUZ
+   Una sola capa adicional y sin blur/filter.
+   ========================================================== */
 
 body::before{
     content:"";
@@ -1118,91 +940,75 @@ body::before{
 
     background:
         radial-gradient(
-            ellipse 75% 55% at 50% 12%,
+            ellipse 80% 58% at 50% 10%,
             transparent 0%,
-            rgba(0,0,0,.08) 42%,
-            rgba(0,0,0,.38) 78%,
+            rgba(0,0,0,.07) 38%,
+            rgba(0,0,0,.28) 70%,
             rgba(0,0,0,.68) 100%
         ),
-
         linear-gradient(
             180deg,
-            rgba(255,210,75,.12) 0,
-            rgba(255,210,75,0) 3px,
+            rgba(255,215,75,.11) 0,
+            rgba(255,215,75,0) 4px,
             transparent 100%
         );
 }
 
-
-/* =========================================================
-   POLVO DORADO — CAPA LIGERA
-   ========================================================= */
+/* ==========================================================
+   POLVO DORADO
+   Dos patrones pequeños en lugar de cuatro capas gigantes.
+   ========================================================== */
 
 body::after{
     content:"";
     position:absolute;
+    top:0;
     left:0;
     right:0;
-    top:0;
     height:100%;
-
     z-index:-1;
     pointer-events:none;
 
     background-image:
         radial-gradient(
-            circle at 12% 18%,
-            rgba(255,210,80,.24) 0 1px,
+            circle,
+            rgba(255,215,90,.20) 0 1px,
             transparent 1.5px
         ),
         radial-gradient(
-            circle at 82% 27%,
-            rgba(255,215,90,.18) 0 1px,
-            transparent 1.5px
-        ),
-        radial-gradient(
-            circle at 25% 67%,
-            rgba(220,170,45,.15) 0 1px,
-            transparent 1.5px
-        ),
-        radial-gradient(
-            circle at 74% 76%,
-            rgba(240,190,55,.13) 0 1px,
+            circle,
+            rgba(225,180,55,.14) 0 1px,
             transparent 1.5px
         );
 
     background-size:
-        180px 180px,
-        230px 230px,
-        210px 210px,
-        260px 260px;
+        185px 185px,
+        245px 245px;
 
     background-position:
         0 0,
-        35px 60px,
-        90px 20px,
-        20px 110px;
+        42px 68px;
 
     background-repeat:repeat;
 }
 
-
-/* =========================================================
+/* ==========================================================
    CONTENEDORES TRANSPARENTES
-   El fondo se ve detrás sin crear otra composición
-   ========================================================= */
+   ========================================================== */
 
+.games-page,
 main.tournaments-page,
 .tournaments-page,
 #games-home,
-#games-directory{
+#games-directory,
+.tournaments-page .games-page{
     background:transparent !important;
+    background-color:transparent !important;
 }
 
-
-/* =========================================================
-   MOBILE — MISMA ESTÉTICA, MENOS PINTADO
-   ========================================================= */
+/* ==========================================================
+   MOBILE — MISMA ESTÉTICA, MENOR COSTO
+   ========================================================== */
 
 @media (max-width:700px){
 
@@ -1219,33 +1025,31 @@ main.tournaments-page,
     body::before{
         background:
             radial-gradient(
-                ellipse 90% 48% at 50% 10%,
+                ellipse 90% 50% at 50% 8%,
                 transparent 0%,
-                rgba(0,0,0,.12) 48%,
-                rgba(0,0,0,.48) 82%,
-                rgba(0,0,0,.64) 100%
+                rgba(0,0,0,.10) 42%,
+                rgba(0,0,0,.34) 72%,
+                rgba(0,0,0,.65) 100%
             ),
             linear-gradient(
                 180deg,
-                rgba(255,210,75,.10) 0,
-                rgba(255,210,75,0) 3px,
+                rgba(255,215,75,.09) 0,
+                rgba(255,215,75,0) 4px,
                 transparent 100%
             );
     }
 
     body::after{
         background-size:
-            150px 150px,
-            190px 190px,
-            175px 175px,
-            210px 210px;
+            155px 155px,
+            205px 205px;
+        opacity:.82;
     }
 }
 
-
-/* =========================================================
-   MOBILE CHICO — SAMSUNG / ANDROID ECONÓMICO
-   ========================================================= */
+/* ==========================================================
+   MOBILE PEQUEÑO
+   ========================================================== */
 
 @media (max-width:420px){
 
@@ -1260,6 +1064,12 @@ main.tournaments-page,
     }
 
     body::after{
-        opacity:.72;
+        opacity:.68;
     }
-                 }
+}
+
+@media (prefers-reduced-motion:reduce){
+    body{
+        background-attachment:scroll;
+    }
+}
