@@ -947,3 +947,56 @@ body {
         background-attachment: scroll;
     }
 }
+
+/* ==========================================================
+   FIX — PÁGINA REAL DE TORNEOS
+   El HTML usa .tournaments-page, no .games-page.
+   También anulamos el background negro de style.css sobre <main>.
+   ========================================================== */
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    background-color: #765300;
+}
+
+main.tournaments-page {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Contenedores internos: dejan visible el fondo dorado del body. */
+.tournaments-page,
+.tournaments-page #games-home,
+.tournaments-page #games-directory,
+.tournaments-page .games-page {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Evita que el fondo negro de otros estilos vuelva a cubrir la página. */
+.tournaments-page::before,
+.tournaments-page::after {
+    pointer-events: none;
+}
+
+/* ==========================================================
+   MOBILE — MISMO FONDO, MISMA ESCALA VISUAL
+   ========================================================== */
+
+@media (max-width: 700px) {
+    main.tournaments-page {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+
+    .tournaments-page,
+    .tournaments-page #games-home,
+    .tournaments-page #games-directory {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+}
