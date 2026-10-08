@@ -503,3 +503,100 @@
         font-size: 11px;
     }
 }
+
+
+/* MI WRESTLING â€” SUPER CARD CHROMATIC THEME */
+:root {
+  --sc-chrome: linear-gradient(105deg,#d90024 0%,#102a56 18%,#c0c0c0 32%,#55c7e8 46%,#27ae60 61%,#fff 73%,#e8d6b0 86%,#d90024 100%);
+}
+.games-page {
+  background: radial-gradient(ellipse at 50% 0%,rgba(42,63,105,.16),transparent 58%),
+              radial-gradient(circle,rgba(0,0,0,.8) 0 2px,transparent 2.8px);
+  background-size:auto,14px 14px;
+}
+.games-header h1 { color:#fff; text-shadow:0 1px 0 rgba(192,192,192,.7),0 3px 0 #17171b; }
+.games-header p { color:#d9d9e2; }
+.division-divider { border-image:var(--sc-chrome) 1; }
+.division-divider h2 { color:#fff; }
+
+/* Tres tarjetas por fila y formato cuadrado en todos los tamaÃ±os. */
+.tournaments-grid {
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(7px,1.25vw,16px);
+  align-items:stretch;
+}
+.tournament-card {
+  box-sizing:border-box;
+  aspect-ratio:1 / 1;
+  min-height:0;
+  min-width:0;
+  padding:clamp(7px,1.3vw,18px);
+  background-color:#0b0b10;
+  background-image:linear-gradient(145deg,rgba(255,255,255,.025),transparent 45%,rgba(0,0,0,.2)),
+                   radial-gradient(circle,rgba(0,0,0,.65) 0 2px,transparent 2.8px);
+  background-size:auto,13px 13px;
+  border:1px solid rgba(192,192,192,.22);
+  isolation:isolate;
+}
+.tournament-card::after {
+  inset:0;
+  z-index:0;
+  background:linear-gradient(145deg,rgba(5,5,9,.3),rgba(0,0,0,.72)),
+             radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.06),transparent 72%);
+  pointer-events:none;
+}
+.tournament-card::before {
+  z-index:2;
+  width:65%;
+  left:-100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),rgba(85,199,232,.09),transparent);
+  transition:left .5s ease;
+  pointer-events:none;
+}
+.tournament-card:hover {
+  transform:translateY(-4px);
+  background-color:#101018;
+  border-color:rgba(192,192,192,.75);
+  box-shadow:0 5px 12px rgba(0,0,0,.25);
+}
+.tournament-card.raw:hover { border-color:#d90024; }
+.tournament-card.smackdown:hover { border-color:#55c7e8; }
+.tournament-card.nxt:hover { border-color:#c0c0c0; }
+.tournament-number {
+  color:#c8c8d2;
+  font-size:clamp(8px,.85vw,12px);
+  letter-spacing:clamp(.3px,.12vw,2px);
+  opacity:.78;
+}
+.tournament-card h3 {
+  color:#fff;
+  font-size:clamp(11px,1.35vw,22px);
+  line-height:1.08;
+  overflow-wrap:anywhere;
+  text-shadow:0 1px 2px rgba(0,0,0,.8);
+}
+.tournament-brand,.tournament-view {
+  color:#d2d2dc;
+  font-size:clamp(7px,.72vw,11px);
+  letter-spacing:clamp(.2px,.1vw,1.5px);
+}
+#home-tournament-search,
+#home-tournament-search:focus {
+  background:linear-gradient(#08080c,#08080c) padding-box,var(--sc-chrome) border-box;
+}
+@media (max-width:1000px) {
+  .tournaments-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; }
+  .tournament-card { padding:clamp(6px,1.8vw,12px); }
+  .tournament-card h3 { font-size:clamp(10px,2vw,17px); }
+}
+@media (max-width:600px) {
+  .tournaments-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; }
+  .tournament-card { aspect-ratio:1 / 1; min-height:0; padding:clamp(5px,1.5vw,9px); }
+  .tournament-card h3 { margin:8px 0 5px; font-size:clamp(9px,3vw,14px); line-height:1.05; }
+  .tournament-number { font-size:clamp(7px,2vw,9px); letter-spacing:.3px; }
+  .tournament-brand,.tournament-view { font-size:clamp(6px,1.8vw,8px); letter-spacing:.3px; }
+  .tournament-card:hover { transform:translateY(-2px); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .tournament-card,.tournament-card::before,.tournament-card h3,.tournament-number,.tournament-view { transition:none !important; }
+}
