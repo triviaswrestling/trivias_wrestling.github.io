@@ -1002,91 +1002,156 @@ main.tournaments-page {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
 /* ==========================================================
-   MI WRESTLING — SUPERCARD GOLD BACKGROUND
-   ESTILO WWE SUPERCARD 2014 / NBA 2K14 GOLD
-   Negro + polvo dorado + panel halftone + profundidad
+   MI WRESTLING — SUPERCARD 2014 GOLD
+   FONDO PREMIUM
+   Basado directamente en la construcción visual de Torneoroad
+   Negro + dorado + brillo + polvo + halftone
    PEGAR AL FINAL DE torneos.css
    ========================================================== */
 
+
+/* ==========================================================
+   BASE
+   ========================================================== */
+
 html,
-body {
-    background-color: #030303 !important;
+body{
+    background:#030303 !important;
 }
 
-body {
-    position: relative;
-    min-height: 100vh;
+body{
+    position:relative;
+    min-height:100vh;
 
     background-image:
-        /* 1 — Brillo dorado central muy suave */
+
+        /* ==============================================
+           BRILLO PRINCIPAL
+           Equivalente al rojo central de Torneoroad
+           ============================================== */
+
         radial-gradient(
-            ellipse 75% 38% at 50% 8%,
-            rgba(255, 211, 72, .16),
-            rgba(255, 190, 30, .055) 35%,
-            transparent 72%
+            circle at 50% 8%,
+            rgba(225,170,20,.34) 0%,
+            rgba(150,105,5,.18) 24%,
+            transparent 52%
         ),
 
-        /* 2 — Segundo halo lateral */
+        /* ==============================================
+           BRILLO SUPERIOR SECUNDARIO
+           ============================================== */
+
         radial-gradient(
-            ellipse 55% 65% at 8% 48%,
-            rgba(218, 169, 42, .055),
-            transparent 72%
+            circle at 50% 0%,
+            rgba(255,220,90,.13) 0%,
+            transparent 38%
         ),
 
-        /* 3 — Polvo dorado fino */
+        /* ==============================================
+           BRILLO LATERAL IZQUIERDO
+           ============================================== */
+
+        radial-gradient(
+            ellipse at 0% 38%,
+            rgba(190,135,15,.075) 0%,
+            transparent 52%
+        ),
+
+        /* ==============================================
+           BRILLO LATERAL DERECHO
+           ============================================== */
+
+        radial-gradient(
+            ellipse at 100% 58%,
+            rgba(150,105,5,.055) 0%,
+            transparent 52%
+        ),
+
+        /* ==============================================
+           POLVO / HALFTONE PRINCIPAL
+           ============================================== */
+
         radial-gradient(
             circle,
-            rgba(255, 214, 91, .50) 0 1px,
+            rgba(220,175,55,.34) 0 1.3px,
             transparent 1.8px
         ),
 
-        /* 4 — Polvo secundario más pequeño */
+        /* ==============================================
+           SEGUNDA TRAMA MÁS FINA
+           ============================================== */
+
         radial-gradient(
             circle,
-            rgba(255, 232, 151, .24) 0 .7px,
+            rgba(255,225,125,.13) 0 .7px,
             transparent 1.5px
         ),
 
-        /* 5 — Textura de panel / trama */
+        /* ==============================================
+           PANEL / TRAMA MUY SUTIL
+           ============================================== */
+
         linear-gradient(
             135deg,
             rgba(255,255,255,.018) 25%,
             transparent 25%,
             transparent 50%,
-            rgba(255,255,255,.012) 50%,
-            rgba(255,255,255,.012) 75%,
+            rgba(255,255,255,.010) 50%,
+            rgba(255,255,255,.010) 75%,
             transparent 75%
         ),
 
-        /* 6 — Base metálica negra */
+        /* ==============================================
+           NEGRO METÁLICO
+           ============================================== */
+
         linear-gradient(
             180deg,
-            #11100c 0%,
-            #080806 25%,
-            #040404 62%,
+            #170f02 0%,
+            #0c0a06 25%,
+            #070706 47%,
+            #030303 74%,
             #010101 100%
         ) !important;
+
 
     background-size:
         auto,
         auto,
-        15px 15px,
-        27px 27px,
+        auto,
+        auto,
+        12px 12px,
+        23px 23px,
         90px 90px,
         auto !important;
 
+
     background-position:
-        center top,
-        left center,
         center,
-        8px 5px,
+        center,
+        left center,
+        right center,
+        center,
+        7px 4px,
         center,
         center !important;
 
-    background-attachment: fixed !important;
 
     background-repeat:
+        no-repeat,
+        no-repeat,
         no-repeat,
         no-repeat,
         repeat,
@@ -1094,287 +1159,279 @@ body {
         repeat,
         no-repeat !important;
 
-    color: #fff;
+
+    background-attachment:fixed !important;
+
+    color:#fff;
 }
 
 
 /* ==========================================================
-   CAPA DE PROFUNDIDAD
-   Viñeta + polvo concentrado en la parte superior.
-   No toca las cards.
+   VIÑETA PREMIUM
+   Igual filosofía que Torneoroad:
+   centro iluminado / bordes negros.
    ========================================================== */
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+    z-index:-1;
 
     background:
-        /* polvo luminoso superior */
+
+        /* Luz central */
         radial-gradient(
-            ellipse 65% 24% at 50% 3%,
-            rgba(255, 220, 100, .10),
-            transparent 70%
+            ellipse at 50% 16%,
+            transparent 0%,
+            rgba(0,0,0,.04) 32%,
+            rgba(0,0,0,.24) 60%,
+            rgba(0,0,0,.72) 100%
         ),
 
-        /* pequeñas partículas dispersas */
+        /* Línea de brillo superior */
+        linear-gradient(
+            180deg,
+            rgba(255,215,80,.055) 0%,
+            transparent 18%
+        );
+
+    box-shadow:
+        inset 0 0 140px rgba(0,0,0,.82);
+}
+
+
+/* ==========================================================
+   POLVO DORADO DIFUSO
+   No es otra trama uniforme:
+   crea pequeñas zonas de concentración.
+   ========================================================== */
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+    z-index:-1;
+
+    background:
+
         radial-gradient(
-            circle at 18% 24%,
-            rgba(255, 210, 70, .08) 0 1px,
+            circle at 17% 28%,
+            rgba(255,215,80,.10) 0 1px,
             transparent 2px
         ),
 
         radial-gradient(
-            circle at 78% 31%,
-            rgba(255, 218, 105, .07) 0 1px,
+            circle at 82% 34%,
+            rgba(255,225,120,.075) 0 1px,
             transparent 2px
         ),
 
-        /* viñeta */
         radial-gradient(
-            ellipse at center,
-            transparent 35%,
-            rgba(0,0,0,.28) 68%,
-            rgba(0,0,0,.78) 100%
+            circle at 34% 62%,
+            rgba(212,175,55,.055) 0 1px,
+            transparent 2px
+        ),
+
+        radial-gradient(
+            circle at 72% 70%,
+            rgba(212,175,55,.045) 0 1px,
+            transparent 2px
         );
 
     background-size:
-        auto,
-        180px 180px,
-        220px 220px,
-        auto;
+        150px 150px,
+        190px 190px,
+        210px 210px,
+        240px 240px;
 
     background-position:
-        center top,
+        center,
         center,
         center,
         center;
 
     background-repeat:
-        no-repeat,
         repeat,
         repeat,
-        no-repeat;
-}
-
-
-/* ==========================================================
-   PANEL HALFTONE DORADO
-   Concentración de puntos arriba, mucho más sutil abajo.
-   ========================================================== */
-
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-
-    background:
-        radial-gradient(
-            ellipse at 50% 0%,
-            rgba(255, 211, 82, .045),
-            transparent 58%
-        ),
-
-        radial-gradient(
-            circle,
-            rgba(232, 184, 53, .18) 0 1px,
-            transparent 1.7px
-        );
-
-    background-size:
-        auto,
-        18px 18px;
-
-    background-position:
-        center top,
-        center top;
-
-    background-repeat:
-        no-repeat,
+        repeat,
         repeat;
 
-    opacity: .72;
+    opacity:.72;
 }
 
 
 /* ==========================================================
-   CONTENEDORES
-   El fondo debe atravesar la página sin crear bloques.
+   CONTENEDORES TRANSPARENTES
+   El fondo tiene que atravesar toda la página.
    ========================================================== */
 
 main.tournaments-page,
 .tournaments-page,
 #games-home,
-#games-directory {
-    background: transparent !important;
-    background-color: transparent !important;
+#games-directory{
+    background:transparent !important;
+    background-color:transparent !important;
 }
 
 
 /* ==========================================================
-   CARDS
-   No se modifica su apariencia.
-   Solo evita que el fondo se mezcle con ellas.
+   LAS CARDS NO SE TOCAN
    ========================================================== */
 
 .tournament-card,
-.tournament-card:hover {
-    isolation: isolate;
+.tournament-card:hover{
+    isolation:isolate;
 }
 
 
 /* ==========================================================
    MOBILE
-   Más oscuro + puntos más pequeños.
-   Evita fixed para mejorar scroll en Android.
+   Misma estética, menos carga.
    ========================================================== */
 
-@media (max-width: 700px) {
+@media(max-width:700px){
 
     html,
-    body {
-        background-color: #030303 !important;
+    body{
+        background:#030303 !important;
     }
 
-    body {
+    body{
+
         background-image:
+
+            /* brillo central */
             radial-gradient(
-                ellipse 90% 30% at 50% 6%,
-                rgba(255, 211, 72, .13),
-                rgba(255, 190, 30, .035) 38%,
-                transparent 72%
+                circle at 50% 7%,
+                rgba(225,170,20,.29) 0%,
+                rgba(150,105,5,.15) 25%,
+                transparent 55%
             ),
 
+            /* brillo superior */
             radial-gradient(
-                ellipse 70% 60% at 5% 45%,
-                rgba(218, 169, 42, .04),
-                transparent 72%
+                circle at 50% 0%,
+                rgba(255,220,90,.10) 0%,
+                transparent 40%
             ),
 
+            /* brillo lateral */
+            radial-gradient(
+                ellipse at 0% 38%,
+                rgba(190,135,15,.055),
+                transparent 55%
+            ),
+
+            /* halftone */
             radial-gradient(
                 circle,
-                rgba(255, 214, 91, .43) 0 1px,
-                transparent 1.7px
+                rgba(220,175,55,.30) 0 1px,
+                transparent 1.6px
             ),
 
+            /* polvo fino */
             radial-gradient(
                 circle,
-                rgba(255, 232, 151, .19) 0 .65px,
-                transparent 1.4px
+                rgba(255,225,125,.11) 0 .6px,
+                transparent 1.3px
             ),
 
+            /* panel */
             linear-gradient(
                 135deg,
                 rgba(255,255,255,.014) 25%,
                 transparent 25%,
                 transparent 50%,
-                rgba(255,255,255,.009) 50%,
-                rgba(255,255,255,.009) 75%,
+                rgba(255,255,255,.008) 50%,
+                rgba(255,255,255,.008) 75%,
                 transparent 75%
             ),
 
+            /* base */
             linear-gradient(
                 180deg,
-                #0d0c09 0%,
-                #070706 30%,
-                #030303 68%,
-                #010101 100%
+                #130d02 0%,
+                #0a0906 28%,
+                #050505 55%,
+                #020202 100%
             ) !important;
+
 
         background-size:
             auto,
             auto,
-            12px 12px,
-            23px 23px,
+            auto,
+            10px 10px,
+            20px 20px,
             75px 75px,
             auto !important;
 
+
         background-position:
-            center top,
+            center,
+            center,
             left center,
             center,
-            4px 4px,
+            4px 3px,
             center,
             center !important;
 
-        background-attachment: scroll !important;
 
         background-repeat:
+            no-repeat,
             no-repeat,
             no-repeat,
             repeat,
             repeat,
             repeat,
             no-repeat !important;
+
+
+        /* CLAVE PARA ANDROID */
+        background-attachment:scroll !important;
     }
 
-    body::before {
+
+    body::before{
+        position:absolute;
+
         background:
             radial-gradient(
-                ellipse 80% 25% at 50% 2%,
-                rgba(255, 220, 100, .075),
-                transparent 70%
+                ellipse at 50% 15%,
+                transparent 0%,
+                rgba(0,0,0,.06) 35%,
+                rgba(0,0,0,.28) 65%,
+                rgba(0,0,0,.76) 100%
             ),
 
-            radial-gradient(
-                ellipse at center,
-                transparent 30%,
-                rgba(0,0,0,.30) 67%,
-                rgba(0,0,0,.78) 100%
+            linear-gradient(
+                180deg,
+                rgba(255,215,80,.04),
+                transparent 20%
             );
 
-        background-size:
-            auto,
-            auto;
-
-        background-position:
-            center top,
-            center;
-
-        background-repeat:
-            no-repeat,
-            no-repeat;
+        box-shadow:
+            inset 0 0 80px rgba(0,0,0,.75);
     }
 
-    body::after {
-        background:
-            radial-gradient(
-                ellipse at 50% 0%,
-                rgba(255, 211, 82, .035),
-                transparent 62%
-            ),
 
-            radial-gradient(
-                circle,
-                rgba(232, 184, 53, .15) 0 .8px,
-                transparent 1.5px
-            );
-
-        background-size:
-            auto,
-            15px 15px;
-
-        background-position:
-            center top,
-            center top;
-
-        background-repeat:
-            no-repeat,
-            repeat;
-
-        opacity: .68;
+    body::after{
+        position:absolute;
+        opacity:.58;
     }
+
 
     main.tournaments-page,
     .tournaments-page,
     #games-home,
-    #games-directory {
-        background: transparent !important;
-        background-color: transparent !important;
+    #games-directory{
+        background:transparent !important;
+        background-color:transparent !important;
     }
 }
 
@@ -1383,14 +1440,14 @@ main.tournaments-page,
    REDUCED MOTION
    ========================================================== */
 
-@media (prefers-reduced-motion: reduce) {
+@media(prefers-reduced-motion:reduce){
 
-    body {
-        background-attachment: scroll !important;
+    body{
+        background-attachment:scroll !important;
     }
 
     body::before,
-    body::after {
-        position: absolute;
+    body::after{
+        position:absolute;
     }
 }
