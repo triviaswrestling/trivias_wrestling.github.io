@@ -1079,3 +1079,336 @@ body[data-tournament^="cmll"] .bracket-match .winner{
    definido arriba en .bracket-round h3
    y .bracket-match.
 */
+
+/* =========================================
+   SUPERCARD 2014 SKIN
+   Capa visual — no modifica la estructura
+   ========================================= */
+
+/* Fondo rojo/negro con trama de puntos */
+.torneoroad-page{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 8%, rgba(225,0,30,.42) 0%, rgba(145,0,18,.20) 24%, transparent 52%),
+        radial-gradient(circle at 50% 0%, rgba(255,70,70,.12) 0%, transparent 38%),
+        radial-gradient(circle, rgba(125,0,15,.42) 0 1.5px, transparent 1.8px),
+        linear-gradient(180deg,#180000 0%,#090909 42%,#050505 100%);
+    background-size:auto,auto,12px 12px,auto;
+    background-position:center,center,0 0,center;
+    box-shadow:inset 0 0 120px rgba(0,0,0,.72);
+}
+
+.torneoroad-page::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    background:
+        radial-gradient(ellipse at 50% 18%, transparent 0%, rgba(0,0,0,.08) 48%, rgba(0,0,0,.62) 100%);
+}
+
+/* Metal + rojo SuperCard en los títulos */
+.torneoroad-heading h1{
+    text-shadow:
+        0 2px 0 #050505,
+        0 4px 10px rgba(0,0,0,.8),
+        0 0 18px rgba(217,0,36,.20);
+}
+
+.torneoroad-brand{
+    text-shadow:0 1px 0 #000;
+}
+
+.torneoroad-heading p{
+    color:#c9c9c9;
+}
+
+/* Divisores tipo placa metálica */
+.torneoroad-divider{
+    position:relative;
+    border-bottom:2px solid #d90024;
+    background:
+        linear-gradient(180deg,rgba(255,255,255,.07),transparent 55%),
+        linear-gradient(90deg,rgba(217,0,36,.12),transparent 55%);
+    box-shadow:0 3px 0 rgba(0,0,0,.65);
+}
+
+.torneoroad-divider::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:72px;
+    height:2px;
+    background:#ff344f;
+    box-shadow:0 0 8px rgba(217,0,36,.55);
+}
+
+/* Draft cards: aspecto de carta coleccionable */
+.draft-card{
+    position:relative;
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.08),transparent 22%),
+        linear-gradient(160deg,#202020 0%,#101010 48%,#080808 100%);
+    border:1px solid #4b4b4b;
+    box-shadow:
+        0 5px 14px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.12),
+        inset 0 -2px 0 rgba(0,0,0,.8);
+}
+
+.draft-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    z-index:2;
+    background:linear-gradient(90deg,#75000f,#d90024,#ff4a5f,#d90024,#75000f);
+    box-shadow:0 0 8px rgba(217,0,36,.38);
+}
+
+.draft-card:hover{
+    border-color:#d90024;
+    box-shadow:
+        0 7px 18px rgba(0,0,0,.65),
+        0 0 12px rgba(217,0,36,.18),
+        inset 0 1px 0 rgba(255,255,255,.14);
+}
+
+.draft-card-image{
+    border-bottom:1px solid #3b3b3b;
+    filter:saturate(1.03) contrast(1.03);
+}
+
+.draft-card-name{
+    background:
+        linear-gradient(180deg,rgba(255,255,255,.04),transparent),
+        #101010;
+    text-shadow:0 1px 2px #000;
+}
+
+/* Standings: placa oscura con encabezado metálico */
+.standings-table{
+    background:
+        linear-gradient(180deg,rgba(255,255,255,.025),transparent 12%),
+        #0b0b0b;
+    border:1px solid #3b3b3b;
+    box-shadow:
+        0 6px 18px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.standings-table th{
+    background:
+        linear-gradient(180deg,#363636 0%,#171717 52%,#0b0b0b 100%);
+    color:#fff;
+    border-bottom:2px solid #d90024;
+    text-shadow:0 1px 2px #000;
+}
+
+.standings-table td{
+    border-bottom-color:#262626;
+}
+
+.standings-table tbody tr:hover{
+    background:rgba(217,0,36,.07);
+}
+
+/* Conserva campeón/relegación, pero les da acabado de carta */
+.standings-table tbody tr.champion{
+    background:
+        linear-gradient(90deg,rgba(255,215,0,.24),rgba(184,134,11,.82),rgba(255,215,0,.18));
+    box-shadow:inset 3px 0 0 #ffd700;
+}
+
+.standings-table tbody tr.relegation{
+    background:
+        linear-gradient(90deg,rgba(217,0,36,.30),rgba(110,0,0,.75),rgba(217,0,36,.12));
+    box-shadow:inset 3px 0 0 #d90024;
+}
+
+/* Matrix: más "placa" y menos bloque plano */
+.matrix-table{
+    background:#0a0a0a;
+    border:1px solid #3a3a3a;
+    box-shadow:0 6px 18px rgba(0,0,0,.45);
+}
+
+.matrix-table th{
+    background:linear-gradient(180deg,#303030,#111);
+    text-shadow:0 1px 2px #000;
+}
+
+.matrix-table td:first-child{
+    background:linear-gradient(90deg,#171717,#0c0c0c);
+    box-shadow:2px 0 0 rgba(217,0,36,.18);
+}
+
+.matrix-win{
+    background:rgba(0,150,70,.28);
+    box-shadow:inset 0 0 0 1px rgba(32,200,120,.08);
+}
+
+.matrix-loss{
+    background:rgba(180,0,0,.28);
+    box-shadow:inset 0 0 0 1px rgba(217,0,36,.10);
+}
+
+.matrix-draw{
+    background:rgba(255,140,0,.13);
+}
+
+/* Resultados: cartas SuperCard compactas sin cambiar su layout */
+.result-card{
+    position:relative;
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.07),transparent 24%),
+        linear-gradient(160deg,#202020 0%,#111 48%,#080808 100%);
+    border:1px solid #454545;
+    box-shadow:
+        0 5px 14px rgba(0,0,0,.48),
+        inset 0 1px 0 rgba(255,255,255,.10),
+        inset 0 -2px 0 rgba(0,0,0,.75);
+}
+
+.result-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    z-index:1;
+    background:linear-gradient(90deg,#68000e,#d90024,#ff4a5f,#d90024,#68000e);
+    box-shadow:0 0 8px rgba(217,0,36,.28);
+    pointer-events:none;
+}
+
+.result-card:hover{
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.09),transparent 24%),
+        linear-gradient(160deg,#252525 0%,#121212 48%,#080808 100%);
+    border-color:#d90024;
+    box-shadow:
+        0 7px 18px rgba(0,0,0,.62),
+        0 0 12px rgba(217,0,36,.18),
+        inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.result-wrestler{
+    text-shadow:0 1px 2px #000;
+}
+
+.result-score{
+    text-shadow:0 1px 3px #000;
+}
+
+/* La carta dorada existente mantiene toda su identidad */
+.result-card.selected{
+    box-shadow:
+        0 0 8px rgba(255,215,0,.9),
+        0 0 20px rgba(255,215,0,.7),
+        0 0 38px rgba(255,190,0,.45),
+        inset 0 0 18px rgba(255,245,160,.55);
+}
+
+/* Barra de campeonato: placa metálica */
+.bracket-championship{
+    border-radius:2px 2px 0 0;
+    box-shadow:
+        0 0 8px rgba(255,215,0,.42),
+        inset 0 1px 0 rgba(255,255,255,.55),
+        inset 0 -2px 0 rgba(120,70,0,.65);
+}
+
+/* Brackets: cartas pequeñas, oscuras y metálicas */
+.bracket-match{
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.06),transparent 25%),
+        linear-gradient(160deg,#202020,#0b0b0b);
+    border-color:#454545;
+    box-shadow:
+        0 5px 12px rgba(0,0,0,.48),
+        inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.bracket-match:hover{
+    box-shadow:
+        0 7px 16px rgba(0,0,0,.6),
+        0 0 14px rgba(217,0,36,.22);
+}
+
+.bracket-match div{
+    background:rgba(0,0,0,.12);
+}
+
+.bracket-match div:last-child{
+    border-bottom:none;
+}
+
+.bracket-match .winner{
+    background:rgba(217,0,36,.15);
+    box-shadow:inset 3px 0 0 #d90024;
+}
+
+/* Fechas de resultados */
+.results-date{
+    position:relative;
+    color:#fff;
+    border-bottom:2px solid #d90024;
+    text-shadow:0 1px 2px #000;
+}
+
+.results-date::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:55px;
+    height:2px;
+    background:#ff4a5f;
+    box-shadow:0 0 7px rgba(217,0,36,.5);
+}
+
+/* En mobile, mantener el fondo liviano y evitar sombras grandes */
+@media(max-width:600px){
+    .torneoroad-page{
+        background-size:auto,auto,10px 10px,auto;
+        box-shadow:inset 0 0 70px rgba(0,0,0,.65);
+    }
+
+    .draft-card,
+    .result-card,
+    .bracket-match{
+        box-shadow:
+            0 3px 9px rgba(0,0,0,.42),
+            inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .draft-card:hover,
+    .result-card:hover,
+    .bracket-match:hover{
+        box-shadow:
+            0 4px 10px rgba(0,0,0,.5),
+            0 0 8px rgba(217,0,36,.14);
+    }
+
+    .standings-table,
+    .matrix-table{
+        box-shadow:0 4px 10px rgba(0,0,0,.4);
+    }
+}
+
+/* Respeta usuarios que prefieren menos movimiento */
+@media(prefers-reduced-motion:reduce){
+    .bracket-match,
+    .bracket-championship,
+    .result-card.selected{
+        animation:none !important;
+    }
+}
