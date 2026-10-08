@@ -1412,3 +1412,28 @@ body[data-tournament^="cmll"] .bracket-match .winner{
         animation:none !important;
     }
 }
+
+
+/* FIX: barra de campeonato dorada en el Bracket */
+.torneoroad-page .bracket-championship,
+.torneoroad-page .bracket-championship:hover,
+.torneoroad-page .bracket-championship:focus,
+.torneoroad-page .bracket-championship:active,
+.torneoroad-page [class*="bracket-championship"] {
+    background-color: #d4a900 !important;
+    background-image: linear-gradient(
+        135deg,
+        #8f6500 0%,
+        #d4a900 15%,
+        #ffe66b 30%,
+        #b8860b 45%,
+        #fff1a8 55%,
+        #c99719 70%,
+        #ffe36a 85%,
+        #9c7000 100%
+    ) !important;
+
+    color: #241700 !important;
+    -webkit-text-fill-color: #241700 !important;
+    border-color: #ffd700 !important;
+}
