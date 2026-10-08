@@ -1132,3 +1132,25 @@ main{
         letter-spacing:.2px;
     }
 }
+
+
+/* =========================================
+MOBILE — TOP BAR CONTINUA HASTA LA DERECHA
+========================================= */
+@media (max-width: 600px) {
+.superstar-header {
+overflow: visible;
+}
+
+```
+.superstar-header::before {
+    right: calc(-1 * (100vw - 20px) * 0.4);
+    z-index: 2;
+}
+
+.superstar-header + .superstar-section {
+    margin-top: 6px;
+}
+```
+
+}
