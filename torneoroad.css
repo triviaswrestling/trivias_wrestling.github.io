@@ -302,7 +302,7 @@
     transition:background .2s ease,border-color .2s ease;
 }
 
-.result-card:hover{
+.result-card:not(.selected):hover{
     background:#171717;
     border-color:#fff;
 }
@@ -372,11 +372,11 @@
         linear-gradient(
             90deg,
             transparent 0%,
-            rgba(255,255,255,0) 20%,
-            rgba(255,255,255,.55) 40%,
-            #fff 50%,
-            rgba(255,255,255,.55) 60%,
-            rgba(255,255,255,0) 80%,
+            rgba(255,215,0,0) 20%,
+            rgba(255,225,90,.75) 40%,
+            #fff1a8 50%,
+            rgba(255,225,90,.75) 60%,
+            rgba(255,215,0,0) 80%,
             transparent 100%
         );
     transform:rotate(15deg);
@@ -393,9 +393,9 @@
         linear-gradient(
             120deg,
             transparent,
-            rgba(255,255,255,.12),
-            rgba(255,240,120,.22),
-            rgba(255,255,255,.08),
+            rgba(255,215,0,.10),
+            rgba(255,225,90,.30),
+            rgba(255,215,0,.12),
             transparent
         );
     animation:championshipGoldShine 2.4s ease-in-out infinite;
@@ -580,7 +580,7 @@
 }
 
 /* =========================================
-   TODO EL RECTÁNGULO DORADO
+   TODO EL RECTÃNGULO DORADO
    ========================================= */
 
 .result-card.selected{
@@ -610,7 +610,7 @@
 }
 
 /* =========================================
-   FLASH POR TODO EL RECTÁNGULO
+   FLASH POR TODO EL RECTÃNGULO
    ========================================= */
 
 .result-card.selected::before{
@@ -627,11 +627,11 @@
         linear-gradient(
             90deg,
             transparent 0%,
-            rgba(255,255,255,0) 15%,
-            rgba(255,255,255,.45) 35%,
-            #fff 50%,
-            rgba(255,255,255,.45) 65%,
-            rgba(255,255,255,0) 85%,
+            rgba(255,215,0,0) 15%,
+            rgba(255,225,90,.72) 35%,
+            #fff1a8 50%,
+            rgba(255,225,90,.72) 65%,
+            rgba(255,215,0,0) 85%,
             transparent 100%
         );
 
@@ -1082,7 +1082,7 @@ body[data-tournament^="cmll"] .bracket-match .winner{
 
 /* =========================================
    SUPERCARD 2014 SKIN
-   Capa visual — no modifica la estructura
+   Capa visual â€” no modifica la estructura
    ========================================= */
 
 /* Fondo rojo/negro con trama de puntos */
@@ -1110,7 +1110,7 @@ body[data-tournament^="cmll"] .bracket-match .winner{
         radial-gradient(ellipse at 50% 18%, transparent 0%, rgba(0,0,0,.08) 48%, rgba(0,0,0,.62) 100%);
 }
 
-/* Metal + rojo SuperCard en los títulos */
+/* Metal + rojo SuperCard en los tÃ­tulos */
 .torneoroad-heading h1{
     text-shadow:
         0 2px 0 #050505,
@@ -1126,7 +1126,7 @@ body[data-tournament^="cmll"] .bracket-match .winner{
     color:#c9c9c9;
 }
 
-/* Divisores tipo placa metálica */
+/* Divisores tipo placa metÃ¡lica */
 .torneoroad-divider{
     position:relative;
     border-bottom:2px solid #d90024;
@@ -1192,7 +1192,7 @@ body[data-tournament^="cmll"] .bracket-match .winner{
     text-shadow:0 1px 2px #000;
 }
 
-/* Standings: placa oscura con encabezado metálico */
+/* Standings: placa oscura con encabezado metÃ¡lico */
 .standings-table{
     background:
         linear-gradient(180deg,rgba(255,255,255,.025),transparent 12%),
@@ -1219,7 +1219,7 @@ body[data-tournament^="cmll"] .bracket-match .winner{
     background:rgba(217,0,36,.07);
 }
 
-/* Conserva campeón/relegación, pero les da acabado de carta */
+/* Conserva campeÃ³n/relegaciÃ³n, pero les da acabado de carta */
 .standings-table tbody tr.champion{
     background:
         linear-gradient(90deg,rgba(255,215,0,.24),rgba(184,134,11,.82),rgba(255,215,0,.18));
@@ -1232,7 +1232,7 @@ body[data-tournament^="cmll"] .bracket-match .winner{
     box-shadow:inset 3px 0 0 #d90024;
 }
 
-/* Matrix: más "placa" y menos bloque plano */
+/* Matrix: mÃ¡s "placa" y menos bloque plano */
 .matrix-table{
     background:#0a0a0a;
     border:1px solid #3a3a3a;
@@ -1289,7 +1289,7 @@ body[data-tournament^="cmll"] .bracket-match .winner{
     pointer-events:none;
 }
 
-.result-card:hover{
+.result-card:not(.selected):hover{
     background:
         linear-gradient(145deg,rgba(255,255,255,.09),transparent 24%),
         linear-gradient(160deg,#252525 0%,#121212 48%,#080808 100%);
@@ -1317,7 +1317,7 @@ body[data-tournament^="cmll"] .bracket-match .winner{
         inset 0 0 18px rgba(255,245,160,.55);
 }
 
-/* Barra de campeonato: placa metálica */
+/* Barra de campeonato: placa metÃ¡lica */
 .bracket-championship{
     border-radius:2px 2px 0 0;
     box-shadow:
@@ -1326,7 +1326,7 @@ body[data-tournament^="cmll"] .bracket-match .winner{
         inset 0 -2px 0 rgba(120,70,0,.65);
 }
 
-/* Brackets: cartas pequeñas, oscuras y metálicas */
+/* Brackets: cartas pequeÃ±as, oscuras y metÃ¡licas */
 .bracket-match{
     background:
         linear-gradient(145deg,rgba(255,255,255,.06),transparent 25%),
@@ -1391,7 +1391,7 @@ body[data-tournament^="cmll"] .bracket-match .winner{
     }
 
     .draft-card:hover,
-    .result-card:hover,
+    .result-card:not(.selected):hover,
     .bracket-match:hover{
         box-shadow:
             0 4px 10px rgba(0,0,0,.5),
