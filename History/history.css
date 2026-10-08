@@ -13,7 +13,7 @@ padding: 0;
 }
 
 body {
-background: #080808;
+background: #080506;
 color: #ffffff;
 font-family: Arial, Helvetica, sans-serif;
 }
@@ -33,9 +33,9 @@ align-items: center;
 
 padding: 0 30px;
 
-background: #090909;
+background: #090506;
 
-border-bottom: 2px solid #d90024;
+border-bottom: 2px solid #f21f2b;
 
 box-shadow:
     0 4px 18px rgba(0, 0, 0, 0.9);
@@ -81,7 +81,7 @@ gap: 25px;
 .navbar nav a {
 position: relative;
 
-color: #d0d0d0;
+color: #e2d7d9;
 
 font-family: Arial, Helvetica, sans-serif;
 
@@ -111,7 +111,7 @@ bottom: -8px;
 width: 0;
 height: 2px;
 
-background: #d90024;
+background: #f21f2b;
 
 transition:
     width 0.2s ease;
@@ -202,7 +202,7 @@ bottom: 0;
 width: 100%;
 height: 4px;
 
-background: #d90024;
+background: #f21f2b;
 
 box-shadow:
     0 0 18px rgba(217, 0, 36, 0.45);
@@ -254,7 +254,7 @@ padding: 60px 25px;
 .hero-overlay p {
 margin: 0 0 18px;
 
-color: #d90024;
+color: #f21f2b;
 
 font-size: 13px;
 font-weight: 900;
@@ -299,7 +299,7 @@ height: 5px;
 
 margin: 24px auto 18px;
 
-background: #d90024;
+background: #f21f2b;
 
 box-shadow:
     0 0 12px rgba(217, 0, 36, 0.4);
@@ -338,7 +338,7 @@ margin: 0 auto;
 
 padding: 55px 25px 90px;
 
-background: #080808;
+background: #080506;
 
 display: grid;
 
@@ -363,7 +363,7 @@ margin-bottom: 5px;
 
 padding-bottom: 12px;
 
-color: #777777;
+color: #a18b90;
 
 font-size: 10px;
 font-weight: 900;
@@ -372,7 +372,7 @@ text-transform: uppercase;
 
 letter-spacing: 3px;
 
-border-bottom: 1px solid #292929;
+border-bottom: 1px solid #28151a;
 
 }
 
@@ -387,11 +387,11 @@ display: block;
 
 overflow: hidden;
 
-background: #111111;
+background: #10090b;
 
-border: 1px solid #2d2d2d;
+border: 1px solid #392126;
 
-border-top: 4px solid #d90024;
+border-top: 4px solid #f21f2b;
 
 border-radius: 0;
 
@@ -414,7 +414,7 @@ CARD HOVER
 .history-container .championship-card:hover {
 transform: translateY(-7px);
 
-border-color: #d90024;
+border-color: #f21f2b;
 
 box-shadow:
     0 15px 35px rgba(0, 0, 0, 0.95),
@@ -488,7 +488,7 @@ top: 0;
 width: 4px;
 height: 100%;
 
-background: #d90024;
+background: #f21f2b;
 
 }
 
@@ -523,7 +523,7 @@ margin: 0;
 
 padding-left: 5px;
 
-color: #858585;
+color: #b5a3a6;
 
 font-size: 10px;
 font-weight: 900;
@@ -577,9 +577,9 @@ MOBILE MENU
 
     padding: 8px 0;
 
-    background: #090909;
+    background: #090506;
 
-    border-bottom: 2px solid #d90024;
+    border-bottom: 2px solid #f21f2b;
 
     box-shadow:
         0 10px 25px rgba(0, 0, 0, 0.95);
@@ -604,7 +604,7 @@ MOBILE MENU
 
     font-size: 12px;
 
-    border-bottom: 1px solid #202020;
+    border-bottom: 1px solid #171014;
 }
 
 .navbar nav a:last-child {
@@ -621,7 +621,7 @@ MOBILE MENU
 .navbar nav a:hover {
     background: #151515;
 
-    color: #d90024;
+    color: #f21f2b;
 }
 
 
@@ -768,7 +768,7 @@ SMALL MOBILE
 
     padding: 13px 28px;
 
-    background: #d90024;
+    background: #f21f2b;
 
     color: #ffffff;
 
@@ -800,4 +800,166 @@ SMALL MOBILE
     transform:
         translate(-50%, -50%)
         scale(1);
+}
+
+
+/* ==========================================================
+   SUPER CARD VISUAL THEME â€” mantiene intactos layout y medidas
+   ========================================================== */
+
+:root {
+    --sc-red: #f21f2b;
+    --sc-red-hot: #ff4149;
+    --sc-red-deep: #650710;
+    --sc-black: #080506;
+    --sc-panel: #140b0e;
+    --sc-line: rgba(255, 75, 84, .42);
+    --sc-silver: #e7e3e5;
+}
+
+html {
+    background: var(--sc-black);
+}
+
+body {
+    background-color: var(--sc-black);
+    background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(183, 10, 24, .34), transparent 54%),
+        radial-gradient(circle, rgba(0, 0, 0, .94) 0 3px, transparent 3.7px);
+    background-size: auto, 14px 14px;
+    background-position: center top, center top;
+    color: #fff;
+}
+
+.navbar {
+    background:
+        linear-gradient(180deg, rgba(39, 8, 13, .97), rgba(5, 4, 5, .99)),
+        radial-gradient(circle, rgba(242, 31, 43, .24) 0 2px, transparent 2.7px);
+    border-bottom: 2px solid var(--sc-red);
+    box-shadow: 0 3px 0 rgba(255,255,255,.035), 0 8px 28px rgba(0,0,0,.9), 0 0 22px rgba(242,31,43,.13);
+}
+
+.navbar nav a {
+    text-shadow: 0 1px 3px #000;
+}
+
+.navbar nav a::after {
+    background: linear-gradient(90deg, #a80715, #ff555b, #a80715);
+    box-shadow: 0 0 9px rgba(242,31,43,.55);
+}
+
+.history-hero {
+    background-color: #17070a;
+    background-image:
+        linear-gradient(90deg, rgba(0,0,0,.88), rgba(25,0,4,.24) 50%, rgba(0,0,0,.88)),
+        linear-gradient(0deg, rgba(0,0,0,.91), rgba(0,0,0,.12) 54%, rgba(0,0,0,.48)),
+        radial-gradient(ellipse at 50% 45%, rgba(244,29,42,.58), transparent 58%),
+        radial-gradient(circle, rgba(0,0,0,.86) 0 3px, transparent 3.8px),
+        url("../images/history.jpg");
+    background-size: auto, auto, auto, 14px 14px, cover;
+    background-position: center, center, center, center, center;
+    border-bottom: 1px solid rgba(255,65,73,.3);
+}
+
+.history-hero::before {
+    height: 5px;
+    background: linear-gradient(90deg, #4a050b, #f21f2b 25%, #ff777b 50%, #f21f2b 75%, #4a050b);
+    box-shadow: 0 0 20px rgba(242,31,43,.55);
+}
+
+.hero-overlay p {
+    color: #ff454d;
+    text-shadow: 0 0 14px rgba(242,31,43,.45);
+}
+
+.hero-overlay h1 {
+    color: #fff;
+    -webkit-text-stroke: .5px rgba(20,10,12,.75);
+    text-shadow: 0 2px 0 #8c8587, 0 4px 0 #282124, 0 8px 16px #000, 0 0 28px rgba(242,31,43,.2);
+}
+
+.hero-overlay h1::after {
+    background: linear-gradient(90deg, #7c0812, #ff3d46, #a10b17);
+    box-shadow: 0 0 14px rgba(242,31,43,.6);
+}
+
+.history-container {
+    background-color: transparent;
+    background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(106, 5, 16, .22), transparent 62%),
+        radial-gradient(circle, rgba(0,0,0,.9) 0 2px, transparent 2.8px);
+    background-size: auto, 14px 14px;
+}
+
+.history-container::before {
+    color: #c5aeb2;
+    border-bottom-color: rgba(255,65,73,.25);
+}
+
+.history-container .championship-card {
+    background: #10090b;
+    border: 1px solid rgba(255,255,255,.1);
+    border-top: 4px solid var(--sc-red);
+    box-shadow: 0 10px 26px rgba(0,0,0,.78), inset 0 1px rgba(255,255,255,.04);
+    transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s ease, box-shadow .3s ease, filter .3s ease;
+}
+
+.history-container .championship-card:hover {
+    border-color: rgba(255,65,73,.85);
+    box-shadow: 0 17px 36px rgba(0,0,0,.9), 0 0 25px rgba(242,31,43,.22), inset 0 1px rgba(255,255,255,.12);
+}
+
+.history-container .championship-card img {
+    filter: brightness(.8) contrast(1.12) saturate(1.08);
+    transition: transform .55s cubic-bezier(.2,.8,.2,1), filter .4s ease;
+}
+
+.history-container .championship-card:hover img {
+    filter: brightness(1) contrast(1.12) saturate(1.16);
+}
+
+.history-container .card-content {
+    background:
+        linear-gradient(135deg, rgba(54,13,20,.97), rgba(10,7,8,.99) 68%),
+        radial-gradient(circle, rgba(242,31,43,.12) 0 2px, transparent 2.8px);
+}
+
+.history-container .card-content::before {
+    background: linear-gradient(180deg, #ff6b70, #f21f2b 45%, #650710);
+    box-shadow: 0 0 12px rgba(242,31,43,.28);
+}
+
+.history-container .card-content h2 {
+    text-shadow: 0 2px 5px #000;
+}
+
+.history-container .championship-card::before {
+    background: linear-gradient(135deg, rgba(5,0,1,.24), rgba(60,0,8,.78));
+}
+
+.history-container .championship-card::after {
+    background: linear-gradient(180deg, #ff424b, #b80b18);
+    border: 1px solid rgba(255,255,255,.35);
+    box-shadow: 0 5px 20px rgba(0,0,0,.6), inset 0 1px rgba(255,255,255,.25), 0 0 18px rgba(242,31,43,.32);
+    text-shadow: 0 1px 2px rgba(0,0,0,.55);
+    transition: opacity .3s ease, transform .3s ease, filter .3s ease;
+}
+
+.history-container .championship-card:hover::after {
+    filter: brightness(1.12);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .history-hero::before {
+        background-size: 200% 100%;
+        animation: supercard-red-sheen 5s ease-in-out infinite;
+    }
+    .history-container .championship-card:hover {
+        transform: translateY(-7px);
+    }
+}
+
+@keyframes supercard-red-sheen {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
