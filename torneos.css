@@ -506,9 +506,9 @@
 
 
 /* ==========================================================
-   MI WRESTLING — WWE SUPERCARD EPIC CHROMATIC THEME
-   Estética inspirada en el logo SuperCard y las cartas Legendary:
-   halftone, placas metálicas, rojo/dorado/blanco/azul y brillo ligero.
+   MI WRESTLING â€” WWE SUPERCARD EPIC CHROMATIC THEME
+   EstÃ©tica inspirada en el logo SuperCard y las cartas Legendary:
+   halftone, placas metÃ¡licas, rojo/dorado/blanco/azul y brillo ligero.
    Mantiene la estructura y los efectos funcionales originales.
    ========================================================== */
 
@@ -574,7 +574,7 @@ body {
     text-shadow: 0 1px 5px #000;
 }
 
-/* Separadores con filo cromático fino. */
+/* Separadores con filo cromÃ¡tico fino. */
 .division-divider {
     border-bottom: 2px solid transparent;
     border-image: var(--sc-chrome) 1;
@@ -591,7 +591,7 @@ body {
     color: #e7dfe4;
 }
 
-/* Tres columnas en todos los tamaños, con tarjetas cuadradas. */
+/* Tres columnas en todos los tamaÃ±os, con tarjetas cuadradas. */
 .tournaments-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(8px, 1.35vw, 18px);
@@ -759,7 +759,7 @@ body {
     opacity: 1;
 }
 
-/* Buscador: la misma paleta cromática, integrada con el tema. */
+/* Buscador: la misma paleta cromÃ¡tica, integrada con el tema. */
 #home-tournament-search,
 #home-tournament-search:focus {
     background:
@@ -790,7 +790,7 @@ body {
     }
 }
 
-/* Móvil: tres tarjetas cuadradas, sin desbordar la pantalla. */
+/* MÃ³vil: tres tarjetas cuadradas, sin desbordar la pantalla. */
 @media (max-width: 600px) {
     .tournaments-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -839,8 +839,8 @@ body {
 }
 
 /* ==========================================================
-   SUPERCARD 2014 GOLD — FINAL PERFORMANCE EDITION
-   Misma estética premium: oro + negro + halftone + polvo.
+   SUPERCARD 2014 GOLD â€” FINAL PERFORMANCE EDITION
+   Misma estÃ©tica premium: oro + negro + halftone + polvo.
    Optimizado para PC + Android.
    ========================================================== */
 
@@ -889,7 +889,7 @@ body{
             rgba(235,190,55,.23) 0 1.15px,
             transparent 1.65px
         ),
-        /* BASE NEGRA METÁLICA */
+        /* BASE NEGRA METÃLICA */
         linear-gradient(
             180deg,
             #171004 0%,
@@ -927,7 +927,7 @@ body{
 }
 
 /* ==========================================================
-   VIÑETA + FILO DE LUZ
+   VIÃ‘ETA + FILO DE LUZ
    Una sola capa adicional y sin blur/filter.
    ========================================================== */
 
@@ -956,7 +956,7 @@ body::before{
 
 /* ==========================================================
    POLVO DORADO
-   Dos patrones pequeños en lugar de cuatro capas gigantes.
+   Dos patrones pequeÃ±os en lugar de cuatro capas gigantes.
    ========================================================== */
 
 body::after{
@@ -1007,7 +1007,7 @@ main.tournaments-page,
 }
 
 /* ==========================================================
-   MOBILE — MISMA ESTÉTICA, MENOR COSTO
+   MOBILE â€” MISMA ESTÃ‰TICA, MENOR COSTO
    ========================================================== */
 
 @media (max-width:700px){
@@ -1048,7 +1048,7 @@ main.tournaments-page,
 }
 
 /* ==========================================================
-   MOBILE PEQUEÑO
+   MOBILE PEQUEÃ‘O
    ========================================================== */
 
 @media (max-width:420px){
@@ -1097,10 +1097,171 @@ main.tournaments-page,
 
 
 
-/*===== SUPERCARD 2014 GOLD BODY =====*/
-html,body{background:#030303!important}body{position:relative;isolation:isolate;min-height:100vh;overflow-x:hidden;color:#fff;background-image:radial-gradient(circle at 50% 8%,rgba(225,170,20,.42) 0%,rgba(145,105,10,.20) 24%,transparent 52%),radial-gradient(circle at 50% 0%,rgba(255,220,90,.12) 0%,transparent 38%),radial-gradient(circle,rgba(220,175,55,.34) 0 1.3px,transparent 1.8px),radial-gradient(circle,rgba(255,225,125,.13) 0 .7px,transparent 1.5px),linear-gradient(135deg,rgba(255,255,255,.018) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.010) 50%,rgba(255,255,255,.010) 75%,transparent 75%),linear-gradient(180deg,#170f02 0%,#0c0a06 25%,#070706 47%,#030303 74%,#010101 100%)!important;background-size:auto,auto,12px 12px,23px 23px,90px 90px,auto;background-position:center,center,0 0,7px 4px,center,center;background-repeat:no-repeat,no-repeat,repeat,repeat,repeat,no-repeat;background-attachment:fixed}
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 16%,transparent 0%,rgba(0,0,0,.04) 32%,rgba(0,0,0,.24) 60%,rgba(0,0,0,.72) 100%),linear-gradient(180deg,rgba(255,215,80,.055) 0%,transparent 18%);box-shadow:inset 0 0 140px rgba(0,0,0,.82)}
-body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 17% 28%,rgba(255,215,80,.10) 0 1px,transparent 2px),radial-gradient(circle at 82% 34%,rgba(255,225,120,.075) 0 1px,transparent 2px),radial-gradient(circle at 34% 62%,rgba(212,175,55,.055) 0 1px,transparent 2px),radial-gradient(circle at 72% 70%,rgba(212,175,55,.045) 0 1px,transparent 2px);background-size:150px 150px,190px 190px,210px 210px,240px 240px;background-repeat:repeat;opacity:.72}
-@media(max-width:700px){body{background-image:radial-gradient(circle at 50% 7%,rgba(225,170,20,.29) 0%,rgba(150,105,5,.15) 25%,transparent 55%),radial-gradient(circle at 50% 0%,rgba(255,220,90,.10) 0%,transparent 40%),radial-gradient(circle,rgba(220,175,55,.30) 0 1px,transparent 1.6px),radial-gradient(circle,rgba(255,225,125,.11) 0 .6px,transparent 1.3px),linear-gradient(135deg,rgba(255,255,255,.014) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.008) 50%,rgba(255,255,255,.008) 75%,transparent 75%),linear-gradient(180deg,#130d02 0%,#0a0906 28%,#050505 55%,#020202 100%)!important;background-size:auto,auto,10px 10px,20px 20px,75px 75px,auto;background-position:center,center,0 0,4px 3px,center,center;background-repeat:no-repeat,no-repeat,repeat,repeat,repeat,no-repeat;background-attachment:scroll!important}body::before{position:absolute;box-shadow:inset 0 0 80px rgba(0,0,0,.75)}body::after{position:absolute;opacity:.58}}
-@media(prefers-reduced-motion:reduce){body{background-attachment:scroll!important}body::before,body::after{position:absolute}}
-/*===== FIN =====*/
+/*===== SUPERCARD 2014 GOLD BODY â€” FIX FONDO GLOBAL =====*/
+
+/* El HTML no debe pintar una capa negra opaca encima del fondo del body. */
+html {
+    min-height: 100%;
+    background: #030303 !important;
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #fff;
+    background-color: #030303 !important;
+    background-image:
+        radial-gradient(
+            ellipse 78% 46% at 50% 8%,
+            rgba(225, 170, 20, .42) 0%,
+            rgba(145, 105, 10, .20) 24%,
+            transparent 52%
+        ),
+        radial-gradient(
+            ellipse 52% 28% at 50% 0%,
+            rgba(255, 220, 90, .12) 0%,
+            transparent 38%
+        ),
+        radial-gradient(
+            circle,
+            rgba(220, 175, 55, .34) 0 1.3px,
+            transparent 1.8px
+        ),
+        radial-gradient(
+            circle,
+            rgba(255, 225, 125, .13) 0 .7px,
+            transparent 1.5px
+        ),
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, .018) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, .010) 50%,
+            rgba(255, 255, 255, .010) 75%,
+            transparent 75%
+        ),
+        linear-gradient(
+            180deg,
+            #170f02 0%,
+            #0c0a06 25%,
+            #070706 47%,
+            #030303 74%,
+            #010101 100%
+        ) !important;
+    background-size:
+        auto,
+        auto,
+        12px 12px,
+        23px 23px,
+        90px 90px,
+        auto;
+    background-position:
+        center top,
+        center top,
+        0 0,
+        7px 4px,
+        center,
+        center;
+    background-repeat:
+        no-repeat,
+        no-repeat,
+        repeat,
+        repeat,
+        repeat,
+        no-repeat;
+    background-attachment: scroll;
+}
+
+/* ViÃ±eta y filo de luz: quedan por encima del fondo, detrÃ¡s del contenido. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            ellipse at 50% 16%,
+            transparent 0%,
+            rgba(0, 0, 0, .04) 32%,
+            rgba(0, 0, 0, .24) 60%,
+            rgba(0, 0, 0, .72) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255, 215, 80, .055) 0%,
+            transparent 18%
+        );
+    box-shadow: inset 0 0 140px rgba(0, 0, 0, .82);
+}
+
+/* PartÃ­culas doradas discretas. */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle at 17% 28%, rgba(255, 215, 80, .10) 0 1px, transparent 2px),
+        radial-gradient(circle at 82% 34%, rgba(255, 225, 120, .075) 0 1px, transparent 2px),
+        radial-gradient(circle at 34% 62%, rgba(212, 175, 55, .055) 0 1px, transparent 2px),
+        radial-gradient(circle at 72% 70%, rgba(212, 175, 55, .045) 0 1px, transparent 2px);
+    background-size: 150px 150px, 190px 190px, 210px 210px, 240px 240px;
+    background-repeat: repeat;
+    opacity: .72;
+}
+
+/* Mantiene el contenido interactivo por encima de las capas decorativas. */
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 700px) {
+    body {
+        background-image:
+            radial-gradient(circle at 50% 7%, rgba(225, 170, 20, .29) 0%, rgba(150, 105, 5, .15) 25%, transparent 55%),
+            radial-gradient(circle at 50% 0%, rgba(255, 220, 90, .10) 0%, transparent 40%),
+            radial-gradient(circle, rgba(220, 175, 55, .30) 0 1px, transparent 1.6px),
+            radial-gradient(circle, rgba(255, 225, 125, .11) 0 .6px, transparent 1.3px),
+            linear-gradient(135deg, rgba(255, 255, 255, .014) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .008) 50%, rgba(255, 255, 255, .008) 75%, transparent 75%),
+            linear-gradient(180deg, #130d02 0%, #0a0906 28%, #050505 55%, #020202 100%) !important;
+        background-size: auto, auto, 10px 10px, 20px 20px, 75px 75px, auto;
+        background-position: center, center, 0 0, 4px 3px, center, center;
+        background-repeat: no-repeat, no-repeat, repeat, repeat, repeat, no-repeat;
+        background-attachment: scroll !important;
+    }
+
+    body::before {
+        box-shadow: inset 0 0 80px rgba(0, 0, 0, .75);
+    }
+
+    body::after {
+        opacity: .58;
+    }
+}
+
+@media (max-width: 420px) {
+    body {
+        background-size: auto, auto, 9px 9px, 18px 18px, 70px 70px, auto;
+    }
+
+    body::after {
+        opacity: .52;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body,
+    body::before,
+    body::after {
+        background-attachment: scroll !important;
+        position: absolute;
+    }
+}
+
+/*===== FIN FIX FONDO GLOBAL =====*/
