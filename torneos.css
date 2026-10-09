@@ -840,14 +840,14 @@ body {
 
 
 /* ==========================================================
-   GOLD HALFTONE — TRAMA DENSA TIPO WWE SUPERCARD
-   Puntos pequeños, próximos y regulares; brillo dorado suave.
-   Todo con gradientes CSS estáticos para mantenerlo liviano.
+   GOLD HALFTONE — METALLIC GLOW INFINITO
+   Micro puntos dorados + reflejo metálico.
    ========================================================== */
+
 html,
 body {
     min-height: 100%;
-    background-color: #030303 !important;
+    background-color: #171103 !important;
 }
 
 body {
@@ -855,47 +855,55 @@ body {
     position: relative;
     overflow-x: hidden;
     color: #fff;
+
     background-image:
-        /* Micro-puntos negros: trama densa y uniforme */
+        /* Micro puntos: pequeños, densos y dorados */
         radial-gradient(
             circle,
-            rgba(0, 0, 0, .88) 0 2.15px,
-            transparent 2.65px
+            rgba(255, 211, 91, .68) 0 .7px,
+            rgba(181, 130, 27, .42) 1px,
+            transparent 1.3px
         ),
-        /* Halo dorado metálico detrás de la trama */
+
+        /* Reflejo metálico luminoso */
         radial-gradient(
-            ellipse 84% 49% at 50% 25%,
-            rgba(205, 158, 35, .39) 0%,
-            rgba(151, 108, 17, .25) 33%,
-            rgba(76, 53, 7, .11) 58%,
-            transparent 73%
+            ellipse 90% 42% at 50% 19%,
+            rgba(255, 220, 112, .30) 0%,
+            rgba(224, 174, 48, .20) 30%,
+            rgba(150, 105, 18, .09) 58%,
+            transparent 100%
         ),
-        /* Viñeta suave: bordes y centro inferior más oscuros */
+
+        /* Resplandor dorado secundario */
         radial-gradient(
-            ellipse 75% 65% at 50% 40%,
-            transparent 0%,
-            rgba(0, 0, 0, .16) 65%,
-            rgba(0, 0, 0, .48) 100%
+            ellipse 115% 75% at 50% 30%,
+            rgba(132, 91, 12, .20) 0%,
+            transparent 78%
         ),
+
+        /* Base dorada infinita: nunca acaba en negro */
         linear-gradient(
             180deg,
-            #211902 0%,
-            #120e05 38%,
-            #080706 72%,
-            #020202 100%
+            #302307 0%,
+            #241b06 35%,
+            #1d1605 70%,
+            #1d1605 100%
         ) !important;
-    background-size: 10px 10px, auto, auto, auto;
-    background-position: 0 0, center top, center center, center top;
+
+    background-size: 6px 6px, auto, auto, auto;
+    background-position: 0 0, center top, center top, center top;
     background-repeat: repeat, no-repeat, no-repeat, no-repeat;
     background-attachment: scroll !important;
 }
 
-/* El body es el único responsable del patrón: sin capas superpuestas. */
+/* Sin capas que tapen el patrón */
 body::before,
 body::after {
     content: none !important;
     display: none !important;
 }
+
+/* Fondo visible detrás del contenido */
 .games-page,
 main.tournaments-page,
 .tournaments-page,
@@ -908,8 +916,7 @@ main.tournaments-page,
 
 @media (max-width: 700px) {
     body {
-        background-size: 10px 10px, auto, auto, auto;
+        background-size: 6px 6px, auto, auto, auto;
         background-attachment: scroll !important;
     }
 }
-
