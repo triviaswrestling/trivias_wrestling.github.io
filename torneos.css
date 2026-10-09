@@ -841,111 +841,33 @@ body {
 
 /* ==========================================================
    GOLD HALFTONE — WWE SUPERCARD 2014 / NBA 2K13-14
-   Profundidad cinematográfica, metal dorado y micro puntos.
-   Estático, sin animaciones y continuo hasta abajo.
+   Profundidad metálica, puntos dorados y sombras estáticas.
    ========================================================== */
-
-html,
-body {
-    min-height: 100%;
-    background: #171106 !important;
+html,body{min-height:100%;background:#171106!important}
+body{
+ min-height:100vh;position:relative;overflow-x:hidden;color:#fff;
+ background-image:
+ /* 1. Micro puntos dorados brillantes */
+ radial-gradient(circle at 1.5px 1.5px,rgba(255,224,145,.72) 0,rgba(255,194,70,.42) .75px,transparent 1.2px),
+ /* 2. Reflejo metálico central */
+ radial-gradient(ellipse 75% 42% at 50% 17%,rgba(255,224,133,.36) 0%,rgba(230,181,66,.23) 23%,rgba(166,115,24,.12) 49%,transparent 78%),
+ /* 3. Luz cálida secundaria */
+ radial-gradient(ellipse 100% 65% at 50% 32%,rgba(129,88,17,.22) 0%,rgba(72,48,8,.12) 52%,transparent 100%),
+ /* 4. Sombras profundas laterales */
+ radial-gradient(ellipse 95% 78% at 50% 25%,transparent 22%,rgba(0,0,0,.22) 57%,rgba(0,0,0,.78) 100%),
+ /* 5. Base bronce oscuro continua hasta abajo */
+ linear-gradient(180deg,#332508 0%,#281e08 24%,#211906 52%,#1b1506 76%,#1b1506 100%)!important;
+ /* 6. Repetición y posición de las capas */
+ background-size:6px 6px,auto,auto,auto,auto;
+ background-position:0 0,center top,center top,center top,center top;
+ background-repeat:repeat,no-repeat,no-repeat,no-repeat,no-repeat;
+ background-attachment:scroll!important;
 }
-
-body {
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-    color: #fff;
-
-    background-image:
-        /* 1. Micro puntos dorados integrados */
-        radial-gradient(
-            circle,
-            rgba(255, 218, 126, .72) 0 .65px,
-            rgba(194, 143, 39, .48) .9px,
-            transparent 1.25px
-        ),
-
-        /* 2. Reflejo metálico central */
-        radial-gradient(
-            ellipse 75% 42% at 50% 17%,
-            rgba(255, 224, 133, .36) 0%,
-            rgba(230, 181, 66, .23) 23%,
-            rgba(166, 115, 24, .12) 49%,
-            transparent 78%
-        ),
-
-        /* 3. Luz cálida secundaria */
-        radial-gradient(
-            ellipse 100% 65% at 50% 32%,
-            rgba(129, 88, 17, .22) 0%,
-            rgba(72, 48, 8, .12) 52%,
-            transparent 100%
-        ),
-
-        /* 4. Sombras profundas en los laterales */
-        radial-gradient(
-            ellipse 95% 78% at 50% 25%,
-            transparent 22%,
-            rgba(0, 0, 0, .22) 57%,
-            rgba(0, 0, 0, .78) 100%
-        ),
-
-        /* 5. Base bronce oscuro hasta el infinito */
-        linear-gradient(
-            180deg,
-            #332508 0%,
-            #281e08 24%,
-            #211906 52%,
-            #1b1506 76%,
-            #1b1506 100%
-        ) !important;
-
-    background-size:
-        6px 6px,
-        auto,
-        auto,
-        auto,
-        auto;
-
-    background-position:
-        0 0,
-        center top,
-        center top,
-        center top,
-        center top;
-
-    background-repeat:
-        repeat,
-        no-repeat,
-        no-repeat,
-        no-repeat,
-        no-repeat;
-
-    background-attachment: scroll !important;
+/* 7. Evita capas adicionales que tapen el efecto */
+body::before,body::after{content:none!important;display:none!important}
+/* 8. Mantiene transparente el contenido de la página */
+.games-page,main.tournaments-page,.tournaments-page,#games-home,#games-directory,.tournaments-page .games-page{background:transparent!important;background-color:transparent!important}
+/* 9. Ajustes para móviles */
+@media(max-width:700px){
+ body{background-size:6px 6px,auto,auto,auto,auto;background-attachment:scroll!important}
 }
-
-/* Evita capas adicionales que tapen el efecto */
-body::before,
-body::after {
-    content: none !important;
-    display: none !important;
-}
-
-/* Deja visible el fondo original detrás del contenido */
-.games-page,
-main.tournaments-page,
-.tournaments-page,
-#games-home,
-#games-directory,
-.tournaments-page .games-page {
-    background: transparent !important;
-    background-color: transparent !important;
-}
-
-@media (max-width: 700px) {
-    body {
-        background-size: 6px 6px, auto, auto, auto, auto;
-        background-attachment: scroll !important;
-    }
-   }
