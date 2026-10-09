@@ -530,9 +530,9 @@ main > h1 {
 @media (max-width: 600px) {
 
     .roster {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
 
     main > h1 {
         font-size: 32px;
@@ -753,10 +753,9 @@ main > h1 {
 @media (max-width: 600px) {
 
     .championships {
-        grid-template-columns: repeat(2, 1fr);
-
-        gap: 10px;
-    }
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
 
     .championships-section > h1 {
         font-size: 32px;
