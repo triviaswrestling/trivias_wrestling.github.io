@@ -1,869 +1,520 @@
-/* =========================================
-   MI WRESTLING
-   GAMES / TOURNAMENTS
-   ========================================= */
-
-.games-page {
-    width: 100%;
-    padding: 40px 5% 80px;
-}
-
-.games-section {
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-}
-
-
-/* =========================================
-   GAMES HEADER
-   ========================================= */
-
-.games-header {
-    text-align: center;
-    margin-bottom: 55px;
-}
-
-.games-header h1 {
-    margin: 0;
-    font-size: 42px;
-    font-weight: 900;
-    letter-spacing: 3px;
-}
-
-.games-header p {
-    margin: 8px 0 0;
-    font-size: 14px;
-    letter-spacing: 4px;
-    font-weight: bold;
-    opacity: 0.6;
-}
-
-
-/* =========================================
-   DIVISIONS
-   ========================================= */
-
-.division-section {
-    margin-bottom: 70px;
-}
-
-.division-divider {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    border-bottom: 2px solid #ffffff;
-    padding-bottom: 12px;
-    margin-bottom: 28px;
-}
-
-.division-divider h2 {
-    margin: 0;
-    font-size: 25px;
-    font-weight: 900;
-    letter-spacing: 2px;
-}
-
-.division-divider span {
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    opacity: 0.55;
-}
-
-
-/* =========================================
-   TOURNAMENT GRID
-   ========================================= */
-
-.tournaments-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
-    width: 100%;
-}
-
-
-/* =========================================
-   TOURNAMENT CARD
-   ========================================= */
-
-.tournament-card {
-    position: relative;
-
-    min-height: 180px;
-
-    padding: 24px;
-
-    background-color: #111111;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    border: 1px solid #292929;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        background 0.2s ease;
-}
-
-.tournament-card:hover {
-    transform: translateY(-5px);
-
-    background: #171717;
-
-    border-color: #ffffff;
-}
-
-.tournament-card:hover {
-    transform: translateY(-5px);
-    background: #171717;
-    border-color: #ffffff;
-}
-
-
-/* =========================================
-   IMAGE DARK OVERLAY
-   ========================================= */
-
-.tournament-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background: rgba(0, 0, 0, 0.65);
-
-    z-index: 0;
-}
-
-.tournament-card > * {
-    position: relative;
-    z-index: 1;
-}
-
-
-/* =========================================
-   CARD NUMBER
-   ========================================= */
-
-.tournament-number {
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    opacity: 0.5;
-}
-
-
-/* =========================================
-   CARD TITLE
-   ========================================= */
-
-.tournament-card h3 {
-    margin: 15px 0 8px;
-
-    font-size: 22px;
-    line-height: 1.1;
-
-    font-weight: 900;
-}
-
-
-/* =========================================
-   CARD BRAND
-   ========================================= */
-
-.tournament-brand {
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 2px;
-
-    opacity: 0.6;
-}
-
-
-/* =========================================
-   VIEW
-   ========================================= */
-
-.tournament-view {
-    margin-top: 20px;
-
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 2px;
-
-    opacity: 0.7;
-}
-
-
-/* =========================================
-   SECOND DIVISION
-   ========================================= */
-
-.second-division {
-    margin-top: 20px;
-}
-
-
-/* =========================================
-   TABLET
-   ========================================= */
-
-@media (max-width: 1000px) {
-
-    .tournaments-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 600px) {
-
-    .games-page {
-        padding: 30px 15px 60px;
-    }
-
-    .games-header {
-        margin-bottom: 40px;
-    }
-
-    .games-header h1 {
-        font-size: 32px;
-    }
-
-    .games-header p {
-        font-size: 11px;
-        letter-spacing: 3px;
-    }
-
-    .division-section {
-        margin-bottom: 55px;
-    }
-
-    .division-divider {
-        align-items: flex-end;
-    }
-
-    .division-divider h2 {
-        font-size: 18px;
-        letter-spacing: 1px;
-    }
-
-    .division-divider span {
-        font-size: 9px;
-        letter-spacing: 1px;
-    }
-
-    .tournaments-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-
-    .tournament-card {
-        min-height: 150px;
-        padding: 16px;
-    }
-
-    .tournament-card h3 {
-        font-size: 17px;
-    }
-
-}
-
-/* =========================================
-   TOURNAMENT CARD ANIMATION
-   ========================================= */
-
-.tournament-card {
-    position: relative;
-    overflow: hidden;
-
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-
-/* =========================================
-   LIGHT EFFECT
-   ========================================= */
-
-.tournament-card::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -120%;
-
-    width: 80%;
-    height: 100%;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.08),
-        transparent
-    );
-
-    transform: skewX(-20deg);
-
-    transition: left 0.5s ease;
-}
-
-
-.tournament-card:hover::before {
-    left: 140%;
-}
-
-
-/* =========================================
-   HOVER
-   ========================================= */
-
-.tournament-card:hover {
-    transform: translateY(-7px) scale(1.015);
-
-    background: #171717;
-
-    border-color: #ffffff;
-
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.45);
-}
-
-
-/* =========================================
-   NUMBER
-   ========================================= */
-
-.tournament-number {
-    transition:
-        transform 0.25s ease,
-        opacity 0.25s ease;
-}
-
-
-.tournament-card:hover .tournament-number {
-    transform: translateX(5px);
-
-    opacity: 0.8;
-}
-
-
-/* =========================================
-   TITLE
-   ========================================= */
-
-.tournament-card h3 {
-    transition:
-        transform 0.25s ease;
-}
-
-
-.tournament-card:hover h3 {
-    transform: translateX(5px);
-}
-
-
-/* =========================================
-   VIEW
-   ========================================= */
-
-.tournament-view {
-    transition:
-        transform 0.25s ease,
-        opacity 0.25s ease;
-}
-
-
-.tournament-card:hover .tournament-view {
-    transform: translateX(7px);
-
-    opacity: 1;
-}
-
-
-/* =========================================
-   RAW
-   ========================================= */
-
-.tournament-card.raw:hover {
-    border-color: #d00000;
-}
-
-
-/* =========================================
-   SMACKDOWN
-   ========================================= */
-
-.tournament-card.smackdown:hover {
-    border-color: #0066ff;
-}
-
-
-/* =========================================
-   NXT
-   ========================================= */
-
-.tournament-card.nxt:hover {
-    border-color: #8a8a8a;
-}
-
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 600px) {
-
-    .tournament-card:hover {
-        transform: translateY(-4px) scale(1.01);
-    }
-
-}
-
-/* =========================================
-   TOURNAMENT SEARCH
-   ========================================= */
-
-#home-tournament-search {
-    display: block;
-    width: 100%;
-    margin: 0 0 55px;
-    padding: 16px 20px;
-
-    background:
-        linear-gradient(#080808,#080808) padding-box,
-        linear-gradient(
-            105deg,
-            #d90024,
-            #102a56,
-            #c0c0c0,
-            #55c7e8,
-            #27ae60,
-            #ffffff,
-            #e8d6b0,
-            #d90024
-        ) border-box;
-
-    border: 2px solid transparent;
-    border-radius: 4px;
-
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-
-    outline: none;
-    box-sizing: border-box;
-}
-
-#home-tournament-search::placeholder {
-    color: #ffffff;
-    opacity: .65;
-    text-transform: uppercase;
-}
-
-#home-tournament-search:focus {
-    background:
-        linear-gradient(#080808,#080808) padding-box,
-        linear-gradient(
-            105deg,
-            #d90024,
-            #102a56,
-            #c0c0c0,
-            #55c7e8,
-            #27ae60,
-            #ffffff,
-            #e8d6b0,
-            #d90024
-        ) border-box;
-}
-
-@media (max-width: 600px) {
-    #home-tournament-search {
-        margin-bottom: 40px;
-        padding: 14px 16px;
-        font-size: 11px;
-    }
-}
-
-
 /* ==========================================================
-   MI WRESTLING — WWE SUPERCARD EPIC CHROMATIC THEME
-   Estética inspirada en el logo SuperCard y las cartas Legendary:
-   halftone, placas metálicas, rojo/dorado/blanco/azul y brillo ligero.
-   Mantiene la estructura y los efectos funcionales originales.
+   MI WRESTLING — GAMES / TOURNAMENTS
+   WWE SUPERCARD EPIC CHROMATIC + GOLD BACKGROUND
+   CSS consolidado, responsive y sin reglas duplicadas.
    ========================================================== */
 
-:root {
-    --sc-red: #f32632;
-    --sc-red-deep: #790b16;
-    --sc-gold: #f4c94f;
-    --sc-gold-light: #fff0a5;
-    --sc-blue: #1769e8;
-    --sc-blue-light: #71c9ff;
-    --sc-silver: #f4f1f4;
-    --sc-chrome: linear-gradient(
-        112deg,
-        #7d0b16 0%,
-        #f32632 14%,
-        #fff4f0 25%,
-        #f4c94f 38%,
-        #fff0a5 46%,
-        #f7f7ff 56%,
-        #1769e8 70%,
-        #71c9ff 79%,
-        #f4f1f4 89%,
-        #8b101a 100%
-    );
+/* ==================== 1. VARIABLES ==================== */
+
+:root{
+ --sc-red:#f32632;
+ --sc-red-deep:#790b16;
+ --sc-gold:#f4c94f;
+ --sc-gold-light:#fff0a5;
+ --sc-blue:#1769e8;
+ --sc-blue-light:#71c9ff;
+ --sc-silver:#f4f1f4;
+
+ --sc-chrome:linear-gradient(
+  112deg,
+  #7d0b16 0%,
+  #f32632 14%,
+  #fff4f0 25%,
+  #f4c94f 38%,
+  #fff0a5 46%,
+  #f7f7ff 56%,
+  #1769e8 70%,
+  #71c9ff 79%,
+  #f4f1f4 89%,
+  #8b101a 100%
+ );
 }
 
-/* Fondo inspirado en el halftone rojo/negro de SuperCard. */
-html,
-body {
-    background-color: #070608;
+/* ==================== 2. FONDO GOLD ==================== */
+
+html{
+ min-height:100%;
+ background:#211906!important;
 }
 
-body {
-    background-image:
-        radial-gradient(ellipse at 50% 28%, rgba(177, 19, 32, .30), transparent 54%),
-        radial-gradient(circle, rgba(0, 0, 0, .92) 0 3px, transparent 3.8px),
-        linear-gradient(180deg, #18070b 0%, #080608 52%, #030304 100%);
-    background-size: auto, 14px 14px, auto;
-    background-attachment: fixed;
-    color: #fff;
-}
-
-.games-page {
-    position: relative;
-    isolation: isolate;
-    background:
-        radial-gradient(ellipse at 50% 0%, rgba(242, 38, 50, .18), transparent 58%),
-        radial-gradient(circle, rgba(0, 0, 0, .78) 0 2px, transparent 2.9px);
-    background-size: auto, 13px 13px;
-}
-
-.games-header h1 {
-    color: #fff;
-    font-weight: 1000;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    -webkit-text-stroke: .35px rgba(0, 0, 0, .7);
-    text-shadow: 0 2px 0 #9b969a, 0 4px 0 #282329, 0 6px 12px rgba(0, 0, 0, .72);
-}
-
-.games-header p {
-    color: #e8dfe2;
-    text-shadow: 0 1px 5px #000;
-}
-
-/* Separadores con filo cromático fino. */
-.division-divider {
-    border-bottom: 2px solid transparent;
-    border-image: var(--sc-chrome) 1;
-}
-
-.division-divider h2 {
-    color: #fff;
-    font-weight: 950;
-    text-transform: uppercase;
-    text-shadow: 0 2px 0 #241b20, 0 3px 8px rgba(0, 0, 0, .65);
-}
-
-.division-divider span {
-    color: #e7dfe4;
-}
-
-/* Tres columnas en todos los tamaños, con tarjetas cuadradas. */
-.tournaments-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(8px, 1.35vw, 18px);
-    align-items: stretch;
-}
-
-.tournament-card {
-    box-sizing: border-box;
-    aspect-ratio: 1 / 1;
-    min-width: 0;
-    min-height: 0;
-    padding: clamp(8px, 1.35vw, 20px);
-    overflow: hidden;
-    isolation: isolate;
-    border: 2px solid transparent;
-    border-radius: 3px;
-    background:
-        linear-gradient(145deg, rgba(26, 10, 14, .98), rgba(5, 5, 9, .99)) padding-box,
-        var(--sc-chrome) border-box;
-    background-clip: padding-box, border-box;
-    box-shadow: 0 3px 9px rgba(0, 0, 0, .34);
-    transition:
-        transform .25s ease,
-        border-color .25s ease,
-        filter .25s ease,
-        box-shadow .25s ease;
-}
-
-/* Sutil trama de puntos y luz: una capa, sin apilar sombras. */
-.tournament-card::after {
-    content: "";
-    position: absolute;
-    inset: 2px;
-    z-index: 0;
-    pointer-events: none;
-    background:
-        linear-gradient(180deg, rgba(0, 0, 0, .10), rgba(0, 0, 0, .60)),
-        radial-gradient(circle, rgba(0, 0, 0, .58) 0 2px, transparent 2.8px),
-        radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, .09), transparent 68%);
-    background-size: auto, 12px 12px, auto;
-}
-
-/* Reflejo animado conservado, con intensidad reducida. */
-.tournament-card::before {
-    z-index: 2;
-    width: 68%;
-    left: -110%;
-    background: linear-gradient(
-        105deg,
-        transparent 10%,
-        rgba(255, 255, 255, .025) 35%,
-        rgba(255, 255, 255, .19) 50%,
-        rgba(113, 201, 255, .09) 58%,
-        transparent 78%
-    );
-    transform: skewX(-20deg);
-    transition: left .55s ease;
-    pointer-events: none;
-}
-
-.tournament-card > * {
-    z-index: 3;
-}
-
-.tournament-card:hover {
-    transform: translateY(-4px) scale(1.008);
-    background:
-        linear-gradient(145deg, rgba(36, 13, 19, .98), rgba(7, 7, 12, .99)) padding-box,
-        var(--sc-chrome) border-box;
-    border-color: transparent;
-    box-shadow: 0 6px 13px rgba(0, 0, 0, .38);
-    filter: brightness(1.08);
-}
-
-/* Placa superior tipo carta coleccionable. */
-.tournament-number {
-    color: var(--sc-gold-light);
-    font-size: clamp(8px, .85vw, 12px);
-    font-weight: 900;
-    letter-spacing: clamp(.3px, .12vw, 2px);
-    opacity: .95;
-    text-shadow: 0 1px 2px #000;
-    transition: transform .25s ease, opacity .25s ease;
-}
-
-.tournament-card h3 {
-    color: #fff;
-    font-weight: 1000;
-    font-size: clamp(11px, 1.4vw, 22px);
-    line-height: 1.04;
-    letter-spacing: -.35px;
-    text-transform: uppercase;
-    overflow-wrap: anywhere;
-    text-shadow: 0 2px 0 rgba(0, 0, 0, .85);
-    transition: transform .25s ease;
-}
-
-.tournament-brand {
-    color: #f4d982;
-    font-size: clamp(7px, .72vw, 11px);
-    font-weight: 900;
-    letter-spacing: clamp(.2px, .1vw, 1.5px);
-    text-transform: uppercase;
-    text-shadow: 0 1px 2px #000;
-}
-
-.tournament-view {
-    color: #fff;
-    font-size: clamp(7px, .72vw, 11px);
-    font-weight: 900;
-    letter-spacing: clamp(.2px, .1vw, 1.5px);
-    text-transform: uppercase;
-    text-shadow: 0 1px 2px #000;
-    transition: transform .25s ease, opacity .25s ease;
-}
-
-/* Brillos de color por marca, sin cambiar su funcionamiento. */
-.tournament-card.raw {
-    --brand-accent: #f32632;
-}
-
-.tournament-card.smackdown {
-    --brand-accent: #3185ff;
-}
-
-.tournament-card.nxt {
-    --brand-accent: #e9e9ef;
-}
-
-.tournament-card.raw:hover {
-    border-color: #f32632;
-}
-
-.tournament-card.smackdown:hover {
-    border-color: #3185ff;
-}
-
-.tournament-card.nxt:hover {
-    border-color: #e9e9ef;
-}
-
-.tournament-card.raw .tournament-number {
-    color: #ff8b91;
-}
-
-.tournament-card.smackdown .tournament-number {
-    color: #8ecbff;
-}
-
-.tournament-card.nxt .tournament-number {
-    color: #fff;
-}
-
-.tournament-card:hover .tournament-number {
-    transform: translateX(3px);
-    opacity: 1;
-}
-
-.tournament-card:hover h3 {
-    transform: translateX(3px);
-}
-
-.tournament-card:hover .tournament-view {
-    transform: translateX(4px);
-    opacity: 1;
-}
-
-/* Buscador: la misma paleta cromática, integrada con el tema. */
-#home-tournament-search,
-#home-tournament-search:focus {
-    background:
-        linear-gradient(#08070a, #08070a) padding-box,
-        var(--sc-chrome) border-box;
-    border: 2px solid transparent;
-    color: #fff;
-    box-shadow: none;
-}
-
-#home-tournament-search::placeholder {
-    color: #eee8ed;
-}
-
-/* Tablet: siguen siendo tres por fila. */
-@media (max-width: 1000px) {
-    .tournaments-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 9px;
-    }
-
-    .tournament-card {
-        padding: clamp(6px, 1.7vw, 13px);
-    }
-
-    .tournament-card h3 {
-        font-size: clamp(10px, 2vw, 17px);
-    }
-}
-
-/* Móvil: tres tarjetas cuadradas, sin desbordar la pantalla. */
-@media (max-width: 600px) {
-    .tournaments-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 7px;
-    }
-
-    .tournament-card {
-        aspect-ratio: 1 / 1;
-        min-width: 0;
-        min-height: 0;
-        padding: clamp(5px, 1.45vw, 9px);
-        border-width: 1.5px;
-    }
-
-    .tournament-card h3 {
-        margin: 7px 0 4px;
-        font-size: clamp(9px, 3vw, 14px);
-        line-height: 1.02;
-        letter-spacing: -.2px;
-    }
-
-    .tournament-number {
-        font-size: clamp(7px, 2vw, 9px);
-        letter-spacing: .25px;
-    }
-
-    .tournament-brand,
-    .tournament-view {
-        font-size: clamp(6px, 1.8vw, 8px);
-        letter-spacing: .2px;
-    }
-
-    .tournament-card:hover {
-        transform: translateY(-2px);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .tournament-card,
-    .tournament-card::before,
-    .tournament-card h3,
-    .tournament-number,
-    .tournament-view {
-        transition: none !important;
-    }
-}
-
-
-/* ==========================================================
-   GOLD HALFTONE — WWE SUPERCARD 2014 / NBA 2K13-14
-   Fondo dorado estático, profundidad y sombras laterales.
-   Sin puntos ni franja negra inferior.
-   ========================================================== */
-html,body{min-height:100%;background:#211906!important}
 body{
- min-height:100vh;position:relative;overflow-x:hidden;color:#fff;
+ min-height:100vh;
+ margin:0;
+ overflow-x:hidden;
+ color:#fff;
+ background-color:#211906!important;
  background-image:
- /* 1. Reflejo metálico central */
- radial-gradient(ellipse 75% 42% at 50% 17%,rgba(255,224,133,.36) 0%,rgba(230,181,66,.23) 23%,rgba(166,115,24,.12) 49%,transparent 78%),
- /* 2. Luz cálida secundaria */
- radial-gradient(ellipse 100% 65% at 50% 32%,rgba(129,88,17,.22) 0%,rgba(72,48,8,.12) 52%,transparent 100%),
- /* 3. Sombras profundas laterales */
- radial-gradient(ellipse 95% 78% at 50% 25%,transparent 22%,rgba(0,0,0,.22) 57%,rgba(0,0,0,.58) 100%),
- /* 4. Base bronce continua hasta abajo */
- linear-gradient(180deg,#332508 0%,#281e08 24%,#211906 52%,#211906 76%,#211906 100%)!important;
- background-size:auto,auto,auto,auto;
+  /* 1. Reflejo metálico central */
+  radial-gradient(
+   ellipse 75% 42% at 50% 17%,
+   rgba(255,224,133,.36) 0%,
+   rgba(230,181,66,.23) 23%,
+   rgba(166,115,24,.12) 49%,
+   transparent 78%
+  ),
+  /* 2. Luz cálida secundaria */
+  radial-gradient(
+   ellipse 100% 65% at 50% 32%,
+   rgba(129,88,17,.22) 0%,
+   rgba(72,48,8,.12) 52%,
+   transparent 100%
+  ),
+  /* 3. Sombras laterales */
+  radial-gradient(
+   ellipse 95% 78% at 50% 25%,
+   transparent 22%,
+   rgba(0,0,0,.22) 57%,
+   rgba(0,0,0,.58) 100%
+  ),
+  /* 4. Base bronce continuo, también abajo */
+  linear-gradient(
+   180deg,
+   #332508 0%,
+   #281e08 24%,
+   #211906 52%,
+   #211906 76%,
+   #211906 100%
+  )!important;
  background-position:center top;
+ background-size:auto;
  background-repeat:no-repeat;
  background-attachment:scroll!important;
 }
-/* 5. Evita capas adicionales */
-body::before,body::after{content:none!important;display:none!important}
-/* 6. Deja transparente el contenido */
-.games-page,main.tournaments-page,.tournaments-page,#games-home,#games-directory,.tournaments-page .games-page{background:transparent!important;background-color:transparent!important}
-/* 7. Ajustes para móviles */
-@media(max-width:700px){body{background-attachment:scroll!important}}
+
+/* ==================== 3. CONTENEDORES ==================== */
+
+.games-page{
+ position:relative;
+ isolation:isolate;
+ box-sizing:border-box;
+ width:100%;
+ max-width:100%;
+ padding:40px 5% 80px;
+ background:transparent!important;
+}
+
+.games-section{
+ width:100%;
+ max-width:1600px;
+ margin:0 auto;
+}
+
+.games-page,
+.games-section,
+.division-section{
+ min-width:0;
+}
+
+/* ==================== 4. ENCABEZADO ==================== */
+
+.games-header{
+ margin-bottom:55px;
+ text-align:center;
+}
+
+.games-header h1{
+ margin:0;
+ color:#fff;
+ font-size:42px;
+ font-weight:900;
+ letter-spacing:2px;
+ text-transform:uppercase;
+ -webkit-text-stroke:.35px rgba(0,0,0,.7);
+ text-shadow:
+  0 2px 0 #9b969a,
+  0 4px 0 #282329,
+  0 6px 12px rgba(0,0,0,.72);
+}
+
+.games-header p{
+ margin:8px 0 0;
+ color:#e8dfe2;
+ font-size:14px;
+ font-weight:700;
+ letter-spacing:4px;
+ opacity:.8;
+ text-shadow:0 1px 5px #000;
+}
+
+/* ==================== 5. DIVISIONES ==================== */
+
+.division-section{
+ margin-bottom:70px;
+}
+
+.division-divider{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ padding-bottom:12px;
+ margin-bottom:28px;
+ border-bottom:2px solid transparent;
+ border-image:var(--sc-chrome) 1;
+}
+
+.division-divider h2{
+ margin:0;
+ color:#fff;
+ font-size:25px;
+ font-weight:900;
+ letter-spacing:2px;
+ text-transform:uppercase;
+ text-shadow:0 2px 0 #241b20,0 3px 8px rgba(0,0,0,.65);
+}
+
+.division-divider span{
+ color:#e7dfe4;
+ font-size:13px;
+ font-weight:700;
+ letter-spacing:2px;
+ opacity:.8;
+}
+
+.second-division{
+ margin-top:20px;
+}
+
+/* ==================== 6. BUSCADOR ==================== */
+
+#home-tournament-search,
+#home-tournament-search:focus{
+ display:block;
+ box-sizing:border-box;
+ width:100%;
+ margin:0 0 55px;
+ padding:16px 20px;
+ border:2px solid transparent;
+ border-radius:4px;
+ outline:none;
+ color:#fff;
+ background:
+  linear-gradient(#08070a,#08070a) padding-box,
+  var(--sc-chrome) border-box;
+ font-size:13px;
+ font-weight:800;
+ letter-spacing:1.5px;
+}
+
+#home-tournament-search::placeholder{
+ color:#eee8ed;
+ opacity:.75;
+ text-transform:uppercase;
+}
+
+/* ==================== 7. CUADRÍCULA ==================== */
+
+.tournaments-grid{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ align-items:stretch;
+ gap:clamp(8px,1.35vw,18px);
+ width:100%;
+}
+
+/* ==================== 8. TARJETAS ==================== */
+
+.tournament-card{
+ position:relative;
+ isolation:isolate;
+ box-sizing:border-box;
+ display:flex;
+ flex-direction:column;
+ justify-content:space-between;
+ min-width:0;
+ min-height:0;
+ aspect-ratio:1/1;
+ overflow:hidden;
+ padding:clamp(8px,1.35vw,20px);
+ border:2px solid transparent;
+ border-radius:3px;
+ background:
+  linear-gradient(
+   145deg,
+   rgba(26,10,14,.98),
+   rgba(5,5,9,.99)
+  ) padding-box,
+  var(--sc-chrome) border-box;
+ background-clip:padding-box,border-box;
+ background-position:center;
+ background-repeat:no-repeat;
+ background-size:cover;
+ cursor:pointer;
+ box-shadow:0 3px 9px rgba(0,0,0,.34);
+ transition:
+  transform .22s ease,
+  filter .22s ease,
+  box-shadow .22s ease;
+}
+
+/* Capa oscura y trama sutil de las tarjetas */
+.tournament-card::after{
+ content:"";
+ position:absolute;
+ inset:2px;
+ z-index:0;
+ pointer-events:none;
+ background:
+  linear-gradient(
+   180deg,
+   rgba(0,0,0,.10),
+   rgba(0,0,0,.60)
+  ),
+  radial-gradient(
+   circle,
+   rgba(0,0,0,.58) 0 2px,
+   transparent 2.8px
+  ),
+  radial-gradient(
+   ellipse at 50% 0%,
+   rgba(255,255,255,.09),
+   transparent 68%
+  );
+ background-size:auto,12px 12px,auto;
+}
+
+/* Reflejo al pasar el cursor */
+.tournament-card::before{
+ content:"";
+ position:absolute;
+ top:0;
+ left:-110%;
+ z-index:2;
+ width:68%;
+ height:100%;
+ pointer-events:none;
+ background:linear-gradient(
+  105deg,
+  transparent 10%,
+  rgba(255,255,255,.025) 35%,
+  rgba(255,255,255,.19) 50%,
+  rgba(113,201,255,.09) 58%,
+  transparent 78%
+ );
+ transform:skewX(-20deg);
+ transition:left .5s ease;
+}
+
+.tournament-card > *{
+ position:relative;
+ z-index:3;
+ min-width:0;
+}
+
+/* ==================== 9. TEXTOS DE TARJETAS ==================== */
+
+.tournament-number{
+ color:var(--sc-gold-light);
+ font-size:clamp(8px,.85vw,12px);
+ font-weight:900;
+ letter-spacing:clamp(.3px,.12vw,2px);
+ opacity:.95;
+ text-shadow:0 1px 2px #000;
+ transition:transform .22s ease,opacity .22s ease;
+}
+
+.tournament-card h3{
+ margin:15px 0 8px;
+ color:#fff;
+ font-size:clamp(11px,1.4vw,22px);
+ font-weight:900;
+ line-height:1.04;
+ letter-spacing:-.35px;
+ text-transform:uppercase;
+ overflow-wrap:anywhere;
+ text-shadow:0 2px 0 rgba(0,0,0,.85);
+ transition:transform .22s ease;
+}
+
+.tournament-brand{
+ color:#f4d982;
+ font-size:clamp(7px,.72vw,11px);
+ font-weight:900;
+ letter-spacing:clamp(.2px,.1vw,1.5px);
+ text-transform:uppercase;
+ text-shadow:0 1px 2px #000;
+}
+
+.tournament-view{
+ margin-top:20px;
+ color:#fff;
+ font-size:clamp(7px,.72vw,11px);
+ font-weight:900;
+ letter-spacing:clamp(.2px,.1vw,1.5px);
+ text-transform:uppercase;
+ text-shadow:0 1px 2px #000;
+ transition:transform .22s ease,opacity .22s ease;
+}
+
+/* ==================== 10. COLORES POR MARCA ==================== */
+
+.tournament-card.raw{
+ --brand-accent:#f32632;
+}
+
+.tournament-card.smackdown{
+ --brand-accent:#3185ff;
+}
+
+.tournament-card.nxt{
+ --brand-accent:#e9e9ef;
+}
+
+.tournament-card.raw .tournament-number{
+ color:#ff8b91;
+}
+
+.tournament-card.smackdown .tournament-number{
+ color:#8ecbff;
+}
+
+.tournament-card.nxt .tournament-number{
+ color:#fff;
+}
+
+/* ==================== 11. EFECTOS DE HOVER ==================== */
+
+@media (hover:hover) and (pointer:fine){
+ .tournament-card:hover{
+  transform:translateY(-4px) scale(1.008);
+  filter:brightness(1.08);
+  box-shadow:0 6px 13px rgba(0,0,0,.38);
+ }
+
+ .tournament-card:hover::before{
+  left:140%;
+ }
+
+ .tournament-card:hover .tournament-number{
+  transform:translateX(3px);
+  opacity:1;
+ }
+
+ .tournament-card:hover h3{
+  transform:translateX(3px);
+ }
+
+ .tournament-card:hover .tournament-view{
+  transform:translateX(4px);
+  opacity:1;
+ }
+
+ .tournament-card.raw:hover{
+  border-color:#f32632;
+ }
+
+ .tournament-card.smackdown:hover{
+  border-color:#3185ff;
+ }
+
+ .tournament-card.nxt:hover{
+  border-color:#e9e9ef;
+ }
+}
+
+/* ==================== 12. TABLET ==================== */
+
+@media (max-width:1000px){
+ .tournaments-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:9px;
+ }
+
+ .tournament-card{
+  padding:clamp(6px,1.7vw,13px);
+ }
+
+ .tournament-card h3{
+  font-size:clamp(10px,2vw,17px);
+ }
+}
+
+/* ==================== 13. MÓVILES ==================== */
+
+@media (max-width:600px){
+ .games-page{
+  padding:30px 15px 60px;
+ }
+
+ .games-header{
+  margin-bottom:40px;
+ }
+
+ .games-header h1{
+  font-size:32px;
+ }
+
+ .games-header p{
+  font-size:11px;
+  letter-spacing:3px;
+ }
+
+ .division-section{
+  margin-bottom:55px;
+ }
+
+ .division-divider{
+  align-items:flex-end;
+  gap:8px;
+ }
+
+ .division-divider h2{
+  font-size:18px;
+  letter-spacing:1px;
+ }
+
+ .division-divider span{
+  font-size:9px;
+  letter-spacing:1px;
+  text-align:right;
+ }
+
+ .tournaments-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:7px;
+ }
+
+ .tournament-card{
+  min-width:0;
+  min-height:0;
+  aspect-ratio:1/1;
+  padding:clamp(5px,1.45vw,9px);
+  border-width:1.5px;
+ }
+
+ .tournament-card h3{
+  margin:7px 0 4px;
+  font-size:clamp(9px,3vw,14px);
+  line-height:1.02;
+  letter-spacing:-.2px;
+ }
+
+ .tournament-number{
+  font-size:clamp(7px,2vw,9px);
+  letter-spacing:.25px;
+ }
+
+ .tournament-brand,
+ .tournament-view{
+  font-size:clamp(6px,1.8vw,8px);
+  letter-spacing:.2px;
+ }
+
+ #home-tournament-search{
+  margin-bottom:40px;
+  padding:14px 16px;
+  font-size:11px;
+ }
+}
+
+/* ==================== 14. ACCESIBILIDAD ==================== */
+
+@media (prefers-reduced-motion:reduce){
+ .tournament-card,
+ .tournament-card::before,
+ .tournament-card h3,
+ .tournament-number,
+ .tournament-view{
+  transition:none!important;
+ }
+}
