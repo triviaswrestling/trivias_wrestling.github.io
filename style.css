@@ -613,24 +613,49 @@ main > h1 {
     }
 }
 /* =========================================
-   CHAMPIONSHIPS
+   MOBILE — CHAMPIONSHIPS
    ========================================= */
 
-.championships-section {
-    padding: 30px 15px;
-    background: #0b0b0b;
-}
+@media (max-width: 600px) {
 
-.championships-section > h1 {
-    margin: 0 0 30px;
+    .championships {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+    }
 
-    color: #eeeeee;
+    .championships-section > h1 {
+        font-size: 32px;
+    }
 
-    font-size: 42px;
-    font-weight: 900;
+    .championship-card {
+        min-width: 0;
+    }
 
-    text-align: center;
-    letter-spacing: 2px;
+    .championship-card h2 {
+        height: auto;
+        min-height: 0;
+        margin: 6px 1px 3px;
+        padding: 0;
+        font-size: clamp(5px, 1.65vw, 9px);
+        line-height: 1.15;
+        letter-spacing: -0.3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: clip;
+    }
+
+    .championship-card p {
+        height: auto;
+        min-height: 0;
+        margin: 0 1px 6px;
+        padding: 0;
+        font-size: clamp(7px, 2.2vw, 11px);
+        line-height: 1.2;
+        letter-spacing: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: clip;
+    }
 }
 
 
