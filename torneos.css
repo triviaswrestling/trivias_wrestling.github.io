@@ -1335,3 +1335,36 @@ main.tournaments-page,
         background-attachment: scroll !important;
     }
 }
+
+
+/* ==========================================================
+   FIX DEFINITIVO — HALFTONE VISIBLE EN TORNEOS
+   Puntos en primera capa, por encima del degradado dorado.
+   Fondo estático y liviano: sin imágenes ni animación adicional.
+   ========================================================== */
+html, body { background-color: #030303 !important; }
+
+body {
+    background-image:
+        radial-gradient(circle, rgba(3,3,3,.92) 0 3px, transparent 3.7px),
+        radial-gradient(ellipse 78% 48% at 50% 24%,
+            rgba(184,139,24,.36) 0%, rgba(115,82,10,.20) 36%, transparent 68%),
+        linear-gradient(180deg, #211802 0%, #100d05 52%, #030303 100%) !important;
+    background-size: 14px 14px, auto, auto !important;
+    background-position: 0 0, center top, center top !important;
+    background-repeat: repeat, no-repeat, no-repeat !important;
+    background-attachment: scroll !important;
+}
+.games-page,
+main.tournaments-page,
+.tournaments-page,
+#games-home,
+#games-directory,
+.tournaments-page .games-page {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+body::before, body::after {
+    content: none !important;
+    display: none !important;
+}
