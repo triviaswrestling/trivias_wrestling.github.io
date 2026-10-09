@@ -524,64 +524,83 @@ main > h1 {
 
 
 /* =========================================
-   MOBILE
-   ========================================= */
+MOBILE
+========================================= */
 
 @media (max-width: 600px) {
 
-    .roster {
+.roster {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
 }
 
-    main > h1 {
-        font-size: 32px;
-    }
-
-    .wrestler > p:first-of-type {
-        font-size: 8px;
-        margin-top: 7px;
-    }
-
-    .wrestler > h2 {
-        font-size: 17px;
-    }
-
-    .wrestler > h2 + p {
-        font-size: 8px;
-        margin-bottom: 8px;
-    }
-
-    .record {
-        margin: 0 9px;
-        padding: 8px 0;
-    }
-
-    .record span {
-        font-size: 8px;
-    }
-
-    .record strong {
-        font-size: 13px;
-    }
-
-    .modal-content {
-        width: 88%;
-    }
-
-    .modal-content h2 {
-        font-size: 24px;
-    }
-
-    .modal-content h3 {
-        font-size: 7px;
-    }
-
-    .modal-content > p {
-        font-size: 8px;
-    }
+main > h1 {
+    font-size: 32px;
 }
 
+.wrestler > p:first-of-type {
+    height: auto;
+    min-height: 14px;
+    margin: 6px 3px 0;
+    font-size: clamp(6px, 1.8vw, 8px);
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+    overflow-wrap: anywhere;
+}
+
+.wrestler > h2 {
+    height: auto;
+    min-height: 20px;
+    margin: 3px 2px;
+    font-size: clamp(9px, 2.8vw, 13px);
+    line-height: 1.15;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+}
+
+.wrestler > h2 + p {
+    height: auto;
+    min-height: 14px;
+    margin: 0 3px 6px;
+    font-size: clamp(6px, 1.8vw, 8px);
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+    overflow-wrap: anywhere;
+}
+
+.record {
+    margin: 0 5px;
+    padding: 6px 0;
+    gap: 3px;
+}
+
+.record span {
+    font-size: clamp(6px, 1.8vw, 8px);
+    letter-spacing: 0;
+}
+
+.record strong {
+    font-size: clamp(9px, 2.5vw, 11px);
+    letter-spacing: 0;
+}
+
+.modal-content {
+    width: 88%;
+}
+
+.modal-content h2 {
+    font-size: 24px;
+}
+
+.modal-content h3 {
+    font-size: 7px;
+}
+
+.modal-content > p {
+    font-size: 8px;
+}
+
+}
 
 /* =========================================
    DESKTOP
