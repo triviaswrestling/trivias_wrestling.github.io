@@ -840,11 +840,10 @@ body {
 
 
 /* ==========================================================
-   FONDO GLOBAL GOLD HALFTONE — LIMPIO Y OPTIMIZADO
-   Puntos negros tipo WWE SuperCard, halo dorado central,
-   bordes oscuros y degradado hacia negro. Sin capas duplicadas.
+   GOLD HALFTONE — TRAMA DENSA TIPO WWE SUPERCARD
+   Puntos pequeños, próximos y regulares; brillo dorado suave.
+   Todo con gradientes CSS estáticos para mantenerlo liviano.
    ========================================================== */
-
 html,
 body {
     min-height: 100%;
@@ -856,49 +855,47 @@ body {
     position: relative;
     overflow-x: hidden;
     color: #fff;
-
-    /* Orden de capas: puntos arriba, luz dorada debajo, base al fondo. */
     background-image:
+        /* Micro-puntos negros: trama densa y uniforme */
         radial-gradient(
             circle,
-            rgba(0, 0, 0, .88) 0 3px,
-            transparent 3.8px
+            rgba(0, 0, 0, .88) 0 2.15px,
+            transparent 2.65px
         ),
+        /* Halo dorado metálico detrás de la trama */
         radial-gradient(
-            ellipse 82% 47% at 50% 25%,
-            rgba(201, 151, 27, .34) 0%,
-            rgba(139, 98, 13, .22) 34%,
-            rgba(66, 45, 5, .10) 57%,
-            transparent 72%
+            ellipse 84% 49% at 50% 25%,
+            rgba(205, 158, 35, .39) 0%,
+            rgba(151, 108, 17, .25) 33%,
+            rgba(76, 53, 7, .11) 58%,
+            transparent 73%
         ),
+        /* Viñeta suave: bordes y centro inferior más oscuros */
         radial-gradient(
-            ellipse 58% 34% at 50% 43%,
-            rgba(0, 0, 0, .02) 0%,
-            rgba(0, 0, 0, .25) 72%,
-            rgba(0, 0, 0, .42) 100%
+            ellipse 75% 65% at 50% 40%,
+            transparent 0%,
+            rgba(0, 0, 0, .16) 65%,
+            rgba(0, 0, 0, .48) 100%
         ),
         linear-gradient(
             180deg,
-            #1b1403 0%,
-            #100d05 34%,
-            #080706 68%,
+            #211902 0%,
+            #120e05 38%,
+            #080706 72%,
             #020202 100%
         ) !important;
-
-    background-size: 14px 14px, auto, auto, auto;
-    background-position: 0 0, center top, center 42%, center top;
+    background-size: 10px 10px, auto, auto, auto;
+    background-position: 0 0, center top, center center, center top;
     background-repeat: repeat, no-repeat, no-repeat, no-repeat;
     background-attachment: scroll !important;
 }
 
-/* Evita que capas viejas agreguen otros puntos o tapen el patrón. */
+/* El body es el único responsable del patrón: sin capas superpuestas. */
 body::before,
 body::after {
     content: none !important;
     display: none !important;
 }
-
-/* El patrón vive en body; los contenedores quedan transparentes. */
 .games-page,
 main.tournaments-page,
 .tournaments-page,
@@ -909,16 +906,9 @@ main.tournaments-page,
     background-color: transparent !important;
 }
 
-/* Misma trama en todos los tamaños: solo cambia el tamaño del contenido. */
 @media (max-width: 700px) {
     body {
-        background-size: 14px 14px, auto, auto, auto;
-        background-attachment: scroll !important;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    body {
+        background-size: 10px 10px, auto, auto, auto;
         background-attachment: scroll !important;
     }
 }
