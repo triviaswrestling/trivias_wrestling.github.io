@@ -840,14 +840,15 @@ body {
 
 
 /* ==========================================================
-   GOLD HALFTONE — METALLIC GLOW INFINITO
-   Micro puntos dorados + reflejo metálico.
+   GOLD HALFTONE — WWE SUPERCARD 2014 / NBA 2K13-14
+   Profundidad cinematográfica, metal dorado y micro puntos.
+   Estático, sin animaciones y continuo hasta abajo.
    ========================================================== */
 
 html,
 body {
     min-height: 100%;
-    background-color: #171103 !important;
+    background: #171106 !important;
 }
 
 body {
@@ -857,53 +858,81 @@ body {
     color: #fff;
 
     background-image:
-        /* Micro puntos: pequeños, densos y dorados */
+        /* 1. Micro puntos dorados integrados */
         radial-gradient(
             circle,
-            rgba(255, 211, 91, .68) 0 .7px,
-            rgba(181, 130, 27, .42) 1px,
-            transparent 1.3px
+            rgba(255, 218, 126, .72) 0 .65px,
+            rgba(194, 143, 39, .48) .9px,
+            transparent 1.25px
         ),
 
-        /* Reflejo metálico luminoso */
+        /* 2. Reflejo metálico central */
         radial-gradient(
-            ellipse 90% 42% at 50% 19%,
-            rgba(255, 220, 112, .30) 0%,
-            rgba(224, 174, 48, .20) 30%,
-            rgba(150, 105, 18, .09) 58%,
-            transparent 100%
-        ),
-
-        /* Resplandor dorado secundario */
-        radial-gradient(
-            ellipse 115% 75% at 50% 30%,
-            rgba(132, 91, 12, .20) 0%,
+            ellipse 75% 42% at 50% 17%,
+            rgba(255, 224, 133, .36) 0%,
+            rgba(230, 181, 66, .23) 23%,
+            rgba(166, 115, 24, .12) 49%,
             transparent 78%
         ),
 
-        /* Base dorada infinita: nunca acaba en negro */
+        /* 3. Luz cálida secundaria */
+        radial-gradient(
+            ellipse 100% 65% at 50% 32%,
+            rgba(129, 88, 17, .22) 0%,
+            rgba(72, 48, 8, .12) 52%,
+            transparent 100%
+        ),
+
+        /* 4. Sombras profundas en los laterales */
+        radial-gradient(
+            ellipse 95% 78% at 50% 25%,
+            transparent 22%,
+            rgba(0, 0, 0, .22) 57%,
+            rgba(0, 0, 0, .78) 100%
+        ),
+
+        /* 5. Base bronce oscuro hasta el infinito */
         linear-gradient(
             180deg,
-            #302307 0%,
-            #241b06 35%,
-            #1d1605 70%,
-            #1d1605 100%
+            #332508 0%,
+            #281e08 24%,
+            #211906 52%,
+            #1b1506 76%,
+            #1b1506 100%
         ) !important;
 
-    background-size: 6px 6px, auto, auto, auto;
-    background-position: 0 0, center top, center top, center top;
-    background-repeat: repeat, no-repeat, no-repeat, no-repeat;
+    background-size:
+        6px 6px,
+        auto,
+        auto,
+        auto,
+        auto;
+
+    background-position:
+        0 0,
+        center top,
+        center top,
+        center top,
+        center top;
+
+    background-repeat:
+        repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat;
+
     background-attachment: scroll !important;
 }
 
-/* Sin capas que tapen el patrón */
+/* Evita capas adicionales que tapen el efecto */
 body::before,
 body::after {
     content: none !important;
     display: none !important;
 }
 
-/* Fondo visible detrás del contenido */
+/* Deja visible el fondo original detrás del contenido */
 .games-page,
 main.tournaments-page,
 .tournaments-page,
@@ -916,7 +945,7 @@ main.tournaments-page,
 
 @media (max-width: 700px) {
     body {
-        background-size: 6px 6px, auto, auto, auto;
+        background-size: 6px 6px, auto, auto, auto, auto;
         background-attachment: scroll !important;
     }
-}
+   }
