@@ -915,17 +915,20 @@ main > h1 {
     }
 
     .championship-card p {
-        height: auto;
-        min-height: 0;
-        margin: 0 1px 6px;
-        padding: 0;
-        font-size: clamp(7px, 2.2vw, 11px);
-        line-height: 1.2;
-        letter-spacing: 0;
-        white-space: normal;
-        overflow-wrap: anywhere;
-        overflow: hidden;
-    }
+    height: auto;
+    min-height: 0;
+    margin: 0 1px 6px;
+    padding: 0;
+    font-size: clamp(7px, 2.2vw, 11px);
+    line-height: 1.2;
+    letter-spacing: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
 
 
 
