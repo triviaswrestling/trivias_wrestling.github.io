@@ -838,486 +838,67 @@ body {
     }
 }
 
+
 /* ==========================================================
-   SUPERCARD 2014 GOLD — FINAL PERFORMANCE EDITION
-   Misma estética premium: oro + negro + halftone + polvo.
-   Optimizado para PC + Android.
+   FONDO GLOBAL GOLD HALFTONE — LIMPIO Y OPTIMIZADO
+   Puntos negros tipo WWE SuperCard, halo dorado central,
+   bordes oscuros y degradado hacia negro. Sin capas duplicadas.
    ========================================================== */
 
 html,
-body{
-    min-height:100%;
-    background:#050505 !important;
-}
-
-body{
-    position:relative;
-    isolation:isolate;
-    overflow-x:hidden;
-    color:#fff;
-
-    background-image:
-        /* HALO PRINCIPAL */
-        radial-gradient(
-            ellipse 78% 46% at 50% 8%,
-            rgba(235,194,65,.34) 0%,
-            rgba(181,127,18,.20) 30%,
-            rgba(100,66,5,.08) 54%,
-            transparent 74%
-        ),
-        /* BRILLO SUPERIOR */
-        radial-gradient(
-            ellipse 52% 28% at 50% 0%,
-            rgba(255,224,105,.17) 0%,
-            rgba(230,180,40,.07) 38%,
-            transparent 72%
-        ),
-        /* LUZ LATERAL */
-        radial-gradient(
-            ellipse 42% 60% at 0% 30%,
-            rgba(175,120,15,.10),
-            transparent 72%
-        ),
-        radial-gradient(
-            ellipse 42% 60% at 100% 30%,
-            rgba(175,120,15,.08),
-            transparent 72%
-        ),
-        /* HALFTONE */
-        radial-gradient(
-            circle,
-            rgba(235,190,55,.23) 0 1.15px,
-            transparent 1.65px
-        ),
-        /* BASE NEGRA METÁLICA */
-        linear-gradient(
-            180deg,
-            #171004 0%,
-            #0d0a05 25%,
-            #080706 58%,
-            #040404 100%
-        );
-
-    background-size:
-        auto,
-        auto,
-        auto,
-        auto,
-        13px 13px,
-        auto;
-
-    background-position:
-        center top,
-        center top,
-        left top,
-        right top,
-        0 0,
-        center;
-
-    background-repeat:
-        no-repeat,
-        no-repeat,
-        no-repeat,
-        no-repeat,
-        repeat,
-        no-repeat;
-
-    /* Nunca fixed: evita repaints pesados durante scroll. */
-    background-attachment:scroll;
-}
-
-/* ==========================================================
-   VIÑETA + FILO DE LUZ
-   Una sola capa adicional y sin blur/filter.
-   ========================================================== */
-
-body::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    z-index:-1;
-    pointer-events:none;
-
-    background:
-        radial-gradient(
-            ellipse 80% 58% at 50% 10%,
-            transparent 0%,
-            rgba(0,0,0,.07) 38%,
-            rgba(0,0,0,.28) 70%,
-            rgba(0,0,0,.68) 100%
-        ),
-        linear-gradient(
-            180deg,
-            rgba(255,215,75,.11) 0,
-            rgba(255,215,75,0) 4px,
-            transparent 100%
-        );
-}
-
-/* ==========================================================
-   POLVO DORADO
-   Dos patrones pequeños en lugar de cuatro capas gigantes.
-   ========================================================== */
-
-body::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    height:100%;
-    z-index:-1;
-    pointer-events:none;
-
-    background-image:
-        radial-gradient(
-            circle,
-            rgba(255,215,90,.20) 0 1px,
-            transparent 1.5px
-        ),
-        radial-gradient(
-            circle,
-            rgba(225,180,55,.14) 0 1px,
-            transparent 1.5px
-        );
-
-    background-size:
-        185px 185px,
-        245px 245px;
-
-    background-position:
-        0 0,
-        42px 68px;
-
-    background-repeat:repeat;
-}
-
-/* ==========================================================
-   CONTENEDORES TRANSPARENTES
-   ========================================================== */
-
-.games-page,
-main.tournaments-page,
-.tournaments-page,
-#games-home,
-#games-directory,
-.tournaments-page .games-page{
-    background:transparent !important;
-    background-color:transparent !important;
-}
-
-/* ==========================================================
-   MOBILE — MISMA ESTÉTICA, MENOR COSTO
-   ========================================================== */
-
-@media (max-width:700px){
-
-    body{
-        background-size:
-            auto,
-            auto,
-            auto,
-            auto,
-            11px 11px,
-            auto;
-    }
-
-    body::before{
-        background:
-            radial-gradient(
-                ellipse 90% 50% at 50% 8%,
-                transparent 0%,
-                rgba(0,0,0,.10) 42%,
-                rgba(0,0,0,.34) 72%,
-                rgba(0,0,0,.65) 100%
-            ),
-            linear-gradient(
-                180deg,
-                rgba(255,215,75,.09) 0,
-                rgba(255,215,75,0) 4px,
-                transparent 100%
-            );
-    }
-
-    body::after{
-        background-size:
-            155px 155px,
-            205px 205px;
-        opacity:.82;
-    }
-}
-
-/* ==========================================================
-   MOBILE PEQUEÑO
-   ========================================================== */
-
-@media (max-width:420px){
-
-    body{
-        background-size:
-            auto,
-            auto,
-            auto,
-            auto,
-            10px 10px,
-            auto;
-    }
-
-    body::after{
-        opacity:.68;
-    }
-}
-
-@media (prefers-reduced-motion:reduce){
-    body{
-        background-attachment:scroll;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*===== SUPERCARD 2014 GOLD BODY — FIX FONDO GLOBAL =====*/
-
-/* El HTML no debe pintar una capa negra opaca encima del fondo del body. */
-html {
-    min-height: 100%;
-    background: #030303 !important;
-}
-
 body {
-    position: relative;
-    isolation: isolate;
-    min-height: 100vh;
-    overflow-x: hidden;
-    color: #fff;
-    background-color: #030303 !important;
-    background-image:
-        radial-gradient(
-            ellipse 78% 46% at 50% 8%,
-            rgba(225, 170, 20, .42) 0%,
-            rgba(145, 105, 10, .20) 24%,
-            transparent 52%
-        ),
-        radial-gradient(
-            ellipse 52% 28% at 50% 0%,
-            rgba(255, 220, 90, .12) 0%,
-            transparent 38%
-        ),
-        radial-gradient(
-            circle,
-            rgba(220, 175, 55, .34) 0 1.3px,
-            transparent 1.8px
-        ),
-        radial-gradient(
-            circle,
-            rgba(255, 225, 125, .13) 0 .7px,
-            transparent 1.5px
-        ),
-        linear-gradient(
-            135deg,
-            rgba(255, 255, 255, .018) 25%,
-            transparent 25%,
-            transparent 50%,
-            rgba(255, 255, 255, .010) 50%,
-            rgba(255, 255, 255, .010) 75%,
-            transparent 75%
-        ),
-        linear-gradient(
-            180deg,
-            #170f02 0%,
-            #0c0a06 25%,
-            #070706 47%,
-            #030303 74%,
-            #010101 100%
-        ) !important;
-    background-size:
-        auto,
-        auto,
-        12px 12px,
-        23px 23px,
-        90px 90px,
-        auto;
-    background-position:
-        center top,
-        center top,
-        0 0,
-        7px 4px,
-        center,
-        center;
-    background-repeat:
-        no-repeat,
-        no-repeat,
-        repeat,
-        repeat,
-        repeat,
-        no-repeat;
-    background-attachment: scroll;
-}
-
-/* Viñeta y filo de luz: quedan por encima del fondo, detrás del contenido. */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background:
-        radial-gradient(
-            ellipse at 50% 16%,
-            transparent 0%,
-            rgba(0, 0, 0, .04) 32%,
-            rgba(0, 0, 0, .24) 60%,
-            rgba(0, 0, 0, .72) 100%
-        ),
-        linear-gradient(
-            180deg,
-            rgba(255, 215, 80, .055) 0%,
-            transparent 18%
-        );
-    box-shadow: inset 0 0 140px rgba(0, 0, 0, .82);
-}
-
-/* Partículas doradas discretas. */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image:
-        radial-gradient(circle at 17% 28%, rgba(255, 215, 80, .10) 0 1px, transparent 2px),
-        radial-gradient(circle at 82% 34%, rgba(255, 225, 120, .075) 0 1px, transparent 2px),
-        radial-gradient(circle at 34% 62%, rgba(212, 175, 55, .055) 0 1px, transparent 2px),
-        radial-gradient(circle at 72% 70%, rgba(212, 175, 55, .045) 0 1px, transparent 2px);
-    background-size: 150px 150px, 190px 190px, 210px 210px, 240px 240px;
-    background-repeat: repeat;
-    opacity: .72;
-}
-
-/* Mantiene el contenido interactivo por encima de las capas decorativas. */
-body > * {
-    position: relative;
-    z-index: 1;
-}
-
-@media (max-width: 700px) {
-    body {
-        background-image:
-            radial-gradient(circle at 50% 7%, rgba(225, 170, 20, .29) 0%, rgba(150, 105, 5, .15) 25%, transparent 55%),
-            radial-gradient(circle at 50% 0%, rgba(255, 220, 90, .10) 0%, transparent 40%),
-            radial-gradient(circle, rgba(220, 175, 55, .30) 0 1px, transparent 1.6px),
-            radial-gradient(circle, rgba(255, 225, 125, .11) 0 .6px, transparent 1.3px),
-            linear-gradient(135deg, rgba(255, 255, 255, .014) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .008) 50%, rgba(255, 255, 255, .008) 75%, transparent 75%),
-            linear-gradient(180deg, #130d02 0%, #0a0906 28%, #050505 55%, #020202 100%) !important;
-        background-size: auto, auto, 10px 10px, 20px 20px, 75px 75px, auto;
-        background-position: center, center, 0 0, 4px 3px, center, center;
-        background-repeat: no-repeat, no-repeat, repeat, repeat, repeat, no-repeat;
-        background-attachment: scroll !important;
-    }
-
-    body::before {
-        box-shadow: inset 0 0 80px rgba(0, 0, 0, .75);
-    }
-
-    body::after {
-        opacity: .58;
-    }
-}
-
-@media (max-width: 420px) {
-    body {
-        background-size: auto, auto, 9px 9px, 18px 18px, 70px 70px, auto;
-    }
-
-    body::after {
-        opacity: .52;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    body,
-    body::before,
-    body::after {
-        background-attachment: scroll !important;
-        position: absolute;
-    }
-}
-
-/*===== FIN FIX FONDO GLOBAL =====*/
-
-
-/* ==========================================================
-   FIX FINAL — FONDO DORADO CON EL MISMO HALFTONE DE TORNEOROAD
-   Solo modifica el fondo global; conserva tarjetas, animaciones,
-   buscador, divisiones y responsive existentes.
-   ========================================================== */
-
-html {
     min-height: 100%;
-    background: #030303 !important;
+    background-color: #030303 !important;
 }
 
 body {
     min-height: 100vh;
+    position: relative;
     overflow-x: hidden;
     color: #fff;
-    background-color: #030303 !important;
+
+    /* Orden de capas: puntos arriba, luz dorada debajo, base al fondo. */
     background-image:
-        /* Halo dorado superior, con sombra más marcada al centro */
-        radial-gradient(
-            ellipse at 50% 28%,
-            rgba(184, 139, 24, .34) 0%,
-            rgba(115, 82, 10, .19) 35%,
-            transparent 57%
-        ),
-        /* Puntos oscuros: mismo patrón y separación que TorneoRoad */
         radial-gradient(
             circle,
-            rgba(0, 0, 0, .78) 0 3px,
+            rgba(0, 0, 0, .88) 0 3px,
             transparent 3.8px
         ),
-        /* Degradado negro-dorado que se oscurece hacia abajo */
+        radial-gradient(
+            ellipse 82% 47% at 50% 25%,
+            rgba(201, 151, 27, .34) 0%,
+            rgba(139, 98, 13, .22) 34%,
+            rgba(66, 45, 5, .10) 57%,
+            transparent 72%
+        ),
+        radial-gradient(
+            ellipse 58% 34% at 50% 43%,
+            rgba(0, 0, 0, .02) 0%,
+            rgba(0, 0, 0, .25) 72%,
+            rgba(0, 0, 0, .42) 100%
+        ),
         linear-gradient(
             180deg,
-            #211802 0%,
-            #100d05 52%,
-            #030303 100%
+            #1b1403 0%,
+            #100d05 34%,
+            #080706 68%,
+            #020202 100%
         ) !important;
-    background-size: auto, 14px 14px, auto;
-    background-position: center top, 0 0, center top;
-    background-repeat: no-repeat, repeat, no-repeat;
+
+    background-size: 14px 14px, auto, auto, auto;
+    background-position: 0 0, center top, center 42%, center top;
+    background-repeat: repeat, no-repeat, no-repeat, no-repeat;
     background-attachment: scroll !important;
 }
 
-/* Evita que las capas de fondos anteriores dupliquen puntos o brillos. */
+/* Evita que capas viejas agreguen otros puntos o tapen el patrón. */
 body::before,
 body::after {
     content: none !important;
     display: none !important;
 }
 
-/* El contenedor no debe pintar otro patrón encima del body. */
+/* El patrón vive en body; los contenedores quedan transparentes. */
 .games-page,
 main.tournaments-page,
 .tournaments-page,
@@ -1328,43 +909,17 @@ main.tournaments-page,
     background-color: transparent !important;
 }
 
-/* Sin cambios de densidad del patrón en móvil: mantiene el mismo aspecto. */
+/* Misma trama en todos los tamaños: solo cambia el tamaño del contenido. */
 @media (max-width: 700px) {
     body {
-        background-size: auto, 14px 14px, auto;
+        background-size: 14px 14px, auto, auto, auto;
         background-attachment: scroll !important;
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    body {
+        background-attachment: scroll !important;
+    }
+}
 
-/* ==========================================================
-   FIX DEFINITIVO — HALFTONE VISIBLE EN TORNEOS
-   Puntos en primera capa, por encima del degradado dorado.
-   Fondo estático y liviano: sin imágenes ni animación adicional.
-   ========================================================== */
-html, body { background-color: #030303 !important; }
-
-body {
-    background-image:
-        radial-gradient(circle, rgba(3,3,3,.92) 0 3px, transparent 3.7px),
-        radial-gradient(ellipse 78% 48% at 50% 24%,
-            rgba(184,139,24,.36) 0%, rgba(115,82,10,.20) 36%, transparent 68%),
-        linear-gradient(180deg, #211802 0%, #100d05 52%, #030303 100%) !important;
-    background-size: 14px 14px, auto, auto !important;
-    background-position: 0 0, center top, center top !important;
-    background-repeat: repeat, no-repeat, no-repeat !important;
-    background-attachment: scroll !important;
-}
-.games-page,
-main.tournaments-page,
-.tournaments-page,
-#games-home,
-#games-directory,
-.tournaments-page .games-page {
-    background: transparent !important;
-    background-color: transparent !important;
-}
-body::before, body::after {
-    content: none !important;
-    display: none !important;
-}
