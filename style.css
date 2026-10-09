@@ -867,18 +867,29 @@ main > h1 {
     }
 
     .championships {
-        grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
 
-        gap: 10px;
-    }
+.championship-card h2 {
+    height: auto;
+    min-height: 18px;
+    margin: 6px 3px 3px;
+    font-size: clamp(7px, 2.3vw, 10px);
+    line-height: 1.2;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+}
 
-    .championship-card h2 {
-        font-size: 10px;
-    }
-
-    .championship-card p {
-        font-size: 11px;
-    }
+.championship-card p {
+    height: auto;
+    min-height: 16px;
+    margin: 0 3px 6px;
+    font-size: clamp(8px, 2.5vw, 11px);
+    line-height: 1.2;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+}
 
     .roster-divider {
         gap: 12px;
