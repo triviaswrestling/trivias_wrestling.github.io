@@ -624,7 +624,33 @@ main > h1 {
     }
 
     .championships-section > h1 {
-        font-size: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin: 0 0 20px;
+        padding: 8px 0;
+        color: #eeeeee;
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        text-align: center;
+        text-transform: uppercase;
+        background-image: radial-gradient(
+            circle,
+            rgba(255,255,255,.09) 1px,
+            transparent 1.4px
+        );
+        background-size: 7px 7px;
+    }
+
+    .championships-section > h1::before,
+    .championships-section > h1::after {
+        content: "";
+        flex: 1;
+        min-width: 8px;
+        height: 2px;
+        background: #333333;
     }
 
     .championship-card {
@@ -637,11 +663,10 @@ main > h1 {
         margin: 6px 1px 3px;
         padding: 0;
         font-size: clamp(5px, 1.65vw, 9px);
-        line-height: 1.15;
-        letter-spacing: -0.3px;
+        line-height: 1.2;
+        letter-spacing: 0;
         white-space: nowrap;
         overflow: hidden;
-        text-overflow: clip;
     }
 
     .championship-card p {
@@ -652,9 +677,9 @@ main > h1 {
         font-size: clamp(7px, 2.2vw, 11px);
         line-height: 1.2;
         letter-spacing: 0;
-        white-space: nowrap;
+        white-space: normal;
+        overflow-wrap: anywhere;
         overflow: hidden;
-        text-overflow: clip;
     }
 }
 
@@ -790,29 +815,7 @@ main > h1 {
 }
 
 
-/* =========================================
-   MOBILE
-   ========================================= */
 
-@media (max-width: 600px) {
-
-    .championships {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
-}
-
-    .championships-section > h1 {
-        font-size: 32px;
-    }
-
-    .championship-card h2 {
-        font-size: 14px;
-    }
-
-    .championship-card p {
-        font-size: 8px;
-    }
-}
 
 
 /* =========================================
@@ -882,39 +885,49 @@ main > h1 {
 @media (max-width: 700px) {
 
     .championships-section {
-        padding: 25px 10px 15px;
+        padding: 25px 5px 15px;
     }
 
     .championships-section > h1 {
         font-size: 28px;
-
         margin-bottom: 20px;
     }
 
     .championships {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
-}
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+    }
 
-.championship-card h2 {
-    height: auto;
-    min-height: 18px;
-    margin: 6px 3px 3px;
-    font-size: clamp(7px, 2.3vw, 10px);
-    line-height: 1.2;
-    letter-spacing: 0;
-    overflow-wrap: anywhere;
-}
+    .championship-card {
+        min-width: 0;
+    }
 
-.championship-card p {
-    height: auto;
-    min-height: 16px;
-    margin: 0 3px 6px;
-    font-size: clamp(8px, 2.5vw, 11px);
-    line-height: 1.2;
-    letter-spacing: 0;
-    overflow-wrap: anywhere;
-}
+    .championship-card h2 {
+        height: auto;
+        min-height: 0;
+        margin: 6px 1px 3px;
+        padding: 0;
+        font-size: clamp(5px, 1.65vw, 9px);
+        line-height: 1.2;
+        letter-spacing: 0;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .championship-card p {
+        height: auto;
+        min-height: 0;
+        margin: 0 1px 6px;
+        padding: 0;
+        font-size: clamp(7px, 2.2vw, 11px);
+        line-height: 1.2;
+        letter-spacing: 0;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        overflow: hidden;
+    }
+
+
 
     .roster-divider {
         gap: 12px;
