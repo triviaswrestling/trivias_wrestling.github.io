@@ -1242,3 +1242,233 @@ body {
     0%, 72%, 100% { filter: brightness(1); }
     82% { filter: brightness(1.22); }
 }
+
+
+
+
+
+
+
+
+
+       
+/* MI WRESTLING — 2 REINADOS POR FILA EN MOBILE */
+@media (max-width: 600px) {
+    .campeonato-container {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 12px;
+        row-gap: 22px;
+        width: 94%;
+        padding-top: 35px;
+        padding-bottom: 60px;
+    }
+
+    /* BARRA LIST OF CHAMPIONS */
+    .history-heading {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        min-height: 42px;
+        margin: 0 0 5px;
+        padding: 8px 10px;
+        text-align: center;
+        background: linear-gradient(105deg, #100709 0%, #351017 48%, #100709 100%);
+        border: 1px solid rgba(242,31,43,.45);
+        border-left: 3px solid #f21f2b;
+        box-shadow: inset 0 0 12px rgba(242,31,43,.09), 0 4px 12px rgba(0,0,0,.35);
+    }
+    .history-heading h1 {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+        font-size: clamp(16px, 4.2vw, 23px);
+        font-weight: 900;
+        line-height: 1.15;
+        letter-spacing: 1.5px;
+        text-align: center;
+        text-transform: uppercase;
+        overflow-wrap: anywhere;
+        text-shadow: 0 1px 0 #650710, 0 0 12px rgba(242,31,43,.3);
+    }
+
+    /* TARJETAS */
+    .reign {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        align-self: stretch;
+    }
+
+    /* FOTO */
+    .reign-image {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
+        overflow: hidden;
+    }
+    .reign-image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .current-badge {
+        top: 8px;
+        left: 8px;
+        padding: 6px 7px;
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    /* CONTENIDO */
+    .reign-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+        padding: 0;
+    }
+    .reign-number {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        min-height: 27px;
+        height: auto;
+        margin: 0;
+        padding: 5px 7px;
+        font-size: 9px;
+        font-weight: 900;
+        line-height: 1.2;
+        letter-spacing: 1px;
+        overflow-wrap: anywhere;
+    }
+    .reign-content h3 {
+        min-width: 0;
+        margin: 0 0 10px;
+        padding: 10px 8px;
+        font-size: clamp(15px, 3.8vw, 21px);
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -.4px;
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+    .reign-description {
+        min-width: 0;
+        margin: 0;
+        padding: 11px 9px;
+        font-size: clamp(12px, 2.9vw, 14px);
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+
+    /* DÍAS */
+    .reign-days {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-width: 0;
+        min-height: 58px;
+        margin-top: auto;
+        border-top-width: 3px;
+    }
+    .current-days {
+        justify-content: space-between;
+        gap: 3px;
+        padding-left: 7px;
+    }
+    .days-count {
+        display: flex;
+        align-items: baseline;
+        min-width: 0;
+        gap: 4px;
+    }
+    .days-count strong, .former-days strong {
+        font-size: clamp(24px, 5.8vw, 32px);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+    .days-count span, .former-days span {
+        font-size: 10px;
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: 1px;
+    }
+    .current-status {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        padding: 0 5px;
+        font-size: 7px;
+        letter-spacing: .5px;
+        text-align: center;
+        overflow-wrap: anywhere;
+    }
+    .former-days {
+        justify-content: center;
+        gap: 7px;
+        text-align: center;
+    }
+}
+
+/* MÓVILES MUY ESTRECHOS */
+@media (max-width: 360px) {
+    .campeonato-container {
+        width: 96%;
+        column-gap: 8px;
+        row-gap: 16px;
+    }
+    .history-heading {
+        min-height: 38px;
+        padding: 7px 6px;
+    }
+    .history-heading h1 {
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+    .reign-number {
+        padding: 5px 6px;
+        font-size: 8px;
+    }
+    .reign-content h3 {
+        padding: 9px 6px;
+        font-size: 14px;
+        line-height: 1.1;
+    }
+    .reign-description {
+        padding: 9px 7px;
+        font-size: 11px;
+        line-height: 1.45;
+    }
+    .reign-days {
+        min-height: 52px;
+    }
+    .days-count strong, .former-days strong {
+        font-size: 22px;
+    }
+    .days-count span, .former-days span {
+        font-size: 8px;
+        letter-spacing: .5px;
+    }
+    .current-status {
+        padding: 0 3px;
+        font-size: 6px;
+    }
+    .current-badge {
+        top: 6px;
+        left: 6px;
+        padding: 5px;
+        font-size: 7px;
+    }
+       }
+       
