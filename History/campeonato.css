@@ -1,3 +1,4 @@
+Aquí tienes el código CSS optimizado. Se eliminaron las animaciones (@keyframes supercard-badge-glint), las transiciones y efectos de hover al tocar o pasar el cursor sobre las tarjetas (.reign:hover), y los sombreados o resplandores internos de color rojo (box-shadow e incrustaciones con tonos rojos en textos, líneas, bordes y contenedores) para reducir el consumo de recursos y memoria en dispositivos móviles.
 /* =========================================
    MI WRESTLING
    CHAMPIONSHIP HISTORY
@@ -91,9 +92,6 @@ body {
     text-transform: uppercase;
 
     letter-spacing: 0.8px;
-
-    transition:
-        color 0.2s ease;
 }
 
 .navbar nav a::after {
@@ -108,9 +106,6 @@ body {
     height: 2px;
 
     background: #f21f2b;
-
-    transition:
-        width 0.2s ease;
 }
 
 .navbar nav a:hover {
@@ -219,7 +214,7 @@ body {
 
 
 /* =========================================
-   TÃTULO
+   TÃ TULO
    ========================================= */
 
 .campeonato-header h1 {
@@ -247,7 +242,7 @@ body {
 
 
 /* =========================================
-   LÃNEA ROJA
+   LÃ NEA ROJA
    ========================================= */
 
 .header-line {
@@ -472,7 +467,7 @@ body {
 
 
 /* =========================================
-   DÃAS
+   DÃ AS
    ========================================= */
 
 .reign-days {
@@ -911,7 +906,7 @@ body {
     }
 
 
-    /* DÃAS */
+    /* DÃ AS */
 
     .reign-days {
         min-height: 82px;
@@ -1098,7 +1093,6 @@ body {
 
 .navbar nav a::after {
     background: linear-gradient(90deg, #a80715, #ff555b, #a80715);
-    box-shadow: 0 0 9px rgba(242,31,43,.55);
 }
 
 .campeonato-header {
@@ -1116,17 +1110,15 @@ body {
 
 .campeonato-label {
     color: #ff454d;
-    text-shadow: 0 0 14px rgba(242,31,43,.45);
 }
 
 .campeonato-header h1 {
     -webkit-text-stroke: .5px rgba(20,10,12,.75);
-    text-shadow: 0 2px 0 #8c8587, 0 4px 0 #282124, 0 8px 16px #000, 0 0 28px rgba(242,31,43,.2);
+    text-shadow: 0 2px 0 #8c8587, 0 4px 0 #282124, 0 8px 16px #000;
 }
 
 .header-line {
     background: linear-gradient(90deg, #7c0812, #ff3d46, #a10b17);
-    box-shadow: 0 0 14px rgba(242,31,43,.5);
 }
 
 .campeonato-container {
@@ -1191,7 +1183,6 @@ body {
 
 .reign-number {
     color: #ff454d;
-    text-shadow: 0 0 12px rgba(242,31,43,.25);
 }
 
 .reign-content h3 {
@@ -1216,7 +1207,6 @@ body {
 .former-days strong,
 .days-count strong {
     color: #ff3d46;
-    text-shadow: 0 0 18px rgba(242,31,43,.18);
 }
 
 .current-status {
@@ -1225,34 +1215,9 @@ body {
     border-left: 1px solid rgba(255,255,255,.08);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .current-badge {
-        animation: supercard-badge-glint 4.8s ease-in-out infinite;
-    }
-    .reign {
-        transition: border-color .3s ease, box-shadow .3s ease;
-    }
-    .reign:hover {
-        border-color: rgba(255,65,73,.4);
-        box-shadow: 0 10px 25px rgba(0,0,0,.5);
-    }
-}
-
-@keyframes supercard-badge-glint {
-    0%, 72%, 100% { filter: brightness(1); }
-    82% { filter: brightness(1.22); }
-}
-
-
-
-
-
-
-
-
-
-       
-/* MI WRESTLING — 2 REINADOS POR FILA EN MOBILE */
+/* ==========================================================
+   MI WRESTLING — 2 REINADOS POR FILA EN MOBILE
+   ========================================================== */
 @media (max-width: 600px) {
     .campeonato-container {
         display: grid;
@@ -1292,7 +1257,7 @@ body {
         text-align: center;
         text-transform: uppercase;
         overflow-wrap: anywhere;
-        text-shadow: 0 1px 0 #650710, 0 0 12px rgba(242,31,43,.3);
+        text-shadow: 0 1px 0 #650710;
     }
 
     /* TARJETAS */
@@ -1470,5 +1435,5 @@ body {
         padding: 5px;
         font-size: 7px;
     }
-       }
-       
+}
+
