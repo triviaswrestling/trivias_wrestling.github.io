@@ -1154,3 +1154,89 @@ overflow: visible;
 ```
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px){
+    /* 1. Hacemos que el contenedor principal grid abrace ambos bloques en la primera fila */
+    main{
+        display:grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(0, .85fr);
+        column-gap: 8px;
+        row-gap: 8px; /* Espacio interno si lo deseas, o 0 para que se peguen */
+        align-items: stretch; /* Estira ambos para que tengan la misma altura si quieres unificarlos */
+    }
+
+    /* 2. El marco del luchador (Header) */
+    .superstar-header{
+        grid-column: 1;
+        grid-row: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 12px 18px;
+        margin-bottom: 0; /* Quitamos el margen para que se acople */
+        height: 100%; /* Ocupa toda la altura de la celda del grid */
+    }
+
+    /* 3. La sección del Overall (que es la primera .superstar-section) y se pone al lado */
+    .superstar-header + .superstar-section{
+        grid-column: 2;
+        grid-row: 1;
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100%; /* Ocupa la misma altura que el header del luchador */
+    }
+
+    /* Hacemos que la caja interna del overall se expanda para llenar todo el alto del cuadro */
+    .superstar-header + .superstar-section .stats-grid {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr; /* O 3 columnas si prefieres apiladas, ajusta según el diseño que buscas */
+        gap: 6px;
+    }
+
+    .superstar-header + .superstar-section .stat-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* El resto de las secciones debajo vuelven a ocupar todo el ancho */
+    .superstar-header + .superstar-section ~ .superstar-section{
+        grid-column: 1 / -1;
+    }
+}
+
