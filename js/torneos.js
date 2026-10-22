@@ -12,7 +12,7 @@ const gamesSections=document.getElementById("games-sections");
 const directoryImages={
     RAW:"images/raw1.jpg",
     SMACKDOWN:"images/smackdown1.jpg",
-    NXT:"images/nxt-a.png",
+    NXT:"images/nxt.png",
     SPEED:"images/speed.jpg",
     AEW:"images/aew.jpg",
     TNA:"images/tna.jpg",
@@ -73,10 +73,10 @@ function getAllTournaments(){
 
 function getTournamentImage(brand,number){
     if(brand==="NXT"){
-        return number>=9?"images/nxt-b.png":"images/nxt-a.png";
+        return number>=9?"images/nxt.png":"images/nxt.png";
     }
 
-    return directoryImages[brand]||"images/Vacante.jpg";
+    return directoryImages[brand]||"images.jpg";
 }
 
 function createTournamentCard(tournament){
