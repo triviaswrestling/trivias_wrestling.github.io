@@ -4,93 +4,806 @@ const tournamentData = {
    SEASON 25
    ========================================= */
 
+"monday-night-raw-25":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+
+"friday-night-smackdown-25":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-25":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  /* =========================================
    SEASON 24
    ========================================= */
+
+"monday-night-raw-24":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-24":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-24":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
 
  /* =========================================
    SEASON 23
    ========================================= */
 
+"monday-night-raw-23":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+
+"friday-night-smackdown-23":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-23":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  /* =========================================
    SEASON 22
    ========================================= */
 
+"monday-night-raw-23":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-23":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-23":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+
 /* =========================================
    SEASON 21
    ========================================= */
+
+"monday-night-raw-21":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-21":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-21":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  
 /* =========================================
    SEASON 20
    ========================================= */
+
+"monday-night-raw-20":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-20":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-20":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  
 /* =========================================
    SEASON 19
    ========================================= */
- 
+
+
+ "monday-night-raw-19":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-19":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-19":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+
 /* =========================================
    SEASON 18
    ========================================= */
+
+"monday-night-raw-18":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-18":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-18":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  
  /* =========================================
    SEASON 17
    ========================================= */
- 
+
+"monday-night-raw-17":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+
+ "friday-night-smackdown-17":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-17":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  /* =========================================
    SEASON 16
    ========================================= */
+
+"monday-night-raw-16":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-16":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-16":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  
  /* =========================================
    SEASON 15
    ========================================= */
 
+"monday-night-raw-15":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+
+"friday-night-smackdown-15":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-15":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  /* =========================================
    SEASON 14
    ========================================= */
+
+"monday-night-raw-14":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-14":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-14":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  
  /* =========================================
    SEASON 13
    ========================================= */
 
+"monday-night-raw-13":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-13":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-13":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+
  /* =========================================
    SEASON 12
    ========================================= */
+
+"monday-night-raw-12":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-12":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-12":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  
  /* =========================================
    SEASON 11
    ========================================= */
+
+"monday-night-raw-11":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-11":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-11":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  
  /* =========================================
    SEASON 10
    ========================================= */
 
+"monday-night-raw-10":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+
+"friday-night-smackdown-10":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-10":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  /* =========================================
    SEASON 9
    ========================================= */
+
+"monday-night-raw-9":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-9":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-9":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
 
  /* =========================================
    SEASON 7
    ========================================= */
 
+"monday-night-raw-7":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-7":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-7":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+
  /* =========================================
    SEASON 6
    ========================================= */
+
+"monday-night-raw-6":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-6":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-6":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
 
  /* =========================================
    SEASON 5
    ========================================= */
 
+"monday-night-raw-5":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-5":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-5":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+
 /* =========================================
    SEASON 4
    ========================================= */
+
+"monday-night-raw-4":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-4":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-4":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
  
  /* =========================================
    SEASON 3
    ========================================= */
 
+"monday-night-raw-3":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-3":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-3":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+
  /* =========================================
    SEASON 2
    ========================================= */
+
+"monday-night-raw-2":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"friday-night-smackdown-2":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"smackdown-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
+
+"wwe-nxt-2":{
+roster:["","","","","",""],
+format:"LEAGUE_ELIMINATION",
+shows:{"nxt-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+bracketFormat:"",
+bracketTitle:"",
+finalEvent:"",
+finalMatches:[]
+},
 
 
  /* =========================================
