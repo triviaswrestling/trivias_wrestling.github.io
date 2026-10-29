@@ -838,7 +838,11 @@ finalMatches:[
 "friday-night-smackdown-1":{
 roster:["Bryan Danielson","John Cena","Adam Cole","Kofi Kingston","RICOCHET","Shawn Michaels"],
 format:"LEAGUE_ELIMINATION",
-shows:{"smackdown-9":{date:"12/05/2023",matches:[["Bryan Danielson","John Cena",4,0],["Adam Cole","Kofi Kingston",3,0],["RICOCHET","Shawn Michaels",5,0]]}},
+shows:{"smackdown-9":{date:"12/05/2023",matches:[["Bryan Danielson","John Cena",4,0],["Adam Cole","Kofi Kingston",3,0],["RICOCHET","Shawn Michaels",5,0]]},
+ "smackdown-10":{date:"19/05/2023",matches:[["Bryan Danielson","RICOCHET",2,2],["John Cena","Adam Cole",0,4],["Shawn Michaels","Kofi Kingston",5,0]]},
+ "smackdown-11":{date:"26/05/2023",matches:[["Adam Cole","RICOCHET",3,2],["Kofi Kingston","John Cena",0,3],["Shawn Michaels","Bryan Danielson",0,5]]},
+ "smackdown-12":{date:"02/06/2023",matches:[["RICOCHET","John Cena",4,0],["Kofi Kingston","Bryan Danielson",0,2],["Adam Cole","Shawn Michaels",3,2]]},
+ "smackdown-13":{date:"09/06/2023",matches:[["John Cena","Shawn Michaels",5,0],["RICOCHET","Kofi Kingston",3,0],["Adam Cole","Bryan Danielson",3,2]]}},
 bracketFormat:"SEMIFINALS_FINAL",
 bracketTitle:"NIGHT OF CHAMPIONS 2023",
 finalEvent:"night-of-champions-2023",
