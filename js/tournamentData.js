@@ -741,13 +741,19 @@ finalMatches:[]
    ========================================= */
 
 "monday-night-raw-3":{
-roster:["","","","","",""],
+roster:["Cody Rhodes","RICOCHET","Chris Jericho","Karrion Kross","Bron Breakker","Dominik Mysterio","AJ Styles","Gunther"],
 format:"LEAGUE_ELIMINATION",
-shows:{"raw-X":{date:"",matches:[["","",0,0],["","",0,0],["","",0,0]]}},
+shows:{"raw-21":{date:"14/08/2023",matches:[["Cody Rhodes","RICOCHET",4,1],["Chris Jericho","Karrion Kross",2,3],["Bron Breakker","Dominik Mysterio",1,3],["AJ Styles","Gunther",0,0]]},
+"raw-22":{date:"21/08/2023",matches:[["Karrion Kross","RICOCHET",3,1],["Cody Rhodes","Dominik Mysterio",4,1],["Chris Jericho","AJ Styles",2,2],["Bron Breakker","Gunther",1,2]]},
+"raw-23":{date:"28/08/2023",matches:[["AJ Styles","Karrion Kross",2,1],["Cody Rhodes","Gunther",4,1],["Bron Breakker","Chris Jericho",1,3],["RICOCHET","Dominik Mysterio",2,2]]},
+"raw-24":{date:"04/09/2023",matches:[["Karrion Kross","Dominik Mysterio",1,2],["AJ Styles","Bron Breakker",2,2],["Cody Rhodes","Chris Jericho",1,3],["Gunther","RICOCHET",0,0]]},
+"raw-25":{date:"11/09/2023",matches:[["Chris Jericho","RICOCHET",3,2],["Karrion Kross","Bron Breakker",3,0],["Dominik Mysterio","Gunther",2,3],["Cody Rhodes","AJ Styles",9,0,{championship:"WORLD HEAVYWEIGHT CHAMPIONSHIP",champion:"Cody Rhodes"}]]},
+"raw-26":{date:"18/09/2023",matches:[["Karrion Kross","Gunther",0,5],["AJ Styles","RICOCHET",3,0],["Cody Rhodes","Bron Breakker",4,0],["Chris Jericho","Dominik Mysterio",2,2]]},
+"raw-27":{date:"25/09/2023",matches:[["AJ Styles","Dominik Mysterio",2,3],["Cody Rhodes","Karrion Kross",5,0],["Bron Breakker","RICOCHET",3,2],["Gunther","Chris Jericho",1,1]]}},
 bracketFormat:"",
 bracketTitle:"",
 finalEvent:"",
-finalMatches:[]
+finalMatches:[["Bryan Danielson & Finn Balor","Roman Reigns & Solo Sikoa",2,1,{championship:"UNDISPUTED TAG TEAM CHAMPIONSHIP",champion:"Bryan Danielson & Finn Balor"}],["Bryan Danielson & Jon Moxley","Drew McIntyre & Sheamus",2,2,{championship:"UNDISPUTED TAG TEAM CHAMPIONSHIP",champion:"Bryan Danielson & Jon Moxley"}]]
 },
 
 "friday-night-smackdown-3":{
